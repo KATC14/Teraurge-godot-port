@@ -1,0 +1,484 @@
+NOTES
+	Naigad is a blue serpent that can be encountered at the sejan lake.
+	She's trying to salvage an old chest from the lake but has encountered a problem and needs help from someone with five fingers.
+	She's very coy/mysterious about what's in the chest.
+	Naigad is not a sea/water creature and normally wears clothes. She's just been so long at the lake she's gone a little native.
+NOTES
+
+>>Intro to this character is in the "sejan_lake" character.
+||>>This index is for debugging
+{start} Choose character start index. (This index never used in normal gameplay so you must have used debug commands to reach this).
+	[waited_in_water] Waited in the water.
+	[beach_after] Swam to the beach.
+	[waited_after_punch] Waited in the water after punching.
+	[beach_after_punch] Swam to the beach after punching.
+||>>Start of the introductory block.
+{waited_in_water | play_sound generic/interactions/splash_big 80, start_music sejan/naigad 70 3, change_environment sejan_lake_water, change_sprite in_water} The shadow stops in front of you and a head rises from the water. "Hello. You are a talker and not a biter, right? I saw you clothed before you came swimming." She turns her head a little as if not sure you're not going to attack.
+	[hello_you_too] I think so, hello.
+	[what_talker] Sorry, what? A talker?
+||
+{hello_you_too | character_leave} "Ah, a talker, then. Let's get to the beach for introductions." She swims towards the beach.
+{what_talker | character_leave} "Huh? It just means I'm not an animal. Biters bite and talkers talk. It's sometimes hard to separate people from the animals. Especially if you are new to a place." She swims towards the beach.
+	[beach_after_wait] (Follow her)
+||
+{waited_after_punch | start_music sejan/naigad 70 3, change_environment sejan_lake_water, change_sprite in_water} A head rises from the splashes. "AAH! Stop! I'm a talker! Talker!" She turns to you and moves away a little.
+	[lets_beach_1] Sorry about that.
+	[lets_beach_2] That was your own fault.
+	[what_talker_punched] Sorry, what? A talker?
+||
+{what_talker_punched} "What? It just means I'm not a biter. I talk. I'm not an animal. Are you okay?" She raises her brow.
+	[lets_beach_3] I'm okay. Never heard of the term. I'm... new here.
+	[lets_beach_4] You shouldn't sneak up on people like that.
+||
+{lets_beach_1 | character_leave} "It's okay. I'm feeling a bit disoriented from that punch. Can we continue this on the beach?" She swims towards the beach.
+{lets_beach_2 | character_leave} "Yeah, well, we can continue this on the beach." She swims towards the beach.
+{lets_beach_3 | character_leave} "You are definitely new. Feeling a bit disoriented from that punch. Let's continue this on the sand." She swims towards the beach.
+{lets_beach_4 | character_leave} "Well, you are no fun. My head is spinning from that slap. I need some solid ground." She swims towards the beach.
+	[beach_after_punch_2] (Follow her)
+||
+{beach_after | start_music sejan/naigad 70 3, change_environment sejan_lake, change_sprite character} "Hey! Sorry about the scare. I'm not here to eat you." 
+{beach_after_wait | change_environment sejan_lake, change_sprite character} "Sorry about the scare. I didn't realize you saw me." 
+{coulda_stabbed} "I wasn't really counting on you having a weapon since you were naked and, uhm... still are. " She tries very hard to look you in the eyes, seemingly amused. 
+{coulda_weak} "I wasn't very worried about you punching me."
+{coulda_normal} "That would have hurt, but I really thought you didn't see me."
+{coulda_strong} She looks over your biceps. "I'll try to remember that next time. Luckily, I seem to have avoided some skull fractures."
+	[why_sneak] Why would you sneak up on people like that?
+	[coulda_stabbed] I could have stabbed you! //hideif.clicked
+	[ | check_stat strength 6-10 coulda_weak-coulda_normal-coulda_strong] I could have hit you! //hideif.clicked
+||
+{beach_after_punch | start_music sejan/naigad 70 3, change_environment sejan_lake, change_sprite character} A large snake-like creature slithers to the beach. "Do you beat up everybody you meet or am I just a special case?" She shakes her head.
+{beach_after_punch_2 | change_environment sejan_lake, change_sprite character} You move to the beach. The snake creature shakes her head. "Head feels odd. You punch strangers regularly?"
+{no_sharp_things} "Well, you were naked. You must be very good at hiding things or you don't have anything on you."
+	[ | check_stat strength 6-10 hurt_weak-hurt_normal-hurt_strong] Sorry, I thought you were something hostile. Did you get hurt?
+	[deserved_punch] You deserved that punch.
+	[no_sharp_things] You're lucky I didn't have something sharp with me. //hideif.index_is.no_sharp_things
+||
+{hurt_normal} "It still stings. I think I might get a bruise. Good thing you didn't dent my good side." She gives you an impish grin.
+	[not_serious] Hopefully nothing serious, then.
+	[deserved_punch] A good reminder not to scare random people.
+||
+{hurt_strong} "My head feels kinda numb and I can taste blood in my mouth. But considering the muscle on you, it's a wonder you didn't just knock me out."
+	[sounds_bad] That sounds really bad. Do you need help?
+	[deserved_punch] Well that's what you get for scaring people.
+||
+{sounds_bad} "I have a kit in my camp. I can check it myself. No need for a doctor, but thanks for your concern. Seems you can mend the things you break."
+{sounds_serious} "Yeah, I'm okay. I'm just exaggerating. I'll be just fine."
+	[sounds_serious] Are you sure? What you described sounded pretty serious. //hideif.index_is.sounds_serious
+	[say_so] If you say so.
+||
+{deserved_punch} "I guess... Sorry about that. I should probably stop scaring people before someone brings something sharp with them."
+{why_sneak} "Uh, I thought it'd be funny to startle you... It's been a boring day."
+{not_serious} "Yeah, the pain is probably going to be gone in a little while. Hopefully no bruise."
+{hurt_weak} "Nah, I'm okay. I think I just took in some water from the surprise."
+{say_so} "Feeling is already coming back now, my head is just sore."
+	[should_dress_up] (Cover yourself) You have me at a disadvantage. I'm -name-.
+	[your_name] My name is -name-. What's yours?
+	[name_correction] So... do you live here?
+	[name_correction] What are you doing here?
+||
+{your_name} "Naigad. That's my name."
+{your_name_2} "Nice to meet you, -name-."
+	[nice_to_meet] Nice to meet you, Naigad.
+	[live_here] Do you live here?
+	[doing_here] What are you doing here?
+||
+{name_correction} "Naigad."
+	[sorry_name] Sorry?
+	[sorry_name] What?
+||
+{sorry_name} "Naigad. That's my name. What's yours?"
+	[your_name_2] My name is -name-.
+||
+{nice_to_meet} "Nice to meet you too, -name-! Sorry, I have to go now!"
+{live_here} "No. I don't live here. Well, not permanently. I'm just- um- Oh, I need to go, actually. It was nice to meet you, -name-!" 
+{doing_here} "I'm actually trying to- um- I just- like to swim here. Oh, I need to go. It was nice to meet you, -name-!" 
+{should_dress_up} "I'm Naigad. I'll give you privacy and leave."
+	[wait_naigad] Wait!
+	[bye_naigad] Bye.
+||
+{wait_naigad | stop_music 5, character_leave, save_index start2} "Bye!" She jumps into the water.
+{bye_naigad | stop_music 5, character_leave, save_index start2} "Bye!" She jumps into the water.
+{call_her} You yell over the lake. The call echoes over the water but no one answers.
+	[call_her] I WANT TO TALK TO YOU! //showif.index_is.wait_naigad
+	[ | end_encounter] (Dress up and leave)
+||>>End of the introductory block.
+||>>intro2 (Player sees Naigad at the beach and approaches)
+{start2 | start_music sejan/naigad 70 3} You walk along the beach to her. She turns her head towards you. She's holding something odd-looking in her mouth. She hastily throws it into her bag. "Huh? Wait... It's you? -name-, was it? Uh- what brings you here?" 
+{just_holding} She pushes her bag further away. "Uh, It's just- a piece of junk... Very uninteresting. So what are you doing here? The weather is pretty." She squints at the sky.
+	[nice_weather] Yeah, it's pretty nice weather. The peninsula seems to have very calm and warm climate. //showif.index_is.just_holding
+	[just_holding] What were you just holding there? //showif.index_is.start2
+	[just_saying_hi] I was wandering around and saw you here, so I decided to say hi.
+	[looking_for_you] I was actually looking for you.
+	[what_you_do] What are you doing here?
+||
+{looking_for_you} She turns her head. "Um, uh?... Why?"
+	[just_saying_hi] We parted rather quickly the last time we saw each other. I just wanted to talk to you.
+	[if_so] You're interesting.
+||
+{what_you_do} "I'm just... enjoying the day? Surely I can come to the beach if I want to? As far as I know, nobody owns this place."
+	[lack_clothes] Sun- Daylight... Bathing? I guess that would explain the lack of clothes.
+	[relax_wild] So you're just... relaxing in the middle of the wilderness? And not doing anything important?
+||>>MAIN HUB 1
+{start3} "It's you. Hello."
+{lack_clothes} She glances at herself. "Um.. yes. It's a nice lake."
+{relax_wild} She flashes a grin. "Yes. Exactly."
+{if_so} "If you say so."
+{nice_weather} "Yeah, Sejan always has this warm, silent atmosphere. Makes you want to fall asleep."
+{just_saying_hi} "Oh, makes sense. I'm just a little surprised. Not many people visit this lake."
+{q_what} "Like species? I'm a Hesadonian."
+{q_who} "Just a traveller. I've set up here for a while. This place is lovely."
+{if_so_flirt} "Thanks."
+{very_lonely} "I appreciate it, but no, thanks."
+	[q_what] What are you? //hideif.clicked
+	[q_who] Who are you? //hideif.clicked
+	[flirt] Do you want some company? //hideif.clicked
+	[wave_leave] So... um.. I'll be going now. (Wave for goodbye)
+||>>Flirt
+{flirt} She chortles. "Look... I really don't need any company. I like the solitude."
+	[very_lonely] You're absolutely sure? This lake seems very lonely.
+	[very_lonely] We could make a fire and roast something? I could bring some drinks?
+	[if_so_flirt] If you say so.
+||
+||>>Five fingers discovery
+{wave_leave} "Okay... <b>W-Wait</b>!" She hits her tail on the sand, causing a pillar of sand to fly up in the air.
+	[woah_bye] What?
+	[woah_bye] Woah! Calm down! Did I do something?
+||
+{woah_bye} "Show me your hands!"
+	[hands_up] (Put your hands up)
+	[you_robbing_me] Are you... robbing me?
+	[hand_no] No.
+||
+{hands_up} You raise your hands over your head. She turns her head quizzically. "What... What are you doing?"
+{hand_no} "Please! I need to see them."
+{meant_look} "That's... That's what I said."
+{you_robbing_me} "What? <b>No</b>! I just wanted to see what your hands look like."
+{extend_hands_why} "Just show them!"
+	[meant_look] Oh... You meant... You want to a look at my hands? //showif.index_is.hands_up
+	[extend_hands] (Extend your hands to her)
+	[extend_hands_why] ...Why? //hideif.index_is.extend_hands_why
+||
+{extend_hands} You extend your hands palm first to her. Her eyes widen and dart around the digits. "...You have to be kidding me."
+	[five_weird] I know... five fingers makes them look weird. I get that a lot. //showif.has_flag.pc_knowledge_five_fingers_weird
+	[why_face] Am I the chosen one? //showif.charisma.8
+	[why_face] Why the face?
+||
+{five_weird | pic robot_arm} "What? Really? I think all fingers look weird." She yanks an arm – a robot arm – from her bag with her tail and compares it with yours. The prosthetic has a very similar hand structure to yours. She starts giggling almost maniacally.
+{why_face | pic robot_arm} She yanks an arm – a robot arm – from her bag with her tail and compares it with yours. The prosthetic has a very similar hand structure to yours. She starts giggling almost maniacally.
+	[wtf_that] What the fuck is that?
+	[wtf_that] What's going on? What are you doing?
+||
+{wtf_that | remove_pic} "You have five fingers!" She places the robo-hand against yours. They seem to fit very well.
+	[fingers_yes] Yes.
+	[fingers_yes] Yes?
+	[fingers_yes] Yes!
+||
+{fingers_yes} She compares your hand with the mechanical hand. "Ah, ah... Let me just. Beautiful.<br><br>Can I employ you for a small job?"
+	[finger_thing] What was that about?
+	[job_yes] Yes.
+	[finger_thing] What kind of job?
+||
+{finger_thing} "Of course! Where to begin!...<br><br>Soo... There's a container in the lake and the opening mechanism needs a hand shaped like yours. My robot arm, purchased precisely for this job, is broken.<br><br>I can pay you for your help."
+{job_yes} "Great!<br><br>There's a container in the lake and the opening mechanism needs a hand shaped like yours. My robot arm, purchased precisely for this job, is broken.<br><br>I can pay you for your help."
+{actual_reason} "Yes. I just didn't want to draw any attention."
+	[yes_job] Sure... I'll help you.
+	[actual_reason] So, that's the actual reason you're hanging around here? //hideif.index_is.actual_reason
+	[no_job] I'd rather not.
+||
+{no_job} "No? Are you sure? It's a fairly easy job. Just dive down, put your hand on the thing and bang! All done!" 
+	[no_job_no] It's still a no.
+	[yes_job] Okay, I'll do it.
+||
+{no_job_no | save_index job_offer_cont} "Okay... The offer stands, however... so come back any time! I think I might be here for a while."
+	[ | end_encounter] Right. Bye now. (Leave)
+||
+{job_offer_cont | start_music sejan/naigad 70 3} "Hey! Did you change your mind? I could really use your help."
+	[yes_job] Sure, I'll do it.
+	[ | end_encounter] Nah. (Leave)
+||
+
+
+||>>PAYMENT NEGOTIATION
+{yes_job} "Great! What's the deal?" 
+{what_mean_payment} "You know what I mean... What's your price? What do you want as payment?" 
+{pay_return} "Sure."
+{no_dividing_no} "Nope, that's not a possibility. No dividing"
+{prostitution_arg_fail} "No. Sex is off the table."
+{propose_sex_f} She shakes her head. "Nope. I'm sure you're a nice girl, but no."
+{pay_silent_return}
+	[what_mean_payment] What do you mean? //showif.index_is.yes_job
+	[fixed_pay] What do you propose?
+	[fixed_pay_last] You mentioned fixed payment?
+	[divide_loot] We divide the loot.
+	[roboarm_pay] I want the robo-arm.
+	[unconventional_pay] How about... an unconventional payment?
+	[will_do_free] I'll do it for free.
+||>>For free
+{will_do_free} "So, is this one of those free but actually not kind of deals? Sure, sure, sure... Irritating, but it's a deal." 
+	[free_annoying_1] Why can't I just help?
+	[free_annoying_2] I can take a payment if that makes you feel better.
+||
+{free_annoying_1} "Sorry. Of course I'll take your free help. Just don't expect anything afterwards, I do my business up front."
+{free_annoying_2} "You can ask for an actual payment if you want. But if you want, you can do this for free. Just don't expect anything afterwards, I do my business up front."
+	[nothing_payment] I'm okay doing this for free.
+	[pay_return] Actually, let me reconsider.
+||>>Divide loot
+{divide_loot} "I was afraid you'd say that. Look... I've done a lot of work to find this thing. You helping me raise it from the lake is very small part of the whole thing. I can't give you any meaningful share. Besides, there might not even be anything in the container. You wouldn't want to consider a fixed payment instead?"
+{its_long_shot} "Sure, it just makes you incredibly obnoxious."
+{no_dividing} "I'd rather not."
+{consider_div}
+	[fixed_pay] What do you propose? //hideif.clicked
+	[2_adats_deal] I think I'll take those two adats and the two hundred krats you offered. //showif.has_flag.naigad_2_adats_deal
+	[want_70] I want 70% //hideif.clicked
+	[want_50] I want 50% //hideif.clicked
+	[want_30] I want 30% //hideif.clicked
+	[want_10] I want 10% //hideif.clicked
+	[want_1] I'm good with 1% //hideif.clicked
+	[pay_silent_return] (Consider the other options)
+||>>70% 50%
+{want_70 | add_flag naigad_2_adats_deal} She snorts. "Good one. Hilarious! I'll give you two adats and two hundred krats."
+{want_50 | add_flag naigad_2_adats_deal} "No. The thing inside might not even be something that can be neatly divided into equal value pots. Two adats and two hundred krats."
+{want_30 | add_flag naigad_2_adats_deal} "That's still way too high. My offer is two adats and two hundred krats."
+{want_10 | add_flag naigad_2_adats_deal} "Sorry but no. Two adats and two hundred krats?"
+{want_1 | add_flag naigad_2_adats_deal} She scratches her head with her tail. "You do realize that would mean that if there's one hundred adats inside the chest, you'd get one? I'm offering you two adats and two hundred krats."
+	[2_adats_deal] Sure, it's a deal.
+	[its_long_shot] You can't blame me for trying. You'd be surprised what people agree to. //showif.index_is.want_70
+	[cant_get_thing] You can't even get the thing out of the lake if I won't help you. //showif.index_is.want_50
+	[no_dividing] You're not going to do any dividing on this this thing, are you? //showif.index_is.want_30
+	[reasonable_10] 10% is perfectly reasonable. I'm risking life and a limb. //showif.index_is.want_10
+	[take_chances] I'll take my chances. It's literally one percent, you have to agree to that. //showif.index_is.want_1
+	[consider_div] (Consider other options)
+||
+{cant_get_thing} "I'll just take a short trip to Taodal and find someone with five fingers or get the-robo arm fixed. You being here is just a convenience. Two adats and  two hundred krats."
+	[2_adats_deal] Okay, sure, I'll take the adats and the krats.
+	[consider_div] (Consider other options)
+||
+{reasonable_10} "So you are just going to gamble on what the chest contains to get a better deal?"
+	[not_divisible_exiciting] It's more exciting that way.
+	[2_adats_deal] No you're right. I'll take your offer.
+	[consider_div] (Consider other options)
+||
+{take_chances} "You're not serious. What if there's fifty adats in there? I'm not going to start splitting adats for you."
+	[not_divisible] I want the ridiculously measly 1%.
+	[2_adats_deal] Yeah... You're right, that's not going to work. I'll just take your offer.
+||>>Item revealed
+{not_divisible_exiciting} "You're fucking ridiculous... <br><br>Look... It's- The thing in the chest is a single item. We can't divide it or pawn it off."
+{not_divisible} "Look... It's- The thing in the chest is a single item. We can't divide it or pawn it off."
+	[you_do_know] So you do know.
+||
+{you_do_know} "I tracked it here. I didn't just stumble on it by accident."
+	[what_is_it] So what is it?
+||
+{what_is_it} "It's... a piece of art."
+	[awful_vague] That's an awfully vague answer. You do know I'm going to see it when we drag it out of the lake?
+||
+{awful_vague} "You would only know what it looks like."
+	[vague_up] So you're determined to keep this up?
+||
+{vague_up} "Yes."
+	[secret_agent] Are you a secret agent or something? Because I can't understand your reasons.
+||
+{secret_agent} She wiggles her eyebrows suggestively and grins.
+	[no_dividing_no] So, you're not going to divide the loot?
+||>>fixed pay proposition
+{fixed_pay} "How about... two adats? And supplementary two hundred krats?"
+{fixed_pay_last} "Yes, two adats and two hundred krats."
+	[2_adats_deal] Sure, it's a deal.
+	[make_3_adats] Make it three adats and it's a deal.
+	[divide_loot] How about we divide the loot instead? //showif.index_is.fixed_pay_last
+	[pay_silent_return] (Consider the other options)
+||
+{make_3_adats} She turns her head mischievously. "It's a deal, then: three adats."
+	[3_adats_deal] Deal.
+||>>Unconventional payment (SEX)
+{unconventional_pay} She raises her eyebrow and flicks her tongue. "Aaand what would that be?"
+	[owe_favor] You owe me a favor. A big one.
+	[ | sex_gate propose_sex propose_sex_f] A pretty girl like you, you know exactly what it'd be.	 //hideif.clicked
+	[kiss_cheek] A kiss? On the cheek? //hideif.player_sex.female
+||>>favor payment
+{owe_favor} "That's a vague one. I will promise to do you a favor that reflects the value of what you'll give me."
+	[risk_favor] So, risking your life to help me?
+||
+{risk_favor} "That's overly dramatic of you. No one's going to drown in this lake."
+	[booby_trappy] But you don't know other possible dangers, like, the chest might be booby trapped.
+||
+{booby_trappy} "Sure! I'll risk myself for highly unlikely danger or give you another suitable favor."
+	[favor_payment] That's a deal, then.
+	[pay_return] I'm not sure. Let me think.
+||>>sex payment
+{propose_sex} Her eyes widen slightly and then become pointed slits. "Hrmm... I don't know about that."
+	[prostitution_arg] You get one hundred percent of the loot for the price of some panting and sweating. It might even feel nice. //showif.charisma.8
+	[prostitution_arg_fail] A quick fuck on the beach?
+||
+{prostitution_arg} She quickly grins at the prospect. "Hah! I- I can't argue with that... But uhm, look..." She furrows her brow and looks intently at the sand.
+	[yes_prost] Yes?
+	[too_much_prost] If it's too much, I can suggest something else.
+||
+{yes_prost} "So... Do you just want to... fuck me in my twat or are you after something else? 'Cause I'm not down for other stuff." She tries her best not to blush.
+{too_much_prost} "Maybe... umm. Do you just want to... fuck me in my twat? 'Cause I'm not down for other stuff." She tries her best not to blush.
+	[only_comfy] I'm okay with that as long as you're comfortable with the arrangement.
+	[touching_kissing] Is kissing and touching okay?
+	[pay_return] A different kind of payment then?
+||
+{touching_kissing} "Umm. Touching is probably necessary... sure. Light kisses? That's okay, but I'm not going to kiss you if you're expecting that."
+{only_comfy} "I'm okay with it, but... I- I just want to keep it a little less intimate? If that makes sense? Touching is probably necessary... sure. Light kisses, sure."
+	[sex_payment] We have a deal, then, I think.
+	[pay_return] That seems a little awkward. Maybe a different payment, then?
+||>>Kiss on the cheek (male)
+{kiss_cheek} She laughs. "What!? Are you serious?"
+	[u_heard_me] You heard me.
+	[u_heard_me] Too much?
+||
+{u_heard_me} She giggles. "What is this? Like... You're not serious, are you? Why would you... I don't have lips! Wait... Is that the joke?"
+	[unbelieve_smooch_1] What's so unbelievable about it?
+	[unbelieve_smooch_2] I'm sure you can just do something with your tongue to emulate a kiss.
+	[unbelieve_smooch_3] What!? No!
+||
+{unbelieve_smooch_1} "You're not joking? It really sounds like a joke... Sure! I'll give you a smooch on the cheek!"
+{unbelieve_smooch_2} "You're not joking? It really sounds like a joke... Sure, I can do something with my tongue... " She flicks her long tongue out as if to check if it's still there.
+{unbelieve_smooch_3} "No joke, then? Huh... okay. Sure! I'll give you a peck on the cheek!"
+	[kissy_deal] It's a deal, then.
+||
+{kissy_deal} "Just... Why? What do you get from a kiss on the cheek? Is that like a... wait... Is this a sex thing? You're going to get a stiffy from it, aren't you?"
+	[joke_kiss] Maybe it's just a good-natured joke so I can help you for free?
+	[does_that_matter] Does that even matter? It's a stupid good deal for you. I suggest you take it.
+	[pretty_girl_kiss] I just like getting kisses from pretty girls. //showif.charisma.6
+	[maybe_kiss_stiffy] Maybe?
+	[yeah_kiss_stiffy] Yeah, probably.
+||
+{joke_kiss} "What an odd joke. It does make me feel like laughing, so I guess it's a good one?"
+{does_that_matter} "Alright! A kiss on the cheek, then! You'll get your deal."
+{pretty_girl_kiss} "Okay! You'll get that kiss."
+{maybe_kiss_stiffy} "Okay, that makes me feel a little better about this. You'll get your kiss, then."
+{yeah_kiss_stiffy} She bursts into laughter. "Okay, that makes me feel a little better about this. You'll get your kiss."
+	[kiss_payment] It's a deal, then.
+||>>Robot arm as a payment
+{roboarm_pay} "The robo-arm it is, then!"
+	[robot_arm_payment] It's a deal, then.
+	[pay_return] Actually, let me reconsider.
+||
+
+||>>Deal agreed to (end point to all agreed deals)
+{sex_payment | add_flag naigad_lakejob_pay_sex} She quickly scribbles into a notepad. "Hmm. 'Penetrative vaginal sex on the beach, light touching and kissing'... This is going to look hilarious in my accounting."
+{robot_arm_payment | add_flag naigad_lakejob_pay_robotarm} She quickly scribbles into a notepad. "'Payment: robot arm' This is perfect, I don't have to carry as much afterwards." 
+{2_adats_deal | set_counter naigad_lakejob_adats_counter 2, add_flag naigad_lakejob_pay_adats} She quickly scribbles into a notepad. "That's settled, then. Two adats and two hundred krats as payment." 
+{3_adats_deal | set_counter naigad_lakejob_adats_counter 3, add_flag naigad_lakejob_pay_adats} She quickly scribbles into a notepad. "That's settled, then. Three adats and two hundred krats as your payment." 
+{favor_payment | add_flag naigad_lakejob_pay_favor} She quickly scribbles into a notepad. "'A favor for helping to retrieve the... item. A possibly dangerous favor.'"
+{nothing_payment | add_flag naigad_lakejob_pay_free} She quickly scribbles into a notepad. "'-name- volunteered as free help. Possibly for a favor.'" 
+{kiss_payment | add_flag naigad_lakejob_pay_kiss} She quickly scribbles into a notepad. "'A kiss on the cheek as payment.' I feel like a girl in school." She giggles.
+{pleasure_business} She giggles. "Pleasure doing business with you as well."
+	[pleasure_business] A pleasure doing business with you. //hideif.clicked //showif.charisma.6
+	[ | change_diag_file diag_lake_job start] So, how do we start?
+||
+
+
+
+
+
+||>>DEAL PAYMENT (After the chest has been recovered)
+{payment_start | start_music sejan/naigad 70 3} "Hey! There you are!"
+	[pay_issue] And there are you!
+	[pay_issue] Hi again.
+	[would_show] I did have my doubts about you showing up.
+||
+{would_show} "I try to keep my word. Now, your payment..." She digs up a notepad.
+{pay_issue} "Now, the issue of your payment." She digs up a notepad.
+	[for_sex] (Wait) //showif.has_flag.naigad_lakejob_pay_sex
+	[for_free] I remember agreeing to do it for free. //showif.has_flag.naigad_lakejob_pay_free
+	[for_robot_arm] We agreed on the robot arm. //showif.has_flag.naigad_lakejob_pay_robotarm
+	[for_favor] We agreed on you owing me a favor. //showif.has_flag.naigad_lakejob_pay_favor
+	[for_money] We agreed on money. //showif.has_flag.naigad_lakejob_pay_adats
+	[for_kiss] (Wait) //showif.has_flag.naigad_lakejob_pay_kiss
+||>>Payment received
+{for_free} "Well, you said you'd do it for free and the note concurs. I will give you a free thank you on top of your nothing payment.<br><br>Thank you."
+{for_robot_arm | give_item robot_arm} "One robot arm for the services provided." She hands you the arm with her tail.
+{for_favor} "A favor. I owe you a favor for this. A medium favor."
+{for_sex} She reads her notes. "Ah... Yes... Um, we agreed on sex."
+{for_money | give_money adats naigad_lakejob_adats_counter, give_money krats 200} "Yes, I do believe I owe you some adats and krats." She rifles her bag with her tail and hands you the money.
+{for_kiss} She half-heartedly points at the notepad. "It reads here, the payment for your work is... a kiss on the cheek."
+	[naigad_leaving] My pleasure. //showif.index_is.for_free
+	[naigad_leaving] Thanks. (Take the robot arm) //showif.index_is.for_robot_arm
+	[naigad_leaving] Yup. A medium favor with some risk. //showif.index_is.for_favor
+	[ | change_diag_file diag_lake_sex start] We did. //showif.index_is.for_sex
+	[naigad_leaving] Thanks. //showif.index_is.for_money
+	[ahead_kiss] Sure, go ahead. Kiss when ready. //showif.index_is.for_kiss
+||>>Kissing male PC
+{ahead_kiss} She snickers. "Please! Can you explain... why?"
+{no_motive_kiss} "Sure there is. You're not a child who hurt their feelings. What's the motive?"
+	[no_motive_kiss] For a kiss on the cheek. There's really no other motive to it. //hideif.index_is.no_motive_kiss
+	[kiss_joke] It's a joke. Does it do anything for you? A tiny bit of a shy smile?
+	[like_the_idea] I just like the idea.
+	[tiny_intimacy] I thought it'd be a quick way to get a piece of intimacy from you.
+||
+{tiny_intimacy} "I thought it was something like that. That's okay... You fancy me?"
+{like_the_idea} "That's cute. Did you want the kiss because you fancy me?"
+	[fancy_you] I do fancy you.
+	[fancy_kiss] I fancy a kiss on my cheek from you.
+||
+{fancy_you} She laughs. "To be honest, I'm down for upgrading the kiss on the cheek for a real one. A kiss on the cheek feels a little inadequate."
+{fancy_kiss} She laughs. "Dodging, then? That's okay. This is supposed to be a professional thing anyway.<br><br>...To be honest, I'm down for upgrading the kiss on the cheek for a real one. A kiss on the cheek feels a little inadequate."
+	[insist_kiss] If you insist.
+	[cheek_suspense] Nah, I'll take the kiss on the cheek. It'll keep us in suspense.
+||
+{cheek_suspense} "In suspense? I didn't realize you were self-destructive... and evil!<br><br>You sure? I would be perfectly okay with it."
+	[just_kiss_cheek] Just kiss me on the cheek.
+	[insist_kiss] Okay, If you insist.
+||>>Just cheek kiss
+{just_kiss_cheek} She shakes her head. "If that's what you want." She quickly leans in for the kiss. She basically opens her mouth and pokes your cheek with the tip of her tongue.
+{kiss_joke} "Oh, you just want to embarrass the girl with no lips?" She quickly leans in for the kiss. She basically opens her mouth and pokes your cheek with the tip of her tongue.
+	[kiss_wonder] Hah! I wondered how you'd do that.
+	[naigad_leaving] Thanks.
+||
+{kiss_wonder} "Stop! I- I can't actually kiss. I don't have the lips for it."
+	[naigad_leaving] Don't worry, you did just fine.
+	[naigad_leaving] Thanks anyway.
+||
+||>>Deep kiss
+{insist_kiss | pic love_head} "Oh, I do." She flutters her eyes and comes right up against you. You feel her breath on your face. She gently touches the side of your face with her beak and rubs herself against your neck. She gives you a sly glance. "Use your hands. Grab me and kiss me."
+	[kiss_grab] (Grab her and kiss her)
+	[you_do_kiss] You kiss me. I'm just going to enjoy this.
+||
+{kiss_grab | pic kiss} You place your hands on the sides of her head and pull her into a kiss. Her jaw opens and she parts your lips with her tongue. You feel her bare bottom teeth lightly scrape on your lips as you try to form a seal with her mouth. She opens her mouth slightly and you feel her tongue push past your lips. Its smooth and coated surface glides around the insides of your cheeks. It tastes like sweet fruit. Naigad pushes her tongue deeper into your throat. The slick tongue triggers no gag reflex as you feel it twist deeper. She holds you captive for a few seconds and then pulls out with reluctant slowness. Her tongue drips with thick saliva as she draws it back in.
+{you_do_kiss | pic kiss} "Oh, you're just... I'll show you." She smiles and softly presses her mouth against your lips. She opens her jaw and parts your lips with her tongue. You feel her bare bottom teeth lightly scrape on your lips as you try to form a seal with her mouth. She opens her beak slightly and you feel her tongue push into your mouth. Its smooth and coated surface glides around the insides of your cheeks. It tastes like sweet fruit. Naigad pushes her tongue deeper into your throat. The slick tongue triggers no gag reflex as you feel it twist deeper. She holds you captive for seconds and then pulls out with reluctant slowness. Her tongue drips with thick saliva as she draws it back in.
+{liked_kiss} "Yeah... I definitely prefer that over a kissing you on the cheek. I hope that was fun for you too."
+	[feel_violated | remove_pic] I feel a little violated...
+	[kiss_nice | remove_pic] That felt nice.
+	[liked_kiss | remove_pic] Did you like that? //hideif.index_is.liked_kiss
+||
+{feel_violated} "Sorry! There's a slight size difference between our equipment. I might have been a little too eager."
+	[kiss_nice] I'm just kidding. That was fun.
+	[surprise_throw] I'm surprised I didn't throw up.
+||
+{surprise_throw} "Oh! Right! Your kind has a gag reflex? I should probably have been a little more careful with the... penetration depth?"
+	[sorry_remember] I think you just went a little too deep.
+||
+{kiss_nice} "I like your... tighter insides." She giggles.
+{sorry_remember} "Sorry! I'll try to remember that when we kiss again." She giggles.
+	[naigad_leaving] I'm happy you had fun.
+	[naigad_leaving] I guess that was what I wanted.
+||
+
+
+
+
+
+
+
+
+
+||>>Naigad leaves.
+{naigad_leaving} "Ah well, I guess that was all, then." She quickly glances over the lake.
+	[yeah_leave] Are you leaving?
+||
+{yeah_leave} She glances at the lake behind her. "Yes. I should already be going. Sorry."
+	[hope_meet] I hope we'll meet again.
+	[hurry_go] If you're in a hurry, go.
+||
+{hope_meet | character_leave} "You've been a sweetie. I hope we do meet again. Bye!" She jumps into the lake and disappears.
+{hurry_go | character_leave} "Thanks for everything. I'll be off, then. Bye!" She jumps into the lake and disappears.
+	[farewell_naigad] Bye!
+||
+{farewell_naigad} You can't see or hear Naigad. You're alone on the beach. The lake seems eerily silent.
+{after_sex} You get dressed.
+	[ | end_encounter, remove_flag naigad_at_sejan_lake] (Leave)
+||

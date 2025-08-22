@@ -1,0 +1,1121 @@
+[gd_scene load_steps=97 format=3 uid="uid://bc1h5hiwimgip"]
+
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_6252v"]
+[ext_resource type="Texture2D" uid="uid://bctev5st1e7v" path="res://database/maps/default.jpg" id="2_7g4cl"]
+[ext_resource type="Script" path="res://scripts/test.gd" id="3_qa5ux"]
+[ext_resource type="Script" path="res://scripts/move_camera.gd" id="4_rxae7"]
+[ext_resource type="Script" path="res://scripts/move_character.gd" id="5_3ftm6"]
+[ext_resource type="Texture2D" uid="uid://ch6agf8q3cmqx" path="res://assets/images/map/location_prompt.png" id="5_fvbs5"]
+[ext_resource type="Texture2D" uid="uid://ynhhnglr75h4" path="res://assets/images/map/sun_dial.png" id="7_uecd1"]
+[ext_resource type="Texture2D" uid="uid://bit4vvwtmvc4c" path="res://assets/images/map/button_chr.png" id="8_s1s3d"]
+[ext_resource type="Texture2D" uid="uid://el6jqsyul73m" path="res://assets/images/map/sun_dial_point.png" id="9_1fuh7"]
+[ext_resource type="Texture2D" uid="uid://b1xxa0qpi68dq" path="res://assets/images/map/button_dck.png" id="9_e8477"]
+[ext_resource type="Texture2D" uid="uid://cgqvh7jyboeic" path="res://assets/images/map/button_inv.png" id="10_j7g6d"]
+[ext_resource type="Texture2D" uid="uid://codoyfjcejjvf" path="res://assets/images/map/button_stn.png" id="11_wx6m0"]
+[ext_resource type="Texture2D" uid="uid://bdi272wa571a8" path="res://assets/images/character_menu.png" id="13_15886"]
+[ext_resource type="Texture2D" uid="uid://c4dywdhh1yrmi" path="res://assets/images/deck_menu.png" id="14_45d3a"]
+[ext_resource type="Script" path="res://scripts/ChoicesDialog.gd" id="15_05exi"]
+[ext_resource type="Texture2D" uid="uid://rp5q3fmwos2i" path="res://assets/images/inventory.png" id="16_q4h20"]
+[ext_resource type="Texture2D" uid="uid://cuy53v5qcqju5" path="res://database/items/graphics/default_m/default_m.png" id="17_5ebq7"]
+[ext_resource type="Texture2D" uid="uid://c4iih3vr20xoo" path="res://assets/images/pause_menu/pause_menu.png" id="18_18yiv"]
+[ext_resource type="Texture2D" uid="uid://dcxd1gi0t01v4" path="res://assets/images/pause_menu/button_pause_load_save.png" id="19_dds28"]
+[ext_resource type="Texture2D" uid="uid://ctshjrfeau6yj" path="res://assets/images/pause_menu/button_pause_new_game.png" id="20_f21cp"]
+[ext_resource type="Texture2D" uid="uid://cawfk4vgc1ihb" path="res://assets/images/save_load/in_game_load.png" id="21_062oo"]
+[ext_resource type="Texture2D" uid="uid://b6jk2ikb8coek" path="res://assets/images/save_load/save_button.png" id="22_af7ke"]
+[ext_resource type="Texture2D" uid="uid://c7oiev5ursisd" path="res://assets/images/save_load/load_button.png" id="23_irgrq"]
+[ext_resource type="Texture2D" uid="uid://es2b8qbbgk6a" path="res://assets/images/save_load/delete_button.png" id="24_836js"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3hlm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x6ccc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_83xty"]
+texture = ExtResource("8_s1s3d")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vney4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c0a4p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l871p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bh7vt"]
+texture = ExtResource("9_e8477")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xdkc"]
+texture = ExtResource("9_e8477")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_05hw5"]
+texture = ExtResource("9_e8477")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvaug"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ya1eo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uy0y0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wv5xv"]
+texture = ExtResource("10_j7g6d")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4r41"]
+texture = ExtResource("10_j7g6d")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ilt62"]
+texture = ExtResource("10_j7g6d")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipssi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cw1v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_77ho7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qvxug"]
+texture = ExtResource("11_wx6m0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gdnwn"]
+texture = ExtResource("11_wx6m0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_spq5h"]
+texture = ExtResource("11_wx6m0")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_smeqb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1mffo"]
+radius = 5.0
+
+[sub_resource type="SystemFont" id="SystemFont_2w5ym"]
+font_names = PackedStringArray("Verdana")
+font_weight = 999
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_43wy4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_65hag"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emua3"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wmgxu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuo7p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3grp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gjvw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c70d2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xalov"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ylibh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5k4md"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bai5e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmbij"]
+bg_color = Color(0.6, 0.6, 1, 0.196078)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rrxed"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s3w5l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xo7ci"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf5y0"]
+size = Vector2(105, 69)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k44ja"]
+size = Vector2(107, 105)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yuls7"]
+size = Vector2(107, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thtea"]
+size = Vector2(107, 105)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tbgu"]
+size = Vector2(107, 211)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc5ho"]
+size = Vector2(160, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqxcg"]
+size = Vector2(56, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hg4qp"]
+size = Vector2(51, 287)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3om2o"]
+size = Vector2(44, 152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_522rv"]
+size = Vector2(142.5, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycyr0"]
+size = Vector2(64.5, 489)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ycegl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihoo4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ale5v"]
+texture = ExtResource("19_dds28")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ohdys"]
+texture = ExtResource("19_dds28")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lbxil"]
+texture = ExtResource("19_dds28")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abocg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8x7o1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w51bl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7luma"]
+texture = ExtResource("20_f21cp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e5n0n"]
+texture = ExtResource("20_f21cp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xu0m0"]
+texture = ExtResource("20_f21cp")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eo1h4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwoil"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4204n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu4u5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_354ji"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_464lt"]
+texture = ExtResource("22_af7ke")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vh5mm"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8yb41"]
+texture = ExtResource("23_irgrq")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0w57p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qtv4u"]
+texture = ExtResource("24_836js")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6252v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+texture_filter = 1
+offset_right = 8192.0
+offset_bottom = 8192.0
+texture = ExtResource("2_7g4cl")
+script = ExtResource("3_qa5ux")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+position = Vector2(2149, 3154)
+script = ExtResource("4_rxae7")
+
+[node name="Control2" type="Control" parent="CanvasLayer/Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Camera2D/Control2"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.5
+offset_top = 180.0
+offset_right = 76.0
+offset_bottom = 194.0
+grow_vertical = 2
+texture = ExtResource("7_uecd1")
+
+[node name="Button" type="Button" parent="CanvasLayer/Camera2D/Control2"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 305.0
+offset_right = 62.0
+offset_bottom = 356.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u3hlm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_x6ccc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_83xty")
+theme_override_styles/hover = SubResource("StyleBoxTexture_83xty")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_83xty")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vney4")
+
+[node name="Button2" type="Button" parent="CanvasLayer/Camera2D/Control2"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 379.0
+offset_right = 62.0
+offset_bottom = 430.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c0a4p")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_l871p")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_bh7vt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8xdkc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_05hw5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dvaug")
+
+[node name="Button3" type="Button" parent="CanvasLayer/Camera2D/Control2"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 454.0
+offset_right = 62.0
+offset_bottom = 505.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ya1eo")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uy0y0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_wv5xv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_p4r41")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ilt62")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ipssi")
+
+[node name="Button4" type="Button" parent="CanvasLayer/Camera2D/Control2"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 516.0
+offset_right = 43.0
+offset_bottom = 544.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4cw1v")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_77ho7")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_qvxug")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gdnwn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_spq5h")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_smeqb")
+
+[node name="Label" type="Label" parent="CanvasLayer/Camera2D/Control2"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 256.0
+offset_right = 58.0
+offset_bottom = 279.0
+text = "9999"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Camera2D/Control2"]
+texture_filter = 1
+position = Vector2(37, 218)
+texture = ExtResource("9_1fuh7")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(2155.25, 3164.6)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("5_3ftm6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/CharacterBody2D"]
+shape = SubResource("CircleShape2D_1mffo")
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/CharacterBody2D"]
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(3, -4, 1, -5, -1, -5, -3, -4, -4, -3, -5, -1, -5, 1, -4, 3, -3, 4, -1, 5, 1, 5, 3, 4, 4, 3, 5, 1, 5, -1, 4, -3)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer"]
+position = Vector2(2200, 3031)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+position = Vector2(95, -21)
+build_mode = 1
+polygon = PackedVector2Array(-103, 208, -110, 206, -134, 195, -167, 173, -198, 150, -214, 127, -224, 107, -224, 101, -227, 94, -227, 90, -220, 87, -201, 95, -192, 95, -191, 85, -197, 75, -201, 62, -202, 47, -197, 42, -197, 37, -200, 33, -204, 31, -208, 31, -213, 34, -217, 34, -221, 40, -219, 58, -220, 78, -225, 83, -232, 83, -248, 73, -258, 59, -280, 6, -280, -13, -285, -45, -279, -68, -273, -68, -247, -50, -240, -39, -229, -28, -222, -28, -216, -32, -206, -37, -190, -53, -177, -73, -168, -91, -150, -115, -131, -133, -94, -170, -66, -187, -39, -198, 10, -232, 79, -289, 93, -294, 111, -294, 124, -299, 132, -311, 131, -320, 134, -333, 123, -351, 101, -378, 62, -381, 40, -378, 6, -384, -9, -390, -11, -408, -7, -418, 7, -434, 42, -451, 132, -473, 187, -481, 215, -484, 228, -487, 234, -491, 221, -494, 209, -501, 209, -505, 214, -507, 233, -506, 240, -500, 308, -468, 303, -459, 244, -481, 221, -474, 171, -465, 163, -465, 136, -454, 121, -452, 119, -448, 134, -433, 219, -429, 206, -418, 185, -407, 186, -397, 216, -376, 223.987, -376.888, 226.851, -370.851, 205, -349, 205, -344, 214, -338, 223, -338, 237.361, -343.642, 242, -334, 200, -295, 200, -283, 223, -290, 304, -329, 318, -333, 321, -321, 347, -321, 377, -319, 388, -321, 408, -329, 416, -337, 422, -356, 432, -367, 463, -380, 464, -385, 468, -386, 472, -384, 472, -373, 466, -350, 475, -345, 487, -343, 499, -346, 503, -341, 491, -318, 486, -304, 457, -250, 449, -186, 457, -165, 453, -130, 466, -104, 440, -93, 429, -69, 442, -50, 453, -39, 466, -20, 465, -12, 456, -9, 444, -25, 414, -38, 389, -22, 385, -3, 381, -2, 372, 3, 366, 13, 343, 36, 323, 33, 312, 38, 298, 48, 285, 58, 270, 64, 263, 73, 256, 97, 265, 107, 247.891, 119.434, 235, 125, 216, 127, 196, 138, 190, 134, 199, 105, 210, 64, 236, 32, 263, 10, 276, -23, 317, -68, 345, -91, 357, -111, 357, -125, 345, -135, 345, -151, 357, -175, 352, -210, 345, -226, 330, -240, 308, -250, 281, -251, 242, -247, 206, -236, 178, -212, 156, -184, 99, -150, 81, -101, 73, -69, 72, -33, 72, 37, 69, 63, 60, 87, 55, 106, 37, 153, 8, 200, -5, 225, -15, 220, -6, 192, -11, 181, -22, 170, -33, 154, -43, 143, -54, 138, -65, 147, -76, 164, -95, 192, -97, 204)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(-220, -250, -211, -250, -202, -256, -189, -272, -179, -278, -164, -278, -135, -304, -117, -328, -96, -347, -85, -360, -73, -378, -67, -396, -71, -403, -81, -404, -92, -394, -103, -385, -120, -375, -137, -378, -149, -376, -168, -358, -174, -355, -181, -357, -179, -367, -172, -382, -147, -409, -134, -419, -127, -424, -119, -428, -112, -428, -105, -432, -97, -432, -60, -438, -49, -440, -36, -448, -29, -450, -20, -454, -13, -462, 8, -471, 29, -482, 35, -493, 35, -504, 16, -512, 9, -511, -70, -509, -74, -506, -74, -501, -73, -489, -90, -487, -108, -482, -134, -478, -164, -486, -178, -470, -193, -456, -196, -462, -184, -482, -180, -488, -179, -503, -184, -510, -197, -518, -203, -513, -193, -501, -196, -486, -200, -478, -214, -455, -234, -442, -221, -426, -218, -414, -228, -401, -246, -409, -254, -423, -256, -433, -254, -443, -260, -458, -263, -457, -265, -448, -266, -438, -266, -420, -263, -406, -240, -387, -238, -380, -243, -300, -236, -284, -235, -272, -232, -256)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+position = Vector2(58.7896, -163.749)
+polygon = PackedVector2Array(160.21, -101.251, 153.21, -98.2515, 150.21, -93.2515, 150.21, -84.2515, 153.21, -80.2515, 160.21, -75.2515, 171.21, -75.2515, 178.21, -78.2515, 186.21, -79.2515, 187.21, -88.2515, 183.21, -95.2515, 176.21, -100.251, 168.21, -101.251)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+position = Vector2(100.758, -185.603)
+polygon = PackedVector2Array(78.2419, -44.397, 84.2419, -38.397, 78.2419, -29.397, 62.2417, -7.39746, 54.2419, 9.60303, 44.2419, 19.603, 44.2419, 32.603, 35.2419, 40.603, 33.2417, 46.6025, 18.2419, 117.603, 5.24194, 119.603, 0.241699, 109.603, -12.7581, 110.603, -8.75806, 131.603, -28.7581, 129.603, -35.7581, 146.603, -36.7581, 185.603, -37.7583, 197.603, -34.7583, 205.603, -42.5707, 237.504, -46.7581, 254.603, -59.7583, 268.603, -66.7581, 267.603, -68.7581, 260.603, -77.7581, 255.603, -79.7581, 242.603, -85.7581, 235.603, -84.6241, 222.725, -91.7583, 205.603, -91.7583, 194.603, -91.7583, 177.603, -92.7583, 168.603, -78.7581, 132.603, -76.8518, 122.327, -92.7583, 100.603, -85.7581, 73.603, -75.7581, 60.603, -59.7581, 35.603, -39.7583, 13.6025, -12.7583, -5.39746, 0.241699, -20.3975, 15.2417, -23.3975, 38.2417, -33.3975, 52.2417, -40.3975)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+polygon = PackedVector2Array(89, 64, 87, 79, 88, 84, 103, 84, 105, 77, 101, 61, 96, 61)
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("5_fvbs5")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 248.0
+offset_right = 823.0
+offset_bottom = 427.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_2w5ym")
+text = "sdasdas"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 460.0
+offset_right = 570.0
+offset_bottom = 491.0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_43wy4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_65hag")
+theme_override_styles/hover = SubResource("StyleBoxFlat_emua3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wmgxu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuo7p")
+text = "pass"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 719.0
+offset_top = 460.0
+offset_right = 823.0
+offset_bottom = 491.0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i3grp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8gjvw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c70d2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xalov")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ylibh")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5k4md")
+text = "enter"
+
+[node name="Control3" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("13_15886")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control3"]
+layout_mode = 0
+offset_left = 580.0
+offset_top = 107.0
+offset_right = 855.0
+offset_bottom = 138.0
+theme_override_font_sizes/font_size = 20
+text = "John"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control3"]
+layout_mode = 0
+offset_left = 619.0
+offset_top = 612.0
+offset_right = 720.0
+offset_bottom = 640.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "40/40"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/Control3"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control3/Control"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 242.0
+offset_right = 574.0
+offset_bottom = 270.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "4"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control3/Control"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 288.0
+offset_right = 574.0
+offset_bottom = 316.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "4"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control3/Control"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 334.0
+offset_right = 574.0
+offset_bottom = 362.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "4"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer/Control3/Control"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 427.0
+offset_right = 574.0
+offset_bottom = 455.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "4"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="CanvasLayer/Control3/Control"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 474.0
+offset_right = 574.0
+offset_bottom = 502.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "4"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="CanvasLayer/Control3/Control"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 521.0
+offset_right = 574.0
+offset_bottom = 549.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "4"
+horizontal_alignment = 1
+
+[node name="Control2" type="Control" parent="CanvasLayer/Control3"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control3/Control2"]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 282.0
+offset_right = 664.0
+offset_bottom = 310.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control3/Control2"]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 315.0
+offset_right = 664.0
+offset_bottom = 343.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control3/Control2"]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 349.0
+offset_right = 664.0
+offset_bottom = 377.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="CanvasLayer/Control3/Control2"]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 382.0
+offset_right = 664.0
+offset_bottom = 410.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="CanvasLayer/Control3/Control2"]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 415.0
+offset_right = 664.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="CanvasLayer/Control3/Control2"]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 448.0
+offset_right = 664.0
+offset_bottom = 476.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="CanvasLayer/Control3/Control2"]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 481.0
+offset_right = 664.0
+offset_bottom = 509.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+
+[node name="Control4" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control4"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("14_45d3a")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control4"]
+layout_mode = 0
+offset_left = 769.0
+offset_top = 621.0
+offset_right = 840.0
+offset_bottom = 656.0
+theme_override_font_sizes/font_size = 24
+text = "1/16"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control4"]
+visibility_layer = 2
+layout_mode = 0
+offset_left = 350.0
+offset_top = 106.0
+offset_right = 641.0
+offset_bottom = 637.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bai5e")
+script = ExtResource("15_05exi")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control4/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control4/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control4/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Control4/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_mmbij")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_rrxed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mmbij")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_s3w5l")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xo7ci")
+text = "Choice"
+alignment = 0
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/Control4"]
+visibility_layer = 2
+layout_mode = 0
+offset_left = 656.0
+offset_top = 106.0
+offset_right = 947.0
+offset_bottom = 637.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bai5e")
+script = ExtResource("15_05exi")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control4/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control4/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control4/PanelContainer2/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Control4/PanelContainer2/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_mmbij")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_rrxed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mmbij")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_s3w5l")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xo7ci")
+text = "Choice"
+alignment = 0
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control2"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("16_q4h20")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_left = 871.0
+offset_top = 616.0
+offset_right = 982.0
+offset_bottom = 639.0
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_left = 1026.0
+offset_top = 616.0
+offset_right = 1136.0
+offset_bottom = 639.0
+theme_override_colors/font_color = Color(0.6, 0.6, 0.00392157, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/Control2"]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control2/Control"]
+layout_mode = 0
+offset_left = 140.0
+offset_right = 840.0
+offset_bottom = 700.0
+mouse_filter = 2
+texture = ExtResource("17_5ebq7")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 700.0
+
+[node name="TextureRect1" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect1/Area2D"]
+position = Vector2(350.5, 371)
+shape = SubResource("RectangleShape2D_uf5y0")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect2/Area2D"]
+position = Vector2(350.5, 603.5)
+shape = SubResource("RectangleShape2D_k44ja")
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect3/Area2D"]
+position = Vector2(350.5, 625.5)
+shape = SubResource("RectangleShape2D_yuls7")
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect4/Area2D"]
+position = Vector2(350.5, 603.5)
+shape = SubResource("RectangleShape2D_thtea")
+
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect5/Area2D"]
+position = Vector2(350.5, 445.5)
+shape = SubResource("RectangleShape2D_8tbgu")
+
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 700.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect6/Area2D"]
+position = Vector2(351, 260)
+shape = SubResource("RectangleShape2D_vc5ho")
+
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D2" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect7"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect7/Area2D2"]
+position = Vector2(351, 127.5)
+shape = SubResource("RectangleShape2D_hqxcg")
+
+[node name="TextureRect8" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect9" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect9"]
+position = Vector2(147, 190)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect9/Area2D"]
+position = Vector2(42.5, 137.5)
+shape = SubResource("RectangleShape2D_hg4qp")
+
+[node name="TextureRect10" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect10"]
+position = Vector2(147, 190)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect10/Area2D"]
+position = Vector2(-67, 165)
+shape = SubResource("RectangleShape2D_3om2o")
+
+[node name="TextureRect11" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect11"]
+position = Vector2(147, 190)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect11/Area2D"]
+position = Vector2(424.75, 145)
+shape = SubResource("RectangleShape2D_522rv")
+
+[node name="TextureRect12" type="TextureRect" parent="CanvasLayer/Control2/Control/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect12"]
+position = Vector2(147, 190)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Control2/Control/TextureRect/TextureRect12/Area2D"]
+position = Vector2(40.25, 125.5)
+shape = SubResource("RectangleShape2D_ycyr0")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control2"]
+visibility_layer = 2
+layout_mode = 0
+offset_left = 851.0
+offset_top = 41.0
+offset_right = 1138.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bai5e")
+script = ExtResource("15_05exi")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control2/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control2/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Control2/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s3w5l")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_rrxed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mmbij")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_s3w5l")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xo7ci")
+text = "Choice"
+alignment = 0
+
+[node name="Control5" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control5"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("18_18yiv")
+
+[node name="Button" type="Button" parent="CanvasLayer/Control5"]
+layout_mode = 0
+offset_left = 538.0
+offset_top = 324.0
+offset_right = 738.0
+offset_bottom = 353.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ycegl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ihoo4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_ale5v")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ohdys")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lbxil")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_abocg")
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control5"]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 439.0
+offset_right = 726.0
+offset_bottom = 466.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8x7o1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_w51bl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_7luma")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e5n0n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xu0m0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eo1h4")
+
+[node name="Control6" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control6"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("21_062oo")
+
+[node name="TextEdit2" type="TextEdit" parent="CanvasLayer/Control6"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 637.0
+offset_top = 115.0
+offset_right = 803.0
+offset_bottom = 153.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uwoil")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4204n")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_fu4u5")
+text = "John"
+
+[node name="Button" type="Button" parent="CanvasLayer/Control6"]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 118.0
+offset_right = 580.0
+offset_bottom = 147.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_354ji")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_354ji")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_464lt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_464lt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_464lt")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_354ji")
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control6"]
+layout_mode = 0
+offset_left = 484.0
+offset_top = 182.0
+offset_right = 580.0
+offset_bottom = 210.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_354ji")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vh5mm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_8yb41")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8yb41")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8yb41")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vh5mm")
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control6"]
+layout_mode = 0
+offset_left = 826.0
+offset_top = 185.0
+offset_right = 898.0
+offset_bottom = 207.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_354ji")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_0w57p")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_qtv4u")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qtv4u")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_qtv4u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0w57p")
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/Control6"]
+layout_mode = 0
+offset_left = 621.0
+offset_top = 222.0
+offset_right = 812.0
+offset_bottom = 605.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bai5e")
+script = ExtResource("15_05exi")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control6/PanelContainer2"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control6/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control6/PanelContainer2/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Button" type="Button" parent="CanvasLayer/Control6/PanelContainer2/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_mmbij")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_rrxed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mmbij")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_s3w5l")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xo7ci")
+text = "Choice"
+alignment = 0
+
+[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control2/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control2/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Camera2D/Control2/Button" to="." method="_on_button_chr_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control2/Button2" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control2/Button2" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Camera2D/Control2/Button2" to="." method="_on_button_dck_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control2/Button3" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control2/Button3" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Camera2D/Control2/Button3" to="." method="_on_button_inv_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control2/Button4" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control2/Button4" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Camera2D/Control2/Button4" to="." method="_on_button_stn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_discovery_popup_pass"]
+[connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_discovery_popup_enter"]
+[connection signal="ENTER" from="CanvasLayer/Control4/PanelContainer" to="." method="_on_tooltip_hover"]
+[connection signal="EXIT" from="CanvasLayer/Control4/PanelContainer" to="." method="_on_tooltip_exit"]
+[connection signal="SELECTED" from="CanvasLayer/Control4/PanelContainer" to="." method="_on_dck_cards_available"]
+[connection signal="ENTER" from="CanvasLayer/Control4/PanelContainer2" to="." method="_on_tooltip_hover"]
+[connection signal="EXIT" from="CanvasLayer/Control4/PanelContainer2" to="." method="_on_tooltip_exit"]
+[connection signal="SELECTED" from="CanvasLayer/Control4/PanelContainer2" to="." method="_on_dck_cards_equiped"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect1/Area2D" to="." method="_on_underwear_input_event"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect2/Area2D" to="." method="_on_socks_input_event"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect3/Area2D" to="." method="_on_shoes_input_event"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect4/Area2D" to="." method="_on_boots_input_event"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect5/Area2D" to="." method="_on_legs_input_event"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect6/Area2D" to="." method="_on_torso_input_event"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect7/Area2D2" to="." method="_on_head_input_event"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect9/Area2D" to="." method="_on_mainhand_input_event"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect10/Area2D" to="." method="_on_offhand_input_event"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect11/Area2D" to="." method="_on_sidearm_input_event"]
+[connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect12/Area2D" to="." method="_on_twohand_input_event"]
+[connection signal="ENTER" from="CanvasLayer/Control2/PanelContainer" to="." method="_on_tooltip_hover"]
+[connection signal="EXIT" from="CanvasLayer/Control2/PanelContainer" to="." method="_on_tooltip_exit"]
+[connection signal="SELECTED" from="CanvasLayer/Control2/PanelContainer" to="." method="_on_button_inv_item_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control5/Button" to="." method="_on_button_pause_save_load_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control5/Button2" to="." method="_on_button_pause_new_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control6/Button" to="." method="_on_button_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control6/Button2" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control6/Button3" to="." method="_on_button_delete_pressed"]
+[connection signal="SELECTED" from="CanvasLayer/Control6/PanelContainer2" to="." method="_on_save_selected"]

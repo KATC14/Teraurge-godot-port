@@ -1,0 +1,16 @@
+interior:	no
+
+discoverable:		yes
+dicovery_message:	You have found a tree with a sock nailed to it.
+default_message:	Do you want to stop by the sock tree?
+
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>
+
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_sock_tree sock_tree} Sock encounter
+||

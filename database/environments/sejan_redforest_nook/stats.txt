@@ -1,0 +1,15 @@
+interior:	no
+
+discoverable:		yes
+dicovery_message:	You have hit a dead end with a nice view. Stop by the nook?
+default_message:	Do you want to stop by the nook?
+
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_redforest_nook sejan_redforest_nook} Nook encounter
+||

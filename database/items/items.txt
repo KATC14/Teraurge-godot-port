@@ -1,0 +1,524 @@
+=============================================================DEBUG ITEMS
+<empty
+	text:		Do not remove this item!!! 
+empty>
+<the_mighty_debugger
+	slot:		mainhand
+	adats:		0
+	krats:		0
+	
+	card: 		strike_of_the_debug
+	card_n: 	1
+	text:		Massive hammer made out of a material unknown to this world. It crackles with immense metaphysical power. Its strike face, inscribed in ancient runes of power, reads: "Sorry! I need to skip this fight."
+the_mighty_debugger>
+<debug_item
+	slot:		head
+	
+	adats:		2
+	krats:		0
+	
+	heat_res:	2
+	cold_res:	2
+	impact_res:	2
+	slash_res:	2
+	pierce_res:	2
+	magic_res:	2
+	bio_res:	2
+	text:		The mysterious debug item is an invisible silly hat.
+debug_item>
+
+<test_boots
+	slot:		boots
+	adats:		20
+	krats:		200
+	
+	text:		Test boots designed to experiment with the "tucking" phenomenon that occurs when tall shoes ("boots") interact with leg wear.
+test_boots>
+=============================================================STARTING ITEMS
+<shoes
+	slot:		shoes
+	adats:		1
+	krats:		0
+	
+	text:		Ordinary shoes. Nothing exciting, they were cheap.
+shoes>
+<white_socks
+	slot:		socks
+	adats:		1
+	krats:		0
+	
+	text:		Surprisingly tacky white socks.
+white_socks>
+<jeans
+	slot:		legs
+	adats:		1
+	krats:		0
+	
+	text:		Used blue jeans.
+jeans>
+<underwear
+	slot:		underwear
+	adats:		0
+	krats:		10
+	
+	text:		Clean underwear.
+underwear>
+<tshirt
+	slot:		torso
+	adats:		1
+	krats:		0
+	
+	text:		A white t-shirt.
+tshirt>
+
+
+=============================================================ARMOR
+<steel_shield
+	slot:		offhand
+	adats:		1
+	krats:		0
+	
+	impact_res:	2
+	slash_res:	2
+	pierce_res:	2
+	
+	text:		A slightly rusted steel shield.
+steel_shield>
+<haubergeon
+	slot:		torso
+	adats:		1
+	krats:		0
+	
+	impact_res:	1
+	slash_res:	2
+	pierce_res:	2
+	
+	text:		
+haubergeon>
+<hauberk
+	slot:		torso
+	adats:		1
+	krats:		0
+	
+	impact_res:	1
+	slash_res:	4
+	pierce_res:	4
+	
+	text:		
+hauberk>
+<great_helm
+	slot:		head
+	adats:		1
+	krats:		0
+	
+	impact_res:	2
+	slash_res:	2
+	pierce_res:	2
+	
+	text:		
+great_helm>
+<leather_hat
+	slot:		head
+	adats:		1
+	krats:		0
+	
+	slash_res:	1
+	pierce_res:	1
+	
+	text:		
+leather_hat>
+<leather_gloves
+	slot:		hands
+	adats:		1
+	krats:		0
+	
+	slash_res:	1
+	pierce_res:	1
+	
+	text:		
+leather_gloves>
+
+
+=============================================================WEAPONS
+
+<bearded_axe
+	slot:		mainhand
+	adats:		2
+	krats:		0
+	
+	card: 		axe_swing
+	card_n: 	2
+	text:		Description text
+bearded_axe>
+<felling_axe
+	slot:		mainhand
+	adats:		4
+	krats:		0
+	
+	card: 		axe_chop
+	card_n: 	2
+	text:		An axe meant for cutting wood.
+felling_axe>
+<tornoth's_axe
+	slot:		mainhand
+	adats:		2
+	krats:		0
+	
+	card: 		crushing_axe_chop
+	card_n: 	2
+	text:		This extremely large and heavy-felling axe has the name 'Tornoth' carved into its handle.
+tornoth's_axe>
+<bread_knife
+	slot:		sidearm
+	adats:		1
+	krats:		0
+	
+	card: 		knife_slash
+	card_n: 	2
+	text:		A flat knife made for cutting bread. Its odd handle doesn't fit your hand properly.
+bread_knife>
+<liquen_dagger
+	slot:		sidearm
+	adats:		2
+	krats:		0
+	
+	card: 		penetrating_stab
+	card_n: 	2
+	text:		A finely built dagger in impeccable condition. The handle has the word "Liquen" inscribed on it.
+liquen_dagger>
+<linen_dagger
+	slot:		sidearm
+	adats:		4
+	krats:		0
+	
+	card: 		knife_slash
+	card_n: 	4
+	text:		A graceful and slender slashing knife designed to cut cloth with ease. Cuts skin quite easily as well.
+linen_dagger>
+<heavy_wooden_shield
+	slot:		offhand
+	adats:		2
+	krats:		0
+
+	impact_res:	1
+	slash_res:	3
+	pierce_res:	3
+	
+	card: 		heavy_shield_bash
+	card_n: 	1
+	text:		Unwieldily heavy but still usable as a shield.
+heavy_wooden_shield>
+<rusted_spearhead
+	slot:		sidearm
+	adats:		1
+	krats:		0
+	
+	card: 		rusty_stab
+	card_n: 	2
+	text:		The surface of this misshapen piece of metal is pocked with rust, and it's extremely uncomfortable to hold.
+rusted_spearhead>
+<rusted_cleaver
+	slot:		mainhand
+	adats:		2
+	krats:		0
+	
+	card: 		rusty_cleave
+	card_n: 	2
+	text:		A rusted, heavy cleaver. The edge is so worn it has become serrated.
+rusted_cleaver>
+=============================================================DRIFTWOOD WEAPONS
+<driftwood_club
+	slot:		mainhand
+	adats:		0
+	krats:		1
+	
+	card: 		club_smash
+	card_n: 	2
+	text:		It's a stick you picked up from a beach. You can hit stuff with it or use it as kindling - if it wasn't so damp and rotten, that is.
+driftwood_club>
+<driftwood_spear
+	slot:		mainhand
+	adats:		0
+	krats:		1
+	
+	card: 		spear_stab
+	card_n: 	2
+	text:		A long piece of driftwood you fashioned into a makeshift spear. A little crooked, but the dry wood holds a point well.
+driftwood_spear>
+<small_driftwood_club
+	slot:		sidearm
+	adats:		0
+	krats:		1
+	
+	card: 		club_smash
+	card_n: 	3
+	text:		A small club you fashioned from a piece of driftwood. Fits your hand nicely and it's easy to swing around.
+small_driftwood_club>
+<big_driftwood_club
+	slot:		twohanded
+	adats:		0
+	krats:		1
+	
+	card: 		big_club_smash
+	card_n: 	2
+	text:		A large two-handed club you carved out of driftwood. Simple but very sturdy.
+big_driftwood_club>
+<giant_driftwood_club
+	slot:		twohanded
+	adats:		0
+	krats:		1
+	
+	card: 		giant_club_smash
+	card_n: 	1
+	text:		A giant club you carved with an axe from a log of driftwood.
+giant_driftwood_club>
+<driftwood_tree_trunk
+	slot:		twohanded
+	adats:		0
+	krats:		1
+	
+	card: 		giant_club_smash
+	card_n: 	1
+	text:		This is a tree trunk. Not many people use tree trunks as weapons, but clearly some do.
+driftwood_tree_trunk>
+<rusted_metal_bar
+	slot:		twohanded
+	adats:		0
+	krats:		1
+	
+	card: 		club_smash
+	card_n: 	2
+	text:		A long piece of rusted metal.
+rusted_metal_bar>
+=============================================================UTILITY ITEMS
+<roll_of_rope
+	slot:		inventory
+	adats:		2
+	krats:		0
+
+	text:		A reasonably long rope made out of sinuous fibers.
+roll_of_rope>
+<crowbar
+	slot:		mainhand
+	adats:		3
+	krats:		0
+	
+	card: 		crowbar_smash
+	card_n: 	2
+	text:		A long steel bar with a single curved end and flattened points.
+crowbar>
+<pickaxe
+	slot:		mainhand
+	adats:		3
+	krats:		0
+	
+	card: 		pickaxe_strike
+	card_n: 	2
+	text:		A heavy pickaxe meant for breaking rock.
+pickaxe>
+<glass_jar
+	slot:		inventory
+	adats:		0
+	krats:		24
+
+	text:		A glass jar with a wooden lid. Useful for storing materials or fluids.
+glass_jar>
+<torch
+	slot:		inventory
+	adats:		0
+	krats:		20
+
+	text:		A one-time use torch that can be lit by striking the head against something hard. Burns with heatless flame.
+torch>
+<box_of_nails
+	slot:		inventory
+	adats:		1
+	krats:		0
+
+	text:		A box of rough but sturdy iron nails.
+box_of_nails>
+<bag_of_randticks
+	slot:		inventory
+	adats:		1
+	krats:		0
+
+	text:		A small bag of Randticks.
+bag_of_randticks>
+
+=============================================================QUEST ITEMS
+<sejan_cave_map
+	slot:		inventory
+	adats:		1
+	krats:		0
+
+	text:		A stone tablet that details a path through the cave system in the Sejan peninsula.
+sejan_cave_map>
+<strange_bone_statuette
+	slot:		inventory
+	adats:		1
+	krats:		0
+
+	text:		A reddish bone statuette found under a floor tile with a strange symbol.
+strange_bone_statuette>
+<carved_floor_tile
+	slot:		inventory
+	adats:		1
+	krats:		0
+
+	text:		A floor tile from Taodal storage room with a strange symbol.
+carved_floor_tile>
+<mysterious_bowl
+	slot:		inventory
+	adats:		0
+	krats:		0
+
+	text:		The mysterious wooden bowl found in a cave in the Sejan peninsula.
+mysterious_bowl>
+<mysterious_bowl_splinters
+	slot:		inventory
+	adats:		0
+	krats:		0
+
+	text:		Splinters of the mysterious wooden bowl found in a cave in the Sejan peninsula. They ooze blood.
+mysterious_bowl_splinters>
+<examined_bowl_fragments
+	slot:		inventory
+	adats:		0
+	krats:		0
+
+	text:		Splinters of the mysterious wooden bowl found in a cave in the Sejan peninsula. They ooze blood. They're of a type of wood that saturates itself with the fluids it comes in contact with. One the splinters has a mark of an unknown barrel manufacturer on them, suggesting that the bowl was made from a barrel.
+examined_bowl_fragments>
+<nailed_sock
+	slot:		inventory
+	adats:		0
+	krats:		22
+
+	text:		A white sock that was nailed to a tree in the Sejan peninsula. It's stained with sour tree sap.
+nailed_sock>
+<robot_arm
+	slot:		inventory
+	adats:		4
+	krats:		0
+
+	text:		An old-looking and banged up robot arm. It's strangely human arm-shaped, with five fingers. The material is soft but reinforced by an underlying skeleton.
+robot_arm>
+<living_mystery_pendant
+	slot:		inventory
+	adats:		1
+	krats:		0
+
+	text:		A religious symbol. It's made from a grey metal.
+living_mystery_pendant>
+<blinking_cylinder
+	slot:		inventory
+	adats:		1
+	krats:		0
+
+	text:		A metallic cylinder that has a light that blinks. You found it in the Witch's burnt house.
+blinking_cylinder>
+<the_odd_lock_box
+	slot:		inventory
+	adats:		2
+	krats:		0
+
+	text:		A strongbox you found in the red forest under a rusted cleaver. Very hard to open. 
+the_odd_lock_box>
+<ancient_sejan_helmet
+	slot:		inventory
+	adats:		2
+	krats:		0
+
+	text:		A helmet made from green metal. It's old but in good condition. It's seemingly not designed for a human head, so it doesn't fit you.
+ancient_sejan_helmet>
+<refitted_sejan_helmet
+	slot:		head
+	adats:		2
+	krats:		0
+
+	impact_res:	1
+	slash_res:	1
+	pierce_res:	1
+	
+	text:		A helmet made from green metal. It's been refitted to accommodate your head.
+refitted_sejan_helmet>
+<sejan_stone_pillar_metal
+	slot:		inventory
+	adats:		2
+	krats:		0
+
+	text:		A heavy clump of metal taken from a metallic core of a seemingly natural stone pillar in the Sejan peninsula. The metal is warm to the touch.
+sejan_stone_pillar_metal>
+=============================================================QUEST ITEMS
+<bottle_of_bitter_water
+	slot:		inventory
+	adats:		0
+	krats:		2
+
+	text:		A plain bottle of bitter water.
+bottle_of_bitter_water>
+<antipoison_syringe
+	slot:		inventory
+	adats:		0
+	krats:		80
+
+	text:		A syringe of antipoison.
+antipoison_syringe>
+<bag_of_amouls
+	slot:		inventory
+	adats:		0
+	krats:		0
+	
+	text:		A bag with red and yellow starfish-like shells.
+bag_of_amouls>
+=============================================================NJAANMYKIUNSUNS STUFF
+<serrated_knife
+	slot:		sidearm
+	adats:		1
+	krats:		0
+	
+	card: 		serrated_slash
+	card_n: 	2
+	text:		This serrated knife leaves a nasty mark.
+serrated_knife>
+<large_nail
+	slot:		inventory
+	adats:		0
+	krats:		10
+
+	text:		A large heavy duty iron nail.
+large_nail>
+<wooden_mallet
+	slot:		inventory
+	adats:		1
+	krats:		0
+
+	text:		A wooden mallet.
+wooden_mallet>
+=============================================================KEYS
+<key_to_taodal_storage
+	slot:		inventory
+	adats:		0
+	krats:		0
+
+	text:		Key to the storage room in Taodal.
+key_to_taodal_storage>
+<noidu's keys
+	slot:		inventory
+	adats:		0
+	krats:		0
+
+	text:		Keys taken from Noidu.
+noidu's keys>
+
+
+
+
+
+=============================================================LOOT
+<sarcophagus_necklace
+	slot:		inventory
+	adats:		2
+	krats:		10
+
+	text:		Necklace taken from a sealed sarcophagus in the Sejan peninsula.
+sarcophagus_necklace>

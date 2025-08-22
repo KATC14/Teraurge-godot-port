@@ -1,0 +1,45 @@
+default_env:	sejan_redforest
+
+
+
+<STATS
+charisma:		4
+will:			8
+intelligence	4
+perception: 	6
+agility:		8
+strength:		8
+endurance:		6
+
+hitpoints:		60
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	3
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+<CARDS
+kick
+kick
+kick
+kick
+slash
+slash
+slash
+slash
+slash
+slash
+slash
+slash
+slash
+headbutt
+headbutt
+headbutt
+headbutt
+CARDS>
+
+

@@ -1,0 +1,348 @@
+
+>>Punflen is a tavern patron. He is also a captain of a ship that travels there.
+
+>>Intro block start
+||
+{start | save_index met, add_flag punflen_met} You look around the drinking hall when, suddenly, one of the odd-looking patrons stops you. "You're not sizing up this place, are you?"
+	[no_sizing] No, I'm just looking around. My name is -name-.
+	[you_could_say_that] ...Maybe?
+	[why_ask] What makes you think that?
+||
+{why_ask} "Name's Punflen. You've just walked past several empty tables and keep staring at the patrons..."
+{you_could_say_that} "Name's Punflen.<br><br>Look, the patrons here travel a lot and know violence, some are even good at it. I wouldn't recommend it."
+	[robbery_joke] I'm -name-. If you tackle the burly dude in the corner, I'll jump the lanky lady. //showif.charisma.6
+	[just_joking] I'm just joking. I'm -name-. //hideif.index_is.why_ask
+	[just_joking] I'm -name- and I'm just looking around.  //showif.index_is.why_ask
+	[good_to_know] Good to know. I'm -name-. 
+||
+{robbery_joke} He lazily glances at the patrons. "Well... after Noidu caves my head in, he can do the same to you. That is, if Nkaanmykiunsuns hasn't stabbed you to death yet. Poor Bykaas would have to clean up the mess and get lectured by the mayor."
+	[good_to_know] Maybe not, then.
+	[ | sex_branch joke_male joke_female] Let's just burn the place down and sail away? //showif.charisma.6 //hideif.note.TBA
+	[just_joking] I'm just kidding.
+||>>Intro block end
+
+
+||>>Punched out
+{knocked_out | save_index met} Punflen rubs his head as you approach. "...You punched me out."
+	[donked] Yes, I did.
+	[donked] You kept talking shit.
+||
+
+||>>Convo hub
+{no_sizing} "Of course, it's nice to meet you, -name-. I'm Punflen."
+{just_joking} "Of course, it's nice to meet you."
+{good_to_know} "If you're actually planning something, please do it when I'm not here. In the mean time, grab a stool."
+{bykaas_prost} He feigns shock. "What? No! She's an upstanding tavern hostess. She wouldn't do something that's so blatantly illegal here. Don't be silly."
+{no_prost} "It's your money."
+{met} "How's it going?"
+{silent_convo}
+{deal_struck | add_flag punflen_ship_quest} "It's a deal, then!"
+{no_deal | add_flag punflen_ship_quest} "I understand. I wouldn't want to deal with this either, but if you change your mind, the offer stands."
+{what_mean_f} "Uhhhm... Uh, just... forget what I said."
+{donked} "People keep punching me. I think I might be a little abrasive." He shrugs.
+{yes_after} "Good luck with that."
+{maybe_after} He shrugs.
+{no_after} "Well, she did try to steal your money, no point in giving her anything."
+{noidea_subni} "No idea, probably took a boat out."
+	[ | check_flag subni_shower_fun noidea_subni subni_note] Do you know where Subni went? //showif.has_flag.subni_where_gone //hideif.clicked
+	[just_joking] I was just joking. //showif.index_is.good_to_know //hideif.clicked
+	[tell_tavern] Any interesting characters around here?
+	[about_tavern] Know anything about the tavern? //hideif.clicked
+	[you_are] I don't want to sound crass, but what are you? //hideif.clicked
+	[ship_trouble] So... What brings you here? //hideif.clicked //hideif.note.TBA
+	[pay_prost] Here. (Give him forty krats) Now, tell me, who's the prostitute? //showif.has_krats.40 //showif.has_flag.punflen_knows_tavern_prostitute //hideif.has_flag.bykaas_secret_known
+	[leave_convo] I'll be going now. (Leave)
+||
+
+
+||>>Grounded ship
+{joke_female} "Sailing off with you? Don't give an old man such sweet promises. Besides, my ship is grounded."
+{joke_male} "Yeah, well, my ship is grounded."
+{ship_trouble} He sighs. "Ship trouble."
+	[ship_wrong] What's wrong with your boat?
+||
+{ship_wrong} "It's a ship, not a boat. It's grounded. I can't leave."
+{is_captain} "Well, I was. A shipless captain is not much of one, and yes, I own it."
+	[is_captain] You're the captain of a ship? You own one? //hideif.index_is.is_captain
+	[happen_ship] What happened?
+||
+{happen_ship} "The mayor shackled the poor thing off coast and took the key."
+{poor_thing} "It's a Benum ship. Probably distraught over this. Hopefully he has enough food."
+	[poor_thing] 'Poor thing?' Your ship is alive? //hideif.index_is.poor_thing
+	[harsh_tornoth] That's a little harsh of Tornoth.
+	[harsh_tornoth] Sounds like him.
+	[why_tho] Why did you get grounded?
+||
+{why_tho} "Does it matter? I'm stuck here."
+	[help_you] If you tell me, I might be able to help you.
+	[harsh_tornoth] Tornoth doesn't seem like a person who randomly grounds ships.
+||
+{harsh_tornoth} "You know him? Can you tell him I can pay after I sell the cargo? It'll spoil if I take too long, and then I'll never be able to pay."
+{help_you} "I owe the mayor money.<br><br>Could you go tell him I can pay after I sell the cargo? It'll spoil if I take too long ,and then I'll never be able to pay."
+{tell_yourself} "I'm not allowed to enter the town anymore. The guard is pretty vigilant too."
+	[tell_yourself] Why can't you tell him that yourself? //hideif.index_is.tell_yourself
+	[can_talk] I can talk to him... What's in it for me? //showif.has_flag.tornoth_player_lovers
+	[try_talk] I could try? //hideif.has_flag.tornoth_player_lovers
+	[no_deal] I'd rather not get involved.
+||
+{can_talk} "You can!? I'll give you four adats if you can free my ship."
+{try_talk} "If you're successful in freeing my ship, I'll give you four adats."
+	[deal_struck] Sure. I'll talk to Tornoth.
+	[deal_struck] Make it five and I'll do it. //showif.charisma.8
+	[no_deal] Actually, I'd rather not get involved.
+||
+
+||>>TAVERN PATRONS
+{tell_tavern} "Well, there's a lot of Mudders and other ship crews. Subni, Noidu, and Nkaanmykiunsuns are the only ones that have hung around for longer than normal."
+{the_muds} "It's a place far away from here, beyond the sea... Well, it's actually several places but they're all defined by the sea of mud and the stink they wallow in. A lot of ships that come from there pass by here. I live there but I'd rather not."
+{noidu_mercenary | remove_pic} "Might be. If he is, he scored big time and is too dumb to spend it properly."
+{gamble_subni} "If you want to gamble and throw your money away, she'll throw some dice with you. She only plays with adats."
+{silent_patrons}
+	[stinker_muds] What do you mean by 'Mudders'? //hideif.clicked
+	[who_subni] Who's Subni? //hideif.clicked
+	[who_noidu] Who's Noidu? //hideif.clicked
+	[odd_long_name] Who's Nkaanmiu- mykiny- unsun- suns? //hideif.clicked
+	[silent_convo] (Back)
+||>>Subni
+{who_subni | add_flag subni_met} "She's that one." He points to a small creature sitting on a table in one of the corners.
+	[gamble_subni] Why is she interesting?
+||>>Stinkers from the muds
+{stinker_muds} "It sounds a little insensitive, but it's a very apt descriptor. They're just shippers from the Muds, sometimes called stinkers. The smell kinda comes with you. I would know, being one."
+	[the_muds] The Muds?
+||>>Noidu
+{who_noidu | add_flag noidu_seen} "He's the abnormally large blob of muscle in that corner there." He carefully lifts his finger a bit to point at him.
+	[look_noidu] (Look at Noidu)
+||
+{look_noidu | pic tavern_noidu} You turn to look. A large shadowy figure stares unflinchingly ahead while sipping from a large mug. He seems to be deep in thought. Punflen continues behind you, "He's got here a while ago. Doesn't really do anything. Just sits at that table, drinking and eating. He does seem to have an endless bag of krats on him." Punflen leans closer and whispers, "Dumb as a bag of sand though. Only thing I've got from him was his name."
+	[rich_numb] Rich and dumb?
+	[noidu_mercenary] He looks like a mercenary.
+||
+{rich_numb | remove_pic} His face tentacles wiggle as he chortles. "Oh, you're not the first to notice. A lot of girls passing by keep taking him in the back. By now, Bykaas is probably concerned if the foundations can take the pounding."
+	[take_ride] Maybe I'll take a ride as well. //showif.player_sex.female
+	[into_males] Oh? Any idea if he's into guys? //showif.player_sex.male
+	[noidu_mercenary] He looks kinda like a mercenary.
+	[silent_patrons] Right...
+||
+{take_ride} His face tentacles wiggle as he laughs even harder. "Go ahead! But don't complain about the soreness afterwards."
+{into_males} His face tentacles wiggle as he laughs even harder. "Maybe? Might be too dumb to tell the difference? Haven't seen any males risk it. He doesn't seem like the gentle type."
+	[silent_patrons] Maybe I will.
+||>>Nkaanmykiunsuns
+{odd_long_name | play_sound sejan/punflen_knife_wood 70, change_sprite knifed, add_flag nkaanmykiunsuns_seen} You hear high-pitched cursing from the next table. A knife whistles past your head and lodges into the tavern wall. The three-eyed patron jumps in terror.
+{did_just_knife | change_sprite knifed_normal} "Yes, but I think it was meant for you."
+	[did_just_knife] Did she just throw that knife at us...? //showif.index_is.odd_long_name
+	[take_knife] I'll take that. (Take the knife) 
+	[assume_knife] For me? Why? What did I do? //showif.index_is.did_just_knife
+	[assume_knife] What got her so worked up?
+||
+{name_mouthful} "Nkaanmykiunsuns? It's not that hard, and it helps that she'll hit you if you try to shorten it."
+{assume_knife | change_sprite knifed_normal} "She's very particular about her name."
+{take_knife | play_sound sejan/punflen_knife_take 70, change_sprite character, give_item bread_knife} "You should return that. She won't like you taking it." He nervously glances over your shoulder.
+	[name_mouthful] That name is a mouthful. //hideif.index_is.name_mouthful
+	[her_deal] (Look at Nkaanmykiunsuns) What's her deal?
+	[ | check_stat agility 6-8-10 knife_0-knife_1-knife_2-knife_3] I'm sorry, was it Naankisunsun? (Catch the next knife in mid-air) //showif.will.6
+||>>impress the knife girl
+{knife_2 | play_sound sejan/punflen_knife_catch 70, give_item liquen_dagger, pic tavern_grin} You hear leather shift. You turn around and grab the knife midair. You feel a sting as the blade slices into your fingers. You play it off and turn to the thrower.<br><br>A predatory grin gleams from the shadow.
+{knife_3 | play_sound sejan/punflen_knife_catch 70, give_item liquen_dagger, pic tavern_grin} You hear leather shift. You turn around, and in an almost supernatural show of skill, you stop the knife deftly between two fingers.<br><br>You hear a muffled gasp come from the tavern's shadow. A predatory grin gleams from the shadows.
+{toss_knife | play_sound sejan/punflen_knife_catch 70, remove_item liquen_dagger} You toss the knife with a wink and she snatches it. She quickly twirls it in her fingers and winks back at you.
+	[chuck_knife] (Chuck the knife at her) //showif.has_item.liquen_dagger
+	[toss_knife | pic tavern_grinwink] (Toss the knife back and wink at her) //hideif.clicked
+	[her_deal_0] (Turn back to Punflen) //hideif.has_item.liquen_dagger
+	[pocket_knife] (Pocket the knife and turn back to Punflen) //showif.has_item.liquen_dagger
+||
+{chuck_knife | play_sound sejan/punflen_knife_wood 70, pic tavern_stare} You chuck the knife at her. She flinches as it lodges into the table. She stares at you pointedly and yanks the knife off it.
+	[her_deal_0] (Turn back to Punflen)
+||
+{pocket_knife | add_flag nkaanmykiunsuns_knife_taken, remove_pic} "She's probably not happy with you keeping that."
+	[comeget_herself] She can come get it herself.
+	[its_mine_now] Well, it's mine now.
+||>>impress the knife girl (fumble)
+{knife_1 | play_sound sejan/punflen_knife_slap 70, pic tavern_stare} You hear leather shift. You turn around and grab at the knife. You fumble to catch it, and you slap the knife down in a clumsy and ungraceful manner. The knife clatters along the floor under the tables and disappears into the shadows.<br><br>You play it off as if you meant to do it like that. Two narrowed eyes stare at you from the hazy darkness of the tavern.
+	[her_deal_0] (Turn back to Punflen)
+||>>impress the knife girl (gets stabbed through hand)
+{knife_0 | play_sound sejan/punflen_knife_stab 70, pic tavern_stab} You hear leather shift. You turn around and grab at the knife. A short burst of intense pain makes you gasp. The knife is sticking from the back of your hand, cleanly nestled between the bones and sinew, completely penetrating through. You hear derisive laughter from the shadows.
+	[wound_0] (Turn back to Punflen)
+||
+{wound_0 | remove_pic} Punflen looks shocked at your bleeding. "Um... So... Maybe stop trying to spell out her name?" He digs his pockets and offers you a clean-looking rag.
+	[wound_1] (Tend to your wound)
+||
+{wound_1 | give_item liquen_dagger} You slowly pull the thin knife out, leaving a clean cut through your hand. You wrap it with the rag and apply some pressure. The cut doesn't even hurt without the knife in it, and it doesn't seem to bleed much. "You might want to return that knife. She might not like you keeping it."
+	[ | start_encounter taodal taodal, remove_item liquen_dagger] (Leave the knife with Punflen and leave)
+	[ | start_encounter taodal taodal] (Pocket the knife and leave)
+||>>Her deal
+{its_mine_now} "I won't stop you. Just a warning.<br><br>Um... So... She's just waiting for her sister here. Apparently some family trouble."
+{comeget_herself} "She might. Just a warning.<br><br>Um... So... She's just waiting for her sister here. Apparently some family trouble."
+{her_deal_0 | remove_pic} "Um... So... She's just waiting for her sister here. Apparently some family trouble."
+{her_deal | pic tavern_stare} A pair of eyes looks back at you from the tavern shadows. "She's just waiting for her sister. Apparently some family trouble."
+	[doubt_her] Sure...
+	[doubt_her] Yeah, I doubt that. //showif.intelligence.6
+	[make_sense] Okay.
+||
+{doubt_her | remove_pic} Punflen stops you and leans closer. "Don't.<br><br>I don't want her trouble. Whatever it is."
+{make_sense | remove_pic} "So, just... leave her alone to deal with her family matters." You hear a high-pitched giggle from the shadows behind you.
+	[silent_patrons] Right.
+||
+
+||>>Tavern secret (Bykaas prostitution secret)
+{about_tavern} "It's in a good spot for Mudders to stop by, but I wouldn't exactly call it special. I mean- you can't even get whores here. Well, just <b>her</b>. I do appreciate the showers, no idea where they got those."
+	[ | sex_gate what_mean what_mean_f] Who's 'her'? //hideif.has_flag.bykaas_secret_known
+	[bykaas_prost] By 'her' you're talking about Bykaas? //showif.has_flag.bykaas_secret_known
+||
+{what_mean} "Oh? You don't know? I... don't think I should talk about it, then. It's complicated."
+	[blueball_me] You're going to drop that and then just blueball me? A little unfair.
+	[blueball_me] Okay, I don't need to know.
+||
+{blueball_me} "I just assumed- Actually... I don't care. Give me forty krats and I'll tell you."
+	[pay_prost] (Give him forty krats) //showif.has_krats.40
+	[no_prost | add_flag punflen_knows_tavern_prostitute] I think I'll manage without.
+||
+{pay_prost | take_money krats 40, remove_flag punflen_knows_tavern_prostitute, add_flag bykaas_obassinian_blue} You hand forty krats to Punflen. He leans closer and whispers, "Ask Bykaas for an Obassinian Blue."
+{obassinian | add_flag pc_knowledge_obassinian_black} "Obassinian Black is a drink. Obassinian Blue is not a drink." He winks.
+	[obassinian] What's Obassinian Blue? //hideif.index_is.obassinian
+	[bykaas_prost] You're saying Bykaas is the prostitute?
+	[silent_convo] Thanks.
+||
+
+||>>What are you?
+{you_are | add_flag pc_knowledge_lisserian} He waves his hand dismissively. "Please! One of the two most common questions in the world. 'Hi, what's your name?' followed by 'And what the fuck are you?'<br><br>The specific species I belong to is called 'Lisserian'. Lots of feelers and arms."
+{more_arms} "Couple crammed in the suit. It just doesn't fit that well because it's not custom-made, cheaper this way. I won't dare to poke more holes in it, so, I look like this."
+{why_suit} "For the stank. The Muds have a very hostile air quality for most. For instance, it melts my skin. I also have a helmet to go with the suit... obviously."
+{ride_punflen} Punflen snorts, coughs, and hits his chest like he's choking. He taps his hands on the table nervously. "SO... HUH. What were we talking about?"
+{avoid_muds} "To be honest, my case is fairly uncommon. Usually people just need a closed breather or a recycler. The stank doesn't usually do anything to the skin.<br><br>I guess that's more of a backhanded compliment? It's still a smelly shit hole."
+{silent_you_are} 
+	[avoid_muds] That sounds horrifying. I should probably avoid the place. //showif.index_is.why_suit
+	[more_arms] You have more arms? //hideif.clicked
+	[why_suit] What's the suit for? //hideif.clicked
+	[ | sex_branch under_male under_female] So, what do you look like without the suit? //hideif.clicked
+	[silent_convo]  (Back)
+||
+{under_female} "In your case, probably very aroused."
+{disgusting} "Sure, but you're the one who asked me to describe myself naked. And besides, I was trying to compliment you." He shrugs.
+	[disgusting] You're disgusting. //hideif.index_is.disgusting
+	[ride_punflen] If it takes that to know what you look like, I'll take a ride. //showif.charisma.6
+	[seriously] I'm serious!
+	[silent_you_are] Yup... I don't care any more.
+||
+{under_male} "Lots of feelers and smaller arms in a row. Probably a little atrophied from the lack of use. More of the same color."
+{seriously} "Sure!<br><br>It's just lots of slick feelers and smaller arms in a long row. Probably a little atrophied from the lack of use. More of the same color."
+	[silent_you_are] Makes sense.
+||
+
+
+||>>Note from Subni
+{subni_note | play_sound generic/objects/paper_rustle 70} "Oh! Right! She gave me this. It's for you." He digs in his suit and hands you a note.
+{u_read_it} "Of course. Why the fuck would I care about her privacy if she's going to use me as her mailman?"
+	[u_read_it] You've read it already, haven't you? //showif.charisma.8 //hideif.index_is.u_read_it
+	[read_note] (Read the note)
+||
+{read_note | pic subni_note} The note is written with an ornate and immaculate lettering. "Hey, -name-! I quite enjoyed our encounter. If you ever visit the Muds, come to Takeopolis and knock on the storage room 12, I'll show you what your adats bought." You notice a small scrawl at the bottom. "PS: I cheated. You're terribly irresponsible with your money." There's also a crude drawing of a penis in the corner of the note.
+	[letter_stop] (Stop reading)
+||
+{letter_stop | remove_pic} Punflen stares at you, waiting for a reaction.
+	[you_write_dis] ...Did you write this?
+	[not_sound_subni] This doesn't sound anything like Subni.
+	[note_pocket] (Pocket the note)
+||
+{you_write_dis} "What? No... Why would I forge a letter pretending to be her?<br><br>I can't even write that well!"
+	[scam_trap] Maybe it's a scam or a trap you've set up. The letter sounds nothing like her.
+	[not_sound_subni] It doesn't sound anything like her.
+||
+{scam_trap} "What would I exactly gain from getting you to knock on a door?"
+{not_sound_subni} "Well, that's little insensitive. Her incomprehensible skitter doesn't make her writing shit."
+	[scam_trap] Did you write write it? //showif.index_is.not_sound_subni
+	[your_trap] Maybe you have goons waiting for me or some other trap. //showif.intelligence.6 //showif.index_is.scam_trap
+	[not_convinced] The tone and-, uh, 'clarity' in the note doesn't sound anything like her. //showif.index_is.not_sound_subni
+	[note_pocket] ...I guess. (Pocket the note)
+	[not_convinced] I'm not convinced.
+||
+{your_trap} He scratches his head. "Yeah, sure, but why am I trying to do that when I'm on the other side of the world?<br><br>I don't know what to tell you, but that's what she handed to me. Take it or leave it."
+{not_convinced} "That's what she handed to me. I don't really care about arguing if it's real or not. I'm just a delivery boy here."
+	[note_pocket] (Pocket the note)
+||>>After the note
+{note_pocket} You stash the note. Punflen anxiously wiggles his face tentacles. "Well..? Did you stick your dick in that diseased skitterer?"
+	[punch_ya] I will punch you if you keep calling her that.
+	[yah_fugged] Yeah.
+	[note_tell_if] If I did, I wouldn't tell you.
+	[note_tell_if] No. (Lie)
+||
+{punch_ya} He raises his hands in faux shock. "Huh. So you did! You sure you don't wanna check that cock of yours with a professional? Just saying, it might sting a little when the horns start digging into your dick."
+{yah_fugged} "You might want to check that cock of yours with a professional. Just saying, it might sting a little when the horns start digging into your dick."
+{note_tell_if} "Uh huh... If you did, you might want to check that cock of yours with a professional. Just saying, it might sting a little when the horns start digging into your dick."
+	[not_contagious] She had the horns disease, it's not contagious. //showif.has_flag.pc_knowledge_horns_disease
+	[not_contagious_0] Pretty sure whatever she had was non-contagious. //showif.intelligence.6
+	[serious_horns] ...Are you serious?
+||
+{serious_horns} He slaps the table and cackles. "She had the horns disease. It's not contagious! They wouldn't have let her on the boat nor in this tavern if it was.<br><br>How'd you even fit in that thing? She's tiny."
+{not_contagious_0} "Yeah... some people don't know about the horns disease, easy to scare 'em.<br><br>How'd you even fit in that thing? She's tiny."
+{not_contagious} "Yeah... some people don't know about it, gives them real jitters, that thorny dick part.<br><br>How'd you even fit in that thing? She's tiny."
+{dis_connection} "Not that I know of.<br><br>Let's not stray from the subject! How'd you fit your dick in that thing?"
+{horns_sure} "Let's not stray from the subject! How'd you fit your dick in that thing?"
+	[horns_disease] She didn't actually elaborate on her condition. The horns disease? //hideif.has_flag.pc_knowledge_horns_disease //showif.intelligence.6
+	[stop_stupid] Could you stop with the stupid shit? I'm not telling you anything.
+	[otter_space] She's... bigger on the inside?
+	[otter_space] She seemed to like it.
+||
+{horns_disease} "It's a disease that makes your bones grow horns everywhere. I've heard it's supposed to originate from the Horns."
+	[horns_horns] The horns disease originates from... the Horns? What are you talking about? //hideif.has_flag.pc_knowledge_horns_city
+	[horns_sure] Right.
+||
+{horns_horns | add_flag pc_knowledge_horns_city} "The Horns.<br><br>It's a big city in the rivers, the biggest actually. They've built houses into the these colossal horns that grow out of the ground."
+	[horns_sure] Sounds weird.
+	[dis_connection] Is the disease connected to the giant horns somehow? //showif.intelligence.6
+||>>Sex brag (PPPussy master)
+{otter_space} "Yeah? Or are you just, you know, perfect size for her?"
+	[ | check_stat agility 6 hit_0-hit_1] (Punch him)
+	[stop_stupid] Why are you so annoyed at her getting some? //showif.charisma.6
+	[fuck_u_too] Yeah? Fuck you too.
+||
+{fuck_u_too} He laughs. "Are you going to go after that ass?"
+	[yes_after] Yup.
+	[maybe_after] Maybe.
+	[yes_after] I'm interested in the whole package, but yes. //showif.charisma.6
+	[no_after] Nah.
+||>>Stop stupid shit
+{stop_stupid} "Feeling love for the small thing? She must be something special without her rags on if she turns her mark into a pining lover after a quick pump and dump."
+	[ | check_stat agility 6 hit_0-hit_1] (Punch him)
+	[fuck_u_too] Sure, whatever.
+	[fuck_u_too] Yeah, you're right, she's plenty special.
+	[jealous] Wait, you're not... jealous, are you? //showif.charisma.8
+||
+{jealous} "What?"
+	[jealous_1] You just seem to have this very defensive aggression about you. I didn't know you had a thing for her.
+||
+{jealous_1} "I'm not interested in the skittering idiot. Can you leave and take your psycho babble with you?"
+	[jealous_2] You need to be more proactive in the future, she was very happy to have the company. //showif.charisma.10
+	[leave_convo] If you say so... (Leave)
+||
+{jealous_2} He slams his fists against the table and annoyedly growls. "<b>Fuck off</b>."
+	[leave_convo] Later! (Leave)
+||>>PUNCHING
+{hit_1 | check_stat strength 6-8-10 hit0-hit1-hit2-hit3} This is the strength check after the agility check. 
+||>>miss
+{hit_0} You swing at Punflen's face, but he dodges out of the way. He puts his hands up. "Woah, woah! Calm down, big guy! No fighting in the tavern."
+	[leave_convo] (Leave)
+||>>hit
+{hit0 | play_sound ui/combat/slap 70} You punch him in the face, but your punch turns into an awkward forceful smear across his face as he tries to dodge it. Punflen shakes his head and puts his hands up but seems too confused to say anything.
+	[punch_u] Y- Yeah, you deserved that!
+||
+{punch_u} He moves his head a bit and then puts his hands down. "Uh, alright, sure."
+	[leave_convo] (Leave)
+||
+{hit1 | play_sound ui/combat/punch 70, pic headache} You punch Punflen in the side of his face. He grunts and holds the side of his face.
+	[stop_shit_1] Stop talking shit.
+||
+{hit2 | play_sound ui/combat/punch 80, pic headache} You deliver a punch to the side of his face. His head whips back from the force of the hit and hits the wall. Punflen holds his head and squeals.
+	[stop_shit_2] Stop talking shit.
+||
+{stop_shit_1} He massages his chin and then answers with a terse tone. "Sure, whatever."
+{stop_shit_2} He just holds his head and doesn't answer.
+	[leave_convo] (Leave)
+||>>big hit
+{hit3 | play_sound ui/combat/tackle 100, save_index knocked_out, pic knocked_out} You swing at his head with your fist. Your knuckles connect to the side of his face with a mighty thud. His head bounces off the wall with a bang and then slumps limply on the table. His hand slowly slides off his mug.
+{vitals_check} You place your hand on his slimy neck and feel a pulse. His chest rises and falls. He seems to be just unconscious.
+	[vitals_check] (Check his vitals) //showif.intelligence.6 //showif.index_is.hit3
+	[leave_convo] (Leave)
+||
+
+||>>Leave pointer (for neatness sake)
+{leave_convo | start_encounter taodal_tavern taodal_tavern} This is just an index for leaving the Punflen conversation.
+||

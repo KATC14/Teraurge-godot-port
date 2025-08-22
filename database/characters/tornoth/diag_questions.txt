@@ -1,0 +1,66 @@
+
+>>This was added in V2
+||
+{start}
+{miner_ruckus} "No idea. I've heard people talk about wages and food shortages, but I don't really have any kind of picture of what was happening in the rivers at that time. It has quieted down now."
+{q_work} "You could try the tavern, I imagine Bykaas or some of the traders might have open jobs."
+{irongate_2} "No, and I would discourage anyone from opening it. Nothing bad has ever happened by not opening a door locked with a lock the size of a child."
+{coastwall_1} "No."
+{q_peninsula} "It's calm, quiet, and warm. It's a very good place to live."
+{no_living} Tornoth pauses and furrows his brow. "I do not know.<br><br>There are signs of violence and broken foundations of houses in the forest. I think it might have been war that depopulated this peninsula."
+{ships_go} "Most of the larger cities. I've never visited one, can't tell much about them.<br><br>Taodal is located near a very active trade route into the rivers. It's been a great boon for the village."
+	[q_leader] How did you become the unofficial leader of this village?										//hideif.clicked
+	[q_trade] What kind of trade passes through here?														//hideif.clicked
+	[q_work] Do you know any work I could do here?														//hideif.clicked
+	[q_peninsula] Can you tell me anything about this peninsula?												//hideif.clicked
+	[q_lumber] Where did you get the lumber for the buildings? It's not the spongy green trees from the peninsula. 	//hideif.clicked //showif.has_flag.tornoth_info_taodal_history //showif.intelligence.8
+	[q_irongate] There's an iron gate blocking a narrow passage in forests off the peninsula. Do you know anything about it?		//hideif.clicked //showif.has_discovered.sejan_iron_gate
+	[q_coastwall] There's a stone wall blocking the path along the coast. Do you know anything about it?		//hideif.clicked //showif.has_discovered.sejan_coast_wall
+	[ | change_to_default_diag silent_return] (Return)
+||>>You?
+{q_leader} "Just by being around and helping, I suppose.<br><br>And they seem to think I'm very old as well, and scary. I'm not that old."
+	[youre_leader] Did the town use to have an official leader?
+||
+{youre_leader} "No, I founded this village, and I've had a hand in constructing most of the buildings in it."
+{why_no_offical} He shrugs. "That seems like a hassle, and to be honest, I don't like the idea of proclaiming myself their lord."
+	[why_no_offical] Why not make yourself the official leader? //hideif.index_is.why_no_offical
+	[how_old_village] How old is this village? It must have sprung up quickly.
+||
+{how_old_village} "The village is only a hundred and some days younger than my daughter. It has grown very quickly, and is still growing!"
+	[how_founded] How did you start the village exactly?
+||
+{how_founded | add_flag tornoth_info_taodal_history} "I built a house, others saw it and started building around it. Many sailors on the trade ships saw this peninsula as a great place to start a family or retire."
+	[no_living] How come nobody had lived here before?
+||>>Trade?
+{q_trade} "All kinds, but Taodal is just a short stop for most traders. It's not large enough for trade on it's own."
+	[ships_go] Where do the ships go from here?
+||>>Lumber?
+{q_lumber} "Not many people notice that. Are you a builder yourself?"
+	[tinkerer] Yes, I'm interested in tinkering.
+	[dif_materials] No, not really. Just noticed the difference in the materials. The green trees seem useless.
+||
+{tinkerer} "Good to hear! Yes, you are right, the lumber is not from the peninsula.<br><br>I sell nails and building materials if you might need them."
+{dif_materials} He laughs heartily. "Yes, the trees on this peninsula are barely usable as kindling, and even then you have to dry them out for quite a long time. You can make good baskets out of the branches, but that's about it."
+	[import_material] You imported all the building material?
+||
+{import_material} "All the lumber is imported, yes. Some of it is from scuttled mining barges, but most of the new buildings are built from wood bought from the river traders. Most of the buildings are built from ash stander."
+{ash_stander | add_flag pc_knowledge_ash_stander} He scratches his chin. "Yes. A strong tree that grows very straight. It springs up in places covered with ash. It used to be considered an ill omen, since it always grew in burned villages, but later they started farming it by intentionally burning down forests. It's a nice material to make houses from, or barges, I suppose."
+	[ash_stander] Ash stander? A tree? //hideif.has_flag.pc_knowledge_ash_stander
+	[mining_barges] Some of the houses are built from scuttled mining barges? What are those exactly?
+||
+{mining_barges} "They're big barges they use to haul food to the mines and minerals from the mines. There was a big ruckus in the rivers area between the miners and the Horns when the village was founded.<br><br>Bunch of the miners ran three barges on the Sejan's beaches and broke them. Nobody ever came to reclaim them, so I started disassembling them for the lumber."
+	[miner_ruckus] Do you know what the fighting was about? Or why they broke the barges?
+||>>Iron gate?
+{q_irongate} "I've seen it."
+{irongate_1} "No."
+	[irongate_1] Any idea who built it? //showif.index_is.q_irongate
+	[irongate_2] Do you know how to open it?
+||>>Coast wall?
+{q_coastwall} "Yes, I know of it. It isolates us from people in the rivers and their problems."
+{coastwall_2} "We already get more trade than we can handle."
+	[coastwall_2] Wouldn't opening the route bring more trade into the village? //showif.index_is.q_coastwall
+	[coastwall_1] Do you know who built it?
+||
+
+
+

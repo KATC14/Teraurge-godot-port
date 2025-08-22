@@ -1,0 +1,78 @@
+>>QUESTIONS
+{start} 
+{13} "We've never heard a name like that. Nice to meet you, -name-."
+{28} "It is. Of course, we also enjoy talking with people like you. It helps keep things fresh for a while."
+{23} "Especially with the big one."
+{question_idle}
+	[6 | add_flag breirb_basics_known] Who or what are 'you' exactly? You keep talking about 'us' and it's kind of confusing. //hideif.clicked
+	[7] What kind of creature are you? Are you infested by parasites? //hideif.clicked
+	[8] Uh... Can you... tell me about your species' culture? //hideif.clicked
+	[29] Um, so... Can I help you with anything? //showif.has_flag.breirb_basics_known //hideif.clicked
+	[ | change_diag_file diag menu_idle] (Back)
+||
+>>Who or what are 'you' exactly?
+{6} You notice the short delay of a few seconds before it talks. "We are Breirb. We've had this problem in the past with other visitors. We, what you have in front of you, are Breirb."
+	[10] So Breirb is your name? Or that of your species?
+	[11] It's a bit confusing. Are you talking about you, the worms, the shell, barnacle and all?
+||
+{10} "It's our name. We don't have a name for our species, silly." Some of the smaller worms wiggle really fast, some of them coming out of the holes on the coral shell just for that purpose.
+	[12] Right, of course it doesn't.
+||
+{11} "Yes. If it makes things easier for you, Breirb is our name." It clumsily points at itself with one of its coral hands.
+	[12] I suppose that clears things up.
+||
+{12} "Who are you, by the way? We are curious about your name."
+	[13] My name is -name-.
+||
+>>What kind of creature are you?
+{7} "Parasites? No! They're part of us. Together we are ourselves. We work together to thrive and live happily." Every worm and the spike behind its coral head stretch at the same time in unison, as if standing to attention.
+	[15] So, you all have a symbiotic arrangement? //showif.intelligence.8
+	[16] I'm not sure I understand you. You have a very... unique way of speaking.
+||
+{15} "We don't know what you mean by symbiotic, but we can show you an example. Look at the water." 
+{16} "We suppose we can show you. Look under the water." 
+	[okay_look_1] Alright.
+||
+{okay_look_1 | play_sound sejan/breirb_close 70, change_sprite inshell} It retreats into the barnacle and soon you see the lower part of its main body appear under the water, the thicker worms embedded in it secreting a couple of differently colored substances. It quickly disappears from your sight again and then the face mask raises a little from the barnacle letting out only the long tentacle-like appendage with the hard pointy end. A ruckus in the water catches your attention. Fish are flocking to the colorful spots in the water. 
+	[okay_look_2] (Watch)
+||
+{okay_look_2} You don't have to time to comment on it for too long, as your host's pointy appendage shoots into the water and spears one of the fish, then your coral partner emerges fully again from its barnacle, the fish it caught flailing helplessly behind its head.
+	[ | check_stat intelligence 8 way_of_hunt0-way_of_hunt1] Interesting way of hunting.
+||
+{way_of_hunt0 | play_sound sejan/breirb_open 70, change_sprite open} The spear retreats into the big muscle behind the face mask. A handful of worms exit their holes in the lower and middle coral plates and hurriedly climb the main body and enter the mask. Moments later, they return to their holes and each applies a small amount of some white paste on the plates. Afterwards, the main body begins to undulate and all the bigger worms attached to it go limp until the main body stops its motions. "That was a nice snack."
+{way_of_hunt1 | play_sound sejan/breirb_open 70, change_sprite open} The spear retreats into the big muscle behind the face mask. A handful of worms exit their holes in the lower and middle coral plates and hurriedly climb the main body and enter the mask. Moments later, they return to their holes and each applies a small amount of some white paste on the plates. Afterwards, the main body begins to undulate and all the bigger worms attached to it go limp until the main body stops its motions. "That was a nice snack." You understand what just happened. The muscle behind the mask processed the fish, then some of the worms not directly integrated into it fed directly from it and used some of the by-products of the digestion, probably mostly bone, to reinforce the coral shell. Then the main body distributed the rest of the food to the other worms down its body, who probably feed directly off its digestive tract or bloodstream.
+	[19] I see now. That's quite the interesting arrangement you have going on. //showif.intelligence.8
+	[19] I'm not exactly sure of the details yet, but at least I know what you meant.
+||
+{19 | pic worm_eyes} It leans closer, its face mask now almost in front of your face. "We are glad we cleared that up." You can see now that it's closer that the mask's eyes are somewhat transparent and there are some very thin, white worms wiggling inside it.
+	[20] Those... aren't real eyes, are they?
+	[21] Gah! What is that inside your eyes?!
+||
+{20 | remove_pic} It leans back. "No, our mask is purely cosmetic. We know most other species are more comfortable if they can look at a face, especially if it has eyes. That's why we build it. But since we don't have eyes we don't waste the space and use it as a suitable place to raise our young."
+{21 | remove_pic} In a flash, it snaps back and moves partially into the barnacle. "Those are our young. We only build a mask like this to make conversations with other species less awkward for them, but since we don't have real eyes, we use that space as a hatchery."
+	[22] That's not something I've seen often. So does that make you a female?
+||
+{22} "We're female. We're also male. We are full of males and females and we've adapted to breed with ourselves no matter how different we are." The thought that such a weird creature might be having an orgy in front of your eyes and you would probably never notice crosses your mind.
+	[23] Even with the big one?
+||
+>>Tell me about your species culture.
+{8} "Culture? We do not know what you mean exactly by that." It points at itself.
+	[24] Uh, what do you do for fun for example?
+||
+{24} "We talk a lot among ourselves. We don't need much more to amuse ourselves and it's not like there's much more to do here." It gestures around the cave with a hand.
+	[25] Do you ever leave this place to meet others like you?
+	[26] Don't you ever want something more exciting?
+||
+{25} "Oh, it's not like each one of us doesn't travel to other colonies if things get too stale. Under the right circumstances it isn't a very risky trip and as a plus it is a good way of sharing experiences and news."
+	[27] Like for example?
+||
+{26} "Each one of us is free to leave for another colony. The trip has its risks, but the reward is worth it. It's our main way of sharing experiences and learning about what's happening outside, unless we happen to talk with people from other species."
+	[27] And what kind of experiences do you exchange?
+||
+{27} It suddenly stands completely still and its spear appendage raises and tenses up, then its entire body relaxes again. "Clever fish... Anyway, a good example would be learning about what fish are currently thriving in each area and how to adapt our hunting tactics accordingly."
+	[28] Sounds useful.
+||
+>>Can I help you with anything?
+{29} "Help? Let us think for a moment..." Breirb remains quiet for a few seconds.
+	[ | add_flag breirb_rival_known, change_diag_file diag help_with_rival] (Wait)
+||

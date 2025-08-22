@@ -1,0 +1,256 @@
+>>Start_intro
+||>>Freakout
+{start | start_music sejan/witch_intro 70 3} "Oh my gods! Not again!" At first, it looks like a woman with thickly powdered skin wearing some costume, but the way she wags her tail and moves her inhumanly thin legs convince you otherwise.<br><br>A long, thin tongue snaps from the bottom of what you thought was a mask. Suddenly it hits you, you are in front of some non-human monster.
+{ded | player_death}
+    [run_away_1] Aaaah! (Run away)
+    [silent_still] (Remain calm) //showif.has_stat.will.6
+    [uh_hello] Uh, hello.   //showif.has_stat.will.8
+    [ | gore_filter attack_monster_c attack_monster] (Attack the monster) //showif.has_stat.will.6
+    [quick_start] QUICK START //showif.has_a_save
+    [reading3] debug skip
+	[silent_return] (Return)
+	[ded] (Death)
+	[ | start_encounter sejan_beach_cave caenemung] (Get ready)
+    [bed_sleep] bed_sleep //showif.has_a_save
+||>>curated list for sleep
+{test} tis is a test
+{bed_sleep | curated_list prioritized, counter shyni_nights_together + 1} Woke randomizer index.
+	[test | advance_time 1, change_diag_file diag_wooden_idol start] Shyni wakes PC for sex magic. //showif.counter.shyni_nights_together.4 //showif.has_flag.shyni_introduced_tuhmun //hideif.has_flag.shyni_wooden_idol_ritual //showif.player_sex.male
+	[ | random_pointer wake_1-wake_5] (Normal sleep)
+||
+{wake_5} wake_5
+{wake_1} wake_1
+	[start] test
+||>>You dumdum
+{attack_monster | stop_music 1, play_sound sejan/witch_attack 70, pic giblets, auto_continue ded} You lunge at the monstrosity with your fists ready. The monster gasps and points her open palm at you. A bright light burns your eyes, you feel searing pain all over you body, you cry out in agony. You body tears itself apart, exploding in every direction. The last thing your mind registers is the sickening crack of your head fracturing into small chunks before the blinding pain is smothered by unending blackness.
+{attack_monster_c | stop_music 1, play_sound sejan/witch_attack 70, pic giblets_c, auto_continue ded} You lunge at the monstrosity with your fists ready. The monster gasps and points her open palm at you. A bright light burns your eyes, you feel searing pain all over you body, you cry out in agony. The blinding pain is quickly smothered by unending blackness.
+{ded | player_death}
+||
+
+||>>QUICKSTART (Lets players skip the Witch intro, doesn't accept the portal quest)
+{quick_start | give_money adats 6, give_money krats 80, change_default_sprite witch normal, change_default_diag_file witch diag_known, end_encounter} 
+||
+
+||
+{run_away_1} You dash towards the nearest door. You reach for the door handle, but before you manage to touch it, an invisible force stops you. You're dragged back to the spot you started. "Look, I'm sorry about all this, but please calm down. I'm not going to hurt you." She taps the floor with her staff, and the force holding you disappears. 
+{silent_still} The creature starts pacing back and forth. "Sorry! I'm really sorry!<br><br>Damn it!<br><br>This is the third time this has happened in the past few days." She buries her face in her free hand.
+{uh_hello} "Oh... Sorry, hello! I expected a very different reaction from you, but this is okay too."
+	[aa_wtf] AAAH! What the fuck are you?! //showif.index_is.run_away_1
+	[explain_0] What the hell is going on? //showif.has_stat.will.6
+	[explain_1] What are you talking about? //showif.has_stat.will.8
+	[explain_2] Okay... Can you tell me what's going on? I was in my bed. There was this blue light and... //showif.has_stat.will.10
+||>>AAH WTF!
+{aa_wtf} "Calm down! It's okay! C'mon! We are just going to talk. You're safe!<br><br>Take deep breaths."
+{run_away_2} You sprint as fast as you can towards the door, but you're dragged back by an invisible force. The monster massages her temples, clearly annoyed. "Look! Deep breaths! <b>Okay</b>?"
+	[deep_breaths] (Take in deep breaths)
+	[not_real] You're not real! Yeah... I was in my bed. That's when this started. This is a dream.
+	[run_away_2] (Run away) //hideif.index_is.run_away_2
+||>>This is a dream!
+{not_real} "Sorry! But this isn't a dream! It's unfortunately very real."
+	[clearly_dream] And since this is clearly a lucid dream, I just need to take control of it...
+	[sure_not_dream] ...Are you sure?
+||
+{clearly_dream} She sighs. "Sure. Go for it."
+	[now_dream] I'm going to wake up now!
+	[now_dream] I can now fly!
+	[now_dream] I'm now a giant!
+	[now_dream] I'm now on the Moon!
+	[now_dream_naked] The monster lady is now naked!
+||
+{now_dream} You open your eyes in anticipation. Nothing has happened.
+{now_dream_naked} You open your eyes in anticipation. Nothing has happened. "What the..."
+{wiah_harder} Nothing happens.
+	[wiah_harder] (Wish harder) //hideif.index_is.wiah_harder
+	[isnot_dream] I guess this isn't a dream then.
+||>>Deep breaths
+{isnot_dream} "Are you done?"
+{sure_not_dream} She reaches out and pinches your shoulder. The pain feels very real. "There.<br><br>You okay now?"
+{deep_breaths} You take in deep breaths. On the third one, you feel the panic subside slightly. The monster lady turns her head slightly. "How do you feel?"
+	[ok_confused] I'm okay. Very confused.
+	[explain_2] What's going on? Who are you?
+||
+{ok_confused} "Hey, good job! The confusion? That's expected. I'm sure you have lots of questions. If you're ready, I'll fill you in.<br><br>You ready?"
+{deep_breaths_2} She waits patiently as you breathe in and out. "Alright.<br><br>Ready?"
+	[deep_breaths_2] Not yet. (Take in deep breaths) //hideif.index_is.deep_breaths_2
+	[what_happen] Sure.
+||>>what are you talking about?
+{explain_1} She points at you. "This!"
+	[8] Me?
+	[8] You mean the mess with the blue light thing?
+||
+{8} "Yes! No! I mean the fact that I pulled you here." Her voice is becoming even higher-pitched.
+	[explain_2] So, you did this?
+	[explain_2] Wait, you didn't mean to do this?
+||
+{explain_2} "I'm a researcher of sorts. I'm currently studying other dimensions, and I... open portals to other worlds for research." She points at a pile of papers on a nearby table.
+{explain_0} "I'm a... uh- a researcher of sorts. I study and create portals to other worlds. That blue light was a portal."
+{what_happen} "I'm a... uh- a researcher of sorts. I study and create portals to other worlds, and that blue mess was a portal. I transported you from your world to mine."
+	[succeeded] I think you did it... Can you send me back now?
+	[succeeded] Well, you sure succeeded.
+||
+{succeeded} "That's the thing, I can only open portals on the other side. Normally they just bring back rocks, earth, and small animals, but lately I'm having a lot of bad luck and they've been spitting out inhabitants from other worlds.<br><br>This time a- hmm... a human? Right?"
+	[11] Wait! I'm stuck?
+	[12] I'm a human.
+||
+{11 | play_sound generic/objects/book_open 30} "Sorry... The portals can only bring things here. I cannot send you back. The portals don't work that way.<br><br>But! Don't worry, I have a procedure for this. First.... I'll give you some basic information. Sorry, give me a moment." She grabs a heavy book from one of the many tables in the lab, opens it, and starts flicking through the pages.
+{12 | play_sound generic/objects/book_open 30} "Good! Let me grab my species guide." She grabs a heavy book from one of the many tables in the lab, opens it, and starts flicking through the pages.
+	[14] (Wait)
+	[13] (Take a good look at her)
+||
+{13 | pic good_look} As she rifles through the book, you get on your feet, and for the first time you examine her more calmly. Her more monstrous features stand out quite a bit, and judging by the way she remains stiff when turning around, you're also pretty sure she can barely move her neck, but she also has some humanoid aspects that make you curious about her. Her torso and thighs, for example, look soft and firm, befitting of a young or at least a middle-aged woman. These contradictions in combination with her ashen skin make you unable to really pinpoint her age just by her looks.
+	[14] (Keep waiting)
+||>>Species guide book exposition
+{14 | play_sound generic/objects/book_multi 45} She quickly flips through the pages. "Human, human... there! Alright, please read this." She walks over to you and hands you the open book.
+	[reading] (Open it)
+||
+{reading} The book is full of strange symbols.
+	[reading2] I can't read this. I have no idea what these symbols are.
+||
+{reading2} She turns her head slyly, "Am I speaking your language?"
+	[reading3] How could I understand you otherwise?
+||
+{reading3} You realize the sounds she's making are completely bizarre and foreign to you. "Ah, there you go. Some people can't figure it out until I start spelling out onomatopoeic words. Look at the book again, you can read it." She pokes the text on the page.
+	[book_what] Ono- mo- mato- poeit what? //hideif.has_stat.intelligence.6
+	[book_0] (Start reading the book) //showif.has_stat.intelligence.6
+||
+>>Book start
+{book_what} "Just read the book." You turn to the book and realize it's perfectly readable and seems to be some kind of guide for newcomers.
+{book_0} You look at the book again. You squint at the symbols and realize they're perfectly readable. The book seems to be some kind of a guide for newcomers.
+	[book_1 | play_sound generic/objects/book_turn_1 45] (Keep reading)
+||
+{book_1 | pic book_humans} Welcome to the outsiders' starter's guide, Human chapter! It seems you've got stuck in our world, but don't panic yet! You can find plenty of communities and environments perfectly fit for your species, so you can enjoy a safe and fulfilling life with us.
+	[book_2 | play_sound generic/objects/book_turn_2 45] (Keep reading)
+||
+{book_2} First off, you're probably wondering why you can understand this book. When you came to this world, you've passed through a dimensional membrane that converted all of your physical characteristics into an emulation that is compatible with this reality. You are no longer yourself! This process also gave you an ability understand the languages of this world. We don't know why, but we suspect a higher power is at work.
+	[book_3 | play_sound generic/objects/book_turn_1 45] (Keep reading)
+||
+{book_3} You should seek to integrate yourself into a larger society to keep yourself in relative safety as this world has many dangers.<br><br>Societies in this world are too varied to explain in just a few lines, but for the most part, you will encounter highly organized city states, smaller towns and villages, and the occasional tribal group. We recommend you to stick with properly civilized settlements, at least initially. Tribals are normally peaceful, but they tend to live in areas that could be dangerous for inexperienced Humans.
+	[book_4 | play_sound generic/objects/book_turn_2 45] (Keep reading)
+||
+{book_4} As for this world itself, you'll be glad to know that its gravity, temperature, and atmosphere are ideal for Humans! There is also such a wild variety of biomes that you will surely find a place that suits your preferences. You might need some adjusting to the 22-'hour' day cycle and the fact the phenomenons called 'Moon', 'stars' or 'Sun' do not exist here, but otherwise, you're ready to start your life in this wonderful place.<br><br>There is no known way to leave this dimension. Be prepared to spend the rest of your life here.
+	[book_end | play_sound generic/objects/book_close 50] (Close the book)
+||>>Book end
+{book_end | remove_pic} You close the book. "Hopefully that was helpful, there's been very few humans pulled in, so the orientation material is a bit scarce.<br><br>I'll provide you with a map and directions, and you should be all set." She quickly nabs the book from you.
+	[22] Was this the same with all the others that arrived through your portals?
+	[23] Are you sure about this?
+||
+{22} "Yes. Standard procedure when we bring an outsider. It's an unfortunate by-product of the process sometimes, so we are ready for this kind of situation."
+	[24] You know, you could have stopped experimenting if there was a risk.
+	[25] Whatever, I don't even care any more.
+	[26] Unfortunate by-product? That sounds cold.
+||
+{23} "Absolutely. It's how I was trained to deal with this situations, and I agree that it's the best thing I can do to help you right now. Although normally pretty rare, these accidents happen, so we're ready to deal with them."
+	[24] So you know there's a risk and keep experimenting anyway?
+	[25] Whatever, I don't care.
+	[26] Accidents happen? That sounds cold.
+||
+{24} "Look, I know it's a crappy excuse, but I'm under a lot of pressure to get my research done, and I just can't go empty-handed. There would be repercussions..."
+{25} "But I care! That's why I'm giving you this stuff and advice! I could have kicked you out, ignoring the procedure, but I didn't because I do feel bad! Look, I am under a lot of pressure to finish my research, so I couldn't wait until I refined my methods. There would be repercussions..."
+{26} "No, I...! Please believe me, I really hate when this happens. But there are very few people in the world who deal with portals, and me being one of them... I'm under a lot of pressure. If I don't finish my research they might... Um- I mean, I'm under a lot of pressure."
+	[27] That seems like a small price compared to the damage you cause with these portals.
+	[27] Okay, I get it.
+	[27] Just stop making these portals for now, please.
+||>>Portals quest hook
+{27} "How about...? Yes, this could be a good compromise. I've been working on this for over a thousand days! And I only had one accident per four hundred days at most, so it's definitely not normal that this happened three times in such a quick succession. I have an excuse to stop using them for now. <br><br>Tell you what, help me find a way to open portals in this dimension that allow individuals to travel to other ones! That way, I will be able to help you return to your dimension." She wags her tail from side to side.
+	[quest_help_1] Sure! I'll gladly help.
+	[quest_help_2] It's not like I have a choice if I want to go home.
+	[quest_no] No.
+||
+{quest_help_1} She claps her hands. "Excellent! I will need you to travel around and get in contact with other organizations or species who use portals or research them.<br><br>I can't really help you with directions since portal research is almost always conducted in secrecy, but it's no secret that accidents like this have happened often throughout time, so if you investigate a bit, you shouldn't have that much trouble getting some clues as to where to direct your efforts."
+{quest_help_2} "Sorry... I will need you to travel around and get in contact with other organizations or species who use portals or research them.<br><br>I can't really help you with directions since portal research is almost always conducted in secrecy, but it's no secret that accidents like this have happened often throughout time, so if you investigate a bit, you shouldn't have that much trouble getting some clues as to where to direct your efforts."
+	[29 | add_flag witch_portal_quest_active] All right, I'll try.
+||
+{29} "Also, in the future, I should probably collect some information on human anatomy since the research literature on that subject is quite scarce. And since you have volunteered to help, and you've already gone through a portal, you should be an excellent test subject. <br><br>Don't worry, it will just involve a couple of simple and painless tests and collecting some metrics about your anatomy. You don't have a problem with it, right?"
+	[what_now_0] I do hope those 'simple and painless' tests really are that.
+	[what_now_1] Uh, right, okay.
+	[what_now_2] Hey, you can measure anything about my anatomy anytime. //showif.has_stat.charisma.6
+||>>Quest no
+{quest_no} "... You don't want to go back?"
+	[take_chances] I'm done with these portals. I'll take my chances out there.
+	[my_way] I don't think you can help me. I'll make my own way home.
+	[portal_risk] The portal ride seemed dangerous. I don't want to risk it again.
+	[dont_want] I don't want to return.
+	[quest_help_1] Actually, uh... I do.
+||
+{dont_want} "Oh... I see. Are things that bad back there?"
+	[things_bad] Something like that.
+	[more_interesting] Not really, this place is just more interesting.
+||
+{my_way} "I admit I don't have the knowledge to send you home but if you help me, I might be able to."
+{portal_risk} "I admit... I literally don't know how safe these portals are. But they've never caused physical damage... that I'm aware of... But! If you help me, I might be able to send you back safely."
+	[quest_help_1] Alright, I'll help you.
+	[take_chances] No, thank you.
+||
+{take_chances} "I understand, but let me help you. If you change your mind about returning, just tell me. I'll be working on the portals anyway."
+{things_bad} "Oh, okay then, that makes me feel a little better about myself. But I'm still sorry about this... in a way. If you change your mind about returning, just tell me. I'll be working on the portals anyway."
+{more_interesting} "You should take a more in-depth look at this world before you say that. If you change your mind about returning, just tell me. I'll be working on the portals anyway."
+	[what_now_1] So, what now?
+||>>Money intro
+{what_now_0} She chortles. "Oh, they are! Don't worry about that. Now...<br><br>Let me give you some money."
+{what_now_1} Her tongue snaps out. "Right, let me give you some money."
+{what_now_2} She taps her fingers together, and you could swear she winked. "Good. Very good. But I have no need of that yet, so for now, let's get you ready for your quest. You need a bit more than just these clothes. You need money."
+	[give_money_2] That's very generous of you.
+	[give_money] Sure! Gimme.
+||
+{give_money_2 | play_sound generic/objects/coins 70} She opens her cupboard and takes out a clinking leather purse. "It's a poor compensation for dragging you into this world, but it's the best I can do... at the moment!<br><br>Here, some krats." She gives you the bag. You loosen the thread on it and look inside. It's filled with brown pearls.
+{give_money | play_sound generic/objects/coins 70} She opens her cupboard and takes out a clinking leather purse. "Here, some krats." She gives you the bag. You loosen the thread on it and look inside. It's filled with brown pearls.
+	[krats_1 | give_money krats 80] Krats?
+||>>Krats
+{krats_1} "Krats are the lesser currency. You can use it to buy food and shelter, but you are not rich by any standards. You'll need adats if you want to buy anything of value."
+	[krats_2] So, pearls are krats?
+	[adats_1] I imagine I need some 'adats' as well, then.
+	[adats_1] I see, thanks.
+||
+{krats_2} "Oh no! Krats are not pearls. Krats, uh... are concentrated ambient energy in a pearl-like shape. They occur naturally everywhere and are harvested."
+{krats_3} "It's speculated the world has a field of invisible energy that manifests itself as krats. Krats can be found literally anywhere, usually as clusters attached to objects. There doesn't seem to be an environment they prefer, and they appear all around the world in fairly constant density."
+{krats_4} "Krats are not that rare but are arduous to harvest because you can't farm them. They just appear everywhere. You need incredible amount of people to harvest a decent amount."
+	[krats_3] Krats are formed from... ambient energy? //hideif.clicked
+	[krats_4] You harvest your money? How rare are these krats?  //hideif.clicked
+	[adats_1] I see, thanks.
+||>>Adats
+{adats_1 | give_money adats 6} She pulls out a handful of gleaming, white, smooth rhombuses. "These here are adats, the higher currency. You can have these, so you can get started with your new life here." She places them in your bag.
+	[dif_krats_adats] So what's the difference between krats and adats?
+	[thank_you] Thank you.
+	[should_go] I think I should go.
+||
+{dif_krats_adats} "Well... I think it could be described as difference between volatile goods and non-volatile goods, I think? Things krats can buy will expire or are consumed. Services, food, drinks, the things. Adats, however, are seen as the money for more permanent things. Tools, clothes, houses, other such things.<br><br>But! These are not hard rules, some volatile things are seen as so valuable that they are bought with adats and vice versa."
+{adats_what} "Adats are ceramics made out of white powder that is mined out of the ground. The powder is melted into shape in ovens. I don't really know anything else about them. They are very cold to touch, though."
+{krats_volatile} "Oh no! By volatility I meant they can be used in a way that destroys them. For example, krats can be eaten or made into medicine. It's a very versatile ingredient in its own right. There's really no practical use for adats. Other than trade, of course."
+	[why_div] Why two different currencies? //hideif.clicked
+	[adats_what] What are adats made out of? //hideif.clicked
+	[thank_you] I see, thanks for the information.
+	[should_go] I think I should go.
+||
+{why_div} "I- I don't exactly know. It could be because krats are themselves volatile and adats are not, so they are seen as more permanent?"
+	[krats_volatile] Krats are volatile? They are not going to randomly explode, are they?
+||>>Taodal direction
+{thank_you} "You're welcome. Come to think of it, this portal research has become awfully taxing on my purse lately."
+{should_go} "Come to think of it, this portal research has become awfully taxing on my purse lately."
+	[leaving] I do appreciate the money.
+	[reason_stop] That's just another reason to stop doing it.
+	[suffer_for] Well, it's the least amount you should suffer for it.
+||
+{reason_stop} She sighs. "I know. This portal business seems to radiate misery."
+{suffer_for} She sighs. "I- I understand..."
+	[leaving] So, did you have anything else? Or am I free go?
+||>> NO cArDiNaL DiReCtIoNs MEANDRACO AAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaaaa
+{leaving} "The last piece of advice I can give you is that there's a village called Taodal near here, next to the mountain on the tip of the peninsula. You should go there.<br><br>You might be able to find some help and more information there."
+{specific_directions} "Of course! You must travel away from the open sea, towards the bay, until you reach a rocky ridge dividing the peninsula. The ridge has a gap in it you can pass through. After the ridge, keep heading in that direction, and you will reach the shore. Follow the beach towards the large solitary mountain at the end of the peninsula. You will find Taodal nestled between the rocky ridge and the sea."
+	[specific_directions] Can you give me more specific directions to reach Taodal? //hideif.index_is.specific_directions
+	[leaving_1] Well, goodbye. Wish me luck.
+	[leaving_2] See you later! Hopefully soon and with good news. //showif.has_flag.witch_portal_quest_active
+	[leaving_3] (Sigh in resignation and leave)
+	[leaving_4] (Leave)
+||
+{leaving_1} "Goodbye! I hope your travels go well.<br>...<br>Wait! You didn't tell me your name!"
+{leaving_2} "Goodbye! I will wait for you...<br><br>Wait! You didn't tell me your name!"
+{leaving_3} "Sorry! This is all kinds of messed up, and I'm to blame... again. Before you go, please tell me your name at least."
+{leaving_4} "Wait! You didn't tell me your name."
+	[told_name] It's -name-.
+||
+{told_name} She nods. "I wish we've met under different circumstances, -name-. My name is... actually, everyone in the area just calls me 'the Witch', so just call me that. Good luck out there."
+	[walk_out | play_sound generic/objects/door_close 70, change_default_sprite witch normal, hide_character, change_default_diag_file witch diag_known, change_environment sejan_witch_house] (Leave)
+||
+{walk_out | stop_music 4} You open the door and walk out. The Witch closes the door carefully, and you hear it click shut.<br><br>You walk down the hill to the edge of the forest and then glance back at the Witch's house. The wind rustles the leaves in the forest behind you, and you see no sun in the sky.
+	[ | end_encounter] (Leave)
+||

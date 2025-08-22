@@ -1,0 +1,53 @@
+
+||
+{start| save_index visited} You have stumbled upon a cave. The dark entrance looms ahead. A cold shiver passes through you as you gaze into the dark.
+{visited} The cave entrance looms ahead.
+{survey_sur} The area is overgrown with vegetation aside from the bald spot right at the cave entrance. The cave itself doesn't seem artificial, but the dirt path leading to it is too packed and solid to be naturally occurring.
+{left_cave | remove_pic} You emerge from the cave.
+{left_cave_torch | remove_pic} You emerge from the cave and put out your torch.
+	[explore_cave] (Explore the cave)
+	[survey_sur] (Survey the surroundings) //hideif.index_is.survey_sur
+	[ | end_encounter] (Leave)
+||>>Explore cave
+{explore_cave | pic cave_inside} You walk towards the cave entrance. The darkness inside seems unnaturally persistent. The feeling of dread swells as you enter the cave. The cave seems eerily silent.
+	[ | check_stat will 6 venture_cave_0-venture_cave_1] (Venture further) //hideif.has_item.torch
+	[venture_cave_light | play_sound generic/items/torch 70, remove_item torch] (Light a torch and venture further) //showif.has_item.torch
+	[left_cave] (Leave the cave)
+||>>Explore cave (No light)
+{venture_cave_0 | pic cave_dark} The cave is completely void of light. You take a few steps forward, but the darkness becomes smothering. Dread overcomes you. You feel dizzy and turn towards the bright spot of the cave entrance.
+	[left_cave] (Leave the cave)
+||
+{venture_cave_1 | pic cave_dark} The cave is completely void of light. You take steps forward, and the darkness becomes smothering. You cannot see the cave walls anymore. You slide your hand along the wall as you move forward. You come to a stop when you hear echo of your steps coming from below. It sounds like there's a drop ahead.
+{survey_drop_dark} You carefully take small steps until you reach the lip of the drop. You extend your foot to measure the depth of the drop but cannot find the bottom. The strong draft and echoes indicate it's a deep drop. The walls are rough stone, but they offer no handholds. You step away from the drop.
+	[survey_drop_dark] (Feel around) //hideif.clicked
+	[left_cave] (Leave the cave)
+||>>Explore cave (Light)
+{venture_cave_light | pic cave_drop} You walk into the cave until you reach a drop. You peer over and cannot see the bottom of the drop.
+{tie_rope} You tie a rope around the stalagmite. You tug hard on it to check it, and it seems to hold.
+{survey_drop} The area around the drop has a stalagmite that could be used as an anchor for a rope.
+	[tie_rope | add_flag sejan_cave_roped, remove_item roll_of_rope] (Tie a rope to the stalagmite) //showif.index_is.survey_drop //hideif.has_flag.sejan_cave_roped //showif.has_item.roll_of_rope
+	[rope_descend] (Climb down the rope) //showif.has_flag.sejan_cave_roped
+	[survey_drop] (Look around) //hideif.index_is.survey_drop
+	[left_cave_torch] (Leave the cave)
+||
+{rope_descend | pic cave_chamber, add_flag pc_sejan_cave_visited} You climb down the rope and reach the bottom of the drop. You land in a chamber with a complex maze of tunnels leading in every direction.
+{return_to_rope | pic cave_chamber} You return to the chamber where the rope is.
+{survey_tunnels} The cave has dizzying amounts of tunnels in every direction. It seems to have formed naturally. You cannot see any points of interests in the mess.
+{exp_tun_0} You pick a tunnel and start walking. You wander around the tunnel system but cannot find anything. After a while, you trace your steps back to the chamber.
+	[survey_tunnels] (Look around)
+	[exp_tun_0] (Explore the tunnels)
+	[left_cave_torch] (Climb out of the cave)
+||
+
+
+
+||>>Explore tunnels. This will be expanded upon
+{exp_tun_1} You pick a tunnel and start walking. You wander around the tunnel system for a while until you come to a dead end.
+{look_dead_end_0} You look around but cannot find anything interesting.
+{took_large_krats} You easily pry the krats off the stone. You don't see anything else in the tunnel.
+	[look_dead_end_0] (Look around) //hideif.clicked
+	[return_to_rope] (Head back to the rope)
+||
+{look_dead_end_1} You see something glisten in the corner of the cave. It's a large a collection of krats attached to a rock.
+	[took_large_krats | give_money krats 237] (Take the krats)
+||

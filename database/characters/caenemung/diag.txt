@@ -1,0 +1,233 @@
+
+>>Creature is encountered when accepting to help Breib get rid of its rival in the beach cave.
+
+||
+{start | play_sound generic/interactions/splash_big 70, save_index rematch, remove_flag breirb_rival_known, add_flag breirb_rival_encountered} A massive creature emerges from the water. Only half of its body is visible, but judging by the shape under the water, you calculate it's roughly six meters long. Water falls down its maw and the coral-like crown around its head as it observes you.
+{ugly_mofo | play_sound sejan/caenemung_roar 100} The creature roars defiantly and opens its maw, ready to strike. Fight seems inevitable.
+	[ | start_music sejan/fight_strong 80, start_combat defeat victory] (Attack)
+	[can_we_talk] Hi, can we talk? //showif.charisma.6 //hideif.clicked
+	[ugly_mofo] You're one ugly motherfucker. //showif.will.8 //hideif.clicked
+||>>HISS
+{can_we_talk} You raise a hand to greet it just in case, it snaps its huge maw at you and you get sticky spittle on you.
+	[ | start_music sejan/fight_strong 80, start_combat defeat victory] (Attack)
+	[can_we_talk_2] Uh, I'm not sure if you can understand me. Nod twice if you do. //showif.charisma.6 //hideif.clicked
+||>>GRONK
+{can_we_talk_2} The creature stares at you, its maw open and ready to lunge.
+	[ | start_music sejan/fight_strong 80, start_combat defeat victory] Not a talker, then. (Attack)
+	[ | add_flag defeated_by_breirb_rival, end_encounter] (Run away)
+||
+{rematch | play_sound generic/interactions/splash_big 70} The monster emerges from the water. It seems to recognize you and lunges at you.
+	[ | start_music sejan/fight_strong 80, start_combat defeat victory] (Fight)
+||>>Defeated
+{defeat | start_music sejan/fight_end 80 0 0 no_loop, add_flag defeated_by_breirb_rival} You lose your footing and the monster uses the chance to slam you hard with its head, sending you flying back a few meters. You fall on the uneven rocky floor and gasp in pain. You hear the monster growl and snarl.
+	[ | end_encounter] (Get up and run away)
+||>>Victorious
+{victory | play_sound sejan/caenemung_win 70, start_music sejan/fight_end 80 0 0 no_loop, remove_flag defeated_by_breirb_rival, save_index grudge, add_flag caenemung_at_sejan_beach, change_default_sprite caenemung on_beach, character_leave} The monster lets out a roar, then suddenly whines and retreats into the water. You keep your guard up though, just in case.
+	[ | start_music sejan/breirb 80 3, start_encounter sejan_beach_cave_barnacle breirb fight_victory] (Wait for Breirb to show up)
+||
+
+
+
+
+
+||>>BEACH ENCOUNTER GRUDGE
+{grudge | stop_music 1, play_sound generic/interactions/splash_big 80} A giant splash explodes from the water. You're being attacked by Breirb's rival!
+	[ | start_music sejan/fight_strong 80, start_combat defeat_2 victory_2] (Fight)
+	[ | check_stat agility 8 run_0-run_1] (Run away)
+||>>run away
+{run_1} You jump away from the raging beast and dodge its angry lunge. You run farther up the beach until you're sure it can't follow you and turn to see it dive back into the sea.
+	[ | end_encounter] (Leave)
+||
+{run_0 | play_sound sejan/bowlcave_slam 70} You sprint away from the beast but it bashes you down with its head. You hit the sand, you quickly turn to face your assailant to defend yourself. The colossal snake opens its jaws and bites at you.
+	[ | check_stat strength 8 punch_0-punch_1] (Punch it)
+	[ | check_stat agility 6 roll_0-roll_1] (Dodge)
+||>>PC dead
+{punch_0 | play_sound sejan/caenemung_crack 70, auto_continue pc_death} You punch at the serpent but it does not react to it and its jaws clamp painfully around your torso. The flat teeth cut into your ribcage with a crunch. You scream in pain as it throws you up in the air, and the last thing you feel is its teeth cutting into your neck with a sickening crunch.
+{roll_0 | play_sound sejan/caenemung_crack 70, auto_continue pc_death} You roll to dodge, but you're too slow. Its jaws clamp painfully around your torso. The flat teeth cut into your ribcage with a crunch. You scream in pain as it throws you up in the air, and the last thing you feel is its teeth cutting into your neck with a sickening crunch.
+{pc_death | start_music misc/player_death 80 0 0 no_loop, player_death} 
+||
+{punch_1} Your punch lands on the domed head of the serpent with a crack. The serpent veers violently into the sand next to you. You jump back up and ready yourself. The serpent lifts its head out of the sand and roars angrily.
+	[ | start_combat defeat_2 victory_2] (Fight)
+||>>Defeat 2
+{defeat_2 | start_music sejan/fight_end 80 0 0 no_loop, play_sound sejan/bowlcave_slam 70} The monster bashes you down with its head and lunges at you with its jaws open wide.
+	[ | check_stat agility 8 roll_0-roll_1] (Dodge)
+||
+{roll_1} You roll on the sand to dodge the bite. The giant teeth crash into the ground next to you. You stand back up and run away from the beast.
+	[ | end_encounter] (Run away)
+||>>Victory 2
+{victory_2 | start_music sejan/fight_end 80 0 0 no_loop, play_sound sejan/caenemung_win 70, character_leave} The monster whines and it retreats back into the water.
+	[frick_off] Yeah! You better fuck off! //hideif.clicked
+	[grab_fail] (Grab its tail) //hideif.clicked
+	[ | check_stat agility 6 lasso_0-lasso_1] (Use a rope to lasso it) //showif.has_item.roll_of_rope //showif.intelligence.6
+	[ | end_encounter] (Leave)
+||
+{frick_off} The monster disappears into the sea.
+	[ | end_encounter] (Leave)
+||
+	
+||>>LASSO
+{lasso_1 | pic lassoed} You quickly create a lasso and throw it at the soon disappearing jagged crown. The loop snags on a few protrusions and then quickly tightens and grips on the giant serpent.
+	[ | check_stat strength 10 lasso_pull_0-lasso_pull_1] (Pull the creature back)
+||>>Lasso fail
+{lasso_0} You try to hastily create a lasso but you mess up the knots and at the last second try to throw it around the creature's crown. The mess of rope lands into the water and the serpent disappears into the sea. You reel the wet rope back and undo the knots.
+{grab_fail} You grab its tail as it's slithering into the sea. Its skin is slippery and slick. You cannot keep your grip and the creature disappears into the sea.
+{lasso_pull_0 | remove_item roll_of_rope, remove_pic, hide_character} You plant your feet into rocks on the beach and pull. The rope tightens and you feel the large creature yank against your grip. A powerful and sudden pull on the rope sends you flying into the sand. Your hold on the rope gives out and the rope flies into the sea and disappears. You get up and dust the sand off you.
+	[ | end_encounter] (Leave)
+||
+
+||>>Lasso success
+{lasso_pull_1 | pic roped_caen} You plant your feet into the rocks on the beach and pull. The rope tightens and you feel the large beast yank against your grip. Your manage to hold on and the force on the other end weakens. You start reeling the rope in and the giant serpent's head appears from the waters. It follows the pull of the rope on to the beach. You pull the creature completely out of the sea. The exhausted animal lies on the beach, defeated.
+	[examine] (Examine the creature)
+||>>---------------------------- ''there are no teeth''
+{examine} You step closer to the serpent. It seems very tired and submissive. You run your hand on the skin of the creature; it's smooth and slick with slime. You touch the jagged coral-like horns of the creature, they're rigid but elastic to a degree and they also seem to have a layer of skin on them. You pet the domed head of the creature, it's soft but firm. The material of the head transitions into something harder as it flows down to form the teeth.
+{gender_studies | pic slit} You walk along the length of the serpent until you find a large slit adorning its underbelly, seemingly suggesting it's a female.
+	[ | check_stat strength 6 spread_0-spread_1] (Spread the slit) //showif.index_is.gender_studies
+	[gender_studies] (Determine its sex) //showif.index_is.examine
+	[ | end_encounter] (Leave)
+||>>spreading
+{spread_0} You stick your thumbs into the large slit and pull on the muscular lips to spread her. The strong and slick lips of the orifice make it impossible for you spread the orifice. You only get slimy hands for your trouble.
+{spread_1 | pic slit_spread} You stick your thumbs into the large slit and pull on the muscular lips to spread her. You struggle with the slick slime and the intense constrictions, but you manage to part them enough to see inside. There are three orifices. Largest at the bottom and smallest at the top, but they're identical otherwise.
+	[undress_slit] (Undress) //showif.feral_filter_off //showif.player_sex.male
+	[stop_sex] (Stop) 
+||>>Staph - *stahp
+{stop_sex | remove_pic, change_sprite on_beach} You stop and step away from the creature. The giant serpent growls and stretches on the sand, unsure of what you're doing.
+{stop_sex_1 | stop_music 3, remove_pic, change_sprite on_beach} You stop, step away from the creature and get dressed. The giant serpent growls and stretches on the sand, unsure of what you're doing.
+	[ | end_encounter] (Leave)
+||
+{undress_slit | start_music sejan/feral 70 3, pic slit} As you undress yourself, the serpent slowly writhes on the sand but doesn't seem to move away. You kick your clothes further up the beach and return your attention to the wet slit.
+	[spread_sex] (Spread the slit) //showif.strength.6
+	[ | random_pointer top_hole-mid_hole-bot_hole] (Penetrate the slit)
+||
+{spread_sex | pic slit_spread} You stick your thumbs into the slit and pull on the muscular lips to spread her. There are three orifices. Largest at the bottom and smallest at the top, but they're identical otherwise. Your cock rests on the lips of the slit, you feel them gently contract under your shaft.
+	[top_hole] (Penetrate the smallest hole)
+	[mid_hole] (Penetrate the middle hole)
+	[bot_hole] (Penetrate the bottom hole)
+	[stop_sex_1] (Stop) 
+||
+
+||>>Small hole
+{top_hole | pic slit_pen} You line yourself with the slit and push. You slip past the muscular, rounded lips and bump against a tight hole. You push into the new opening and slowly widen it as you force yourself into the giant creature. The serpent growls deeply and wiggles its length slightly. You jerk and hilt yourself into the whining sea monster. Your testicles rest against the moist and slick larger slit.
+	[top_fug] (Fuck the creature)
+||
+{top_fug | pic humping} You pull out and then slide back in, the tight hole squeezes your cock pleasantly but allows for good motion. You find a comfortable rhythm and start fucking the creature in earnest. The serpent pushes its head against the sand and writhes. As you pick up your speed and the wet slapping against the slit becomes louder, the creature starts to whine and roar but doesn't attempt to move. You grab the body of the serpent harder and increase your pace as you feel your orgasm close in.
+	[top_nut] (Finish) 
+||>>Medium hole
+{mid_hole | pic slit_pen} You line yourself with the slit and push. You slip past the muscular, rounded lips and bump against another opening. You push into it and slowly enter a ribbed channel that massages your cock as you hilt the creature. The serpent croons and pushes its head against the sand, seemingly enjoying the act.
+	[mid_fug] (Fuck the creature)
+||
+{mid_fug | pic humping} You pull out and then slide back into the ribbed channel, it reacts to your movement and you feel a light contraction with each thrust. You find a comfortable rhythm and start fucking the creature in earnest. The serpent pushes its head against the sand and writhes. As you pick up your speed and the wet slapping against the slit becomes louder, the creature writhes more erratically and the movement gently rocks you as you keep thrusting into the beast. You grab the body of the serpent harder and increase your pace as you feel your orgasm close in.
+	[mid_nut] (Finish) 
+||>>Bottom hole
+{bot_hole | pic slit_pen} You line yourself with the slit and push. You slip past the muscular, rounded lips and bump against another opening. You push into it and slowly enter a soft hole with gentle bumps that massage your cock as you hilt the creature. The serpent whines and pushes its head against the sand.
+	[bot_fug] (Fuck the creature)
+||
+{bot_fug | pic humping} You pull out and then slide back in the soft, walled hole that gently rubs against you while the larger slit provides a tight entrance. You find a comfortable rhythm and start fucking the creature in earnest. The serpent lowers its head against the sand. As you pick up your speed and the wet slapping against the slit becomes louder, the creature doesn't react. You grab the body of the serpent harder and increase your pace as you feel your orgasm close in.
+	[insemination] (Finish) 
+||
+
+||>>Orgasm
+{top_nut | start_music sejan/feral_end 70 0 0 no_loop} You thrust one last time into the writhing beast and let yourself go over the edge. The orgasm knocks your eyes white and your cramping muscles fold you flat against the belly of the great sea monster. You gasp as you pump into the tight hole. The serpent has stopped moving and seems to be waiting for you to finish.<br><br>You feel the warmth of the serpent's body on your skin as your orgasm slowly dies down.
+{mid_nut | start_music sejan/feral_end 70 0 0 no_loop, pic caen_org} You thrust one last time into the writhing beast and let yourself go over the edge. The orgasm knocks your eyes white and your cramping muscles fold you flat against the belly of the great sea monster. You gasp as you pump into the ribbed channel. The serpent whines and you feel the hole contract around your cock, squeezing every drop out of it.<br><br>You feel the warmth of the serpent's body on your skin as your orgasm slowly dies down.
+{insemination | start_music sejan/feral_end 70 0 0 no_loop, random_pointer preg-notpreg-notpreg} 
+{notpreg} You thrust one last time into the writhing beast and let yourself go over the edge. The orgasm knocks your eyes white and your cramping muscles fold you flat against the belly of the great sea monster. You gasp as you pump into the soft hole. The serpent doesn't react to your orgasm but seems to wait patiently for you to finish.<br><br>You feel the warmth of the serpent's body on your skin as your orgasm slowly dies down.
+	[rest_sex | save_index affectionate] (Catch your breath)
+||
+{preg | save_index use_a_rubber} You thrust one last time into the writhing beast and let yourself go over the edge. The orgasm knocks your eyes white and your cramping muscles fold you flat against the belly of the great sea monster. You gasp as you pump into the soft hole. The serpent doesn't react to your orgasm but seems to wait patiently for you to finish.<br><br>You feel the warmth of the serpent's body on your skin as the your orgasm slowly dies down. The serpent lets out an odd, prolonged, gentle roar out into the sea.
+	[rest_sex] (Catch your breath)
+||
+{rest_sex | pic slit_nut} You breathe deeply and then lift yourself off the serpent. Your cock slips out and the cum leaks between the lips of the large slit. The serpent stays still and only lazily moves its head to see what you're doing.
+	[get_dressed] (Get dressed)
+||
+{get_dressed | remove_pic} You step off the serpent and look for your clothes. You get dressed while the serpent just lounges on the beach and watches you.
+{heres_pats} You give the serpent a few gentle pats near its genitals and it responds with a soft croon.
+	[heres_pats] (Pat it) //showif.index_is.get_dressed
+	[ | end_encounter] (Leave)
+||
+
+||>>Meeting again after sex
+{affectionate_meet | add_flag caenemung_affectionate} You're stopped by the large serpent that harassed Breirb. It slowly raises from the water and croons softly at you. It turns its head from side to side as it tries to get your attention.
+	[wat_nao] What's gotten into you now?
+	[you_bite] Are you going to try to bite my head off again?
+	[ | end_encounter] (Leave)
+||
+{wat_nao} It coos softly, flashes its genital slit at you, and brushes its head against the sand.
+	[wat_you_talk] Oh, you want more?
+||>>You understand me!?
+{you_bite} You talk at the giant serpent.<br><br>It suddenly shakes its head.
+{wat_you_talk} You talk at the giant serpent.<br><br>It suddenly nods.
+	[you_getme] You... understand me?
+||
+{you_getme} It nods and coos warmly.
+	[fuckme_tinyman] That's incredible! I... like you too.
+	[fuckme_tinyman] ...I- I didn't realize.
+	[fuckme_tinyman] Weird, but alright.
+||
+
+||>>Affectionate HUB
+{affectionate | check_flag caenemung_affectionate affectionate_meet affectionate_hub} 
+{affectionate_hub} You're stopped by the large serpent that harassed Breirb. It slowly raises from the water and croons softly at you. It turns its head from side to side as it tries to get your attention.
+{fuckme_tinyman} It slowly pushes against you with its domed head as it croons softly. It whines needily and its body shivers when you touch it.
+{can_u_talk} The serpent shakes her head and produces a throaty ragged roar and huffs. It pushes its head against your side.
+	[can_u_talk] Can you talk? //hideif.clicked
+	[pet_beast] (Pet it)
+	[ | end_encounter] (Leave)
+||
+{pet_beast} You approach the creature and gently pet its head. It pushes its head affectionately against you and rumbles in satisfaction.
+{fuck_again} It nods its head against you excitedly and croons affectionately.
+	[fuck_again] Do you want me to have sex with you again? //hideif.clicked
+	[undress_sex] (Undress)
+	[ | end_encounter] (Leave)
+||>>Sex again
+{undress_sex | start_music sejan/feral 70 3} As you undress yourself, the serpent slowly writhes on the sand, crooning softly. You kick your clothes further up the beach and return your attention to the wet slit.
+	[spread_sex] (Spread the slit) //showif.strength.6
+	[ | random_pointer top_hole-mid_hole-bot_hole] (Penetrate the slit)
+||
+
+||>>The miracle of degeneracy
+{use_a_rubber} You're stopped by the large serpent that harassed Breirb. It slowly raises from the water and croons softly at you. It turns its head from side to side as it tries to get your attention.
+	[preggy_pet] (Pet it)
+	[preggy_leave] (Leave)
+||
+{preggy_leave} You're about to ignore the creature but it suddenly growls and tenses up into a coil. It starts to shake and whine as it thrashes on the beach.
+{preggy_pet} You approach the creature and gently pet its head. It pushes its head affectionately against you and rumbles satisfied.<br><br>The beast suddenly growls and tenses up into a coil. It starts to shake and whine as it thrashes on the beach.
+	[heres_eggy] Woah! What's wrong?
+||
+{heres_eggy | pic birthing} Its breathing becomes laboured as it quiets down. You realize it's laying an egg as a pearl-colored round object stretches its large orifice, leaking clear fluids as it slowly pushes it out.
+	[pop_out] Oh god.
+	[pop_out] (Wait)
+||
+{pop_out | pic egg, add_flag caenemung_egg} The egg suddenly slides out and lands on the soft sand with a thud. The mother breathes deeply and brushes its head against the sand, exhausted. You stand next to the large, pearly egg – it's slick with slimy, clear fluid dripping off it and a smooth, immaculate surface beneath.
+{touch_egg} You reach out to touch the egg, it's very warm and the surface is incredibly smooth. The leathery shell has a little give to it. You don't feel anything move inside.
+	[runaway_birth] (Run away)
+	[egg_wait] (Wait)
+	[touch_egg] (Touch the egg) //showif.index_is.pop_out
+	[kick_egg] (Kick the egg)
+||
+{egg_wait | start_music generic/romance_soft 70 2} The giant serpent lifts its head to look at the egg and gently nuzzles it. Then it croons and nuzzles you.
+{me_dad} She nods against your chest.
+	[uhoh_eggy] ...Crap. //hideif.index_is.egg_wait
+	[me_dad] Is this your way of telling me it's mine? //hideif.index_is.me_dad
+	[pet_mom] (Pet her)
+||>>>teeth
+{pet_mom | pic bye_bye} You pet the head of the serpent, she responds with affectionate snuggling against your body. The proud mother opens her maw and gently collects the egg off the sand into it. She closes her teeth around the egg and straightens herself, shaking the sand off her skin. She starts to slowly roll back towards the sea and cranes her head back to look at you.
+{uhoh_eggy | pic bye_bye} The proud mother opens her maw and gently collects the egg off the sand into it. She closes her teeth around the egg and straightens herself, shaking the sand off her skin. She starts to slowly roll back towards the sea and cranes her head back to look at you.
+{u_leavin} The serpents nods with the egg in her mouth.
+	[bye] You're a pretty girl. Take care of of the egg! //showif.index_is.u_leavin //showif.charisma.6
+	[u_leavin] Are you leaving? //hideif.index_is.u_leavin
+	[bye] (Wave)
+	[bye] (Wait)
+||
+{bye | remove_pic, hide_character, remove_encounter sejan_beach caenemung} She nods, turns towards the sea and then smoothly slides under the waves. You're left alone on the beach.
+	[ | end_encounter] (Leave)
+||>>Kick egg
+{kick_egg | play_sound sejan/caenemung_egg_break 70, add_flag caenemung_egg_destroyed, pic broken_egg, auto_continue kick_egg_screm} You kick the egg. Your foot sinks into the egg and creates a large puncture. The egg immediately spills out cloudy liquid on the sand and deflates.
+||
+{kick_egg_screm | pic caen_angry} The serpent roars in anger. It thrashes around on the beach, sending sand flying in all directions.
+	[runaway_kicked] (Run away)
+	[angry_wait] (Wait) //showif.will.6
+||
+{runaway_kicked | pic escape} You sprint away from the thrashing beast. You run as fast as you can until you can't see or hear it anymore.
+{runaway_birth | pic escape} You sprint away from the exhausted beast. You run as fast as you can until you can't see or hear it anymore.
+{angry_wait | remove_pic, character_leave} The serpent lets out a sad, frustrated wail and turns away. It slithers into the waters and disappears.
+	[ | end_encounter, remove_encounter sejan_beach caenemung] (Leave)
+||

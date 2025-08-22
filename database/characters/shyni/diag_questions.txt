@@ -1,0 +1,255 @@
+
+>>Questions diag file 
+||
+{start}
+{questions_start} "Fire away! I'll try my best to answer."
+{q_tornoth_3} "I'm sure you'll do just fine." She brushes her hair nervously.
+{q_tornoth_4} "Taulsol told me!"
+{q_garden_3} She looks down at the lines of narbs and mutters under her breath, "...Going to poison you with narbs? ...Biological? ...Maybe stew?"
+{bite_2} "Oh, I guess it's pretty sweet. I don't like them myself really. Well, not raw. I do like them in a stew or roasted.<br><br>But to be honest, they are a very boring food."
+{bite_3} "Yeah! Raw narbs taste silly. Dad still eats them like that."
+{bite_33} "Hah! I guess you're in trouble, then – everybody eats them here. You might like them more in a soup."
+{irongate_2} "Hahah, with a key, I guess? Or a really big battering ram. If I could open it, I'd already know what's on the other side."
+{nails_for_ages} "Hah, true."
+{will_take_you_2} "I'll keep that in mind... Thanks."
+{someday_go} "Definitely! Someday..."
+{just_spearheads} "Well, I did find a mummified corpse near the lake once. Dad and I buried him in the cemetery.<br><br>Apparently the lake air had somehow preserved the body. So that's something."
+{no_interesting} "We do have that giant shell tavern, but it gets pretty mundane after a while."
+{protective_sort} "He once broke a sailor's arm for cat calling me. Made me feel... incredibly guilty."
+{follow_dreams} "Hah, the trouble is... your heart can pull you in two directions."
+{compare_scars} "Heh, I could show you my spearhead collection."
+{coastwall_10} "I do wish the ugly thing fucks off at some point."
+{bring_skull} "Just be careful if you do try it. I really don't want to see you limp into town covered in your own blood."
+{q_peninsula} "It's called Sejan. It's a peninsula separated from the mainland by mountains. The wildlife is docile and the weather is nice. It's a fairly boring place."
+{ask_tornoth_species} "...I think I really should."
+{healed_well | remove_pic} She pulls her dress back on and turns to you. "You think so? Dad always said the same thing, but I assumed he was just being fatherly. Thank you." She scratches her back quickly and then chuckles at the realization.
+{slappy_kissy_2 | remove_pic} She slowly parts from the kiss and playfully slaps you on the cheek.
+{uh_dont_really_know | remove_pic} She places the clump of rust back on the table with a light thud. "Eh, it's just a different kind of clump of rust. I don't even know why I've kept it."
+{nerd_clump | remove_pic} She places the clump of rust back on the table with a light thud. "Yeah, but those could have worn away as well. Father is pretty good with metal, so he probably knows best."
+{smith_knows | remove_pic} She places the clump of rust back on the table with a light thud. "Yeah, it's probably exactly what he says. Makes a good paperweight."
+{idol_end_q} "I can't think of anything off the top of my head. It's a statue carved from some exotic wood dad imported and it has a really nice varnish on it.<br><br>Really heavy too."
+	[q_you] I don't know much about you. Tell me something about yourself.										//hideif.clicked
+	[q_what_youare] Not to sound rude, but what are you?													//hideif.clicked
+	[q_taodal] Tell me about Taodal.																		//hideif.clicked 
+	[q_tornoth] Tornoth is your father? He seems awfully grumpy. Did I do something?							//hideif.clicked //hideif.has_flag.shyni_dinner //hideif.has_flag.tornoth_dinner
+	[q_garden] What are you growing in this garden?															//hideif.clicked //hideif.has_flag.shyni_open_house
+	[q_irongate] There's an iron gate blocking a narrow passage in the forests off the peninsula. Do you know anything about it?		//hideif.clicked //showif.has_discovered.sejan_iron_gate
+	[show_scars] Hey! You want to show me those scars you teased me with?									//hideif.clicked //showif.has_flag.shyni_scars //showif.has_flag.shyni_open_house
+	[q_coastwall] There's a stone wall blocking the path along the coast. Do you know anything about it?		//hideif.clicked //showif.has_discovered.sejan_coast_wall
+	[q_peninsula] Can you tell me anything about this peninsula?												//hideif.clicked
+	[rusted_stuff] Find anything particularly interesting when you collected all the stuff you have from the peninsula? //hideif.clicked //showif.has_flag.shyni_open_house 
+	[q_wooden_statue] What is that wooden statue in the middle of your room? //hideif.has_flag.shyni_introduced_tuhmun //showif.has_flag.shyni_open_house
+	[ | change_to_default_diag silent_return] (Back)
+||>>You?
+{q_you | add_flag shyni_info_personal, add_flag shyni_cavequest_hook} "Me- me?... I- I'm just a girl from Taodal."
+	[q_you_more] Surely there's more.
+	[q_you_pretty] A pretty girl from Taodal. //showif.charisma.6
+||
+{q_you_more} "Hmm, let me think... I like to tend to this garden, I like to see new things? Like... finding old stuff from the forest or visiting new places."
+{q_you_pretty | add_flag shyni_called_pretty, change_sprite blushed} Her face turns purple. "I- I- I don't know about that...<br><br> Umm... I like to tend to this garden and... see new things? Explore? Like finding old things from the forest or just traveling to new places."
+	[q_you_places | change_sprite character] Any cool places you've visited?
+	[q_you_things | change_sprite character] What kind of things have you found?
+||
+{q_you_places} "Well... I've scoured the peninsula and, well, nothing else. I'd love to see other places, but life keeps me here."
+	[hitch_ride] Couldn't you just hop on a boat? Seems like there's lots of opportunities for that.
+	[will_take_you] I could take you somewhere new.
+||
+{hitch_ride} "Yeah, it would be easy... But I would never have the nerve to just sprint into the unknown, besides, I have things I need to take care of here – this garden for one."
+	[someday_go] But someday you'll go out there?
+	[will_take_you] If you want, we could travel somewhere together?
+||
+{will_take_you} "...You would?<br><br>I mean- I don't know..."
+	[will_take_you_2] Let me know if you want to travel somewhere, I will help.
+||
+{q_you_things} "Spearheads. Lots of spearheads. I have so many scars on my feet from all the pointy bastards. I gave most of them to dad.<br><br>I think he made them into nails. Appropriate, I guess."
+	[just_spearheads] Just spearheads?
+	[spiky_shits] Tell me about it. Those spiky shits from hell deserve to be ground up into bits. //showif.has_flag.sejan_stepped_on_spearhead
+||
+{spiky_shits} She giggles. "Oh, they got you too? And here I was thinking my feet were special. We should compare scars some evening."
+	[compare_scars] Sure, sounds fun.
+	[nails_for_ages] Well at least your dad will have materials for nails forever.
+||>>Your species?
+{q_what_youare} "What do you mean?"
+	[your_species] Your species. Does it have a name?
+||
+{your_species} "Oh... I- I don't know. It's a little embarrassing. It's just an artificial border between people anyway, right?"
+	[not_know_species] How do you not know?
+||
+{not_know_species} "It has never come up. No one has ever asked me that. I know we moved here when I was a baby, but that's about it. I guess my father would know."
+	[ask_tornoth_species] Maybe you should ask him sometime.
+||
+||>>Taodal?
+{q_taodal} "It's a nice place. Lots of traders from all over stop here and sell some of their stuff. Lots of fishing.<br><br>Not much happens here. It's a good thing. Nice place to grow up or grow old and die."
+	[dissatisfied_taodal] I get the feeling you're not satisfied with Taodal.
+	[no_interesting] Nothing of interest?
+||
+{dissatisfied_taodal} "Yeah, I don't really make it a secret to anyone, well, anyone but my father. He doesn't want me to travel."
+	[protective_sort] He's a protective sort?
+	[follow_dreams] You should follow your own dreams.
+||>>Your father?
+{q_tornoth} She snorts, amused. "Hah... He's a little... hostile towards outsiders. He tolerates the sailors using the tavern and bringing goods to the market, but that's about it. I imagine he's a little lost on what to do with you."
+	[q_tornoth_1] What do you mean?
+||
+{q_tornoth_1} "You didn't come here by boat so he can't send you off, and he can't exactly just throw you back into the jungle. I guess he just wishes you'd leave on your own like the others."
+	[q_tornoth_2] The other portal victims? Do you know anything about them?
+||
+{q_tornoth_2} "Sorry, I never saw them. Father only told me about them afterwards. After that, I'd been trying to meet one... and I did!" She excitedly points at you.
+	[q_tornoth_3] Hah, I'll try to live up to your expectations.
+	[q_tornoth_4] How did you know I was in town?
+||>>Garden?
+{q_garden} "Narbs. Green balls that you cut up into soup. Dad built the garden for me. I really like tending to it.<br><br>OH! You have never tasted a narb before!? Surely?" She hurriedly fetches a tiny narb and shoves it in your hands.
+    [q_garden_bite | play_sound generic/interactions/bite 70] (Take a bite.)
+    [q_garden_1] Are you sure it's not poisonous to me?
+||
+{q_garden_1} She looks at you, puzzled. "...Why would it be poisonous to you? I've been eating narbs since I was little."
+    [q_garden_2] I'm from another world, surely there's biological differences that would make some food here poisonous to me.
+    [q_garden_doggo] Well... chocolate is poisonous to dogs, so anything here could poison me. //hideif.intelligence.6
+||
+{q_garden_2} "Bio... what? Food is food and poison is poison. You saw me pluck it from the ground a moment ago... Right?"
+    [q_garden_3] Thanks, but I'll skip it for now.
+    [q_garden_bite] Oh, what the hell. (Take a bite.)
+||
+{q_garden_doggo} "Again with the new words! Chocolate? Dogs? What are those?"
+    [shyni_dog_choco_knowledge | add_flag shyni_dog_knowledge] Dogs are small four-legged animals. Chocolate is a kind of candy.
+||
+{shyni_dog_choco_knowledge} "And this candy is poisonous? Is it like a cruel trick you play on people or something?"
+    [choco_pois_dogs] No no, it's just poisonous to dogs, I can eat it just fine.
+    [choco_lies] It makes you sick but it tastes so good no one can resist. (Lie)
+||
+{choco_pois_dogs} "Only poisonous to dogs? Just one animal? I've never heard of anything like that before. Is that common back in your world?"
+    [yes_poison_thing] (Shrug) There's probably others?
+    [no_poison_thing] Uh, I'm not sure, it might just be a dog thing.
+||
+{yes_poison_thing} Shyni's eye's widen in shock. "Oh no! Maybe you shouldn't. I'd hate to poison you."
+    [q_garden_3] Better safe than sorry.
+    [q_garden_bite_pois] Only one way to find out. (Take a bite)
+||
+{choco_lies} Shyni laughs. "Really? What a weird candy! Well, narbs aren't poisonous, so you have nothing to worry about."
+{no_poison_thing} Shyni looks puzzled. "Well, you're not a dog, are you? So there's nothing to worry about."
+{choco_lies_joke} "Hah! Well, you're not a dog, are you? So there's nothing to worry about."
+    [choco_lies_joke] Nah, I'm just pulling your leg, It doesn't make everybody sick, just dogs. //showif.index_is.choco_lies
+    [q_garden_3] I'd rather not take the chance.
+    [q_garden_bite] Only one way to find out. (Take a bite)
+||
+{q_garden_bite} You bite the round part of the narb. The shell crunches in your teeth and gushes bitter liquid. The inside is softer and sticks to your teeth. You chew on the piece. Shyni looks carefully at your expression. "What do you think?" The narb is bitter at first, but it has a very sweet aftertaste.
+{q_garden_bite_pois} Shyni almost reaches out to stop you when you bite the round part of the narb. The shell crunches in your teeth and gushes bitter liquid. The inside is softer and sticks to your teeth. You chew on the piece. Shyni looks carefully at your expression. "What do you think?" The narb is bitter at first, but it has a very sweet aftertaste.
+{bite_1} She chuckles. "It's just dirt! What do you think?" The narb tastes and feels like cotton candy in your mouth.
+{bite_4} "What? No!<br><br>Does it taste bad?"
+    [bite_1] Should this be cooked or prepared? I think I ate some dirt with it. //hideif.clicked
+    [bite_2] It's good.
+    [bite_3] Tastes odd.
+    [bite_33] I don't think I like it.
+    [bite_4] Wait, are you pranking me? //hideif.clicked
+||>>Iron gate?
+{q_irongate | add_flag shyni_iron_gate} "You've seen it too? I've found it a long time ago. No idea what's behind it. An old prison or a mine?"
+{irongate_1} "I imagine it could have been built by the people who lived here earlier? There seems to be a lot of stuff left around Sejan to indicate that there was a war or something."
+	[irongate_1] Any idea who built it? //hideif.index_is.q_irongate
+	[irongate_2] Do you know how to open it?
+||>>Coast wall?
+{q_coastwall} "Yeah, it's really strange. Seems like an ancient defense wall or something. Probably the reason we don't get many visitors on foot."
+{coastwall_1} "If I were to guess... the same people who left all the rusted spearheads everywhere?"
+	[coastwall_1] Do you know who built it?  //hideif.index_is.q_coastwall
+	[coastwall_2] Do you know a way around it?
+||
+{coastwall_2 | add_flag shyni_monster_story} "I guess it's possible to just climb over it... and I tried that, but I almost killed myself when I fell off. I did try again, but some vicious flying monster made a nest near the cliff and attacked me."
+	[coastwall_3] Figures.
+	[coastwall_4] Monster? I didn't see anything when I was there.
+||
+{coastwall_3} She slowly claws the air. "It raked two long gashes across my back. I fell off the wall and broke my right knee and foot."
+{coastwall_4} "I think the nest is above or behind the wall. One attacked me when I climbed on top. I thought I was going to die. It raked two long gashes across my back." She slowly claws the air. 
+	[coastwall_5] That sounds serious.
+||
+{coastwall_5 | add_flag shyni_scars} "My shirt was completely soaked from the blood. I limped across the whole peninsula thinking I was going to die from blood loss. When I reached Taodal, dad almost died from worry and anger, but funnily, it turned out the wounds were superficial. The leg injuries took longer to heal.<br><br>I didn't climb over the wall, but I did get cool scars in the process."
+{coastwall_7 | change_sprite blushed} She blushes. "Well... I- uhm. sure! But later. This dress is not good for it, a- and... we're outside."
+	[coastwall_6] I'm guessing you didn't try for a third time?
+	[ | check_flag shyni_open_house coastwall_7 show_scars] Cool scars? Can I see? //showif.index_is.coastwall_5
+||
+{coastwall_6 | change_sprite character} "No... I guess dad yelled hard enough this time... Well, to be honest, I'm actually scared of the monster."
+{coastwall_9} "I didn't see it very well. The whole thing happened really fast. It was black, had wings and large talons. Never seen anything like it."
+	[coastwall_8] I could kill it for you.
+	[coastwall_9] What did it look like? //hideif.index_is.coastwall_9
+	[coastwall_10] I'll keep my eye out if I'm near the place.
+||
+{coastwall_8} "What? Don't do that. It's dangerous.<br><br>But... if you're serious, I would appreciate that. Actually... I would frame its skull, and dad would definitely help me mount it."
+	[bring_skull] I'll be careful not to scratch the skull.
+	[coastwall_10] Maybe you're right, it does sound dangerous.
+||
+||>>show scars
+{show_scars | remove_flag shyni_scars} "Yeah! Two long gashes across my back!<br><br>Do you want to see them?" She almost giggles her last words.
+	[show_scars_2] Show me.
+||
+{show_scars_2 | pic back_scars} She blushes. "...Let me get this dress off me." She unclasps her dress and turns around. You see two faint lines going across her back. The lines have slightly less fur on them.
+{still_hurt} "No. My back is sometimes itchy, but I don't think it's the scars." She scratches her neck.
+	[still_hurt] Do they still hurt? //showif.index_is.show_scars_2
+	[healed_well] They seem to have healed well.
+||
+
+||>>Rusted stuff
+{rusted_stuff} She glances at the bundle of rusted spearheads on her wall. "Well, it has mostly been pieces of rusted metal. It must had been some time ago since nothing else seems to have survived."
+	[only_spearheads] Just spearheads?
+||
+{only_spearheads | pic rusty_clump} "No! I have other things!" Shyni quickly grabs an oddly shaped piece of metal off a shelf and holds it with both hands to you.<br><br>The heavy clump of metal is an oddly round shape with a flat base.
+{what_is_clump} "No idea! It's definitely not a spearhead, so it's at least something different. Father said it reminded him of a large ball hinge, but it's not really round enough for that."
+	[clump_hinge] It could be part of a hinge, but time might have just deformed it. //showif.index_is.what_is_clump //showif.intelligence.6
+	[what_is_clump] Yeah, that's definitely different, but what is it? //showif.index_is.only_spearheads
+	[clump_bust] It kinda looks like a bust. //showif.intelligence.6
+	[uh_dont_really_know] It's definitely an odd piece of metal.
+||
+{clump_hinge} "That's exactly what father said. He told me he had seen some smiths in the cities cast really large hinges for ships, and it reminded him of one."
+	[smith_knows] He probably knows these things since he's a blacksmith.
+	[nerd_clump] Could be, but there doesn't seem to be any features for fixtures like bolts or screws. //showif.intelligence.8
+	[uh_dont_really_know] I really don't know.
+||
+{clump_bust} "A bust?" Shyni rotates the clump so the flat side is down. "I suppose it might be one. I didn't even think about that, the shape being so round." She closes her eye and compares the clump of rust with your head. "It could be a bust of someone with a similar head shape to yours."
+	[different_head] You do have a very different head shape compared to mine. No wonder it didn't enter your mind.
+	[uh_dont_really_know] Maybe the facial features were worn down by age?
+||
+{different_head | remove_pic} She giggles and returns the rust clump on its place. "Does that bother you?"
+	[head_bother] No, does it bother you?
+	[ | sex_gate m_head f_head] A little I guess. I just wonder what I look like to you.
+||
+{m_head} "I think you're handsome and cute."
+{f_head} "I think you're gorgeous and cute."
+{head_bother} "No, I think you're very cute."
+	[slappy_kissy_1] I think you're cute too. //showif.charisma.6
+	[different_look] It doesn't bother you that we're very different?
+||
+{different_look | auto_continue slappy_kissy_1} "Don't be silly! Why would it bother me? Most people don't look like each other."
+{slappy_kissy_1 | auto_continue slappy_kissy_2, pic casual_kissy} She kisses you.
+||
+
+||>>WOODEN STATUE
+{q_wooden_statue | add_flag shyni_introduced_tuhmun} She glances at the wooden statue next to the wall. "Oh, you mean her? Father made her for me. It is a statue of Tuhmun."
+{statue_why_she} "She's a woman and I want her to like me. I- I don't want to offend her by referring to her as a thing."
+	[statue_why_she] Why do you refer the carving as 'her'? //showif.index_is.q_wooden_statue
+	[who_tuhmun] Who's Tuhmun?
+||
+{who_tuhmun} "Uh, she's... a-" She scratches her chin in thought. 
+	[tuhmun_god] A god?
+	[tuhmun_spirit] A spirit?
+	[tuhmun_history] Is Tuhmun a historical person?
+||
+{tuhmun_god} "No, she's not a god.<br><br>She lives in the sea and protects those whom she considers friends. Father said we should make a statue of her since we live near the sea. She's supposed to hear us through the statue. She would be considered a 'house spirit' for this house, but she's not a 'house spirit'... if you get what I mean?"
+{tuhmun_history} "No.. I- I don't know?<br><br>She lives in the sea and protects those whom she considers friends. Father said we should make a statue of her since we live near the sea. She's supposed to hear us through the statue. She would be considered a 'house spirit' for this house but, she's not a 'house spirit'... if you get what I mean?"
+{tuhmun_spirit} "She lives in the sea and protects those whom she considers friends. Father said we should make a statue of her since we live near the sea. She's supposed to hear us through the statue. She would be considered a 'house spirit' for this house, but she's not a 'house spirit'... if you get what I mean?"
+	[relig_idol] So the statue is an idol of Tuhmun?
+||
+{relig_idol} "I- I don't know? Is it?"
+	[statue_is_idol] I would say it is.
+	[statue_is_idol] I think it's a good descriptor?
+	[statue_whatevs] Well, whatever it is, it's a statue made to look like her, right?
+||
+{statue_is_idol} "I don't know about that... it feels too religious. It's just a statue of the Tuhmun, who I hope to invite into my home."
+{statue_whatevs} "Yes! It's a statue of the Tuhmun, who I hope to invite into my home."
+{spirit_pantheon} "There's others that can be house spirits, but they're not gods!"
+	[idol_pray] So, you pray to her?
+	[idol_customs] So, do you have rituals or customs related to the statue? //showif.intelligence.6
+	[spirit_pantheon] Is she a part of a pantheon of spirits? //hideif.index_is.spirit_pantheon //showif.intelligence.8
+||
+{idol_pray} "No- no! I just... talk to her. I hug and pet her sometimes. I- I don't know if I should, but I just to want to be friendly.<br><br>I guess I could pray to some god, but I don't want to make Tuhmun think her protection isn't enough."
+{idol_customs} She giggles and glances knowingly at you. "There's rituals and customs associated with it... but generally I just talk to her. I hug and pet her sometimes. I- I don't know if I should, but I just to want to be friendly.<br><br>I guess I could pray to some god, but I don't want to make Tuhmun think her protection isn't enough."
+{hug_pet_idol} Shyni shrugs. "I don't mean to treat her like a pet, but there's only so much you can do with an inanimate statue. I'm sure she knows I don't mean to be condescending.<br><br>Besides, who doesn't like a hug?"
+	[hug_pet_idol] Hug and pet her? Does she like that? That seems condescending towards a spirit. //hideif.index_is.hug_pet_idol
+	[idol_end_q] Anything else you want to tell me about it?
+||
+

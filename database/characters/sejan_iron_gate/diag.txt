@@ -1,0 +1,15 @@
+
+
+>>This is a player gate to hinder movement. 
+>>Currently impassable to limit play area.
+
+||
+{start | save_index visited} The narrow canyon is blocked by a gate embedded into a stone wall.
+{visited} The narrow canyon is blocked by the gate embedded into a stone wall.
+{inspect_gate} The gate doors feel like two solid pieces of metal. Just pushing them open would be a challenge, but the gate is locked. Strangely, there are two keyholes; the gate might need two keys to open, or the doors can be unlocked separately. The seams, bolts, and the hinges seem to have some rust, but they are definitely not structurally compromised by it. The ground beneath the gate is rust-stained rock.<br><br>You peek under the doors to look inside. You can't see anything, but you can hear sounds faintly echoing inside.
+{survey_stonewall} The gate itself is framed with large, fitted stone blocks, but most of the wall seems to be made from natural rocks piled on each other. The rocks are rounded and slippery, and the wall itself reaches great heights. The wall is impossible to climb.
+	[inspect_gate] (Inspect the gate) //hideif.index_is.inspect_gate
+	[survey_stonewall] (Survey the stone wall) //hideif.index_is.survey_stonewall
+	[ | set_map_location jungle_iron_gate, end_encounter] (Go past the iron gate) //hideif.note.TBA
+	[ | end_encounter]  (Leave)
+||

@@ -1,0 +1,45 @@
+
+||>>START
+{start | save_index visited} You come across a shallow, empty pool near a cliff.<br>There is a hole in the middle of it and you see bubbles coming from it.
+{visited} You are back at the pool with the hole.
+{look_around | give_money krats 65} You walk around the shallow pool. The pool's surface is smooth and the water in it is warm. You notice some krats stuck in the crevices of the walls and you pick them up one by one. You count 65 as you pick up the last one.
+	[peep_hole] (Examine the hole) //hideif.clicked
+	[look_around] (Look around the pool) //hideif.clicked
+	[ | end_encounter] (Leave)
+||
+	
+||>>water AGI check  maybe INT
+{peep_hole | auto_continue mabby_dodge, pic geyser_hole} You walk over and look down the hole. The mouth of the hole is quite sizable, you could easily fit into it. The interior is smooth and twisting. It turns away from you and you can't see the bottom. A sudden burst of bubbles comes out of it and you feel waves shake the rock you're standing on.<br><br>A sudden loud sound of rushing water interrupts your thoughts.
+{mabby_dodge | play_sound sejan/sea_pool_geyser 70, check_stat agility 6-8 blasted-trip-ran} This index is for the automatic dodging.
+||
+
+||>>water fail
+{blasted | pic water_blasted} A geyser of ocean water blasts out of the hole and knocks you down. By the time you get your bearings, the pool has already flooded and is now being drained via the hole.<br>As you get pulled towards the hole, your arm bumps into a jagged rock.
+{trip | pic water_blasted} You turn to run but trip on a jagged rock and fall. The pool fills as you lie on the ground.<br>Seconds later, the pool starts to drain faster than it filled.<br>The current starts pulling you towards the hole.
+	[ | check_stat strength 8 swept_away-held_on] (Hold onto the rock)
+||
+{swept_away | auto_continue swept_away_2, pic drainage, change_env_sounds sejan/sea_pool.30-sejan/sea_pool.1, change_env_sounds generic_exterior/coast.15-generic_exterior/coast.1, play_contsound generic/loops/underwater 70 1 0 1} Your strength fails you as the water rushes over you and you get pulled towards the hole like a massive drain. You only have time to cover your head before the world goes dark.<br>You are battered against the stone walls as you are swept through the dark stone pipe.
+{swept_away_2 | auto_continue swim_up, play_sound generic/interactions/splash_big 70, pic spat_out, change_env_sounds generic_exterior/coast.1-generic_exterior/coast.30, stop_contsound 1 2} The darkness comes to an abrupt end as moments later, you're spat out into the cold ocean waters.
+||
+{swim_up | pic rough_waters} You swim up and, seconds later, your head breaks the surface.<br>Massive swells make it hard to look around but as you crest one wave, you see a beach in the distance.
+	[ | check_stat endurance 6 fatigue-make_it] (Swim for the beach)
+||>>Ocean END fail
+{fatigue} You swim as hard as you can but the rough ocean fights you every step of the way.<br>You make little to no progress. 
+	[keep_swim_weak | advance_time_to morning] (Keep swimming)
+||
+
+||>>STRANGE BEACH 
+{keep_swim_weak | change_environment sejan_beach, remove_pic} You wake up some time later on a beach somewhere, coughing up water, sore and tired, but alive. You can't tell where you are but the beach looks familiar.
+	[ | end_encounter] (Leave)
+||
+
+||>>ESCAPE
+{ran | auto_continue catch_breath} You jump back, turn on your heels, and run as fast as you can as water rains down around you. A surge of water almost knocks you to your feet but you manage to stay upright.
+{catch_breath} As you catch your breath, you watch the pool fill at an alarming speed.<br>It empties just as quick. All of the water swirls down the hole in seconds like a massive drain.
+{make_it | change_environment sejan_beach, remove_pic} Swimming through the massive waves takes an incredible amount of effort and you just barely make it to the shore.<br>You stand on the beach, sore and tired.
+{held_on} You hold on for dear life. Just when you think you're about to lose your grip, the current slows down and stops. With the massive weight of the water pushing against you finally gone, you get out of the pool as fast as you can before it happens again.
+	[ | end_encounter] (Leave)
+||
+	
+	
+	

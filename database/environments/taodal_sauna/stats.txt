@@ -1,0 +1,6 @@
+interior:	yes
+ambient:	0.2
+
+<SOUNDS
+sejan_taodal/tornoth_smithy.30
+SOUNDS>

@@ -1,0 +1,16 @@
+=============================================================
+!!VIEW THIS FILE WITH NOTEPAD++ OR THE FORMATTING IS BROKEN!!
+
+		#This file contains all items for the game.
+		#Loaded when the game starts.
+		#Feature is still under construction.
+	
+=============================================================
+SYNTAX:
+name
+	slot:
+	
+	stats:
+	text:
+name
+=============================================================

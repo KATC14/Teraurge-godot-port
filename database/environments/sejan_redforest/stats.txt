@@ -1,0 +1,46 @@
+interior:	no
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>
+
+
+||>>ENCOUNTERS
+{encounters | curated_list random}
+	[ | start_encounter sejan_redforest kwumui_queen] encounter
+	[0] 0
+	[ | start_encounter sejan_redforest kwumui_m] encounter
+	[ | start_encounter sejan_redforest kwumui_m] encounter
+	[ | start_encounter sejan_redforest kwumui_m] encounter
+	[0] 0
+	[ | start_encounter sejan_redforest kwumui_f] encounter
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+||
+

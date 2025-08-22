@@ -1,0 +1,15 @@
+{start | pic intro1} What a day. You drop on your bed like a rock, so tired you didn't even remove your shoes, and fall asleep in a matter of seconds.
+	[2] Continue
+||
+{2 | pic intro2} A warm feeling against your left cheek wakes you up. You open one eye a bit and see a small blue light that flies off and starts floating in your room. Disregarding it as a dream you close your eye again.
+	[3] Continue
+||
+{3 | pic intro3} You open your eyes wide when you feel something pulling on you. The light had turned into a blue hole that's starting to suck everything around it. Small objects fly around you as you desperately claw at the blankets of your bed, which is slowly edging closer to the gaping blue maw with a horrible screech.
+	[4] Continue
+||
+{4 | pic intro4} Your struggle in in vain, though. The blue light grows more intense and your body is pulled violently into it. You are blinded by the brightness as your view is enveloped by the light.
+	[5] Continue
+||
+{5 | pic intro5} An instant later you fall onto a stone floor, some kind of force slowing down your fall at the last moment. As you shake your head while your eyes slowly adjust to the light you realize you are now in some sort of shack or hovel. A quick look around reveals you are sitting on some scribbles painted on the floor in what seems like an alchemist's lab, with a big cauldron in the middle and a few tables full of books, chemistry sets, bottles and weird pieces of machinery. Suddenly, you hear a high-pitched scream behind you.
+	[ | start_encounter witch_house witch] Look behind you
+||

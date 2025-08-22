@@ -1,0 +1,28 @@
+default_env:	taodal_uum_house
+text_color:		657395
+bubble_color:	332d47
+
+
+<STATS
+charisma:		5
+will:			6
+intelligence	10
+perception: 	9001
+agility:		4
+strength:		6
+endurance:		4
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	0
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+mighty_smash
+lousy_slap
+CARDS>

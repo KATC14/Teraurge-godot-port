@@ -1,0 +1,10 @@
+interior:	yes
+ambient:		0.6
+ambient_color:	a23f08
+
+discoverable:		yes
+dicovery_message:	You have discovered the Witch's house!
+default_message:	Do you want to enter the Witch's house?
+
+<ENCOUNTERS
+ENCOUNTERS>

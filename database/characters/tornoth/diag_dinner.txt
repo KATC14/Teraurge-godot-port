@@ -1,0 +1,177 @@
+
+
+>>Fempc is invited to a dinner by Tornoth and/or Shyni.
+>>This scene exists to divide the fempc romance between the two characters (Shyni, Tornoth) so scripting future interaction won't be such a pain. (No, the femPC won't be banging the whole family)
+>>Happens before the cave adventure with Shyni and before the sauna with Tornoth.
+>>change_character broken atm. No time to fix it, so sketches will suffice for the moment.
+
+
+
+
+||>>This is temp shortcuts for the dialogue
+{shyni_guest | advance_time_to evening, add_flag shyni_dinner, add_flag shyni_cavequest_hook, pic dinner_intro, auto_continue tornoth_hello} You walk down the street to the smithy and go in. You see Tornoth setting food on a table.
+||
+{tornoth_guest | advance_time_to evening, add_flag tornoth_dinner, remove_flag shyni_cavequest_hook, pic dinner_intro, auto_continue intro_shyni} You wait with Tornoth for a while as he sets the table and places the already readied, steaming food on it. You both sit down and very quickly hear the smithy door open and see a girl dressed in blue dress run in.
+||
+
+
+
+
+
+||>>Tornoth introduces Shyni
+{intro_shyni | start_music generic/peaceful_1 70 3, check_flag shyni_encountered introducing_shyni check_met_2} 
+{check_met_2 | check_flag shyni_met encountered_shyni already_met} 
+||
+{introducing_shyni | save_index_by_character shyni meeting_again} Tornoth takes the girl's hand and introduces her with a proud voice. "This is my daughter, Shyni." <br>He then turns to Shyni and introduces you. "Shyni, this is -name-. The Witch's latest victim." <br><br>Shyni steps closer, her eyes widening as she inspects you. "Gods, you look so odd! I have so many questions!"
+{encountered_shyni | save_index_by_character shyni meeting_again} Tornoth takes the girl's hand and introduces her with a proud voice. "This is my daughter, Shyni." <br>He then turns to Shyni and introduces you. "Shyni, this is -name-. The Witch's latest victim." <br><br>Shyni steps closer, her eyes widening as she inspects you. "Oh my gods! So you <b>are</b> the traveler from the other world! You look so odd! I have so many questions!"
+	[niceto_meet] Nice to meet you, Shyni.
+||
+{niceto_meet} Shyni continues her close examination of you, almost falling over. "You have five fingers! Oh my gods!" <br><br>Tornoth snorts and gives a pointed look at Shyni, which calms her down a bit. She takes a step back and motions towards the back of the smithy. "You <b>have</b> to come talk to me about your world! I live behind dad's smithy. I usually work the garden, so don't bother knocking."
+	[dinner_sitdown] I'll keep that in mind. So, what are we eating?
+||>>Already met Shyni
+{already_met} Tornoth takes the Shyni's hand and introduces her with a proud voice "This is my daughter, Shyni." <br>He then turns to Shyni and introduces you. "Shyni, this is-" <br>Shyni cuts Tornoth off and yells, "-name-! You're eating with us?!" <br><br>Tornoth turns his head in surprise. "Oh, you've met already?"
+	[ | check_flag shyni_dinner_open hi_fempc oh_youwanna_bang_dad] Hi, Shyni!
+||
+{oh_youwanna_bang_dad} Shyni's shocked gaze alternates between you and her father. "I- I... you, ...and dad?" She then bursts into laughter.<br><br>Tornoth looks at her, confused.<br><br>Shyni stops laughing, wipes a tear from her eye, and gives you a wink.
+{imma_bang_ur_dad} You wink at Shyni, and it makes her blush nervously.
+	[dinner_sitdown] So, uh, so what are we eating?
+	[imma_bang_ur_dad] (Wink at her) //showif.index_is.oh_youwanna_bang_dad
+||
+{hi_fempc} Shyni giggles, delighted. "This so fun! I made the food for us!"
+	[dinner_sitdown] So, uh, what are we eating?
+||
+
+
+||>>Shyni's guest
+{tornoth_hello | start_music sejan_taodal/tornoth 70 3} Tornoth raises his eyebrow. "Shyni, you didn't mention we were having a guest!" <br><br>Tornoth glances at the table quickly. "So that's why you made more food than usual!" 
+	[ | check_flag tornoth_open_dinner hallo_torny oh_you_wanna_bang_my_daughter] Hello, Tornoth.
+||
+{oh_you_wanna_bang_my_daughter} Tornoth stares at you for a moment and then bursts into chuckle. "I suppose this is just fine." <br>He glances at the confused Shyni and then back to you. "Hello, -name-. I see my daughter is a... 'ferocious hunter', dragging you here." <br><br>Shyni looks at you and shrugs.
+{ferocious_hunter} A low rumbling laughter shakes Tornoth. "I am very proud of her." <br>Tornoth ruffles Shyni's hair. She shoves his hand away and straightens her hair with a huff.
+	[ferocious_hunter] You could say that. //showif.charisma.8 //showif.index_is.oh_you_wanna_bang_my_daughter
+	[dinner_sitdown] So, what are we eating?
+||
+{hallo_torny} Tornoth looks you over. "Hello, -name-. I did not expect to see you on dinner with us, but I will definitely trust my daughter's choice of guests. Welcome."
+	[dinner_sitdown] So, what are we eating?
+||
+
+
+||>>Sit down
+{dinner_sitdown | auto_continue dinner_sitdown_pillowsearch, pic dinner, change_environment taodal_tornoth_table, change_sprite dinner} You move to the table and sit down on a blanket-covered block of wood serving as a chair.<br><br>Shyni steps over to her stool and stops. "Father, you've misplaced the pillow again."<br><br>Tornoth growls absent-mindedly. "I.. err- do you need it?"<br><br>Shyni sighs. "I don't want to spend the whole dinner peeking over the table like a small child!" Visibly frustrated, she looks around the smithy for the pillow.
+{dinner_sitdown_pillowsearch | auto_continue shyni_short} Suddenly, she disappears under the table. A moment later, she gets back up and raises a thick, dusty pillow with a triumphant yelp.<br><br>Tornoth growls approvingly. "I knew I didn't put it anywhere." <br><br>Shyni pats the pillow a few times, puts it over her stool, and sits on it. She settles on her seat and then looks at you.
+||
+{shyni_short | change_character shyni, auto_continue shyni_short2, remove_pic} Shyni covers her face. "I'm so short." 
+{shyni_short2 | change_character tornoth} Tornoth rumbles in response. "You're not that short. I've seen grown women a head shorter than you."
+	[mean_subni] Oh, you're talking about Subni? //showif.has_flag.subni_met
+	[mean_vuisul] Are you talking about Vuisul? //showif.has_flag.vuisul_met
+	[uh_no_idea] You're not small, Shyni.
+	[uh_no_idea] (Say nothing)
+	[smol_cute] You're cute just the way you are, Shyni. 
+||
+{mean_subni} Tornoth suddenly stops eating and turns to look at you. "I- I'm not sure what her name was, but she was very short."
+{mean_vuisul} Tornoth suddenly stops eating and turns to look at you. "Vuisul?... I wasn't talking about her, but I suppose she is shorter than Shyni as well. I- I'm not sure what the other woman's name was, but she was very short."
+	[subni_1] Subni? Tiny woman with a funny way of talking? Horns growing all over her head? //showif.has_flag.subni_met
+	[uh_no_idea] Oh. //hideif.has_flag.subni_met
+||
+{subni_1} "Yes, I think we're talking about the same person." He scratches his chin.
+	[subni_2] I met her at the tavern too. She's very short. How do you know her?
+||
+{subni_2} "I- I met her in passing." Shyni turns her head to Tornoth and raises her eyebrow.
+	[subni_3] What do you mean?
+||
+
+||>>NPCs are talking to each other. Riveting
+{subni_3 | auto_continue uh_no_idea} He turns his head away in a huff. "It's nothing important." You sample your food, it's very good.<br><br>Tornoth coughs and brushes his snout.
+{smol_cute | change_character shyni, auto_continue uh_no_idea} Shyni blushes and giggles. 
+||
+{uh_no_idea | change_character tornoth, auto_continue tavern1} Tornoth growls encouragingly at Shyni. "Shyni! Say, have you had a drink in the tavern yet? I don't mind you going in there anymore, you're old enough."
+{tavern1 | change_character shyni, auto_continue tavern2} Shyni scratches her hair, unsure. "I don't like the tavern." 
+{tavern2 | change_character tornoth, auto_continue bleh_tavern1} Tornoth rumbles a disappointed growl. "You like Bykaas, don't you? She was asking about you a day ago."
+||
+{bleh_tavern1 | change_character shyni, auto_continue bleh_tavern2} Shyni fingers her food and snatches small bites with her proboscis. "I just don't like going there. It's loud and full of people."
+{bleh_tavern2 | change_character tornoth, auto_continue eaty_moment} Tornoth snorts and nods. "I suppose those are the same reasons why I don't myself go there."
+||
+{eaty_moment | auto_continue what_next} A moment of silence falls on the table as everyone eats. Shyni and Tornoth both curiously take quick peeks at you eating your food.
+{what_next | check_flag shyni_encountered dinner_continues how_meet_shyni}
+||
+
+||>>Tornoth: How did you meet?
+{how_meet_shyni | change_character tornoth, auto_continue how_meet_shyni2} Tornoth's tongue quickly flicks across his food again. He rumbles in satisfaction and then asks nonchalantly, "How did you two meet? I had the misfortune to meet -name- under more... official circumstances. I hope your meeting was less tense."
+{how_meet_shyni2 | change_character shyni} Shyni quickly swallows and responds, "I was at the market, and I saw her! I had never seen someone like her, and I just assumed she was the girl you were talking about!"
+	[ | change_character tornoth, check_flag shyni_met briefly_met talked_bunch] We met at the market. She was very nice.
+||
+{talked_bunch} "You've been talking a lot? I know Shyni is hard to silence once she starts." Tornoth makes an affectionate glance at Shyni, and she returns a flustered stare.
+	[nobother_shyni] No, her talking hasn't bothered me at all. She has a lot of exciting things to tell.
+	[excitable_shyni] Yes, she is quite excitable.
+||
+{briefly_met} "You've been talking a lot? I know Shyni is hard to silence once she starts." Tornoth makes an affectinate glance at Shyni, and she returns a flustered stare.
+	[no_tell] I wouldn't know, we met very briefly, and I didn't tell her who I was.
+||
+{no_tell | change_character shyni, auto_continue no_tell2} Shyni laughs. "It was okay, though! It's a completely new place! You should come talk with me in the garden when you have the time! I have so many questions!" 
+{no_tell2 | change_character tornoth, auto_continue no_tell3} Tornoth nods. "You should visit her, but she can be wordy, and many people don't have the time to listen to her." 
+{no_tell3 | change_character shyni, auto_continue quiet_down2} Shyni snorts, annoyed. "I just like talking!" Tornoth chuckles.
+||
+{nobother_shyni | change_character tornoth, auto_continue nobother_shyni2} Tornoth nods. "I'm glad you two get along so well. Many people don't have the time to listen to her." 
+{nobother_shyni2 | change_character shyni, auto_continue quiet_down2} Shyni snorts, annoyed. "I just like talking!" Tornoth chuckles.
+||
+{excitable_shyni | auto_continue quiet_down2, change_character tornoth} Tornoth chuckles and nods. "She likes to talk. Many people just don't have the time to listen to her." Shyni blushes.
+||
+{quiet_down2 | auto_continue what_now} The table quiets down again as Tornoth, Shyni, and you continue eating.
+{what_now | check_flag shyni_dinner dinner_continues how_know} 
+||
+
+||>>what do you think about the femPC shyni?
+{how_know | auto_continue just_friends_dad, change_character tornoth} Tornoth eats a piece and then raises his eyebrow at Shyni. "So, Shyni... How well do you know -name-? She seems like a nice woman." Tornoth suppresses a rumbling laughter.
+{just_friends_dad | auto_continue uhuh_you_hittin_that, change_character shyni} Shyni snorts in embarrassment and then stammers. "She's a friend, I want to show her around and ask about her home world. W- we're not-," Tornoth stops Shyni with a chuckle. 
+||
+{uhuh_you_hittin_that | change_character tornoth} Tornoth laughs and scratches his chin. "I see." He winks awkwardly at Shyni, and she looks away, trying to cover her flustered face.
+{eyebrow | change_character shyni} Shyni glances at you and just shakes her head, flustered. 
+{dinner_continues} You eat until you're full and clean your fingers as Shyni and Tornoth finish their meals.
+	[whatis_food] Uh, so, what was this food again?
+	[eyebrow] (Raise your eyebrow at Shyni) //showif.charisma.6 //showif.index_is.uhuh_you_hittin_that
+||
+
+
+||>>Dinner end
+{whatis_food | change_character tornoth, auto_continue whatis_food2} Tornoth nods. "Shyni prepared the narbs and made the gravy, I bought the berries from the market. I suppose that shows how much of a cook I am..." Tornoth's head droops down to look at the food. He blinks slowly, lost in thought. 
+{whatis_food2 | change_character shyni} Shyni explains excitedly, "I made too much food! I had no idea how much you eat normally, so I just doubled the usual dinner! Now we're drowning in it!" She giggles.
+	[lotta_food_1] Yeah, I can't eat even a fourth of this. Tornoth might have to save us. //showif.charisma.8
+	[lotta_food_2] This is a pretty intimidating amount of food.
+||
+{lotta_food_1 | change_character tornoth, auto_continue lotta_food_2} Tornoth rouses and laughs. "Then we're all doomed! I can't eat so much!" His laughter slows to a chuckle.
+{lotta_food_2 | change_character tornoth, auto_continue lotta_food_22} "Truth be told, my stomach isn't as good as it used to be. I'm sure I could have done it many days back." He pokes a piece of food, amused. 
+{lotta_food_22} He turns to Shyni. "Do you think the rest might work as a bait for the fish traps?" Shyni shrugs and Tornoth shrugs back at her.
+	[ | stop_music 8, remove_flag tornoth_open_dinner, remove_flag shyni_dinner_open, add_flag shyni_met, check_flag shyni_dinner shyni_leave tornoth_leave] At least we're all full.
+||
+
+
+||>>Shyni dinner end
+{tornoth_leave | pic glance_tornoth} Tornoth brushes his slits with a napkin, takes a glance at you and Shyni, and then rumbles. "I'm full. I think I'll go have that sauna I set earlier now."<br>He stands up and nods at you, "-name-," and then at Shyni, "Have fun you two."
+	[you_have_fun] Uh, you have fun too.
+	[thank_food] Have a nice evening. Thank you for the food. //showif.charisma.6
+||
+{you_have_fun | auto_continue shyni_end} Tornoth laughs. "I will! Bye now!" <br>He waves his hand and walks out of the smithy.
+{thank_food | auto_continue shyni_end} Tornoth laughs. "Thank Shyni for the food! Bye now!" <br>He waves his hand and walks out of the smithy.
+||
+{shyni_end | remove_pic, start_encounter taodal_tornoth_smithy shyni dinner_end}
+||
+
+
+||>>Tornoth dinner end
+{shyni_leave | pic glance_shyni} Shyni brushes her slits with a napkin, takes a glance at you and Tornoth, and then says, "It was nice seeing you, -name-, I hope you liked the food."<br>She looks mischievously at Tornoth and then turns back to you. "I need to go pick up some things from my house before I can clean the table."
+	[nice_seeing_shyni] It was nice to see you too, Shyni.
+||
+{nice_seeing_shyni} She giggles and steps off the table and walks towards the door. "I'll be going now, then. Bye!"
+	[bye_shyni] Bye, Shyni!
+||
+{bye_shyni | auto_continue bye_shyni_2, pic glance_tornoth} Shyni walks to the door and slips out. You're left sitting at the table with Tornoth, who snorts, amused at Shyni's exit. "She's a wonderful girl." 
+||
+{bye_shyni_2 | change_environment taodal_tornoth_smithy, change_character tornoth, change_sprite character, remove_pic} Tornoth stands up from the table. "I think the dinner is officially over. We can now go to the sauna."
+	[sauna_perfect] Sounds perfect.
+	[what_do_sauna] Yeah? What are we going to do there?
+||
+{sauna_perfect} He opens the door for you. "Shall we?" 
+{what_do_sauna} "Clean ourselves." He chortles and opens the door for you. "Shall we?" 
+	[ | change_diag_file diag tornoth_sauna] (Go to the sauna)
+||	
+

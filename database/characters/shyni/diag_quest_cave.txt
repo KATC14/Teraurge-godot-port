@@ -1,0 +1,608 @@
+NOTES
+	ITEMS:
+		roll_of_rope
+		sejan_cave_map
+		mysterious_bowl
+		mysterious_bowl_splinters
+	
+	FLAGS:
+		sejan_cave_roped
+		sejan_cave_quest_tornoth_knows
+		mysterious_bowl_smashed
+		
+NOTES
+
+
+
+||>>Quest set up
+{start | start_music sejan_taodal/shyni 70 3, change_default_diag_file shyni diag_quest_cave} She lunges after you and stops you. "Wait! Before you go, would you be interested in an adventure of sorts?"
+	[adventure] An adventure?
+	[no_thanks] No thanks, my life is already plenty interesting.
+	[adventure_errant] I'm thinking an errant of sorts. What's in it for me?
+||
+{adventure_errant} She throws her hands up. "Sheesh! This cynicism! This is an actual adventure! It has everything! An ancient stone map and spelunking!"
+	[adventure] Go on.
+	[adventure_2] Okay, that does sounds pretty cool.
+||
+{adventure | start_music sejan_taodal/shyni 70 3} "One day, I was exploring the forests, and I discovered a circle of stones with strange markings on them. Buried in the middle of the ring, a stone tablet! With a map on it!"
+{adventure_2} "Yes! This is going to be awesome!<br><br>One day, I was exploring the forests, and I discovered a circle of stones with strange markings on them. Buried in the middle of the ring, a stone tablet! With a map on it!"
+	[sounds_adventure] That does sound like an adventure.
+	[sounds_ominous] That sounds ominous.
+	[what_for_me] What's in it for me?
+	[no_thanks] No thanks, my life is already plenty interesting.
+||
+{sounds_adventure} "Doesn't it? An ancient stone tablet with a map on it! It's so exciting, I'm shaking just thinking about it."
+{sounds_ominous} "It does sound pretty ominous, but these things usually lead to boring, historical things. While this peninsula might seem boring, it's actually filled with old things and graves. I've already dug up several skeletons and stepped on at least a thousand rusted spearheads." She rubs her foot in remembrance.
+{what_for_me} She jumps from excitement. "Adventure with a friend! And we can share the spoils when we find the treasure."
+	[where_map_lead] What was the map for?
+	[no_thanks] Actually, count me out, my life is already plenty interesting.
+||>>Cavequest declined
+{no_thanks} Her excitement deflates. "I understand. It's not everyday you get displaced to another world. But! Let me know if you ever get bored here."
+	[ | remove_flag shyni_cavequest_hook, add_flag shyni_cavequest_rejected, change_default_diag_file shyni diag, start_encounter taodal taodal] I'll be going now. (Leave)
+||
+{where_map_lead} "I don't know! It detailed a path through the maze of tunnels in a cave here in Sejan. It didn't say why or what might be at the end. It's probably a grave or an altar."
+{cave_cant_be_large} "It's gigantic. I already tried to explore the tunnels and, well... I once walked one straight tunnel for a day before turning back. The whole underground of the peninsula is full of caves! Without the map, we will get lost in the tunnels."
+{can_you_show_circle} "It doesn't exist anymore. I think my father took the stones somewhere. Probably dumped them into the sea." She sighs disappointed. 
+{is_it_sejan_cave} "You've visited it? Yes! I think it's the cave the map mentions. It's the only cave I've found on Sejan."
+	[is_it_sejan_cave] Are you talking about the cave in the mountain in the center of the peninsula?	//showif.has_discovered.sejan_cave //hideif.clicked
+	[cave_cant_be_large] How big is this cave? //hideif.clicked
+	[can_you_show_circle] Can you show me where the stone circle is? I would like to see it myself.	//hideif.clicked
+	[how_to_proceed] So, how do we proceed, then? Do we just head for the cave?
+||>>We need rope and map
+{how_to_proceed} "We only need two things. The map and some rope."
+	[got_rope_2] Well, since you already have the map, I suppose I'll go and get the rope. //hideif.has_item.roll_of_rope
+	[got_rope_1] Got rope! Let's go!	//showif.has_item.roll_of_rope
+||
+{got_rope_2} "Uh, so... I- I don't have the map.<br><br>My father took it and locked it away in the storage."
+{got_rope_1} "Hey! That's great! I- I just don't have the map. My father took it and locked it away in the storage."
+	[could_you_get_tablet] That's... Definitely a wrinkle in this adventure.
+	[let_me_guess] Let me guess. You want me to get it? //showif.intelligence.6
+||>>Can you get the stone tablet?
+{could_you_get_tablet} She scratches the back of her head. "Could you, um...  go and get the stone tablet from the storage?"
+{let_me_guess} She scratches the back of her head. "Yeah."
+{persuade_father} "I've tried, many times. He's not budging. He genuinely believes I'm incapable of keeping myself safe."
+	[want_me_steal_tablet] So... you want me to break into the storage and... steal it?
+	[persuade_father] You can't persuade your father to give it to you? //hideif.index_is.persuade_father
+	[sure_get_tablet] Okay.
+||
+{want_me_steal_tablet} "Uhm- Is it stealing if the daughter asks someone to get something her dad hid from her?"
+{sure_get_tablet} "You will?! I mean, awesome!"
+	[still_stealing] I'm not that familiar with the law here, but it's probably still stealing. //showif.index_is.want_me_steal_tablet
+	[he_took_it_first] He stole it from you first. I would just be returning it to you. //showif.charisma.6
+	[whats_worst_thing] What's the worst thing he would do, even if you stole it back?
+||
+{whats_worst_thing} "He'd yell at me and I'd yell at him.<br><br>But... to you? If he'd realize it was you who actually broke into the storage and stole the tablet? I- I- He's violent towards thieves."
+	[would_attack_me] Would he attack me?
+	[not_afraid_father] I'm not afraid of your father. //showif.will.8
+||
+{would_attack_me} "He might. He keeps the order in the village, so... I've seen him trash people pretty badly."
+{not_afraid_father} "I think you should be. He's the law around here."
+{still_stealing} "Well, now that I think about it. He's the law in Taodal."
+	[storage_break_in] Well then, we just have to do illegal stuff to get this adventure going. What's the plan?
+||
+{he_took_it_first} Her eyes open up in realization. "...You're right! He stole it from me!"
+	[storage_break_in] Justice, then. What's the plan?
+||
+{storage_break_in | add_flag taodal_sauna_discovered} "The storage room is in the the same building as the sauna, the one covered with rocks. That one across my garden actually.<br><br>It's open for everybody, so getting in isn't the problem. The problem is the storage room door and the the giant padlock that locks it."
+{why_cant_you} "I already tried, got caught, and now I'm under scrutiny by Taulsol. He's a ridiculously good guard. I have no idea how he does it."
+	[why_cant_you] Why don't you try to break into the storage yourself?	//hideif.index_is.why_cant_you
+	[pick_lock] I wonder if I could pick it open.
+	[ | check_stat strength 6-10 force_lock_0-force_lock_1-force_lock_2] I might be able force the lock open.
+||
+{pick_lock} "You can pick locks?! That is so cool! You have to teach me some day!"
+{force_lock_0} "I- I don't think you should try that... at least by yourself. It's a pretty a pretty formidable door."
+{force_lock_1} "That could be possible. You might need leverage though."
+{force_lock_2} "Just don't break the whole door, muscle man."
+	[leave_to_get_tablet] I'll see what I come up with.
+||
+{leave_to_get_tablet | save_index waiting_for_tablet} "Thank you. If it comes to it, I will take the blame. But be discreet, I don't really want to have him yell at me."
+	[ | start_encounter taodal taodal] Thanks, I'll get that tablet. (Leave)
+||>>Player needs to get the stone tablet
+{waiting_for_tablet | start_music sejan_taodal/shyni 70 3} "Hey! You're back! Did you get the tablet?"
+	[dont_have_tablet] Sorry, I don't have it yet.	//hideif.has_item.sejan_cave_map
+	[heres_tablet] Here! (Show the tablet)	//showif.has_item.sejan_cave_map
+	[dont_have_tablet] Sorry, I don't have it yet. (Lie)	//showif.has_item.sejan_cave_map
+	[going_keep_tablet] I'm going to keep it for myself.		//showif.has_item.sejan_cave_map //hideif.note.TBA
+||
+{dont_have_tablet} "Do tell me if you need help getting it."
+{wondering_lockpick} "I don't even know how lockpicking works! I imagine you need something to manipulate the mechanism?"
+{wondering_crowbar} "Oh, I don't know if that's good. I don't really want you to break anything. But... I guess that might be only way to get into the storage. I think father sells crowbars, just... come up with a good excuse."
+{just_saying_hi} She blushes. "Um, thanks, hi to you too."
+	[told_your_father] I told your father about all of this. //showif.has_flag.shyni_cave_quest_tornoth_told
+	[just_saying_hi] Nah, I just wanted to say hi. //hideif.clicked
+	[wondering_lockpick] Do you know where I could get... uh, something to pick the lock with? //hideif.clicked
+	[wondering_crowbar] You don't happen to have a crowbar lying around? //hideif.clicked //hideif.has_item.crowbar
+	[where_key] Do you know where the key to the storage is kept? //hideif.clicked
+	[ | start_encounter taodal taodal] I'll be going now. (Leave)
+||
+{where_key | add_flag shyni_smithy_sneak} "The key is in the cupboard in the smithy... Dad's door has a bad lock, you can open it if you lift it while pulling it towards yourself. B-but... go at night and promise not to get caught." She hesitantly hands you the key.
+	[leave_to_get_tablet] That's definitely handy.
+||>>Told Tornoth
+{told_your_father} She covers her mouth in shock. "Y- You-You didn't!"
+	[told_father_1] I did, sorry. This quest of yours is too dangerous.
+	[told_father_2] He wants to have a word with you.
+||
+{told_father_1} She tries to hold back her tears. "W- We had a connection... Adventurers, the two of us. M- My father is just a scared old man, and you let him chain me." She covers her face and storms off.
+{told_father_2} She tries to hold back her tears. "You- you! You are a monster! Just... leave.<br><br><b>We are not friends</b>!" She covers her face and storms off.
+	[ | start_encounter taodal taodal] (Leave)
+||
+{heres_tablet} "You got it! You're incredible!"
+	[we_need_rope] What's next? Do we head to the cave?
+||>>Keeping the tablet
+{going_keep_tablet} "Haha, funny. Let me see it! I'm itching to write all the details down."
+	[seriously_keeping_it] I'm serious. I'm keeping the tablet.
+	[heres_tablet] Heh, here you go. (Give the tablet)
+||
+{seriously_keeping_it} Her giddiness dies down, and she stares at you silently. "...Did my father talk you into this? "
+	[told_father_1] Yes, we agreed you shouldn't go into the caves. Sorry. //showif.has_flag.shyni_cave_quest_tornoth_told
+	[told_father_2] No, I'm just going to keep the tablet and the treasure it leads to.
+||
+>>Player needs to get the rope
+{we_need_rope | save_index waiting_for_rope} "We are going to need some rope too. There's a large drop right at the cave entrance. Did you happen to have some?"
+{you_have_no_rope} She rolls her eyes. "I used to have rope... But my father took that too when he took the tablet."
+{waiting_for_rope | start_music sejan_taodal/shyni 70 3} "Hey! Did you get the rope?"
+	[i_get_rope] I'll get the rope. //hideif.has_flag.sejan_cave_roped //hideif.has_item.roll_of_rope //hideif.clicked
+	[you_have_no_rope] You don't have any rope? I thought you already visited the caves? //hideif.clicked
+	[ready_to_spelunk] I have the rope. Let's go! //showif.has_item.roll_of_rope
+	[ready_to_spelunk] I already secured a rope to the drop in the cave. Let's go! //showif.has_flag.sejan_cave_roped
+	[told_your_father] I told your father about all of this. //showif.has_flag.shyni_cave_quest_tornoth_told
+	[ | start_encounter taodal taodal] Sorry! Not yet. (Leave) //hideif.has_item.roll_of_rope //showif.index_is.waiting_for_rope
+	[ | start_encounter taodal taodal] I need to take care of something before we go. (Leave)
+||
+{i_get_rope | save_index waiting_for_rope, give_money adats 1} She digs through her pockets. "Great! Umm, here, let me sponsor a part of the cost so it's a team effort. Dad sells rope." She hands an adat to you.
+	[ | remove_flag shyni_cavequest_hook, start_encounter taodal taodal] Thanks, I'll be back with the rope. (Leave)
+||>>Leaving for the cave
+{ready_to_spelunk} "Great! Before we go, we need to wait until Taulsol takes his afternoon nap. I'd rather keep this a secret."
+{excited_cave} "I don't think I've ever been this excited. Not scared. Well, not yet anyway."
+	[excited_cave] Excited? Scared? //hideif.index_is.excited_cave
+	[start_quest] (Wait and travel to the cave with Shyni)
+||
+
+
+
+
+
+	
+||>>SPELUNKING BEGINS HERE
+||>>At the cave entrance
+{start_quest | advance_time_to evening, pic travel} You wait in the garden as Shyni sneaks to the village. After a short while, she returns and nods. You leave and trek through the peninsula.
+	[travel_to_cave] (Travel to the cave)
+||
+{travel_to_cave | stop_music 6, remove_pic, change_environment sejan_cave, change_sprite character, discover_location sejan_cave} You arrive at the cave entrance. "There it is. Gods, I'm excited."
+	[cave_spelunk] Shall we spelunk, then?
+	[cave_name] Does this cave have a name?
+||
+{cave_spelunk} "That's what we're here for, aren't we? Lets head in."
+{cave_name} "No not really. I guess it might have had name in the past.<br><br>Ohh... Maybe we should name it?"
+	[into_cave | start_music generic/scary 70 2] Let's go in.
+||>>In the caves
+{into_cave | pic cave_chamber_shyni, add_flag pc_sejan_cave_visited} Shyni lights a torch and hands it to you. The two of you carefully lower into the labyrinthine depths of the cave system.
+	[follow_map] (Keep following the map)
+||
+{follow_map | change_environment sejan_cave_interior, remove_pic} "Gods, this place is a maze."
+	[follow_map_2] Sure you can read the map? It's a crazy mess of squiggles.
+	[follow_map_2] We're not lost, are we?
+||
+{follow_map_2 | change_environment sejan_cave_interior, remove_pic, character_leave} "I know where we are. We're very close. Come!" She runs excitedly down the dark tunnel.
+	[artifact_chamber] (Follow her)
+||>>Artifact chamber
+{artifact_chamber | stop_music 5, change_environment sejan_cave_artifact_room, change_sprite character} The two of you emerge into a small chamber. "This is it! We found it!<br><br>This place looks like a crude ceremonial chamber or something. The pedestal at the back seems to have a... bowl?"
+{look_for_traps} You carefully scan into the chamber. The walls seem to have a fairly even surface with no indents or structures to them. You can't find any traps you recognize.<br><br>Shyni looks at you, concerned. "I've never encountered a trap in an old place. I'm sure it's just a room."
+	[artifact_pedestal] (Check the bowl)
+	[look_for_traps] There might be traps. Let me check. (Look for traps) //hideif.index_is.look_for_traps
+||
+{artifact_pedestal | pic wooden_bowl} You walk to the pedestal, and Shyni scampers after you. There's an old, dusty, wooden bowl on it.
+	[shyni_takes_artifact] An empty wooden bowl? I expected something more exciting.
+	[shyni_takes_artifact] You can have this dusty thing if you want.
+	[pc_takes_artifact] (Take the bowl to inspect it)
+||
+{shyni_takes_artifact | start_music sejan_bowl_cave/vision_1 70 0 5, remove_pic, add_flag shyni_cavequest_berserk} Shyni excitedly picks up the wooden bowl to inspect it. "Well, it's not a jeweled crown or anything, but I'm sure there's some-<br><br>Do you... Do you hear drums?" Her eyes stare forward, and she draws her dagger.
+	[shyni_you_ok] I don't hear any drums... Shyni? Are you ok?
+	[rush_to_slap] (Slap the bowl from her hands) //showif.intelligence.8
+||>>Aborted Shyni berserk rage (Shyni)
+{rush_to_slap | start_music sejan_bowl_cave/vision_2 70, play_sound sejan/bowlcave_break 80, add_flag mysterious_bowl_smashed, pic berserk_lunge} You quickly slap the bowl from her hands. It flies into the cave wall and explodes into splinters. Shyni screeches in anger and tackles you. She claws at your face, but you block the attacks.
+	[deck_face] (Punch her in the face)
+	[restrain_wrists] (Grab her wrists to restrain her)
+||
+{deck_face | start_music sejan_bowl_cave/resist 70 0 0 no_loop, remove_pic} You give her a quick jab to the side of her face. She clutches her cheek in pain and gasps. She looks at you in horror. "Wha- What was that?..."
+{restrain_wrists | start_music sejan_bowl_cave/resist 70 0 0 no_loop, remove_pic} You grab her wrists, and she headbutts you in anger. She rages for a few more seconds until her head hangs limp. She carefully lifts her head to look at you. "Wha- What happened?..."
+	[bowl_odd] You started acting odd when you lifted the bowl.
+||
+{bowl_odd | start_music generic/scary 70 4} "I- I wanted to kill you. There was this overwhelming, red hot desire to... gut you and... umm..."
+	[bowl_def_cursed] Yeah... The bowl is definitely cursed.
+||
+{bowl_def_cursed} She quickly looks around the cave. "Is that... the bowl?" She points at the splinters on the floor.
+	[broke_apart] It broke apart when I swiped it from you.
+||
+{broke_apart} "I think that might be for the best... Thinking about it makes me feel ill."
+{search_room} You scour the room while carefully avoiding the fragments on the floor. "There doesn't seem to be anything else here. Maybe it was constructed to hide the bowl? It's clearly dangerous."
+{bowl_valuable} "It's dangerous... But it didn't do anything to you. Just... Keep your wits about you if you're taking it.<br><br>I have a dagger."
+{bowl_mystery} "I... I want to know what it is too. If you do find something about it, please tell me, but be careful, it reeks of violence."
+	[search_room] There might be something else in this room. We might not have to leave empty handed. //hideif.clicked
+	[should_leave] I think we should leave.
+	[want_inspect_splinters] (Look at the splinters) //hideif.has_item.mysterious_bowl_splinters
+||
+{want_inspect_splinters} "Be careful."
+	[inspect_splinters] I'll be careful.
+||
+{should_leave} "Yeah... Let's go."
+	[leaving_shyni_little_possessed] (Leave the cave)
+||>>Inspecting the splinters
+{inspect_splinters | pic splinters} You crouch to investigate the destroyed bowl. Strangely, the splinters seem to have some blood on them.
+{touch_splinters} You carefully poke a large splinter. The wood feels dusty and dry, but the inside is seeping with blood. It's warm and clings to your finger.
+	[touch_splinters] (Touch the splinters) //hideif.index_is.touch_splinters
+	[take_splinters | give_item mysterious_bowl_splinters] (Take the splinters)
+||
+{take_splinters | remove_pic} You gather the bloody splinters and stash them. "It's broken, but are you sure about carrying its remains?"
+	[bowl_valuable] They might be valuable.
+	[bowl_mystery] I want to get to the bottom of this. I need to find someone who can tell me what it is.
+||>>BERSERK SHYNI
+{shyni_you_ok | pic berserk_lunge, start_music sejan_bowl_cave/vision_3 70, change_sprite possessed} She turns to you with her dagger drawn. "You- y<b>ou pathetic male</b>! <b>I will coat these stones with your blood</b>!" She lunges at you.
+	[ | remove_pic, start_music sejan_bowl_cave/fight 70, start_combat berserk_shyni_wins berserk_shyni_loses] (Fight)
+||>>Berserk Shyni wins the fight
+{berserk_shyni_wins | start_music sejan_bowl_cave/givein_1 80, pic berserk_knife} You lose your footing and fall on your back, painfully smashing against the rock floor. Shyni looks at you with disdain. "<b>Pathetic warrior</b>! <b>Die</b>!" She jumps at you, dagger raised. You catch her wrists at the last moment. "<b>Ahaha hahahaa</b>! Not keen on bleeding yet!?" She gathers her weight on the dagger and pushes.
+	[ | check_stat strength 8 push_shyni_fail-push_shyni] (Push her off)
+	[reason_berserk_shyni_2] Shyni! Snap out of it! (Resist the dagger push) //showif.player_sex.female
+	[resist_dagger] Shyni! Snap out of it! (Resist the dagger push) //showif.player_sex.male
+||
+{resist_dagger | start_music sejan_bowl_cave/givein_2 80} "There's nothing to snap out of..." She grunts as she pushes the dagger down with all her strength. Despite her exertion, you manage to halt the blade. She starts laughing madly. "Show of strength!? <b>Is it</b>? <b>Have it your way, then</b>!" She digs her feet into your lower garments and drags them down your legs, leaving your crotch exposed. "Breed me, then!" She rips one of the strings of the panties open while still trying to force the dagger into your chest. "Breed me, <b>show your strength</b>." She grinds her damp vagina against your cock while trying to force the dagger into your throat.
+{reason_berserk_shyni_1} "-name-, darling, <b>fight</b>! Or make me your <b>broodmare</b>." She pushes harder against the dagger. "It's either fucking or killing, <b>rape or murder, death or domination</b>." You feel your arms wavering and sweat stinging your eyes. The sensation of her grinding is making you hard involuntarily.
+	[reason_berserk_shyni_1] Shyni stop! It's the artifact! It's making you do this! //showif.index_is.resist_dagger
+	[reason_berserk_shyni_2] Shyni, listen to me, whatever is going in your head right now, you can fight it. Your hands are holding this dagger! //showif.charisma.6
+	[ | check_stat strength 8 push_shyni_fail-push_shyni] (Push her off)
+	[berserk_cowgirl] (Let her ride you) //showif.player_sex.male
+||
+{reason_berserk_shyni_2 | start_music sejan_bowl_cave/givein_2 80} You feel weight the on the dagger lighten. Her eyes unfocus "-name-... I can't- I <b>can't</b> wait to see your bowels <b>on the outside</b>." She pushes the dagger at you again.
+	[reason_berserk_shyni_3] There! Remember it again, hold on to it. //showif.charisma.8
+	[ | check_stat strength 6 push_shyni_fail-push_shyni] (Push her off)
+	[berserk_cowgirl] (Let her ride you) //showif.player_sex.male
+||
+{reason_berserk_shyni_3} You feel her hands shake, her grip on the dagger loosens. "No! You can't talk this <b>out of me</b>! Ju- ju- <b>just stop</b>." Her eyes roll back to focus on you. "<b>These are just words</b>." She pushes the dagger again with desperate strength.
+	[reason_berserk_shyni_4] It's already desperate. You can push it out. You only need to calm down, and you'll win. //showif.charisma.10
+	[push_shyni] (Push her off)
+	[berserk_cowgirl] (Let her ride you) //showif.player_sex.male
+||
+{reason_berserk_shyni_4} Shyni shakes. She takes pained, ragged breaths. The dagger lightens until you don't need to push back at all. Tears stream down her cheeks.
+	[take_dagger] Open your hands. I'm going to take the dagger from you.
+||>>berserk cowgirl
+{berserk_cowgirl | pic berserk_cowgirl, start_music sejan_bowl_cave/givein_3 80} You move your hips to align yourself to penetrate her. Shyni's eyes gleam. "<b>Oh, oh,</b> someone came around. Let me have your sons, then." She forcefully bucks her hips and impales herself on your cock. Sudden surprise flashes on her face. "Ah! Such a mighty male, and here I am, trying to stab you in the chest when you could just stab me in the cunt with this." She lightens her grip on the dagger. "But... I'm going keep you in suspense in case of treachery"<br><br>Shyni slowly starts riding your cock, clearly enjoying herself. She is incredibly tight, almost painfully so. Her vagina is so strongly ribbed you could almost count the ribs by feel alone. Her breath becomes ragged as she settles into a faster rhythm. "Yes, yes, this is what I wanted... needed. I- Impregnate me and let me carry your chil- ah! ...children." Her insides squeeze tightly every time she hilts you.<br><br>Her hips pick up the pace again. Her bottom slaps loudly against your thighs. Her eyes close in pleasure, and she struggles to keep one eye open to watch you. "You enjoy this, I can feel that tenseness. Give it to me... All of it." She tenses her muscles, and you feel her vaginal walls violently massage your cock.
+	[come_in_shyni] (Finish in her)
+	[ | check_stat strength 6 push_orgasm_1-push_orgasm_fail] (Push her off)
+	[fuck_berserk_shyni_harder] (Fuck her even harder) //showif.endurance.8
+||
+{fuck_berserk_shyni_harder} You grip her hips harder. Shyni gasps in surprise. "What-" You quickly buck hard against her. Her rump jumps from the force, only for her to slide back down your shaft. She screams from the pleasure, but her muscles are too tired to give any resistance to your assault. You keep forcefully pumping her up and down your cock. She tries to keep herself upright but is rendered to a flailing puppet bouncing on your lap. When she tries to open her eyes, she can't focus them, and her encouragement is reduced to spitty babbling on your chest. You feel your orgasm rising as her tight vaginal ring suckles your shaft with every bounce.
+	[come_in_shyni_hard] (Finish in her)
+	[push_orgasm_2] (Push her off)
+||
+{push_orgasm_1 | pic cum_in, start_music sejan_bowl_cave/givein_passout 80 0 0 no_loop} Shyni reaches her peak and screams, her eyes rolls back. Just before your orgasm, you shove Shyni off. She doesn't resist and slumps into a pile next to you.
+{push_orgasm_2 | pic cum_in, start_music sejan_bowl_cave/givein_passout 80 0 0 no_loop} You grab the panting and limp Shyni. You slide her off your cock just before your orgasm. She collapses into a sweaty heap next to you. 
+{push_orgasm_fail | pic cum_in, start_music sejan_bowl_cave/givein_passout 80 0 0 no_loop} You shove Shyni with all your strength, but she grabs your arms and curls her legs around yours. She pulls your hips even closer to hers. The feeling of her hip muscles tensing sends you and her over the edge. You cum inside Shyni. She screams with pleasure.
+{come_in_shyni | pic cum_in, start_music sejan_bowl_cave/givein_passout 80 0 0 no_loop} You cum in Shyni, and she collapses on your chest and slides off on the floor.
+{come_in_shyni_hard | pic cum_in, start_music sejan_bowl_cave/givein_passout 80 0 0 no_loop} You thrust as hard as you can and lift her off the ground. She screams as she feels the first pulse of your cock. She loses control of her muscles and slumps on your chest, unable to get up. Your cock pulses again. Shyni screams, muffled against your chest. You regain your senses from the blinding pleasure. Sweaty Shyni slides off your chest on the floor next to you. You feel your cock slide out of her.
+	[lie_abit] (Lie a bit)
+	
+||>>Various deaths. (At the hands of the berserk Shyni.)
+{scream_death | start_music sejan_bowl_cave/givein_passout 65 0 0 no_loop, play_sound sejan/bowlcave_stabbed 80, auto_continue ded_now} You feel a surge of blinding pain as the dagger sinks into your chest. You stare in shock as her mad flurry of stabs spills your blood over the cave floor. Soon, the pain gives way to cold numbness...
+{push_shyni_fail | start_music sejan_bowl_cave/givein_passout 65 0 0 no_loop, play_sound sejan/bowlcave_stabbed 80, auto_continue ded_now} You throw your arms against Shyni to push her off you. She locks your arm under hers and slashes at your unprotected neck. You feel a stinging pain as hot blood spurts from your neck. Paralysed by the shock, you stare as she releases a mad flurry of stabs. You feel pain and then numbness...
+{catch_dagger_death | start_music sejan_bowl_cave/givein_passout 65 0 0 no_loop, play_sound sejan/bowlcave_stabbed 80, auto_continue ded_now} You raise your hands to catch her wrists- but are too slow. You feel sudden surge of pain as the dagger sinks into your chest. Paralysed by the shock, you stare as she releases a mad flurry of stabs. You feel pain and then numbness...
+{resist_dagger_death | start_music sejan_bowl_cave/givein_passout 65 0 0 no_loop, play_sound sejan/bowlcave_stabbed 80, auto_continue ded_now} Your arms shake as you try hold the dagger away, but to your horror, you realize it's slowly descending. Shyni grunts and laughs. "Don't resist now. It's over. Just <b>die</b>!" She plunges the dagger into your heart. Paralysed by the shock, you stare as she releases a mad flurry of stabs. You feel pain and then numbness...
+{ded_now | start_music misc/player_death 80 0 0 no_loop, player_death}
+
+||>>Shyni berserk aftermath
+{push_shyni | pic wooden_bowl, start_music generic/scary 70 4} You push Shyni off you. She flies in an arc and hits her head against the floor. She seems unconscious. The bowl is on the floor next to her.
+{lie_abit | pic wooden_bowl, start_music generic/scary 70 4} You take a few deep breaths. Shyni is slumped next to you; she seems unconscious. The bowl is on the floor next to her.
+{berserk_shyni_loses | pic wooden_bowl, play_sound sejan/bowlcave_roll 80, start_music sejan_bowl_cave/fight_end 70 0 0 no_loop} Shyni collapses on the floor. The bowl rolls away from her.
+{take_dagger | pic wooden_bowl, start_music sejan_bowl_cave/resist 80 0 0 no_loop} You slowly wrest the dagger from her clutches. Shyni's eyes roll back, and she goes limp and collapses on the floor. The bowl rolls away from her.
+	[you_okay | remove_pic, start_music generic/scary 70 4] Are you okay? (Help her up)
+	[look_at_bowl | remove_pic, start_music generic/scary 70 4] (Look at the bowl)
+||
+{look_at_bowl | change_sprite bloodied} You crouch down to look at the bowl. You jump back up as you hear a scream behind you. Shyni desperately gets back up. "<b>Don't touch it!</b>" 
+	[ready_for_fight] (Stay a safe distance from her)
+	[you_okay] Are you alright? (Help her up)
+||
+{ready_for_fight} You quickly flip towards Shyni. You watch cautiously as she stumbles up from the floor. She staggers and looks at you. "-name-! No, please, I- I- came back. Please get me out of here." You realize she's crying.
+{you_okay | change_sprite bloodied} You help Shyni up from the cave floor. She stares at you through the pain, confused. "Did I...? -name-, please, get me out of here." You realize she's crying.
+	[leave_with_shyni] Of course, let's get out of here. (Lead her out of the cave)
+	[want_inspect_bowl] Give me a second, I want to take a look at the bowl.
+||
+{want_inspect_bowl | character_leave} Shyni runs off into the dark, twisting maze of tunnels.
+	[run_after_shyni] (Run after Shyni)
+	[grab_n_run | give_item mysterious_bowl] (Grab the bowl and run after her) //hideif.has_flag.mysterious_bowl_smashed
+	[grab_n_run_2 | give_item mysterious_bowl_splinters] (Grab the splinters and run after her) //showif.has_flag.mysterious_bowl_smashed
+||
+{run_after_shyni | change_environment sejan_cave_interior, character_return bloodied} You rush after her. You hear her panting and hurried steps in the darkness ahead. You race towards them until you cannot hear them anymore. You keep running.<br><br>You come across Shyni curled into a ball against the cave wall. She stands up hesitantly as you approach.
+{grab_n_run | change_environment sejan_cave_interior, character_return bloodied} You pick up the bowl and sprint after her.<br><br>You hear her panting and hurried steps in the darkness ahead. You race towards them until you cannot hear them anymore. You keep running.<br><br>You come across Shyni curled into a ball against the cave wall. She stands up hesitantly as you approach.
+{grab_n_run_2 | change_environment sejan_cave_interior, character_return bloodied} You pick up the remains of the bowl and sprint after her.<br><br>You hear her panting and hurried steps in the darkness ahead. You race towards them until you cannot hear them anymore. You slow down to listen.<br><br>You come across Shyni curled into a ball against the cave wall. She stands up hesitantly as you approach.
+{why_run_like} "I was scared... You'd turn mad like I did."
+	[why_run_like] Why'd you run out here like that? This place is a pitch black deathtrap! //hideif.index_is.why_run_like
+	[leave_with_shyni] Sorry. I didn't realize. Let's get out here. (Leave the cave)
+	[leave_with_shyni] Shyni, get up. Let's get out. (Leave the cave)
+||
+
+	
+||>>Pc takes the artifact
+{pc_takes_artifact | start_music sejan_bowl_cave/vision_1 70, pic red_haze} Your hear drums.<br><br>You feel the ancient blood drip behind your eyes, red streaks blur your vision. You hear a voice bellow from infinite distance, "<b>Kill</b>!<b>Kill Shyni</b>!" You feel your hands tense, preparing to lunge at her. You feel like drowning.
+	[resist_drums] (Resist)
+	[give_in_drums_1] (Give in)
+||>>Resisting mind control
+{resist_drums | start_music sejan_bowl_cave/vision_2 70, pic blood_sea} The drums beat even harder. The deafening beat boils your heart's blood, burning you from the inside. You wade through an ocean of blood. Dark figures beneath the liquid reach for you, their withered fingers dig into your flesh. You hear whispers of obscene violence all around you.
+	[give_in_drums_2] (Let them pull you under)
+	[resist_1] (Pull yourself free)
+||
+{resist_1} Determined, you wrest yourself free. The shadows fall beneath the red mirror. The drums beat angrier, every blow hammers you backwards and down into the lake of blood.
+	[ | start_music sejan_bowl_cave/vision_3 70, sex_gate resist_m resist_f] (Force yourself forward)
+||
+{resist_f | pic demon} You brace yourself. The blows hammer you, every strike slowly sinks your feet into the oily sand beneath the waves of blood. The horizon darkens as storm clouds gather. Eyes of burning crimson raise from the waters and stare into you. You feel your skin immolate under their gaze. A thunderous voice bellows to crush you. "<b>Kill her</b>!<b>Kill her</b>!<b>Kill her</b>!" The words strike against your body like serrated blades and tear off clots of burning flesh.
+{resist_m | pic demon} You brace yourself. The blows hammer you, every strike slowly sinks your feet into the oily sand beneath the waves of blood. The horizon darkens as storm clouds gather. Eyes of burning crimson raise from the waters and stare into you. You feel your skin immolate under their gaze. A thunderous voice bellows to crush you. "<b>Rape her</b>! <b>Kill her</b>!<b>Rape her</b>! <b>Kill her</b>!" The words strike against your body like serrated blades and tear off clots of burning flesh.
+	[ | check_stat will 6 give_in_drums_1-resist_success] NO!
+	[give_in_drums_1] ...Yes
+||>>Resist end
+{resist_success | pic red_haze, auto_continue slapped_back} The world bursts into flames. The voice continues its litany. Your hands are reduced to scorched bone. Your feel excruciating pain...
+
+||
+{slapped_back | start_music sejan_bowl_cave/resist 70 0 0 no_loop, remove_pic, change_sprite character} ...on your cheek. Shyni stares at you, hand raised for another slap. You blink twice and focus on her. She lets you go, and you stagger back. "W-What was that?"
+{u_slap_me} She snorts with frustration. "You touched the bowl and your eyes glazed over. Then you mumbled something. I thought you were sick."
+	[bowl_try_killrape | start_music generic/scary 70 3] The bowl... It tried to make me... kill you.
+	[spaced_out | start_music generic/scary 70 3] I just... spaced out, sorry. (Lie)
+	[u_slap_me] You slapped me. //hideif.index_is.u_slap_me
+||
+{bowl_try_killrape} Shyni's eyes widen with terror. "What!?" She staggers backwards in disbelief.
+	[something_init] There's something in the bowl. It talked to me. I- I think I bested it.
+||
+{something_init} She looks at the bowl. It's still in your hands. "Something... t- talked to you? W- What? You- You are still touching it... Is it safe now?"
+	[not_doing_any] I was walking in a... sea of blood, and a voice was yelling at me to kill you.
+	[not_doing_any] It's not doing anything. I think it gave up.
+||
+{spaced_out} "...Are you sure? You stared right through me for a while. You're not feeling ill, are you?"
+	[bowl_try_killrape] No, wait.... The- There was something in the bowl and it told me to... kill you.
+	[im_okay_lie] I'm okay, it's nothing. (Lie)
+||
+{im_okay_lie} She gives you a concerned glance. "Okay... So it seems this treasure hunt is a bit of a disappointment. I guess this must have been a meeting place of some kind. You can keep the bowl as a memento if you want to. I have enough old dusty stuff already lying around my house."
+{you_keep_bowl} "Nah. I wouldn't have room. I'll just leave it here."
+	[you_keep_bowl] You keep it. //showif.index_is.im_okay_lie
+	[sure_take_bowl | give_item mysterious_bowl] (Take the bowl)
+	[sure_leave_bowl] (Leave the bowl)
+||
+{not_doing_any} "D- Do you want to keep it? We should just smash it and leave it here."
+	[smashing_bowlie] (Smash the bowl)
+	[hold_onto | give_item mysterious_bowl] I think I should hold on to it. (Take the bowl)
+||
+{hold_onto} "Are you sure? If it's actually what you say it is, wouldn't it be safer to break it and leave it here?"
+	[smashing_bowlie] (Smash the bowl)
+	[canhandle_it] I can handle it. I don't think there's anything else here. Should we go?
+||
+{canhandle_it} "Okay, If you say so. But... Keep your wits about you."
+	[pc_little_possessed] (Leave the cave)
+||
+{smashing_bowlie | play_sound sejan/bowlcave_break 70, remove_item mysterious_bowl} You throw the bowl against the rock wall, and it shatters into splinters. "I'm sure this is for the best.<br><br>We should go." 
+	[pc_little_possessed] Yeah, let's go. (Leave)
+||
+{sure_take_bowl} You stash the bowl. Shyni scans around the chamber. "Right... This place seems exceptionally empty. Very disappointing, but I guess we should probably just head out."
+{sure_leave_bowl} Shyni scans around the chamber. "Right... This place seems exceptionally empty. Very disappointing, but I guess we should probably just head out."
+{completely_empty} "Well, take a look yourself. It's just smooth stone all around." You glance around the room, and indeed, there don't seem to be any distinct features or crevices that could hide anything.
+	[completely_empty] This place can't be completely empty? //hideif.index_is.completely_empty
+	[leaving_silent_lie] (Leave the cave)
+||
+
+
+
+
+||>>BERSERK PC (PC fails to resist mind control)
+{give_in_drums_1 | start_music sejan_bowl_cave/givein_1 80, pic red_haze} Your heart dances to the bloodied drums. The burning blood pours out of your soul.
+{give_in_drums_2 | start_music sejan_bowl_cave/givein_1 80, pic red_haze} You stop struggling, your tired muscles ache. You are immersed in the gentle warmth of the blood. It seeps into your body and sets it alight. Your heart beats with the drums. The burning blood pours out of your soul.
+	[berserk_open_eyes] (Open your eyes)
+||
+{berserk_open_eyes | remove_pic, add_flag shyni_cavequest_pc_berserk} Shyni stares at you, confused.
+	[ | check_stat agility 8 berserk_lunge_0-berserk_lunge_1] You little bitch... DIE! (KILL HER)
+||>>Berserk pc fail
+{berserk_lunge_0 | start_music sejan_bowl_cave/givein_2 80} You lunge at Shyni, but she evades you, and you crash into the cave wall. "-name-! It's the bowl! It's doing something to you!" She runs out of the chamber into the dark tunnels.
+	[berserk_pc_run] (RUN HER DOWN AND PULL OUT HER THROAT)
+	[run_shyni] RUN, SHYNI! Run before I- I TWIST YOUR HEAD OFF AND FUCK THE STUMP. //showif.will.6
+||
+{run_shyni | character_leave} Shyni points the dagger at you and looks into your eyes. "Fight it, -name-! You're stronger than that ridiculous bowl." She sprints off into the dark tunnel.
+	[berserk_pc_run] (RUN HER DOWN AND RIP OUT HER EYES)
+||
+{berserk_pc_run | pic red_haze} You dash after her. The stone walls are a blur as you huff towards the light footsteps. You stop to listen where the sounds are coming from, but the footsteps have stopped.
+	[find_bitch] (FIND THE BITCH)
+||
+{find_bitch} You yell into the darkness and run furiously in the direction you thought she was heading. You keep running and running and running... 
+	[find_bitch_bitch] (FIND THE FUCKING BITCH... FIND THE FUCKing bitch, fucking bitch...)
+||
+{find_bitch_bitch | start_music sejan_bowl_cave/givein_passout 80 0 0 no_loop, change_environment sejan_cave_interior, remove_pic, hide_sprite} You wake up, resting on the cold stone floor. The cave is pitch black. Your head is sore and it feels heavy.
+	[shyni_u_there] Shyni, are you there!?
+	[feel_surround] (Feel your surroundings)
+||
+{shyni_u_there | start_music generic/scary 70 4} You yell into the darkness. You hear footsteps. Shyni hesitantly approaches you. "Is it over? Are you okay?"
+{feel_surround | start_music generic/scary 70 4} You get up and start making your way against the rock. You hear footsteps. Shyni hesitantly approaches you. "Is it over? Are you okay?"
+	[over_thinkso] Yeah... I think so.
+	[over_sorry] I'm... sorry.
+	[over_what] What was that?
+||
+{over_thinkso | change_sprite character, character_leave} She pulls you to get you up. "Good. Get up, I want to get out of here now. Follow me."
+{over_sorry | change_sprite character, character_leave} "Stop it. We need to get out. Follow me."
+{over_what | change_sprite character, character_leave} "I don't know... We'll talk later. Get up, we need to go."
+	[follow_shyni_out] (Follow her)
+||>>Berserk pc tackle
+{berserk_lunge_1 | start_music sejan_bowl_cave/givein_2 80, play_sound sejan/bowlcave_slam 80, pic pleading} Shyni shrieks as you lunge at her and tackle her to the ground. She kicks and punches you, and in retaliation, you violently bounce her head off the floor. She tries to lift her bloodied head to escape, but it just slumps to one side instead. "Please... It's me, don't do this. Stop..."
+	[berserk_pc_murder_1 | start_music sejan_bowl_cave/givein_3 80, play_sound sejan/bowlcave_headrip 100] (RIP HER HEAD OFF) //hideif.gore_filter_on
+	[berserk_pc_murder_2 | start_music sejan_bowl_cave/givein_3 80] (KILL HER) //showif.gore_filter_on
+	[pc_rape_1 | start_music sejan_bowl_cave/givein_3 80] (RAPE HER) //showif.will.6 //showif.player_sex.male //showif.rape_filter_off
+||>>Berserk pc murder
+{berserk_pc_murder_1 | pic head_rip, add_flag shyni_dead} You grip tightly on her horn and her snout and start twisting. Shyni screams. You feel the tendons in her neck snap one by one until her head breaks off with a crunch. You lift the head above your head. A torrent of warm blood spills on you.
+{berserk_pc_murder_2 | pic red_haze, add_flag shyni_dead} You violently savage Shyni in a haze of violence and anger until she dies. The sensation of warm blood seeping between your fingers registers on the edge of your mind as you wallow in the red haze that burns your chest. You realize you're holding her severed head.
+	[berserk_pc_faint] THE WHORE IS DEAD.
+||
+{berserk_pc_faint | start_music sejan_bowl_cave/givein_passout 80 0 0 no_loop, pic red_haze, auto_continue leaving_alone_2} You roar victoriously and throw the severed head on the ground. You feel light-headed. Your legs become numb, and you fall to the ground. A smothering darkness envelopes you.
+||
+{leaving_alone_2 | start_music generic/angst_short 70 3 0 no_loop, advance_time_to night} You wake up from icy numbness. Your head swells with a burning ache. You get up and slip on a puddle of blood.<br><br>Shyni's decapitated corpse is sprawled out on the floor.<br><br>Your legs shake and your eyes sting.
+	[leaving_alone] (Leave)
+||>>Berserk pc rape
+{pc_rape_1 | pic rape, add_flag shyni_cavequest_raped} You yank her dress open, exposing her naked body. Shyni tries to cover herself, you hit her in the face. She returns to her passivity and covers her face. You open her legs and press your erection against her. You hear Shyni whine behind her hands, "Please... Gods, stop."
+	[pc_rape_2] (FUCK HER)
+||
+{pc_rape_2 | auto_continue pc_rape_3} You grab her legs and ram your cock inside. Shyni gasps in pain. Her cunt is so tight it hurts you. She tries to push you off again, but you swiftly backhand her. You start violently fucking her, every thrust accompanied by a pained whine from Shyni.
+||
+{pc_rape_3 | start_music sejan_bowl_cave/givein_passout 80 0 0 no_loop, pic red_haze, auto_continue pc_rape_4} A feral lust chases your thoughts as you fuck her in a haze of anger. You suddenly feel light-headed and faint.
+||
+{pc_rape_4 | start_music generic/angst_long 70 3 0 no_loop, remove_pic, change_sprite bloodied_angry} You wake up. Shyni is desperately bashing pieces of the bowl into splinters with a rock. She glances at you, drops the rock, and flinches away in terror. She draws her dagger. "Stay down! <b>Stay down</b>! <b>I will kill you</b>!"
+	[bowl_made_me_1] It's me... The bowl, it did something to me...
+||
+{bowl_made_me_1 | change_sprite bloodied} Shyni bursts into tears "Gods, gods... I- I- Thought you were completely gone. I- I- was going to... Slit your throat... When you slept." You touch your throat, there's a shallow but painful cut across it.
+	[bowl_made_me_2] Shyni... I- I'm sorry.
+||
+{bowl_made_me_2} Shyni wipes her tears and helps you up. You feel ill, your vision blurs, and you almost fall on your face. "W- We need to get out... Please stay up." She leans on you to keep you upright.
+	[stagger_out] (Stagger out of the cave)
+||
+	
+	
+	
+	
+	
+||>>LEAVING THE CAVE
+||>>Leaving alone (Shyni dead)
+{leaving_alone | hide_character, remove_pic, change_environment sejan_cave, advance_time_to 90, save_index_by_character tornoth worried_of_shyni, set_map_location sejan_cave} The trip out of the caves is a mushy, blurry memory. You have somehow made it out. You feel a shiver race down your spine as you gaze back into the cave.
+	[ | end_encounter] (Leave)
+||>>Player was possessed but resisted and didn't tell. (Or was possessed very little)
+{leaving_silent_lie | change_environment sejan_cave, add_flag shyni_unaware_bowl} "Well, I guess I should have expected the place to be empty when there's a map. Someone probably emptied the whole place a long, long time ago."
+{pc_little_possessed | change_environment sejan_cave} "Aside from the creepiest bowl ever, the whole thing went well. I guess I should have expected the place to be empty when there's a map. Someone probably emptied the whole place a long long time ago."
+	[spelunking_together] We did some spelunking together, so it's a not a total loss. //showif.charisma.6
+	[theory_place] Any theories as to what that place was?
+	[head_back_late] Should we head back? It's pretty late.
+||
+{spelunking_together} "You liked that? I did too.<br>Would have been nicer if we had a cool thing to bring back."
+	[any_cave] Hey, I'll explore any cave with you. //showif.charisma.6
+	[always_memory] We'll always have the memory, right?
+||
+{theory_place} She scratches her chin. "It was oddly bare, but I think it might have been a religious site of some kind?"
+	[why_think_that] What makes you think that?
+||
+{why_think_that} "The pedestal! It was clearly meant to hold something important. It might have even been an altar of some kind. I guess the room could have been a storage for some important item as well?"
+	[head_back_late_2] That does make sense.
+	[head_back_late_2] The room was very odd.
+||
+{any_cave | change_sprite blushed, character_leave} Her eyes widen in shock, and she blushes. "W- What? Uhm I- I like exploring caves with you too. Should we head back? It's getting late. I'd hate to stay the night here. Not that sleeping with you is... Let's, just... go." She marches absent-mindedly into the forest.
+{head_back_late} "You're right. We should go, or we're going be stumbling through the underbrush in the darkness."
+{head_back_late_2} "But whatever the room was, we really need to work ourselves towards Taodal, or we're going be stumbling  through the underbrush in the darkness."
+	[back_to_house_0 | advance_time_to night] (Travel back to her house)
+||
+{always_memory} She chortles. "Well as long as we remember!<br><br>I think all that climbing and trekking through tunnels is catching up me, I'm sore. We should get back before we have to stumble through the underbrush."
+	[back_to_house_0 | advance_time_to night] (Travel back to her house)
+||>>Player was possessed
+{follow_shyni_out | change_environment sejan_cave} You follow Shyni as she quickly makes her way out of the cave. The two of you reach the entrance of the cave. Shyni hugs herself to stop shaking and turns to you. "W- What happened?"
+	[messed_mind_1] The bowl, it messed up my head.
+	[messed_mind_2] I'm sorry... The bowl, it did something to me.
+||
+{messed_mind_1} "You went mad. I was so scared it- it... was permanent. Gods, I'm so happy to talk to you again." She hugs you.
+{messed_mind_2} "Don't say you're sorry. It wasn't you. You know that... I know that." She hugs you.
+	[hugged_her] (Hug her back)
+||
+{hugged_her} As you close your arms around her, she hugs you a little tighter.
+	[think_okay] Thanks, I think I'm okay now.
+	[still_sorry] I'm still sorry.
+||
+{think_okay} She releases you. "We should go. I feel ill knowing the cave is right there."
+{still_sorry} She releases you. "I know why you say that, but you shouldn't.... Let's go. I feel ill knowing the cave is right there."
+	[back_to_house_2 | advance_time_to night] (Travel back to Shyni's house)
+||>>Player was possessed (Shyni raped)
+{stagger_out | change_environment sejan_cave} WIth great pains, you manage to reach the entrance. "W- What happened to you?... You- You..."
+	[rape_crazy] I... There was something evil in the bowl.
+||
+{rape_crazy} "I- I- broke the bowl... There was... blood inside it, it was evil..."
+	[shoulda_stronger] I know. I should have been been stronger.
+||
+{shoulda_stronger} "Take me home, -name-, please. I don't want to think about anything... I won't tell anyone. It wasn't you."
+{hug_reject} You reach to hug her but she gasps and recoils away from you. "Sorry... I- I-... " She sobs quietly.
+	[hug_reject] (Hug her) //hideif.index_is.hug_reject
+	[back_to_house_3 | advance_time_to night] (Take Shyni back to her house)
+||>>Shyni was possessed but aborted prematurely
+{leaving_shyni_little_possessed | change_environment sejan_cave} "Well, gods. That was horrifying. I never want to see that cave again. I'm sorry I tried to maul you."
+	[not_you] Don't say that, it wasn't you.
+	[tiny_beast] It was kinda scary seeing you like that. You have a tiny beast inside you. //showif.charisma.6
+||
+{not_you} "I know. But it still feels like it was my fault. The feelings felt like they came from inside me."
+	[feel_ill] Do you feel normal now?
+	[did_feelings] ...Did they?
+||
+{did_feelings} "I think... yes, but they were twisted and corrupted."
+	[secretly_kill] You secretly want to kill me?
+	[change_covers] I guess that's what it would do. Take your own thoughts, scribble in the margins, and change the covers. //showif.charisma.6
+||
+{change_covers} "It didn't just scramble stuff. It burnt pages and then stitched them back together. I just took things to fuel anger and hate."
+{secretly_kill} "No. It took other thoughts and... I guess murder and pass-<br>Um...<br>F- Friendship? Share... things?."
+{feel_ill} "I don't know. I feel tired and cold. There's this sour feeling at the back of my head."
+	[eloquent] I love it when you're eloquent with words. //showif.index_is.secretly_kill
+	[soured_affection] If your violence was soured affection, you really must like me. //showif.index_is.secretly_kill
+	[not_pleasant] That doesn't sound very pleasant. //showif.index_is.change_covers
+	[ill_feeling] I hope the ill feeling doesn't last.
+	[help_feeling] Can I help in any way?
+||
+{eloquent} She blushes. "You tease, I'm not good with words. We should go before the dark."
+{soured_affection} She blushes. "W- We should head back."
+{not_pleasant} "It wasn't... We should go while we still have light."
+	[joke_sorry] Of course, let's go. (Travel back to Shyni's house)
+||
+{tiny_beast} "Are you making jokes about the fact I was possessed by an old bowl?"
+	[joke_sorry] Sorry.
+	[nibble_death] And then you almost nibbled me to death! //showif.charisma.8
+||
+{joke_sorry} "Don't be! Jokes help! And it was a <b>bowl!</b> I was possessed by. How silly is that?"
+	[enough_quest] I guess it's a little silly.
+||
+{nibble_death} She giggles. "Stop. I got possessed!"
+	[some_levity] Sorry, I just thought you might need some levity after that.
+	[mug_trouble] Good thing it wasn't a mug! Or we might have been in trouble! //showif.charisma.8
+||
+{some_levity} "Yeah, it worked. Thanks. And for your knowledge, the beast in me is <b>at least</b> medium-sized!"
+{mug_trouble} She giggles even harder. "Stop! Gosh, fuck! I could have used a mug!"
+{ill_feeling} She swings her hand dismissively. "I've been through worse, but time heals everything. It's just a bad feeling too. No giant scars."
+{help_feeling} "I think I just need some sleep."
+	[some_light_go] It's late. We should probably go while we have some light.
+	[wanna_camp] Do you want to camp here?
+||
+{enough_quest} "I've had enough questing for today. We really should go or we're going be stumbling through the underbrush in the darkness."
+{some_light_go} "You're right! Let's go!"
+{wanna_camp | character_leave} She gives you a look. "I- I don't think... No! I mean, I don't mean sleeping with-<br>um...<br>Let's just go." She marches into the forest.
+	[back_to_house_11 | advance_time_to night] (Travel back to her house)
+||>>Shyni was possessed
+{leave_with_shyni | change_environment sejan_cave, add_flag shyni_berserk} You help the limping Shyni out of the cave and reach the entrance. She covers her face. "Gods, that was horrible. What was that bowl? I heard... drums inside my head, and then I- I felt powerful. I needed to kill and... fuck." She looks at her hands and then at you, bewildered, tears running down her cheeks.
+{stop_nothing_happened} She covers her face. "Gods, that was horrible. What was that bowl? I heard... drums inside my head, and then I- I felt powerful. I needed to kill and... fuck." She looks at her hands and then at you, bewildered, tears running down her cheeks.
+	[it_was_cursed] It was controlling you. I think it was cursed.
+	[lets_worry_you] I'm okay! Don't worry about me. It's you we should be worried about. Do you still hear drums?
+||
+{it_was_cursed} She covers her eyes. "I know. But it- it felt genuine, the anger and the... lust. This is not really what I wished to find here... A desiccated mummy or a pile of rusted swords, anything but this. Why would something like this even exist? It's evil." She stares at the cave entrance as if waiting for something to chase after her.
+{lets_worry_you} "<b>No</b>! I didn't hear it after I woke up. "
+{i_destroyed_it} "Good, y- you should burn whatever is left of it. Never touch it."
+{hug_home} You feel her shiver. She squeezes you tightly and presses her head against your chest.
+	[i_destroyed_it] I destroyed it. It's not going to do that to anyone again. //showif.has_flag.mysterious_bowl_smashed //hideif.clicked
+	[hug_home] (Hug her) //showif.charisma.6 //hideif.clicked
+	[back_to_house_1 | advance_time_to night] Let's get you back home. (Travel back to her house)
+||
+
+
+
+
+
+||>>BACK AT SHYNI'S HOUSE
+||>>Player hid possession (not much really happened)
+{back_to_house_0 | start_music sejan_taodal/shyni 70 3, change_environment taodal_shyni_garden, change_sprite character} You travel back to Shyni's house. "I guess that's the end of our little adventure. It was a little less exciting than I had imagined." 
+	[exciting_evening] Oh, I can make your evening super exciting, just invite me inside.
+	[exicitement_scars] It wasn't that bad! Excitement often comes with scars.
+||>>Shyni possessed
+{back_to_house_1 | start_music sejan_taodal/town 55 3, change_environment taodal_shyni_garden, change_sprite bloodied} You travel back to Shyni's house. "I... I feel ill, like something slimy and cold died inside me. I think I'll go and try to sleep it off...<br><br>Please come see sometime?" 
+{back_to_house_11 | start_music sejan_taodal/town 55 3, change_environment taodal_shyni_garden, change_sprite character} You travel back to Shyni's house. "Huh, I feel a little ill after that... thing. I think I should go sleep it off.<br><br>Please come see sometime?" 
+{sure_alright} "Yeah, I- I just need to sleep it off."
+	[sure_alright] You sure you're alright? //hideif.index_is.sure_alright
+	[goodbye_leave] Of course, see you later.
+||>>Player possessed
+{back_to_house_2 | start_music sejan_taodal/town 55 3, change_environment taodal_shyni_garden} You travel back to Shyni's house. "I guess that's the end of our little adventure... for what it was.<br><br>Sorry... Do you feel alright? Visit me sometime again?" 
+	[goodbye_leave] Of course. I'm still a bit woozy still, but I'm okay.
+||>>Shyni raped
+{back_to_house_3 | stop_music 3, change_environment taodal_shyni_garden} You travel back to Shyni's house. She quietly sneaks from your side towards the door. "Sorry... I'm tired, I feel ill. This was a horrible night and I want to... It's not your fault. I just need to... sleep."
+	[goodbye_leave_2] Sorry... I hope- I hope you get some sleep.
+||>>Leaving
+{exciting_evening | character_leave, change_sprite blushed} Her eyes bulge out, and she smothers an excited whine. "I- I- I- Huh... I- I'm sure. I don't think... we should... um... Gosh, I'm tired! I'll go-... sleep." She waves goodbye overly excited and quickly scrambles inside. 
+{exicitement_scars | character_leave} "Hah! I can verify that with the scars on my back. I'll go sleep now. Bye! See you!" She waves you goodbye and disappears indoors.
+{goodbye_leave | character_leave, add_flag shyni_cave_trauma} She waves you goodbye and disappears indoors.
+{goodbye_leave_2 | character_leave, add_flag shyni_cave_trauma} She nods and disappears indoors.
+	[ | change_default_diag_file shyni diag, save_index had_adventure, start_encounter taodal taodal, add_flag shyni_had_cave_adventure] (Leave)
+||

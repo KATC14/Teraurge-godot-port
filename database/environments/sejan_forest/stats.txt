@@ -1,0 +1,65 @@
+interior:	no
+
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>
+
+
+||>>ENCOUNTERS
+{encounters | curated_list random}
+	[ | start_encounter sejan_forest poh-ack_f] poh-ack_f //showif.time_filter.25.75
+	[ | start_encounter sejan_forest poh-ack_m] poh-ack_m //showif.time_filter.25.75
+	[0] 0
+	[ | start_encounter sejan_forest cuoxur_m] cuoxur_m //showif.time_filter.76.24
+	[ | start_encounter sejan_forest cuoxur_f] cuoxur_f //showif.time_filter.76.24
+	[0] 0
+	[0] 0
+	[ | start_encounter sejan_forest sejan_rusty_spearheads] sejan_rusty_spearheads //hideif.has_flag.sejan_rusty_spearhead_nomore
+	[ | start_encounter sejan_forest sejan_rusty_spearheads] sejan_rusty_spearheads //hideif.has_flag.sejan_rusty_spearhead_nomore
+	[ | start_encounter sejan_forest sejan_rusty_spearheads] sejan_rusty_spearheads //hideif.has_flag.sejan_rusty_spearhead_nomore
+	[ | start_encounter sejan_forest sejan_rusty_spearheads] sejan_rusty_spearheads //hideif.has_flag.sejan_rusty_spearhead_nomore
+	[ | start_encounter sejan_forest sejan_rusty_spearheads] sejan_rusty_spearheads //hideif.has_flag.sejan_rusty_spearhead_nomore
+	[0] 0
+	[0] 0
+	[0] 0
+	[cuoxor_pit_enc] cuoxur_pit without the miggpli quest //showif.time_filter.25.75
+	[0] 0
+	[ | start_encounter sejan_forest cuoxur_pit] cuoxur_pit //showif.time_filter.25.75 //hideif.counter.miggpli_f_cuoxur_tags.2 //hideif.counter.miggpli_m_cuoxur_tags.2 //showif.has_flag.miggpli_quest_cuoxur_tag
+	[ | start_encounter sejan_forest cuoxur_pit] cuoxur_pit //showif.time_filter.25.75 //hideif.counter.miggpli_f_cuoxur_tags.2 //hideif.counter.miggpli_m_cuoxur_tags.2 //showif.has_flag.miggpli_quest_cuoxur_tag
+	[ | start_encounter sejan_forest cuoxur_pit] cuoxur_pit //showif.time_filter.25.75 //hideif.counter.miggpli_f_cuoxur_tags.2 //hideif.counter.miggpli_m_cuoxur_tags.2 //showif.has_flag.miggpli_quest_cuoxur_tag
+	[ | start_encounter sejan_forest cuoxur_pit] cuoxur_pit //showif.time_filter.25.75 //hideif.counter.miggpli_f_cuoxur_tags.2 //hideif.counter.miggpli_m_cuoxur_tags.2 //showif.has_flag.miggpli_quest_cuoxur_tag
+	[ | start_encounter sejan_forest cuoxur_pit] cuoxur_pit //showif.time_filter.25.75 //hideif.counter.miggpli_f_cuoxur_tags.2 //hideif.counter.miggpli_m_cuoxur_tags.2 //showif.has_flag.miggpli_quest_cuoxur_tag
+	[ | start_encounter sejan_forest cuoxur_pit] cuoxur_pit //showif.time_filter.25.75 //hideif.counter.miggpli_f_cuoxur_tags.2 //hideif.counter.miggpli_m_cuoxur_tags.2 //showif.has_flag.miggpli_quest_cuoxur_tag
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+||
+{cuoxor_pit_enc | curated_list random}
+	[0] 0
+	[ | start_encounter sejan_forest cuoxur_pit not_looking] cuoxur_pit 
+||
+
+

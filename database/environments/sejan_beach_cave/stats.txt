@@ -1,0 +1,18 @@
+interior:	yes
+ambient:	0.3
+
+discoverable:		yes
+dicovery_message:	You have found a small cave on the beach.
+default_message:	Do you want to enter the beach cave?
+
+
+<SOUNDS
+misc/old_cave_water_drops.40
+misc/old_cave_ambience.80
+sejan/beach_cave_squirms.20
+SOUNDS>
+
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_beach breirb} Breirb encounter
+||

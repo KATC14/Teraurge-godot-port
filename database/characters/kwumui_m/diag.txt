@@ -1,0 +1,105 @@
+
+||>>Start hub
+{start | save_index encountered, add_flag kwumui_encountered} You come across an odd bird-like creature covered in old and new scars. It stares at you intensely. It shakes its head violently, kicks the ground, and warbles with a low, threatening voice.
+{encountered | check_flag pc_knowledge_kwumui encountered knowledgeable} You come across one of those odd, scarred bird-like creatures. It shakes its head violently and warbles with a low, threatening voice.
+{knowledgeable} You come across a kwumui male. It's trying to scare you away by shaking its head violently, kicking the ground and making low, threatening noises.
+	[ | start_music sejan/fight_weak 70, start_combat pc_lost pc_won] (Attack)
+	[move_closer] (Move closer)
+	[back_away] (Back away)
+||
+{move_closer} You move closer to the threatening animal. It screeches and lunges at you.
+	[ | start_music sejan/fight_weak 70, start_combat pc_lost pc_won] (Defend yourself)
+||
+{back_away} You slowly and carefully back away from the threatening creature. It keeps gesturing aggressively but it lets you retreat. You keep moving until you can't see the creature and the low warbling stops.
+	[ | end_encounter] (Leave)
+||
+
+||>>fight lost
+{pc_lost | start_music sejan/fight_end 70 0 0 no_loop, pic clawing} You're knocked down on the sand. The creature jumps on you, violently clawing and kicking you.
+	[ | check_stat agility 6 kick_0-kick_1] (Kick it off you)
+||>>The Kickening
+{kick_1 | pic escape, auto_continue escape_leave} You kick your attacker and it loses its balance and falls down. You jump up and sprint into the forest. You hear the creature hiss and screech but stay where it is. You keep running until you can't hear it anymore.
+{escape_leave | end_encounter}
+||
+{kick_0 | gore_filter kick_0_nogore kick_0_gore}
+{kick_0_gore | pic torn_apart, auto_continue i_guess_ill_die} You kick at your attacker but you miss. The creature responds with its own and its hard foot cracks on the side of your head. Everything flashes white and then you feel a sharp claw rake across your cheek and then another across your forehead. The claws shear flesh everywhere they hit. You're blinded by the pain from the flurry of strikes. You can only flail around as it tears your face and neck open.<br><br>When your yells become hoarse and your arms tire, the creature stops and leaves you. You're in incredible pain and you feel cold. You cannot move yourself or think clearly. You want to scream from the pain but you cannot breathe anymore. You feel your mind slowly slip darker as seconds go by, until it's all black.
+{kick_0_nogore | pic torn_apart_c, auto_continue i_guess_ill_die} You kick at your attacker but you miss. The creature responds with its own and its hard foot cracks on the side of your head. Everything flashes white and then you feel a sharp claw rake across your cheek and then another across your forehead. The claws shear flesh everywhere they hit. You're blinded by the pain from the flurry of strikes. You can only flail around as it tears your face and neck open.<br><br>When your yells become hoarse and your arms tire, the creature stops and leaves you. You're in incredible pain and you feel cold. You cannot move yourself or think clearly. You want to scream from the pain but you cannot breathe anymore. You feel your mind slowly slip darker as seconds go by, until it's all black.
+{i_guess_ill_die | player_death}
+||
+
+
+||>>fight won
+{pc_won | start_music sejan/fight_end 70 0 0 no_loop} The creature limps and falls to the ground. It shakily gets up and tries to limp away. Another, smaller one suddenly peeks behind a tree and watches you curiously.
+	[bumrush] (Catch the large limping creature)
+	[ | start_encounter sejan_redforest kwumui_f fought_male] (Let it go)
+||
+{bumrush | pic restrained} You walk after the limping creature, grab it by the head and force it on the ground. It ineffectually kicks up some sand but calms down after a while.
+	[exam_male] (Examine it)
+	[ | end_encounter] (Leave)
+||
+{exam_male} Its rubbery and tough skin is full of scars that seem to have come from fighting others like it. The large 'ears' are very soft and seem more like bags hanging from its head rather than rigid flaps. You can clearly feel a spine and bones under the firm muscles. The ball at the end of its tail is not as soft as the ears and has more structure to it. It seems like it has air in it.
+{determ_sex} You peek between the creature's legs and find two flaps. You part the flaps with your fingers and find a blue, slick and smooth organ that seems to be a penis under them.
+	[determ_sex | pic presenting] (Determine its sex) //showif.index_is.exam_male //showif.feral_filter_off
+	[determ_sex] (Determine its sex) //showif.index_is.exam_male //hideif.feral_filter_off
+	[ | sex_gate undress_m undress_f] (Undress) //showif.feral_filter_off //showif.index_is.determ_sex
+	[ | end_encounter] (Leave)
+||
+
+
+||>>SEX
+{undress_m} You pin the angrily thrashing creature down and undress. After you discard the last of your clothes, you turn back to the creature. You lower to your knees and poke your erection against its rear. 
+{undress_f} You pin the angrily thrashing creature down and undress. After you discard the last of your clothes, you turn back to the creature and you're presented with a view of its rear.
+	[assfug_1 | start_music sejan/feral 70 1] (Penetrate it anally) //showif.player_sex.male
+	[excite_erect | start_music sejan/feral 70 1] (Excite an erection from it) //showif.player_sex.female
+	[stop_sex] (Stop)
+||>>Anal (m/m)
+{assfug_1 | pic anal_fug} You push the creature down and pin it against the ground. It flails angrily under you but can't get you off. You bare your cock and line it against its anus as it bucks and kicks against the sand. You grip its sides and push your cock in. It tenses up and tries to hastily crawl against the sand but it can't escape your hold. You feel its muscles contract against your shaft as you push deeper and hilt into the creature. It lets out a cry and kicks at the ground once more.
+	[assfug_2] (Fuck it)
+||
+{assfug_2} You push the thrashing beast against the sand and try to hold it still as it bucks and flails. You pull out and then shove yourself back into its ass. It yelps and tenses up against you. You pull out again and start fucking the petrified creature, each thrust accompanied by a hoarse whine from the creature. You grip harder and pick up your pace. The creature is mashed against the ground and stops floundering around as you pound into it. You feel the familiar tightness in your abdomen; you're not going to last much longer.
+	[assfug_3] (Finish)
+||
+{assfug_3 | pic anal_nut, start_music sejan/feral_end 70 0 0 no_loop} You grab its flanks and force yourself as deep as you can. The buttocks of the creature tense up and you release yourself into its ass. You almost snarl at the intensity of the orgasm as you double over the creature and desperately pull its flank closer to your hips. You breathe raggedly and unload yourself into it.<br><br>After the hot wave of the climax passes, you can feel the wind on your skin again and pull yourself out of the creature. Your dick pops out with a quiet, wet sound. The creature is panting on the sand and its legs twitch intermittently. You catch your breath while looking at the exhausted thing.
+	[get_dressed] (Clean up and get dressed)
+||
+
+
+
+||>>FemPC giving bj
+{excite_erect | pic presenting} You reach between the creature's legs and slide your fingers under the flaps that hide its penis. You gently rub along the shaft of the slick blue cock with your index and middle finger. The creature stops moving and quiets down as you continue your gentle rub. You feel the cock become warm and engorged, and it pushes the flaps open as the glistening organ hardens. You wrap your hand around the shaft and give it a few slow pumps.
+	[on_back] (Push the creature on its back)
+	[stop_sex | stop_music 3] (Stop)
+||
+{on_back | pic dick_presented} You grab the creature's leg and push on its flank, it falls on its side and kicks the air in confusion a few times until it just stares at you, dazed but calm. You roll it on its back and spread its legs open as the blue slick shaft throbs in front of you.
+{oral_excite} You gently grab the cock and lean in to kiss it. Your lips spread against the wet, smooth surface of the shaft, you draw on the cock with your tongue as you slide along it. The creature coos with exasperation and its head falls against the sand. You push the pointed tip of the cock past your lips and into your mouth. The creature bucks its hips to sink deeper into your mouth, but you place your hand on its belly and it stops. You roll your tongue around the tip and then give it a quick kiss on the underside.
+	[oral_excite] (Give it oral) //showif.index_is.on_back
+	[riding_1] (Ride its dick)
+	[stop_sex | stop_music 3] (Stop)
+||>>FemPC riding dick
+{riding_1 | pic cowgirl_fug} You carefully climb on top of the creature and sit on it. The hard cock nestles between your buttocks as you settle yourself. You lift your hips and grab it. You rub the pointed and slippery tip against your labia a few times, spreading the slick coating on you, and then point it directly into yourself. You slowly bring your hips down and the slimy, engorged cock slides smoothly into you. You gasp as you feel it stretch you. You let out a whine as you fully sit on the crotch of the pacified creature. The small flaps gently pinch your clit as you settle.
+	[riding_2] (Ride it)
+||
+{riding_2} You inhale and lift your ass up. The slick cock slides out, spilling the wet coating out of you. You keep the very tip in and then bring yourself down again. The dick slides back in with almost no resistance, only widening you as it slips in. You gasp breathlessly as you hilt the cock into you once again. You bite your lip and start riding on it. The creature's head is limp and it coos softly as you keep using its cock. The hot, smooth dick sliding in and out of you, rubbing your insides with its girth, makes you want to giggle and you feel a need to orgasm soon. You steady yourself on the creature and roll your hips to find that last poke or brush that sets off the fireworks inside your head. 
+	[riding_3] (Finish)
+||
+{riding_3 | start_music sejan/feral_end 70 0 0 no_loop, pic cowgirl_nut} As you roll your hips, you feel the large dick throb hard. You gasp and your eyes roll backwards as your orgasm knocks your sight white and your abdominal muscles cramp around the cock pumping into you. The creature lets out a tortured warble and bucks upwards into you. You hold the creature in place as your fingers dig into its soft belly. Every throb from the cock makes your muscles cramp, you fall on the creature and breathe loudly.<br><br>As the cramping and throbbing dies down and the tickling ecstasy slowly burns away, you find yourself shivering against the exhausted but warm creature. The softening cock pops out of you and limply falls against your thigh.
+	[get_dressed] (Get dressed)
+||
+
+||>>FemPC submissive doggy style
+{sub_1} You undress and go on all fours on the ground. You raise your rear up and imitate female kwumui sounds. The male kwumui is interested and comes closer to mount you.
+	[sub_2] (Brace yourself)
+||
+{sub_2} The kwumui mounts you and starts pounding you.
+	[sub_3] (Relax)
+||
+{sub_3} The kwumui thrusts one last time and orgasms in you. As you catch your breath, a kwumui female comes along to lick you affectionately.
+	[get_dressed] (Get dressed)
+||
+
+
+||>>Get dressed 
+{stop_sex | character_leave, remove_pic} You stop and get dressed. The confused creature gets up and hastily limps away.
+{get_dressed | character_leave, add_flag pc_sexed_kwumui, remove_pic} You clean up and while you're lifting your clothes off the sand, the creature hobbles to its feet and hastily but carefully runs away. You get dressed and find yourself alone.
+	[ | end_encounter] (Leave)
+||

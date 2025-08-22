@@ -1,0 +1,484 @@
+
+
+
+>>Nkaanmykiunsuns recruits PC for a job to kill a murderer.
+>>The target is actually the Witch.
+
+
+>>Possible outcomes. (with minor variations to each)
+
+	>>Nkaan incapacitates PC, kills the Witch and escapes.
+	>>Nkaan incapacitates PC as a precaution, kills the Witch and releases PC.
+	>>Nkaan and PC cooperate, and kill the Witch.
+	>>PC stops Nkaan from killing the Witch but she escapes.
+	>>PC incapacitates Nkaan but lets her go. (Possibly raping her before letting her go)
+	>>PC kills Nkaan.
+
+
+
+
+
+
+
+||>>Out of town
+{start | stop_music 6, change_environment taodal_entrance, change_sprite normal, add_flag nkaanmykiunsuns_hitjob} You follow Nkaanmykiunsuns out of the tavern, through the town, and out of the gates.
+	[perp_forest] The murderer is in the forest?
+||
+{perp_forest} "Yes. We are going to need to wait for dark."
+	[why_not_slit] You're going to slit his throat while he's sleeping?
+||
+{why_not_slit} "I use a mallet and a dagger to make a hole in the side of the skull if possible. Less mess and noise that way."
+{slit_hassle} "Poking a hole through the perp's nervous system is a more reliable way to kill them fast. The vein placement varies so much that just slitting someone's throat doesn't guarantee a kill.<br><br>For example, my jugulars run on the inside of a bony throat, and slitting my throat would not be that effective."
+	[slit_hassle] Why? Wouldn't slitting their throat be less of a hassle? //showif.index_is.why_not_slit //showif.has_stat.intelligence.6
+	[use_pick] ...Couldn't you just use a pick? //showif.has_stat.intelligence.8
+	[okay_job] Okay.
+||
+{use_pick | character_leave} "I... guess?... Huh, I need to remember that. Come, follow." She motions you to follow and starts walking.
+{okay_job | character_leave} "Come, follow." She motions you to follow and starts walking.
+	[at_the_job | advance_time_to night] (Follow her)
+||
+
+
+
+||>>Arriving to the job site
+{at_the_job | change_environment sejan_witch_house, change_sprite normal, auto_continue this_place} You venture into the forest and then wait. After the dark has fallen, you continue.<br><br>As you keep following her through the jungle, a feeling of familiarity strokes you. You've seen these trees before. She stops at the edge of a clearing and points at a hut on a hill.
+||
+{this_place} "Be very quiet."
+{nod_yes} She nods.
+{nod_yes2} She nods.
+{why_murder} "They stabbed a man in the neck, from behind.<br><br>It might seem excessive, sending an assassin after a petty murderer, but this one is a special case."
+{how_know_murder} "There's a recording of the act and a witness... Hey, -name-, It's okay. I ask myself these things every time too, but I promise this serves a purpose. Don't lose your nerve."
+	[how_know_murder] How do you know? //hideif.clicked //showif.index_is.why_murder
+	[nod_yes] You're hunting a murderer, right? //hideif.clicked
+	[nod_yes2] Target is in there? In that house up on the hill? //hideif.clicked
+	[why_murder] Who did they murder and why? //hideif.clicked
+	[descript_perp] Your target is a pale female with a skull-looking face and no lower jaw?
+	[i_know_her] ...I know her.
+	[need_to_stop] I can't let you kill her.
+	[go_kill_her] Go do your thing, I'll keep the watch.
+||
+
+||>>Normal job
+{go_kill_her} "Not so quick, few things." She hands you a small box with a single button.
+	[instruct_1] What is this?
+||
+{instruct_1} "It's an alarm. You press it and my button alerts me. You keep watch, and if anything out of the ordinary happens, you don't yell or run to the house, you just press that button and lay low."
+	[instruct_2] What do you mean by 'out of ordinary'? Are you expecting something?
+||
+{instruct_2} "I- I am not sure. If a braq approaches the house, press the button, if a tree suddenly falls down, press the button, if you see odd lights, press the button, weird noises, button. Get it?"
+	[instruct_3] ...Okay, I think I get it.
+||
+{instruct_3} "And, if you see me running from the house, you start running too. If the house suddenly bursts into flames, run away. Don't try to help me if I seem to be in trouble, okay? You're here to click the button in case it needs to be clicked. It gives me some warning if something is happening."
+	[hard_follow] 'Not helping you' is going to be a hard one to follow. //showif.charisma.8
+	[instruct_4] Okay.
+||
+{hard_follow} "I'm serious."
+	[hard_follow_serious] I'm serious too.
+||
+{hard_follow_serious} "Uh huh, it will get you killed. Right, I think that's all. I'm going to go now and do my thing." She glances at the house.
+{instruct_4} "Right, I think that's all. I'm going to go now and do my thing." She glances at the house.
+	[instruct_5] Go ahead.
+	[instruct_5] Good luck.
+||
+{instruct_5 | character_leave} "See you in a bit." She crouches and starts crawling up the hill.
+	[job_wait_1] (Wait)
+||
+{job_wait_1} You can barely make out her silhouette in the dark as she quickly and deftly weaves through rocks and grass on the hill until she stops at the door and crouches next to it. A moment later, she slowly opens the door and disappears inside.<br><br>An eerie silence falls on the hill. You stare into the edge of the forest and glance around you. Everything seems calm and normal.
+	[job_wait_2] (Wait)
+||
+{job_wait_2} The rustling leaves bathe the silence in pleasant noise as the wind slightly picks up. You can't see any trace of Nkaan yet. The house is completely static. The shadows in the tree line flicker and slide over each other as the trees wave in the wind. 
+	[oki_job] (Wait)
+||
+
+
+||>>I know her
+{need_to_stop | add_flag nkaanmykiunsuns_pc_knows_witch} She stares at you with shock in her eyes. "You... know her!"
+	[need_her_help] Yes, and I can't let you kill her.
+||
+{descript_perp | add_flag nkaanmykiunsuns_pc_knows_witch} She stares at you with shock in her eyes. "You... know her!"
+{i_know_her | add_flag nkaanmykiunsuns_pc_knows_witch} "What!? Are you serious?"
+	[yeah_sirius] Yes.
+	[yeah_sirius] Well, I don't know her that well.
+||
+{yeah_sirius} She rubs her temples. "How do I get myself into garbage like this... "
+	[do_your_job] If what you say is true, I'm not going to defend her. Do your job.
+	[need_her_help] I can't let you kill her. I need her.
+	[no_kill_please] I'm not going to let you hurt her.
+||>>Do your job
+{do_your_job} "Sure! <b>Fucking fuck</b>! It's not your fault of course, but god damn am I frustrated. Right... <br><br>I'm going to do this without a second guy, then."
+	[want_leave] Do you want me to leave?
+||
+{want_leave} She pulls a long dagger on you. "No, you're staying here. I've pulled enough knives from my back to learn not to leave unclear actors on the table."
+	[u_kill_me] What? You're going to kill me?
+	[woah_wait] Woah! Wait a second! We can talk this out! 
+||
+{woah_wait} "Of course, I would just like to tie you up until the job is done. The dagger is just a precaution."
+{u_kill_me} "I would rather not. I would just like to tie you up until the job is done."
+{dont_trust} "We barely know each other, you know that. I just need to remove you from the situation.<br><br>Look... I'll even buy you a drink after, if you co-operate."
+	[dont_trust] You don't trust me? //hideif.index_is.dont_trust
+	[surrender] I understand, go ahead. (Surrender)
+	[not_let_you] I'm not going to let you tie me up.
+||
+{not_let_you} "It's just a precaution."
+	[not_let_you_2] I'm not going to let you tie me up, even as a precaution.
+	[surrender] Alright, sure, go ahead. (Surrender)
+||
+{not_let_you_2} "You're not serious! C'mon! Do I actually need to fight you to make you comply?"
+	[not_let_you_3] You're not tying me up.
+	[surrender] Sorry, I'm being an ass. Here, tie me up. (Surrender)
+||
+{not_let_you_3} "Fuck you!" She readies herself for the fight.
+	[ | start_music sejan_taodal/nkaanmykiunsuns_fight 70, start_combat nkaan_frendo_win pc_frendo_win] (Fight her)
+	[surrender_oshit] Shit. Wait! I changed my mind! Tie me up, please! (Surrender)
+||>>Surrender
+{surrender_oshit | pic tied_up} She snarls, annoyed. "You little shit." She approaches carefully with her dagger ready and takes a black rope from her bag which she quickly loops over your wrists. After a flurry of professional efficiency, you suddenly find yourself hogtied on the ground.
+{surrender | pic tied_up} She approaches carefully with her dagger ready and takes a black rope from her bag which she quickly loops over your wrists. After a flurry of professional efficiency, you suddenly find yourself hogtied on the ground.
+	[wait_you] Would it bother you if I said this turns me on?
+	[wait_you] I'll just wait for you here.
+||
+{wait_you | pic stab_scare} Before you manage to utter anything, she shoves an improvised gag in your mouth and ties it around your head. She crouches next to you and you feel a cold edge on your throat. "Naive and trusting, aren't we?" She yanks your head to the side and pokes your neck with the point of her knife. "Just a quick stab and you're done." She raises her knife with the intent of driving into it into your neck.
+	[escape_eyeroll] Roll your eyes at her. //showif.will.10
+	[rope_escape_mumble] What the fuck? Why?!
+	[rope_escape] (Roll dodge)
+	[rope_escape] (Break the ropes)
+	[rope_escape] (Kick her over)
+||
+{rope_escape_mumble | remove_pic} You yell through the gag at her.<br><br>Nkaanmykiunsuns gently slaps you on the cheek with the flat side of the dagger, hops up, and grins. "I'm fucking with you!<br><br>Thanks. I owe you a drink. I'll be back in a moment." She leaves and disappears into the night.
+{rope_escape | remove_pic} The ropes incapacitate you to a degree that they render your action into ineffectual thrashing.<br><br>Nkaanmykiunsuns gently slaps you on the cheek with the flat side of the dagger, hops up, and grins. "I'm fucking with you!<br><br>Thanks. I owe you a drink. I'll be back in a moment." She leaves and disappears into the night.
+{escape_eyeroll | remove_pic , character_leave} She plunges the knife within a hair's breadth of your neck and then hops up and grins. You look at her and roll your eyes dismissively. "Hah! You fucker! Can't let me have a twitch at least?<br><br>Thanks. I owe you a drink. I'll be back in a moment." She leaves and disappears into the night.
+	[wait_hog_tied] (Wait)
+||
+
+||>>PC wins (friendly)
+{pc_frendo_win | start_music sejan_taodal/nkaanmykiunsuns_fight_end 70 0 0 no_loop} Nkaan falls to the ground, bloodied and bruised.
+	[pc_win_rubitin] (Offer a hand) There, do you trust me now?
+	[pc_win_rubitin] I thought you were better at this.
+	[pc_win_rubitin] You're pretty good.
+||
+{pc_win_rubitin} Nkaan gets up. "We could have just... We didn't have to fight. You could have just let me tie you up."
+	[no_ropes] I don't like getting tied up.
+	[hurt_too_bad] I didn't hurt you too bad, did I?
+||
+{no_ropes} "No, apparently you do not." She cracks her neck.
+{hurt_too_bad} "I'm going to be sore later, but I can do my job still." She cracks her neck.
+	[go_kill_her] Let's get to it, then.
+||>>Nkaan wins (friendly but annoyed)
+{nkaan_frendo_win | start_music sejan_taodal/nkaanmykiunsuns_fight_end 70 0 0 no_loop, pic tied_up} You fall backwards from her attack. You try to get back up, but she knees you in the face. Your face spills blood as your head violently whips against the grass. You turn to her and she quickly jabs you in the chin. Your head spins and your muscles hurt. You grunt and try to untangle your broken, floating thoughts.<br><br>Nkaanmykiunsuns swiftly yanks you on your stomach and you feel thin, cold wire wrap around you wrists painfully. She mercilessly hogties you on the ground. As you regain your senses, she yanks on the wire and tightens the restraints one more time.
+	[plead_dumb] Fuck, calm down, I was just playing.
+	[plead_dumb] Alright! You got me! You don't have to be so rough.
+	[plead_dumb] Yup, I deserve all of this.
+||
+{plead_dumb | pic waiting_tied} She stuffs a gag into your mouth and ties it around your head. You hear her mutter to herself. "Fucking... macho retard." She crawls up the hill towards the Witch's hut.
+	[wait_hog_tied_dumb] (Wait)
+||
+
+||>>I can't let you hurt her
+{need_her_help} "-name-... you do know I can't let that murderer just walk away because you have unresolved issues with her?"
+{no_kill_please} "She's a murderer. I'm not going to let her escape retribution just because you have a relationship with her."
+	[don_care_no_kill] I don't care! You're not killing her.
+	[back_home] I need her help to get back to my home world.
+	[fight_out] How do I stop you from killing her? Please, tell me. //showif.charisma.8
+||
+{back_home} "What!?<br><br>She deserves it. I'm not going to shirk from my duty just because you're fun to drink with."
+{don_care_no_kill} "She's a murderer! And a witch! I'm not going to shirk from my duty."
+{fight_out} "She deserves it. I'm not going to shirk from my duty just because you're fun to drink with."
+	[ | start_music sejan_taodal/nkaanmykiunsuns_fight 70, start_combat nkaan_win pc_win] (Attack her)
+	[gon_fight] We're going to fight it out then?
+||
+{gon_fight} "Stop.<br><br>What do you think will happen? Even if you win, you would have to kill me to stop me. Just surrender."
+	[not_gon_kill] I'm not going to kill you. I'm just going to stop you from killing her.
+	[fight_now] Let's get this over with.
+	[fight_now_2] I am going to kill you, then.
+	[surrender] I... understand, go ahead. (Surrender)
+||
+{not_gon_kill} "Sure. Win. Tie me up. The ruckus will wake the Witch and she'll kill me."
+	[she_not_kill] She's not going to kill you, and even if she wants to, I won't let her.
+	[fight_now] Maybe you deserve that.
+||
+{she_not_kill} "I don't want to do this."
+	[fight_now] Surrender, then.
+||
+{fight_now} She raises her weapon.
+{fight_now_2} She raises her weapon.
+{goingto_kill} "I don't know, should I?" She twirls her weapon.
+	[ | start_music sejan_taodal/nkaanmykiunsuns_fight 70, start_combat nkaan_win pc_win] (Fight)
+	[goingto_kill] Are you going to kill me? //hideif.index_is.goingto_kill //hideif.index_is.fight_now_2
+||
+
+
+
+||>>Nkaanmykiunsuns wins against the PC
+{nkaan_win | start_music sejan_taodal/nkaanmykiunsuns_fight_end 70 0 0 no_loop, pic tied_up} You fall backwards from her attack. You try to get back up, but she knees you in the face. Your face spills blood as your head violently whips against the grass. You turn to her and she quickly jabs you in the chin. Your head spins and your muscles hurt. You grunt and try to untangle your broken, floating thoughts.<br><br>Nkaanmykiunsuns swiftly yanks you on your stomach and you feel thin, cold wire wrap around you wrists painfully. She mercilessly hogties you on the ground. As you regain your senses, she yanks on the wire and tightens the restraints one more time.
+	[plead_witch] Please don't kill her.
+	[plead_witch] If you touch her, I will hunt you down and kill you.
+	[plead_witch] (Say nothing) //showif.will.6
+||
+{plead_witch | pic waiting_tied} She stuffs a gag into your mouth and ties it around your head. You hear her sigh and start walking towards the Witch's hut.
+{rope_fail_1} You strain against the thin, black rope tied around your wrists. Sweat wells up on your forehead as you pull at the restraints with all your strength. The rope does not yield. You stop.
+{rope_fail_2} You inhale and grunt as you bulge your muscles against the tightened rope. Your elbows and shoulders crack and pop. Your forearms strain with desperate strength, sweat pours down your face and burns your eyes but the rope does not break. You falter and fall on the ground, panting and muscles aching. You feel weak.
+{rope_fail_3} You flex one more time but the rope digging into your wrists tightens and cuts until the pain becomes unbearable. You falter and fall on the ground, panting and muscles aching. You feel weak.
+	[ | check_stat strength 8 rope_fail_1-break_rope_1] (Break the restraints) //showif.index_is.plead_witch
+	[deed_is_done] (Wait)
+||>>Break rope arrrrr
+{break_rope_1} You strain against the thin, black rope tied around your wrists. Sweat wells up on your forehead as you pull at the restraints with all your strength. The rope tightens around your wrists until it's strangling your hands from blood. The rope does not break.
+	[ | check_stat strength 10 rope_fail_2-break_rope_2] (PULL HARDER)
+||
+{break_rope_2} You inhale and grunt as you bulge your muscles against the tightened rope. You elbows and shoulders crack and pop. Your forearms strain with desperate strength, the rope tightens on your wrists painfully and then burns and digs into your skin. Blood streaks around the rope. You can feel small snaps from the rope, but your hands feel as if they're being cut off. You grimace as sweat pours down your face and burns your eyes.
+	[ | check_stat will 6 rope_fail_3-break_rope_3] (BREAK THE ROPE)
+||
+{break_rope_3 | pic outside_abode} You add in the last of your resolve and strength, and the rope snaps with a bang. You fall on the ground, inhale, and then hastily untie your bindings. The Witch's house looms on the hill.
+	[save_witch_1] (Run to the house)
+||
+{save_witch_1 | start_music sejan_taodal/nkaanmykiunsuns_sting 70 0 0 no_loop, pic interrupted} You sprint up the hill and crash through the hut door. You see Nkaan crouched next to the sleeping Witch, holding a mallet and a dagger. She stares at you in shock.
+	[save_witch_2] (Tackle Nkaan)
+||
+{save_witch_2 | auto_continue save_witch_3, pic hut_escape} You lunge at the confused Nkaan. You tackle her on the ground but she kicks you off her with a snarl. The Witch jumps up in her bed and screams. Nkaan takes a quick glance at her and turns around to run away.
+||
+{save_witch_3 | auto_continue save_witch_4, pic hut_evicted} The Witch points her hand at Nkaan and she is swept off her feet and smashed through the door. You get up and see Nkaan roll violently down the hill. She then springs back up and runs into the forest. 
+||
+{save_witch_4 | add_flag nkaanmykiunsuns_grudge, add_flag nkaanmykiunsuns_left_taodal, pic outside_abode} The door slowly closes again with a rusted whine. The Witch is staring at you in shock. Her hands shake. You stare at each other for a moment.
+	[ | start_encounter sejan_witch_house_interior witch panic_no_danger] She was trying to kill you.
+||
+
+||>>Nkaan comes back with Witch's head after tying up hostile PC
+{deed_is_done | add_flag witch_killed_by_nkaan} After torturous moments of nothing but the sounds of the forest moving in the wind, you see Nkaan exit the house with a bag. She casually makes her way down the hill.
+	[nkaan_free_you] (Wait)
+||
+{nkaan_free_you | add_flag nkaanmykiunsuns_left_taodal} She walks next to you and looks down at you. Her tone is dark and sober. "I'm... I'm sorry about your friend. You did the right thing, trying to save her from a stranger with a knife, but you will have to move on now. Try to find peace in the fact she was a murderer." She draws a small knife from her pockets and nicks your restraints. "She died in her sleep." She runs off and disappears between the trees.
+	[nicked_break] (Break the restraints)
+||
+{nicked_break | add_flag witch_house_burnt, pic burning_hut} You pull at the ropes and they snap one by one until your hands are free. You untie your bindings and stand up.<br><br>The Witch's house is on fire.
+{run_after_nkaan} You sprint into the forest, but see no trace of Nkaanmykiunsuns.
+	[ | start_encounter sejan_witch_house witch run_to_hut] (Run to the house)
+	[run_after_nkaan] (Run after Nkaan) //showif.index_is.nicked_break
+||
+
+
+
+||>>PC wins (hostile)
+{pc_win | start_music sejan_taodal/nkaanmykiunsuns_fight_end 70 0 0 no_loop, set_map_location sejan_nkaanmykiunsuns_grave} Nkaan falls to the ground, bloodied and bruised.
+	[tie_nkaan] (Tie her up)
+||
+{tie_nkaan | pic nkaan_tied_up} You jump on Nkaan and take the black rope on her waist. She grunts as you shove her face in the dirt and loop the rope around her wrists. You quickly tie her hands and legs. You lift her against a fallen tree. She looks at you, unsure.
+{if_kill_you} "But you don't want to do that, that's why we are talking."
+{please_better} "I have nothing else to barter with. You know that."
+{rape_done | pic nkaan_tied_up} You cover yourself and step off Nkaanmykiunsuns. She grunts and settles herself against the fallen tree. She stares at you silently.
+	[what_suppose_do] What am I supposed to do with you? //hideif.has_flag.nkaanmykiunsuns_raped_by_pc
+	[release_nkaan] (Release her)
+	[ | check_flag nkaanmykiunsuns_raped_by_pc kill_nkaan rape_but_kill] (Kill her)
+	[rape_nkaan] (Rape her) //showif.rape_filter_off //showif.player_sex.male //hideif.clicked
+||
+{what_suppose_do} She looks at you. "Let me go. I won't go after the Witch."
+	[determination_nkaan] You were all about killing her a moment ago, but once you're beaten and tied up, you lose your fiery determination? //showif.charisma.8
+	[why_believe] Why would I believe you?
+||
+{determination_nkaan} She looks down. "Sticking to your duty doesn't mean anything if you're dead. I can't make winning moves from here on out, so I'm trying to lose less.<br><br>Take my weapons and go warn the Witch."
+{why_believe} "Take my weapons and go warn the Witch."
+	[try_kill_again] What stops you from trying to kill her again?
+||
+{try_kill_again} "I can only give my word for it."
+	[release_nkaan] That's enough for me. (Release her)
+	[please_better] Please, give me something better.
+	[if_kill_you] If I kill you, I don't have to rely on your word for it.
+||
+
+||>>PC releases Nkaan
+{release_nkaan | add_flag nkaanmykiunsuns_grudge, add_flag nkaanmykiunsuns_left_taodal, change_environment sejan_witch_house, change_sprite no_weapons} You go through her bags and pockets, you find several knives and a mallet. She doesn't say anything. You cut the rope around her wrists and legs. She stands up and rubs her wrists.
+{release_nkaan_threatened | add_flag nkaanmykiunsuns_grudge, add_flag nkaanmykiunsuns_left_taodal, change_environment sejan_witch_house, change_sprite no_weapons} You move the knife away from her neck. She doesn't say anything, tears drying on her face. You cut the rope around her wrists and legs. She stands up and rubs her wrists.
+	[release_nkaan_2] You can go.
+	[release_nkaan_2] Please, don't make me regret this.
+	[release_nkaan_2] I will kill you the next time you try to kill her.
+||
+{release_nkaan_2 | character_leave} She nods and leaves.
+	[ | end_encounter] (Leave)
+||
+
+||>>PC rapes Nkaan
+{rape_nkaan | add_flag nkaanmykiunsuns_raped_by_pc} You grab her and forcefully drag her over the fallen tree. She snarls as her head hits the ground.
+	[rape_mouth] (Force her into a blowjob)
+	[tear_clothes] (Tear the bottom of her suit open)
+||
+{tear_clothes} She twitches as you yank her skirt up. You take one of her knives and nick a seam near her crotch. You tear the cloth open to reveal her pale bottom.
+	[rape_vag] (Fuck her)
+	[rape_ass] (Fuck her in the ass)
+||>>Toothy bj (What were you thinking!?)
+{rape_mouth | pic rape_bj} You grab one of her knives and step over to her head. You present your cock to her while pressing the knife against her throat. She pauses and then hesitantly takes you into her mouth. She takes your completely into her mouth, her teeth gently pressing against the base of your cock.
+	[oof_benis_1] (Fuck her mouth)
+||
+{oof_benis_1 | pic dickbit_1, auto_continue oof_benis_2} You scream as an intense pain rips trough your crotch. Nkaan rips off your cock with a single furious bite. In panic you slash at her head, slicing a long gash into her face. The pain knocks out your legs and you fall over. Tied up, Nkaan rolls and jumps away from you. You try to get up, but you feel weak, you hold your crotch as it gushes blood. You hear Nkaan laugh maniacally from somewhere.
+||
+{oof_benis_2 | pic dickbit_2, auto_continue oof_benis_3} You hobble a few steps as your fingers grow numb and cold. Your vision darkens and you fall down.<br><br>You feel yourself slip into dark.
+{oof_benis_3 | player_death}
+||
+||>>Rape vaginal
+{rape_vag | pic raped_over_log} You bare your cock and line it against her thigh gap. You prod against her labia and then shove yourself in her. She inhales sharply as you penetrate into her and her legs tense as you sink deeper. You grip her hips and yank her against you to hilt yourself into her. She lets out a huff as her ass slaps against you.
+	[fuck_vag] (Fuck her)
+||
+{fuck_vag} You quickly pick up your pace and start pumping into her. Her body tenses against your impacts. She takes short inhales and exhales as you pound her over the fallen tree. The log rustles and creaks with each thrust. You feel the familiar pressure build in your loins and speed up. Nkaanmykiunsuns breathes quicker as your thighs forcefully slap against her rear.
+	[nut_vag] (Finish)
+||
+{nut_vag} You pull on Nkaanmykiunsuns's hips and plunge your cock as deep as it goes. Your legs cramp, and you lean against her ass to stay upright. You grimace as you empty yourself into her.<br><br>The hot waves die out, and you're left shivering in the night air. A string of cum drips out of her as you pull out. She lets her hips fall slightly and you hear her breathe deeply.
+	[rape_done] (Get dressed)
+||>>Rape anal
+{rape_ass | pic raped_over_log} You bare your cock and line it against her anus near the base of her tail. You prod against it and then shove yourself in her. She lets out a long, pained whine and grimaces. You feel her legs tense as you sink deeper. You grip her hips and yank her against you to hilt yourself into her. She lets out a huff as her ass slaps against you.
+	[fuck_ass] (Fuck her)
+||
+{fuck_ass} You quickly pick up your pace and start pumping into her. Her body tenses against your impacts. She breathes raggedly and lets out a pained whine with every other thrust as you pound her over the fallen tree. The log rustles and creaks with each thrust. You feel the familiar pressure build in your loins and speed up. Nkaanmykiunsuns squirms and grimaces as your thighs forcefully slap against her rear.
+	[nut_ass] (Finish)
+||
+{nut_ass} You pull on Nkaanmykiunsuns's hips and plunge your cock as deep into her ass as you can. Your legs cramp, and you lean against her ass to stay upright. You grimace as you empty yourself into her.<br><br>The hot waves die out, and you're left shivering in the night air. A string of cum drips out of her as you pull out. She lets her hips fall slightly and you hear her breathe deeply.
+	[rape_done] (Get dressed)
+||
+
+
+||
+
+||>>Can't let you live
+{kill_nkaan | pic kill_or_not} You snag one of her knives and set it to her neck. Her eyes stare at the knife in terror and she lets out a desperate and fearful scream. "Nonono, don't do it! Stop, stop!" She swallows and you press the point against her throat. She takes a deep breath and continues, "Don't kill me. We can work this out differently." She stares at you wide-eyed.
+{rape_but_kill | pic kill_or_not} You snag one of her knives and set it to her neck. Her eyes stare at the knife in terror and she lets out a desperate and fearful scream. "Nonono, don't do it! Stop, stop!" She swallows and you press the point against her throat. "Loo- Look! Sure! You fucked me. But hey! Fighting fucks with your head, you saw my ass and decided to stick your dick in me. It doesn't mean anything!" She takes a deep breath and continues, "Don't kill me. We can work this out differently." She stares at you wide-eyed.
+	[cant_let_live] You know I can't let you live.
+	[stab_1] (Stab her in the neck)
+||
+{cant_let_live} She grimaces. "You're wrong. I- I'll leave the Witch alone. I'll lie I killed her but lost the head. You'll never see me again. All wrapped up nicely and everybody stays breathing."
+	[you_lie_nkaan] The moment you're safe, you'll just resume your work and kill me and the Witch in our beds.
+||
+{you_lie_nkaan} She shakes her head. "No! You're wrong! I- I feel strong duty towards this work, but I will always take failure and dishonor before death. Always. D- Dead, you cannot hug the ones you love... or protect them."
+	[principled_murder] You're too principled to let go. You will come after us again.
+||
+{principled_murder} "Nonono! Stop. Duty or honor is nothing set against death. Don't! I will disappear. Leave you alone."
+	[impasse_murder] I want to believe you, but you already know what kind of a situation this is.
+||
+{impasse_murder} Her eyes well up with tears. She pleads with a faltering voice, "Please... How am I supposed to save myself? All words will sound like excuses and lies to you."
+	[stab_1] (Stab her in the neck)
+	[release_nkaan_threatened] (Release her)
+||>>Stabbing
+{stab_1 | play_sound sejan/nkaan_stabbed_1 70, pic stab_1} You stab her in the neck. The knife sinks deep into her neck; she screams. You hear a crunch as the tip hits something inside her throat. Her scream turns into unintelligible slurry of noise. You yank the knife out with a spatter of blood. She yells desperately at you. "Stop! <b>Stop</b>! You don't have to do this!" The hole in her throat spits blood with every syllable.
+	[stab_2] (Stab her)
+	[stab_regret] (Help her)
+||
+{stab_2 | play_sound sejan/nkaan_stabbed_2 75} You stab her throat again. A spatter of warm blood slaps you in the face. She screams desperately. "<b>No!</b> Please!" She struggles hopelessly under you. Tears run down her cheeks as she pleads with a broken voice. "P- p- please! No. Please!"
+	[stab_3] (Stab her)
+	[stab_regret] (Help her)
+||
+{stab_3 | play_sound sejan/nkaan_stabbed_3 80, pic stab_2} She gasps as the knife sinks into her blood-soaked neck. "Kill me! Kill me! B- B- bu..." She inhales a bloody, ragged breath. "Let me say go- goodbye." You pull the knife out of her neck and she grimaces. Her face is quickly losing any color it had. 
+	[stab_4] (Stab her)
+	[stab_regret_dead] (Help her)
+||
+{stab_4 | play_sound sejan/nkaan_stabbed_4 85} You stab her again. The holes in her neck bleed profusely as she croaks hysterically with a broken voice. "Let me say bye- Let me say goodbye to Ean. Let me say goodbye to Ean." Her mouth and nostrils spew blood and her tortured eyes stare desperately at you. "Let me-" She coughs. "Let me... Say goodbye to Ean." She stares at you with hopeful eyes, waiting for your answer as the thick blood slides off her neck to the ground.
+	[nkaan_dead_sorry] (Say nothing)
+	[nkaan_dead_sorry] ...I'm sorry. //showif.charisma.6
+	[stab_final] (Stab her)
+||
+{stab_final | play_sound sejan/nkaan_stabbed_5 90, pic dead} You stab her bloodied neck, she twitches once. Her eyes unfocus and then slowly close, her head stoops to her chest.<br><br>She sighs.<br><br>Her body twitches, stiffens, and then, slowly, her muscles relax as her body slumps to the ground.
+{nkaan_dead_sorry | start_music sejan_taodal/nkaanmykiunsuns_goodbye 60 1 1 no_loop, play_sound sejan/nkaan_die 90, pic dead} Her eyes unfocus and then slowly close, her head stoops to her chest.<br><br>She sighs.<br><br>Her body twitches, and then, slowly, her muscles relax as her body slumps to the ground.
+	[steady_murder] (Steady yourself)
+||>>Nkaan is dead
+{hold_dead | add_flag nkaanmykiunsuns_killed_by_pc} You sit quietly on the sand, holding her bloodied neck as warmth leaves her body.<br><br>You lift her carefully on the sand. She is completely still and cold.
+{steady_murder | add_flag nkaanmykiunsuns_killed_by_pc} You inhale. The cold night air sends a jolt into your brain, your nostrils feel dry and achy. You exhale, the adrenaline burns away, and your fingers feel cold. You relax your grip on the knife.<br><br>Nkaanmykiunsuns's body lies motionless on the sand.
+{loot_dead | pic dead, give_item wooden_mallet, give_item large_nail} You go through her bags and pockets, you find several knives and a mallet.
+	[loot_dead] (Take her things) //hideif.index_is.loot_dead
+	[bury_nkaan | play_sound sejan/nkaan_bury 70, advance_time_to morning] (Bury her)
+	[ | end_encounter] (Leave)
+||>>Stab regret
+{stab_regret | play_sound sejan/nkaan_regret_drop 40, pic stab_regret} You drop the bloody knife. You take Nkaanmykiunsuns in your lap, you hold her head and press on the wound. She starts to cry. She snorts through her tears and talks to you, "My bag...T-there's bandages." You hold her throat with one hand, blood slowly spilling around your palm. You open her bag and take out the bandages. You wrap the cloth around her neck and tie it. She coughs and talks again, "Brown needle, inject it into my neck." You take the needle and do as she said. She cries. "Thank you." You hold her for a while.
+	[stab_regret_1] (Cut her bindings)
+||
+{stab_regret_1} You cut the ropes around her wrists and legs. She stays in your lap and cries softly.
+	[stab_regret_2] (Help her up)
+||
+{stab_regret_2 | remove_pic, change_sprite no_weapons} You help her stand up. She brushes her eyes.
+	[stab_regret_3] ...I'm sorry. //showif.charisma.6
+	[stab_regret_3] You can go.
+	[stab_regret_3] (Say nothing)
+||
+{stab_regret_3 | add_flag nkaanmykiunsuns_left_taodal} She nods and answers with a weak voice, "Thank you." She turns around and limps into the forest, holding her throat. You're left alone in the forest.
+	[ | end_encounter] (Leave)
+||>>Stab regret, but she dies
+{stab_regret_dead | play_sound sejan/nkaan_regret_drop 40, start_music sejan_taodal/nkaanmykiunsuns_goodbye 60 1 1 no_loop, pic stab_regret} You drop the bloody knife. You take Nkaanmykiunsuns in your lap, you hold her head and press on the wound. She laughs and then coughs up blood. "T- thank you, thank you, thank you." She starts to cry. You feel the blood spill out of her neck past your fingers.
+	[stab_regret_dead_1] Tell me what to do! Tell me how to save you!
+||
+{stab_regret_dead_1} She sputters more blood and croaks. "B- bag." You open her bag and find a roll of bandages. You quickly spin it around her neck and tie it. The white bandage is completely soaked with bright blood. Nkaan nods drowsily and then coughs up more blood. You press on the bandage to stop the bleeding.
+	[stab_regret_dead_2] Is there anything else I can do?! 
+||
+{stab_regret_dead_2 | play_sound sejan/nkaan_die 60} Her head falls to her chest. She becomes quiet. Her hand twitches and her toes relax.
+	[hold_dead] (Hold her)
+||
+
+
+||>>bury nkaan
+{bury_nkaan | hide_character, change_environment sejan_nkaanmykiunsuns_grave, add_encounter sejan_nkaanmykiunsuns_grave nkaanmykiunsuns, save_index dead_and_buried, change_default_diag_file nkaanmykiunsuns diag_hitjob, remove_pic} You work through the night to bury her. You're placing the final pebbles on the mound of her grave when you notice it's morning. The forest seems unusually quiet, and the wind blows softly.
+	[ | end_encounter] (Leave)
+||
+
+||>>Nkaan's grave (yes, it's right here)
+{dead_and_buried | hide_character} You find Nkaanmykiunsuns's grave among the trees.
+	[ | end_encounter] (Leave)
+||
+
+
+
+||>>JOB AFTERMATH: PC sided with Nkaan
+{wait_hog_tied_dumb | add_flag witch_killed_by_nkaan} You wait in the quiet darkness, you can't hear anything from the house.<br><br>After a few long moments of oppressive silence, you suddenly hear Nkaanmykiunsuns talk behind you. "All done. Are you going to behave if I let you go now? You being this bullheaded could have fucked up the job."
+	[hogtied_release] I'm sorry. //showif.charisma.6
+	[hogtied_release] I'll behave.
+	[hogtied_release] I don't like getting tied up, is all.
+||
+{wait_hog_tied | pic waiting_tied, auto_continue wait_hog_tied2} You wait in the quiet darkness. You can't hear anything from the house.
+||
+{hogtied_release} She yanks the rope and your hands are released. She fiddles with the rest of the ropes until you're free.
+{wait_hog_tied2} You suddenly hear Nkaanmykiunsuns talk behind you. "All done. Thanks for cooperating. Sorry about the ropes." She yanks the rope and your hands are released, she fiddles with ropes until you're free.
+	[hogtied_getup] (Get up)
+||
+{oki_job | character_return normal, add_flag witch_killed_by_nkaan} The hut door suddenly opens and Nkaanmykiunsuns steps out with a bag. She casually strolls down the hill and waves at you. "We can go now." Her hands have small specks of blood on them.
+{hogtied_getup | remove_pic, add_flag witch_killed_by_nkaan} You get up and notice she's carrying a bag and her hands have small specks of blood on them. "I couldn't take the risk that you'd change your mind or turn on me in the middle of the job. I just don't know you that well. Again, sorry about the tying you up."
+{i_geddit} "Good."
+	[i_geddit] Don't worry, I get it. //showif.index_is.hogtied_getup
+	[went_well] That went well.
+	[what_happen] What happened?
+||
+{went_well} "Yup. No problems. Thanks for the backup."
+{what_happen} "I did my job. We can go now."
+	[leaving_job_site] Let's go, then. (Leave)
+	[look_in_bag] ...Can I look into the bag?
+||
+{look_in_bag} She pauses and her mouth opens in shock. "...What? Why?"
+	[done_now] Just fucking with you, sorry.
+	[ | check_flag nkaanmykiunsuns_pc_knows_witch emo_psycho_1 the_noih_psycho] I need to know... I knew her.
+	[the_noih_psycho] I'm curious.
+||
+{emo_psycho_1} She pauses, her eyes stare at you unflinchingly. "What?"
+	[emo_psycho_2] I knew her.
+||
+{emo_psycho_2} "Not on the best of terms, I assume. I- I... Why didn't you tell me this sooner?"
+	[the_noih_psycho] Didn't seem important.
+	[the_noih_psycho] She deserved this.
+||
+||>>Look into the bag
+{the_noih_psycho} "A- Are you sure, you want to take a look? I... do a lot of this job with my eyes closed. You shouldn't expose yourself needlessly to misery or death. Insanity lies that way."
+	[let_me_see] I'm sure.
+	[done_now] No... you're right.
+||
+{let_me_see | pic severed_head, auto_continue done_now} She opens the bag. You see the Witch's severed head at the bottom with a small hole in her temple.
+||
+{done_now | remove_pic} "We should go now." She motions at the forest.
+	[leaving_job_site] (Follow her)
+||
+
+||>>leaving
+{leaving_job_site | play_contsound generic/loops/fire 70 1 0 3, add_flag witch_house_burnt, pic burning_hut, save_index_by_character sejan_witch_house burnt} You take a few steps and the hill is suddenly illuminated as the house catches on fire. You can feel the heat even at the bottom of the hill. Nkaan watches the fire, confused and scared.
+	[why_fire] Did you have to burn the house down?
+	[why_fire] Did you do that?
+||
+{why_fire} "I didn't do that." You hear worry in her voice. She takes hasty steps towards the forest. "Let's go."
+	[follow_nkaan_out | stop_contsound 1 3, advance_time_to morning] (Follow her)
+||
+{follow_nkaan_out | change_environment taodal_entrance, remove_pic} You make your way through the forest in silence. Nkaan stops and turns to you. "Thanks for the help. I'll have to do some things, but come see me at the tavern afterwards." 
+	[follow_sure] Sure.
+||
+{follow_sure | character_leave, save_index after_job} "See you later." She walks back into the forest.
+	[into_village] (Walk into town)
+||
+{into_village | change_environment taodal} You walk into the village. It's slowly beginning to wake up and people are walking on the street. You feel exhausted.
+	[ | start_encounter taodal_communal_chambers taodal_market rest_to_evening] (Go sleep)
+||
+

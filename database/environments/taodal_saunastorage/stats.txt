@@ -1,0 +1,7 @@
+interior:	yes
+ambient:	0.6
+
+<SOUNDS
+misc/old_water_drops.15
+sejan_taodal/tornoth_smithy.10
+SOUNDS>

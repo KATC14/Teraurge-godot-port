@@ -1,0 +1,775 @@
+
+||>>Meeting shyni after the sauna episode
+{start | start_music sejan_taodal/shyni 70 3} You walk to Shyni's yard and see her tending to her garden. She notices you and waves excitedly. "Hey!"
+	[heyhey] Hey!
+||
+{heyhey} "I was wondering when you'd show up!"
+	[worried_rush] Are you okay? //showif.charisma.6
+	[worried_rush] Why did you rush out like that at the sauna?
+||
+
+
+||>>Why rush out like that?
+{worried_rush} "It was nothing. Just forget that... Not the good parts, just me running away like that... I- I still feel the same way I did."
+	[ran_love] You mean, what you said before you ran away? You... love me?
+	[did_wrong] I didn't do anything wrong, did I?
+||
+{did_wrong} "No! The problem is all me! I'm just... a confused little girl. I'm just very excited and it's getting to my head... you know?" 
+	[ran_love] Before you ran away, you said you love me.
+||>>"I love you" issue
+{ran_love} She gasps. "I- I did say that... Didn't I? I- I don't know how to explain my feelings. Maybe foolish, young girl love... But- but still love?"
+	[no_explain] You don't have to find a label for it. We can just be together the way we want.
+	[luv_u_to] I love you too.
+	[bit_strong] You don't think it sounds a bit... strong?
+	[not_feel] Shyni, I don't feel that way about you.
+||
+{no_explain | play_sound generic/interactions/hug 70, pic shyni_hug, auto_continue huggi_shyni} "... I would love that." She hugs you.
+{luv_u_to | play_sound generic/interactions/hug 70, pic shyni_hug, auto_continue huggi_shyni} She hugs you.
+||
+{bit_strong} She laughs nervously. "I know what you mean... It's been a bit of a whirlwind. But..." She turns her eyes to you and stops.
+	[fool_romance] I just feel this is moving very fast.
+	[fool_romance] I mean... I like you a lot, but the word just seems too strong.
+||
+{fool_romance} She giggles softly. "I know. I shouldn't have said it. Sorry. Can we just... continue this foolish romance?"
+	[love_to_love] I would love to.
+	[not_feel] Shyni... I don't feel that way about you.
+||
+{love_to_love} "Thank you... I should have never mentioned the book."
+{huggi_shyni | remove_pic} After a moment she releases you reluctantly. "Thank you... I should have never mentioned the book."
+{wbook_1} "I- I... Just forget I said anything. I was just being stupid."
+	[wbook_3] You're not stupid, just tell me. //showif.index_is.wbook_1
+	[wbook_1] Can you tell me what it is? //hideif.index_is.wbook_1
+	[wbook_2] I don't have a husband book, sorry. //showif.player_sex.male
+	[wbook_2] I don't have a wife book, sorry. //showif.player_sex.female
+||
+{wbook_2} "No... Of course you wouldn't... You're from another world! Why would I expect you to... Sorry."
+	[wbook_3] You can tell me.
+||
+{wbook_3} She sighs. "It's stupid. I'm stupid."
+	[wbook_4] If you share it, you- uh... You'll only be half as stupid? //showif.charisma.6
+	[wbook_4] Stop it.
+||
+{wbook_4} She chortles. "I- I don't think it works like that."
+	[wbook_5] I didn't do anything wrong, did I?
+||
+{wbook_5} "No... It's nothing like that. Look... I should probably just show you."
+	[wbook_6] Can I read it too?
+||
+{wbook_6} She sighs. "Come in, I'll show you."
+{its_an_ejaculation_joke | change_sprite blushed, character_leave} Shyni's face turns purple. She looks around her yard in embarrassement and then whispers with a frail voice. "...Get in the house, you retard." She bolts for the door.
+	[its_an_ejaculation_joke] Oh, I already did. //hideif.charisma.6 //showif.will.6 //showif.index_is.wbook_6
+	[follow_in] (Follow her)
+||>>REJECTED
+{not_feel | stop_music 2} A desperate, quiet gasp escapes Shyni's throat. "...What do you mean? I- I mean..." She looks away and wrings her hands.
+	[nomore_1] I liked the sex, but we shouldn't make this more than it is.
+||
+{nomore_1} She swallows and squints to stop the tears. "Khm... I- I get it. Sorry... I just... I have an excitable imagination." 
+	[nomore_2] We can keep having sex if you want. That's always fun.
+	[nomore_2] Sorry, I just thought you should know.
+||
+{nomore_2 | character_leave, save_index rejected} Her voice croaks as she answers. "I- I have to go. Bye." She hurries inside and closes the door.
+	[exit_to_taodal] (Leave)
+||
+{rejected | stop_music 3} Shyni is tending to her garden, she stops and stares at you as you approach.
+	[rejected_hey] Hey!
+||
+{rejected_hey} She answers with a soft voice. "Hey."
+	[not_mean] I didn't mean to hurt you, I'm sorry. 
+	[quickie_1] You wanna have some fun? //hideif.charisma.6
+||
+{not_mean} She sighs. "Can you... please leave me alone."
+	[exit_to_taodal] Of course, I'm sorry. (Leave)
+||
+{quickie_1} "Please, -name-... go away. We did... stuff. It's over now."
+	[quickie_2] Doesn't mean we can't have sex. //hideif.charisma.6
+	[exit_to_taodal] Okay. (Leave)
+||
+{quickie_2 | character_leave} "Go away! I don't want to see you again!" She leaves and disappears inside her house.
+	[exit_to_taodal] (Leave)
+||
+
+
+||>>SHYNI'S HOUSE
+{follow_in | stop_music 5, play_sound generic/objects/door_close 70, change_environment taodal_shyni_house, change_sprite character} You follow Shyni into the house. She keeps the door open for you. "So... This is what my home looks like."
+	[lovely_home] It's absolutely lovely. //showif.charisma.6
+	[reflection_home] I can definitely see you reflected in your home.
+	[what_these_are] You have a lot of stuff everywhere. What are these things?
+||
+{lovely_home} "Oh don't say that! It's messy and tiny!" She giggles.
+	[reflection_home] It fits you.
+	[nice_home] It's very nice.
+||
+{reflection_home} "Kinda small, messy and welcoming?" She giggles.
+{youre_bigger} She slaps you playfully. "Oh, don't pretty it up! I'm a little on the short side... but that just makes you bigger!" She winks.
+	[funsized] You're fun-sized, not small. //showif.charisma.8
+	[youre_bigger] You're not that small. //showif.charisma.6 //showif.index_is.reflection_home
+	[nice_home] Your home is very nice.
+||
+{funsized} She reaches and brushes your face with her thumb. "You're fun-sized too."
+	[test_size] Am I? Maybe we should test it out, then, on this furry carpet of yours. 
+||
+{test_size} She giggles and slaps your chest playfully. "We're here to read!"
+	[wegonsex] That's what you think.
+	[nice_home] It's a very nice home.
+||
+{nice_home} "Thank you. I don't show it to many people, since it's always in chaos. I own too many things, I guess."
+{what_these_are} "It's just stuff I've collected. Digging them up from the sand has been my entertainment for some time now."
+	[gather_this] You gathered all these from the peninsula? 
+||
+{gather_this} "Most of them! But I've also bought some from the merchants. I can't resist a useless thing if it looks mysterious."
+	[explain_stuff] Can you tell me more about them? I'd love to hear you explain them.
+||
+{wegonsex} She laughs. "Yes, I suppose! Sit on the carpet, we'll have a comfy reading session right on the floor!" She bounds over to her bookshelf.
+{explain_stuff} "Of course!<br><br>But later! I need to show you the book first. You can sit on the carpet, we'll have a comfy reading session right on the floor!" She bounds over to her bookshelf.
+	[read_1] (Sit down)
+||
+
+||>>Reading session
+{read_1 | start_music generic/peaceful_1 70 3, change_environment taodal_shyni_house_floor, play_sound generic/interactions/hug 70, change_sprite on_floor} Shyni sits on the floor next to you and leans closer to you. She looks at you with a playful squint. "Hey."
+	[read_2] Hey.
+	[read_2] You're even prettier up close. //showif.charisma.6
+||
+{read_2} She giggles. "You like the carpet?"
+	[read_3] It's fluffy.
+	[which_carpet] Which one? Yours or the one on the floor? //hideif.charisma.6
+||
+{which_carpet} She slaps you playfully. "-name-!" She slams a heavy book on your lap.
+{read_3} "A little like me." She sets a heavy book on your lap.
+{wifey_booky} "That's the wife book."
+	[wifey_booky] So, this is the 'wife book.' //hideif.index_is.wifey_booky
+	[try_open] (Open the book)
+||
+{try_open} You try to open the book, but the leather strap around it is secured with a small padlock. Shyni lets out an amused chortle. "It seems to be locked."
+	[open_tease] Are you just teasing me?
+||
+{open_tease} "Give me a kiss, and I'll give you the key."
+	[very_playful] Aren't you playful today.
+	[kissy_open] (Kiss her)
+||
+{very_playful | pic casual_kissy} She leans in to kiss you. You feel her tongue push into your mouth and a taste of something metallic in your mouth.<br><br>You stop the kiss and Shyni giggles. You spit out a small key.
+{kissy_open | pic casual_kissy} You lean in to kiss her. You feel her tongue push into your mouth and a taste of something metallic in your mouth.<br><br>You stop the kiss and Shyni giggles. You spit out a small key.
+	[key_really | remove_pic] Really?
+	[key_eugh | remove_pic] Eugh.
+	[key_what | remove_pic] I didn't realize you could do that.
+	[key_mouthy | remove_pic] ...How long did you have this in your mouth for?
+||
+{key_really} She giggles. "Didn't expect that, did you?"
+{key_eugh} "Sorry! I just thought it'd be a funny joke! My mouth tastes like it too."
+{key_what} "I don't usually hide items in my mouth though, so... Um, don't expect to find anything in there?" She giggles.
+{key_mouthy} "Oh my gods! I just put it there when I fetched the book! I- I didn't keep it in my mouth waiting for you to drop by! Yuck!"
+	[book_open] (Unlock the book)
+||
+
+
+||>>BOOK
+{book_open | play_sound generic/objects/book_open 70, pic book_names} You slide the key into the small lock and turn it, and a quiet click opens the lock. Shyni glances at you nervously and then opens the book. The first page is full of names, written all over the page like autographs in thick, black ink. The pages seem to be out of thick paper-like material but smoother and stronger.
+{read_name_page} You read the names in no particular order, "Ussene, Ettenea, Nholoi, Kuntue, Shaine, Ohlien, Vantenne, Igmis."
+	[read_name_page] (Read the page) //showif.index_is.book_open
+	[writer_names] Are these the names of the writers? //showif.intelligence.6
+	[writer_names] What's this?
+||
+{writer_names | remove_pic} "I'm not sure. They were there when I got the book. Some seem older than the others, so they must have been made at different times. I think they might be the previous owners of the book?"
+{put_name} "...Maybe some day. I don't want to scribble into the book right now."
+	[put_name] Shouldn't you put your name here too? //showif.index_is.writer_names
+	[book_chapters | play_sound generic/objects/book_turn_1 70] (Turn a page)
+||
+{book_chapters | pic book_chapters} You turn a page. The next page is filled with numerous colored bookmarks turned into the book. Shyni straightens the bookmarks out and separates them. The page itself is empty.
+{book_watread} "Uh... I didn't actually plan that far. I guess I just wanted to show you what the book was about?"
+	[book_watread] What do you want to show me about the book? //showif.index_is.book_chapters
+	[bookmarks] The bookmarks are different topics?
+||
+{bookmarks | remove_pic} "Yes! The book is rather extensive, so some organization is very helpful. Whoever made it included a lot of stuff! For example, the white ribbon has information about marriage, the purple talks about chores, the red talks about illnesses, and so on."
+{tip_tricks} "Yeah!"
+	[tip_tricks] Oh, it's like a tips and tricks book? For women? //showif.index_is.bookmarks
+	[other_chapters] What are the others about?
+||
+{other_chapters | pic book_chapters} She blushes a little. "Well... The blue is about love, romance and... thinking about love." She giggles nervously. "The green is about sex and all the fun you can have with it!" She winks awkwardly at you. "We could take a peek at the green section."
+{black_yellow} She looks away. "Yellow is about children... and black, it's... it's about men."
+	[black_yellow] What are the yellow and the black about? //showif.index_is.other_chapters
+	[sex_tips | play_sound generic/objects/book_turn_2 70] Wife book has advice on sex?
+||
+{sex_tips | pic book_spread_legs} "Oh, yes!" She giggles uncontrollably. "It even has illustrations!" She turns the book pages to the green chapter. The first page has a picture of two of Shyni's species having sex.
+	[amazinga_book] Oh, that's pretty graphic. 
+	[amazinga_book] This book is amazing.
+||
+{amazinga_book | remove_pic} Shyni excitedly explains, "It gets worse! By which I mean, <b>better</b>!!" She turns a page and reveals a plethora of drawings of different sex positions.
+	[porny_1] Oh damn.
+	[porny_11] I love that you're so enthusiastic about this. //showif.charisma.6
+||
+{porny_1 | remove_pic} Shyni giggles.
+{porny_11 | remove_pic} She turns to you and softly nods. "I've discovered sex is very fun."
+	[porny_22] The wife book is a lot more fun than I realized.
+	[porny_2] Soo... I assume you want to try some of these?
+||
+{porny_2} "Not just 'some'! We should systematically go through all of them!"
+{porny_22} "Doing what's in it is even more fun... We should try everything!"
+	[porny_3] I'm on board with that idea.
+	[porny_3] You're scaring me, Shyni.
+	[porny_3] Well, the ones we can actually perform. //showif.intelligence.8
+||
+{porny_3 | play_sound generic/objects/book_multi 70} She laughs. "The book is not just smut all the way through.<br><br>It's mostly filled with practical advice for women." She turns to the purple chapter and flicks a few pages. The open page describes different narb recipes.
+	[whybook_1] It seems like a very informative book, but why did you freak out like that at the sauna?
+||
+{whybook_1} She shakes her head. "Ah... I just... I thought everybody had a book like this, and we were acting on the advice... It sounds really stupid now that I say it out loud, but I had this feeling that I was doing something wrong because you didn't know about the book."
+	[whybook_2] ...Do other people have books like this?
+	[whybook_22] Right.
+||
+{whybook_2} She sighs. "I think I'm the only one. In Taodal, I mean."
+{whybook_22} She sighs. "And I think I'm the only one with a book like this in Taodal."
+	[whybook_3] Why did you think others had books too?
+||
+{whybook_3} She chuckles in remembrance. "I mulled on it after the sauna. It's silly. Father gave me this book, and we're not originally from here.<br><br>When I was younger, I talked to Bykaas about the book, and she had no idea what I was talking about. I was so worried I told dad that she might not have a book, then Bykaas visited me the next day saying stuff about her book." She gives you a knowing shrug.
+	[whybook_4] They conspired to keep you in the belief that others had a book too?
+||
+{whybook_4} "Looking back at it, yeah... It does feel like that. I think they did that to make me feel like I wasn't a weirdo?<br><br>I don't think dad even has a husband book."
+	[whybook_5] Why do you think so?
+||
+{whybook_5} "He never mentions anything about it! He also never seems to follow any advice, he just does stuff."
+	[whybook_6] So... knowing this, what are you going to do with the wife book?
+||
+{whybook_6} "It's just a book of advice, I guess I should just assume others don't have one. The book only has pictures of my kind too. I think we might have come from a species enclave? You know, like Taulsol?"
+{spec_enclave | add_flag pc_knowledge_species_enclave} "I understand there's villages of a single species out there, and they only have children with each other, like, to keep the species the same."
+	[whybook_7] I guess that would make sense.
+	[spec_enclave] What do you mean by a 'species enclave'? //hideif.has_flag.pc_knowledge_species_enclave
+||
+{whybook_7} She looks around suspiciously and leans in closer. "And I think one of the names on the first page is my mother's."
+	[whybook_8] Mothers passing the book to their daughters, makes sense.
+||
+{whybook_8} She sighs. "Dad never talks about her."
+	[whybook_9] It must be something traumatic.
+||
+{whybook_9} "That's why I don't bother him about it. Any mention makes him glum... But! Now you know what that book business was about! It was less dramatic than I made it seem."
+	[whybook_10] Do you want to read the book some more?
+||
+{whybook_10} She giggles. "Yeah! I wanna look at the sex pictures with you! I want to hear your thoughts on them!" She flips the page to the green chapter again.
+	[whybook_11] Alright, sounds fun.
+||
+{whybook_11} She takes your hand and sets it on the edge of the page. "I'll let you turn the pages, I've seen these pictures... uh, many times." She giggles to herself.
+	[spread_legs | play_sound generic/objects/book_turn_1 70] (Look at the page)
+||>>Sex position: Spread legs
+{spread_legs | pic book_spread_legs} The page reads: "Spread legs: This is an easy position to have sex in, but some women with very prominent side horns may have hard time keeping their head in a position that's comfortable for them."
+{spread_legs_basic} "I think it's a very romantic position. You can look into each other's eyes! You can even hug!"
+{spread_legs_unnes} "Yeah, I guess it's here more for completeness than anything else."
+	[spread_legs_basic] This is the most basic thing. //showif.index_is.spread_legs
+	[spread_legs_unnes] I agree, but it's so basic that including it here seems unnecessary. //showif.index_is.spread_legs_basic
+	[beast_mounting | play_sound generic/objects/book_turn_2 70] (Turn the page)
+||>>Sex position: Beast mounted
+{beast_mounting | pic book_beast_mounted} The page reads: "Beast-mounted: This is a very comfortable and natural position. You should use this for your first time. Remember to keep your head flat against the bed if the male doesn't hold you by the horns, raising your head might cause you to poke your lover painfully with your horns."
+{beast_mounting_wat} "I think it describes it pretty well? Don't most animals mount their females from behind? Do you have another name for it?"
+	[ | check_flag shyni_dog_knowledge doggy_style doggy_2] Yeah? We call it... uh, 'doggy style'. //showif.index_is.beast_mounting_wat
+	[beast_mounting_wat] 'Beast-mounted'? Who came up with these names? //showif.index_is.beast_mounting
+	[fitted_legs | play_sound generic/objects/book_turn_1 70] (Turn the page)
+||
+{doggy_style} She whispers in a confused voice to you, "What's a 'doggy'?"
+	[doggy_1] It's... It's a four-legged animal.
+||
+{doggy_1} She raises an eyebrow. "I see.<br>I think the 'doggy style' looks very fun." She giggles.
+{doggy_2} She raises an eyebrow. "I suppose that's how those 'dog' things that get poisoned by chocolate do it?<br>I think the 'doggy style' looks very fun." She giggles. 
+	[fitted_legs | play_sound generic/objects/book_turn_2 70] (Turn the page)
+||>>Sex position: Fitted legs
+{fitted_legs | pic book_fitted_legs} The page reads: "Fitted legs: This position is good for impregnation because the erection reaches deeper into you since the man's legs have more space."
+{fitted_legs_fun} Shyni whispers into your ear. "I need you to do that to me."
+{fitted_legs_now} "No, no! I wanna read more!" She giggles.
+{woman_woman_stuff} She blushes. "Turn the page."
+	[fitted_legs_fun] This looks very fun too. //showif.index_is.fitted_legs //showif.player_sex.male
+	[woman_woman_stuff] Is there no woman on woman stuff here? //showif.index_is.fitted_legs //showif.player_sex.female
+	[fitted_legs_now] I'll fuck you like that right now, if you want. //showif.index_is.fitted_legs_fun //showif.player_sex.male
+	[ring_love | play_sound generic/objects/book_turn_1 70] (Turn the page)
+||>>Sex position: Ring of Love
+{ring_love | pic book_ring_love} The page reads: "Ring of love: Females have trouble stimulating each other at the same time, but this position allows reciprocated sex for females. You can perform this while lying on your sides, but women with small horns might find the position where their partner is on top easier."
+	[ | sex_gate wimsex_m wimsex_f] Cool.
+	[ | sex_gate wimsex_m wimsex_f] There's sex advice for female on female? I- I wasn't expecting this. //showif.player_sex.male
+||
+
+||>>Lesbianism femPC response (this needs expansion and a possible break up scene)
+{wimsex_f | remove_pic} "Yeah... This is the 'solitude sister' thing. They have sex with each other when their husbands are out to hunt."
+	[wimsex_f1] Oh, so we're solitude sisters? Even though you have no husband?
+||
+{wimsex_f1} She giggles. "I suppose."
+{wimsex_f2} She scratches her head. "It does sound odd. I mean, the men in Toadal don't just leave to hunt, and I've never heard anyone being a solitude sister here. I don't think it's normal here, but where I'm originally from, it does seem to be norm."
+	[wimsex_f2] So, women having sex with each other while the men are gone is normal? //showif.index_is.wimsex_f1
+	[wimsex_f3] Wouldn't the men become jealous?
+||
+{wimsex_f3} "Why would they be jealous? Women can't have children by themselves."
+{sex_just_sex} "It's never just sex, it always needs love! But... you can only make children with men."
+	[sex_just_sex] I don't know about that, sex isn't always just sex. //showif.charisma.6 //hideif.index_is.sex_just_sex
+	[wimsex_f4] If I'm your solitude sister... are you planning to get a man?
+||
+{wimsex_f4} Her eyes widen in shock and she stammers. "I- I always... imagined, having children."
+	[wimsex_share] I... wouldn't want to share you with a man.
+	[wimsex_fun] It's alright, we're just having fun here.
+	[wimsex_funny] Sounds perfect! A boy toy we can tie to a bed! //showif.charisma.8 //showif.will.6
+||
+{wimsex_share} She looks unsure and then shyly whispers. "Maybe... you don't have to share me with a man.<br><br>I love you, -name-."
+{wimsex_fun} She looks unsure and then shyly whispers. "I love you, -name-."
+	[wimsex_funny] We could kidnap some guy and get him to impregnate you! //showif.charisma.6
+	[wimsex_love] I love you too.
+||
+{wimsex_funny} She gasps in shock and then bursts into hysterical giggling. 
+{serious_love} She stops giggling and then gives you a quick kiss on the cheek. "I love you too."
+{wimsex_love} She gives you a quick kiss on the cheek and brushes your hair.
+	[serious_love] But seriously, I love you. //showif.index_is.wimsex_funny
+	[nose_fucking | play_sound generic/objects/book_turn_2 70] (Turn the page)
+||
+
+||>>Lesbianism malePC response
+{wimsex_m | remove_pic} "Yeah! They're called 'solitude sisters' by the book. Apparently a very common thing. They have sex with each other when their husbands are out to hunt."
+	[ring_love_jealous] Wouldn't the husbands become jealous?
+||
+{ring_love_jealous} "Why would they be jealous? Women can't have children by themselves."
+{wimmin_sex_normal} She scratches her head. "It does sound odd. I mean, the men in Toadal don't just leave to hunt, and I've never heard anyone being a solitude sister here. I don't think it's normal here, but where I'm originally from, it does seem to be normal."
+	[wimmin_sex_normal] Women having sex with each other while the men are gone is normal? //showif.index_is.ring_love_jealous
+	[lesbian_shyni] Do you want to have sex with a woman?
+||
+{lesbian_shyni} She turns purple. "I- I guess? I mean... I don't want to do it if you don't like it."
+	[threesome_justtwo] I'd want it to be just the two of us.
+	[threesome_activate] How about with another woman and me?
+	[threesome_jealous] It would make me jealous.
+||
+{threesome_activate} She chokes up. "I- I... That feels weird? I- I don't think I want to share you like that."
+	[threesome_noice] I get it. That's the same feeling I get from the solitude sister stuff.
+	[threesome_noice] Just an idea.
+||
+{threesome_noice} "I kinda want to have a solitude sister? I- I'd share you with a good friend.<br><br>But I would need to know... that you're mine." She blushes.
+{do_three} She just nods and blushes.
+{threesome_jealous} She stammers. "I- I imagined it would. I wouldn't do it without you."
+{threesome_justtwo} She brushes. "That sounds just fine for me."
+	[do_three] I would do that with you. //showif.index_is.threesome_noice
+	[nose_fucking | play_sound generic/objects/book_turn_2 70] (Turn page)
+||
+
+
+
+||>>Nosejob
+{nose_fucking | pic book_nosejob} The page reads: "Head fucking: This doesn't give much pleasure to you, but some males love to do it. You should treat it as a gift for your husband if he likes it. You should not do this if the penetration hurts you."
+	[nose_woah] Woah!
+	[nose_woah] Huh.
+||
+{nose_woah | remove_pic} Shyni's eyes open in shock, and she hastily leans over the book. "Oh gods... That picture." She turns to you again, her face completely purple. "I guess... That's a thing too."
+{nose_pleasant} "Yeah, it looks pretty brutal. Apparently the erection goes between the eyes?"
+	[nose_pleasant] That doesn't look very pleasant. //showif.index_is.nose_woah
+	[nose_is_bone] ...How? I mean, isn't your nose... bone?
+	[nose_creative] That's pretty creative, I have to admit.
+||
+{nose_is_bone} She turns back to the picture and points at a blurb next to the picture. "No, no... There: 'The nose bone never cures completely and remains flexible.'"
+{nose_creative} She blushes. "Y- you think so? I think it's very creative too."
+	[to_the_brain] How would that not hurt?!
+	[turn_you_on] ...This turns you on, doesn't it?
+||
+{turn_you_on} She turns her purple face to you and sighs. "...It does."
+	[nose_cute] You're cute.
+	[to_the_brain] Is it even safe for you?
+	[try_nose] Would you want to try it with me? //showif.player_sex.male
+||>>I can eat with my nose
+{to_the_brain} "My nose is pretty large! And I can even eat with my nose! And drink!"
+	[nose_eat_wat] ...What?
+||
+{nose_eat_wat} "Yeah! Sometimes I eat berries by just dropping them in! They sometimes get stuck, and I have to pour water in to get them loose." She emotes pouring a glass into her nose hole.
+	[breathe_nose_11] That's kinda weird.
+	[breathe_nose_1] Do you breathe through your nose?
+||
+{breathe_nose_11} "But... Don't you breathe through your nose?" She puts her hand over your nose to confirm.
+{breathe_nose_1} "Sure... Don't you?" She puts her hand over your nose to confirm.
+	[breathe_nose_2] I do. I was just wondering if it interfered with your breathing.
+||
+{breathe_nose_2} "Nooo, not really. I can use the slits to breathe." She flexes one of the smaller slits with her finger.
+	[stop_reading] Huh.
+	[try_nose] Would you want to try it with me? //showif.player_sex.male
+||
+
+
+||>>Reading stopped by a horny as fuck gote
+{nose_cute | pic floor_horny} She pokes you in the chest and giggles. "No! You're the cute one!" She laughs and then changes to a husky voice and leans closer. "You know... we should stop reading and... do something more practical."
+{stop_reading | pic floor_horny} Shyni leans closer and whispers in a husky voice. "We should stop reading and... do something more practical."
+	[try_nose] You wanna try the nose thing? //showif.player_sex.male
+	[ | sex_gate mal_scene fem_scene] And... what did you have in mind?
+||
+
+
+
+||>>f/f secks
+{fem_scene | start_music generic/romance_quick 70 3} Shyni yanks your clothes suggestively and starts pulling them off. "I was thinking..." She climbs on your lap and kisses you. Her snout travels past your cheek to your ear, and she blows air on it. You feel a gentle bite on your earlobe as Shyni's hand slides in your pants. You feel her small digit squeeze your clit gently. Shyni whispers into your ear, "-We could have some sex."
+	[fem_sex_1] (Undress her)
+||
+{fem_sex_1 | pic fem_fingering} You unlatch her dress, and it splits in the middle, her breasts hang free over you as she quickly discards the dress on the floor. Shyni pulls off your pants, then dips her finger into you and slowly rolls it over your clit. You gasp as she continues her affectionate massage.
+{fem_sex_suckle} You gently kiss her areola, she shivers and then lets out a soft moan as you circle your tongue around the nipple. You give the kiss some suction, and Shyni's hand grips your hair in surprise and shock. She moans as you suckle her breast and adjusts herself to give you a better position. She completely forgets to finger you in return as she closes her eyes to enjoy your work.
+	[fem_sex_suckle] (Suckle on her breasts) //showif.index_is.fem_sex_1
+	[fem_sex_2] (Finger her)
+||
+{fem_sex_2 | auto_continue fem_sex_3} You raise her leg and slide your finger into her. Shyni hugs you with her free arm and whines in pleasure. You softly circle your finger around her labia and then concentrate on her clit. Shyni doubles her efforts, and you feel her fingers work you faster in kind. You embrace each other and keep racing to the finish. Your body starts spasming as you keep getting more sensitive by the moment to her touch. Shyni tries to suppress her moans and just hugs you tighter as her body jerks against yours.
+||
+{fem_sex_3 | auto_continue fem_sex_4} You speed up your fingering, Shyni lets out a desperate whine, and her legs start to cramp up. She starts fingering you faster, and you feel your own legs cramp up as the small delicate digits rub your clit in a desperate race to finish you off.<br><br>Shyni suddenly yelps and her legs press shut, trapping your hand between her thighs. Her sudden movement cramps her hand, and the sudden, almost painful poke into your clit pushes you over the edge. You crush Shyni into a desperate hug as you press your face into her fur and gasp for air.
+||
+{fem_sex_4} As your orgasm dies off and you regain your senses, you find yourself panting against Shyni as she hugs you tightly on the floor.<br>.<br>She slowly eases her hug and then turns her back against you, spooning into you. Her soft buttocks mush against your hip. She pulls your arm over her and hugs it.
+	[lesbian_cuddle] (Cuddle)
+||
+
+||>>NOSEJOB
+{try_nose} She shakes her head in embarassment and giggles. "Oh gods! Oh gods! You can't just say that... " She covers her face and keeps giggling.
+	[nojob_1] I'm not hearing a no.
+	[nojob_1] Only if you want to.
+||
+{nojob_1} She peeks from behind her fingers. "...Let's do it." 
+	[nojob_2] You're one dirty girl, you know that?
+	[nojob_4] How do you want to do it?
+||
+{nojob_2} She hides her face again. "...Sorry!" 
+	[nojob_3] It's not a bad thing.
+||
+{nojob_3} She reveals her purple face. "You wanna go for it? F- For me?"
+	[nojob_4] Do I stand up or...?
+||
+{nojob_4} "Oh gosh..." 
+	[nojob_5] Just tell me how you want me.
+||
+{nojob_5} She looks shocked around the room and stammers. "Uh, um- just, lie down and I'll... Just lie down and undress."
+{cute_excited} She pokes you playfully. "You're cute too."
+	[cute_excited] You're so cute like this. //showif.index_is.nojob_5 //showif.charisma.6
+	[nojob_6] (Lie down and undress)
+||>>Nosejob starts
+{nojob_6 | start_music generic/romance_quick 70 3, pic nosejob_start} You lie down on the soft carpet and begin to undress. Shyni hastily undresses herself, lost in thought as she tries to think of her approach. She suddenly stands up and takes a few running steps towards a shelf, grabs a ceramic container, and hastily kneels next to you again. "Just, something to- um, lube with." <br><br>You both lounge on the floor naked, and Shyni shyly glances at your hardening cock and giggles softly. "Let me think."
+	[nojob_7] Take your time.
+||
+{nojob_7} She turns her head inquisitively at your crotch and then exclaims, "I think I know how." She sets herself between your legs and opens the jar she fetched. She dips her digits in and lathers glossy liquid over her nose. "Oh gosh, this feels weird. I hope it's not too much."
+	[nojob_8] It's really not. I love this.
+||
+{nojob_8} She lets out an excited whine and squints her eyes happily at you. "W- well, let me love you some more." She deftly touches your cock with her wet fingers and runs them along it. She softly nuzzles her snout against the shaft and looks you in the eyes as she slowly closes her digits around it. You feel a shiver as the cool liquid runs down your glans.
+	[nosejob_1] (Let her keep at it)
+||
+{nosejob_1} She pumps your cock playfully a few times and then sets it against her nose ring. She stops and looks at you again. "Just let me know, you know, if I'm doing something wrong or- anything."
+	[nosejob_2] Of course.
+||
+{nosejob_2} She giggles and squints her eyes. "Okay, here it goes." She tilts her head forward and pushes the head of your cock against the bony and slick ring of the nose. The glans slides past the ring and then brush against a textured inner surface of her nose. Shyni stops and giggles to herself, "It doesn't hurt at all, feels funny." She nods her head further, and your cock sinks a bit deeper but stops against a bend in her nose. She bucks her head lightly to take in more, but she can't accommodate you further. She starts shifting her posture to angle her head more downwards.
+	[nosejob_3] Woah, d- don't overdo it.
+||
+{nosejob_3} She works her head from side to side to get more of your cock into her nose. "Just- a sec. I can manage this." She jerks her head down against your cock, her nose channel squeezes around your cock but doesn't slide any deeper in. She raises her head, and your cock pops out of her nose with an obscene wet noise. A clear string of liquid droops from Shyni's nose as she lets out an exasperated sigh.
+	[nosejob_4] That was fun, but I don't think it'll work.
+||
+{nosejob_4 | pic nosejob_hicutie} She shoots an annoyed glance at you. "Just... I know!" She pounces on your chest and places her large rump on it. She brushes your hair and looks deviously at you. "Hi, cutie."
+	[nosejob_5] ...Hi?
+||
+{nosejob_5 | pic nosejob} She pokes your nose and giggles. She suddenly arches backwards and falls on her back on top of you. Her bottom obstructing your view, you feel her touch your erection and guide it into her nose again. She slightly shifts herself, and you feel Shyni's nose engulf your cock completely. You feel the smooth nose ring butt against your crotch. She tenses her legs and cranes her head to keep you in her. Her hand gently cups your testicles as she nurses you with her nose. You find yourself between her thighs, and you can feel her leg muscles tense against your cheeks as she pushes against the floor.
+	[fingering] (Finger her)
+	[cunning_pc] (Give her cunnilingus)
+	[rimjob] (Give her a rimjob) //hideif.note.TBA
+||>>Finger
+{fingering} You reach over her hips and press your fingers on her clitoris. She yelps and inadvertently kicks at the floor. She lets out a confused snort you feel in your cock.<br><br>You gently pinch her clit and then roll your finger around it. Shyni gasps and her toes curl. "Oh my gods. Oh my gods." She starts moving her head in a wave motion to pump your cock in and out of her nose, her horns brushing against your abdomen as she does, each penetration accompanied by a wet slush and slurp.
+	[finger_1] (Get her off)
+||
+{finger_1} You increase the intensity of your fingering as she increases the speed of her neck motion. Her legs curl around your head as you work on her. She starts to breathe ragged whiny breaths as she desperately pumps you with her nose. "Please- please- cum with me." You feel her body tighten under your hand, and a familiar pressure builds in your loins. You reach over Shyni's abdomen and finger her to push her over the edge. Her back arches as she lets out an anguished, drawn out whine. Her thighs trap your hand as she pushes you as deep into her nose as she can. 
+	[cum_nose] (Finish)
+||
+
+||>>Rimjob (TBA maybe)
+{rimjob} -missing text- Oh no I didn't!
+	[cum_nose] (Get her off)
+||
+||>>Cunnilingus
+{cunning_pc} You catch her hips and give her wet vagina a kiss. She yelps and inadvertently kicks at the floor. She lets out a confused snort you feel in your cock.<br><br>You stick your tongue into her and roll it around. Shyni gasps and her toes curl. "Oh my gods. Oh my gods." She starts moving her head in a wave motion to pump your cock in and out of her nose, her horns brushing against your abdomen as she does, each penetration accompanied by a wet slush and slurp. 
+	[cunning_1] (Get her off)
+||
+{cunning_1} You increase the intensity of your tongue bath as she increases the speed of her neck motion. Her legs curl around your head as you work on her. She starts to breathe ragged whiny breaths as she desperately pumps you with her nose. "Please- please- cum with me." You feel the tight nose channel vibrate with her words, and a familiar pressure builds in your loins. You reach over Shyni's abdomen and finger her to push her over the edge. Her back arches as she lets out an anguished, drawn out whine. Her thighs mush against your cheeks as she pushes you as deep into her nose as she can. 
+	[cum_nose] (Finish)
+||
+{cum_nose} You thrust your hips and gasp as the release drains the feeling from your legs. You feel the hard rim of the nose constrict the base of your cock with each throb. Shyni writhes on top of you as she keeps herself firmly connected to your crotch, her hand gently holding your testicles as you empty yourself into her. You feel Shyni shiver and spasm against you but steadying herself for your orgasm.<br><br>You hold her against you as you both ride out your climaxes. The soft, fluffy feeling sets in as you breathe in and out until all your muscles feel spent and limp.
+	[fun_nose] That- was- fun.
+	[fun_nose] Are- you okay?
+||
+{fun_nose} "Let me- just. Oh gods." She pulls you a little closer to keep your softening cock in her nose. "This was weird, but- but I love it."
+	[wild_sack] Hey, anything for you.
+	[wild_sack] You're... surprisingly wild in the sack.
+||
+{wild_sack} She carefully separates her nose from your cock and covers it as she hesitantly gets up on top of you. Thin strands leak between her fingers. "We- We should do this again sometime. I loved it." She raises her snout and angles her head backwards, trying to clear her nose.
+	[nose_drink] I would love that. Do you need something to- uh... nose drink?
+||
+{nose_drink} She gets off you and shakes her head. "I'll just... get some water." She skips to a barrel in the corner and pours some water into her nose with a ladle. You hear gurgling noises.
+	[would_choke] I can't wrap my head around how you can do that. I would choke.
+||
+{would_choke} She shakes her head and swallows. "You have a funny nose, -name-. I think it's cute."
+	[cute_u] Your nose is cute too.
+	[cute_u] You're just cute all around.
+	[come_cuddle] (Pat on the carpet) Come cuddle.
+||
+
+||>>NOSEJOB CUDDLING
+{cute_u | pic floor_cuddle} She giggles and daintily skips and jumps next to you. Her soft frame jiggles as she comes to a stop next to you. She rolls next to you, and you close your hands around her. Her horn rests on your neck as she snuggles herself against you. Her soft ass cradles your spent cock. Shyni sighs contently and relaxes.
+{come_cuddle | pic floor_cuddle} "Of course I will!" She giggles and daintily skips and jumps next to you. Her soft frame jiggles as she comes to a stop next to you. She rolls next to you, and you close your hands around her. Her horn rests on your neck as she snuggles herself against you. Her soft ass cradles your spent cock. Shyni sighs contently and relaxes.
+	[frick_hurt] I didn't hurt you, did I?
+	[like_nosething] Did you like the nose thing?
+||
+{frick_hurt} "Nooo. I had fun. It didn't hurt at all." She pats you affectionately on the cheek.
+{like_nosething} She whispers slyly. "I loved doing that to you."
+{nice_nose_feel} "I was worried it felt bad for you. if you liked it, I would love to do it to you again sometime."
+	[nice_nose_feel] I felt really nice. //hideif.index_is.nice_nose_feel
+	[nose_pleasure] Did the nose- job- thing, do anything for you?
+||
+{nose_pleasure} She gently shakes her head. "Nah, it didn't feel like that. More like a super sniffly nose or something."
+	[just_forme] You don't have to do it just for me.
+	[like_giving] You really like giving, don't you?
+||
+{just_forme} "No! I wanna do it to you again if you liked it!"
+{like_giving} She giggles slyly. "Aih! But you're wrong! You like giving, I just love to take!" She giggles and ends it with a dirty snort.
+	[cuddle_end] (Cuddle her)
+	[give_more] You're absolutely right. How about I give you some more? (Press your erection against her) //showif.endurance.8
+||
+{give_more} You push your cock between her soft buttocks, she gasps in surprise. "Oh! How- how did you manage that? Aren't you supposed to rest or something?"
+	[too_sexy] I think it's just shows how pretty you are. //showif.charisma.8
+	[too_sexy] How about it?
+||
+{too_sexy} She giggles. "I- I'm up for it." She bumps you with her rump.
+	[beast_mounted | start_music generic/romance_quick 70 3] (Mount her)
+	[try_ass_sex] Would you like to try this? (Press your cock against her ass)
+||>>Beast mounted
+{mal_scene} She starts removing her dress. "Mount me, -name-. Take me right here." Her breasts fall free as she detaches her shoulder straps. 
+	[beast_1 | start_music generic/romance_quick 70 3] You don't have to tell me twice. (Undress and mount her)
+||
+{beast_1 | pic beast_mounted_fug} You start undressing. Shyni pulls on your clothes as you hastily try to get naked. Shyni pulls off your underwear, and you immediately push her on all fours and grab her hips. She presents her rump to you with a giggle. You mount her and she presses her head flat against the floor and excitedly exclaims, "Grab the horns!" You grab the small side horns and settle yourself. You feel Shyni's small hand brush the underside of your cock and then nudge it upwards to press it against her labia.
+{beast_mounted | pic beast_mounted_fug} You immediately push her on all fours and grab her hips. She presents her rump to you with a giggle. You mount her and she presses her head flat against the floor and excitedly exclaims, "Grab the horns!" You grab the small side horns and settle yourself. You feel Shyni's small hand brush the underside of your cock and then nudge it upwards to press it against her labia.
+	[beast_2] (Penetrate her)
+||
+{beast_2} You slowly push into her and slide easily into her tight, wet hole. Shyni gasps and pulls on the fluffy carpet. "Yes! Oh gods! <b>Yes</b>!" She squirms as you sink into her completely and then pause. She can barely move her head as you press on her horns. You pull out and her legs shake with the anticipation. "Do it, -name-! Breed me." You slam playfully into her and start pounding her. Shyni's hands claw the carpet, and she moans and gasps with each thrust. Your excitement builds up until you're forcibly pulling on her horns to bury yourself deeper into her, your thighs slapping loudly against her ass.
+	[beast_3] (Finish)
+||
+{beast_3} You feel Shyni's insides contract around your cock. She lets out a long whine as her legs squeeze shut and start shaking. You can't hold it anymore and grip her flanks to drive yourself deeper into her. You gasp soundlessly as you explode. You press your shaking hips against her firm butt and empty yourself. Each throb eliciting a ragged snort from Shyni.
+	[beast_4] (Catch your breath)
+||
+{beast_4 | auto_continue beastie_cuddle, pic floor_cuddle, stop_music 10} You slowly pull out, and your half-hard cock pops out. Some cum drips out of her before she shuts her thighs with a surprised yelp and lies down. You settle next to her, your cock mushed between her soft buttocks.
+||
+||>>Ass secks
+{try_ass_sex} "Oh... oh! Anal? I don't... M- maybe we should try?"
+	[lube_around] Only if you want.
+	[lube_around] You still have that lube around?
+||
+{lube_around | start_music generic/romance_quick 70 3, pic anal_pen} She dips her fingers into the open jar on the floor and reaches behind her to grab your cock. She closes her slick fingers around you and gives a slow pump to spread the clear liquid. She places the head of your lubricated cock between her buttocks and against the ring of her anus. "Be gentle, -name-." She places her hand on your hand.
+{if_hurt} She nods. "Of course." She giggles. "But if it's good pain, I won't tell you."
+	[if_hurt] Tell me if it hurts. I don't want to hurt you. //hideif.index_is.if_hurt
+	[pen_ass] (Penetrate her ass)
+||
+{pen_ass | pic anal_fug} You push against her tight ring. She gasps as the tip of your cock slips in suddenly. She grips the carpet and closes her eyes. "Y- Yeah, keep going!" She pushes her ass more towards you, and your cock slides deeper. She huffs and whines as you push your full length into her ass. Her soft buttocks mold around your thighs as she bucks against you one last time. You feel her anus contract around your cock as she shivers. "D- Does it feel good?" She grabs your hand in hers.
+{pen_hurt} She whines, "No, no... I expected something like t- this." She inhales raggedly. "Sorry, I mean, it does hurt a bit... but try m- moving."
+	[pen_hurt] Are you alright? I'm not hurting you, am I? //showif.charisma.6 //showif.index_is.pen_ass
+	[abort_anal] (Stop) //showif.index_is.pen_hurt
+	[fuck_ass] (Fuck her ass)
+||
+{fuck_ass} You slowly start pumping into her, she lets out a sharp whine and gasps as you press against her soft buttocks and sink into her ass. The thrusts become easier as you continue, and soon, you're humping her at a quick pace. Shyni's hands grips the carpet as you fuck her faster, her whole body wobbling from the force of the thrusts. Her buttocks and anus tense on your cock, and you feel the pressing feel of your orgasm tense your abdomen.
+	[nut_ass] (Finish)
+||
+{nut_ass} You thrust deep into her and pull her ass against you. Your cock tenses and then releases. You gasp and press your head against Shyni's back as you unload your load into her. You fingers feel cold and numb, slowly gaining their senses as you the burning orgasm dies down.<br><br>Shyni places her hand on your hip and gently pets you.
+	[ass_cuddle_2] I hope I didn't hurt you.
+	[ass_cuddle_1] (Cuddle)
+||
+{abort_anal | pic floor_cuddle} You carefully pull yourself out of Shyni. She gasps and shivers. "You didn't- didn't have to stop."
+	[no_anal_this_time] You don't have to hurt yourself to please me.
+	[no_anal_this_time] It's okay, we can try it some other time.
+||
+
+||>>Floor cuddle
+{no_anal_this_time | pic floor_cuddle} You close her into a hug and cuddle closer. "It didn't hurt that much..."
+{ass_cuddle_2 | pic floor_cuddle} " I- I liked it. It hurt a little, but I love how much you liked it. It felt... You felt so, aggressive and domineering? I liked that." You close her into a hug and cuddle closer. 
+{ass_cuddle_1 | pic floor_cuddle} You wrap her in a hug and cuddle closer. "Gosh, that felt... You felt so, aggressive and domineering? I- I liked it. It hurt a little, but I love how much you liked it."
+{lesbian_cuddle | pic floor_cuddle} You wrap her in a hug and cuddle closer. "Gods, I love that!"
+{beastie_cuddle | pic floor_cuddle} You wrap her in a hug and cuddle closer. "Gods, that felt so right."
+	[cuddle_end] (Cuddle)
+||
+{cuddle_end | auto_continue floor_nap} You hold Shyni in your arms on the soft carpet. The two of you just breathing calmly and enjoying each other's warmth makes you drowsy. You lay your head against the floor and start to slip into fuzzy blackness.
+||
+{floor_nap | advance_time_to evening, pic floor_cuddle, auto_continue floor_nap_2} You slowly stir from your sleep. You crane your neck over Shyni, and you see it's dark outside. 
+{floor_nap_2 | pic nude_in_hurry} Shyni stirs from your movement and mumbles as she rises to a sitting position. "Why are we... Oh, right." She looks around and then to you. She giggles. "You fucked me to sleep!" Her eyes are filled with a sudden pang of panic. "Oh gosh! I have to bring the narbs inside!" She gets up, wobbles with her first step, and crosses her legs awkwardly. She turns to you with her face blushing. "I- I have to clean up and finish my chores. You might want to leave, my dad is probably coming over soon."
+{lotsa_fun} "Oh, I loved it! I would keep you here, but this is just bad timing!"
+	[lotsa_fun] I had a lot of fun Shyni. //hideif.index_is.lotsa_fun
+	[getup_carpet] Alright. (Get dressed)
+||
+{getup_carpet | change_environment taodal_shyni_house, change_sprite nude, remove_pic} You get up and hastily get dressed. Shyni leans in and gives you a quick smooch. "Bye for now! But remember to come see me!"
+	[ | save_index lover_hi, start_encounter taodal taodal] Of course! See you later! (Leave)
+||
+
+
+
+
+
+
+
+
+||>>Lover hub intro
+{lover_hi | start_music sejan_taodal/shyni 70 3, save_index lover_hub} Shyni drops the narbs she was carrying and runs to meet you. "Hey! Let's go in the house! Come!" Shyni runs to the door and opens it for you. 
+	[into_house] Hey! (Go in)
+||
+{into_house | change_environment taodal_shyni_house, add_flag shyni_open_house} You walk in. Shyni hugs you and kisses you on the cheek. "I have a present for you!" 
+	[key_given] Let's have it then.
+	[key_given] You shouldn't have!
+	[key_given] Oh no, that sounds ominous. //showif.charisma.6
+||
+{key_given | pic key_to_house, auto_continue can_sneak} She takes your hand and places a key in your palm.
+||
+
+||>>LOVER HUB (V2 HUB: a loop where you can sleep and have sex with Shyni)
+{lover_hub | morn_day_eve_night_gate start_m start_d start_e start_n}
+||
+{start_m | stop_music 3, hide_character} Shyni is not at home.
+	[exit_to_taodal] (Leave)
+||
+{start_d | start_music sejan_taodal/shyni 70 3} "Hey!"
+{start_e | start_music sejan_taodal/shyni 70 3} "Hey, -name-. I was planning on going to bed soon, do you want to join me?" 
+{want_sum_sneak} She giggles. "...Maybe?"
+{thanks_key} "It makes seeing you a little easier... and we can do things in secret here."
+{can_sneak | remove_pic} "There! You can now sneak into my house at night." She giggles. 
+{adven_4} "Yeah!"
+{silent_return}
+	[want_sum_sneak] ...Do you want me to sneak into your house at night? //showif.charisma.6 //showif.index_is.can_sneak //hideif.clicked
+	[goto_bed] That sounds perfect. (Go to bed with Shyni) //showif.index_is.start_e
+	[thanks_key] Thank you for the key. //hideif.clicked
+	[planning_adventures] You happen to have any new ideas for adventuring? I'm itching to for some travel. //hideif.clicked //showif.counter.shyni_nights_together.2
+	[ | change_diag_file diag_redforest start] Let's go on that island adventure of yours. //showif.has_flag.shyni_redforest_adventure_open
+	[ | change_diag_file diag_questions start] (Questions)
+	[exit_to_taodal] See you later. (Leave)
+||>>leave
+{exit_to_taodal | start_encounter taodal taodal}
+||
+
+
+||>>At night
+{start_n | check_flag shyni_snuck_night snuck_in snuck_in_normal} 
+||
+{snuck_in | stop_music 3, add_flag shyni_snuck_night, change_sprite nude} You unlock the door to Shyni's house and then close it behind you. You hear Shyni get up. She hobbles to meet you with tired eyes. "Hey. What are you doing here, -name-?"
+	[sorry_wake] Sorry for waking you up.
+	[still_up] I thought you might still be up.
+||
+{sorry_wake} She talks with a tired but affectionate tone. "It's okay, I love seeing you. Come sleep, I wanna jump back in while the bed is still warm."
+{still_up} She talks with a tired but affectionate tone. "I'm not much of a night animal. Come sleep, I wanna jump back in while the bed is still warm."
+	[night_bed] Sounds perfect. (Go to bed together)
+	[headout_again] Sorry, I think I have to head out again.
+||
+{headout_again} "Okay. I'll go sleep now. Bye." She walks to her bedroom.
+	[ | start_encounter taodal taodal] (Leave)
+||
+{snuck_in_normal | stop_music 3, hide_character} You unlock the door to Shyni's house and then close it behind you. You hear Shyni snore softly in her bedroom.
+	[snuck_in_bed] (Sneak into bed)
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+||>>In bed with Shyni
+{snuck_in_bed | start_music generic/romance_warm 70 1, pic in_bed} You carefully make your way to the bed, undress, and slip under the blanket.<br><br>Shyni stirs from her sleep and groggily scoots a bit to make room for you. She grabs your arm and pulls it over herself.
+{night_bed | start_music generic/romance_warm 70 1, pic in_bed} You follow Shyni to her bed, undress, and settle under the blanket with her. She sighs contently, grabs your arm, and pulls it over herself.
+{goto_bed | start_music generic/romance_warm 70 3, pic in_bed} You follow Shyni to her bed, undress, and settle under the blanket with her. She sighs contently, grabs your arm, and pulls it over herself.
+{in_bed_before_shyni | start_music generic/romance_warm 70 3, pic in_bed} You make your way to the bed and slip under the blanket.<br><br>Shyni joins you in the bed soon. She grabs your arm and pulls it over herself.
+{bed_naked | start_music generic/romance_warm 70 3, pic in_bed} You and Shyni make your way to the bed and slip under the blankets.<br><br>Shyni hugs you and pulls your arm over herself.
+	[ | sex_gate bedsex_m bedsex_f] You wanna fool around? //hideif.index_is.in_bed_before_shyni
+	[bed_sleep] (Sleep)
+||>>Bed sex (malePC) (Actually identical to femPC hub in terms of indexes. Useless to branch it like this?)
+{bedsex_m | random_pointer bedsex_m1-bedsex_m2-bedsex_m3-bedsex_m4-bedsex_m5}
+{bedsex_m1} She whispers with a husky voice, "Tell me what you want."
+{bedsex_m2} "Absolutely! I love to fool around with you." She giggles.
+{bedsex_m3} She giggles into her pillow. "How do you want me, -name-?"
+{bedsex_m4} She bumps you with her rear. She giggles. "Take me!"
+{bedsex_m5} She giggles. "What do you want to do?"
+	[bed_onfours] (Push her on fours)
+	[bed_cowgirl] Get on top of me, Shyni.
+||>>on fours
+{bed_onfours | pic beast_mounted_fug} You grab Shyni by her hips and push her over, she rolls on her stomach with a giggle and raises her rear up for you with a playful wiggle. She pushes her head flat against the bed and spreads her legs for you. You grab the small side horns and settle yourself. You feel Shyni's small hand brush the underside of your cock and then nudge it upwards to press it against her labia.
+	[bed_onfours_pen] (Fuck her)
+||
+{bed_onfours_pen} You slowly push into her and slide easily into her tight, wet hole. Shyni gasps and pulls on the sheets. She squirms as you sink into her completely and then pause. She can barely move her head as you press on her horns. You pull out and her legs shake with the anticipation. You slam playfully into her and then start pounding her. Shyni's hands claw the mattress, and she moans and gasps with each thrust. Your excitement builds up until you're forcibly pulling on her horns to bury yourself deeper into her, your thighs slapping loudly against her ass.
+{ass_slap} You slap Shyni's ass. She reacts to it.
+	[ass_slap] (Slap her ass) //hideif.note.TBA
+	[bed_onfours_fug] (Finish)
+||
+{bed_onfours_fug} You feel Shyni's insides contract around your cock. She lets out a long whine as her legs squeeze shut and start shaking. You can't hold it anymore and grip her flanks to drive yourself deeper into her. You gasp soundlessly as you explode. You press your shaking hips against her firm butt and empty yourself, each throb eliciting a ragged snort from Shyni.
+	[bed_onfours_end] (Catch your breath)
+||
+	
+	
+||>>Cowgirl
+{bed_cowgirl | pic cowgirl_fug} She giggles, turns, and climbs on top of you to straddle you. You feel her nethers brush against your shaft as she settles her soft buttocks on your legs. She leans forward and presses your erection between her legs. You feel the tip of your cock part her labia, she gasps softly.
+	[bed_cowgirl_pen] (Pull her on your cock)
+||
+{bed_cowgirl_pen} You gently grab her hips and pull her down. Your cock smoothly slides past her tight, wet opening. She arches her back, and her hands lightly grip your forearms as she slides down the length of your cock until it's completely in her. She steadies herself and you feel her abdominal muscles cramp forcefully as she shivers from the sensation.
+	[bed_cowgirl_fug] (Fuck her)
+||
+{bed_cowgirl_fug} You slowly raise her by the hips and bring her down again. She whines and holds your arms tighter. You bring her up a little faster and then pull her forcefully down on your cock again. She lets out a husky gasp and her grip twitches. You increase the speed until she's coming along with the rhythm, riding your cock with her eyes half-closed as her ass slaps against you with each fall.
+	[bed_cowgirl_nut] (Finish)
+||
+{bed_cowgirl_nut} You pull on her hips one last time to sink yourself as deep as possible and then let go of yourself. Shyni's eyes open in exhausted wonder when she feels the first throb widen her passage. Her legs instinctively try to close around you, and her head tenses into a strained pose. Her pointed claws dig into your forearms as her orgasm shakes her. You feel her squeeze your cock in response to each pleasurable throb into her. The overwhelming sensation soon passes, and you suddenly become aware of the heavy breathing and sweat.
+	[bed_cowgirl_end] (Catch your breath)
+||
+
+
+||>>Bed sex (femPC)
+{bedsex_f | random_pointer bedsex_f1-bedsex_f2-bedsex_f3-bedsex_f4-bedsex_f5}
+{bedsex_f1} She whispers with a husky voice. "Tell me what you want."
+{bedsex_f2} "Absolutely, I love to fool around with you!" She giggles.
+{bedsex_f3} She giggles into her pillow. "How do you want me, -name-?"
+{bedsex_f4} She bumps you with her rear. She giggles. "Take me!"
+{bedsex_f5} She giggles. "What do you want to do?"
+	[bed_sex_f] (Kiss her)
+||
+
+||>>F/F bed sex
+{bed_sex_f | start_music generic/romance_quick 70 3, pic fem_fingering} You pull Shyni's head and kiss her. Her snout travels past your cheek to your ear, and she blows air on it. You feel a gentle bite on your earlobe as Shyni's hand slides into your pants. You feel her small digit squeeze your clit gently.
+	[bedfem_sex_1] (Finger her)
+||
+{bedfem_sex_1} You slide your hand down her torso and gently rub her nethers. Shyni softly gasps, her breasts brush against yours as she settles closer. Shyni dips her finger into you and then slowly rolls it over your clit. You gasp as she continues her affectionate massage.
+{bedfem_sex_suckle} You gently kiss her areola. She shivers and then lets out a soft moan as you circle your tongue around the nipple. You give the kiss some suction, and Shyni's hand grips your hair in surprise and shock. She moans as you suckle her breast and adjusts herself to give you better a position. She completely forgets to finger you in return as she closes her eyes to enjoy your work.
+	[bedfem_sex_suckle] (Suckle on her breasts) //showif.index_is.bedfem_sex_1
+	[bedfem_sex_2] (Finger her)
+||
+{bedfem_sex_2 | auto_continue bedfem_sex_3} You raise her leg and slide your finger into her. Shyni hugs you with her free arm and whines in pleasure. You softly circle your finger around her labia and then concentrate on her clit. Shyni doubles her efforts and you feel her fingers work you faster in kind. You embrace each other and keep racing to the finish. Your body starts spasming as you keep getting more sensitive by the moment to her touch. Shyni tries to suppress her moans and just hugs your tighter as her body jerks against yours.
+||
+{bedfem_sex_3 | auto_continue bed_sex_fend} You speed up your fingering, Shyni lets out a desperate whine, and her legs start to cramp up. She starts fingering you faster, and you feel your own legs cramp up as the small delicate digits rub your clit in a desperate race to finish you off.<br><br>Shyni suddenly yelps and her legs press shut, trapping your hand between her thighs. Her sudden movement cramps her hand, and the sudden, almost painful poke against your clit pushes you over the edge. You crush Shyni into a desperate hug as you press your face into her fur and gasp for air.
+||
+
+
+||>>Bed sex end
+{bed_sex_fend | pic in_bed} As your orgasm dies off and you regain your senses, you find yourself panting against Shyni as she hugs you tightly.<br>.<br>She slowly eases her hug and then turns her back against you, spooning into you. Her soft buttocks mush against your hips. She pulls your arm over her and hugs it.
+{bed_onfours_end | pic in_bed} You slowly pull out, and your half-hard cock pops out. Some cum drips out of her before she shuts her thighs with a surprised yelp and lies down. You settle next to her, your cock mushed between her soft buttocks.
+{bed_cowgirl_end} Shyni twitches a few more times and then falls on top of you. As she lies on you, she steadies her breath as her shaking slowly fades away. She melts on top of you as her body relaxes. You hold her head gently. You can still feel her muscles around your cock twitch erratically. You feel it suddenly slip out of her, and she quickly crosses her legs in response but stays on top of you, basking in the afterglow.
+	[ | sex_gate bed_cowgirl_kiss les_cuddle_kiss] (Kiss her) 
+||
+{bed_cowgirl_kiss | pic in_bed} You give her a gentle kiss on the head, and she responds with a giggle. Shyni turns her head to look at you. "I'll just- You know." She gets up with awkwardly crossed legs and gingerly skips out of the bedroom.<br><br>A few moments later, she returns and digs back into your embrace. She puts your hand over her and sighs contently. Her soft and warm fur against your body makes you drowsy, and you quickly feel yourself slip into a pleasant, soft dimness. 
+{les_cuddle_kiss | pic in_bed} You give hrt a gentle kiss on the head, and she responds with a giggle. She puts your hand over her and sighs contently. Her soft and warm fur against your body makes you drowsy, and you quickly feel yourself slip into a pleasant, soft dimness. 
+	[bed_sleep] (Sleep)
+||
+
+
+||>>curated list for sleep
+{bed_sleep | curated_list prioritized, counter shyni_nights_together + 1} Woke randomizer index.
+	[bed_sleep | advance_time 1, change_diag_file diag_wooden_idol start] Shyni wakes PC for sex magic. //showif.counter.shyni_nights_together.4 //showif.has_flag.shyni_introduced_tuhmun //hideif.has_flag.shyni_wooden_idol_ritual //showif.player_sex.male
+	[ | random_pointer wake_1-wake_5] (Normal sleep)
+||
+
+||>>Waking up with Shyni
+{wake_1 | stop_music 5, advance_time_to morning, pic bed_wakeup, advance_time_to morning} You wake up next to Shyni. She growls softly and kisses you. She gets up, sighs, and ruffles your hair. "Good morning"
+{redforest_morning | stop_music 3, pic bed_wakeup} You wake up to the sounds of the village. You flutter your eyes and raise your head out of Shyni's hair. She groans. "I'm so sore..." She slowly lifts herself up and gives you a quick peck. "Good morning, -name-."
+ 	[bed_good_morning] Good morning.
+||
+{wake_5 | stop_music 3, pic bed_wakeup_alone, advance_time_to morning} You slowly wake up and realize Shyni is not next to you, but your hand finds a small note. It reads: "Sorry, had to go to the market, didn't want to wake you." You put the note away.
+	[bed_getout_1] (Get up)
+||
+{bed_good_morning} She brushes your cheek. "I have to go to the market." Shyni gets up and gets dressed. She walks out of the bedroom.
+	[bed_getout_2] (Get up)
+||
+{bed_getout_1 | hide_character, remove_pic} You get out of the bed and get dressed. You're alone in Shyni's house.
+{bed_getout_2 | hide_character, remove_pic} You get out of the bed and get dressed. Shyni waves at you as she leaves through the front door. You're left alone in her house.
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+
+
+||>>Planning adventures
+{planning_adventures | add_flag shyni_redforest_adventure_open} She giggles. "I'm always planning adventures."
+	[adven_1] Let's hear it!
+	[cave_shake] You're not... planning another cave adventure?
+||
+{cave_shake} She looks away. "No, I don't want to do any cave adventures any time soon."
+	[adven_1] What are you planning, then?
+||
+{adven_1} "A boat trip! We take a boat and row to an island next to the peninsula! We camp for two nights and then come back."
+	[adven_2] Is the island special somehow?
+||
+{adven_2} "It has red trees!<br><br>Don't worry, I've been there before. There's nothing dangerous there. I also want to show you some weird rocks there."
+{wat_rocks} "I know, but they're very special rocks!"
+	[wat_rocks] ...Rocks? //showif.index_is.adven_2
+	[adven_3] That does sound nice and simple.
+||
+{adven_3} "I even have all the supplies already! I've packed food and procured a boat and a tent!"
+	[adven_4] So we could leave whenever?
+||

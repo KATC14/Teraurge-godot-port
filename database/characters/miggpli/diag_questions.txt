@@ -1,0 +1,88 @@
+
+
+
+
+>>Questions diag file 
+||>>QUESTIONS HUB
+{start}
+{surrounded_strangers} "I guess I at least know your name? Thanks."
+{uum_wanted_here} "That could be it. She probably thought I could use the quiet when doing my research. It's just too quiet."
+{makes_sense_relig} "There's lots more to it but I- I shouldn't get all rambly."
+{romantic_miggpli} "AAH! I mean... No! She's lovely but not my type! Even if she was, I wouldn't...<br><br>Your question is a bit personal, so I'm just not going to elaborate on it. I'm not involved with Uum. We're just friends."
+{keep_take} He pockets the pendant. "Sorry, that might have been a little too much."
+{relig_condes} "Maybe we should just forget the pendant."
+{take_pendant | give_item living_mystery_pendant} He laughs. "I guess I can cross one out for my quota, then."
+{sure_dildo} He sighs.
+{dildo_22} "Exactly! Uum wouldn't..." He sighs.
+{silent_return}
+	[you_and_uum] How do you know Uum? //hideif.clicked
+	[pendant] Your pendant is quite interesting. Does it represent something? //hideif.clicked
+	[dildo_upthere] Uh, is that... a dildo? Up there? (Point at the shelf) //hideif.clicked									
+	[ | change_diag_file diag silent_return] (Return)
+||
+
+
+
+||>>You and Uum
+{you_and_uum} "She's a friend. We met at a library in Shiroo. Apparently she likes zoology as well. Many ancient cultures were apparently based around different animals, or that's what she told me. I sent her a letter asking if she'd have accommodations for me if I spent some time here at Sejan. She said I could stay at her house.<br><br>I wasn't expecting her to leave. Left me a little isolated. Everybody's a stranger here."
+{what_shiroo} "It's a big library far away from here. Scholars of different kinds meet there often. It's a nice place."
+	[what_shiroo] What's Shiroo? //hideif.has_flag.pc_knowledge_shiroo //showif.index_is.you_and_uum
+	[surrounded_strangers] You know me now, so you're not completely surrounded by strangers anymore.
+	[uum_wanted_here] She probably just didn't realize you wanted her here?
+	[romantic_miggpli] So, you're not a pair or something?
+||>>Pendant? (his religion)
+{pendant} "It's- It's a symbol of my religion. I'm sure you don't want me to ramble about it. Outside people react badly to sermons."
+	[relig_judge] I won't judge.
+	[relig_please] Please, enlighten me. I like to learn things. //showif.intelligence.8
+	[relig_bother] I won't bother you about it if it's personal.
+	[relig_condes] People just react badly to condescending tone.
+||
+{relig_judge} "It's not really your judgement I fear. I just don't want to bother people unnecessarily.... But since you asked, I should probably share."
+{relig_please} "I appreciate that, wanting to learn things. Of course, I will share."
+{relig_bother} "It's not that. I just don't want to bother people unnecessarily.... But since you asked, I should probably share."
+	[repre_pendant] What does the pendant represent?
+||
+{repre_pendant} "The bottom rung represents the world, and the second rung represents the people of the world. The hexagon above it all is the living mystery."
+{living_mystery} "I suppose it could be compared to a god, but... it's the living fabric of the dreams and minds of all things. Our great purpose is to advance from the lowest rung upwards and closer to the living mystery. From world to people and beyond."
+{hexagon} "No, not really. I think it's just a shape the artist picked to represent the living mystery. I've seen it represented with lots of other shapes. Sometimes the whole symbol is just three lines."
+	[hexagon] Does the hexagonal shape mean something? //hideif.clicked
+	[living_mystery] 'The living mystery'? //hideif.clicked
+	[mystery_rungs] What do the rungs mean?
+||
+{mystery_rungs} "The journey is not supposed to be a distinct or as clear as three simple stages. The jewelry just simplifies the core idea into a pleasant shape."
+	[journey_what] So what does it actually mean to journey from world to people?
+||
+{journey_what} He chortles nervously. "I- I wouldn't know... for certain, at least. I've always seen it as a rule for self-improvement and an advice to direct your efforts away from concrete things and towards relationships with others and your own mind.<br><br>There's definitely disagreement about what it means."
+	[away_concrete] That sounds beautiful.
+	[away_concrete] Away from concrete things? Like money and wealth?
+||
+{away_concrete} "Um... Oh, I should have brought something with me. There's so many beautiful books written about it. I think those are meant to be things we create and construct and will be grinded away by the endless days. Material things are immaterial... in the grand scheme?"
+	[makes_sense_relig] Right, makes sense.
+	[turn_to_people] So, turning towards people and the living mystery will create lasting things?
+||
+{turn_to_people} "You're asking so many questions! I shouldn't go so deeply about the philosophy without someone who knows these things better. I wouldn't say I can describe the experience or the philosophy to the accuracy it deserves. I think you should seek out a guru on the living mystery if you want better answers. I fear... explaining all this to you... makes me sound a little goofy. "
+	[very_personal] It's a personal thing. There are no easy summaries to people. //showif.charisma.8
+	[very_personal] Maybe a little.
+||
+{very_personal} "Actually... do you want a pendant of your own?... I'm supposed to be talking to people about the living mystery and giving out pendants. The gurus like their quotas. I have to admit I find it little distasteful to go out and 'recruit' people, but how would people know about it otherwise?" He offers a pendant to you with a faint smile.
+{dishonest_take} "I... I didn't assume I inducted you into my religion. I just like the gesture giving it to you... and it makes my quota look better." He laughs faintly.
+	[dishonest_take] I appreciate the gesture, but I feel taking it would be dishonest towards you. //showif.index_is.very_personal
+	[take_pendant] Thank you. (Take the pendant)
+	[keep_take] You don't have to give me one.
+	[keep_take] You can keep it.
+||>>Is that a... dildo?
+{dildo_upthere} Miggpli almost jumps in the air from the mention. "WHAT?"
+	[dildo_1] That thing there? (Point at the shelf)
+||
+{dildo_1} He glances at the shelf. "What... No, that can't be a... that."
+	[dildo_2] It kinda looks like one. Are you sure?
+	[dildo_22] It's probably something else that just appears like a dildo at a glance.
+||
+{dildo_2} "Uum wouldn't just leave... No, that's not a... Uh. "
+	[dildo_3] Maybe it's a historical... dildo?
+	[dildo_3] Uum seems like a rad girl.
+||
+{dildo_3} He mutters to himself. "No... she would definitely do that.<br><br>Whatever it is! It's off-limits and not important!"
+	[sure_dildo] I'm pretty sure it's a dildo.
+	[sure_dildo] Okay!
+||

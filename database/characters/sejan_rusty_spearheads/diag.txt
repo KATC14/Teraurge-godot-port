@@ -1,0 +1,19 @@
+
+>>Encounter(s) where PC finds rusted spearheads
+||
+{start | save_index again1, add_flag sejan_stepped_on_spearhead} You feel a stinging pain in the bottom of your foot. You've stepped on something sharp and metallic.
+{again1 | save_index again2} You feel a stinging pain in the bottom of your foot. It seems you've stepped on something sharp.
+{again2 | save_index again3} You feel a stinging pain in the bottom of your foot. You wonder if it's a rusted spearhead.
+{again3 | save_index again4} You feel a familiar, stinging pain in the bottom of your foot. It's probably yet another rusted spearhead.
+{again4 | save_index no_more_please} You step on something sharp. It's very likely a rusted spearhead. You wonder if your tetanus shot is up to date.
+{inspect | pic spearhead} You dig the item out of the sand and inspect it. It's a spearhead. A spearhead so rusted and mangled by time it barely resembles one.
+	[take_item] (Take the spearhead) //showif.index_is.inspect
+	[inspect] (Inspect the item) //hideif.index_is.inspect
+	[ | end_encounter] (Leave)
+||
+{no_more_please | add_flag sejan_rusty_spearhead_nomore} You step on something sharp. You sigh and look down. It's another spearhead.
+	[ | give_item rusted_spearhead, end_encounter] (Just... Take the spearhead and leave)
+||
+{take_item | give_item rusted_spearhead, remove_pic} You stash the rusted piece of metal.
+	[ | end_encounter] (Leave)
+||

@@ -1,0 +1,247 @@
+
+>>Noidu is a large, silent patron at the Taodal tavern.
+
+>>Intro block start
+||
+{start} The large hulk stares forward without noticing you and keeps sipping from his mug.
+	[hello_1] Hello.
+||
+{hello_1} He slowly turns his eyes to you and stares blankly.
+	[u_noidu] You're Noidu, right? My name is -name-. 
+||
+{u_noidu} He takes a small sip from his mug.
+	[silent_treatment] So... do you want to chat?
+	[leave_pointer] I'll leave you alone. (Leave)
+||
+{silent_treatment} He stares silently at you.
+	[blank_stare] You're the strong, silent type? //showif.charisma.8
+	[blank_stare] (Stare back)
+	[blank_stare] You're not mute, are you?
+||
+
+
+
+||>>CONVO HUB 1 (Zombie Noidu)
+{blank_stare | stop_music 7, save_index zombie_hi} He stares blankly at you.
+{zombie_hi | stop_music 7} You walk up to Noidu's table. He doesn't react to you.
+{case_closed | remove_flag noidu_round_component_removed, remove_flag noidu_round_component_reset, remove_flag noidu_red_component_removed, remove_flag noidu_cyber_reset, remove_flag noidu_red_component_reset, remove_pic} You stop what you're doing and put everything as it was and close the casing.
+{silent_return} 
+	[are_u_ok] Are you okay? Can you understand me? //showif.charisma.8 //hideif.clicked
+	[arm_stuff] What's that in your arm? //hideif.intelligence.6 //hideif.clicked
+	[u_want_sex] Uh... so, do you want to fuck?
+	[ | check_flag noidu_case_opened cyber_exam case_open_key_2] (Look at the electronics on his arm) //showif.intelligence.6
+	[leave_pointer] (Leave)
+||
+
+||>>Leave the table
+{leave_pointer | start_encounter taodal_tavern taodal_tavern} 
+||
+
+||
+{are_u_ok} He keeps staring at you. He lifts his mug to sip from it, but his arm suddenly jerks to a stop and shakes, he blinks and the shaking stops. He sips from the mug and stares at you silently.
+{its_cyber} His head slightly jerks to the side and then returns to a relaxed pose. He stares blankly at you.
+	[its_cyber] It's the cybernetics, isn't it? //showif.intelligence.10 //showif.index_is.are_u_ok
+	[silent_return] Alright.
+||
+
+
+
+||>>Cybernetics
+{arm_stuff} He stares at you and sips from his cup.
+	[silent_return] Uh, okay.
+||
+{cyber_exam} You carefully lean closer to Noidu's arm. He doesn't seem to notice you.<br><br>The electronics really do appear to be embedded into his arm. The grey casing looks to be made from some kind of plastic. There's three smaller interface ports in the corner of the device and a larger circular one that pierces the skin. There's a thick cable coming from under the skin and then pierced through his skin several times, running up his arm and straight into his right temple. The top of the casing seems like it could be opened.
+{case_open} You carefully reach out to touch the case. Noidu doesn't react to you. You try to open the lid with your fingers, but it stays locked. You try to slide and press on the lid, but nothing works. Noidu turns his head slightly downwards to look at the arm.
+{exam_cable} The pale cable made from a soft material travels up his arm and is attached by Noidu's own skin. It terminates in his right temple. The cable doesn't seem to be detachable from either end.
+{keylook_0} You look over Noidu's person but can't find anything resembling a key on him.
+{keygot_1 | remove_flag noidu_keys_found, add_flag noidu_port_keys} You take a glance at Noidu. He's looking blankly directly ahead. You carefully reach into his clothes and slide your hand in. You feel a ring with your fingertips and then deftly pull it out. Noidu doesn't react in any way.<br><br>The keyring has two keys: a thin, metallic one that resembles a normal key, and another that's thick and has a blinking light on it. It seems like it interfaces with electronics.
+{keygot_0 | remove_flag noidu_keys_found} You take a glance at Noidu, he's looking blankly directly ahead. You reach into his clothes— He suddenly slaps your hand away like it was a fly bothering him. He doesn't even turn his head to look at you. You try again, and he slaps your hand away again. You can't get the key from him like this.
+{silent_cyber} 
+	[case_open] (Open the casing) //hideif.has_flag.noidu_port_keys
+	[case_open_key_1] (Open the case with the port keys) //showif.has_flag.noidu_port_keys
+	[exam_cable] (Examine the cable) //hideif.clicked
+	[exam_case_ports] (Examine the case ports) //hideif.clicked
+	[silent_return] (Stop)
+||
+{case_open_key_1 | play_sound generic/tech/connect 70, pic cybernetics, add_flag noidu_case_opened} You use the metal key on the largest port. The case pops open. The inside of the the compartment is bathed in an intense blue light. It's filled with blinking components and translucent lines with rapid pulses of light coursing through them. One of the round components has orange and red lights intermittently filling the part. There's also a round, black disk with changing characters on it. You can read them.
+{display_look_2 | add_flag noidu_help_display} You stare at the circular display. The changing symbols seem to spell out: "HELP - CONTAINER," and the message keeps repeating.
+	[display_look_2] (Look at the display) //showif.index_is.case_open_key_1
+	[component_poke] (Examine the components) //hideif.clicked
+||
+	
+||>>Cybernetics surgery (This very simple piece of scripting is executed by trained professional on a closed track, do not try this at home.)
+{case_open_key_2 | pic cybernetics} You open the case. One component is still blinking red among the blue ones.
+{component_poke} You carefully reach into the case and lightly run you finger on the shapes. The electronics are a mix of a hard material and soft, silicon-like surfaces, and some of the components seem to be placed into sockets they can be removed from. You also find a single button in the corner. 
+{reset_0} You push the button, it clicks and then pops back up. The blue light flashes momentarily and then returns.
+{reset_1 | add_flag noidu_cyber_reset} You push the button, it clicks and then pops back up. The blue light flashes momentarily and then returns.
+{remove_red | play_sound generic/tech/disconnect 70, add_flag noidu_red_component_removed} You carefully pull the soft component out with a click, it dims and goes dark.<br><br>You turn the component in your hands, its base has a rectangular depression on it that seems to fit the port key with the blinking light.
+{remove_round | play_sound generic/tech/disconnect 70, add_flag noidu_round_component_removed} You carefully detach the long cylindrical component with a click, it dims and goes dark.<br><br>You turn the component in your hands, its base has a rectangular depression on it that seems to fit the port key with the blinking light.
+{remove_long | play_sound generic/tech/disconnect 70, add_flag noidu_long_component_removed} You carefully detach the soft component with a click, it dims and goes dark.<br><br>You turn the component in your hands, its base has a rectangular depression on it that seems to fit the port key with the blinking light.
+{component_reset} You socket the port key into the component. The port key blinks faster and faster until both the key and the component flash with a bright light. Afterwards, the port key returns to normal blinking, and the component remains dark.
+{component_resocket | remove_flag noidu_round_component_removed, remove_flag noidu_round_component_reset} You resocket the round component, it lights up with blue light.
+{red_resocket_0 | remove_flag noidu_red_component_removed, remove_flag noidu_cyber_reset, remove_flag noidu_red_component_reset} You resocket the component. It lights up with blue light but keeps blinking red.
+{display_look | add_flag noidu_help_display} You stare at the circular display. The changing symbols seem to spell out: "HELP - CONTAINER" The message keeps repeating.
+	[component_reset | add_flag noidu_red_component_reset] (Use the port key on the red flashing component) //showif.has_flag.noidu_red_component_removed //hideif.has_flag.noidu_red_component_reset
+	[component_reset | add_flag noidu_round_component_reset] (Use the port key on the round component) //showif.has_flag.noidu_round_component_removed //hideif.has_flag.noidu_round_component_reset
+	[display_look] (Look at the display)
+	[remove_red] (Remove the red flashing component) //hideif.has_flag.noidu_red_component_removed
+	[remove_round] (Remove the round component) //hideif.has_flag.noidu_round_component_removed
+	[ | check_flag noidu_red_component_reset red_resocket_0 check_reset] (Resocket the red flashing component) //showif.has_flag.noidu_red_component_removed
+	[component_resocket] (Resocket the round component) //showif.has_flag.noidu_round_component_removed
+	[ | check_flag noidu_red_component_removed reset_0 reset_1] (Push the button)
+	[case_closed] (Stop) 
+||
+{check_reset | check_flag noidu_cyber_reset red_resocket_0 red_resocket_1} This index checks if the reset button has been pressed while the red component was removed.
+||>>Port keys
+{exam_case_ports | add_flag noidu_key_search, add_flag noidu_keys_found} There's three holes in the corner of the case. Two of them are identical, with gold colored contacts inside, but the third, largest one is just a hole into the case that seems like a keyhole.<br><br>You notice an impression on Noidu's clothing that looks like a keyring.
+	[ | check_stat agility 8 keygot_0-keygot_1] (Take the keyring)
+||
+
+
+||>>Noidu wakes up
+{red_resocket_1 | play_sound generic/tech/start_beep 70, remove_flag noidu_round_component_removed, remove_flag noidu_round_component_reset, remove_flag noidu_red_component_removed, remove_flag noidu_cyber_reset, remove_flag noidu_red_component_reset, remove_pic} You resocket the component, it lights up with blue light. It doesn't blink red anymore.<br><br>Noidu's arm suddenly moves, and you recoil back as he starts moving. He holds his head and shakes it. He looks around, at his mug, and then at you. A gravelly voice emerges from him, "Hello."
+	[hallo_1] Hello.
+	[hallo_11] Are you feeling alright? //showif.charisma.6
+||
+{hallo_1} "I assume you did something. My memory is... messy."
+{hallo_11} "Yes, thank you. I assume you did something. My head feels... messy."
+	[hello_2] I think I reset your cybernetics. It seemed to affect your mind in a way that rendered you, uh, simple? //showif.intelligence.8
+	[hello_2] I did something with your arm electronics and you woke up. //hideif.intelligence.8
+||
+{hello_2 | remove_flag noidu_port_keys} He takes a glance at the arm. "I see.<br><br>My name is Noidu." He snags the port keys off the table and pockets them. 
+	[name_again] My name is -name-.
+||
+{name_again} "I do not mean to be rude, -name-, but can you leave me alone for a while? I feel very confused. I need to clear my head."
+{u_sure} "Just leave me alone for a moment."
+	[u_sure] Are you sure? I can fill you in if you have questions. //showif.index_is.name_again
+	[ | check_flag noidu_pc_mindless_sex leav_0 leav_1] Sure. (Leave)
+||
+{leav_0 | save_index hi_again, start_encounter taodal_tavern taodal_tavern, change_default_diag_file noidu diag_2}
+{leav_1 | save_index rem_something, start_encounter taodal_tavern taodal_tavern, change_default_diag_file noidu diag_2}
+||
+
+
+
+
+||>>You want sum?
+{u_want_sex} Noidu focuses his eyes on you and seems to perk up.
+	[u_want_sex_2] Yeah! Sex? Do you want to fuck?
+	[silent_return] Actually... nevermind.
+||
+{u_want_sex_2} His eyes look you over and he gently grabs your arm.
+{sex_not_obscure} Noidu turns his head towards you and waits.
+	[sex_not_obscure] That was the magic word? //showif.index_is.u_want_sex_2
+	[handhold_sex] (Follow)
+	[silent_return] Uh, let's not actually.
+||
+{handhold_sex | pic hallway_walk} Noidu walks hand in hand with you to his room.
+	[zombie_sex] (Go in)
+||>>Sex scene start
+{zombie_sex | change_environment taodal_tavern_room_2, change_sprite standing, remove_pic, add_flag noidu_mindless_sex} Noidu just keeps staring at you, saying nothing.
+{get_keyring | add_flag noidu_port_keys, remove_flag noidu_keys_found} You walk next to him and run your hands on his torso. He stares forward. You put your hand in his clothes and take the keyring. He doesn't react at all. You pocket the key and step back.
+	[key_nosex] I've changed my mind. I'll be going now. (Leave) //showif.index_is.get_keyring
+	[get_keyring] (Get close to him and pickpocket the keyring) //showif.has_flag.noidu_keys_found
+	[undress_zombo] (Undress)
+||
+{key_nosex} Noidu stares blankly at you as you leave but doesn't do anything.
+	[ | start_encounter taodal_tavern taodal_tavern] (Continue)
+||
+{undress_zombo} Noidu stares at you as you undress. You drop your clothes on the floor, he doesn't react at all and seems to wait for something.
+{you_undress_nao} He doesn't react and keeps waiting.
+	[you_undress_nao] Your turn to undress. //showif.index_is.undress_zombo
+	[hop_bed] (Hop on the bed)
+	[im_top] Get on the bed.
+||
+{hop_bed | change_sprite nude} You hop on the bed and tap on the mattress. Noidu walks closer and undoes his garments, revealing more muscle and a slit in his lower half. He stares at you silently.
+	[subby] How do you want to take me? (Lie on the bed)
+	[im_top] How do you want me to take you? //showif.player_sex.male
+||
+{subby | pic organ, add_flag noidu_pc_has_seen_his_dick} He looks you over and the slit opens. It spills out a purplish-red mess of flesh that stiffens into a pointed organ that hangs in front of him.
+	[ | sex_gate mfuck_1 ffuck_1] I- I haven't seen one those before. Be gentle.
+	[ | sex_gate mfuck_1 ffuck_1] That thing looks like a whole lotta fun.
+	[weird_dick] Woah! That's way too exotic for me! (Get off the bed)
+||>>No bottom
+{im_top} He looks you over and the slit opens. It spills out a purplish-red mess of flesh that stiffens into a pointed organ that hangs in front of him.
+	[no_bot] I'm not going to bottom here.
+	[ | sex_gate mfuck_1 ffuck_1] Okay, that's pretty convincing. Do your thing, then. (Lie on the bed)
+||
+{no_bot} He stares at you.
+{geton_lie} He keeps silently staring at you.
+	[geton_lie] Just get on the bed and I'll do the rest. //showif.index_is.no_bot
+	[leave_sex] Okay, I'll just leave, then. (Get dressed)
+||
+
+||>>Weird dick
+{weird_dick | remove_pic} You spring up from the bed and step away from Noidu. He turns his head calmly and stares at you.
+{too_different} He stares at you silently.
+	[too_different] Sorry, I think we're just too different. //showif.index_is.weird_dick //showif.charisma.6
+	[leave_sex] (Get dressed)
+||
+{leave_sex | remove_pic} You pick up your clothes and Noidu silently watches you get dressed.
+{sorry_weird_dicc} He stares at you silently.
+	[sorry_weird_dicc] Sorry about this. //showif.index_is.leave_sex //showif.charisma.6
+	[ | start_encounter taodal_tavern taodal_tavern] I'll be going now. (Leave) 
+||
+
+||>>Mindless sex scene (femPC)
+{ffuck_1 | add_flag noidu_pc_mindless_sex} Noidu moves closer to you and grabs your legs. The organ brushes against your inner thigh and then against your warm nethers. It's slimy and pulsing. He lines it up against your pussy and slightly prods in you as he settles himself closer to you. His hands tighten on your legs.
+	[ffuck_2] (Rub the organ)
+||
+{ffuck_2} You bend over and run your hand along the length of the complex penis. You feel it pulse hotly in your palm. You squeeze it gently but get no reaction from him. You pump it slowly with your both hands as he watches silently. You feel the shaft twitch against your labia, the pointed head prodding a little deeper.
+	[ffuck_3] (Lean back)
+||
+{ffuck_3 | pic vag_fug} You lean back and align yourself with him. Noidu lifts your legs higher and pushes deeper into you. You bite your lip as the large, slimy member slides into you, stretching you as it pulses hotly. Noidu moves his hands to your hips and pulls himself deeper. You gasp and grip the sheets as the tip of his cock bumps against your insides. You inhale and smile at the sensation.
+	[ffuck_4] (Brace yourself)
+||
+{ffuck_4} The cock slowly pulls out of you. You feel the pattern of the shaft slide along your insides, and your back arches from the pleasure. Noidu exhales and thrusts into you once again, slightly faster and more strongly. You grunt and hold in a whine. He carefully picks up his pace and grips you more tightly. The massive organ slides in and out of you with almost no resistance. You feel yourself bump against the bulbous base of the shaft as he bucks deeper into you. Your mind starts to blur from the sensation, and you find yourself whining and moaning as he keeps up his pace. 
+	[ffuck_5] (Relax)
+||
+{ffuck_5} He keeps up his relentless assault as your mind slips into a more mixed and delirious state. The one thrust among many sends you over the edge, you tense up and scream, but Noidu doesn't stop or slow down. The thrusting becomes a mess of pleasure and uncomfortable sensitivity as he rams himself relentlessly into you. You grimace and hold the sheets harder as you try to ride your orgasm as he pounds into you, but you feel another one coming on you already.
+	[ffuck_6] S- Slow down!
+	[ffuck_7] (Take it)
+||
+{ffuck_6 | auto_continue ffuck_8} You pat Noidu on his hand and yell raggedly for him to slow down, but he doesn't react and keeps fucking you.<br><br>A few more overly excited thrusts and your body is ravaged by another orgasm. You try to turn to your head into the sheets but Noidu's grip on your hips won't let you. You release a frustrated snarl and grimace. The constant pounding is driving your mind delirious, but Noidu just keeps fucking you, your thighs slapping against his body over and over again as he drives himself into you.
+{ffuck_7 | auto_continue ffuck_8} A few more overly excited thrusts and your body is ravaged by another orgasm. You try to turn to your head into the sheets but Noidu's grip on your hips won't let you. You release a frustrated snarl and grimace. The constant pounding is driving your mind delirious, but Noidu just keeps fucking you, your thighs slapping against his body over and over again as he drives himself into you.
+||
+{ffuck_8} Suddenly, his large hands yank you closer, and he thrusts deeply into you. The organ throbs powerfully, releasing hot ejaculate into you, the maddening feeling driving you closer to a third, excruciatingly powerful orgasm. You gasp as he throbs a second time, stretching you wider and spilling the seed out of you with a squirt. You arch from the pleasure as the third throb knocks your legs numb. You tremble as he pushes into you to breed you. You gasp and breathe raggedly as the throbbing slowly dies down, your hands still gripping the sheets.
+	[ffuck_9] (Catch your breath)
+||
+
+
+||>>Mindless sex scene (malePC)
+{mfuck_1 | add_flag noidu_pc_mindless_sex} Noidu moves closer to you and grabs your legs. The organ brushes against your inner thigh and then against your buttocks. It's slimy and pulsing. He lines it up against your anus and slightly prods in you as he settles himself closer to you. His hands tighten around your legs.
+{mfuck_2} You bend over and run your hand along the length of the complex penis. You feel it pulse hotly in your palm. You squeeze it gently but get no reaction from him. You pump it slowly with your hands as Noidu watches silently. You feel the shaft twitch against your ass, the pointed head prodding a little deeper.
+	[mfuck_2] (Rub the organ) //showif.index_is.mfuck_1
+	[mfuck_3] (Lean back)
+||
+{mfuck_3 | pic anal_fug} You lean back and align yourself with him. Noidu lifts your legs higher and pushes deeper into you. You bite your lip as the large, slimy member slides into you, stretching you as it pulses hotly. Noidu moves his hands to your hips and pulls himself deeper. You gasp and grip the sheets as the tip of his cock bumps against your insides. You inhale and smile at the sensation.
+	[mfuck_4] (Brace yourself)
+||
+{mfuck_4} The cock slowly pulls out of you. You feel the pattern of the shaft slide along your insides and your back arches from the pleasure. Noidu exhales and thrusts into you once again with a little more strength and speed. You grunt and hold in a whine. He picks up his pace and grips your tighter. The massive organ slides in and out of you with almost no resistance. You feel your rear bump against the bulbous base of the shaft as he bucks deeper into you. Your mind starts to blur from the sensation, and you find yourself whining and moaning as he keeps up his pace. 
+	[mfuck_5] (Relax)
+||
+{mfuck_5} He keeps up his relentless assault as your mind slips into a more mixed and delirious state. Then, one thrust of many sends you over the edge. You tense up and scream, but Noidu doesn't stop or slow down. You spray thick ropes of semen over yourself and on Noidu's large cock. The mindless thrusting becomes a mess of pleasure and uncomfortable sensitivity as he rams himself relentlessly into you. You grimace and hold the sheets harder as you try to ride your orgasm as he pounds into you, but you feel another one coming over you already.
+	[mfuck_6] S- Slow down!
+	[mfuck_7] (Take it)
+||
+{mfuck_6 | auto_continue mfuck_8} You pat Noidu on his hand and yell raggedly for him to slow down, but he doesn't react and keeps fucking you.<br><br>A few more overly excited thrusts, and your body is ravaged by another orgasm. You try to turn your head into the sheets, but Noidu's grip on your hips won't let you. You let out a frustrated snarl and grimace. The relentless pounding is driving your mind delirious, but Noidu just keeps fucking you. Your thighs slap against his body, over and over again as he drives himself into you.
+{mfuck_7 | auto_continue mfuck_8} A few more overly excited thrusts, and your body is ravaged by another orgasm. You try to turn your head into the sheets, but Noidu's grip on your hips won't let you. You let out a frustrated snarl and grimace. The relentless pounding is driving your mind delirious, but Noidu just keeps fucking you. Your thighs slap against his body, over and over again as he drives himself into you.
+||
+{mfuck_8} Suddenly, his large hands yank you closer, and he thrusts deeply into you. The organ throbs powerfully, releasing hot ejaculate into you, the maddening feeling driving you closer to a third, excruciatingly powerful orgasm. You gasp as he throbs a second time, stretching you wider and spilling the seed out of you with a squirt. You arch from the pleasure as the third throb knocks your legs numb. You tremble as he pushes into you to breed you. You gasp and breathe raggedly as the throbbing slowly dies down, your hands still gripping the sheets.
+	[mfuck_9] (Catch your breath)
+||
+
+||>>Sex end
+{mfuck_9 | pic anal_nut} Noidu releases your hips and steps back. His organ slips out of you and flops against his body. You feel warm ejaculate leak profusely out of you. Noidu stares at you silently as the large drops of thick fluid drip audibly on the floor. 
+{ffuck_9 | pic vag_nut} Noidu releases your hips and steps back. His organ slips out of you and flops against his body. You feel warm ejaculate leak profusely out of you. Noidu stares at you silently as the large drops of thick fluid drip audibly on the floor. 
+{girthy_fug} He stares at you. You can hear the droplets of fluid from his cock dripping on the floor.
+	[girthy_fug] I can't feel my legs, you girthy fucker. //hideif.index_is.girthy_fug
+	[sex_end | remove_pic] (Get dressed)
+||
+{sex_end} You get dressed as Noidu lies on the bed.
+{key_check | remove_flag noidu_key_search, add_flag noidu_port_keys} You go through his simple clothing and find a keyring. It has two keys; one is metallic, resembling a normal key, and the other one is thick and has a blinking light on it. Its purpose seems to be to interface with electronics.
+{room_check} You quickly but thoroughly search around the room but can't find the keys. Noidu lies on the bed and doesn't react to you.
+	[room_check] (Search his room for the keys) //showif.has_flag.noidu_key_search //showif.index_is.sex_end
+	[key_check] (Check his clothes for the keys) //showif.has_flag.noidu_key_search
+	[ | start_encounter taodal_tavern taodal_tavern] (Leave)
+||

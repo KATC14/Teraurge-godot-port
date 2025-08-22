@@ -1,0 +1,39 @@
+default_env:	sejan_forest
+
+
+
+<STATS
+charisma:		1
+will:			6
+intelligence	6
+perception: 	5
+agility:		8
+strength:		6
+endurance:		6
+
+hitpoints:		30
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	0
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+tail_whip
+tail_whip
+tail_whip
+tail_whip
+tail_whip
+tail_whip
+headbutt
+headbutt
+headbutt
+headbutt
+kinetic_droning
+kinetic_droning
+CARDS>

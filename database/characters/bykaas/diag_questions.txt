@@ -1,0 +1,254 @@
+>>All of the conversations are here now
+
+||>>return to main diag
+{silent_return | change_diag_file diag silent_return}
+||
+
+||
+{start}
+{dance_commission} "My dancing is so sporadic I wouldn't imagine taking money for it, and... the mayor might take notice if I start dancing for money.<br><br>I appreciate the thought but it's not feasible."
+{what_dancing} "All kinds! I like the more varied tunes. The kind you can just sway with and then suddenly jump into quick movement as the music goes crazy."
+{dance_you} "Of course you would. Maybe I will dance with you some evening? But not now, busy busy busy!"
+{take_holiday} "Oh, I wouldn't have the time or money for such. I would love to lie around in hot river baths, but I have no titles, land or money. I have this giant shell."
+{beaut_lesbian} "Oooh... You think so? You imagine us together in a blackened room, my hands wandering on your body while you pant, scream, and giggle from joy?<br><br>I imagine us like that." She lets out a half hearted giggle.
+{lets_clamslam} She waves her hand dismissively and laughs. "Oh I'm just teasing! I hunt the male kind, but it's nice to know my lines work on the fairer sex as well."
+{beaut_shape} "A gallery piece, then? I'm flattered. Do you think they would want to have my embalmed body? Maybe I should set up a contract..."
+{small_minded} "Ah! I do agree. I would never see myself doting over a husband. I do miss the city a little. People there are more... open-minded?"
+{cheaper_drinks} "Sorry, I don't give discounts to anyone. I'm kinda skimming the margins right now already."
+{casual_flirt} "I do like compliments, but do buy drinks too."
+{blue_pass} "Of course! Sorry about being so pushy. I quite like the drink myself."
+{take_bitter_bottle | give_item bottle_of_bitter_water} You take the bottle. "The next one is not a freebie, so try to fuck one girl at a time, okay?"
+{buy_bitter_bottle | take_money krats 10, give_item bottle_of_bitter_water} She hands the bottle to you and takes the krats.
+{cybarm_ok} "I can't wait to see how Taulsol looks with it."
+{subni_where} She shrugs. "No idea, sorry."
+    [lets_clamslam] Oh, I wouldn't mind taking you up on that.	//showif.index_is.beaut_lesbian
+    [ask_cyber_arm] (Show her the robot arm) Can you help me with this?	//showif.has_flag.bykaas_ask_robotarm //showif.has_item.robot_arm
+    [ | sex_gate sell_condoms_m sell_condoms_f] Um, I was wondering if you sell condoms or, uh, other contraceptives?	//hideif.has_flag.pc_knowledge_bitter_water
+    [ | add_flag bykaas_bitter_water_seller, sex_gate bitter_first_m bitter_first_f] You sell bitter water?	//showif.has_flag.pc_knowledge_bitter_water //hideif.has_flag.bykaas_bitter_water_seller
+    [subni_left] Do you know where Subni has gone?	//hideif.clicked //showif.has_flag.subni_where_gone
+    [mentioned_entertainment] You mentioned entertainment?	//hideif.clicked
+	[tell_you_pretty] Anyone ever tell you how pretty you are?	//hideif.clicked
+    [silent_return] (Back)
+||
+
+||>>"Entertainment" Question
+{mentioned_entertainment} "Yes, I'm the entertainment. Well, I guess it's a duo with the jukebox." She nods at the rusted metal box playing the music.
+	[ur_dancer] Oh, you're a dancer?
+||
+{ur_dancer} "Yes!  I sometimes kick the jukebox and jump on a table. The patrons absolutely love it."
+	[dance_partners] Do you... dance with partners? Or is it a solo act?
+	[dance_commission] I think I'd love to see you dance. Do you take commissions?
+||
+{dance_partners} A melodious laugh rings out from her face holes. "I do, I do... sometimes. Sadly, no one seems to be able to keep up with me."
+	[dance_you] I'd dance with you.
+	[what_dancing] What kind of dancing do you do?
+||>>Flirting
+{tell_you_pretty} An annoyed skitter comes out of her. "I run a tavern. What do you think?"
+	[little_harsh] Sorry! It was just a compliment! //showif.charisma.6
+	[silent_return] Never mind.
+||
+{little_harsh} "No, I'm sorry... You're right. Thanks for the compliment. It's just... You're the seventh person to tell me that today."
+{didnt_consider} "I do understand that people come here to relax. It's just... They don't seem to understand I'm working.<br><br>Reminding them about that seems to get under their skin. I imagine they don't want to be reminded about stress and work here. So I try to keep it bottled up. It's a paradoxical relationship." 
+	[didnt_consider] Sorry, I didn't consider what you must go through daily. //showif.index_is.little_harsh
+	[ | sex_gate genuine_flirt beaut_lesbian] I did genuinely mean it. You're pretty.
+	[take_holiday] Maybe you should travel? Go somewhere and just relax for a while?
+||
+{genuine_flirt} "Hmm... Why would <b>you</b> describe me as pretty?"
+{why_not_pretty} "I don't resemble your species much at all. Is the prettiness you refer to the prettiness found in objects of art or females you desire? Or am I some kind of an abstract idea you adore?"
+{you_just_pretty} "Why would you consider me pretty? I don't resemble your species much at all. Is the prettiness you refer to the prettiness found in objects of art or females you desire? Or am I some kind of an abstract idea you adore?"
+	[why_not_pretty] Why not? //showif.index_is.genuine_flirt
+	[you_just_pretty] I just think you look pretty. //showif.index_is.genuine_flirt
+	[art_woman] You're a piece of beautiful art depicting a graceful woman. //hideif.index_is.genuine_flirt //showif.charisma.8
+	[beaut_shape] I like your color, shape, and structure.
+	[beaut_woman] You're beautiful as a woman.
+||
+{beaut_woman} "What does that even mean? I'm beautiful doting over a husband, cooking food, and burping my children? Or... are your thoughts on the haze of warm, wet, and sweaty things?"
+	[small_minded] Defining womanhood beyond a biological sex is a little small-minded, don't you think? //showif.intelligence.8
+	[beaut_both] I think you'd be beautiful in both cases.
+	[art_woman] Yes.
+	[art_woman] No.
+||
+{beaut_both} "Just imagine! Me! In an inappropriately small apron, cooking a meal for my lovely husband... you!<br><br>Our mutant babies sleeping in the other room. We take the rare moment of silence for ourselves and... sweaty... wet things happen." She playfully taps her fingers on the counter.
+	[convince_casual] Sounds lovely.
+	[exotic_drinks] ...What are you doing?
+	[convince_casual] Mutant babies? //showif.player_sex.male
+||
+{art_woman} She laughs. "So, you're not going to choose, then? That's okay.<br><br>A follow-up question! Why did you <b>tell me</b> I'm pretty? Sure, it's flirt, but what were you trying to accomplish?"
+	[casual_flirt] Uh, I didn't really mean anything by it. Just casual flirting, I guess?
+	[cheaper_drinks] Cheaper drinks? I don't know.
+	[convince_casual] Casual sex with you? //showif.will.8
+	[pry_specific] Are you trying to pry something specific from me? //showif.charisma.8
+||
+{pry_specific} "Maybe."
+	[exotic_drinks] Like...?
+	[little_blunt] If you're asking if I'd have sex with you, the answer is yes. //showif.will.6
+||
+{exotic_drinks | add_flag bykaas_obassinian_blue} "Oh, never mind... Say, you like exotic drinks? Some Obassinian Blue? "
+{little_blunt | add_flag bykaas_obassinian_blue} She giggles. "That's blunt... New subject!<br><br>Say, you like exotic drinks?"
+{convince_casual | add_flag bykaas_obassinian_blue} She bursts out laughing. "Say... You like exotic drinks?"
+{blue_exotic} "Obassinian Blue, don't worry, It's perfectly safe to drink. It won't even get you drunk."
+	[blue_exotic] What kind of drink are you talking about? //hideif.index_is.blue_exotic
+	[probably_shouldnt] I... probably shouldn't drink things I've never heard about. //showif.index_is.blue_exotic
+	[ | change_diag_file diag blue_exotic_sure] Sure.
+||
+{probably_shouldnt} "It's a perfectly safe drink. I assure you"
+	[blue_pass] Sorry, I'll have to pass. As a precaution.
+	[ | change_diag_file diag blue_exotic_sure] If you say so. Give me one.
+||
+
+||>>CONTRACEPTIVES (You sell condoms or something?)
+{sell_condoms_m} She cocks her head, shocked. "Uh... That's very gentlemanly of you, to spare your girl from the bitter, but I think she'd rather have the drink than some worn rubber in her.<br><br>I appreciate your thought, but... just get her the bitter drink."
+{sell_condoms_f} She cocks her head, shocked. "Uh... are you sure about that? I'm sure you don't want some worn rubber in yourself.<br><br>Couldn't you just take some bitter drink instead?"
+	[wat_is_bitter] Sorry? Bitter drink?
+||
+{wat_is_bitter | add_flag pc_knowledge_bitter_water, add_flag bykaas_bitter_water_seller} "Oh no, didn't your parents have the conversation with you? Why am I always the educator!<br><br>It's water that's bitter, well, not just water but you get the point. It prevents pregnancy if the girl drinks it after she has sex. Simple."
+	[ | sex_gate bitter_first_m bitter_first_f] You sell bitter water?
+||
+
+||>>BITTER WATER (malePC)
+{bitter_first_m | play_sound generic/objects/glass_pour 70, add_flag bykaas_bitter_regular} She grabs a bottle from under the counter and sets it on the table. "I indeed do. I imagine you want a bottle? If you want, I'll give you a free shot, you know, if you want to 'take a peek on the other side'." She fills a small shot glass and slides it to you.
+	[whynot_drink] Sure, why not. (Drink the shot)
+	[just_bottle] I'll just take the bottle. How much?
+||
+{whynot_drink} You raise the shot glass and drink it in one go. The taste is a mixture of cold and immensely bitter burning sensation. You cough as it slides down your throat. Bykaas chimes in. "You know, that doesn't happen often. Most guys think it makes them girly." Your mouth feels a little numb.
+	[buy_aftershot] How much for the bottle?
+||
+{buy_aftershot} "Normally ten krats, but you'll get it for free. For drinking that shot."
+	[take_bitter_bottle] Nice, thanks. (Take the bottle)
+||
+{just_bottle} Bykaas raises the shot glass to her face. A thin spike from one of the face holes shoots into the glass and sucks it dry. The spike then quickly snaps back inside. She sets the shot glass on the table with a bang. "Ten krats."
+	[buy_bitter_bottle] (Give her ten krats) //showif.has_krats.10
+	[no_afford_bitter] Thanks, but no thanks. //showif.has_krats.10
+	[no_afford_bitter] Sorry, I can't afford that. //hideif.has_krats.10
+||
+{no_afford_bitter} "It's your lucky day! I'm giving it to you for free." She pokes the bottle closer to you.
+{why_free} "You know exactly why. Don't make babies if you don't want them, okay? Just take it."
+	[why_free] Thanks, but why? //showif.index_is.no_afford_bitter
+	[take_bitter_bottle] (Take the bottle)
+||
+
+||>>BITTER WATER (femPC)
+{bitter_first_f | add_flag bykaas_bitter_regular} She cocks her head. "I do indeed! Do you want a glass or a bottle?"
+	[bitter_glass] A glass, thank you.
+	[bitter_bottle] A bottle please.
+||>>Buy bottle
+{bitter_bottle} "That's two krats."
+	[cannot_afford] Uh, I don't have... two krats. //hideif.has_krats.2
+	[bitter_bottle_buy | take_money krats 2, give_item bottle_of_bitter_water] (Give her two krats) //showif.has_krats.2
+||
+{cannot_afford | play_sound generic/objects/glass_pour 70} Bykaas nods and puts the small bottle away. She then slides a small shot glass in front of you and quickly fills it from a larger bottle. "Here you go, sweetheart. On the house."
+{thank_bitter} "It's okay."
+	[thank_bitter] Thank you. //showif.index_is.cannot_afford
+	[drink_bitter] (Drink it)
+||
+{bitter_glass | play_sound generic/objects/glass_pour 70} Bykaas slides a small shot glass in front of you and quickly fills it from a larger bottle. "Here you go, sweetheart."
+{why_call_bitter} "Oh, it tastes horribly bitter alright."
+{bitter_bottle_buy} Bykaas places a tiny bottle on the counter and you take it. She then fills a shot glass and slides it to you. "Bitter shots are on the house. Keep the bottle for future... entanglements."
+	[why_call_bitter] Why is it called 'bitter water'? Is it actually bitter or is it just symbolic? //hideif.index_is.why_call_bitter
+	[drink_bitter] (Drink it)
+||
+{drink_bitter} You raise the shot glass and drink it in one go. The taste is a mixture of cold and immensely bitter burning sensation. You cough as it slides down your throat. Bykaas chimes in. "You do it like that too? Yeah, I guess it's the easiest like that. Trying to do it slowly just makes you suffer longer." Your mouth feels a little numb.
+{ever_for_fun} "No, I don't think anyone likes drinking it. The word 'bitter' is there for a reason. I can't taste anything after a sip, completely numbs my mouths."
+	[ever_for_fun] Anyone ever order this for fun? It's really bad. //showif.index_is.drink_bitter
+	[bitter_owe] Thanks. What do I owe you? 
+||
+{bitter_owe} "Nothing, sweetie. Bitter shots are on the house. Bottles cost you two krats, but only so I can get the bottle price back."
+	[why_give_free] That's very nice of you, but why?
+	[lucky_guy] I'll keep that in mind.
+||
+{why_give_free} "Bitter water isn't very expensive and I can't bear the thought of unwanted pregnancies.<br><br>It also drives exhausted and thirsty customers my way. They usually order something else to wash the taste from their mouth."
+	[lucky_guy] Very clever of you.
+||
+{lucky_guy} Bykaas leans in and lowers her voice. "If you don't mind me asking... Who's the lucky guy?"
+{wat_mean} "Who was the guy who made you drink bitter. Who'd you lie with?"
+	[ | change_diag_file diag do_mind] I do mind.
+	[wat_mean] What do you mean? //showif.index_is.lucky_guy
+	[why_ask] Why are you asking? 
+
+||>>GOSSIP GIRLS (This is how girls talk about guys... right?)
+{why_ask} "Just some gossip. Girls asking for bitter usually have funny stories to go with it. Who'd you lie with?"
+{bitter_shot_f | play_sound generic/objects/glass_pour 70} She puts down a shot of bitter water for you and you drink it. It tastes bitter. "...You wanna talk about it?"
+{bitter_bottle_f | take_money krats 2, give_item bottle_of_bitter_water} You give her two krats and she hands you a bottle of bitter water. "...You wanna talk about it?"
+	[ | change_diag_file diag do_mind] I'd rather not tell.
+	[taul_bang] Taulsol, the village guard.  //showif.has_flag.pc_sexed_taulsol //hideif.clicked
+	[tor_bang] Tornoth. //showif.has_flag.pc_sexed_tornoth //hideif.clicked
+||
+
+||>>Taulsol gossip
+{taul_bang | add_flag taulsol_fucks_around, add_flag bykaas_taulsol_gossip} "Oh? Lucky Taulsol. He should have come get a bottle himself and pay for it. You do know he's... you know, he sleeps around. So don't take anything too seriously with him."
+	[taul_really] Really?
+	[taul_figured] I figured.
+||
+{taul_really} "Oh yeah, one time this Ardub tax collector stops by the village and on the same evening she comes asking for a shot, she pointed at Taulsol as the cause. Then a sailor girl, a regular, mind you, stomps in and says the exact same thing. The tax woman's eyes fell out of her head when she heard it. Taulsol had somehow downed another girl before the one before had even had her bitter."
+	[taul_gentleman] He's pretty smooth.
+	[taul_cruel] That sounds a little cruel.
+||
+{taul_cruel} "No! Don't get me wrong! Taulsol is always honest about his intentions. Both girls knew it was just a quick, fun roll in the sand and they had a laugh about it.<br><br>I think it's his missing arm that swoons ladies, makes them all caring and sweet."
+{taul_gentleman} "Taulsol is terribly gentlemanly about all of it. Both girls knew it was just a quick, fun roll in the sand and they had a laugh about it.<br><br>I think it's his missing arm that swoons ladies, makes them all caring and sweet."
+{taul_figured} "Taulsol is terribly gentlemanly about all of it too.<br><br>I think it's his missing arm that swoons ladies, makes them all caring and sweet."
+	[taul_think] What do you think about him?
+||
+{taul_think} "I think he's a dutiful and honest person. He just likes sleeping around. Hell, I fucked him once."
+	[taul_notell] Oh, don't tell me that!
+	[taul_bykaas] Wait, you did?
+	[taul_bykaas] What?!
+||
+{taul_notell} "Sorry! I forgot you just... He just flirted with me one day and I obliged. He stopped flirting with me after that evening." Bykaas taps her fingers rhythmically on the table and giggles maliciously.
+{taul_bykaas} "Taulsol just flirted with me one day and I obliged. He stopped flirting with me after that evening." Bykaas taps her fingers rhythmically on the table and giggles maliciously.
+	[ | change_diag_file diag taul_weird] Okay, this is a bit strange, talking about him like this.
+	[ | change_diag_file diag taul_poor] What did you do to poor Taulsol?
+||>>Tornoth gossip
+{tor_bang | add_flag bykaas_tornoth_gossip} Bykaas freezes and shakes her head. "You mean, Tornoth the village blacksmith? Or some other Tornoth?"
+	[tor_blacksmith] ...The blacksmith.
+||
+{tor_blacksmith} Bykaas taps her fingers on the counter. "Oh my! How did this happen?"
+	[havin_fun] I kinda came on to him and he took me for a ride.
+||
+{havin_fun} "Oh my gods. I thought that man would never get a girl. I am so happy for him. Are you having fun?"
+	[real_good_fun] Yeah, I think we're having real good fun.
+||
+{real_good_fun} "What's he like? In bed?"
+	[bed_beast] Sweet and caring, but likes to give it like a beast.
+	[ | change_diag_file diag harmless_gossip] Sorry, but not going there!
+||
+{bed_beast} Bykaas's long fingers twitch excitedly. "I- I am jealous! How big is his cock?"
+	[ | change_diag_file diag biggus_dikkus] It's unnecessarily large! It has these four bumps on the underside of the tip, I love it!
+	[ | change_diag_file diag harmless_gossip] Woah! Cool down, girl! Maybe we should stop?
+||
+
+||>>The robot arm help
+{ask_cyber_arm | remove_flag bykaas_ask_robotarm} "You can't be serious. Where did you get that?"
+	[cybarm_1] I got it for a favor. It's for Taulsol.
+||
+{cybarm_1} "Those things aren't cheap. You're giving it to Taulsol? And you need my help? What's the problem?"
+	[cybarm_2] Do you know how to install one of these? Taulsol said you had a friend with cybernetics.
+||
+{cybarm_2} "Yeah, I know how to put that on. Just dip the soft end in water, poke some holes in Taulsol's stumb, stick them together, and turn the arm on. The grey 'biomuh' will grow tendrils into the holes and connect to his nervous system."
+	[what_biomuh] Uhh... Biomuh? //hideif.has_flag.pc_knowledge_biomuh
+||
+{what_biomuh | add_flag pc_knowledge_biomuh} "It's the grey stuff at the end of the arm. It connects living beings into computers by seeking out nerves and attaching to them. It also glues to the bones to create a rigid connection between the user and the prosthetic."
+	[cybarm_knowledge] How do you know so much about this?
+	[cybarm_danger] That sounds very dangerous if it goes wrong.
+	[cybarm_simple] Right.
+||
+{cybarm_knowledge} "That friend you mentioned, he kept detaching and attaching his limbs constantly, he also couldn't shut up about the arms and how they worked. The arms made him very happy though."
+{cybarm_danger} "That friend you mentioned wasn't terribly concerned. He kept detaching and attaching his limbs constantly and then afterwards just lay on the floor, whining to me when he wanted them back."
+	[odd_friend] You have an odd friend.
+	[who_friend] Who exactly was this friend?
+||
+{odd_friend} "That would be an understatement."
+{who_friend} "Just an arm-challenged friend."
+{cybarm_simple} "It's pretty simple in the end."
+	[cybarm_repeat] So... water the soft stuff, poke holes in Taulsol's stump, stick them together, and turn the power on?
+||
+{cybarm_repeat} "Yes."
+	[cybarm_ok] Right. Thanks. I'll go see if it sticks.
+||
+
+||>>Where subni left?
+{subni_left} "Sorry? Who?"
+	[subni_gamble] The short girl that gambled with people in that corner. (Point at Subni's corner)
+||
+{subni_gamble} "Oh, the tiny skitterer. No idea. She dragged a giant pile of stuff from her room and left the tavern. I imagine she jumped on a ship."
+	[subni_where] Any idea what ship? Or where to?
+||

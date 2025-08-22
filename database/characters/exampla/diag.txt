@@ -1,0 +1,146 @@
+
+
+
+
+
+
+>>This file will not appear correctly formatted if you don't have diag_white language imported into Notepad++ and selected.
+>>This character is a barebones example character to illustrate general dialogue structure.
+
+
+>>INTRO NOTES: Player meets the character for the first time. The intro usually has both characters telling their names to each other, so you don't have set a flag and check to find out if the PC has told their name to the npc
+
+
+||>>INTRO START
+{start} "Hi.<br><br>Welcome to the charming grey void of 'not_defined' It's quite pleasant here."
+{wtf_background} "It's because I don't have <b>default_env:</b> defined in my <b>stats.txt</b>. Debug menu encounters need that to know what environment to use.<br><br>Now, say 'Hi' to me so we can start."
+	[wtf_background] What's going on with the background? //hideif.clicked
+	[hi] Hi.
+	[i_know_u] Hey! I know you! You're that assistant that MD constantly bitches about.
+||
+{hi} She sighs and continues in bored monotone. "My name is Exampla, what's your name?"
+	[my_name] My name's -name-
+||
+{i_know_u} "That's me."
+	[exampla_right] Exampla, was it? My name is -name-.
+	[do_face] Can you do the face?
+||
+{do_face} "Can you tell me your name?"
+	[do_face_first] Do the face first.
+	[exampla_right] It's -name-.
+||
+{do_face_first} "No."
+	[no_tell_name] I'm not going to tell you my name then.
+	[exampla_right] Okay, my name is -name-
+||
+{no_tell_name} "Yeah well, I know the name variable is '-name-' so that's enough."
+	[railroading] Hey that's cheating.
+||
+{my_name} "Right... Nice to meet you, -name-. I think we can move on from the intro now." She quickly glances at her notes.
+{exampla_right} "Mhhn... I think we can move on from the intro now." She quickly glances at her notes.
+	[intro_end] Okay, let's do that.
+||>>INTRO END
+
+
+
+
+||>>CONVO HUB 1
+{intro_end | save_index met} "Poof, here we are. This is the 'convo hub 1' "
+{railroading | save_index met} "It's called 'railroading', get used to it. The writer is a hack.<br><br>Since you decided to be an ass we arrived to the 'convo hub 1' via different index. Good job."
+{met} "Hello again. This is the saved index 'met' for convo hub 1."
+{bam_shutdown | set_flag exampla_did_your_mom} "Yeah, your mom last night!<br><br>Bam! Single line shutdown using <b>hideif.clicked</b> and multiple indexes inside a dialogue branch. You can't even respond, absolutely brutal."
+{fucked_mom} "Oh right... I forgot <b>showif.index_is</b> And no, I was joking.<br><br>We actually just held hands and walked down a silent beach at sunset. Promise."
+{encounter_deal} "I'm an example character to show different functions and dialogue structure practices to writers who are interested writing for Teraurge. You might want to open my diag.txt in database/characters/exampla to see how these dialogue tricks work."
+{silent_return}
+	[encounter_deal] So what's your deal? //hideif.clicked
+	[bam_shutdown] Anyone tell you how pretty you are? //hideif.clicked
+	[fucked_mom] You... Fucked my mom? //showif.index_is.bam_shutdown
+	[ | change_diag_file diag_questions start] (Questions)
+	[why_questions] So why are questions hidden into another file and behind (questions)?
+	[leave] Bye now. (Leave)
+||
+{leave} "Oh jeez... That retard added a leave index. Oh well... Usually (Leave) shouldn't need a goodbye from the npc since players prefer quick transitions over unnecessary repeated dialogue.<br><br>Of course you can have goodbye index but most of the player probably stop reading the npc byes after few times. Just be brutal and exit player with a <b>end_encounter</b> or <b>start_encounter</b> into another scene. Of course, if the goodbye is particularly poignant or dramatic you can draw out that scene as far you want. The degenerates get off on that shit."
+	[ | end_encounter] Righ. I'm now actually leaving. (Leave)
+||>>CONVO HUB 1
+
+
+
+
+
+||>>advancing to convo hub 2
+{why_questions} "Player expectations and dialogue file organization really. The questions don't necessary advance the 'character story' and serve other purposes like voluntary exposition and fluff. You can of course buck this. nothing stops you from advancing the story with the (questions)."
+	[advance_story] So am I advancing your story by picking the option in the convohub?
+||
+{advance_story} "That depends. It doesn't necessarily advance the story but dialogue in the convo hubs is mentally considered more prominent and important than the (questions).<br><br>Playing into player expectations often makes them happy."
+	[advanced_story_2] But in this case it does advance the story, as an example?
+||>>advancing to convo hub 2
+
+
+
+
+
+||>>CONVO HUB 2
+{convohub2_hello} "Hello again. This is the saved index for convo hub 2."
+{advanced_story_2 | save_index convohub2_hello} "Yeah, it does.<br><br>I've brough us to convo hub 2 and saved a new entry index so next time you start my encounter you won't end back at the convo hub 1 and sequence break my ass."
+{why_different} "This convo hub doesn't have (questions) because visiting that diag file and coming back would send you to the silent index in convo hub 1. You need to have separate file or do some flag checking to make the same file work for two different convo hubs."
+{why_convohubs} "It makes story progression clearer. There's no actual reason for them but players and writers like clear cut-off points in the character interactions. You can also 'advance' stories by changing diag files."
+	[why_convohubs] Why have different convohubs? //hideif.clicked
+	[why_different] Do different convo hubs have different (questions)s? //hideif.clicked
+	[character_bit] Is there anything else you want to show me? //hideif.clicked
+	[ | end_encounter] Bye now. (Leave)
+||>>CONVO HUB 1
+
+
+
+
+||>>CHARACTER BIT
+{character_bit} "I have this rehearsed bit that was in my original character diag.txt before MD scrapped it and made this one."
+	[go_ahead] Okay, go ahead.
+||
+{go_ahead} She coughs a bit. "LA LI LU LO... Here we go. Please don't laugh, this is my job."
+	[char_start] I won't laugh.
+	[char_start] I won't promise anything.
+	[char_start] I won't laugh. (Lie)
+||
+{char_start | change_environment nightmare_of_ex, change_sprite maiden} You come across a woman on the road. She seems distressed. "Please help me!"
+{costume_fit} "Sure it does. It's an old timey dress.<br><br>Now quit being the king nerd and help this distressed and sexually unfulfilled pure maiden."
+	[costume_fit] I- I don't think your scenario or costume fits the game. //showif.index_is.char_start
+	[what_prob] Um... What seems to be the problem?
+||
+{what_prob} "My necklace! It fell somewhere here and I can't find it!"
+	[see_find] I'll see if I can find it.
+||
+{see_find} "Thank you! It's a family heirloom. My aunt will surely skin me alive if I lose it!"
+	[search_neclace] (Search for the necklace)
+||
+{search_neclace} You immediately spot a bright yellow plastic necklace on the ground right next to her. You pick it up. "Oh yes! That's the one! You're my hero. How can I ever repay you..." She winks at you.
+{really_now} "How could I ever repay you?..." She winks excessively.
+	[really_now] Really? //showif.index_is.search_neclace
+	[luck_kiss] You... Uh, could give me a kiss for good luck.
+	[we_fuck] We could... Have sex?
+||
+{we_fuck} "Oh! How vulgar! But your voice makes my knees tremble from lust... TAKE ME you brute!"
+{luck_kiss} "Oh... I'm sure I can do better than just a kiss... TAKE ME!"
+	[take_her] (Take her, In a sexual way)
+||
+{take_her | pic the_taking} Exampla and you have really awesome sex behind the bushes.<br><br>Exampla sighs contently in your arms. "Oh you're such a beast! I am completely satisfied by your incredible stamina."
+	[sex_end] ...Okay.
+||
+{sex_end | remove_pic, character_leave} "Oh, that was incredible! You're a real hero! I must be on my way now. Farewell great hero!" She waddles in her massive dress off screen.
+	[um_bye] Erm... Farewell young... Maiden, thing...
+||
+{um_bye | unhide_character, change_sprite character, change_environment not_defined} "Fun, wasn't it?"
+	[bit_basic] It was a bit basic.
+	[its_example] It's an example I guess.
+||
+{bit_basic} "Are you talking about the art? Yeah... This whole thing was kinda of a rush job. The boss couldn't bother with the art, so I made it myself."
+	[bad_quickie] It's not so bad. It was nice having badly drawn quickie with you.
+	[its_example] Well I guess it was just an example.
+||
+{its_example} "Well that's what I'm here for!"
+{bad_quickie} "Oh stop it!"
+	[what_next] So what's next?
+||
+{what_next} "That's about it. I'm just an example, you know?"
+	[ | end_encounter] Oh. 
+||

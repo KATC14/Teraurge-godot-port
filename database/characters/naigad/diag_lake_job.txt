@@ -1,0 +1,159 @@
+NOTES
+Player helps Naigad to recover the chest.
+	-Repairing the robot arm.
+	-Diving into the lake and unlocking the lock manually.
+	-Other??
+NOTES
+
+||>>Repairing the robot arm.
+{start} "Well... Since the robot arm is busted, I'm going to need you to dive with me to the mechanism and put your hand in it."
+	[arm_repair] Let me see that robot arm. I might be able to fix it. 
+	[dive_start] We should just go dive, then. Seems like the easiest solution.
+||
+{arm_repair} "Really? It's a fairly complex piece of tech. I don't even have spare parts with me." She hands you the robot arm with her tail.
+	[robot_examine | pic robot_arm] (Examine the robot arm)
+||
+{robot_examine} The robot arm looks surprisingly human, almost as if it was actually modeled after a human arm. The outer surface is some kind of hard plastic. It's mottled with discolored spots and small islands of green moss. The odd wear and tear makes it seem ancient. The forearm seems to have a panel on it.<br><br>You notice teeth marks on the two buttons at the base.
+	[panel_open] (Open the panel)
+||
+{panel_open} You fiddle around the panel edge and find a soft spot in the plastic. You carefully press the oddly soft spot and the panel pops open. It reveals a mess of strange-looking electronics and wires.
+	[problem_look] (Look for the problem)
+||>>Robot arm fixing
+{problem_look} You pull on the wires and the freely moving components. Some of the electronics have blinking lights on them. You notice a black wire loose in the compartment. It seems to have been torn off from something and has a worn metal contact at its tip.
+{power_source} She nods at the arm. "It's the small cylinder at the back." You turn the arm around and find the small cylinder embedded into the arm.
+{power_remove | play_sound generic/tech/disconnect 70} You find another soft spot around the cylinder and press it. The cylindrical power source pops out and you palm it. The lights inside the compartment fade away.
+	[power_remove] (Remove the power source) //showif.index_is.power_source
+	[fix_wire_1] (Fix the wire) //showif.index_is.power_remove
+	[fix_wire_0] (Fix the wire) //hideif.index_is.power_remove
+	[power_source] Naigad, do you know where the power source is located? //showif.intelligence.6 //showif.index_is.problem_look
+||>>Fix botch
+{fix_wire_0 | play_sound generic/tech/shock 70} You pick up the wire confidently and attach it. A sudden flash of light blinds you and powerful current travels up your arm. The shock takes your legs out from under you and you fall to the ground. The arm falls next to you in the sand. It makes a high-pitched whining noise that ends with a raspy grinding. As the noise stops, dark smoke billows out from under the panel.<br><br>Naigad gasps.
+	[botch_repair] So... I might have botched that.
+	[botch_repair] ...Whoops! Sorry.
+ 	[botch_repair] It's fucked.
+||
+{botch_repair | remove_pic} Naigad looks at the smoking arm and shakes her head. "I guess it's just more broken now. We should probably move to plan A now. Are you any good at swimming?"
+{not_cheap} "It was pretty expensive... but this was the only use for it anyway. If I just get the chest, it doesn't matter it broke. Good thing you have five digits."
+	[dive_start] I think I can manage the dive.
+	[not_cheap] Sorry, it probably wasn't very cheap? //showif.index_is.botch_repair
+||>>fix success
+{fix_wire_1 | play_sound generic/tech/connect 70} You pick up the wire confidently and attach it to a port missing one. The contact seems to fit and it clicks into place.
+	[repair_finish] (Put the power source back)
+||
+{repair_finish | play_sound generic/tech/start_beep 70, remove_pic} You slide the power source back into its slot with a click. The lights blink to life and the arm whirs for a moment. You close the panel and click the makeshift button at the stump of the arm. The arm grips tightly and then releases. Naigad laughs. "You actually did it! Even if I knew what to do, I wouldn't have been able to manipulate anything inside that tiny compartment. Excellent!"
+	[just_awire] It wasn't really anything, just a loose wire. (Give the robot arm to her)
+||
+{just_awire | character_leave} "This will make the whole thing a lot easier! I will go open the chest right now!" She jumps excitedly into the water with a splash.
+	[naigad_gotarm] (Wait)
+||
+{naigad_gotarm} You wait. The lake is very quiet. You can only hear waves gently sloshing on the sand and leaves rustling in the wind.
+	[naigad_gotdisk] (Wait)
+||
+
+||>>Diving into the lake and unlocking the lock manually.
+{dive_start} "The weather seems to hold, so we should probably go for it."
+{giant_carni} "Don't be stupid. The lake is a tiny sand bed pond. There's almost no life in it."
+	[giant_carni] There's not going to be any carnivorous lake monsters in there, right? //showif.index_is.dive_start
+	[what_down] So, what am I going to see when I go down there?
+||
+{what_down} "You're going to see a chest made of green metal at the bottom. The box is attached to a large object under the sand, so moving it is an impossibility. It has an indentation of a five-fingered hand on its surface. You simply have to put your hand on that indentation and grip on the mechanism. The box should then open."
+	[job_ready] Seems simple enough.
+	[open_spec] So do you know it will open or are you speculating? //showif.intelligence.6
+||
+{open_spec} "I'm fairly sure it should just open. It's not supposed to be a lock, just an overly elaborate handle to open it."
+	[veri_syst] Why such a complicated opening mechanism? It sounds like a verification system of some kind. 
+||
+{veri_syst} "It's unnecessarily complicated because the builders were self-absorbed idiots. It's not a lock or a verification system."
+	[spec_again] So... Do you know that or are you just speculating again?
+||
+{spec_again} She pauses for a while. "We should start. The mechanism might be a little rusty so you might have to force it a little."
+	[avoid_q] Avoiding the question? //showif.charisma.6
+	[job_ready] Sure.
+||
+{avoid_q} "You should get the gist of it already. Can't talk, won't talk. Hush hush.<br><br>Let's go before it gets dark. The water is clear enough, so we don't need lamps."
+{job_ready} "We should do this before we lose daylight. The water is clear enough, so we don't need lamps."
+	[job_undress] (Get undressed)
+||
+{job_undress} "Right, let's go."
+{normal_nude} She chortles. "It's... It's not normal for me. I don't usually live alone at a lake like a wild creature, but I think I've taken a bit of a liking to it."
+	[swim_start] (Get into the water)
+	[normal_nude] Is nakedness normal to you? You don't seem very bothered by it. //showif.index_is.job_undress
+||
+{swim_start | change_environment sejan_lake_water, change_sprite in_water} You walk into the water and Naigad swims beside you. "Follow me."
+	[follow_swim] (Follow her)
+||
+{follow_swim} You swim in the cool water until Naigad bumps into you and you stop. She quickly dunks her head in the water and back. "It's beneath us."
+{dive_yank} "Yup. I will dive down with you so I can help if there's a problem."
+	[dive_yank] Dive, stick my hand into the indentation, grip, and push? //showif.index_is.follow_swim
+	[dive_chest] (Dive for the chest)
+||
+{dive_chest | change_environment sejan_lake_underwater, pic chest, hide_character, stop_music 3} You fill your lungs and dive under the waves. You see a dark, blurry shape in the tan lake bed and head for it. The shape takes on a clearer form as you close in on it. It's a chest with the mechanism Naigad described. You see the hand indent on the surface. Naigad swims next to you and anxiously nods her head at the chest.
+	[hand_indent] (Use the hand indent)
+||
+{hand_indent | play_sound sejan/naigad_chest 70} You reach for the indent and plant your hand into it. You feel ribbed buttons underneath your fingertips. You grip and your hand smoothly sinks into the mechanism. The chest pops open, releasing bubbles racing towards the surface. Naigad's eyes widen as she grins. A metallic disk stands from the opened chest. She quickly snatches it and speeds away.
+	[back_surface] (Swim back to the surface)
+||
+{back_surface | play_sound sejan/naigad_stuck 70} You yank at your hand. It's lodged inside the mechanism. You pull harder but you can feel something twist around your wrist as you pull. You feel something cut into your arm. The need to breathe claws at the back of your mind.
+	[pull_free] (Pull yourself free)
+||
+{pull_free | play_sound sejan/naigad_stuck 70} You pull harder on the mechanism. You can feel the mechanism give in as you pull but something sharp painfully digs into your flesh. You stop when see small strands of red float from the mechanism.
+{look_around_lakebed} The lakebed is covered with untouched fine sand; it's entirely empty, only the chest sticks out from it. There's nothing in the vicinity to help you.
+	[ | check_stat strength 8 pull_0-pull_1] (Ignore the pain and pull yourself free)
+	[look_around_lakebed] (Look around) //showif.index_is.pull_free
+||
+{pull_0} The mechanism dings and rattles as you pull but you can't break it. The lack of air is making your movements more and more panicked and desperate.
+	[harder_harder] (Pull harder)
+||
+{harder_harder | pic unconscious, change_env_sounds sejan/lake_underwater.30-sejan/lake_underwater.1, add_flag naigad_lake_pc_almost_drowned, auto_continue drowned} You pull desperately at the mechanism. The edges of your vision dim as you rattle the trap. You kick and thrash but you cannot free yourself. The gasp reaction is forcing your throat as you grimace. You kick impotently and gasp. Cold water fills your insides and your mind darkens.
+||
+{drowned | change_environment sejan_lake, pic blurry_wakeup} A blurry face is staring down at you. You hear sloshing inside your ear. Suddenly, a large jaw bites on your mouth and breathes in you. You feel the strong pressure fill your lungs to an almost painful degree. You cough and the jaws relent. "-name-?" You feel Naigad's tail bop you on the cheek. "Can you breathe?" You feel her large head press on your chest and stay there for a second. She then turns you over and you puke water out.
+	[drown_getup] (Get up)
+||
+{drown_getup | start_music sejan/naigad 70 4, remove_pic, change_sprite character} You catch your breath and push yourself up. You hobble slightly as you stand up. Naigad looks at you, concerned. "Oh gods! I thought you drowned. The mechanism stuck to your hand? I had to pull really hard to break it. There's a cut on your arm from it.<br><br>I'm terribly sorry! I had no idea this could happen."
+	[harms_way] It's okay. I didn't die, thanks to you.
+	[perm_dam] Hopefully no permanent damage.
+	[almost_ded] I almost died.
+||
+{harms_way} "I did put you in the harm's way, so I guess that's the least I could do."
+{perm_dam} "I don't think so. Well, aside from some teeth marks on your face, I guess."
+{almost_ded} "I did say the job wasn't entirely risk-free, but I'm sorry."
+	[job_done_anyway] We got the job done at least?
+||>>Pull yourself free
+{pull_1 | change_environment sejan_lake_water, play_sound sejan/naigad_break 70, remove_pic} You pull harder. The mechanism dings and cracks as you pull it from the indent. You feel the pain intensify until the whole thing falls apart and your hand breaks free. You swim towards the surface. When you emerge, you notice your wrist has a small cut on it.
+	[swim_to_beach] (Swim back to the beach)
+||
+{swim_to_beach | change_environment sejan_lake, change_sprite character} You reach the sand and hobble onto the beach. Naigad is packing her bag. "Hey! What took you so long? I was getting worried."
+	[mech_stuck] The opening mechanism got stuck to my hand. Had to force it a little.
+||
+
+
+||>>Job finish
+{naigad_gotdisk | play_sound generic/interactions/splash_big 60, change_sprite character} Naigad suddenly bursts from the water. She is clutching a metallic disk in her tail and quickly stashes it in her bag. "It worked! It worked perfectly! The mechanism was a little janky but worked."
+{mech_stuck} The metallic disk gleams in Naigad's bag and she quickly closes it. "That's horrible! You could have drowned! I should have stayed with you. I didn't expect that. The mechanism seemed to work so smoothly."
+{job_done_anyway} The metallic disk gleams in Naigad's bag and she quickly closes it. "Yes! We did, indeed!"
+	[so_what_is] So... What is it?
+	[thank_again] That's that, then.
+||
+{so_what_is} "It's a... decorative metal disk."
+	[sorry_secret] Sure it is.
+	[tell_anything] Can't you tell me anything? I'm curious. //showif.charisma.8
+||
+{tell_anything} "Oh.. Umm. It's important and shiny? Sorry I- I just can't tell you. Just know you've helped some very powerful people... I- I shouldn't have said that."
+{sorry_secret} "Sorry, but I'm not going to tell you. It's nothing personal."
+{died_for} "You deserve to know... but I can't. More lives depend on the secret."
+	[thank_again] Alright. If it's important to you.
+	[died_for] Least you could do is tell me what I almost died for. //hideif.index_is.died_for //showif.has_flag.naigad_lake_pc_almost_drowned
+||
+{thank_again} "Thank you again. I need to go stash this thing immediately. It will take me a while, so feel free to leave and come back later. I'll be here."
+	[time_to_ditch] Seems like you could easily just leave and not pay me.
+	[ok_wait] Sure. I'll come back later.
+||
+{time_to_ditch} "Don't worry. I'll be back."
+	[ok_wait] If you say so.
+||
+{ok_wait | change_default_diag_file naigad diag, character_leave} "See you later!" She jumps in the water and disappears.
+	[job_bye] Bye!
+||
+{job_bye | save_index payment_start} You're left alone on the beach; the silence feels quite relaxing.
+	[ | end_encounter] (Leave)
+||

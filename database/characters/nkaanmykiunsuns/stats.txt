@@ -1,0 +1,45 @@
+default_env:	taodal_tavern_table_2
+text_color:		cedaed
+bubble_color:	35383d
+
+
+<STATS
+charisma:		6
+will:			6
+intelligence	6
+agility:		8
+strength:		6
+endurance:		6
+
+hitpoints:		40
+
+heat_res:	2
+cold_res:	2
+impact_res:	0
+slash_res:	0
+pierce_res:	0
+magic_res:	8
+bio_res:	4
+STATS>
+
+
+<CARDS
+penetrating_stab
+knife_stab
+knife_stab
+knife_stab
+knife_slash
+knife_slash
+serrated_slash
+serrated_slash
+serrated_slash
+leg_sweep
+leg_sweep
+body_tackle
+debilitating_kick
+kick
+kick
+kick
+right_hook
+left_hook
+CARDS>

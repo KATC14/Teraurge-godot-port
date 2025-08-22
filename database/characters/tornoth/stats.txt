@@ -1,0 +1,43 @@
+default_env:	taodal_tornoth_smithy
+text_color:		000000
+bubble_color:	967b70
+
+
+
+<STATS
+charisma:		6
+will:			8
+intelligence	6
+agility:		4
+strength:		10
+endurance:		6
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	0
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+mighty_smash
+lousy_slap
+CARDS>
+
+
+<SHOP
+roll_of_rope
+roll_of_rope
+felling_axe
+crowbar
+pickaxe
+torch
+torch
+torch
+box_of_nails
+box_of_nails
+box_of_nails
+SHOP>

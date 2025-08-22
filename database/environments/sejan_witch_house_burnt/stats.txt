@@ -1,0 +1,12 @@
+interior:	no
+ambient:	0.5
+
+discoverable:		yes
+dicovery_message:	You have discovered the Witch's house!
+default_message:	Do you want to enter the Witch's house?
+
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>

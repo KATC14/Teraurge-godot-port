@@ -1,0 +1,9 @@
+interior:		yes
+ambient:		0.7
+ambient_color:	314b7c
+
+<SOUNDS
+generic_interior/wood_creaking.12
+generic_interior/tavern_voices_muffled.9
+sejan_taodal/tavern_blue_room.10
+SOUNDS>

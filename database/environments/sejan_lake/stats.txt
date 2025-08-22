@@ -1,0 +1,15 @@
+interior:	no
+
+discoverable:		yes
+dicovery_message:	You have found the Sejan lake!
+default_message:	Do you want to enter the Sejan lake?
+
+
+<SOUNDS
+generic_exterior/lake.20
+sejan/forest_birds.10
+SOUNDS>
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_lake sejan_lake} sejan lake encounter
+||

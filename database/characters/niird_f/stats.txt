@@ -1,0 +1,44 @@
+default_env:	sejan_beach
+
+
+
+<STATS
+charisma:		2
+will:			2
+intelligence	2
+perception: 	2
+agility:		12
+strength:		8
+endurance:		8
+
+hitpoints:		22
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	0
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+body_tackle
+body_tackle
+clumsy_kick
+clumsy_kick
+clumsy_kick
+kick
+kick
+kick
+kick
+kick
+kick
+kick
+kick
+kick
+kick
+kick
+debilitating_kick
+CARDS>

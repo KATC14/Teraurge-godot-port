@@ -1,0 +1,499 @@
+
+>>Nkaan talks PC into cuddling after the job
+>>She's open to sex if player doesn't keep the focus on just cuddling
+
+||
+{start | hide_character} She walks you down the worn hallway of the tavern deeper into the softly creaking building. She stops at a door and clinks her keychain as she opens it. She disappears inside.
+	[ | check_flag nkaanmykiunsuns_just_cuddle sex_cuddle just_cuddle] (Go in)
+||
+
+
+
+||>>Just cuddling
+{just_cuddle | change_sprite nude} You walk into the dim room. You see Nkaanmykiunsuns discard her clothes on the floor nonchalantly and then turn to face you, nude.
+{unwrapped} "It's easier than it looks."
+	[unwrapped] How... did you get that thing off yourself so fast? //showif.index_is.just_cuddle
+	[ | sex_gate cudd_time_m cudd_time_f] You look stunning. //showif.charisma.6
+	[ | sex_gate cudd_time_m cudd_time_f] You want to... cuddle naked?
+||
+{cudd_time_m} She grins, slightly nervous. "Yeah... Look, if you want, you can hump me too."
+{cudd_time_f} She grins, slightly nervous. "Yeah... Look, if you want, we can do the mutual wet stuff too."
+{tempted_m} "I'd rather not have your erection constantly poke me in the ass when we cuddle, so yes."
+{tempted_f} "Yeah, I'm sure."
+	[cudd_okay] I'm okay with just cuddling.
+	[ | sex_gate tempted_m tempted_f] I'm tempted, but are you sure? //hideif.clicked
+	[actually_sex] I think I'll take you up on that.
+||
+{cudd_okay} She shoots a soft smile at you. "Alright... Take off your clothes."
+	[cuddtime_1] (Undress)
+||
+{cuddtime_1 | pic spooning} You undress as Nkaan lies down on the bed. She takes a lazy glance at you as you throw your clothes aside and pats the bed next to her. You climb on the bed and behind Nkaan's back. She pushes herself against you and settles. You feel her buttocks press against your crotch. She turns her head slightly behind her. "Is this okay for you? Put your hands around me." You hug her carefully and she lays her arms over yours. After some adjustment, she sighs contently.
+	[cuddtime_3] (Cuddle her)
+||
+{cuddtime_3} You hug her against you. Her pale skin is smooth and soft. You can feel the points of her bones poke from underneath, but her relaxed muscles provide enough padding to make her comfortable to hug.<br><br>You spend a long moment in silence until Nkaan suddenly croaks with a drowsy voice. "-name-, do you think I'm attractive?"
+	[ | sex_gate yes_sexy fem_sexy] I do.
+	[not_muh_type] You're not my type, if you're asking that.
+	[no_sexy] No.
+||
+{fem_sexy} "Really? You sure you don't want to have sex?"
+	[only_if_you] Only if you want it.
+	[no_sexy] Nah, this is okay.
+||
+{yes_sexy} She continues with a slight annoyance in her voice, "Yeah, I figured as much." She pats your hip. You realize you've been prodding her with your erection this whole time. She cranes her head over her shoulder and glances at you. "This is not going to work for me if you keep poking me with that." 
+	[dicc_poke_0] Don't mind it.
+	[dicc_poke] So it seems.
+	[dicc_poke] Uh, sorry about that.
+||
+{dicc_poke_0} "You really don't want to do anything?"
+	[just_cudd_pls] Just cuddling is perfect.
+	[sure_sex_0] Do you want it?
+||
+{sure_sex_0} "Yeah, sure, let's just get it over with." She turns on her back and spreads her legs slightly.
+{dicc_poke} "It's fine, let's just get it over with." She turns on her back and spreads her legs slightly.
+{sure_sex_1} "No, I'm just kidding." She slaps you on the head. "Climb on me and stick it in."
+{sure_sex_2} She sighs. "I just told you to fuck me."
+	[sure_sex_1] ...Are you sure? //showif.index_is.dicc_poke
+	[sure_sex_2] I just don't want it to be an annoyance or bother to you. //showif.index_is.sure_sex_1
+	[just_cudd_pls] Can we just cuddle?
+	[get_on_nerd] (Get on top of her)
+||
+
+
+||>>sex  & cuddling
+{sex_cuddle | change_sprite nude} You walk into the dim room. You see Nkaanmykiunsuns discard her clothes on the floor nonchalantly and then turn to face you, nude. 
+{unwrapped_2} "It's easier than it looks."
+{you_beaut_nude} She looks to her side and stares at a wall. "Thanks."
+	[unwrapped_2] How... did you get that thing off yourself so fast? //hideif.clicked
+	[you_beaut_nude] You're beautiful, Nkaanmykiunsuns. //hideif.clicked //showif.charisma.6
+	[sex_undress] (Undress)
+||
+{sex_undress | pic bed_invite} You undress as Nkaan lies down on the bed. She takes a lazy glance at you as you throw your clothes aside and pats the bed next to her.
+	[get_on_nerd] (Get on top of her)
+||>>SEX HUB
+{only_if_you | start_music generic/romance_soft 70 3, pic on_her} She chuckles. "Let's do it, then." She spreads her legs and you settle between them. She brushes your nose playfully.
+{get_on_nerd | start_music generic/romance_soft 70 3, pic on_her} She spreads her legs and you settle between them. She brushes your nose playfully. "Comfortable?"
+{actually_sex | start_music generic/romance_soft 70 3, pic on_her} "Alright! Get on me, then." She spreads her legs and you settle between them. She brushes your nose playfully. "Comfortable?"
+{kiss_2} "Yeah, I think I am." She grabs your head, plants her lips to yours, and sticks her tongue down your throat. You steady yourself against the sudden lunge and respond to her tongue with your own. She playfully drags hers over yours and then slowly detaches from your mouth. She licks a thin strand connecting your lips away and then gives a playful lick across your lips.
+{kissy} You lean down to kiss her. She responds by grabbing your head and planting her lips forcefully against yours. She sticks her tongue into your mouth and twirls it around and then suddenly detaches with a playful slap.
+{end_cunn_m | pic on_her} You stop and raise your head from her crotch. She holds your head by your jaw and kisses you, licking all over your wet mouth and then detaching herself with an exaggerated pop. She inhales and smiles at you. "Nice... thanks." 
+{on_top_girl} She grins. "Hah! Nice try. I'm not doing any work here. Get to it, lover."
+{get_off_chest | pic on_her} You awkwardly climb off her and back between her legs. She shoots an amused look at you.
+	[kiss_2] You're really into kissing, aren't you? //showif.index_is.kissy //showif.charisma.6
+	[on_top_girl] I imagined you being a girl who likes being on top. //hideif.clicked
+	[maybe_bj] (Straddle her chest and present your cock to her) //hideif.clicked //showif.player_sex.male
+	[kissy] (Kiss her) //hideif.clicked
+	[fugging] (Fuck her) //showif.player_sex.male
+	[cunning] (Give her cunnilingus) //hideif.clicked
+||
+
+||>>maybe bj? 
+{maybe_bj | pic maybe_sucky} You straddle her chest. Your set your cock right in front of her face. She smiles and then looks up at you. "What are you implying here?" She chuckles and flicks your dick.
+	[bj_plz] Blowjob?
+	[encouragement] I thought you could, you know, give encouragement? //showif.charisma.6
+	[succ_it] Suck it. //showif.will.8
+||
+{bj_plz} She tickles the side of your shaft and chuckles. "Sorry to disappoint, but I don't suck dick."
+{encouragement} She tickles the side of your shaft. "Oh, I know... Sorry to disappoint, but I don't suck dick."
+{succ_it} She tickles the side of your shaft. "How forceful of you!<br><br>Sorry to disappoint, but I don't suck dick."
+{nibble_lick} "I don't find this funny."
+	[nibble_lick] Just, give it a nibble or a lick. //showif.index_is.succ_it
+	[why_no_sucky] Mind if I ask why?
+	[get_off_chest] Oh, uh... Sorry. (Get off her chest)
+||
+{why_no_sucky} "I don't mean to sound nasty, but I don't really owe you an explanation for that, now do I?" She makes a face like she smelled something bad. "I don't like it, makes me gag. Nothing personal." 
+	[get_off_chest] Alright. (Get off her chest)
+||
+
+||>>Missionary
+{fugging | pic bed_missionary_pen} You widen your legs a bit and settle closer to her body. You feel her nethers brush up against your shaft, they're surprisingly warm. Nkaanmykiunsuns spreads her legs wider and slides her hands under you, down to her crotch. She grabs your erection with one hand and spreads her pussy with the other, she lines them up and gently nudges you with her snout. "There you go. Now push forward a little."
+{know_how_to_fug} She chuckles softly. "I didn't mean to sound condescending. I just like giving encouragement." She licks you across the cheek and whispers with a husky voice, "Go ahead."
+	[know_how_to_fug] I know how this works, you know. //showif.index_is.fugging
+	[fug_1] (Penetrate her)
+||
+{fug_1 | pic bed_missionary_fug} You push your hips forward, and your glans makes contact with her spread open pussy. The wet inner lips spread over your cock, and you smoothly slide into her. Nkaan smiles and withdraws her hands to embrace your head. You feel large muscles tense around your cock as she slightly shifts her hips to be more in line with yours. She pets your head from all sides and coos into your ear, "You have fun now." You feel the ring of her vagina squeeze the base of your cock as you hilt into her.
+	[fug_2] (Fuck her)
+||
+{fug_2} You grab her legs and lie on top her. You start slowly pumping into her. She places her head on top of yours, hums gently, and carefully pets your head. Her long legs follow your thrusts, gently waving on your sides. You increase your speed slightly but Nkaanmykiunsuns just keeps nonchalantly petting your head. Her insides massage your cock as you keep pumping into her faster. You feel yourself edging closer to your orgasm, but she doesn't seem to be anywhere near hers.
+{end_1} You steel yourself and pick up your pace slightly. You keep fucking her, but she just holds your head and hums encouragingly.
+{end_2} You inhale and keep fucking her. She lies down and looks at the ceiling. Your veins slightly bulge out in your arms but your cock remains almost uncomfortably rigid as you keep pumping into the wet mess of her nethers, each thrust accompanied by a wet slap.
+	[ | check_stat endurance 6 nutte-end_1] (Keep fucking her) //showif.index_is.fug_2
+	[ | check_stat endurance 8 nutte-end_2] (Keep fucking her) //showif.index_is.end_1
+	[ | check_stat endurance 10 nutte-nutte_hard] (Keep fucking her) //showif.index_is.end_2
+	[in_or_not] I- Inside or- outside?
+	[nut_in] (Finish)
+||
+{nutte_hard} Sweaty and exhausted, you gather your strength and start humping her as hard and fast as you can. She yelps playfully as you make her bounce against the bed, but she doesn't seem to be phased by your effort.<br>You feel a burning sensation as your orgasm hits you. You roar almost angrily as you buck against her to bury yourself deeper. The orgasm saps the strength from your muscles, you double over against her chest and gasp soundlessly. For a moment, you can't breathe as the orgasm knocks the air out of you. She holds your head and pets you. "T-There you go. Just let it all out." You keep yourself in her as your throbs pump her full, all the while she softly pets you.
+{nutte} You feel yourself falter as an errant brush against her insides sends you over the edge. You buck against her to bury yourself deeper. The orgasm saps the strength from your muscles, you double over against her chest and gasp soundlessly. She holds your head and pets you. "T-There you go. Just let it all out." You keep yourself in her as your throbs pump her full, all the while she softly pets you.
+{in_or_not} You feel her hands grip your buttocks. "Inside! Don't be a prude!" she cackles and pulls you against her. The sudden sensation immediately sends you over the edge. The orgasm saps the strength from your muscles, you double over against her chest and gasp soundlessly. She holds your head and pets you. "T-There you go. Just let it all out." You keep yourself in her as your throbs pump her full, all the while she softly pets you.
+{nut_in} You buck hard into Nkaan and grip her legs. You tense up and release into her, you grimace and double over on her chest. She holds your head and pets you. "T-There you go. Just let it all out." You keep yourself in her as your throbs pump her full, all the while she softly pets you.
+	[sex_end] (Catch your breath)
+||
+
+
+||>>Cunnilingus
+{cunning | pic twin_slits} You spread her legs and give her mound nibbles and kisses. You quickly glance at her nethers. She has two slits right next to each other.
+	[why_double] Um... Kiun? Is there a difference between the... uh, slits? //showif.intelligence.6
+	[cunn_1] (Give her cunnilingus)
+||
+{why_double} She peeks over herself, annoyed. "What? And don't call me Kiun."
+	[why_double_2] There's two slits. Is there a difference?
+||
+{why_double_2} "No, just do your thing." She spreads herself for you.
+	[why_double_3] ...Why do you have two? Is it normal?
+||
+{why_double_3 | pic vagina_explain} She props herself up and snarls at you. "Hrrn- Look, do you want sex or a biology lesson?"
+	[have_both] ...The biology lesson? 
+	[have_both] ...Can I have both?
+	[cunn_1] Sex. (Give her cunnilingus)
+||
+{have_both | add_flag pc_knowledge_split_symmetry} She snarls and sighs in frustration. "You're seriously killing the mood..." She rubs her temples. "You've never heard about the split symmetry syndrome? It's a birth defect. It splits the body partially and sometimes clones organs. In my case, two hearts, split tail, and two cunts. Enough? Can we continue?"
+	[big_for_two] I knew you had a heart big enough for two. //showif.charisma.8
+	[just_worried] Sorry, I was just worried. //showif.charisma.6
+	[cont_plz] Okay. //hideif.charisma.6
+	[pussy_nerd] If you have two... do they connect to the same womb or are they separate? //showif.has_stat.intelligence.8
+||
+{pussy_nerd} She stares at you. "Maybe we should just stop?"
+{cont_plz} She stares at you. "Can we continue?"
+	[cunn_1] (Give her cunnilingus)
+||
+{big_for_two} She chuckles and kisses you on the forehead. "Very funny. Can you continue now?"
+{just_worried} "...Sorry. No, I'm perfectly healthy and both-" She sighs. "-'holes' are perfectly usable and won't cause me pain or discomfort."
+{pref_cunn} "Absolutely none."
+	[pref_cunn] Any preference? //hideif.index_is.pref_cunn
+	[cunn_1] (Give her cunnilingus)
+||
+{cunn_1 | pic cunning_pc} You lower your head against her mound and stick your tongue into the upper part of one of the slits. Nkaan grins and opens her mouth, delighted. You kiss in-between the slits and then circle your tongue under the lips. The edge of her entrance is lined with small bumps. You trace you tongue over them, and you feel Nkaanmykiunsuns jump and tense each time you do so. "T-There's the spot!" She lies down on the bed and spreads her legs a bit.
+	[cunn_2] (Continue)
+||
+{cunn_2} You ring around the right side slit, hitting every bump along the edge and then stick your tongue deeper into her. Nkaan chuckles from pleasure. "K-keep your attention on the bumps, lover." She spreads her vaginal lips with her hand and you start licking the edges faster. You suckle on the line of bumps and poke them playfully with your tongue. She gasps and begins to breathe harder the more you concentrate on the bumps. You start running your tongue over them as fast as you can and Nkaan's legs begin to shake.
+	[cunn_3] (Get her off)
+||
+{cunn_3} She yells desperately from the bed, "K- keep going!" You give her a long lick on the edge and then feel her legs tense around your head. She sits up, grabs your head painfully, and screams. You feel her contract on your tongue, forcing it out of her, but you keep giving her a gentle tongue bath as she shakes and whines on top of you. After she recovers from the worst, she pats your head weakly. "S-Stop, stop." 
+	[ | sex_gate end_cunn_m end_cunn_f] (Stop)
+||>>Cunnilingus on femPC
+{end_cunn_f | pic cunning_nkaan} You stop and raise your head from her crotch. She holds you by the jaw and kisses you, licking all over your wet mouth and then detaching herself with an exaggerated pop. She inhales and smiles at you as she pushes you on your back and dives between your thighs. You feel her tongue lick your labia. Her eyes squint with malicious mischief as she opens her mouth and slides her tongue into you. You gasp and tense up from the sudden sensation.
+	[fem_cunn_1] (Let her do her thing)
+||
+{fem_cunn_1 | auto_continue fem_cunn_2} She closes her eyes and rolls her tongue over your labia. Like licking a glazed candy, she lathers her saliva all over you and then very gently closes her teeth around your clitoris. You inhale and squirm as her tongue tickles your captive clitoris. The sensation is too much, you want to move and thrash on the bed, but you don't dare. Nkaanmykiunsuns opens her eyes and looks into yours over your body. She stares you down with a playful glint in her eyes. You feel your stomach cramping from her tongue work, you're being forced over the edge by her calm but intense stimulation. You want to scream.
+||
+{fem_cunn_2} You open your mouth, a small whimper escapes your lips as the orgasm rocks your body. Nkaanmykiunsuns releases your clitoris from the toothy trap and instead flattens her tongue against your labia and licks it as you grip the sides of her head in the wild confusion of your orgasm. Your legs squeeze her cheeks, but she keeps up the merciless licking all throughout your scarily intense orgasm. Your cramping abdomen forces you to sit up, and you hold Nkaanmykiunsuns's head between your thighs as she keeps working you, slowly easing off the intensity as your twitching dies down. You grimace as her tongue flicks one last time over your labia and she kisses it gently.<br><br>You fall back down on the bed, panting. Nkaanmykiunsuns crawls up the bed next to you and settles herself against you.
+	[end_femcunn] (Catch your breath)
+||
+
+||>>sex end (after player nuts)
+{sex_end} Your muscles give out and you fall limp on her. You breathe loudly as she grooms your head. She gives you an appreciative kiss on the forehead and thumbs your nose. "Feeling better?"
+	[you_get_off] D- Did I even get you off? You didn't seem very impressed.
+	[nut_catch_breath] (Catch your breath)
+||
+{you_get_off} "No, you didn't get me off." She pets your hair. "Penetrative sex has just never done it for me. I'm sure you did your best, but I wasn't exactly expecting an orgasm."
+	[not_leave_cold] I can try something else if you want, I wouldn't want to leave you cold. //showif.charisma.6
+	[jump_off_bed] Alright.
+||
+{nut_catch_breath | pic quick_shower} She runs her hands affectionately on your head and pets you. "That was fun, wasn't it?" She sets you down on the bed and gives you quick peck on cheek. "Lie down, I'll just quickly clean up your mess." She jumps off the bed and walks to the shower door. She disappears behind the blue glass and turns on the shower.
+{not_leave_cold | pic quick_shower} "I'd rather get to the cuddling part now that we've taken care of that pesky erection of yours." She jumps off the bed and walks to the shower door. "Lie down, I'll just quickly clean up your mess." She disappears behind the blue glass and turns on the shower.
+{jump_off_bed | pic quick_shower} She jumps off the bed and walks to the shower door. "Lie down, I'll just quickly clean up your mess." She disappears behind the blue glass and turns on the shower.
+	[lie_down_wait] (Lie down)
+||
+
+
+||>>Cuddling 2
+{end_femcunn | pic spooning} Nkaanmykiunsuns pets you affectionately as you catch your breath. "You're a whole bunch of fun." She pecks you on the cheek and then turns her back against you, dragging you by the arm to be her big spoon. "I think we can get to cuddling now?" She arranges your arms around her and lets out a satisfied sigh. The soft antennae at the back of her head lightly mush against your forehead.
+{lie_down_wait | pic spooning} You lie down on the bed. You can feel the warm spot Nkaanmykiunsuns left on the bed next to you. After a still moment of listening to water drumming quietly in the shower, Nkaan opens the door and pats herself with a rough towel. She smirks, throws her towel away, and sets herself carefully next to you. She cuddles into your big spoon, arranges your arms around her, and lets out a satisfied sigh. The soft antennae at the back of her head lightly mush against your forehead.
+{not_muh_type} She chuckles. She nuzzles into the pillow and holds your arms tighter. "This is nice." She arranges your arms around her and lets out a satisfied sigh. The soft antennae at the back of her head lightly mush against your forehead.
+{no_sexy} She nuzzles into the pillow and holds your arms tighter. "This is nice." She arranges your arms around her and lets out a satisfied sigh. The soft antennae at the back of her head lightly mush against your forehead.
+{just_cudd_pls} She turns her back to you, nuzzles into the pillow and holds your arms tighter. "Alright, it's still going to bother me, but okay." She sets her head on the pillow with a sigh and arranges your arms around her. The soft antennae at the back of her head lightly mush against your forehead.
+	[touch_antenna] (Touch the antennae)
+	[cuddle_3] (Cuddle her)
+||
+
+||>>Antennae
+{touch_antenna} You touch one of the soft antennae, it's very soft and it wobbles firmly. Nkaan snaps at you, "Could you not? They're sensitive."
+{what_antenna} "I don't know. My father used to say they're supposed to be atrophied horns or antennae of some kind. To me, they've always been inconvenient blobs wobbling on the back of my skull."
+	[what_antenna] What are they? //showif.index_is.touch_antenna
+	[antenna_1] Sensitive how?
+||
+{antenna_1} "You touching them irritates me."
+	[antenna_2] (Tickle the antenna)
+	[cuddle_3] (Cuddle her)
+||
+{antenna_2} She arches her back and twitches. She snarls, irritated, "I said, quit it. What is it with you?" She slaps you on your side.
+	[antenna_3] (Rub the base of the antenna)
+	[cuddle_3] (Cuddle her)
+||
+{antenna_3} She trembles as you roll your thumb on the soft base. "Stop." You feel her hand grip your thigh.
+	[antenna_4] Sorry, it just seems you might be... liking it?
+	[cuddle_3] (Cuddle her)
+||
+{antenna_4} "They're very sensitive. It feels like you're rubbing on raw nerves. Some of it hurts."
+{mind_lick} Her voice falters in surprise. "W-what? Why?"
+{tease_pleasure} She pauses for a moment and then answers. "Sure, try it out... very carefully."
+	[mind_lick] Would you mind, if I... licked them? //showif.index_is.antenna_4
+	[tease_pleasure] I want to see if I can tease pleasure out of them for you. //showif.index_is.mind_lick
+	[cuddle_3] Sorry, I'll stop. (Cuddle her)
+	[antenna_lick_1] (Lick the antennae)
+||
+{antenna_lick_1} You hold her head in your hands and gently kiss on the base of one of the antennae. Nkaan tenses as you plant the kiss. You slowly lick along the smooth antenna, she squirms and grips your wrist in response. She lets out a silent whine and trembles.
+{cont_lick} "Yeah..." She inhales and bites her lip. "Yeah." 
+	[cont_lick] Do want me to continue? //showif.index_is.antenna_lick_1
+	[antenna_lick_2] (Lick her antenna)
+||
+{antenna_lick_2} You slowly draw your tongue across the length of the antenna, give the tip a light suckle, and gently circle it with your tongue. Nkaan tries to stop herself from writhing and grimaces. She covers her crotch and whines. "F- Fuck, <b>Fuck</b>... You're going to- make me..." She snarls and bites her lip.
+	[antenna_lick_3] (Fellate the antenna)
+||
+{antenna_lick_3 | pic antenna_fellate} You hold her head with both hands and slowly take the soft, wobbly antenna into your mouth. Nkaan's mouth opens in a silent scream as your lips slide down the antenna until you feel the rounded point poke into the back of your throat. You twist it a few times in your mouth and give it a long lick as you slide it out again. Nkaan's silent scream turns into a real one and she doubles over. She shakes and holds her crotch with both hands. 
+	[antenna_lick_4] (Hug her)
+||
+{antenna_lick_4} You pull your mouth off the saliva-covered antenna and hug her. She gasps and starts breathing again. She whispers in a weak voice between the breaths. "Fuck... You m- made me orgasm. How the f- fuck does that even work..." She reluctantly straightens herself and breathes deeper.
+	[not_know_lick] You didn't know that would happen?
+	[erogenous_horns] They seem to be erogenous zones for you, really effective ones. //showif.intelligence.8
+||
+{not_know_lick | pic spooning} "No... I had no idea. What are they!? Fuck... Do I have two clitorises on my head? What the fuck." She touches her antennae carefully. "I need to show this to..." She pauses. "To my friend." You feel a shiver go through her and she twitches.
+{erogenous_horns | pic spooning} "Fuck me. What the fuck." She touches her antennae carefully. "I need to show this to..." She pauses. "To my friend." You feel a shiver go through her and she twitches.
+{horn_fellate} "Yeah... I imagine you don't normally fellate your date's horns?" She pushes herself against you and settles into your spoon.
+{first_time_horn} She chuckles. "Glad to be your first."
+	[first_time_horn] No, not really. That was new for me. //showif.index_is.horn_fellate
+	[horn_fellate] Glad to help you explore yourself a bit. //hideif.clicked
+	[cuddle_3] (Cuddle her)
+||
+
+
+
+
+||>>Cuddling 3
+{cuddle_3 | stop_music 8} You hug her, relax, and let your mind empty itself as Nkaanmykiunsuns breathes softly next to you, her chest raising and falling with a relaxed slowness. This continues for some time until you think she has fallen asleep. You start to feel drowsy yourself until you feel her claw scratching your palm.
+	[u_woke] You awake?
+||
+{u_woke} A soft voice answers, "Yeah. You almost managed to make me fall asleep." She gently rubs the back of your hand. "I didn't just want to lie here with you like this. I have another thing." She reaches past the edge of the bed and picks up something.
+	[whatu_doin] What are you up to?
+
+||>>You wanna get high?
+{whatu_doin | pic remember_dare} She sits up slightly and produces a tiny hypodermic needle filled with blue liquid. She grins lazily at you. "I'll share half with you." She clinks the needle.
+	[wat_drugs] What is that? Drugs?
+	[durgs_0] Sure, shoot me up.
+	[no_durgs] No, thanks.
+	[winners_dont_do_drugs] No, and you shouldn't do it, either.
+||
+{no_durgs} "I get it." She takes a look at the needle. "Do you mind if I shoot up? I really need a shot of kratenex after a job."
+{wat_drugs} "It's kratenex... Or nex, like the younger kids call it. Not plain, mind you. It has some.. magic dust mixed in." She grins and imitates a younger girl. "Wanna get <b>nexed</b>?" She laughs derisively.
+{what_kratenex | add_flag pc_knowledge_kratenex} She waves her hand. "It's pressure-liquefied krats. Taken intravenously, it's a hallucinogenic. Mine has secret spices."
+{secret_stuff} "Nothing serious. A little sedative to stop moving during a trip and... well, something for little extra kick."
+	[secret_stuff] ...What's the secret stuff? //showif.index_is.what_kratenex
+	[what_kratenex] What's kratenex? //hideif.has_flag.pc_knowledge_kratenex
+	[you_need_durgs] Do you need to?
+	[durgs_0] Okay, shoot me up.
+	[winners_dont_do_drugs] Alright, I get it, but no thanks.
+||
+{you_need_durgs} Her smile fades. "It... gets me unfucked after a job." She spins the needle. "I- I carry one for each job so I can't shoot up more than necessary." She grins slyly at the needle. "I'm a little fucked up. Because I give myself one after each 'pop' I... I get excited when I get a job done. Makes me anxious to mess up. I think it might actually improve my concentration during a job."
+	[durg_conditioning] You have conditioned yourself to expect a treat after a kill. //showif.intelligence.8
+	[kinda_messed_up] That sounds kinda messed up.
+||
+{durg_conditioning} "Yeah..." She licks her teeth. "I usually just pump the whole thing by myself, but I'll share this time, if you want."
+{kinda_messed_up} "Yeah..." She licks her teeth.
+	[why_share_durgs] Why do you want to share?
+	[winners_dont_do_drugs] Have you thought about... stopping? It doesn't seem healthy, physically or mentally.
+||
+{why_share_durgs} "I like you, and the effect is better if you do it with a buddy."
+	[uh_no_durgs] I really shouldn't.
+	[for_you_durgs] I'll do it for you.
+||
+{uh_no_durgs} Her smile droops and her eyes dart around. "Please... I really need someone to share with right now." She grins desperately.
+{for_you_durgs} "Really?"
+	[durgs_0] Sure, shoot me up.
+	[let_me_hold_you] Look, you shoot up and I'll hold you. Would that be okay?
+	[winners_dont_do_drugs] Sorry, no.
+||
+
+
+||>>Watching Nkaan trip
+{look_over_durging} Her head slumps slightly. "Thanks, but you really don't have to."
+	[let_me_hold_you] Let me watch over you.
+	[leave_drugs] Alright, I'll leave you be. (Get dressed)
+||
+{let_me_hold_you | pic spooning} She quickly glances at you, slightly ashamed. "Okay." She lies down and you spoon her again. "I might try to move or say silly things, but my body is going to be pretty limp, so keeping me still isn't going to be a problem." She lines up the needle with her wrist and injects it into her. She places the syringe on the floor and settles into your big spoon.
+	[nkaan_trip] (Hold her)
+||
+{nkaan_trip} You gently hold her in your arms. After a moment, she starts twitching and mumbling. "Ean..." She whips her head, dazed, and holds onto you. You keep her still as she keeps flailing slowly, and she eventually slows down and starts snoring. You pull her closer to you so she won't fall off the bed and listen her breathe for a long moment.
+	[rouse_nkaan] Hey, you okay? (Rouse her)
+||
+{rouse_nkaan} You give her a gentle shake and she opens her eyes slowly. "I- I... Hey." She brushes her mouth to catch any drool and then looks at you. "Was I out long?"
+	[watched_nkaan] I didn't let you sleep long.
+||
+
+||>>Winners don't do drugs
+{winners_dont_do_drugs} She pauses for a moment and calmly explains. "You can leave or stay, but I'm going to use it."
+	[look_over_durging] Do you want me to look after you, when you do it? //showif.charisma.6
+	[leave_drugs] I'll leave you alone. (Get dressed)
+||
+||>>Leaving before drugs (Nkaan disappears after this)
+{leave_drugs | remove_pic} You get up from the bed and get your clothes. Nkaanmykiunsuns looks away. "Bye, -name-."
+{please_no_suicide} She bares her teeth in annoyance. "Sure. You can fuck off now."
+	[cuddling_exit] Bye. (Leave)
+	[please_no_suicide] Please don't kill yourself, okay? //showif.charisma.6 //showif.index_is.leave_drugs
+||
+
+||>>Oh BOY, DRuGs SuRE aRE WeirD
+{durgs_0} She gives you a sly grin and grabs your wrist. She turns it up and slides her clawed thumb along the underside. She finds a vein and quickly but accurately pokes the needle in and squeezes the syringe half-way in. She looks you in the eyes and smiles faintly. "I'll wait for a bit before shooting up myself. I don't want to be fucked up if you get a bad trip."
+	[durgs_1] Thanks, that's very kind of you.
+||
+{durgs_1 | play_sound sejan/nkaan_nex_start 60} She grins and softly shakes her head. "You're going to see some vivid colors, feel like you're flying, and normal objects will start doing abnormal stuff. You will also feel very happy." You feel vivid purple creep around the objects in the room. Your arms feels oddly heavy.
+	[durgs_2] What happens if it's a bad trip?
+||
+{durgs_2} She quickly explains. "You start screaming and crying, and possibly try to kill yourself. Don't worry, I'll keep you safe if it's bad trip." The room's walls start swimming and breaking apart, a slick blackness pours into the room. You feel like someone is tickling you.
+	[durgs_3] Yeah, something is happening alright.
+||
+{durgs_3 | play_contsound sejan/nkaan_nex_main_lp 60 1 0 8, pic drugs, auto_continue durgs_4} You giggle, confused. Nkaan grins happily. "Yeah, I think you're going to have a good one." She sticks the needle in her neck and unloads the rest into her. "Give me a tickle when you come out of it." She laughs and falls on you. She hugs you and breathes into your neck.<br><br>She partially melts into your skin as she inhales more sea into her brain.
+||
+{durgs_4} The grains of wood start their journey towards the promised center, and you smile contently as you watch their march. You feel their determined songs under your fingernails as they float joyously over your eyes. The great mirror dances past your heart. You can hear the silver serpent wail as it's pressed against the great globe of the world.
+	[ | play_contsound sejan/nkaan_nex_hand_lp 60 2 0 8, check_flag pc_hidden_hand hand_inside hand_outside] (The reflection is me...)
+||
+{hand_inside | pic hand_in, auto_continue durgs_6} The world rotates to accommodate your sight. You feel the mirror. The window becomes the reality of the rotation and you see yourself. You see the hand coiled inside you, it cannot touch things outside, you're the blind mute, but you feel it stir. You cannot open yourself to the cold streams, but they cannot fall into your heart.
+||
+{hand_outside | pic hand_outside, auto_continue durgs_6} The world rotates to accommodate your sight. You feel the mirror splash and refresh you. The window becomes the reality of the rotation and you see yourself. The cold streams fall into your heart, the hand coils around the world. You can touch the freezing waters above you. Terror parts the waters, but the string cannot be uncoiled.
+||
+{durgs_6 | stop_contsound 2 8, play_sound sejan/nkaan_nex_laugh 60, pic blue_drugs, auto_continue durgs_7} Nkaan giggles to empty her head of the soft light. The percussive waves of heat drum on the inside edges of your mind as she peers through herself to see you. She splits in half to engulf you. You feel the black, dim lips agree loudly with your skin. You should already know, all of them nod knowingly. You feel the hands of friendship write love into your chest, and you fall, you fall, you fall into the beating heart until the red smothers you. Your breath no longer mines the world.
+||
+{durgs_7 | play_sound sejan/nkaan_nex_end 60, stop_contsound 1 1, pic drugs_end, auto_continue drug_sleep} Grey ash falls onto your thoughts, extinguishing the waves. The world is dark, and you're only you.
+||
+
+||>>Nkaan wakes you after drugs
+{drug_sleep | advance_time_to night, pic had_trip} You feel a gentle hand on your cheek, and you slowly open your eyes. Nkaan is staring down at you. "Hey, you look a little ravaged there." She snaps her fingers and opens your eyelids a bit. "You didn't have a bad trip, did you?"
+	[confusing_trip] ...It was mostly confusing. You were there.
+	[no_idea_trip] ...I have no idea if it was a bad trip or a good one.
+||
+{confusing_trip} She lets your eyelid go. "Yeah, I imagine. Kratenex mixes your surroundings into a weird soup of craziness. Let me guess, I split apart at the middle?"
+	[how_know] Yeah... How'd you know that?
+||
+	
+||>>Cuddling 4
+{how_know | pic spooning} "People keep getting the same hallucination in my company. I guess it's because of my looks." She chuckles. "I wasn't expecting to get up before you, but I guess my body is more familiar with kratenex." She lies back on the bed.
+{no_idea_trip} "It was a good trip, you'd know if it was a bad one." She lets your eyelid go. "I wasn't expecting to get up before you, but I guess my body is more familiar with kratenex." She lies back on the bed.
+{watched_nkaan} She holds her head and closes her eyes. "Thanks, I wanted to talk to you some more." She nestles against you.
+{good_trip} She chuckles. "It was adequate."
+	[good_trip] Did you have a good trip? //hideif.index_is.good_trip
+	[cudd_2] You feeling better?
+||
+{cudd_2 | start_music sejan_taodal/nkaanmykiunsuns_romance 70 4} She answers with a drowsy, sweet voice, "Yeah, I'm better now."
+	[cudd_3] You seemed very... worn down before.
+||
+{cudd_3} She sighs. "Happens to me every time." She grabs your arm and pulls herself closer to you. "I- It's... It's the sounds they make." She pauses. "She... She made this sigh, a relaxed sigh, when... when I- I hit the dagger with the mallet." She slowly circles her claw around your index finger and looks down at it. "A sound that sleeping babies make when they're full and satisfied." She places your hand on her hip. "I just... don't-" She sighs.
+	[cudd_4] (Stay silent)
+||
+{cudd_4} "It's not pleasant. I- I don't really know how to deal with it. So, I cuddle naked with my friend and do drugs."
+	[cudd_5] Do you know what happened to your friend?
+||
+{cudd_5} "She might just be late, but I have this awful feeling that something happened. Hopefully not pirates."
+	[cudd_6] She can probably handle herself?
+	[cudd_66] Can I do something? I want to help.
+||
+{cudd_66} "Thanks...." She grabs your hand. "She's good at disappearing when things go wrong, but where do you run if you're on a boat? I just hope she never got my message and is just lounging around the..." She chuckles.
+{cudd_6} "She's good at disappearing when things go wrong, but where do you run if you're on a boat? I just hope she never got my message and is just lounging around the..." She chuckles.
+	[cudd_7] Lounging.. where?
+	[cudd_77] Sorry, I wasn't trying to tease information out of you. //showif.charisma.6
+||
+{cudd_7} "The name wouldn't mean anything to you anyway.<br><br>I like you, -name-."
+{cudd_77} "I know... The name wouldn't mean anything to you anyway.<br><br>I like you, -name-."
+	[like_u_nkaan] I like you too.
+||>>CUDDLE HUB
+{like_u_nkaan} "People usually detach from my company after the weird stuff... and some after the sex."
+{partly_sex} "Yeah, I guess it's a little bit about that too."
+{like_cudd} She hums pleased. "Glad to hear."
+{3rd_wheel} "Of course." She chuckles.
+{3rd_wheel_2} She sighs. "Yes it does."
+{3rd_wheel_3} "Why wouldn't I be!" She cackles softly. 
+{line_good} She looks down at the groove. "I guess it's not that ugly. It's symmetrical after all."
+{youre_pretty} "Alright... Thank you."
+{normal_cudd_sex} "I guess it is. Keeps happening when you try to cuddle with people naked."
+	[why_naked] Why cuddle naked? //hideif.clicked
+	[how_pretty] How are you so pretty? //showif.charisma.8 //hideif.clicked
+	[third_wheel] Do you have sex with your... cuddling friend? //hideif.clicked
+	[hug_tighter] (Cuddle her)
+||>>why cuddle naked
+{why_naked} "I think it feels better. Clothes feel harsh and irritating... after a job. It encourages people to initiate sex, which is nice too, but not necessary."
+	[partly_sex] Oh, so it was partly about sex.
+	[like_cudd] I like it too.
+||>>why so pretty?
+{how_pretty} She chuckles. "Why do you think I'm pretty? I'm... disfigured."
+	[you_disfigured] You are? How?
+	[talking_split] Are you talking about the split symmetry syndrome? //showif.has_flag.pc_knowledge_split_symmetry
+||
+{you_disfigured} "I'm split down the middle... My lips wouldn't normally look like this, and this groove in the middle wouldn't exist. The split symmetry syndrome causes it."
+	[split_wat] Split symmetry syndrome? //hideif.has_flag.pc_knowledge_split_symmetry
+	[talking_split] Oh, you're talking about that. //showif.has_flag.pc_knowledge_split_symmetry
+||
+{split_wat | add_flag pc_knowledge_split_symmetry} She traces the groove in the middle of her chest. "It's a birth defect. It splits the body partially and sometimes clones organs. In my case, two hearts, split tail and- well... two vaginas."
+{talking_split} "Mostly that. I have scars too, some on my back." You glance at her back and see faded lines on it.
+{double_down} She chuckles. "Some are surprised, some not."
+	[double_down] Oh? I wondered about the double down there. //showif.index_is.split_wat
+	[gud_looking] I didn't realize to be honest. You look good with it. //showif.index_is.split_wat
+	[gud_looking] I don't think it detracts anything from your looks.
+||
+{gud_looking} "Very smooth. You're just saying that."
+	[gud_looking_really] I'm serious, you look good with it.
+||
+{gud_looking_really} "You're not bothered by the fact I look like I'm going to split down the middle at any time?"
+	[line_good] I think the middle line looks good. It doesn't really look that sickly, if at all.
+	[youre_pretty] No, not really. You look pretty.
+||>>sex with friend?
+{third_wheel} She chuckles. "Does the idea turn you on?"
+	[ | sex_gate admit_lust_m admit_lust_f] I admit, it does.
+	[normal_cudd_sex] I was wondering if sex was a part of your normal cuddling.
+||
+{admit_lust_m} "Yes... we have sex sometimes." She laughs softly. "And no, I don't think she'd be up for a threesome, she doesn't care much for males."
+{admit_lust_f} "Yes... we have sex sometimes." She laughs softly. "Are you trying to get in the middle?"
+	[mind_for_three] Damn. //showif.index_is.admit_lust_m
+	[mind_for_three] That's where your mind went?
+	[mind_for_three_2] Maybe? //showif.index_is.admit_lust_f
+	[mind_for_three_2] I wouldn't want to intrude.
+||
+{mind_for_three} "Indeed. Imagine how nice cuddling with two people who like you would be. I would demand to be in the middle."
+{mind_for_three_2} She laughs. "Imagine how nice cuddling with two people who like you would be. I would demand to be in the middle."
+	[3rd_wheel] If you ever need a third wheel, let me know.
+	[3rd_wheel_2] That does sound amazing.
+	[3rd_wheel_3] You seem excited about the prospect.
+||
+
+
+
+||>>cuddle talk end
+{hug_tighter} She turns her head slightly and asks with a gentle voice. "You're staying, right?"
+	[stayin_here] I'm not going anywhere.
+||
+{stayin_here} "Good." Nkaan sets her head on the pillow and her whole body relaxes slowly. Few moments pass and she's asleep. You feel her hand twitch occasionally, her body heat and relaxed breathing making you sleepy.
+	[cuddle_sleep | stop_music 10, advance_time_to morning] (Sleep)
+||>>Waking in the morning
+{cuddle_sleep} You wake up as you feel Nkaan shift next to you. She turns around and nuzzles your neck. "Morning, -name-." She places her hand on your neck and pulls you closer.
+	[ | sex_gate cudd_wakey cudd_wakey_f] Good morning.
+||
+{cudd_wakey} She whispers into your ear, "Thanks, I really needed this." She then suddenly pulls herself away from you and gives you a quick kiss on the forehead. "You're a nice guy, but I gotta leave." She gently brushes your cheek and sits up.
+{cudd_wakey_f} She whispers into your ear, "Thanks, I really needed this." She then suddenly pulls herself away from you and gives you a quick kiss on the forehead. "You're a nice girl, but I gotta leave." She gently brushes your cheek and sits up.
+	[how_meet_again] Where can I meet you again?
+||
+{how_meet_again | change_sprite nude, remove_pic} She gets out of the bed, you get up lazily after her. "Somewhere. I have a hunch I'll see you before you see me." She reaches for her clothes on the floor with her toes.
+	[see_me_here] Please tell me, I want to see you again.
+	[see_me_here] If you don't want to tell, that's okay.
+||
+{see_me_here} She looks away and then back to you. "You remember that town in that story?"
+	[haleum_wut] Haleum?
+||
+{haleum_wut | change_sprite normal} She slips into the skin-tight suit and yanks it on her, tightens the equipment belts on her, and wraps the skirt around her. "I hang around there sometimes. I'll give you a poke if I see you there."
+{where_haleum} "It's in the rivers, past the horns. Ask around."
+	[where_haleum] Where is it? //hideif.has_discovered.haleum //showif.index_is.haleum_wut
+	[kiss_nkaan] (Kiss her) //showif.charisma.6
+	[alone_again] I'll keep that in mind.
+||
+{kiss_nkaan | pic kissy} You take a step and lean into a kiss. Nkaanmykiunsuns grips your head tightly and responds with a deep probing kiss. Her tongue gently scours around your mouth. Her other hand slides down your side and grabs your ass.
+	[kiss_ass_grab] (Grab her ass) //showif.will.6
+	[final_kiss] (Kiss)
+||
+{kiss_ass_grab | auto_continue final_kiss} You slide your hand down her side and grab her ass in turn, you can feel her smile as your kiss continues. She squeezes your butt slightly harder in reply.
+||
+{final_kiss | character_leave, remove_pic} As you part your lips, she chuckles softly and pats you on the cheek. "Goodbye, -name-." She leaves the room.
+{alone_again | character_leave} She pats you on the cheek. "Goodbye, -name-." She leaves the room.
+	[cuddling_exit] (Get dressed and leave)
+||
+
+
+||>>Exit index for the sex scene (Nkaan leaves Taodal and PC walks to the tavern main hall)
+{cuddling_exit | add_flag nkaanmykiunsuns_left_taodal, start_encounter taodal_tavern taodal_tavern}
+||
+

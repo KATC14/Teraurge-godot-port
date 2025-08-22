@@ -1,0 +1,74 @@
+
+
+
+||
+{start | save_index visited} You come across a large hole in the ground. 
+{visited} You return to the large hole in the ground. 
+{visited_2} You return to the large hole with the sarcophagus in it.
+{look} The hole is in the middle of a small, flat clearing. The hole is so large that calling it a crater seems more apt. It's relatively shallow and is shaped like an almost perfect bowl. The floor of the hole is covered with small rocks and gravel and seems dry. The walls are eroded and rocks and roots are sticking out of it.
+	[look] (Examine the area) //hideif.clicked
+	[ | check_stat agility 6 fall_down-climb_down] (Climb down) //hideif.has_flag.sejan_sarcophagus_found
+	[ | check_flag sejan_sarcophagus_opened return_1 return_2] (Climb back to the sarcophagus) //showif.has_flag.sejan_sarcophagus_found
+	[ | end_encounter] (Leave) 
+||
+
+	
+||>>climb down
+{fall_down | auto_continue colored_rocks_2, pic crater_climb_clumsy, play_sound sejan/pit_fall 70} You decide to climb down into the crater. Although the crater isn't too deep, you opt to use roots and rocks along the edge as hand-holds. This seems to work until a rock gives away, and you roll down the rest of the way to the crater floor.<br><br> After a short but uncomfortable trip, you come to a stop.
+{climb_down | auto_continue colored_rocks_1, pic crater, play_sound sejan/pit_agile 70} Although the crater isn't too deep, you opt to use the roots and rocks along the edge as hand-holds as you climb down. This seems to work until a rock gives away, but you quickly steady yourself by grabbing onto a large root near your waist. Now checking each rock and root carefully, you continue your descent.
+||
+{colored_rocks_1} You gently step on the bottom of the crater. Small streams of tiny rocks and sand fall off the dirt wall as you let go of it.<br><br>You see a few oddly colored rocks near the center of the crater.
+{colored_rocks_2 | pic crater} You grunt and get up despite the pain in your shoulder. You sneeze sand out of your nose, the dust leaves behind a most unpleasant sting in your nostrils.<br><br>You see a few oddly colored rocks near the center of the crater.
+	[closer_look] (Examine the colored rocks)
+||
+{closer_look | pic pottery} After picking one up, the rock doesn't look like a rock at all. It's oddly shaped and slightly curved. One side is significantly more pitted than the smooth side, which is in stark contrast to its jagged and somewhat porous edge. If you had to guess, you'd say it's a piece of pottery. 
+	[dig] (Dig around the shard)  
+||
+{dig | auto_continue keep_dug} As you keep digging, you find more pottery shards.
+||
+{keep_dug | check_stat intelligence 6 keep_digging1-keep_digging2} 
+{keep_digging1} You keep digging until you hit a large flat rock. It's very smooth and flat.
+{keep_digging2} You keep digging until you hit a large flat rock.<br>Upon closer inspection, you see very slight, curving indentations along the surface. This, coupled with the fact it looks too level and smooth to be natural, it seems to be a structure of some kind.
+	[flat_stone | advance_time 12] (Dig out the rock)
+||
+	
+
+
+||>>CLOSED SARCOPHAGUS HUB
+{flat_stone | add_flag sejan_sarcophagus_found, save_index visited_2, pic unopened_sarcophagus} Unearthing the stone takes some time, but the more dirt you remove, the more obvious it is that it isn't a naturally occurring rock.<br><br> Once you remove all of the dirt from the surface, it looks like a stone coffin or a sarcophagus. Removing some dirt from around the sides of the object reveals a groove between the surface of the object and the rest of it that extends underground. It seems to have a lid.
+{return_1 | pic unopened_sarcophagus} You climb down and return to the sarcophagus at the bottom of the hole. 
+{crowbar0} You try with all your might, but even with a crowbar, you cannot move the lid.
+{strong_0} You try with all your might, but the only thing you seem to move is a disk in your back. You decide to stop before you hurt yourself even more.
+{strong_1} You try as hard as you can to move the lid, but no matter how hard your legs push, the stone doesn't move.
+{strong_2} Giving it your all, you manage to move the lid slightly. You have to stop, though, before you blow a blood vessel. 
+	[ | check_stat strength 6 crowbar0-crowbar1] (Pry it open with the crowbar) //showif.has_item.crowbar
+	[ | check_stat strength 6-8-10 strong_0-strong_1-strong_2-strong_3] (Try to move the lid off)
+	[ | end_encounter] (Leave) 	
+||>>Opening
+{crowbar1 | add_flag sejan_sarcophagus_opened, pic opened_sarcophagus} Putting your entire weight onto the crowbar, you manage to pop it open for a second. With the seal seemingly broken, you are able to shimmy the lid off over the course of a few minutes.<br><br>Inside the sarcophagus, you find an unfamiliar skeleton. 
+{strong_3 | add_flag sejan_sarcophagus_opened, pic opened_sarcophagus} The stone lid gives you a bit of trouble, but you are able to deadlift the massive sarcophagus lid after a few tries. The lid slams onto the ground next to your impromptu excavation site but surprisingly does not crack.<br><br>Inside the sarcophagus, you find an unfamiliar skeleton. 
+	[ | check_stat intelligence 8 normal_desc-galaxy_desc] (Examine the skeleton)
+||
+	
+||>>OPENED SARCOPHAGUS HUB
+{normal_desc} The skeleton is a mixed pile of bones.<br>The skull has four cavities near the center. There's a single large, jagged hole on the top of its head.<br><br>You see a necklace around the base of the skull.
+{galaxy_desc} The skeleton is a mixed pile of bones. Upon closer inspection, you see that the pile has some semblance of symmetry.<br>The skull seemingly has four eye sockets in the center. There's a subtle scratch carved near the rightmost eye socket and a single large, jagged hole on the top of its head that looks like the result of a blunt impact.<br><br>You see a necklace around the base of the skull.
+{neck1 | pic necklace} The necklace looks like a simple, gold-colored metal necklace. It's composed of a plain golden circle supported by a chain made of grey metal. The face of the gold circle has three black gems.
+{neck2 | pic necklace} The necklace looks like a simple, gold-colored metal necklace. It's composed of a plain golden circle supported by a chain made of grey metal. The chain is rough and crude in comparison to the smooth, seamless gold pendant. The pendant shows no rust or other forms of deterioration while the chain has significant portions covered in surface rust.<br>The face of the gold circle has three black, glass-like gems arranged in a diagonal line like they would be on a dice.  
+{take_necklace | give_item sarcophagus_necklace, add_flag sejan_sarcophagus_necklace_taken} You carefully lift up the skull and take the necklace out from underneath it.<br>You gently place the skull back where it was and pocket the necklace.
+{return_2} You climb down and return to the opened sarcophagus at the bottom of the hole. 
+{door1} The sarcophagus is made from stone and has a featureless, smooth surface on the inside.
+{door2 | add_flag sejan_sarcophagus_hole_found} The sarcophagus is made from stone and has a featureless, smooth surface.<br><br>As you run your hands along the bottom of the sarcophagus, you feel a slight seam under your fingers. You give it a slight knock and a perfectly fitted piece of rectangular stone falls off the bottom. There's a dark space under the sarcophagus that seems to be tall enough to stand in.
+	[ | check_stat intelligence 6 neck1-neck2] (Examine the necklace) //hideif.clicked //hideif.has_flag.sejan_sarcophagus_necklace_taken
+	[door1] (Examine the sarcophagus) //hideif.clicked
+	[take_necklace] (Take the necklace) //hideif.clicked
+	[bottom_opening] (Go into the opening at the bottom.) //showif.has_flag.sejan_sarcophagus_hole_found
+	[ | end_encounter] (Leave)
+||
+	
+||>>dark void
+{bottom_opening} You move the bones slightly and carefully lower yourself into the hole. You find yourself in a dark room under the sarcophagus.
+{feel_around_dark} You feel around the dark space.
+	[feel_around_dark] (Feel around the space) //hideif.clicked
+	[bottom_opening] (Light a torch)
+||

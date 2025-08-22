@@ -1,0 +1,124 @@
+
+||
+>>Start hub
+{start | save_index encountered, add_flag braq_encountered} You have encountered a large, eyeless beast with six large breasts underneath it. It slowly walks around, sniffing loudly and suckling on the pink stalagmites near it. It doesn't seem to have eyes nor teeth.
+{encountered | check_flag pc_knowledge_braq encountered knowledgeable} You have encountered one of those thick, long-necked creatures noisily sucking one of the stalagmites.
+{knowledgeable} You come across one of the big rocks your recognize as the main source of nutrients for a few species in the region, especially braqs. In fact one of them, easy to discern as a female of the species thanks to its six huge breasts, is currently feeding off it, carefreely suckling one of the stalagmites.
+	[move_closer] (Move closer)
+	[ | start_music sejan/fight_weak 70, start_combat braq_victory braq_lost] (Attack)
+	[ | end_encounter] (Leave)
+||
+{move_closer} You start to walk closer to the creature. As you do, it stops sucking the stalagmite and its head snaps in your direction. It sniffs the air and immediately turns its body to face you, remaining completely still. You cautiously advance a bit more, yet when you're just a few steps away, the beast bellows loudly and starts stomping on the ground with its two front legs, flailing its neck wildly from side to side as it keeps making warning noises.
+	[calm_braq] (Move even closer) //showif.has_flag.pc_knowledge_braq
+	[back_away] (Back away and leave it alone)
+	[ | start_music sejan/fight_weak 70, start_combat braq_victory braq_lost] (Attack)
+||
+{back_away} It clearly doesn't want you anywhere nearby and seems ready to attack at any moment. Not wanting to face such a big creature, you start taking steps back. When you're far enough, the beast calms down a bit but keeps facing in your direction, grunting and snorting. As you leave, you take one last glance back and see it returning to its business licking that rock.
+	[ | end_encounter] (Leave)
+||>>Braq victory
+{braq_victory | start_music sejan/fight_end 70 0 0 no_loop} You fall to the ground defeated. The creature keeps stomping on the dirt in a frenzy though, so you quickly move away and run in case it tries to trample you. You're not hurt badly other than a few bruises, but you're in no condition to keep fighting, so you settle on continuing your trip and leave the creature with its beloved rock.
+	[ | end_encounter] (Leave)
+||>>Braq defeat
+{braq_lost | start_music sejan/fight_end 70 0 0 no_loop} After delivering that last blow, the beast kneels on the ground and its neck and tail go limp. You get close to check if it's dead, but it's clearly breathing.
+	[examine_creature] (Examine it)
+	[ | end_encounter] (Leave)
+||>>Examination
+{examine_creature} You put a hand on its back and caress it. Its skin is a bit rough and its flesh feels a bit squishy. You also note that it's now pretty sweaty, you guess from the exertion of the fight. You kneel, reach under the beast's thick torso, and rub its underbelly between two of its legs from the left set. The skin there is pretty soft, especially on the breasts. A heavy tail covers its rear.
+{lift_tail} You move behind it and push the bulk of its tail out of the way to have a look at its hindquarters. You see a pink puffy slit but no anus.
+	[fuck_braq] (Fuck the creature) //showif.index_is.lift_tail //showif.player_sex.male //showif.feral_filter_off
+	[lift_tail] (Push its tail aside) //hideif.index_is.lift_tail
+	[stop_exam] (Stop)
+||
+{stop_exam | remove_pic} You pull away and stand back. The confused beast gets back on its feet and slowly goes back to suckling the pink stalagmites.
+	[ | end_encounter] (Leave)
+||>>Calm braq (PC has braq knowledge)
+{calm_braq} Knowing braqs are very docile by nature, you get closer to the stomping creature.<br><br>All bark, no bite. As soon as you're just three steps in front of it and stop, the braq immediately calms down. It snorts, its two nasal orifices widening, lowers its neck and then sniffs your entire upper body. As it does so, you put a hand on the top of its head and rub it. After a minute, it grunts contentedly and relaxes while you caress the sides of its long neck with both hands. It doesn't mind your presence anymore.
+	[examine_know] (Examine the braq)
+	[ | end_encounter] (Leave)
+||
+{examine_know} You playfully run your hands all over the braq's neck and torso, all the way to its tail, which the beast seems to enjoy. Its skin is a bit rough, yet its flesh feels a bit squishy. It's definitely a meaty creature. Moving down, you touch its legs. Unlike the rest of the body, these are definitely strong and full of very thick muscle, as expected of such a big creature. Finally, you touch the braq's underbelly. It's pretty soft – and a little bit sweaty – unlike the rest of its skin, which explains why they rest with their legs protecting their underside. Just for fun, you grab from below one of its massive and rather human-looking breasts and lift it. It certainly weighs a few kilos. Satisfied, you get up and pat the braq's neck once more.
+{lift_tail_2} You move behind it and push the bulk of its tail out of the way. You see its pink puffy cloaca.
+	[sex_with_braq] (Fuck the braq) //showif.player_sex.male //showif.feral_filter_off
+	[lift_tail_2] (Push its tail aside) //hideif.index_is.lift_tail_2
+	[stop_exam] (Stop)
+||
+
+
+
+
+>>SEX SCENES (Without knowledge)
+||>>Fuck
+{fuck_braq | start_music sejan/feral 70 3, pic idle} The beast seems calm and essentially defenseless, the idea of sating some of your urges using that pink slit in front of you crosses your mind and you can't help but feel really aroused. With a resigned sigh, you undress. You move the heavy tail out of the way as best as you can with one hand and with the other open the beast's slit, revealing a rather normal vagina. Confident with compatibility, you ready yourself with a generous amount of spit and position yourself behind the creature.<br><br>The tail is so big and thick that you simply won't be able to proceed until it's out of the way. 
+	[ | check_stat strength 6 lift_tail_0-lift_tail_1] (Lift the tail over your shoulder)
+	[stop_fuck] (Stop)
+||
+{lift_tail_1 | pic tail_over_shoulder} With your raging erection urging you to get on with it, you lift the tail with both arms and sling it over your shoulder. It's heavy and so long that a good chunk of it is still lying on the ground behind you. Now you have complete access to the beast's privates and feel the heat from the pink slit radiate to your cock as you position yourself.
+	[fuck_2] (Penetrate the pink slit)
+	[stop_fuck] (Stop)
+||
+{lift_tail_0 | stop_music 6, remove_pic} With your raging erection urging you to get on with it, you lift the tail with both arms, but as much as you try, it's too heavy and just lazily slumps back after every try. You cannot gain access to the beast's privates. Your erection peters out and the confused beast turns its head back to the stalagmites.
+	[ | end_encounter] (Leave)
+||
+{fuck_2 | pic vaginal_penetration, add_flag pc_sexed_braq} With both hands busy, you guess and prod forward. Fortunately, your target is relatively big and the creature is at the perfect height.<br><br>You plunge into the warm hole without any resistance. For a creature of this size, its insides are surprisingly snug; not tight, but it's snug enough to give resistance. Your partner doesn't react at all, so you continue pounding away and focus on enjoying the little bumps in her canal. You hug its sweaty tail hard and pick up the pace.
+	[fuck_3] (Finish) 
+	[fuck_33] (Pull out)
+||
+{fuck_3 | start_music sejan/feral_end 70 0 0 no_loop, pic vaginal_cum} The physical exertion of sex combined with having to lift that heavy tail take their toll on your endurance. It doesn't take you long to reach an orgasm that you don't even try to fight. Among gasps, you spurt your seed as deep inside as you possibly can.<br><br>You tense your hips to keep yourself deep within the beast as you catch your breath and ride the jagged waves of pleasure.
+{fuck_33 | start_music sejan/feral_end 70 0 0 no_loop, pic vaginal_cum_out} The physical exertion of sex combined with having to lift that heavy tail up take their toll on your endurance. It doesn't take you long to reach an orgasm that you don't even try to fight. You gasp and pull out.<br><br>You spurt your load on the backside of the beast. You catch your breath and ride the jagged waves of pleasure.
+	[fuck_4] (Dress up)
+||
+{fuck_4 | remove_pic} You step back and drop the tail as soon as your orgasm subsides. After taking a few deep breaths, you hastily get cleaned and put your pants on. Once you're ready to continue, you grab your things and start leaving. The beast gets on its feet as soon as you are far away enough.
+{stop_fuck | remove_pic} You pull away and stand back. As you dress up, the confused beast gets back on its feet and slowly returns to suckling the pink stalagmites.
+	[ | end_encounter] (Leave)
+||>>
+
+
+||>>SEX SCENES (with knowledge)
+{sex_with_braq | pic idle} With such a docile female specimen at your reach, you think of a few ways you can have fun with the braq. Once you check there's nobody else nearby, you get naked as the tall creature sniffs your body, seemingly curious.<br><br>Once completely naked, the braq facing you calmly, you settle on a course of action.
+	[blowjob_1] (Trick it into giving you a blowjob with the stalagmite smell) //showif.has_stat.intelligence.6
+	[titfuck_1] (Roll it over and play with its breasts)
+	[vaginal_1] (Fuck the braq)
+	[sex_stop] (Stop)
+||>>Blowjob
+{blowjob_1 | start_music sejan/feral 70 3, pic half_oral} The memory of these creatures happily sucking those rocks gives you an idea. You push down its back and it quickly bends its knees in its resting position, then walk over to the big rock and rub one of the stalagmites with one hand that you then rub all over your penis. When you're sure it's permeated with the smell of the rock you walk in front of the awaiting braq and pull its head down.<br><br>As soon as you do, it starts sniffing loudly and, on its own, lowers its face to your crotch to smell it closely. The beast takes the bait and opens its toothless mouth to start licking your entire crotch with its big tongue. You smile contentedly at the ministrations and by the fifth long lick along your cock and balls you are completely erect.<br><br>Without warning, the braq lets out a low grunt and puts the upper half of your cock in its mouth, immediately working it with its tongue some more while lightly suckling on it.
+	[blowjob_2] (Let it do its thing)
+||
+{blowjob_2 | pic full_oral} The creature is so completely fooled by your trick that it doesn't notice the difference even inside its mouth and keeps sucking you off, eventually putting your entire shaft in its mouth and suckling with gusto as if it were a pacifier, putting its natural instincts to good use trying to extract nutrients from your hard-on.<br><br>Eventually – you don't know if out of frustration or because it's a part of its feeding habits – it starts suckling even harder and trying different angles and depths, sometimes even putting your balls in its mouth. You grab the sides of the braq's head and gladly let it do all the work, closing your eyes while it noisily sucks you off and secretly thanking evolution for the existence of a creature that can naturally be so good at this. <br><br>The blowjob goes on for a few more minutes and you try to endure it to make it last as long as you can, but the braq's skill and enthusiasm are eventually too much for you.
+	[blowjob_3] (Let it blow you)
+||
+{blowjob_3 | start_music sejan/feral_end 70 0 0 no_loop, pic cum_mouth} You throw your head back and hold your breath as you reach your climax, squirting in quick succession thick jets of semen in the braq's mouth as it keeps suckling hard. It feels great, but it doesn't take long to come back down to earth and realize that this beast won't stop even after you've came. Before your glans has the chance to become oversensitive, you use your hands to push the braq's head away. It stubbornly resists. Trying to free yourself, you jerk your hips in the opposite direction, step back, and fall on your ass. The braq emits a high-pitched groan and sniffs the air. A sticky mix of drool and semen droops from its mouth. It flicks its tongue and swallows the mess. The same sticky slobber covers your crotch.
+	[bj_end] (Clean up and get dressed)
+||>>Titfuck
+{titfuck_1 | start_music sejan/feral 70 3, pic underbelly} You stare at the huge breasts hanging from the braq's underside and your loins stir at the prospect of having some fun with them. It takes a few tries, but you manage to get the beast to kneel and then roll over to lie on its back, its six legs thankfully stretched almost completely and out of the way. The braq's rather human-looking breasts are now displayed in front of you in all their glory.<br><br>They are surprisingly firm and, also helped by the legs pressed against their sides, they aren't spilling all over the place like you feared. You lean down and rub between them with both hands, eliciting a happy-sounding grunt from the braq. The space between them is a bit sweaty, which makes sense, but they're not smelly at all and, in fact, you find the whole underside quite clean, likely due to how often these creatures bathe.
+	[titfuck_2] (Titfuck the braq)
+	[sex_stop] (Stop)
+||
+{titfuck_2 | pic titfuck_firstperson} You sit between the middle and bottom pairs of breasts. With a silly smile on your face, you fondle the massive boobs immediately in front of you. They are soft and squishy and the braq seems pretty happy with letting you handle them. Then you grab your hard-on and start rubbing it all over their round surface, the thin film of sweat serving as lube helping you comfortably press your glans against them. Once you're done with that, you grab your cock, press it down between the middle pair and start titfucking the braq, grabbing its middle legs to apply even more pressure to the cleavage.<br><br>It's nice and tight and you have no trouble sliding in and out of it. You thoroughly enjoy yourself like that for a few minutes and then remember there's more than one pair of breasts you can play with, so you lean back and, while grinding your hips against the middle pair, you reach behind you and massage the top of the back pair of boobs. The braq leans down with its neck, sniffs around and then makes a low purring noise.
+	[titfuck_3] (Keep titfucking the braq)
+||
+{titfuck_3 | pic titfuck_head_buried} Encouraged, you lean forward resting your body over its middle boobs and grab the top pair with both arms, pulling them a bit closer as you resume pounding the middle pair. You stare at the light pink nipples. They are so big you bet you could actually fuck them, though you won't do that and risk hurting the creature. Unable and unwilling to resist the urge, you put as much of it as you can inside your mouth and suck on it for a bit, then switch to the other nipple and give it a nice hard suck which makes the braq emit three short grunts that almost sounded like laughter to you.<br><br>Immersed in what seems like a repressed fantasy you bury your head between the top pair and pick up the pace, titfucking the middle pair with all you've got, sometimes switching your angle and fucking them vertically, taking advantage of how big they are.
+	[titfuck_4] (Come on the braq)
+||
+{titfuck_4 | start_music sejan/feral_end 70 0 0 no_loop, pic underbelly} You barely last two more minutes before you give the massive boobs one last thrust and blow your sticky load, your whole body trembling with pleasure on the creature's underbelly. You lie like that for another minute, head buried between the top pair of breasts, arms around the same fleshy orbs and your legs wrapped around the beast's body. Finally, you manage to muster the will to push yourself into a sitting position and eventually dismount, giving one last glance to the breasts to see all of the semen you shot between the middle pair that even reached the bottom of the top one.<br><br>Amusingly enough, the braq lies like that for a bit longer, making short grunts. It seems that as far as it is concerned, it's just received the belly rub of its life.
+	[titfuck_end] (Clean up and get dressed)
+||>>Vaginal fuck
+{vaginal_1 | start_music sejan/feral 70 3, pic tail_aside} You move behind the braq. With some effort, you lift its tail while the beast keeps its head turned in your direction while sniffing non-stop. You rub the base of its tail, hoping the braq will get the idea. It takes you three tries until it finally keeps it the tail out of the way on its own, giving you a nice view and full access to a puffy pink slit.<br><br>You spread it with one hand and tease its edges and the insides with your other one. The braq snorts loudly and faces forward, lowering its head. You continue your teasing until you notice it's secreting some juices, enough to proceed, so you move closer and align your now erect penis against the entrance of its big vagina.
+	[vaginal_2] (Penetrate the pink slit)
+	[sex_stop] (Stop)
+||
+{vaginal_2 | pic vaginal_penetration} You thrust forward slowly, penetrating the animal until you are hilted. The braq lets out a long, high-pitched, encouraging groan. You grab its rump and start pounding away at its pussy. Its warm canal is a little bit too big for you, but it has bumps that stimulate your cock every time you slide in and out. The braq breathes fast and every four or five thrusts it lets out a short grunt. Not posing any resistance whatsoever, it doesn't seem to mind the mating.<br><br>You make sure you have a good grip on its rump and begin pounding as hard and fast as you can, hell-bent on keeping the rhythm as long as you can until you come. The braq's grunts turn into tiny high-pitched groans and occasionally her insides twitch hard. The big beast turns to sniff in your direction and you see it panting hard with its tongue out. You respond by drilling its hot passage even faster, and a moment later it lets out a long, strangled groan, her insides twitching and contracting rhythmically.
+	[vaginal_3] (Come in the braq)
+	[vaginal_33] (Pull out)
+||
+{vaginal_3 | start_music sejan/feral_end 70 0 0 no_loop, pic vaginal_cum} Bestial instinct clawing at your mind, the intense fucking and her twitching canal combined are too much for you. An explosive orgasm catches up so fast it almost surprises you, barely giving you time to go in balls deep and cum so hard your eyes roll back. You have to lean forward so your legs don't give in. <br><br>You spend a while like that inside the braq catching your breath until your limp penis pops out of its slit with a small trickle of semen and juices. You shake from the intense release as the braq pants and grunts erratically.
+{vaginal_33 | start_music sejan/feral_end 70 0 0 no_loop, pic vaginal_cum_out} Bestial instinct clawing at your mind, the intense fucking and her twitching canal combined are too much for you. An explosive orgasm catches up so fast it almost surprises you, barely giving you time to pull out. You yank yourself from the beast with a wet pop and paint its hind area with you cum. <br><br>You spend a while just trying to keep upright, catching your breath as your sticky painting slowly droops. You shake from the intense release as the braq pants and grunts erratically.
+	[fuck_end] (Clean up and get dressed)
+||>>Sex end
+{bj_end | remove_pic, add_flag pc_sexed_braq} You sigh from the exhaustion and clean up the slobber covering your crotch.
+{titfuck_end | remove_pic, add_flag pc_sexed_braq} You clean your whole front slick with sweat and put on your clothes again as the braq returns to suckling the pink stalagmites.
+{fuck_end | remove_pic, add_flag pc_sexed_braq} You clean up and put on your clothes again. The braq returns to suckling the pink stalagmites.
+{braq_pat} You give the braq an appreciative pat on the neck. It gives you a snort and a high-pitched groan and promptly turns around and starts licking a rock. 
+{sex_stop | stop_music 3, remove_pic} You stop and stand back. You shake your head and dress back up. The confused braq returns to suckling the stalagmites.
+	[braq_pat] (Give the braq a pat) //hideif.index_is.braq_pat
+	[ | end_encounter] (Leave)
+||

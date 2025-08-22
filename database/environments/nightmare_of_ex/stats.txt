@@ -1,0 +1,9 @@
+interior:	yes
+ambient:	0
+
+<SOUNDS
+sejan/forest_birds.30
+sejan/forest_wind.30
+misc/nightmare.30
+sejan/cave_sinister.20
+SOUNDS>

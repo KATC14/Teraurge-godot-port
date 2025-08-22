@@ -1,0 +1,7 @@
+interior:		yes
+ambient:		0.6
+ambient_color:	8c3419
+
+<SOUNDS
+sejan_taodal/tornoth_smithy.30
+SOUNDS>

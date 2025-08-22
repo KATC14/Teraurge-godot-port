@@ -1,0 +1,24 @@
+
+
+>>This character is a large stone in the redforest near the Sejan peninsula
+
+{start | save_index visited} You stumble upon a large stone with an odd symbol carved into it. Looking at the symbol makes your eyes confused, your mind swirls with words that are not written on the stone.
+{visited} You return to the large stone with the odd symbol.
+{story_stop | remove_pic} You tear your eyes away from the bizarre symbol and shake your head to untangle your mind. Your eyes do not understand how they just read what they read.
+{exam_surr} You look around the stone. There are pieces of angular stones that have cracked faces and worn corners buried in the sand. They seem like rocks shaped for building stone structures.
+{exam_stone} You look at the stone and take a few steps around it. There doesn't seem to be anything else on it but the symbol on the front.
+	[story_1] (Look at the symbol)
+	[exam_stone] (Examine the stone) //hideif.index_is.exam_stone
+	[exam_surr] (Examine the surroundings) //hideif.index_is.exam_surr
+	[ | end_encounter] (Leave)
+||
+
+
+
+||>>The story of the symbol
+{story_1 | auto_continue story_2, add_flag redforest_story_stone_read} You crouch to read the symbol. Your mind spins as it tries to understand the amount of inexplicable information you're receiving. The symbol reads:<br> "Fisherman and his wife lived on these shores. Uncounted days had bonded them with deep love. As strong as the fisherman's wife's trust for him was, she still always worried to see him leave for the sea, for the sea was harsh. The fisherman left for the sea, one day after another and always came back. The wife accepted the mistress sea as his second love."
+||
+{story_2 | auto_continue story_3} "Their love was not without grief, as they could not conceive a child, no matter how many days they had spent loving each other in their home. One day, when the husband was absent and on the sea, the wife was confronted by the sea queen. She told her not to worry as she was to give her a child, but the fisherman must abandon the sea, she offered. The sea queen returned to the waters, and the wife rushed to tell her husband of her offer. The fisherman accepted her offer with a smile on his face, vowing to leave the sea alone."
+||
+{story_3 | auto_continue story_stop} "The sea queen entered their home, and the fisherman takes her in their bed. Everyday she returns to be bedded until one day she returns with a round belly. Wife and the husband shower her with love and praise. She stays with them until the child is born. The fisherman's wife holds the child in her arms, knowing he would never have her eyes but would always be filled by her love. The fisherman never returned to the sea."
+||

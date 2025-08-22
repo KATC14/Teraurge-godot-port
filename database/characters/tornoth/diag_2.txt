@@ -1,0 +1,294 @@
+
+
+
+
+
+
+
+
+||>>LOVER HUB (V2 Endpoint: a loop where you can sleep and have sex with Tornoth)
+{start | morn_day_eve_night_gate start_m start_d start_e start_n}
+||
+{start_m | start_music sejan_taodal/tornoth 70 3} Tornoth growls softly. "Hello, -name-."
+{start_d | start_music sejan_taodal/tornoth 70 3} Tornoth growls softly. "Hello, -name-."
+{start_e | start_music sejan_taodal/tornoth 70 3} Tornoth growls softly. "Hello, -name-. I am going to bed soon. Do you want to join me? I just need to close the shop and we can go sleep."
+{exit_shop} Tornoth puts away the inventory and coughs awkwardly. 
+{silent_return} 
+	[sleep_together] That sounds perfect. (Go to bed together) //showif.index_is.start_e
+	[ | check_flag tornoth_lover_shop awkward_0 awkward_1] Could I buy something from you?
+	[ | change_diag_file diag_questions start] (Questions)
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+
+||>>The issue of selling things to your lover
+{awkward_0 | add_flag tornoth_lover_shop} Tornoth's eyes widen with shock. He pauses and then stammers. "Uh- I- I How am I supposed to... This seems improper."
+{mabby_discount} "I- I can't do that. I sell things with very thin margins already, sorry."
+	[goof_buy] We're not married, you goof. Just show me your inventory please.
+	[mabby_discount] You can always give me a discount if you feel it helps... //showif.index_is.awkward_0 //showif.charisma.6
+||
+{goof_buy | auto_continue shop_open} He scratches his chin. "...I suppose. Uh, let me get the inventory."
+{awkward_1 | auto_continue shop_open} "I will never get used to this."
+{shop_open | start_shop start exit_shop}
+||
+
+
+
+
+
+
+||>>At night
+{start_n | hide_character, stop_music 3} You unlock the door to the smithy and open it. The smithy is dark and quiet. You can hear the soft rumbling of Tornoth sleeping. You lock the door behind you.
+	[climb_bed] (Climb into bed with Tornoth)
+	[ | start_encounter taodal taodal] (Sneak back out)
+||
+{climb_bed | pic sleeping_beast} You walk quietly to the bed and find Tornoth sleeping peacefully. You carefully undress and climb into the bed. Tornoth's chest moves with a sleep-inducing slowness as he breathes large volumes of hot air with each exhale.
+	[rouse_tornoth | start_music sejan_taodal/tornoth_romance 70 2] (Rouse Tornoth)
+	[sleep_in_bed] (Sleep)
+||
+{rouse_tornoth} You nudge Tornoth, he stops snoring and then opens his eyes slowly. "-name-? Is everything okay?"
+	[make_room] You're cute asleep. //hideif.clicked
+	[make_room] Make space for me, I want in your arms.
+||
+	
+	
+	
+||>>Check if Tornoth is Horny (Get it? HA HA)
+{sleep_together | start_music sejan_taodal/tornoth_romance 70 4, random_pointer just_sleep-just_sleep-tornoth_horny} 
+{tornoth_horny | change_diag_file diag_bedsex tornoth_horny} You go to bed together.
+||>>In bed
+{make_room | pic in_bed_together} He chuckles. "Come here." He raises his arm, making space for you next to him. You snuggle in close to him. He then closes his arms around you and hugs you tightly against him. You're closed into the warm embrace of his furred body. He pets your hair affectionately.
+{just_sleep | pic in_bed_together} You wait for Tornoth to close the smithy and then go to bed with him. You snuggle together, and Tornoth hugs you closer against his bristly fur.
+{silent_bed} 
+	[ | change_diag_file diag_bedsex iniate_sexy] (Touch his thigh) Can I interest you with some... exercise?
+	[pillow_talk] (Pillow talk)
+	[sleep_in_bed] (Sleep)
+||
+
+
+||>>PILLOW TALK (Topics)
+{no_sex_plz} He nuzzles against your neck. "Of course. Don't mind me. I don't want it if you don't want it."
+{bed_sex_end | pic in_bed_together} You skip over the hard and cold stone floor back into bed. Tornoth stirs for a moment and you're swallowed by his large arms and the warm sheets.
+{pillow_talk}
+	[pt_wherefrom] You know... you've never mentioned where you lived before Sejan.	//hideif.has_flag.tornoth_where_from
+	[pt_family] What did your family think about Sejan?						//hideif.clicked //showif.has_flag.tornoth_where_from
+	[pt_wife] Tornoth... what happened to your wife?								//hideif.clicked //showif.has_flag.tornoth_family_question
+	[pt_wetnurse] Can you tell me what happened to Shyni's wet nurse?			//hideif.clicked //showif.has_flag.tornoth_fate_of_his_wife
+	[pt_taodal] How did you manage to found a whole village anyway? 			//hideif.clicked
+	[silent_bed] (Return)														//showif.index_is.pillow_talk
+	[sleep_in_bed] (Sleep)													//hideif.index_is.pillow_talk
+||
+
+||>>Where did you use to live?
+{pt_wherefrom | add_flag tornoth_where_from} "It's far away. I don't want to remember it. We moved here for a reason."
+	[where_1] Did something happen?
+||
+{where_1} "Yes. I didn't want to leave but... we had to."
+	[where_2] What happened?
+||
+{where_2} "Can we..." He hugs you closer. "Can we talk about this some other night? I- I'm not ready."
+	[where_33] (Pet him) //showif.charisma.6
+	[where_3] Of course.
+||
+
+||>>Did you come here with your wife?
+{pt_family | add_flag tornoth_family_question} "No... It was just me and Shyni. And... And a woman."
+	[mean_woman] ...You mean, your wife?
+	[just_woman] 'A woman'?
+||
+{mean_woman} "No.<br><br>A woman."
+{just_woman} He sighs. "A woman."
+	[wat_woman] I don't understand.
+	[wat_woman] It's okay if you don't want to talk about it.
+||
+{wat_woman} Tornoth snorts frustrated. "I shouldn't... have mentioned her. She breastfed Shyni when she was small."
+	[wife_gone] Your wife was already absent when you arrived here?
+||
+{wife_gone} "Yes."
+	[wat_wife] She didn't come with you?
+	[wat_wife] Is she... dead?
+	[wat_wife] What happened to her?
+||
+{wat_wife} "She... She died shortly after Shyni was born."
+	[sad_about_wife] I'm sorry. //showif.charisma.6
+	[sad_about_wife] (Say nothing)
+||
+
+||>>Tornoth's wife (Ettenea)
+{pt_wife | stop_music 6, add_flag tornoth_fate_of_his_wife} "I... I don't want to talk about her... But you need to know and- and I have to tell you."
+	[wife_0] I don't want to impose if it's a touchy subject.
+	[wife_0] If it makes you uncomfortable, you don't have to.
+||
+{wife_0 | start_music sejan_taodal/tornoth_romance_sad 70 3, pic cuddle_sad} "Her name was Ettenea. We- we had known each other since childhood. We grew up together and then fell in love. She became pregnant with Shyni, and we built a house together." He wipes tears from his eyes and presses his head against you. "We were very happy." He inhales as his voice starts breaking into a mournful growl. "She gave birth to Shyni... and she was horrified. Our child was deformed." He sniffles. "We named her Shyni. We prepared a small grave and waited for her to die... but she kept on living." He chuckles through the tears. "I- I was so happy." 
+	[wife_1] ...She didn't die while giving birth?
+||
+{wife_1} A tortured growl rumbles from Tornoth. "She... She couldn't even look at her, Shyni disgusted her. I- I couldn't understand what had made her so hard and cold towards our child. Shyni looked odd as a baby, but... she wasn't a malformed monster. Ettenea... She... was repulsed by her. I had never seen her act so coldly towards something. It felt like she was disappointed and angry whenever caring for Shyni."
+	[wife_2] (Listen)
+	[wife_2] Pregnancies can mentally mess people up really badly sometimes. //showif.intelligence.6
+||
+{wife_2} He stares into nothing and continues. "It all feels like a half-remembered nightmare...<br><br>I... I came home from work one day and found Shyni oddly quiet and cold. I asked Ettenea if she was alright and she reassured me, but... Shyni only became quieter and colder.<br><br>She was starving."
+	[wife_3] Ettenea was trying to... kill Shyni?
+	[wife_3] ...She what?
+||
+{wife_3 | auto_continue wife_4} "I didn't know... what to think, but I took Shyni in the middle of the night and ran to our neighbors. The... young mother next door fed and warmed her up. I lied to them and told them that Ettenea was sick and couldn't care for Shyni right now.<br><br>I stayed the night and left Shyni in her care when I left to confront Ettenea in the morning."
+||
+{wife_4} "...She was waiting for me. She... asked if I had buried Shyni."
+	[wife_55] (Listen)
+	[wife_5] Please say you lied to her.
+||
+{wife_5 | auto_continue wife_6} "...I should have lied...<br><br>I said I had taken her to the neighbors. She... She went mad. Only then I realized she was ashamed of Shyni and I had now exposed that shame to others. She told me to retrieve her, but I kept asking why she was mad. She took a knife and stormed outside."
+{wife_55 | auto_continue wife_6} "...I- I said I had taken her to the neighbors. She... She went mad. Only then I realized she was ashamed of Shyni and I had now exposed that shame to others. She told me to retrieve her, but I kept asking why she was mad. She took a knife and stormed outside."
+||
+{wife_6 | auto_continue wife_7} "I went after her. Roared at her not to take another step. She hissed and spat at me as I tried to stop her..."
+||
+{wife_7 | auto_continue wife_8} "She cut me, but I took the knife from her, and I pinned her against the ground.<br><br>She spat at me, telling me how the disfigured monster that crawled out of her should die. She would poison her food and wring her neck at any chance she got."
+||
+{wife_8} "It didn't feel... like she was Ettenea. She had never shown such cruelty to anyone and hearing her... describe... killing Shyni. It- It..."
+	[wife_9] (Listen)
+	[wife_9] Tornoth... Stop.
+||
+{wife_9} Tears well in Tornoth's eyes. "I... I killed her... I took the knife. S- She- She screamed at me to stop, and I kept- stabbing her."
+	[wife_10] Tornoth, stop. You don't have to.
+	[wife_10] Tornoth, no, no...
+	[wife_10] (Pet him)
+||
+{wife_10} He presses his head against you. He rumbles with a sad tone and hugs you.
+	[wife_11] Tornoth... (Pet him)
+||
+{wife_11 | auto_continue wife_12} Tornoth steels himself and brushes his eyes with his forearm. "I became angry.<br><br>I tossed her body into the forest. I changed my clothes and packed.<br><br>I took Shyni and ran. I ran as fast as I could. I don't know what happened after I left. In my head, I cursed Ettenea and her madness forcing me and Shyni to do this." His hands tremble.
+||
+{wife_12 | auto_continue wife_13} "Shyni... She was still only a baby and needed breastfeeding, but... I couldn't stop, I had to run. But she would die if she didn't get fed, and she was weakening from the moment I had left our home.<br><br>I saw a young woman tending to her chores and... I wasn't thinking like a person. I was afraid Shyni would starve to death, or I would get caught and we would both be put to death.<br><br>I walked up to the girl and asked if she could help with my child and... she agreed."
+||
+{wife_13} "She invited me in her house. I ate and drank with her, and when she bid us farewell, I tied her up and slung her over my shoulder."
+	[wife_14] She must have been confused.
+||
+{wife_14} "She was terrified. She assumed me a brigand. That I would sell her as a slave or just simply rape and kill her.<br><br>After carrying her through several forests, I set her down and explained everything. I don't think she understood or believed my story, but she did feed Shyni."
+	[wife_15] Is she the woman you arrived in Sejan with?
+||
+{wife_15 | pic in_bed_together} "Yes." Tornoth sniffles and exhales. "I'm so sorry..." He nuzzles into your neck and hugs you tightly.
+{is_okay_torny} Tornoth tightens his hug.
+	[is_okay_torny] It's okay, Tornoth. //showif.index_is.wife_15 //showif.charisma.6
+	[wife_16] (Hold his hand)
+||
+{wife_16} You place your hand over his. Tornoth quietly sobs and eventually falls silent.
+	[wife_17] Are you okay, Tornoth?
+||
+{wife_17} He rumbles a tired and weak response. "Sorry, I- It's hard. I thought I wouldn't... cry."
+	[wife_18] Do you want to sleep?
+||
+{wife_18} "Yes, I want to sleep." He nuzzles into your neck and sighs.
+{pet_slep} You pet his head over your shoulder, he closes his eyes and sighs as he relaxes.
+	[pet_slep] Let's sleep. (Pet him) //showif.charisma.6 //showif.index_is.wife_18 
+	[wife_19] (Sleep)
+||
+{wife_19 | auto_continue sleep_in_bed} You close your eyes and gently pet his hand until, after a moment of silence, you hear him snore. You feel yourself relax and then slip into comfy blackness.
+||
+
+
+||>>Founding Taodal?
+{pt_taodal} "I built a simple house. I fished and hunted for food. The place was very quiet.<br><br>I kept building things, and when I built a pier so I didn't have to keep dragging the boat through the shallow shore, a boat docked off the coast, and a bunch of sailors came roaming the beach, confused."
+	[taodal_2] You probably greeted them with an axe in hand.
+||
+{taodal_2} He lets out a throaty chortle. "I did, I did. Turns out they were simply wondering if they could buy food and other things from me. Turns out this place is right next to a busy trade route to the inner cities. I started planning on welcoming visitors and trading with them. Older sailors wanted to stay with their lovers, and I helped them build their houses. It seemed every two hundred days or so the village had doubled in size. I spent countless days hammering new nails and axes for the new residents to build their houses with. The village grew like wildfire."
+	[taodal_3] That's pretty fast.
+||
+{taodal_3} "Before I realized what it all meant, people started coming to me asking about rules and act as a mediator in different disputes. I was suddenly a mayor of a town."
+{taodal_44} He chuckles. "I... think so too."
+	[taodal_44] That's pretty funny. //showif.index_is.taodal_3
+	[taodal_4] You didn't mind?
+||
+{taodal_4} He laughs softly. "I- I might talk humbly about being the unofficial leader, but in my heart, I feel like I'm the right choice."
+	[taodal_5] I'm glad you like your job.
+	[offc_leader] Why not make yourself the official leader?
+||
+{offc_leader} He chortles heartily. "Maybe I will."
+	[fempc_queen] You really should.
+	[fempc_queen] Really?
+||
+{fempc_queen} He chuckles and pokes you gently on the cheek. "Do you imagine yourself a queen?"
+	[queen_yes] Yes. //showif.will.8
+	[queen_mab] Maybe I do.
+	[queen_mab] Do you imagine yourself a king?
+	[queen_mab] Oh, stop it, you.
+||
+
+||>>What happened to Shyni's wet nurse?
+{pt_wetnurse} Tornoth rumbles and then whispers with a low, booming voice. "I told her I loved her."
+{did_u_luv} "I- I'm not sure. I was scared and lonely. She had become a flicker of that warm light I had felt with Ettenea, and I wanted to protect it."
+	[she_nolike] How did she react?
+	[did_u_luv] ...You loved her? //showif.index_is.pt_wetnurse
+||
+{she_nolike} "I- I don't know. She acted friendly towards me but... I think she felt that I had disjointed her life and wanted to return to her home, but she felt responsible for Shyni."
+	[nurse_relation] Did you have a relationship?
+||
+{nurse_relation} "We... We had sex. But I don't think either of us were completely comfortable with it. It was an arrangement born of solitude more than anything. She kept me company and left when Shyni started to eat solid food. I bought her a passage home and gave her money. She promised to keep the whole sordid thing a secret, for Shyni's sake."
+{nurse_where} "I imagine she still lives in the same house I took her from."
+	[nurse_where] Do you know where she lives now? //showif.index_is.nurse_relation
+	[nurse_talked] Have you talked with her after she left?
+||
+
+||>>PILLOW TALK END
+{where_33} You gently pet Tornoth. He growls with a sad voice and lowers his head against your neck.<br><br>After a moment of silence, you hear him snore.
+{where_3} Tornoth growls with a sad voice and lowers his head against your neck.<br><br>After a moment of silence, you hear him snore.
+{sad_about_wife} Tornoth growls with a sad voice and lowers his head against your neck.<br><br>You quickly hear him snore.
+{nurse_talked} He sighs. "No... I have considered sending her a letter, but I- I don't feel I have the right." He nuzzles into your neck and falls silent.<br><br>After a moment of silence, you hear him snore.
+{taodal_5} Tornoth chuckles "This town is easy to love." He nuzzles into your neck. He rumbles as he whispers into your ear. "You're very beautiful, -name-." He tightens his hug and then falls silent.<br><br>You soon hear him snore.
+{queen_mab} Tornoth chuckles and nuzzles your neck. He rumbles as he whispers into your ear. "You're very beautiful, -name-." He tightens his hug and then falls silent.<br><br>You soon hear him snore.
+{queen_yes | add_flag tornoth_pc_queen} Tornoth pauses and looks you in the eyes. He has an amused and puzzled expression as he stares at you. He snorts and nuzzles your neck. He rumbles as he whispers into your ear. "You're very beautiful, -name-." He tightens his hug and then falls silent.<br><br>You soon hear him snore.
+	[sleep_in_bed] (Sleep)
+||
+
+||>>Sleep index
+{sleep_in_bed | stop_music 8, auto_continue bed_sleep, pic in_bed_together} You close your eyes and settle yourself in Tornoth's embrace. Soon, you feel yourself slip into sleep.
+{bed_sleep | stop_music 8, advance_time_to morning, counter tornoth_nights_together + 1, random_pointer wake_1-wake_2} Woke randomizer index.
+||
+
+
+
+||>>waking up
+{wake_1 | pic in_bed} You suddenly feel very awake. The sleepiness evaporated the moment you opened your eyes, and you find yourself wide awake in Tornoth's arms. He's warm and scruffy.
+{wake_2 | pic in_bed} You wake up and flutter your eyes as you try to untangle your foggy head. You're in Tornoth's arms. He's warm and scruffy.
+	[outof_bed] (Get out of bed)
+	[you_awake] Are you awake?
+	[kiss_him] (Kiss him)
+||
+{kiss_him | pic bedroom_eyes} You give Tornoth a kiss on his snout. Tornoth stops snoring and slowly opens his eyes. He looks at you for a moment before a half-awake voice rumbles from his throat. "Good morning, -name-."
+{you_awake | pic bedroom_eyes} Tornoth stops snoring and slowly opens his eyes. He looks at you for a moment before a half-awake voice rumbles from his throat. "Uhm.. -name-? Good morning."
+{kiss_him_2 | pic bedroom_eyes} You give Tornoth a kiss on his snout. He rumbles a tired chuckle and gives you a kiss on the cheek. "You are lovely."
+	[kiss_him_2] (Kiss him) //showif.index_is.you_awake
+	[perfect_bed] The new bed is perfect. //hideif.clicked
+	[sorry_wake] Sorry for waking you. I didn't want to just leave without talking to you. //hideif.clicked
+	[marning_gud] Good morning.
+||
+{marning_gud} He brushes your hair and gives you a soft kiss on the forehead.
+{perfect_bed} He rumbles with an affectionate voice. "Thank you, I'm glad you like it. Hopefully we get a lot of use out of it." He brushes your hair and gives you a soft kiss on the forehead.
+{wanna_bed_bang} "Sorry, I- I think you'll find that I'm not up to the task in the morning." 
+{sorry_wake} Tornoth chuckles. "It's okay. I'm good at falling asleep... but I think I should get up anyway." He brushes your hair and gives you a soft kiss on the forehead.
+{bed_kissy} You kiss Tornoth, he chuckles softly.
+	[it_okay] It's okay. //showif.index_is.wanna_bed_bang
+	[bed_kissy] (Kiss him) //showif.index_is.marning_gud
+	[get_out_bed] (Get out of bed)
+	[wanna_bed_bang] ...You wanna do something sweaty before getting out of bed? //hideif.clicked
+||
+{it_okay | change_environment taodal_tornoth_smithy, change_sprite nude, remove_pic} Tornoth lazily lifts himself up and grunts, and you hop off the bed after him. "I suppose I should get dressed before people come asking for nails. Have a nice day, -name-."
+{get_out_bed | change_environment taodal_tornoth_smithy, change_sprite nude, remove_pic} You climb over Tornoth and hop out of the bed. Tornoth lazily lifts himself up and grunts. "I suppose I should get dressed before people come asking for nails. Have a nice day, -name-."
+	[ | start_encounter taodal taodal] You too, Tornoth. (Leave)
+||
+
+
+||>>getting out of bed early
+{outof_bed | pic sleeping_beast} You get out of bed and get dressed. Tornoth still snores on the bed.
+	[wakey_torny] (Wake Tornoth)
+	[ | start_encounter taodal taodal] (Leave)
+||
+{wakey_torny | pic bedroom_eyes} You gently shake Tornoth. He stops snoring and opens one eye. "-name-? Good morning."
+	[wakey_amazo] You're an amazing man, Tornoth. Sleep as long as you want. I'm heading out. //hideif.clicked
+	[wakey_getout] I just didn't want to leave without you knowing. //hideif.clicked
+	[wakey_kissy] (Kiss him)
+||
+{wakey_amazo} Tornoth chuckles. "You're an amazing woman, -name-. Have a nice day." 
+{wakey_getout} Tornoth chuckles "It's okay. I'm good at falling asleep."
+{wakey_kissy} Tornoth chuckles and gives you a quick peck in return. "See you later, -name-."
+	[wakey_kissy] (Kiss him) //hideif.index_is.wakey_kissy
+	[ | start_encounter taodal taodal] Bye. (Leave)
+||

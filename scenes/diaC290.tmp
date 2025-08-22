@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://cghm8dwjeyts5"]
+
+[ext_resource type="Script" path="res://scripts/dialogue.gd" id="1_abwjo"]
+[ext_resource type="Script" path="res://scripts/ChoicesDialog.gd" id="1_khq2m"]
+[ext_resource type="Script" path="res://scripts/diag_func.gd" id="2_nm0kn"]
+[ext_resource type="Script" path="res://scripts/autocont_dots.gd" id="3_xwsq1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ntbks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmwlp"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b24tw"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_abwjo")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+offset_right = 1152.0
+offset_bottom = 231.0
+text = "Hey guys, did you know that in terms of male human and female Pokémon breeding, Vaporeon is the most compatible Pokémon for humans? Not only are they in the field egg group, which is mostly comprised of mammals, Vaporeon are an average of 3”03’ tall and 63.9 pounds, this means they’re large enough to be able handle human dicks, and with their impressive Base Stats for HP and access to Acid Armor, you can be rough with one. Due to their mostly water based biology, there’s no doubt in my mind that an aroused Vaporeon would be incredibly wet, so wet that you could easily have sex with one for hours without getting sore. They can also learn the moves Attract, Baby-Doll Eyes, Captivate, Charm, and Tail Whip, along with not having fur to hide nipples, so it’d be incredibly easy for one to get you in the mood. With their abilities Water Absorb and Hydration, they can easily recover from fatigue with enough water. No other Pokémon comes close to this level of compatibility. Also, fun fact, if you pull out enough, you can make your Vaporeon turn white. Vaporeon is literally built for human dick. Ungodly defense stat+high HP pool+Acid Armor means it can take cock all day, all shapes and sizes and still come for more "
+autowrap_mode = 3
+
+[node name="Container" type="Container" parent="CanvasLayer"]
+script = ExtResource("2_nm0kn")
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(640, 360)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(640, 360)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(640, 360)
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+visibility_layer = 2
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -162.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_khq2m")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Button" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ntbks")
+text = "Choice"
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+offset_right = 1.0
+offset_bottom = 23.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qmwlp")
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b24tw")
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+script = ExtResource("3_xwsq1")
+
+[connection signal="change_diag" from="CanvasLayer/Container" to="." method="_on_change_diag"]
+[connection signal="change_environment" from="CanvasLayer/Container" to="." method="_on_change_environment"]
+[connection signal="leave_encounter" from="CanvasLayer/Container" to="." method="_on_leave_encounter"]
+[connection signal="new_encounter" from="CanvasLayer/Container" to="." method="_on_new_encounter"]
+[connection signal="SELECTED" from="CanvasLayer/PanelContainer" to="." method="_on_panel_container_selected"]
+[connection signal="is_active" from="CanvasLayer/PanelContainer" to="CanvasLayer/PanelContainer" method="_on_is_active"]

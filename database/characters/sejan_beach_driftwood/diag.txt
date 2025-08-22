@@ -1,0 +1,57 @@
+
+
+
+NOTES
+PC encounters driftwood on the Sejan beaches 
+Player can create low quality wooden weapons from the drift wood
+	
+driftwood items:
+	driftwood_club
+	small_driftwood_club
+	big_driftwood_club
+	giant_driftwood_club
+	driftwood_spear
+NOTES
+
+
+||
+{start} You stumble upon some driftwood on the beach.
+{examine_wood} The driftwood is clearly not from the peninsula, it's sturdier and more rigid than the spongy green trees that grow here. Some of the wood has been washed out further up on the beach and has dried out.
+	[make_wood_stuff] (Make something from the dry wood) //showif.index_is.examine_wood
+	[examine_wood] (Examine the driftwood) //showif.intelligence.6 //showif.index_is.start
+	[john_caveman_hit_with_stick_ugg] (Pick up a club) //hideif.intelligence.6
+	[john_caveman_hit_with_tree_ugg] (Pick up a big club) //hideif.intelligence.6 //showif.strength.10
+	[ | end_encounter] (Leave)
+||
+{make_wood_stuff} You gather the promising dry driftwood on the beach and look it over.
+{something_else} You look over the dry driftwood again.
+{make_fukhueg_club} You select the biggest piece of wood you can find. You soon realize that you're not going to be able to whittle it down into a club in any reasonable time with your knife. You need an axe.
+	[axe_giant_club] (Use your axe to make a giant club) //showif.has_item.felling_axe
+	[make_spear] (Make a spear) 
+	[make_club] (Make a club)
+	[make_big_club] (Make a large club)
+	[make_fukhueg_club] (Make a giant club) //hideif.index_is.make_fukhueg_club //hideif.has_item.felling_axe
+	[ | end_encounter] (Leave)
+||
+{make_spear | give_item driftwood_spear} You pick one of the straighter branches and quickly whittle a point to it. The hardened dry wood retains the sharp tip fairly well.
+{make_club | give_item small_driftwood_club} You sit down and whittle a one-handed wooden club from one of the dried out branches. After a small while, you have yourself a simple but sturdy club. You give it a test swing before stashing it.
+{make_big_club | give_item big_driftwood_club} You pick a large branch and start whittling it down.<br><br>After a long while, you stop and massage your sore hand. You created a rough but usable two-handed wooden club. You give it a test swing before stashing it.
+	[leave_remove] (Leave) 
+||>>giant club
+{axe_giant_club} You spent an inordinate amount of time axing and sometimes whittling the wood to create a colossal wooden club.<br><br>You wipe sweat off your brow and look at your handiwork. It's a really big club.
+	[ | check_stat strength 8 test_giant_0-test_giant_1] (Give it a test swing) 
+||
+{test_giant_0} You pick it up with a grunt and place it on your shoulder. You tense your arms and swing it across horizontally with an angry grunt. The momentum drags you down with the club and you fall face first into the sand.
+{test_giant_1} You pick it up with a grunt and place it on your shoulder. You tense your arms and swing it across horizontally with an angry grunt. The momentum of the swing almost pulls you over, but you manage to stay upright.
+	[something_else] (Leave it and make something else) 
+	[pick_giant | give_item giant_driftwood_club] (Take the giant club)
+||
+{pick_giant} You pick up the giant club to carry.
+{john_caveman_hit_with_stick_ugg | give_item driftwood_club} You pick up a stick and give it a test swing.
+{john_caveman_hit_with_tree_ugg | give_item driftwood_tree_trunk} You pick up a tree trunk and give it a test swing. You realize the tree trunk is a good weapon for you.
+	[leave_remove] (Leave) 
+||
+
+||>>Removes the encounter and end the encounter
+{leave_remove | add_flag pc_sejan_driftwood, end_encounter}
+||

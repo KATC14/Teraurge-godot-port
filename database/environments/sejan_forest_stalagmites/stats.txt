@@ -1,0 +1,21 @@
+interior:	no
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>
+
+
+
+||>>ENCOUNTERS
+{encounters | curated_list random}
+	[ | start_encounter sejan_forest_stalagmites braq_m] braq m encounter
+	[ | start_encounter sejan_forest_stalagmites braq_f] braq f encounter
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+||

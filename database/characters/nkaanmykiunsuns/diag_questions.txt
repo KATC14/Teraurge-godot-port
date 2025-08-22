@@ -1,0 +1,176 @@
+
+
+
+
+
+||>>QUESTIONS HUB
+{start}
+{u_funny} She chuckles. "You're funny, that's what you are."
+{you_vandal} "She already asked me to stop. I gave her a few adats. She doesn't care anymore."
+{rather_not_tell} "Understandable. I guess I have to find out myself." She winks and grins.
+{tell_info_0} She holds in a laugh. "Uh huh? Very enlightening."
+{mere_flirt} She smiles. "That makes two of us."
+{mere_answers} "I guess that makes me the weird one, then." She flashes a grin. 
+{more_speculation} "Stop.<br><br>Giving you a bone doesn't mean I'm going to serve you the roast.<br><br>Well, maybe later."
+{what_do_suit} "Special things, of course!" She chuckles.
+{why_mallet} "I do carpentry." She chuckles.
+{where_from} "Not from around here."
+{like_knifes} She chuckles. "I like knives."
+{pretty_knives} She nods with a subdued grin. "Thank you."
+{ruined_suit} "Ah, well, I'm the one wearing it in the end."
+{getchu_staph} She shrugs. "I don't really like trivia anyway."
+{silent_return}
+	[why_knives] What's the deal with the knives? //hideif.clicked
+	[what_wear] What are you wearing? You don't really look like a local. //hideif.clicked //showif.intelligence.6
+	[your_deal] So, what's your deal? //hideif.clicked
+	[you_vandal] Bykaas is okay with you vandalizing her tavern? //hideif.clicked
+	[what_you] What are you? //hideif.clicked
+	[why_mallet] Why the mallet? //hideif.clicked //showif.intelligence.8
+	[ | change_diag_file diag silent_return] (Return)
+||
+
+
+||>>What's the deal with the knifes?
+{why_knives} "I like knives."
+	[knives_1] Knives are cool, but you seem to a have special relationship with them. //showif.charisma.8
+	[knives_2] You have a lot of them.
+||
+{knives_2} "Yup."
+	[like_knifes] Why?
+||
+{knives_1} "I think they're kinda pretty, and I need them for my work."
+	[pretty_knives] They're very pretty.
+	[u_butcher] A butcher, right?
+	[u_stab] For stabbing people?
+||
+{u_butcher} "Why would I need a mallet or a saw for butchery?<br><br>I'm a carpenter, you dummy!"
+{u_stab} She snickers. "Why would I need a mallet or a saw for murder?<br><br>I'm a carpenter, you dummy!"
+	[like_knifes] Uh huh.
+||
+
+||>>What are you wearing?
+{what_wear} "You like it? It does accentuate every crevice and crack in your body. If you like that."
+	[what_is_suit] What is it?
+	[imagine_arse] I can imagine.
+||
+{imagine_arse} "Yeah. It doesn't breathe well, so in direct daylight all the sweat just pools under the fabric. When I get out of it, I smell like an old sock swimming down a sewer." 
+	[ruined_suit] Yeah, you ruined it for me.
+	[why_wear] Seems uncomfortable, why wear it?
+||
+{why_wear} "It's useful."
+{what_is_suit} "It's clothing."
+	[spehsul_cloth] It's special, isn't it?
+	[stands_out] Makes you stand out of the crowd pretty well.
+	[suit_odd] It looks odd.
+||
+{suit_odd} "I suppose. You like it?"
+{stands_out} "You like it?"
+	[good_look] You look good in it. //showif.charisma.6
+	[spehsul_cloth] It's special, isn't it?
+	[not_spehsul_really] Not particularly.
+||
+{good_look} "I guess it hides most of the blemishes... Thank you."
+{spehsul_cloth} She grins. "Of course it is."
+{not_spehsul_really} "Ah, it is a little plain, being grey and all."
+	[what_do_suit] What does it do?
+	[apparel_speculation] Since it covers most of your body, and you wear it in this heat, I'm going to assume it's supposed to hide you somehow. //showif.intelligence.8
+||
+{apparel_speculation | add_flag nkaanmykiunsuns_player_outta_town} She raises her eyebrow. "You're not from here, are you?"
+{not_from_here} She grins. "Interesting."
+	[not_from_here] No, I'm not from here. //showif.index_is.apparel_speculation
+	[more_speculation] Does it refract light and make you invisible? I assume there's a faceplate?
+	[more_speculation] Where's the electronics?
+||
+
+
+||>>So what's your deal?
+{your_deal} "I'm just a girl waiting for her sister to work out some family issues."
+	[u_ass] You're an assassin or something like that, aren't you? //showif.intelligence.6
+	[silent_return] Eh, okay.
+||
+{u_ass} "I wouldn't know anything about things like that, being a simple peasant girl." She grins.
+	[press_x] I doubt that.
+	[theatre] Why the obvious theatrics? You're not worried your target might see you? //showif.intelligence.8
+||
+{press_x} "Are you saying I'm not a convincing farm girl?"
+{theatre} "What are you talking about? I'm just waiting for my sister to get here."
+{less_knives} "This farm girl just likes skin-tight clothing and knives. Don't be so prejudiced!" She chuckles.
+	[less_knives] I think you'd need less skin-tight clothing and knives. //showif.charisma.8 //showif.index_is.press_x
+	[eh_secrets] You're just being silly now.
+	[eh_secrets] I guess you can't just blurt out your reasons. //showif.charisma.6
+||
+{eh_secrets} "Who are you, -name-?"
+	[just_guy] Just a guy. //showif.player_sex.male
+	[just_girl] Just a girl. //showif.player_sex.female
+	[just_traveler] I'm a traveler from another dimension.
+||
+{just_traveler} She almost folds over giggling. "What a coincidence! Me too!"
+	[just_traveler_serious] I'm serious.
+||
+{just_traveler_serious} "Of course you are."
+{just_guy} "Hi, just a guy, I'm just a girl myself."
+{just_girl} "I'm just a girl too."
+	[where_from] Where are you from?
+||
+
+||>>What are you?
+{what_you} She cocks her head. "What kind of question is that?"
+	[meant_spec] I mean, what's your species?
+	[silent_return] Nevermind.
+||
+{meant_spec} "Eh? I don't know. Who cares?"
+	[not_know_spec] How do you not know?
+	[getchu_staph] That's reasonable, I guess.
+||
+{not_know_spec} "Never came up before. Besides, you'd have to find a biologist who knows or go through a bunch of books. Seems like a waste of time to me."
+	[no_tell_parent] Your parents didn't tell you?
+||
+{no_tell_parent} "Like I said, nobody cares. I don't need another name either."
+	[ur_bio] But... what if you need to know something about your biology?
+	[what_u_spec] I guess.
+||
+{ur_bio} "I don't need a biology lesson on myself. The only reason to look up my anatomy is if I end on up on the surgeon's slab, and even then it would be the doctor's job.<br><br>What species are you, then?"
+{what_u_spec} "What's your species?"
+	[u_funny] I don't know. (Lie)
+	[me_hooman] I'm a human.
+||
+{me_hooman} "So, now I know the name of your species. What am I supposed to do with this info?"
+	[look_info] I guess you could look up more information based on that name? //showif.intelligence.6
+	[u_figure] You asked me, you figure it out.
+	[getchu_staph] Okay! I get it.
+||
+{look_info} "Mind handing me that book then?"
+{u_figure} "Give me a book or something on it."
+	[tell_more] I don't have a book on it. I could tell you more if you want?
+	[getchu_staph] I don't think there's a book on it.
+||
+{tell_more} She grins. "Sure. Tell me... where your major blood vessels are."
+	[tell_info_1] Neck, armpits, and inner thighs near the crotch. The heart is in the upper chest, slightly offset to the left. //showif.intelligence.8
+	[tell_info_0] Uh, I guess there's a few large veins in my neck? And a heart kinda in the middle of my chest? They're all over the place? I guess? //hideif.intelligence.8 //showif.intelligence.6
+	[getchu_staph] Uh... okay, I get it.
+||
+{tell_info_1 | add_flag nkaanmykiunsuns_player_outta_town} She pokes your stomach and feels up the edge of your ribcage. With the other hand, she gently digs her index finger behind your clavicle. "So, what would be the best way to poke a long, sharp object into your heart if one doesn't want to tackle with the ribcage? Hypothetically speaking?" She grins.
+{very_entertaining} She shakes her head, excited. "Well, tell me, then."
+{not_heplful_ass} "What? Farm girls can't ask perfectly innocent questions about anatomy? How droll."
+	[ | sex_gate poke_here poke_here_f] Like a dagger? Under the ribcage or between the third and fourth rib, I suppose.
+	[not_heplful_ass] This doesn't help your assassin cover at all, you know. //hideif.clicked
+	[very_entertaining] You tease, but this is very entertaining to me. //hideif.clicked
+	[rather_not_tell] I'd rather not.
+||
+{poke_here} She chuckles. "I assumed as much.<br><br>You're an odd man."
+{poke_here_f} She chuckles. "I assumed as much.<br><br>You're an odd woman."
+	[mere_answers] You asked, I merely answered.
+	[mere_flirt] I admit, It's an unconventional way of flirting but I'll manage.
+||
+
+
+
+
+
+
+
+
+
+
+
+

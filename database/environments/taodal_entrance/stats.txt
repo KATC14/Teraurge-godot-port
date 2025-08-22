@@ -1,0 +1,13 @@
+interior:	no
+blocking:	yes
+
+<SOUNDS
+sejan/forest_birds.40
+sejan/forest_wind.20
+SOUNDS>
+
+||>>ENCOUNTERS
+{encounters | curated_list prioritized}
+	[ | start_encounter taodal_entrance taulsol] Taulsol meeting //hideif.has_discovered.taodal
+	[0] 0
+||

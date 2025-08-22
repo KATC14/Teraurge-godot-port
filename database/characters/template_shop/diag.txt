@@ -1,0 +1,14 @@
+
+
+
+>>This shop character is bare bones example to show how shops works.
+
+>>Shops can have intros and be complex characters. This is just a very simplified example template.
+
+||>>Start hub
+{start | save_index met} "Welcome to the template shop."
+{exit_shop_pointer} "You closed the shop interface."
+{met} "Welcome to the template shop again!"
+	[ | start_shop exit_shop_pointer] I'd like to buy something.
+	[ | end_encounter] (Leave)
+||

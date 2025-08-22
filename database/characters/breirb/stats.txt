@@ -1,0 +1,28 @@
+default_env:	sejan_beach_cave
+text_color:		3e1456
+bubble_color:	55726a
+
+
+<STATS
+charisma:		10
+will:			10
+intelligence	10
+perception: 	10
+agility:		10
+strength:		10
+endurance:		10
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	0
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+mighty_smash
+lousy_slap
+CARDS>

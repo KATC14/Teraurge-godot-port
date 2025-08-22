@@ -1,0 +1,9 @@
+interior:	no
+
+<SOUNDS
+sejan_taodal/market.40
+SOUNDS>
+
+<SOUNDS_NIGHT
+generic_exterior/coast.10
+SOUNDS_NIGHT>

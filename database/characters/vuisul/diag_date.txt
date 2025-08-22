@@ -1,0 +1,448 @@
+>>Vuisul date scene in full here
+
+||>>MEETING AGAIN
+{meeting_for_date | start_music generic/peaceful_1 70 3} You're suddenly stopped by Vuisul emerging from the crowd. "Hey! -name-! Nice to see you again!" 
+	[nice_see] Nice to see you, Vuisul.
+||
+{nice_see} She snaps her hands together a few times. "I penned in some one-on-one time for us."
+	[when_then] Great, I'd love to talk to you some more. When?
+||
+{when_then} "Well I don't actually have a specific schedule, but I figured we could eat something by the beach after the market calms down?"
+	[when_dark] When it starts to get dark, I assume?
+||
+{when_dark} "Unfortunately. If you wait by the platform, I'll catch you on the way out, and we can go straight to the beach."
+	[after_dark] We're going on a beach picnic? After dark?
+||
+{after_dark} She pokes you in the chest playfully. "Exactly." 
+	[some_eat] Do you want me to bring something to eat?
+||
+{some_eat} "Let me handle the food. I just hope the wait won't be too boring."
+	[no_bore] Nah, I'll be just fine.
+||
+{no_bore} She squints happily. "I'll steal you for myself later, then."
+	[waiting_1] I'll wait. (Wait for Vuisul)
+||
+{waiting_1 | stop_music 6, pic market_wait, auto_continue waiting_2} You sit on the deck and watch as people and product move past you. After a while, the sky starts to darken, and the flow of people turns into a trickle. You see Vuisul playfully wave at you from the crowd and then return to her work.
+||
+{waiting_2 | auto_continue waiting_3} She squints happily back at you and continues talking to the person she was engaged in a conversation with. You straighten your back and sit quietly. The sky keeps darkening, turning redder by the moment. It would seem the market will soon be empty of people.
+||
+{waiting_3 | change_environment taodal_market, advance_time_to evening, remove_pic} As the sky begins to turn red and the merchants start emptying their stalls, Vuisul happily skips next to you. "Hey! I'm sorry. I didn't imagine this would have taken so long. This was an unusual evening for the market."
+	[worth_wait] It's okay. You're worth the wait. //showif.charisma.6
+	[nomore_wait] Well, at least the waiting is over now.
+||
+{worth_wait} "Oh, don't say that! I didn't have anything special planned. Oh, I feel so bad for making you wait so long."
+	[continue_beach] Shall we continue to the beach?
+||
+{continue_beach} She quickly nabs a basket from a corner of the market. "I have the food. Let's go!"
+{nomore_wait} She quickly nabs a basket from a corner of the market. "Thank you for waiting. I know it's a bother, but I have the food, and we're both free now. Let's go!"
+	[goto_beach] (Go to the beach)
+||
+
+||>>AT THE BEACH 
+{goto_beach | start_music generic/romance_soft 70 3, change_environment taodal_beach, change_sprite character} You quickly walk on the beach. 
+	[just_talk] This isn't just a chat, is it?
+||
+{just_talk} She hums playfully. "You didn't think this was just a 'chat', did you? I'm after... sex."
+{blunt_sex} "I know... but I'd rather not stumble into a misunderstanding later on. I want to have some food on the beach with you, then take you to my house afterwards and have sex."
+	[blunt_sex] That's a blunt way to put it. //showif.index_is.just_talk
+	[intimate_dif] I'm looking for that too, but... how would that work?
+	[friendly_picnic] Oh, I thought this was just a friendly picnic.
+||
+{friendly_picnic} She stops and then scratches her head. "Sorry, I don't think we should do this. I should have been more forward about my intentions."
+	[surp_sex] No! I'm okay with sex, I'm just a little surprised.
+	[picnic_stop] Alright, no harm. Sorry about wasting your time. //showif.charisma.6
+	[picnic_stop] Right.
+||
+{picnic_stop | stop_music 6} "Sorry... Right, I'll just get my things and sneak back to my house. Hopefully you have a nice evening, -name-."
+	[byebye] You too.
+||
+{byebye | character_leave, add_flag vuisul_rejected, add_flag vuisul_too_busy} "I'll be going, then. Bye." She casually walks off the beach.
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+
+
+||
+{surp_sex} She turns to a sober, dire voice. "To be honest, I'm very lonely."
+	[how_lonely] You talk to people all day, how are you lonely?
+||
+{how_lonely} "You keep people at an arms distance when you're the one moderating them, and... well, people don't feel comfortable around a person who oozes poison."
+	[intimate_dif] I imagine the, uh, intimate things are difficult.
+||
+{intimate_dif} "Oh, thinking about the logistics already? How tactful of you, but yes, it's not easy, but there's things we can do." She hums playfully.
+	[poison_danger] Sounds good.
+	[poison_danger] How dangerous is the poison? 
+||
+{poison_danger} She sighs. "It's not terribly poisonous, I suppose. It makes people feel nauseous and sick. Nobody has ever died or got permanently hurt, but I think a very prolonged contact might kill."
+	[affect_peep] Do you think it might affect people differently?
+||
+{affect_peep} "Could be, but I haven't seen different effects before."
+	[affect_me] Could we try how it affects me?
+||
+{affect_me} She giggles. "I think you might be too optimistic, -name-.<br><br>...And I don't want to make you nauseous for the whole evening."
+	[little_poison] I get you.
+	[little_poison] Maybe a little nauseous later in the evening? //showif.charisma.6
+||
+{little_poison} "So you're actually really after me? I don't mind, I really don't, but it's just odd."
+	[man_wimmin] What's so odd about it? You're a cute woman, and I'm a man.
+||
+{man_wimmin} "You mean, a tall and handsome man. I don't know, I couldn't imagine how someone like you would find me attractive."
+	[like_tall] You like tall men? I'm pretty sure I'm just average height.
+	[u_veri_attractive] I like dangerous women.
+	[u_veri_attractive] You're very attractive.
+||
+{like_tall} "I just like men who tower over me. They're very exciting."
+	[eatytime_tower] Hey, I'll tower over you any day.
+||>>Eat something
+{eatytime_tower | pic beach_picnic} She giggles. "Before any towering ensues, might we eat something?" Vuisul spreads a small cloth on the ground and invites you to sit. She opens the basket and starts setting the food:<br><br>A bowl of green, salad-looking chips, a steaming bowl of brown gravy, and berries of different colors.
+{u_veri_attractive | pic beach_picnic} She giggles. "Thank you. A lot of men think the poisonous skin is not an attractive quality in a woman." Vuisul spreads a small cloth on the ground and invites you to sit. She opens the basket and starts setting the food:<br><br>A bowl of green, salad-looking chips, a steaming bowl of brown gravy, and berries of different colors.
+	[no_idea_what] What are these things?
+||
+{no_idea_what | pic chip_dip} "Well... there's-" She stops. "Actually." She lifts a green chip with her hands, dips it into the gravy, and raises it to your mouth. She squints her eyes playfully.
+{super_spicy} "It's not, just open your mouth." She pokes the piece against your lips.
+	[super_spicy] It's not something super spicy, right? //showif.index_is.no_idea_what
+	[open_mouth] Alright. (Open your mouth)
+||
+{open_mouth | play_sound generic/interactions/bite 70} Vuisul gently deposits the chip into your mouth, and you bite on it. The chip is thicker than you realised and has a consistency of bread about it. The gravy and the chip are pleasantly salty, and they crunch a bit. Vuisul cocks her head slightly, waiting for reaction.
+	[salty_good] It's good. 
+	[salty_bad] I don't think I like it.
+	[mystery_good] I like it, but the taste doesn't tell me what it is.
+||
+{salty_good} "Hey."
+	[vuisul_chips] What is it?
+	[another_chip] Can I have another?
+||
+{mystery_good} "I'll keep it a secret, then. You can call them Vuisul's chips."
+{vuisul_chips} "I'll keep it a secret. You can call them Vuisul's chips."
+	[sell_these_chips] Did you use to sell these?
+	[another_chip] Can I have another?
+||
+{another_chip} She coos softly. "Oh course you can have another." She dips another chip before presenting it to you.
+{sell_these_chips} "I did! I did, I used to make them right there at the market, before I even moved here. Do you want another?" She dips another chip before presenting it to you.
+	[eat_other_chip] (Eat the chip)
+	[hand_kissy] (Take her hands and kiss them) //showif.charisma.8
+||
+{hand_kissy} You raise your hands to hers, grab them, and give her a soft kiss on the glove. "Oh! Eat the chip, you horny man."
+	[eat_other_chip] (Eat the chip)
+||
+{eat_other_chip | play_sound generic/interactions/bite 70} You bite on the chip and chew. Vuisul looks you in the eyes. "Sorry, I actually liked that. I'm not touched often, and since I try to avoid touching others, contact has become a pang of panic for me."
+	[offer_hand] (Offer your hand) You touch me.
+||>>Touching
+{salty_bad} "Oh, I suppose they're not for everybody. I brought other food in case.<br><br>-name-? Could I touch you?"
+	[what_touchme] What? Touch me? What do you mean?
+	[offer_hand] Absolutely. (Offer your hand)
+||
+{what_touchme} "Just to see know how you feel. With the gloves of course."
+{poison_fabric} "No! I'm absolutely sure. I spent a long time testing and finding the fabric."
+	[poison_fabric] The poison won't come through the fabric? //showif.index_is.what_touchme
+	[offer_hand] Sure. (Offer your hand)
+||
+{offer_hand} She nods happily and sets her gloved scythe on your hand. "It feels strangely warm." She brushes the length of her hand along your palm. A small tear appears in her eye.
+	[u_okay] Are you okay?
+||
+{u_okay} She draws breath and lets out a small beep. "It feels nice." She brushes her large eye with her other scythe and flutters her eyes to clear them. 
+	[take_hands] (Take her hands)
+||
+{take_hands} You gently grab both of her hands. She stares coyly at you. "We're doing a touching thing. I like it."
+	[touch_any] You can touch me anywhere you like.
+||
+{touch_any | auto_continue poke_nose} She gently pokes her scythe under your ear and brushes against your cheek. "It's not really touching, there's still a cloth separating us."
+||
+{poke_nose | pic nose_boop} She sets her scythe tip against your nose and presses gently. "I wondered what that felt like. Very springy."
+	[rub_hand] (Massage her hands)
+||
+{rub_hand | pic giant_blue_eyes} You run your hands along her arm and massage it a bit. She squints appreciatively and settles her scythes on both sides of your head. "You have pretty eyes, -name-." Her face hovers close to yours. You can see her mandibles move excitedly as her large blue eyes scan your face.
+	[beaut_eyes] You have beautiful eyes.
+	[kiss_her] (Kiss her)
+||
+{kiss_her | pic portrait} You close your eyes, purse your lips, and try to close the distance. You feel tip of her dull scythe stop you. You open your eyes to her scolding eyes. "Still poisonous."
+	[want_do] Is there anything... we can do, that you would want to do?
+||
+{beaut_eyes} She flutters her eyes. "Thank you... People always notice my eyes. They're a little bigger than usual.<br><br>-name-, I- I have a few ideas how to continue this evening... but they're not terribly elegant or... sexy."
+{want_do} "I've been having fun this whole time.<br><br>But I know what you mean. I know a few things, but they're not terribly elegant or... sexy."
+	[stare_eyes] Can I look you in the eyes while doing them?
+	[in_mind] What do you have in mind?
+||
+{stare_eyes} She blushes. "You can, indeed. Which means I get to watch your eyes.<br><br>I- I like the sound of that, but we should eat. I'll steal you to my hovel afterwards."
+{in_mind} "We should first eat, and I'll steal you to my hovel afterwards... and show you."
+	[no_convincing] You don't need much convincing.
+||
+{no_convincing} "We want each other. No reason to waffle around."
+	[youre_pretty] Sounds perfect.
+	[serious_thing] It's not serious, is it?
+||
+{serious_thing} She laughs. "I haven't penned you to be my husband in my head yet."
+	[eat_before_cold] And that's perfectly okay. We should probably finish the food before it gets cold.
+	[iwanna_husband] Can I help you with that?
+||
+{iwanna_husband} She pokes you on the cheek. "Don't say that. We just met. I'll eat with you and, heh... But those are a bit heavier words to swing around."
+	[youre_pretty] But you're so very pretty.
+||
+{eat_before_cold} She flutters her eyes. "You're right, we really should eat before it gets cold. I haven't eaten all day."
+{youre_pretty} She flutters her eyes. "Thank you. We really should eat before it gets cold. I haven't eaten all day."
+	[eaty_time] (Eat)
+||
+{eaty_time | advance_time_to night, remove_pic} You finish the food she had brought with her in the silence of the night. Vuisul makes an inquisitive side look to you as she brushes her mandibles clean.
+	[goot_foot] Thank you for the food.
+	[play_glance] (Return a playful look) //showif.charisma.8
+||
+{play_glance} She giggles and keeps staring playfully.
+	[stare_play] (Stare back)
+||
+{stare_play} She breaks down and starts laughing. "Soo... How did you like the food?"
+	[goot_foot] It was good.
+||
+{goot_foot} "Thanks.<br><br>Do you want to come to my house and awkwardly fumble around in the dark with me?"
+{sure_sex} She laughs softly. "I think I've made up my mind."
+	[sure_sex] Are you sure? //showif.index_is.goot_foot
+	[love_sex] I would love that.
+||
+{love_sex} She offers her scythe to you and pats you on your ass. "Let's go, then. I need to get up early."
+	[travel_to_house | stop_music 6] (Travel to Vuisul's house)
+||
+
+
+||>>VUISUL'S HOUSE
+{travel_to_house | change_environment taodal, hide_character} You take a quick walk through the village until you come to a small house, almost swallowed by weeds around it. Vuisul bangs on the lock and yanks it open. Her blunted feet tap against the wooden floor as she enters the dark house. "Come in. I won't eat you."
+	[go_in_hovel] (Go in)
+||
+{go_in_hovel | change_environment taodal_vuisul_house, change_sprite character} She clicks a light on and spreads her arms around the small house. "Welcome to my nest. Pay no attention to the eggs behind the shelves." She laughs.
+{lay_eggs} She laughs. "No! Oh gods, no! I was joking.<br><br>But, how do you like my house? It's a bit on the small side, but it suits me."
+	[very_charm] It's very charming.
+	[lay_eggs] ...Eggs? //showif.index_is.go_in_hovel
+||
+{very_charm} "Thanks. When I moved into Taodal, I didn't actually have a house. I thought I could buy one from someone or live as a tenant until I got one."
+	[buy_house] Who did you buy it from?
+||
+{buy_house} "It was made for me. Turns out nobody wanted a girl who exudes poison in their house, go figure."
+	[pricey_house] Was it costly?
+||
+{pricey_house} "Oh, I- It was a gift. The mayor... Tornoth, I mean, made it for me. He's very fast at building houses. Being that large and everything, probably helps with carrying logs and beams."
+	[nice_of_him] That's very nice of him.
+||
+{nice_of_him} "But nevermind! We didn't come here to talk about house building." She runs her scythe up your leg and stops near your crotch.
+	[tell_me_what_do] Tell me what you want me to do.
+||
+{tell_me_what_do | start_music generic/romance_quick 70 3} She lifts her eyes to yours. "I thought I'd... I want to give you a handjob."
+	[commence_bj] I'm perfectly fine with that.
+	[sound_great] That sounds great, but can I do something for you?
+||
+{sound_great} "Make breathy sounds for me, a few gasps and whines, I'll love it." 
+	[commence_bj] I can do that.
+	[feel_onesided] This... feels one sided.
+||
+{feel_onesided} "I know, sorry. I would entertain myself while entertaining you, but I need both hands, and I wouldn't want to mix fluids."
+	[commence_bj] If you want to do it, I'm sure I'll enjoy it.
+	[fabric_piece] Do you have more of the fabric you wear? Just a small piece will do. //showif.intelligence.8
+||
+
+
+||>>The hanjob
+{commence_bj | change_sprite semi_nude} She drops the clothing covering her abdomen with a quick flick and stares you down playfully. "I want it.<br><br>Now, undress for me, -name-." She gently pokes your hip.
+{beaut_vuisul_0 | change_sprite semi_nude_happy} She squints happily at you.
+	[beaut_vuisul_0] You're beautiful, Vuisul. //showif.index_is.commence_bj
+	[undress_for_handy] (Undress)
+||
+{undress_for_handy | pic on_her_back} She carefully watches you undress and turns her head playfully for each reveal. You eventually stand fully nude as her eyes roam your body. She lightly runs her scythes along your thighs. "I've never had my presents unwrap themselves. You have no idea how nice you are to look at." She clambers on her bed and rolls on her back. You notice a glistening slit on her abdomen. "Be careful, I don't want to poison you. Come next to me."
+	[handy_1] (Move closer to her)
+||
+{handy_1} You walk right next to her and look down at her. She breathes heavily and chitters her mandibles, her eyes stare at you in confused awe. She blinks and then rolls her eyes down your torso to your erect penis. She quickly glances back at you and then gently squeezes your erection between her gloved scythes. "Take the bottle next to the bed and pour it on my hands." She glances at a bottle next to the bedside table.
+	[handy_2] (Do as she says)
+||
+{handy_2 | pic handjob, auto_continue handy_3} You take the bottle, open it with a low squeak, and carefully pour some on her gloves. Vuisul starts gently rubbing her scythed hands along and around your shaft, covering it completely in the clear liquid. You wince at the sensation of the slick and smooth scythes gliding on your privates. Vuisul makes a playful glance at you and begins to hum happily. She slows her hands to an encouraging massage and rolls them around the shaft. She leans a little closer and breathes hot air on your cock, making you shiver in response.
+
+||
+{handy_3 | pic handjob_look} She picks up her pace and enthusiastically massages your shaft, sending shivers of pleasure up your spine. You fold over her and steady yourself against the sheets. She tightens her scythes around your cock a little more and begins a new merciless pace. You gasp at the ferocity of her work, gripping the sheets a little tighter as her scythes glide along your shaft, spilling the clear liquid on you and herself as she teases your orgasm out of you. You feel your abdomen tense and cramp as you edge towards the finish. You gasp and Vuisul looks up at you. "Feeling it?" She slows the pace a bit and explains to you in an affectionate and soft tone. "When you finish, get it all on my face, in my mouth, on my eyes. Don't try to aim elsewhere. That's my fun, okay?"
+	[handy_4] (Nod)
+||
+{handy_4 | pic handjob} She coos softly. "Let's finish you off, then." She increases the pace once again and tightens her hands around your cock. You're rocked back and forth by her work while the feeling of release has grown into a painful anticipation. She gently grabs your testicles and nudges them as she draws her scythes forward along your shaft. As her hands go over your glands, you can feel your orgasm well irresistibly in your groin. 
+	[nutted_on_vuisul_you_dirty_man] (Finish on her)
+||
+
+	
+	
+	
+||>>The man has a plan!
+{fabric_piece} Her eyes suddenly light up. "Oh, I- I have a few pieces somewhere here." She rummages through her things.
+	[wait_rummage] (Wait)
+||
+{wait_rummage} She comes to you and hands you a long strip of the cloth. "Sorry, it's the largest piece."
+	[make_glove] (Wrap the strip around your hand to make a makeshift glove)
+||
+{make_glove} She watches as you wrap the strip around your hand and slowly blushes. "I never thought about this. I think I was so concerned about touching others that I forgot to think about others touching me.<br><br>But you need to be careful. It's still just a strip of cloth and not a glove."
+	[make_poetry] Do you make poetry on your off time too?
+	[get_bed_vuisul] Vuisul, get on the bed and make yourself comfortable.
+||
+{make_poetry | change_sprite semi_nude} She drops the clothing covering her abdomen with a quick flick and stares you down playfully. "What if I do? Undress for me, -name-." She gently pokes your hip.
+{get_bed_vuisul | change_sprite semi_nude} She drops the clothing covering her abdomen with a quick flick and stares you down playfully. "I'm afraid I have to insist you undress yourself first." She gently pokes your hip.
+{beaut_vuisul | change_sprite semi_nude_happy} She squints happily at you.
+	[beaut_vuisul] You're beautiful, Vuisul. //hideif.index_is.beaut_vuisul
+	[undress_for_vuisul_you_man_slut] (Undress)
+||
+{undress_for_vuisul_you_man_slut | pic on_her_back, change_sprite semi_nude} She carefully watches you undress and turns her head playfully for each reveal. You eventually stand fully nude as her eyes roam your body. She lightly runs her scythes along your thighs. "I've never had my presents unwrap themselves. You have no idea how nice you are to look at." She clambers on her bed and rolls on her back. You notice a glistening slit on her abdomen. "Be careful, I don't want to poison you. Come next to me."
+	[closer_toher] (Move closer to her)
+||
+{closer_toher} You walk right next to her and look down at her. She breathes heavily and chitters her mandibles, her eyes stare at you in confused awe. She blinks and then rolls her eyes down your torso to your erect penis. She quickly glances back at you and then gently squeezes you erection between her gloved scythes. "Take the bottle next to the bed and pour it on my hands." She glances at a bottle next to the bedside table.
+	[do_as_told] (Do as she says)
+||
+{do_as_told} You take the bottle, open it with a low squeak, and carefully pour some on her gloves. Vuisul starts gently rubbing her scythed hands along and around your shaft, covering it completely in the clear liquid. You wince at the erotic sensation of the slick scythes gliding on your privates. Vuisul hums happily and slows her hands to an encouraging massage.
+	[touchie_abdie] (Touch her abdomen)
+||
+{touchie_abdie | add_flag vuisul_fingered, pic curse_of_the_mummy} She enthusiastically massages your shaft, sending shivers of pleasure through your spine. You lower your hand to her abdomen near the slit and lightly touch her underside. She gasps and twitches at your touch. Her eyes dart with worry to your hand. "Oh I'm- I'm not used to being touched at all."
+	[do_gentle] I'll be gentle. (Finger her)
+||
+{do_gentle | auto_continue steadied_hanjob} She explains worriedly. "If you start feeling dizzy or sleepy, just lie on the floor. Be careful-<b>uh</b>." Her legs twitch as you lay your wrapped hand on her genitals. You spread her slit and slowly insert your middle finger. Vuisul lets out a sharp gasp and whines. Her hands stop for a moment but then continue to work slightly faster. You start a slow rolling motion, and her legs respond with shivers, and her breathing quickens. You feel your legs weaken as she works you faster.
+||
+{steadied_hanjob} You arch over Vuisul and plant your hand on the bed to steady yourself. She works harder as you keep fingering her. Her legs suddenly clamp around your arm as her body tenses violently, and she screams, her mandibles chittering in pleasure. You feel her slit contract around your makeshift glove, and you stop to let her ride out the sudden climax. She arches her back and falls back down. Breathing heavily, her eyes roll back to look at you. "Stop, please stop."
+{finger_cont} You start the rolling motion again. She screams and writhes as if in pain. "No! I'm serious! Stop!" She kicks your hand with her legs.
+	[pull_finger] (Stop)
+	[finger_cont] (Keep fingering her) //hideif.index_is.finger_cont
+||
+{pull_finger | pic giant_blue_eyes} You pull your hand away from her. Her legs relax, and she grimaces with a sigh. "Gods... That felt good, but the sensitivity is something else. Ah." She drops her head on the bed and looks into your eyes, exhausted. "Let me get a moment, you hunky cutie." She absent-mindedly pokes her wet and slick glove against your cheek. She giggles almost deliriously. "Sorry, I didn't mean to... Sorry." She keeps staring at your eyes. "This is a lot of fun. Thanks."
+	[mutual_fun] You don't have to thank me. It's mutual fun.
+||
+{mutual_fun | pic handjob_look, auto_continue nutted_on_vuisul_you_dirty_man} "It's not... <b>yet</b>!" She closes her scythes around your cock and begins a merciless massage. You gasp at the ferocity of her work, gripping the sheets a little tighter.
+||
+{nutted_on_vuisul_you_dirty_man | pic handjob_cum} You release, Vuisul immediately realizes what's happening and grabs your cock and aims it at her. You throb and ejaculate a thick rope of cum across her face. She closes her large eyes, and the string of cum clings on her thick eyelash. She eggs your cock on with a gentle tug, and you throb again, painting another load on her face. She keeps milking your cock patiently until you're spent, shaking, and gasping for air.<br><br>You shakily lift yourself off Vuisul and look down at her, she opens her eyes and looks up at you. Her face is covered with cum, and she is slowly brushing it with her scythes. She flutters her eyes seductively and asks with a husky tone, "You like seeing me like this? I love this."
+	[cumface_nuttedsohard] Y- You really know how to do that.
+	[cumface_apology] Oh man, I feel like I should apologize.
+	[cumface_love] You look stunning.
+	[cumface_towel] Do you need a towel, or... something?
+||
+{cumface_nuttedsohard | stop_music 8} She sways her head dismissively. "I've had practice. Since I can't do anything else, why not be really good at this one thing I can do?"
+{cumface_apology | stop_music 8} "Oh, don't do that. I'm enjoying myself." She pokes you gently in the thigh.
+{cumface_love | stop_music 8} "Thank you." She flutters her eye, splattering the droplets of cum over you. She giggles.
+{cumface_towel | stop_music 8} "Don't worry about that." She rubs her scythe along your thigh.
+	[cuddle_hug | remove_pic] I would cuddle and hug you right about now, but poison skin and all that.
+	[feel_likesom | remove_pic] I really feel like I should do something for you. //hideif.has_flag.vuisul_fingered
+	[talk_anyth | remove_pic] Do you want to talk or anything?
+||
+	
+	
+
+
+
+||>>Aftersex chat hub
+{poison_washup} You wash your face and mouth with the water. You take a few deep breaths, and the world stops wobbling about. Vuisul slips her glove back on and nods softly. "At least you now know why I'm so careful about it."
+{no_test_1} "I think that's for the best." She rubs her gloved hands against your legs.
+{no_test_2} "I think that's for the best." She slides the glove back on her scythe and then rubs her gloved hands against your legs.
+{tongue_thought} "It's an intriguing thought. I'll see if I can test it at some point." She winks.
+{tongue_test} "Don't get me wrong, I would definitely use my tongue on you if it wasn't poisonous, but I don't want to make your dick burn and make you puke by testing it... well, tonight at least." She winks.
+{masturb_now} "I don't want to. I can do that any time I want, but bedroom guests are a rarer thing, I wanted to focus on you this evening. I can get myself off later thinking about you." She gives you a playful giggle.
+{can_masturb} "Yes, it's not as tragic as that." She giggles.
+{strange_sexy} She squints happily at you. "Thank you. I don't mind being a little strange."
+{cuddle_hug} She gets up, reaches down into a bucket of water next to her bed, and washes her face. She lies down on her bed and turns to you. "I know... I'd love that, thank you, but you will have to settle for hand holding and pillow talk with me. "
+{feel_likesom} She gets up, reaches down into a bucket of water next to her bed, and washes her face. She lies down on her bed and turns to you. "Just calm down and have a chat with me."
+{talk_anyth} She gets up, reaches down into a bucket of water next to her bed, and washes her face. She lays down on her bed and turns to you. "Yes, have a chat with me."
+{storage_space} "Oh, no! Never! I don't want to deal with merchants in my home! I would go nutty! They'd drag me away for murder after a few days!" She laughs.
+{on_walls} "I don't know. I haven't seen anything I'd want to put on my walls. The merchants here don't really sell much art. It's always more practical things or other things."
+{its_free_real_estate} "Yeah. Who would have thought empty storage would take so much space!"
+	[test_poison] We should test how the poison affects me.				//hideif.clicked
+	[thatkinda_stuff] So... you like that kind of sex stuff?				//hideif.clicked
+	[empty_house] Why is your house so empty, Vuisul?					//hideif.clicked
+	[spend_night] You think I could spend the night with you?
+	[see_myself_out] I guess I should see myself out and let you sleep.
+||
+{thatkinda_stuff} "Making men cum on my face? Yes, I like that. I imagine I would like having you fuck me more, but this is the hand I've been dealt."
+	[tongue_poisonous] You think your tongue is poisonous as well? //showif.intelligence.8
+	[strange_sexy] You're a strange woman, Vuisul, strange but sexy.
+	[self_pleasure] You can self-pleasure yourself, right?
+||
+{tongue_poisonous} She opens her mouth and then closes it in thought. "Thinking about my mouth, are you?" She gives you a soft giggle. "I have not actually... tested that. I would think it is? But I'm not sure."
+	[tongue_test] Wanna test that right away?
+	[tongue_thought] Just a thought.
+||
+{self_pleasure} She chortles. "Yes, I can do that. Why do you ask?"
+	[masturb_now] You could have done that while we were doing the thing, or now, if you want.
+	[can_masturb] Good to know you're not completely without fun.
+||
+{empty_house} "I was wondering when you'd ask that. I got these shelves and boxes made for me for free when I got the house. I didn't ask for them, but Tornoth just made them.<br><br>They're mostly empty because I don't really need them. I eat cooked food at the market, and I don't spend much time indoors. I don't collect anything, either. So, I'm left with a whole lot of empty space on my shelves. I don't really want to throw them out or sell them since they were a gift. I suppose I have to fill them with something at some point."
+	[storage_space] You turn half your house into a storage for merchants or something?
+	[on_walls] You should put up something on the walls.
+	[its_free_real_estate] I guess that explains it. Free storage space you can't get rid of.
+||>>Poison testing
+{test_poison} She sways her head gently. "Are you sure? It will very likely make you feel ill."
+	[lets_test_poison] Yes, let's test it.
+	[no_test_1] Actually, I don't want to ruin the evening with a bout of sickness.
+||
+{lets_test_poison} She slides off one of her gloves and extends the bare scythe to you. "If you're sure." She nods behind you. "There's an empty bucket behind you if you feel like puking. You can use the water bucket to freshen up afterwards."
+	[hold_poison_hand] (Hold her hand)
+	[no_test_2] Alright, let's not ruin the evening on a possible puke episode.
+||
+{hold_poison_hand} You grab her bare scythe. Her skin is soft and covered with a slimy film. She gasps quietly as you hold her hand. You don't feel anything out of ordinary.
+	[test_feel] I'm not feeling anything.
+	[test_feel] I don't think it works on me.
+	[test_wait] (Wait)
+||
+{test_feel} She gives you a concerned look. "Give it a moment." You suddenly feel numbness in your hand and release your grasp on her. The room spins, and the floor boards jitter under you. You feel very sick. Vuisul shoves an empty bucket into your lap, and you retch into it. You gag a few more times, and the room stops spinning. You're sweating and panting. Vuisul pulls her glove back on and gently pats you on the shoulder. "Wash up in the water bucket."
+{test_wait} She glances at you as you wait. You suddenly feel numbness in your hand and release your grasp on her. The room spins, and the floor boards jitter under you. You feel very sick. Vuisul shoves an empty bucket into your lap, and you retch into it. You gag a few more times, and the room stops spinning. You're sweating and panting. Vuisul pulls her glove back on and gently pats you on he shoulder. "Wash up in the water bucket."
+	[poison_washup | add_flag vuisul_poison_confirmed_on_pc] (Wash up)
+||
+
+
+||>>Stay for the night?
+{spend_night} "I wasn't going to throw you out... but we can't sleep together, even if I yearn for that. The poison clings to the fabric of my bed, and you'd probably get sick." She points at a cupboard. "I have clean sheets, but I don't have spare mattresses." 
+{see_myself_out} "If you want. We can't sleep in the same bed, anyway. The poison clings to the fabric of my bed, and you'd probably get sick."
+{poison_tragic} She falls silent and then talks with a weak voice. "I know. Don't feel bad, this was fun."
+	[poison_tragic] I would love to cuddle with you and fall asleep together, but... the whole poison skin thing is tragic, I feel bad for you. //showif.charisma.8 //showif.index_is.spend_night
+	[make_bed] I'll take some sheets and sleep on the floor next to the bed. I don't need a mattress. (Make a bed)
+	[leave_for_night] Alright, maybe some other night, then? I had a lot of fun, Vuisul.
+||
+{leave_for_night} Vuisul nods. "Of course." You grab your clothes off the floor and begin to dress yourself. "I should have prepared better, but I get so few bed guests I didn't realize the issue before. I had a lot of fun tonight as well, -name-. Thank you." She squints happily.
+{pleasure_vuisul} She nods. "It was indeed a pleasure, -name-."
+	[pleasure_vuisul] No, thank you, Vuisul. It was a pleasure. //showif.charisma.8 //hideif.clicked 
+	[goodnight_vuisul] I'll be going now, then. Good night, Vuisul.
+||
+{goodnight_vuisul} "Good night, -name-."
+	[ | save_index meet_after_sex, start_encounter taodal taodal] (Leave)
+||
+
+||>>Pillow talk
+{make_bed | start_music generic/romance_warm 70 3} You grab a few sheets from the cupboard and lay them on the floor next to the bed. You lie down on them. The sheets are thick enough to soften the floor, and it's not as uncomfortable as you expected it to be. Vuisul rearranges her bed so she can lie closer to the edge. She peers over the edge and puts her scythe over your chest.
+	[lewd_degeneracy] (Hold her hand)
+||
+{lewd_degeneracy | pic bed_handhold} You grab her gloved hand and hold it against your chest. Vuisul sighs and flutters her eyes. "You're kinda dreamy, -name-."
+	[dreamy_you] You're very dreamy yourself. //showif.charisma.6
+	[dreamy_why] What makes you say so?
+	[dreamy_starved] I'm not that dreamy. You're just man-starved.
+||
+{dreamy_you} "I mean it. I can't seem to discourage you. Busy work schedule, poisonous skin, no fucking or oral sex, no touching, I don't even have a bed for you, and you just lie down on the floor so you can sleep in my vicinity."
+{dreamy_why} "I can't seem to discourage you. Busy work schedule, poisonous skin, no fucking or oral sex, no touching, I don't even have a bed for you, and you just lie down on the floor so you can sleep in my vicinity."
+{dreamy_starved} She lets out a surprised, throaty laugh. "You think so?" She giggles for a moment and then gathers herself. "No, I really mean it. I can't seem to discourage you. Busy work schedule, poisonous skin, no fucking or oral sex, no touching, I don't even have a bed for you, and you just lie down on the floor so you can sleep in my vicinity."
+	[exagg_sex] You're exaggerating the lack of sex. You're really good with your hands, you know.
+	[food_and_handjob] You gave me food and then jerked me off, I think that's plenty.
+	[nice_woman] Maybe you're just a nice woman, and I like you.
+||
+{exagg_sex} She coos with a soft appreciation. "Thank you. I don't actually have much experience with it, but I do think about it a lot." 
+{food_and_handjob} She giggles. "I guess that would cover most things one would want!"
+{nice_woman} "You're a nice man, -name-." She rubs the end of her scythed hand against your abdomen.
+	[just_one_night] So, was this just a one night thing?
+||
+{just_one_night} "I don't have anything against doing this again with you, but you need to remember that I'm usually very busy, probably needlessly busy, but busy nonetheless."
+	[its_complicated] Of course.
+	[drag_me_back] You can drag me back into your love nest any time you want. //showif.charisma.8
+||
+{drag_me_back} She giggles and then sighs happily. "Thank you." She falls silent and closes her eyes.
+{its_complicated} She sighs happily. "Thank you." She falls silent and closes her eyes.
+	[hand_pet] (Pet her hand)
+||
+{hand_pet} You gently pet her gloved hand in the silence.<br><br>The silence drags on, Vuisul's breathing becomes calm, and she stops moving. She seems to have fallen asleep. You close your eyes and settle on the makeshift bed. Despite the hardness of the floor, you begin to feel drowsy and slowly slide into unconsciousness.
+	[wakie_uppy] (Sleep)
+||
+
+||>>Waking up
+{wakie_uppy | stop_music 8, advance_time_to morning, pic giant_blue_eyes, auto_continue wakie_uppy_2} You wake up to Vuisul poking you with her scythe. She leans on you as you slowly open your eyes. She talks with a soft voice. "Hey. Don't get up, sleep as long as you want. I have to go to the market to make things work." 
+{wakie_uppy_2 | pic sleepy_on_floor} She giggles. "Don't steal anything." She softly rubs her hand against your cheek and then walks out of the house. The front door clacks shut. You're lying on the floor, still drowsy.
+	[moar_sleep] (Sleep some more)
+	[gettu_uppy] (Get up)
+||
+{moar_sleep | advance_time_to noon} You're waken up by the hard light of noon. You roll anxiously on the floor and can't get any more sleep.
+	[gettu_uppy] (Get up)
+||
+{gettu_uppy | hide_character, remove_pic} You get up from the floor and stretch a bit. You can hear people talk and walk in the streets.
+{look_around_house} You take a short walk around the hovel. The small house is orderly and tidy. The shelves are oddly empty.
+{no_eggies} You peek behind the shelves. There's a narrow space between the wall and the shelves. There's nothing but some dust behind the shelves.
+	[no_eggies] (Look behind the shelves) //showif.index_is.look_around_house
+	[look_around_house] (Look around the house) //showif.index_is.gettu_uppy
+	[ | save_index meet_after_sex, start_encounter taodal taodal] (Leave)
+||

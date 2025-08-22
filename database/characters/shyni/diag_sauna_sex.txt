@@ -1,0 +1,283 @@
+
+
+>>Arriving to sauna with Shyni
+||
+{start | stop_music 3, play_sound generic/objects/door_close 80, change_environment taodal_saunastorage, change_sprite character} The two of you swiftly slip into the sauna building. Shyni quickly locks the door. "I don't think anyone saw us."
+{suspicious} "It just means someone is using the sauna. They will just shrug their shoulders and go about their way."
+    [suspicious] Won't people get suspicious if the door is locked? //showif.index_is.start
+    [wat_next] So... what's next?
+    [undress] (Undress)
+||
+{wat_next} She nervously wrings her hands. "Well... we undress and get in the sauna." She hesitantly glances at you.
+{turn_around} "It's not that... I just- it's nothing."
+    [turn_around] I can turn around if you want. //showif.index_is.wat_next
+    [undress] (Undress)
+||
+{undress | change_sprite nude} You undress. You notice Shyni glancing at you as she removes her attire. She timidly turns to you.
+{worry_pretty | change_sprite nude_blushed, character_leave} She blushes and stammers. "You're pretty too... W- We should go in." She slips into the sauna.
+    [worry_pretty] You're very pretty. //showif.index_is.undress
+    [sauna_talk] (Get in the sauna)
+||
+ 
+||>>Sauna conversation
+{sauna_talk | start_music generic/romance_soft 70 3, change_environment taodal_sauna, change_sprite sauna} A wall of hot air hits you as you enter the sauna. Shyni confidently climbs onto the raised bench, you follow and sit next to her. She splashes some water on the hot stones. A long hiss and a humid wave of heat fills the room. Shyni glances slyly at you and scoots a little closer to you. "This is one of my favourite things. I could just... cook here the whole night." She raises her legs and wriggles her toes at the stones.
+    [watch_cook] And I could watch you cook the whole night. //showif.charisma.6
+    [sauna_reason] So... did you have a reason for inviting me here?
+    [is_nice] It's nice.
+||
+{sauna_reason} "Company and relaxation. We're... friends."
+{is_nice} "It is!"
+    [talk_something] So... uh. Do you want to talk about something?
+    [if_sayso] If you say so. //showif.index_is.sauna_reason
+||
+{if_sayso | change_sprite sauna_shocked} She gasps, "No, I- I didn't..."
+    [shyni_like_you] ...Yes?
+||>>Flirt
+{watch_cook} She snorts in surprise. "Oh gosh- I- I- Tone it down... You're not going to eat me, are you?" She holds in a giggle.
+{cannibal_maybe} "Oh gods! Please no! Those tiny teeth are going to tickle!" She giggles uncontrollably.
+    [cannibal_maybe] ...Maybe? //showif.index_is.watch_cook //showif.charisma.6
+    [shyni_like_you] You're very pretty, Shyni.
+||
+ 
+ 
+||>>Have you been in a sauna? (Talk about something)
+{talk_something} "Um... I just realized- Have you ever been in a sauna? I just assumed..."
+    [sauna] I've been in a sauna. We have these where I come from.
+    [sauna] We do have these where I come from, but I've never been in one.
+||
+{sauna} "What? That's crazy! What are the chances? Actually... It's just a room with steam isn't it? I guess that it isn't that complex.<br>Do you like it?"
+	[like_sauna] I like it. Very relaxing.
+	[dislike_sauna] I don't really like it. Too hot and humid.
+||
+{dislike_sauna} She rolls her eyes. "I guess you can't be perfect..."
+{like_sauna} She giggles. "I like you."
+    [shyni_like_you] I like you too. //showif.index_is.like_sauna
+    [like_sauna_alot] You seem to like it a lot?
+||
+{like_sauna_alot | change_sprite sauna_blushed} "I do... It's even better when you're here."
+    [shyni_like_you] It is?
+||
+ 
+||
+{shyni_like_you | change_sprite sauna_blushed, sex_gate shyni_like_m shyni_like_f}
+||>>Shyni proposes sex (male)
+{shyni_like_m | change_sprite sauna_blushed} She pauses. "You know... I like you... um... you know..." She playfully pokes your thigh.
+    [not_friend] Like a friend?
+    [be_my_first] I know.
+    [be_my_first] I like you too.
+||
+{not_friend} "...No, not exactly...<br><br>-name-... I- I... um. You're nice and handsome.<br><br>Could you be my first?"
+{be_my_first} "-name-... I- I... um. You're nice and handsome.<br><br>Could you be my first?"
+{what_mean} She blushes. "I- I want you to take my... virginity."
+    [what_mean] What do you mean? //hideif.index_is.what_mean
+    [sure_fug] ...Are you sure?
+    [shyni_rejected] Oh... look, I don't feel that way about you.
+||
+{sure_fug} She looks you in the eyes. "Yes."
+    [male_sex] You can have me.
+    [male_sex] ...I'm okay with that.
+||>>Shyni proposed sex (female)
+{shyni_like_f} She pauses. "You know... you make me feel things. I- I'm not sure I understand them." She playfully pokes your thigh.
+    [explore_girls] Do you want to... explore those feelings with me?
+    [what_girls] What do you mean?
+||
+{explore_girls} She looks you in the eyes. "Yes."
+{what_girls} "I... I sometimes... touch myself and- think about you." She blushes.
+    [want_girlsex] You want to have sex?
+    [shyni_rejected] Oh... look, I don't feel that way about you.
+||
+ 
+||>>Pc rejects Shyni
+{shyni_rejected | stop_music 1, change_sprite sauna_shocked} She gasps. "I- I thought... "
+    [just_friends] It's just... Can we be just friends?
+    [its_me] It's not you. It's me.
+||
+{just_friends} "Sorry. I- I shouldn't have asked. Of course we can be friends. I just got a little excited."
+{its_me} "Oh...? I- I should have asked more before blurting this out. Sorry."
+    [not_my_type] I'm flattered but you're just... not my type.
+    [not_my_type] Sorry, I should have stopped you earlier.
+||
+{not_my_type | change_sprite sauna_sad, character_leave} She tears up. "S- Sorry... I just- just, I thought... " She jumps off the bench and runs into the dressing room.
+    [shyni_rush_out_rejected] (Follow her)
+||
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+||>>MALE PC SEX SCENE
+{male_sex} She hesitantly brushes your thigh with one finger.
+    [how_you_want] How do you want to do this?
+    [come_closer] Come closer.
+||
+{how_you_want | pic shy_touch} Shyni scoots closer to you. "I just... want to explore you a bit." She carefully places her hand on your thigh. She hesitantly turns her gaze to you. "...Is this okay?"
+{come_closer | pic shy_touch} Shyni scoots closer to you and carefully places her hand on your chest. "Gods, your heart feels so... strong."
+    [touch_any] ...You can touch me anywhere you want.
+||
+{touch_any | pic shy_handy} Shyni looks down into your lap and gently but hesitantly runs her finger along your shaft. She leans closer and whispers, "...Tell me if I'm doing it wrong." She gently strokes her hand along the shaft.
+    [keep_doing] Just... keep doing that.
+    [little_rougher] You can be a little rougher.
+||
+{keep_doing} Using the tips of her claws, she deftly rakes across your member. Your cock twitches under her care. You can feel her claws in your spine as shivers creep across your body. She gently grabs your cock and gives it a slow test pump. "It's really big... You'll be gentle, won't you?"
+{little_rougher} She pauses and blushes somewhat. She wraps her hand around your cock and hesitantly pumps you. Whispering into your ear, she says, "It's really big... You'll be gentle, won't you?"
+    [finger_shyni] (Finger her)
+||
+{finger_shyni | pic shyni_fingered} You reach between her thighs, and she yelps shyly. "Wh- What are you doing?" She grips your cock a little harder out of surprise. You roll your middle finger around her wet slit and hone in on her ball-like clitoris. She gasps and leans closer to you. She opens her thighs a little more and returns to stroking you with her clawed hand.
+    [finger_bang] (Get her off)
+||
+{finger_bang} You keep swirling the tip of your finger around her clitoris while applying more pressure. Shyni pants and twitches harder as you up the ante. She tries to stroke you harder and faster in return but stops completely and grips your arm. She nuzzles against your neck and whines. You twiddle faster and faster until Shyni closes her thighs and lets out a repressed scream. She arcs and twitches. You stop and let her go through her paces. She slumps against you panting.
+    [feel_fingers_1] Did that feel good?
+    [feel_fingers_2] I hope I wasn't too rough.
+||
+{feel_fingers_1 | pic shy_face} She swallows, inhales, and whines, "Iiiyeh... Your fingers feel better than mine." She pushes her snout against your chest and breathes heavily.
+{feel_fingers_2 | pic shy_face} She swallows, inhales, and whines, "Nouuh... Your fingers feel better than mine." She pushes her snout against your chest and breathes heavily.
+    [how_sex] How do you want to do... this?
+||
+{how_sex | pic straddled} She bats her snout against you and in a sudden burst of forwardness, straddles your lap. The underside of your glans is set against her soft tuft. She affectionately holds your head and meets your nose with hers. She whispers, "I- I want to do it face to face..." She shifts her rump to sit better in your lap. "Whe- When you reach your peak, do it in me. I- I want it in me." She nervously twiddles with your chest while breathing raggedly from the excitement.
+{should_protection} She puts her thumb over your lips. "No, no. I will handle that." She nuzzles your neck and squirms on your lap. "I want to feel you the way a wife feels her husband." She slowly massages your glans in her palm.
+    [should_protection] ...Shouldn't we use protection? //showif.index_is.how_sex
+    [hipsgrip] (Grip her hips)
+||
+{hipsgrip} She twitches in your hands. She raises herself by pulling on you. She then uses her tiny digits to guide the tip of your member against her slick entrance. She gasps at the sensation. Her claws dig slightly into your shoulder. She slowly lowers herself. The tip squeezes through her tight opening. She whines and stops. "Gods, gods, gods. It's so big." She shudders uncontrollably.
+    [take_slow] Take it slowly. (Support her weight)
+    [if_hurt] You don't have to do this, if it hurts.
+||
+{if_hurt} "It's okay... Just need to get over the hump." She wheezes. "... Ju- Just a bit more." She trembles and exhales. "Okay... Little bit more." She slowly engulfs more of you. She gags at the sensation. "F- Fuck fuck fuck gods gods gods." She forces herself down more. The tight ring slides over your cock until it hits the base. Shyni raggedly draws breath and pushes her head against your chest. You feel her insides contract with her abdominal muscles as she tries to balance herself.
+{take_slow} You slide your hands under her rump and hold her still. She wheezes. "... Ju- Just a moment." She trembles and exhales. "Okay... Little bit more." You loosen your hold and she slowly engulfs more of you. She gags at the sensation. "F- Fuck fuck fuck gods gods gods." She forces herself down more. The tight ring slides over your cock until it hits the base. Shyni raggedly draws breath and pushes her head against your chest. You feel her insides contract with her abdominal muscles as she tries to balance herself.
+    [fuck_ukay] F- Fuck... Are you okay?
+    [pet_slow] (Pet her)
+    [kiss_slow] (Kiss her)
+||
+{fuck_ukay} She trembles on your lap. "I- I'm okay. Don't worry."
+{pet_slow} You pet her head. She whines: "It hurts. I want it, but it hurts." You feel her insides constrict you with every gasp.
+{kiss_slow} You lift her long head to your face and kiss her on her middle slit. You spread your lips over the opening and then feel a smooth and oily proboscis snake into your mouth. Shyni grips your head in turn and rolls her odd tongue in your mouth. You can feel her relax her legs and spread out on your lap. You falteringly part your mouths. She jerks a little as your cock twitches in her.
+    [does_hurt] Does it hurt? //showif.index_is.kiss_slow
+    [need_pause] Do you need a pause?
+||
+{does_hurt} She furrows her eyebrows and props herself against you. "It does... a little bit." She carefully wiggles her hips. "I just need to... get used to it." She slowly moves her rump up and down to test the sensation. "I- I think I can do this."
+{need_pause} "No! I just..." She furrows her eyebrows and props herself against you. She carefully wiggles her hips. "I just need to... get used to it." She slowly moves her rump up and down to test the sensation. "I- I think I can do this."
+    [goforit | pic riding] (Let her ride you)
+||
+{goforit} She lifts herself higher, pulling herself off your cock. Your cock squeezes out of her and then slowly back in as she falls. She laughs hysterically. "Doingit doing it doing it doing it. F- Fuck." She starts picking up her pace as her hesitation melts. Her tightness tries to squeeze everything from you with each rise.
+    [help_ride] (Help her ride you)
+||
+{help_ride} You hold her hips and help her bounce in your lap. She yells with joy and continues with delighted gasps as you thrust upwards into her. Her eyes close and she nuzzles into your neck. She whines anguished. "Fuck me, fuck me."
+	[fuck_shyni_1] (Fuck her)
+||
+{fuck_shyni_1 | auto_continue fuck_shyni_2} You grip her better and start pumping into her. Her legs lock into place as you start your assault. You hammer Shyni against yourself as she claws your features, trying to find a grip. The intensely tight vaginal ring sucks and pulls on you. It yearns and begs you to impregnate her. You feel the pressure build in your loins as you lose yourself in Shyni's embrace.
+
+||
+{fuck_shyni_2 | pic straddled} You keep up your pace until Shyni suddenly props herself up and starts riding in sync with your thrusts. She bats her head against your forehead and almost snarls at you. "Inside. Inside. Don't pull out. In me." She grips your face with her claws and rides you deliriously. You feel your abdomen tense in anticipation of your orgasm.
+    [finish_in] (Finish in her)
+||
+{finish_in | pic cum_in} Shyni slams down onto you one last time. Your orgasm bursts into her with a violent throb. Her vaginal walls grip as she screams. She smothers your face with a hug. With a head full of white fire, you grip her hips harder in an attempt to get your seed deeper. You inhale raggedly as Shyni crushes your head into her bust. As her muscles yank and suck on you desperately, you unload into her. You push again, emptying your balls completely in her. Her body accepts every drop with an intense suckle.
+    [gather_urself] (Gather yourself)
+||
+{gather_urself | pic straddled} The heat of the moment cools and the two of you are left panting and sweating, locked in an embrace. Shyni slumps down your chest and pants. She twirls her claw against your skin as you catch your breath. She giggles. "That was better than I imagined." She brushes her head affectionately against your chest. "Thank you. You're incredible."
+    [gather_2] (Pet her)
+||
+{gather_2 | pic shy_face} She snuggles against you and lets out a relaxed sigh. You spent a few euphoric minutes listening to each other breathe until you feel your softening cock slide out of her. She gasps and covers her dripping hole with her hand. Panicked, she looks at you. "I- I need to clean up a bit."
+    [relax_after] Sure.
+||
+{relax_after | remove_pic, character_leave} "Just a moment-" She awkwardly exits the sauna, holding her crotch. You hear water sloshing in the dressing room and soft pats of Shyni's feet.
+    [relax_return] (Relax)
+||
+{relax_return | change_sprite sauna_blushed} After a moment, she returns to the sauna and sits next to you. "I- I should have expected that... It's a little embarrassing." She nervously wrings her hands.
+{just_athing} "I know... But it's still a little embarrassing. It feels weird."
+    [just_athing] You don't have be embarrassed. It's just the two of us. //showif.index_is.relax_return
+    [shyni_feel] How do you feel?
+||
+ 
+ 
+ 
+||>>FEMALE PC SEX SCENE
+{want_girlsex} "I- I think I do."
+    [female_sex] I want it too.
+    [female_sex] We can have sex, if you want.
+||
+{female_sex} "I- I don't know... how women have- sex with each other."
+    [lady_sex] There's lots of ways.
+    [lady_sex] Want me to show you?
+||
+{lady_sex} She blushes. "...Please, show me."
+    [lesbian_closer] Come closer.
+||
+{lesbian_closer | pic shy_touch} Shyni scoots closer to you. "I... want to explore you a bit." She carefully touches your chest. She hesitantly turns her gaze to you. "...Is this okay?"
+    [touch_girl] You can touch me anywhere you want.
+||
+{touch_girl} She stammers. "I wouldn't know... You show me."
+    [finger_girl] (Finger her)
+||
+{finger_girl | pic shyni_fingered} You reach between her thighs, causing her to yelp shyly. "Wh- What are you doing?" She plants her hand on your chest from surprise. You roll your middle finger around her wet slit and hone in on her clitoris. She gasps and leans closer to you. She opens her thighs a little more and then hesitantly reaches between yours.
+    [finger_girlbang] (Get her off)
+||
+{finger_girlbang} While applying more pressure, you keep swirling the tip of your finger around her clitoris. Shyni pants and twitches harder as you up the ante. She tries to rub you harder and faster in return but stops completely and grips your arm. She nuzzles against your neck and whines. You twiddle faster and faster until Shyni closes her thighs and lets out a repressed scream. She arcs and twitches. You stop and let her go through her paces. She slumps against you, panting.
+    [feel_fingersgirl_1] Did that feel good?
+    [feel_fingersgirl_2] I hope wasn't too rough.
+||
+{feel_fingersgirl_1 | pic shy_face} She swallows, inhales, and whines, "Iiiyeh... You fingers feel better than mine..." She pushes her snout against your chest and breathes heavily.
+{feel_fingersgirl_2 | pic shy_face} She swallows, inhales, and whines, "Nouuh... Your fingers feel better than mine." She pushes her snout against your chest and breathes heavily.
+    [cunning_1] (Give her cunnilingus)
+||
+{cunning_1 | pic shyni_vagina} Shyni looks down at you with hesitation as you crouch between her thighs. "Oh no... Are you going-" She gasps as you lick her short-haired inner thigh. You then nuzzle her soft nethers and move slyly to your target. You gently spread her vagina and stick your tongue in, which causes her to yelp and grip your head. You roll your tongue around her slit and kiss her clitoris. She pants and twitches as you work her.
+    [cunning_2] (Give her an orgasm)
+||
+{cunning_2} You push your tongue deep into her tight channel and raise her legs. She squirms and whines until she screams with her legs tense around your head. You feel her claws dig into your scalp "<b>Aah</b> Gods, <b>gods</b>!" You feel her slick hole contract and pulse with your tongue as she is wracked by her orgasm. Moments later, she slumps against the wall and pants. You part her legs and give her a quick kiss on her fluffy mound. You wipe your mouth and sit next to her.
+    [cunning_3] Did you like it?
+    [cunning_3_pet] (Pet her)
+||
+{cunning_3_pet | pic dabbling} You run your hand affectionately on her neck and ruffle her fur. She shyly raises her gaze. "D- Don't you want anything?" Exhausted, she leans against you and reaches between your thighs. Her small digits fumble around, and she then hesitantly rubs your clit with a single claw. You inhale sharply as an electric shiver travels through you.
+{cunning_3 | pic dabbling} She shyly raises her gaze. "D- Don't you want anything?" Exhausted, she leans against you and reaches between your thighs. Her small digits fumble around, and, she then hesitantly rubs your clit with a single claw. You inhale sharply as an electric shiver travels through you.
+    [cunning_4] (Let her finger you)
+||
+{cunning_4 | pic dabbling} She adds another digit and pinches you. She clumsily tries to massage you with the points of her claws but only tickles and scratches you unpleasantly. The unpleasant feeling quickly flashes on your face, and Shyni's hand recoils away from you. "Sorry.. I- I haven't done this to anyone else... It's tricky even for myself. Yours were so soft." She suddenly kneels in front of you and ducks between your legs, imitating your actions. "Let me try this instead." A dark and slick proboscis flicks from her mouth slits and licks your inner thighs. You hold your breath in anticipation as she wiggles her tongue closer to your wet hole.
+    [cunning_5] (Let her continue)
+||
+{cunning_5 | pic cunning_shyni} She presses her tongue against the hot entrance and penetrates you. She coils and rolls her strange tentacle tongue around. You gasp and gently hold her head. She glances upwards at you and then closes her eyes and nuzzles your crotch. Her tongue penetrates you even deeper as her mouth slit rubs against you. Your twitches and gasps only encourage her tongue. The prehensile proboscis twirls and gyrates inside you. The sensation makes you hysteric, and you try to giggle, but it's drowned out by your ragged breathing. You feel your abdomen tense in anticipation of your orgasm.
+    [cunning_6] (Let her get you off)
+||
+{cunning_6 | pic cunning_shyni} Her small hands grab your hips, and she kisses your entrance affectionately while twirling her tongue in you. You scream as your head fills with burning pleasure. Your thighs close around Shyni, and your body arcs against the warm wall. Your hands squeeze the wooden bench in a white-knuckled grip as you ride your orgasm. She watches you thrash, still keeping her tongue in you but not moving it. You slowly come back to reality and catch your breath. Shyni pulls her tongue out; the long and smooth tentacle exiting you makes you jump and grimace.<br><br>She shyly pets your mound. "Was that better?" She stands up from her knees and sits next to you.
+    [shyni_feel] Mbhh... You're a riot! How do you feel?
+||
+ 
+ 
+||>>Archlover/solitude sister confusion.
+{shyni_feel | remove_pic, change_sprite sauna_blushed} "I feel good. Very good." She giggles softly.
+{sleep_toget} "Gods... we can't go there. I don't get privacy from my father. He lives right next door. I- I don't think he'd approve...<br><br>I would have you sleep with me... if I could."
+    [sleep_toget] Do you want to go to your house and sleep together? //showif.index_is.shyni_feel
+    [ | sex_gate lover_m lover_f] Are we a pair now or... What does this make of us?
+||
+{lover_f} She brushes over your fingers with hers. "We're solitude sisters to each other, aren't we?"
+    [wat_solitude_sister] ...What's a solitude sister?
+||
+{wat_solitude_sister} She stammers. "You don't... ? T- They... comfort each other when their husbands are away."
+    [never_herd] Oh? I've never heard of something like that.  
+||
+{lover_m} She brushes over your fingers with hers. "You're my archlover."
+    [wat_archlover] ...What's that?
+||
+{wat_archlover} She stammers. "Um... S- Someone between a lover and a husband."
+    [never_herd] Oh? I've never heard of something like that.
+||
+{never_herd} "Y- You haven't? I- I... Sorry."
+    [why_sorry_say] ...What? Why?
+||
+{why_sorry_say} She wrings her hands. "No I'm just... I don't know how to act or say things. The book doesn't tell."
+    [ | sex_gate book_m book_f] What book?
+||
+{book_f | change_sprite sauna_shocked} Her eyes widen. "T- The wife book... Y- You never heard about it?"
+{book_m | change_sprite sauna_shocked} Her eyes widen. "T- The wife book... Y- You never heard about it? You have a husband book, r- right? Like that, but for women."
+    [wat_wife_book] ...No? What's that?
+||
+{wat_wife_book | character_leave} She mumbles to herself and looks around panicked. "Um... W- We should leave the sauna before someone gets annoyed at us hogging it." She quickly bounces off the bench and into the dressing room.
+    [shyni_rush_out] (Follow her)
+||>>Shyni rushes out
+{shyni_rush_out | change_environment taodal_saunastorage, change_sprite character, change_default_diag_file shyni diag_2, save_index start, character_leave} You find Shyni hastily dressing herself in the dressing room. She pulls her dress on and turns to you. "I- I need to go. I had a lot of fun. I love you." She quickly exits.
+{shyni_rush_out_rejected | change_environment taodal_saunastorage, change_sprite character, change_default_diag_file shyni diag_2, save_index rejected, character_leave} You find Shyni hastily dressing herself in the dressing room. She pulls her dress over her. "I'm so s- sorry!" She quickly exits.
+{wait_shyni} The heavy door closes in your face, leaving you alone in the dingy dressing room.
+    [wait_shyni | play_sound generic/objects/door_close 80] Wait! //showif.index_is.shyni_rush_out
+    [ | start_encounter taodal taodal] (Get dressed and leave)
+||
+

@@ -1,0 +1,104 @@
+||
+{start | stop_music 4, remove_pic, change_environment taodal_tavern_blue_room, hide_character, add_flag bykaas_secret_known} The room is dimly lit with strongly scented candles. A table covered with soft-looking fabric stands in the center of the room. You can see movement behind the heavy curtains.
+	[ | check_flag bykaas_prostituted wait_in_room returning_customer] (Wait)
+||
+{wait_in_room | character_return nude} Bykaas parts the curtain and steps into view. She runs her hands over her nude body and bows slightly. "Welcome.<br><br>Since you're a first timer, I should probably let you know what you're getting into."
+	[surprise_me] Don't. Surprise me.
+	[elaborate] Of course, go on.
+||
+{elaborate} "I'm going to give you a massage and give you a happy ending with my hands. Another adat gets you more, but do note, I cannot perform oral services and I only have a cloaca for penetrative sex.<br><br>If you're not interested, I will return your adat and we can go back to the drinking hall."
+	[sounds_good] Sounds good.
+	[second_adat] Do I give you the second adat now? Or...?
+	[sorry_but_no] Sorry, I don't think I want this.
+||>>Leave prostitution
+{sorry_but_no | give_money adats 1} "Nonono! That's okay. There's nothing to be ashamed or to say sorry about. Different people, different strokes.<br><br>Here's your adat. If you change your mind, you're welcome back, of course." She hands you the gleaming adat.
+	[ | start_encounter taodal_tavern taodal_tavern] (Take the adat and leave)
+||
+{surprise_me} "Are you sure? I don't give refunds if you're disappointed."
+	[elaborate] Okay, tell me, then.
+	[okay_no_refund] I'm okay with that. 
+||
+{sounds_good} "Beautiful!... Please undress."
+{okay_no_refund} "If you say so. Please undress."
+{second_adat} "Eager! But not now... Please undress."
+{undress_me} "I wouldn't know where to begin... Do help this flummoxed damsel." 
+{returning_customer | change_sprite nude} "Oh, you know what to do..." She flicks her finger at the table.
+	[undress] (Undress)
+	[undress_me] How about... you undress me? //showif.will.6 //hideif.clicked
+||
+{undress} You undress as Bykaas watches you. The air in the room is surprisingly cool. Bykaas nods as you remove the last piece of clothing. "Lie face down on the table and relax. I will do everything." 
+	[massage1 | start_music generic/romance_quick 70 3, save_index had_sex] (Lie on the table)
+||
+
+||>>Prostitution SEX SCENE (Original by Alordab. Edited by Meandraco.)
+||>>Massage 
+{massage1 | pic laydown_massage} You walk up to the wooden table and lie down on your belly. Bykaas walks next to you and leans down to grab something from under the table. "This one will be perfect for your type of skin and muscle mass," she says after rummaging for a moment and bringing out a small bottle. After pouring an olive-colored oil on one of her palms, she rubs her four hands together.<br><br>You let out a satisfied sigh as she begins her massage, her oiled hands slowly working their magic on different parts of your body at the same time.
+	[massage2] (Relax)
+||
+{massage2 | pic laydown_massage} She doesn't miss a single inch of your naked body, your tired muscles welcoming the ministrations, and for the next ten minutes, you just close your eyes and let her continue the massage, the speed and confidence of her kneading increasing as she starts softly humming a song and swinging her hips from side to side.<br><br> Eventually, she climbs on the table, sits on your legs, and gives your back one last nice and long rub. "Do you feel relaxed, dear?" Bykaas asks. You barely manage to nod. "Then do us both a favor and turn around. There's still so much of you I want to get my hands on." She purrs in what could pass as a throaty tone as she climbs off the table. 
+	[massage3] (Turn on your back)
+||
+{massage3 | pic laydown_handjob} You turn around. Bykaas stretches her four arms and places her hands on your body again to resume the massage. Her singing and dancing resumes and you, now able to watch her from the corner of your eye, start becoming entranced by her actions.<br><br>The massage keeps getting better and better as time goes on. It's like she has already learned how to best work with your anatomy. You start feeling not only relaxed but a bit tingly all over your skin, and a part of you wishes she stopped avoiding your crotch area.<br><br>"You seem ready to move on to the next part," your masseuse comments bemusedly after she's done with your entire front. You tense with anticipation and then twitch as she lightly wraps one of her hands around your penis. She teasingly measures you in her hands and rubs her long fingers all over.<br><br>Bykaas chuckles, lets go and dances her way next to your feet. "Sit at the edge, spread your legs a bit and I'll show you... first hand-," she giggles, "...just how good I am at this." She deftly runs a finger along your shaft to egg you on.
+	[ | check_flag bykaas_prostituted handjob2 handjob_donethis] (Relax)
+||
+{handjob2 | pic portrait} You don't need more encouragement and scoot closer to her, spreading your legs to give her some space to work and prop yourself up on your elbows just enough to comfortably watch the show.<br>.<br>Bykaas goes down on her knees. She puts two still oily hands on your thighs and grabs your hard-on with the other two, teasing the base of your glans with one finger as she finishes getting comfortable. "Before I begin: You don't ejaculate barbed spermatophores or have a stinger or barb-equipped parts, right?" 
+	[handjob22] (Shake your head)
+	[handjob22_wut] ...What?
+||
+{handjob_donethis | pic handjob, auto_continue handjob3} Bykaas shifts herself slightly to begin her work. She starts stroking your erection confidently. She keeps changing speed, position, and pressure as soon as you start getting used to it. Oiled two-fingered hands and palms that are essentially a hard ball shouldn't feel so good, but they do. The smooth surfaces feel like oiled pearls sliding around your erection.
+{handjob22 | pic handjob, auto_continue handjob3} You quickly shake your head and reassure her. She nods. "Now... You can finish whenever you feel like it. I don't mind getting a little messy." Bykaas shifts herself slightly to begin her work. She starts stroking your erection confidently. She keeps changing speed, position, and pressure as soon as you start getting used to it. Oiled two-fingered hands and palms that are essentially a hard ball shouldn't feel so good, but they do. The smooth surfaces feel like oiled pearls sliding around your erection.
+{handjob22_wut | pic handjob, auto_continue handjob3} "Sorry, It's terribly rare but I have to ask. Now, relax... Finish whenever you feel like it." Bykaas shifts herself slightly to begin her work. She starts stroking your erection confidently. She keeps changing speed, position, and pressure as soon as you start getting used to it. Oiled two-fingered hands and palms that are essentially a hard ball shouldn't feel so good, but they do. The smooth surfaces feel like oiled pearls sliding around your erection.
+
+||
+{handjob3 | pic handjob, auto_continue handjob4} Bykaas uses her other pair of hands to caress your body. First your thighs, then she moves on to your torso, focusing on your chest, navel, sides and other places that make you feel especially good until your body starts trembling from sheer arousal.<br><br>She continues smoothly sliding her hands around your shaft and caressing your body until you're panting and covered with sweat, hoping for a release. Bykaas then places a hand around your glans to pleasure it exclusively with short strokes, another one around your shaft to pump it hard and fast, one more hand gently closes on your testes. She uses the fourth hand to caress the sensitive skin around your anus.
+
+||
+{handjob4 | pic handjob_cum} You barely manage to last a few seconds of her relentless assault before the pressure building up in your loins reaches its peak. You let out a pained moan and lose yourself in the ecstasy of the orgasm. You squirt rope after rope of jizz all over Bykaas's face, chest, and hands. "That's it, let it all out for me," she purrs as she lovingly milks you.
+	[intermission] (Catch your breath)
+||>>intermission
+{intermission | pic portrait} She patiently waits and caresses you as you gasp breathlessly at the sensation. She is completely covered by cum, but she wears it like a maiden wearing a wedding gown. A gentle song-like purr emanates from her. "Relaxed? Now... if you want more, you can now pay the extra adat." She deftly caresses her fingers along your quivering and spent shaft.
+{have_ways} She purrs, amused. "Don't worry, I have ways." She confidently reveals a mysterious bottle. The bottle reads 'Last Stand' in embellished lettering.
+	[have_ways] ....I can't- How am I supposed to...? //hideif.endurance.8 //hideif.clicked
+	[secondary_adat] Okay... The adats- are in the pile. (Pay adat) //showif.index_is.have_ways //showif.has_adats.1
+	[secondary_adat] Go ahead, pick one from the pile. (Pay adat) //showif.has_flag.bykaas_prostituted //showif.has_adats.1
+	[secondary_adat] Ah- Sure... They're in the pile. (Pay adat) //showif.endurance.8 //showif.has_adats.1 //hideif.has_flag.bykaas_prostituted
+	[please_stop | stop_music 6] I... think I'm okay... Thanks.
+	[out_of_adats | stop_music 6] I... Would love to... But- I'm out of adats. //showif.no_adats
+||
+{secondary_adat | take_money adats 1} She stands up and gingerly hurries over to your pile of stuff. Bending over, she unashamedly presents her cloaca to you as she rifles through your things. She finally pulls a single gleaming adat from the pile and returns to the table. "Now that's done with... Relax."
+	[second_wind] (Relax)
+||>>Sex
+{second_wind | pic portrait, auto_continue sex1} You feel your climax subside with pleasant shivers and Bykaas gracefully cleans herself up with a wet sponge. She opens a bottle as you catch your breath and try to recover. She pours a small amount of the oily fluid on your softening penis "Let's make you strong and beautiful for the finale." For a moment, you feel alarmed and almost instinctively push her away when she starts gently stroking your penis again, but you don't feel any discomfort from hypersensitivity; you feel pleasure as the oily substance invigorates your erection. Some massaging from Bykaas to your sensitive spots and she gets you fully hard again. She hums, pleased, and with a single graceful bound, she straddles you like a race horse.
+||
+{sex1 | pic cowgirl, auto_continue sex2} You breathe hard in anticipation while the bartender leans back and rests her upper hands on your legs. She grabs your erection and moves her hips forward. You can't see her cloaca from this angle and there are no genitalia on Bykaas's front. You feel the tip of your glans press against a really warm, moist orifice.<br><br>For a split moment, the position and angle makes you think of anal sex, but you quickly forget about that when Bykaas starts to go down slowly, your hard-on penetrating it without resistance. There's something particular about her canal other than the temperature being much warmer than yours. Rather than having simple folds or possibly being flat and smooth, it seems there are some kind of small, fleshy, cube-shaped bumps that stimulate you as you enter. <br><br>You hear a moan come from the top of her head. "I love it when they're this shape and size. Now let me do all the work and enjoy."
+||
+{sex2 | pic cowgirl, auto_continue sex3} She rides you hard. Her sensual rocking and grinding combined with the way she holds the back of her head with her lower pair of hands reminds you of a dance. She quickly finds out what motions and tightness you enjoy the best and her insides apply pressure and massage your length every single time she moves up.<br><br>You hardly manage to thrust upwards before Bykaas slams back down on you.
+||
+{sex3 | pic cowgirl} You start to notice a difference in Bykaas. Her shell's colors are fluctuating slightly as she occasionally lets out small moans. You grip on her thighs to make her strokes harder. She lets go of her head to grab your wrists and begins riding you harder and faster.<br><br>The pleasure you're experiencing and the way the colors on her shell dance in the candlelight is making her body look blurry and streaked and it makes you feel high. You feel your second orgasm approach as she rides you with abandon. She mercilessly switches to very short and fast thrusts.
+	[cum_wait] W- Wait, do you want-
+	[cum_in] (Just... Relax)
+||>>Orgasm
+{cum_wait | pic cum_in} Your words turn into a mumble as her canal tightens hard around you. Unable to resist for another moment, you pull her thighs against you as hard as you can to try to keep her in place. You shut your eyes, letting rapture wash over you while you pump deep inside her. She trills a high-pitched song that turns into a joyous scream of delight. You both shiver and twitch against each other.
+{cum_in | pic cum_in} You grip her harder and lift her off the table as her slick canal tightens hard around you. You desperately pull her thighs against you as hard as you can to try to keep her in place. You shut your eyes, letting rapture wash over you while you pump deep inside her. She trills a high-pitched song that turns into a joyous scream of delight. You both shiver and twitch against each other.
+	[ | stop_music 8, check_flag bykaas_prostituted after_fuck after_fuck_2] (Catch your breath)
+||>>Aftermath
+{after_fuck_2 | pic portrait} You feel yourself come into focus again. You open your eyes and see Bykaas leaning over you, panting. "Gods... You get me off every time. I think it's that fucking mushroom shape, fuck..."<br><br>She tenses again as your softening cock slides out of her orifice with an obscene wet sound. Bykaas shakes her head and steadies her breath. "L- Let's clean up this mess and ourselves, shall we?" Bykaas suggests wryly. She vibrates and twitches as she carefully climbs off the table. She draws a bucket of steaming, soapy water from under the table and begins to clean herself. She stretches and twists to show herself off to you as you watch her. After cleaning herself, she turns to clean you.
+{after_fuck | pic portrait} You feel yourself come into focus again. You open your eyes and see Bykaas leaning over you, panting. "Oh dear... I wasn't expecting to cum too."<br><br>She tenses again as your softening cock slides out of her orifice with an obscene wet sound. Bykaas shakes her head and steadies her breath. "L- Let's clean up this mess and ourselves, shall we?" Bykaas suggests wryly. She vibrates and twitches as she carefully climbs off the table. She draws a bucket of steaming, soapy water from under the table and begins to clean herself. She stretches and twists to show herself off to you as you watch her. After cleaning herself, she turns to clean you.
+{please_stop | pic portrait} "My pleasure." She draws a bucket of steaming, soapy water from under the table and begins to clean herself. She stretches and twists to show herself off to you as you watch her. After cleaning herself, she turns to clean you.
+{out_of_adats | pic portrait} She playfully slaps you on the cheek. "Spent your last adat on me? I'm flattered." She draws a bucket of steaming, soapy water from under the table and begins to clean herself. She stretches and twists to show herself off to you as you watch her. After cleaning herself she turns to clean you.
+	[iliked] I quite enjoyed that.
+	[you_like] Was that fun for you? //showif.index_is.after_fuck //hideif.has_flag.bykaas_prostituted
+||
+{iliked | remove_pic} You climb off the table and seek out your clothes. "I love happy customers." She gives you a small bow.
+{you_like | remove_pic} You climb off the table and seek out your clothes. "I liked that very much. I've never been with someone of your species before. It was a pleasant experience." 
+	[ | check_flag bykaas_prostituted get_dressed do_come_back] (Get dressed)
+||
+{get_dressed} You pick up your clothes from the floor and get dressed. "Now... This wasn't a sexual service, at most, we... had a romantic escapade. You understand?"
+{tornoth_dislike} "He does not."
+	[gotchu] Sure.
+	[tornoth_dislike] Tornoth really doesn't like prostitutes, does he? //hideif.index_is.tornoth_dislike
+||
+{gotchu} "You go first. I will return to the counter shortly after."
+{do_come_back} "If you ever feel you have spare adats burning your pockets, do come back.<br><br>You go first. I will return to the counter shortly after."
+	[ | change_default_diag_file bykaas diag, start_encounter taodal_tavern taodal_tavern, add_flag bykaas_prostituted] Of course. (Leave)
+||

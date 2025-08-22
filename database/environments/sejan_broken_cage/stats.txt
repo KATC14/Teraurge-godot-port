@@ -1,0 +1,16 @@
+interior:	no
+
+discoverable:		yes
+dicovery_message:	You have found a broken cage.
+default_message:	Do you want to visit the broken cage?
+
+
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_broken_cage sejan_broken_cage} Encounter
+||

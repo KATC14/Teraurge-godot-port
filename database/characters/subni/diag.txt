@@ -1,0 +1,194 @@
+
+>>Subni is a small creature in the tavern that speaks in broken sentences and cheats money from the player.
+
+
+||>>Intro
+{start | start_music sejan_taodal/subni 70 3, save_index met} You walk up to the small thing, and the small creature motions for you to sit. "Hey! Hey! You! The biggie, you! You play a game? Chance adats, get more adats!" Its voice is a collection of oddly melodic clicks and screeches.
+{met | start_music sejan_taodal/subni 70 3} "You back! Now we play adats?" She flashes her tiny fangs in glee.
+{interested} "Yeh! Money game! Name Subni! We could play?"
+{introduce} "Me Subni! I could answer some, maybe.<br><br>Wait! You play, and I'll answer one." Subni gives you a sly look.
+{sorry_no_adats} "Game then later? Bye."
+	[interested] Are you suggesting gambling? Playing for money? //hideif.clicked
+	[introduce] Could I ask some questions? //hideif.clicked
+	[lets_play] I'll play. Name's -name-. //showif.has_adats.1
+	[sorry_no_adats] Sorry, I don't have any adats. //showif.no_adats //hideif.index_is.sorry_no_adats
+	[ | start_encounter taodal_tavern taodal_tavern] (Leave)
+||
+{lets_play} "Aah! -name- like money games? Subni too! Game very simple. Agree bet, choose cup or sticks then throw Randticks on table. They jump, thrash, and make their face cup or sticks. More sticks or cups gets an adat."
+{just_chance} "No! Makes it very fair! 100% random!"
+{abit_dull} "It very simple but not bother. Randticks very flashy."
+	[win_rigged] Okay, deal the Randticks.
+	[just_chance] It's just based on chance? There's no skill element in it? //hideif.clicked
+	[abit_dull] You just throw sticks and see what side comes up? Seems a bit dull. //hideif.clicked
+||>>Intro Randtick win
+{win_rigged | counter subni_earned_questions + 1} Subni smiles, excited. "Be cups or sticks?" She digs the Randticks from a bag and starts separating them.
+	[win_cups] Cups.
+	[win_sticks] Sticks.
+||
+{win_cups | play_sound sejan/subni_sticks_win 70, pic randticks} Subni divides the Randticks and shoves half over to you. "Take. We drop same time and see." Subni grabs a pile and holds it over the table. You take yours and mirror Subni. Subni nods and drops the Randticks on the table, you quickly do the same. Instead of just clacking on the table, the sticks explode into incredible chaos of sound and colored light. The Randticks jump and spin but never leave the table, as if they were tethered to the spot where they first fell. After a moment of fireworks, the sticks come to dead stop. Subni mutters, counting the cups and sticks. "Cups win! You win!"
+{win_sticks | play_sound sejan/subni_sticks_win 70, pic randticks} Subni divides the Randticks and shoves half over to you. "Take. We drop same time and see." Subni grabs a pile and holds it over the table. You take yours and mirror Subni. Subni nods and drops the Randticks on the table, you quickly do the same. Instead of just clacking on the table, the sticks explode into incredible chaos of sound and colored light. The Randticks jump and spin but never leave the table, as if they were tethered to the spot where they first fell. After a moment of fireworks, the sticks come to dead stop. Subni mutters, counting the cups and sticks. "Sticks win! You win!"
+	[won_rigged] Nice!
+||>>CONVO HUB 1
+{silent_return}
+{start2} Subni's eyes light up as you approach the table. "You back! More Randtick?"
+{answered_question} "Subni answer question. More questions, more Randticks!"
+{won_rigged | remove_pic, save_index start2, give_money adats 1} She quickly tosses an adat to you. "You lucky! Play again?"
+{pay_adat | take_money adats 1, counter subni_earned_questions + 1} "Thank! More game?"
+{pay_okay | take_money adats 1} "-name-! Not so mean. Thank. More game?"
+	[lose_rigged] Sure, let's play. (Play Randticks) 
+	[ | change_diag_file diag_questions start] (Questions)
+	[accuse_cheating] You're cheating. I've only won once in all of these games. //showif.counter.subni_randtick_games.5
+	[ | start_encounter taodal_tavern taodal_tavern] I have to leave, bye. (Leave)
+||>>CONVO HUB 2 (Left without paying)
+{owes_adat} "You back? Pay now? No adat, no game, no questions."
+{owes_adat_ran} "Where you ran? Silly, you forget adat. Please now give."
+{owes_adat_told} "Lady bug care? Give adat now please."
+	[pay_okay] Well, okay. (Give her an adat)			//hideif.no_adats
+	[no_adats] Actually, uh... I don't have any adats.		//showif.no_adats
+	[ | start_encounter taodal_tavern taodal_tavern] I'll go now. (Leave)
+||>>Lose rigged
+{lose_rigged | counter subni_randtick_games + 1} "Cups? Sticks?"
+	[lose_cups] Cups.
+	[lose_sticks] Sticks.
+||>>Play and lose
+{lose_cups | play_sound sejan/subni_sticks_loss 70} You play a round of Randticks<br><br>After the sticks settle, Subni quickly counts them and suddenly announces the winner. "Sticks win! Subni wins! Poor you lose, maybe luck next time? Play next time now?" Subni gives you an encouraging smile.
+{lose_sticks | play_sound sejan/subni_sticks_loss 70}You play a round of Randticks<br><br>After the sticks settle, Subni quickly counts them and suddenly announces the winner. "Cups win! Subni wins! Poor you lose, maybe luck next time? Play next time now?" Subni gives you an encouraging smile.
+{pay_up_leave} She yanks your hand and stops you. "You forget, owe adat to Subni. Pay up."
+{if_you_say_so} "-name- give adat, then?"
+{no_adats_lie_0} "You lie bad. Give adat please. If play, must pay."
+	[accuse_cheating] You're cheating. I've only won once in all of these games. //showif.counter.subni_randtick_games.5
+	[pay_adat] Here. (Give her an adat)													//hideif.no_adats
+	[no_adats] Actually, uh... I don't have any adats.											//showif.no_adats
+	[ | check_stat charisma 8 no_adats_lie_0-no_adats_lie_1] I don't have any adats. (Lie)	//hideif.no_adats //hideif.clicked
+	[not_gonna_pay] I'm not going to pay you.
+	[ | save_index owes_adat_ran, start_encounter taodal taodal] (Run out of the tavern)
+||
+{no_adats} "Oki. -name- owe Subni adat. Pay when get."
+{no_adats_lie_1} "Oki. -name- owe Subni adat. Pay when get."
+{ask_question_broke} "Get question when Subni get adat."
+	[ask_question_broke] Can I ask a question? //hideif.clicked
+	[ | start_encounter taodal_tavern taodal_tavern] Sure, I'll be off now. (Leave)
+||
+
+
+
+
+||>>Not going to pay
+{not_gonna_pay} "You play. Promise adat. You no honor now? Why?"
+	[accuse_cheating] You cheat.  //showif.counter.subni_randtick_games.3
+	[cant_make_me] You can't make me so I just won't.
+||
+{cant_make_me} Subni snorts frustrated. "Uh <b>nuh</b>! Give adat. You play, you pay!"
+{whatever_keepit} "-name- must pay adat! Subni won."
+	[pay_okay] Okay. (Give her an adat) //hideif.no_adats
+	[make_me] Make me.
+	[ | save_index owes_adat, start_encounter taodal_tavern taodal_tavern] No. (Leave)
+||
+{make_me | change_sprite sad} "Subni can't." She sighs. 
+	[ | save_index owes_adat, start_encounter taodal_tavern taodal_tavern] That's what I thought. (Leave)
+||>>Accuse cheating
+{accuse_cheating} Subni stares at you in shock. "Nuuuh! Randticks true random! True random can sticks or cups forever or never. True random impossible tell of not random." She nervously fiddles with a Randtick.
+	[want_money_back] Yeah sure, I want my money back.
+	[if_you_say_so] Well, if you say so.
+	[pay_up_leave] Actually, nevermind. I'll be going now. (Leave.)
+||>>Want money back
+{want_money_back} "Nuh! -name- owe Subni adat. You play, you lose."
+{will_tell} "Go tell. See, she not care."
+	[please_moni] Please return my money.
+	[forget_this] Return my adats, and I'll forget this ever happened.
+	[will_tell] If you won't give me my money back, I will tell the tavern owner. //hideif.clicked
+	[or_else] Give me my money back. Now.
+	[whatever_keepit] Whatever, keep it, then.
+	[ | save_index owes_adat, start_encounter taodal_tavern taodal_tavern] We are not finished. (Leave)
+||
+{please_moni} "No! Sorry, Subni need adats."
+{forget_this} "Give adat and Subni will forget you was mean."
+	[money_needed_0] Why do you need the money so bad?
+	[will_make_give] I don't care. Give me my money back.
+||
+{or_else} "No! Not hurt! Subni need money."
+	[money_needed_0] So what's the reason, then?
+	[will_make_give] If you don't give me my money back, I will make you.
+||
+{money_needed_0} "Need money for house. House for children. Subni's children. In the city."
+{money_needed_1} She hesitates for a moment. "Need- Need money for house. House for children. Subni's children. In the city." 
+{expect_believe} "Is what is! Subni cannot say what is not. Subni good mom."
+	[keep_moni_children] Keep the money.
+	[lying_subni] You're lying. //showif.intelligence.6
+	[expect_believe] You expect me to believe that? //hideif.clicked
+	[will_make_give] I don't care. Give me my money back.
+||>>Believe lie
+{keep_moni_children} Subni gasps in surprise. "Keep money?! Yes, Subni will. Children thank. Subni thank."
+	[ | add_flag subni_leave_taodal, add_flag subni_believed_lie, start_encounter taodal_tavern taodal_tavern] Sure. (Leave)
+	[give_adat_more] Take one more. (Give an adat) //hideif.no_adats
+||
+{give_adat_more | take_money adats 1} She gasps and pockets the adat. "Subni not know... How thank. -name- horrible nice."
+	[keep_kids_safe] It's okay. You need it more.
+||
+{keep_kids_safe} "Subni not forget."
+	[ | add_flag subni_leave_taodal, add_flag subni_believed_lie, start_encounter taodal_tavern taodal_tavern] I'll be going now. (Leave)
+||>>Alternative payment
+{lying_subni} "Subni not... Maybe... Make trade? Stuff for adats? Subni give stuff. Please."
+{will_make_give} "Subni can't! -name- make trade? Stuff for adats? Subni give stuff. Please."
+	[what_have] I'm open to that. What do you have?
+	[last_time] Last time... Give me my adats, you thieving little shit.
+||
+{what_have} "Uhhm, Subni has..." She scratches her head and looks to her sides.
+{not_much} "This all Subni has... Subni travel light."
+{what_can_give} "Subni has little. What can give?"
+	[not_much] You don't have much, do you? //hideif.clicked
+	[ | sex_gate give_randticks take_randticks] Give me the Randticks.
+	[howmany_krats] Give me your krats.
+	[propose_give] What would you give me? //hideif.clicked
+	[howabout_sex] How about... sex? //hideif.player_sex.female
+	[last_time] You have nothing to trade. Give me my adats.
+||>>Randticks
+{give_randticks} "Subni not can give Randticks! Subni need!<br><br>Maybe -name- need woman? Subni good woman?"
+	[alt_payment] What are you talking about?
+	[take_randticks] Give me the Randticks or give me my adats.
+||>>Krats
+{propose_give} "Subni propose 400 krats? Be fine?"
+	[take_400_krats] Sure. (Take the krats)
+	[howmany_krats] How many krats do you have?
+||>>how the frick do you count out so many
+{howmany_krats} She grabs her small leather purse and rifles through it. "Subni... Give- Give krats? 456!"
+	[take_400_krats] Give me the 400.
+	[ | sex_gate give_all_krats give_all_krats_2] Give me all of them.
+	[ | sex_gate alt_payment what_can_give] That's not going to cut it.
+||
+{give_all_krats_2} "Nuh! Subni need little krats! Subni need eat!<br><br>Take 400!"
+{give_all_krats} "Nuh! Subni need little krats! Subni need eat!<br><br>Take 400! Or... Maybe? Maybe Subni good trade? Subni real nice..."
+	[alt_payment] What are you talking about? //showif.index_is.give_all_krats
+	[take_400_krats] Alright! I'll take 400.
+	[all_krats] Give me all of your krats or give me back my adats.
+||>>Sex
+{alt_payment} Subni smiles nervously. "Maybe... Maybe Subni make amends? Maybe amends, nude, moaning?"
+	[what_can_give] I'm not interested in having sex with you.
+	[sex_deal] Sure, let's have sex. When and where?
+||
+{howabout_sex} Her eyes flutter in slight shock. She quickly pulls her thoughts back together and looks you over. "Subni... Subni okay that. We do that. Little later? Subni okay if later. Has room in tavern."
+{sex_deal} "Little later? Subni okay if later. Has room in tavern."
+{better_not_run} "No! Not run! This safer, easier."
+	[better_not_run] You better not run. //hideif.index_is.better_not_run
+	[ | save_index arranged_sex, start_encounter taodal_tavern taodal_tavern] Sure. (Leave)
+||>>Payment agreed.
+{take_randticks | give_item bag_of_randticks} She sighs. "Subni... give." She hands you the bag of Randticks.
+{take_400_krats | give_money krats 400} She hands you the krats. "Subni, -name- ok now."
+{all_krats | give_money krats 456} She hands you the krats. "Subni, -name- ok now."
+	[ | add_flag subni_leave_taodal, add_flag subni_traded_stuff, start_encounter taodal_tavern taodal_tavern] We are done. (Leave)
+||>>CONVO HUB 3 (Arranged to have sex with Subni)
+{arranged_sex} "You here... Want go to room now? Do... payment?"
+	[ | change_diag_file diag_tavern_sex start] Let's go. (Follow her)
+	[ | start_encounter taodal_tavern taodal_tavern] Nah, I'll be back later. (Leave)
+||>>Adats insisted (Aggressive)
+{last_time} "Nuh! No! Subni will not give! Will not!"
+	[adats_regret] Give me the adats, or you will regret it.
+	[adats_threat] Give me the adats, or I will break your legs the moment you step out of here.
+	[adats_threat] Give me the adats, or I will kill you.
+||
+{adats_regret | change_sprite sad, give_money adats subni_randtick_games} "But! Subni want...  Why...!" Her head slumps in defeat, and she sheepishly reaches into her clothes and reveals a small purse. She gives it to you.
+{adats_threat | change_sprite sad, give_money adats subni_randtick_games} Subni gasps in terror. She sheepishly reaches into her clothes and reveals a small purse. She gives it to you.
+{not_hard_wasit} She doesn't answer. You hear her cry softly.
+	[not_hard_wasit] Now that wasn't so hard, was it? //hideif.clicked
+	[ | add_flag subni_leave_taodal, add_flag subni_pc_took_adats_back, start_encounter taodal_tavern taodal_tavern] We are done. (Leave)
+||

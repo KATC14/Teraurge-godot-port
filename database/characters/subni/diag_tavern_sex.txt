@@ -1,0 +1,229 @@
+
+
+>>Player has arranged to have sex with Subni to pay off the money she has cheated. She leads player into her room in the Taodal tavern
+||>>starthub
+{start | change_environment taodal_tavern_room, change_sprite normal, stop_music 4} You follow Subni deeper into the tavern's maze-like corridors. She finally finds her room and the two of you sneak in. "Subni sleep place. Welcome."
+{cant_tell_age} "Understand. Subni not young, if concern. We do shower?"
+{look_young} "Subni not young... Subni has lot age. Understand Subni size different to biggie size make confuse but okay."
+{granny_noprob} "Is okay know. We... We do shower now?"
+{sure_size} "Biggie maybe big but Subni ride big. We do shower? Show biggie how good ride." She grins.
+	[promise_sexytime] You did promise me something...
+	[lets_sex] Sure, let's do it.
+	[sure_about_size] Uh, you look a lot smaller when you're not sitting on a table. //hideif.clicked
+	[protection] Not to ruin the mood, but should we use, you know... protection? //showif.gender.male //hideif.has_flag.pc_knowledge_bitter_water
+	[give_stolen_moni] Now that we are alone... Return the money you've stolen.
+||>>Size
+{sure_about_size} "Is okay. Subni can wrestle biggie."
+	[subni_age] It's not that... It's- How old are you?
+	[sure_size] If you're sure. I wouldn't want to hurt you.
+||>>age
+{subni_age} "-name- asking age not nice- OH, -name- mean... No! Um... Subni old. Subni... Subni grandparent."
+	[cant_tell_age] Sorry, I just I can't tell your age very well.
+	[look_young] You look very young.
+	[subni_grandchildren] Wait, you have... grandchildren?
+||
+{subni_grandchildren} "Do has. Is... Is problem?"
+	[you_are_freaky] Sorry. We're not having sex.
+	[granny_noprob] It's not. Just surprised.
+||>>protection
+{protection} "Nyeh! Hand rule! Subni three, biggie fou- five? Five! No baby worry. Do shower together, fun..."
+{proc_bad_rule} "Work every time! No worry baby, Subni know, test."
+	[lets_sex] Okay, I'll trust you. Get in the shower.
+	[lets_sex] Well, we are very different species. I guess we wouldn't need to worry about that. //showif.has_stat.intelligence.6
+	[proc_bad_rule] That doesn't seem like a well thought out rule. //showif.index_is.protection //showif.has_stat.intelligence.8
+	[proc_not_comfortable] I'm not comfortable without knowing for certain.
+||
+{proc_not_comfortable} "Subni understand... Maybe not cum in Subni? Suck? Hand jerk cum?"
+	[lets_safesex | add_flag subni_safesex] That would work. Sure, let's do that.
+	[not_happening] Yeah, let's not. Not happening.
+||>>Sex start
+{lets_safesex | change_sprite nude} Subni unravels her clothing and throws it aside. She giggles. "Subni glad for -name-. Subni look this... Good?"
+{lets_sex | change_sprite nude} Subni unravels her clothing and throws it aside. "This what Subni look ... Good for biggie?" She shakes her hips playfully.
+{promise_sexytime | change_sprite nude} Subni unravels her clothing and throws it aside. "Ohh, did Subni? Maybe Subni forgot? Tired Subni just take off clothes, take shower? Subni won't mind biggie take shower too..."
+	[get_ass_shower] Get your ass in the shower.
+	[look_nice] You look nice.
+	[very_pretty] You are very beautiful, Subni.
+	[lets_not_sex] I've changed my mind. Let's not have sex.
+	[you_are_freaky] Let's not, you're... freaky.
+||
+{look_nice} She smiles. "Thank... Come, shower." She tugs on your arm.
+{get_ass_shower} "You too!" She hops from excitement.
+{very_pretty} She blushes. "Biggie handsome. Subni very lucky. Gentle shower now, we fun..." 
+{okay_if_sayso} "-name- so silly. Come, shower." She tugs on your arm.
+	[shower_entry] (Undress and get into the shower)
+||
+{lets_not_sex} She scratches her head. "Subni not enough pretty for biggie?" 
+	[its_not_you] No, it's not you. I just... Feels wrong using you like this.
+	[keep_money] Keep the money. I'm out.
+	[you_are_freaky] Sorry, you're just too... different for me.
+||
+{its_not_you} "-name- not worry! Subni use herself. Subni want use -name- too... Subni not helpless. Sex?"
+	[okay_if_sayso] Okay, if you put it that way...
+	[not_happening] Sorry, but no.
+||
+>>Sex not happening
+{not_happening} "Uhm, Subni need pay debt? Subni would suck, fuck for debt gone. Subni can not pay."
+{you_are_freaky} She falls silent and then blurts out in desperate voice. "Uhm, Subni need pay debt? Subni can not pay."
+	[give_stolen_moni] Cough up the money you stole.
+	[keep_money] Keep the money. You owe me a favour or two.
+	[keep_money] Keep the money.
+||
+{keep_money} She perks up in surprise. "Subni keeps money? -name- not want Subni?... Subni not know what say."
+	[buy_something_nice] Buy something nice for yourself. Maybe we'll meet someday in better circumstances.
+	[just_keep_it] Just keep it.
+||
+{buy_something_nice} She pulls your head down and gives you a kiss on the cheek. "Thank you biggie. Subni buy nice thing herself. If meet again, -name- get another kiss."
+{just_keep_it} She pulls your head down and gives you a kiss on the cheek. "Thank you biggie. Subni very glad."
+	[ | add_flag subni_leave_taodal, start_encounter taodal taodal] I'll be going now. (Leave)
+||
+
+
+||>>Sex scene (Male pc)
+{shower_entry | start_music generic/romance_quick 70 1, pic shower_idle} Her perky butt sways in front of you.<br><br>She turns on the shower and steps under the stream of steaming water. Clearly enjoying, she rubs herself down and turns to you with a smile, she motions you to get in.<br><br>Hot water greets you as you enter. As the hot water drums your head and streams down your body, you feel all your worries and stress melt away. Subni is awkwardly pinned between you and the shower wall. Subni turns off the water and grabs a bottle and lathers herself with something that gives her a glistening, oily appearance. She looks up at you and gives you a mischievous smile. "Soo, you what thinking?" She quickly glances at your hardening penis.
+{other_things | pic shower_idle} Subni giggles in excitement and wiggles her behind teasingly.
+{explain_folds | pic shower_idle} "They fat! Keep warm." She lifts her stomach folds to inspect them. "Why folds not sure, but keep warm." She turns back to you with a smile. "Maybe back to things we plan do, yeh?"
+{cant_anal | pic shower_idle} Subni gives you a pained smile. "I think I could. It not so." She grabs a bottle and lathers your hard-on with a foaming soap and rubs it down thoroughly. Watering the foam away, she gives you an apologetic look. "Something other, yeh?"
+{sorry_anal | pic shower_idle} "It okay, some do that. You too male and I too petite, would hurt." She gently pats your semi-erect cock. "Some other thing?"
+{handjob_abort | pic shower_idle} Subni giggles "Okay! Keep in then!" She gives your cock a quick lick before releasing her hands. "Maybe then other time."
+	[soap_cleaning] (Take a bar of soap and lather Subni) //hideif.clicked
+	[lay_down] Get on the floor and lie on your back.
+	[penis_fondling] (Place her hand on your cock) //hideif.clicked
+	[shower_anal] Turn around, Subni. (Fuck her in the ass) //hideif.clicked
+	[ | check_stat strength 6 shower_wall_sex_fail-shover_wall_sex] (Fuck Subni against the wall) //hideif.clicked
+||>>Soap cleaning
+{soap_cleaning | pic shower_clean} You pick up a bar of soap and start gently foaming it on Subni's skin. She looks at you with a slight surprise and smiles faintly. "This nice too." She lathers you up as well and as high as she can. You carefully rub under the folds of her torso, neck and then move lower by kneeling in front of her. You run your hands down along her thighs and back up her buttocks. Subni seems almost embarrassed at the attention you give her. She awkwardly smiles at you while enjoying the roaming hands. The two of you stare at each other at her head level. "Not expected such gentle you."
+	[other_things] Now that you are nice and clean, I have other things I want to do to you.
+	[explain_folds] Say, what are these folds on your body for?
+||>>Shower floor (Lay down)
+{lay_down | pic on_floor} You help Subni carefully on the floor and follow her down. You support yourself on top of her. The two of you share a quick but oddly intimate glance.
+{compliment_floor} She giggles. "Make feel princess. -name- stop. We here make dirty." She playfully slaps your cheek.
+{floor_kiss} She hesitates as you close on her face. "What -name-..." You press your lips against her strange mouth. Your tongues meet briefly. She gently pushes you off and looks at you in bewilderment. "-name- no need. Is nice but no need." She thumbs you nose gently.
+{nofloor_kiss} As you go for the kiss she places her small digits to stop you. "Keep professional? Maybe no kisses." She smiles nervously. "Oki?"
+	[cunnilingus] Spread your legs, Subni. (Give her cunnilingus)
+	[shower_floor_sex] (Fuck her on the floor)
+	[compliment_floor] You are a very beautiful woman, Subni. //hideif.clicked //showif.charisma.6
+	[ | check_stat charisma 8 nofloor_kiss-floor_kiss] (Kiss Subni) //hideif.clicked
+||>>Cunnilingus
+{cunnilingus | pic cunnilingus, add_flag subni_shower_fun} She tilts her head and stares at you with giant round eyes. "What we do?" You gently grab her thighs and slowly spread them apart to expose her nether. "What -name- do!?" You slowly push your tongue into her purple flower and Subni's confusion turns into gasps. "Eah! Eaah! Subni meant give you. Not yu-uh g-give... me-eeh." She curls her claws in your hair. You plunge your tongue deeper and explore her response. Her legs wrap around your head and she starts squirming around the floor. Her breathing becomes erratic and higher pitched. Suddenly she tenses and her legs throttle you. Her head thrown back, she launches into melodic screaming and her tiny claws dig into your scalp.<br><br>She melts into a twitching, heaving pile, unable to even use her arms properly. You lift yourself and crawl on top her. She struggles to open her eyes to meet yours.
+	[cunnilingus_1] You okay there?
+	[cunnilingus_2] I didn't realize I was that good.
+	[cunnilingus_3] (Smile at her)
+||
+{cunnilingus_1 | pic on_floor} She takes in a long breath and gives you a small nod. "Subni okay. -name- gave well." She gently grabs your head and leans into a strange kiss. Your mouths can't find a seal but she rolls her tongue around your mouth with her large eyes twitching behind her eyelids. Hesitantly, she slowly lets you go. She sighs, pets your cheek and stares at you with kind eyes.
+{cunnilingus_2 | pic on_floor} "Oki, you make me fun." She pats you to get up. When the two of you get back on your feet, she pokes your stomach playfully. "We do thing proper?"
+{cunnilingus_3 | pic on_floor} She grabs your head and leans into a strange kiss. Your mouths cannot find a seal but she rolls her tongue around your mouth with her large eyes twitching behind her eyelids. Hesitantly, she slowly lets you go. She sighs, pets your cheek and stares at you with kind eyes.
+	[shower_floor_sex] (Fuck her on the floor)
+||>>Shower floor sex
+{shower_floor_sex | pic penetration, add_flag subni_shower_fun} You grab her hands and move your hips closer to hers. Your erection pokes between her legs and she gasps. You feel her strange vagina open like a flower as you push into her. Subni braces herself against your neck and hugs you. Her breath staggers as you slowly push deeper. "Ju- just fuck me." She whimpers against you. You push a little deeper and feel a wall inside her. Subni whimpers "Not stop, deeper." She bucks herself against you and the wall inside her gives in and swallows your glans. The intense stimulation gives you a temporary pause. Subni is lost to pleasure, she bucks and whimpers against the floor. You start pumping into her, every thrust going past her internal wall and giving your glans a tight but gentle rub with every pull. Subni's petite legs waive in the air as your humping turns into a lust-filled fucking. You can feel the pressure building towards your finish.
+	[shower_floor_sex_2] (Pull out)
+	[shower_floor_sex_3] (Finish in her)
+	[exhaust_her] (Keep fucking her into exhaustion) //showif.has_stat.endurance.8
+||
+{shower_floor_sex_2 | pic cum_out} You feel your orgasm close in fast and pull out. The sensation of pulling out of her tight hole yanks you over the edge and you blow your load on Subni's ass. You gasp for air and fold over. Subni embraces your head and pets you as you unload onto the floor. "Biggie strong male. Biggie virile handsome. You gentle beast." She rubs your ears and gently ruffles your hair. You shiver as she runs her small hands over your skin. After you finish she pushes you gently off her and sits up. "Oh... Gods. Biggie wild beast. What mess."
+{shower_floor_sex_3 | add_flag subni_impregnated, pic cum_in} You grip Subni's tiny legs and push as deep as you can. You poke somewhere very deep and let go. You gasp for air and fold over. You throb and Subni screams from joy, she wraps her short legs around you and tenses. She pants and holds your head tightly. You keep unloading into her and she gasps with every pulse. She opens her eyes and stares at you, shocked. "Biggie beast. Try make baby in Subni does?" She whines as your cock pumps its last drops into her.
+{actual_babies} She pants. "Biggie big dumb too." She shows her hand "Three." She then grabs your hand. "Five. No baby."
+	[actual_babies] ...I can't actually make babies with you, right? //showif.index_is.shower_floor_sex_3
+	[shover_floor_sex_end] (Get up)
+||
+{exhaust_her | add_flag subni_impregnated, pic cunnilingus} You grab her legs and start fucking her hard. Subni's eyes suddenly widen with shock at your new found vigor. Her whimpering turns into desperate gasps. You feel her insides tighten around your shaft as she buckles against the floor and arches her back. Her orgasm tries its best to milk you dry but you keep fucking her mercilessly. She tries to recover as you keep pounding her but remains completely overwhelmed by your assault. She cums again, twitching around your shaft as she screams with ragged breath. She grabs your shoulders and digs her claws into your back, she looks at you like she is trying to say something but can't get anything out other than pleasured moans and gasps. She cums a third time, her claws release you as her body is wrecked with stimulation. Subni's eyes roll back and she rolls her tongue out. Her once tensed legs are now limply hanging to the sides as you keep ramming her. You feel her fourth orgasm but her only reaction is to open her mouth a little wider. Your orgasm knocks your brain into white mush and turns your body into a shivering mess. You defiantly thrust one last time into her tight hole. Subni's body responds by tightening like a vice around your cock. You collapse over Subni.<br><br>A while passes with two of you just trying to steady your breathing. Subni weakly opens her mouth. "L-legs not feeling."
+{pinch_toe} She doesn't react to you pinching her toe.
+	[sorry_excited] Sorry, got a little excited there.
+	[pinch_toe] (Pinch her toe) //showif.index_is.exhaust_her
+	[amazing_fucktoy] You're an amazing little fuck toy.
+	[leg_feel_too] Me neither. //showif.index_is.exhaust_her
+||
+{sorry_excited} She breathes raggedly. "Is okay... Biggie ride Subni mush. Crazy ride." She clumsily tries to pet you but just drags her limp hand across your side.
+{amazing_fucktoy} She chortles raggedly. "Subni toy? If Subni toy, -name- is machine."
+{leg_feel_too} She reaches around you and pinches your ass. "Subni feel good. -name- feel nice."
+	[shover_floor_sex_end] (Get up)
+||>>Penis fondling
+{penis_fondling | pic shower_fondle} Her tiny palms gently wrap around your member with the encouragement. "Hand stuff? Subni can help." She turns to look up at you and gives you a perverted toothy grin. "Maybe paint face?" She gives quick lick to your abdomen "Maybe... down throat?" She opens her mouth and rolls her tongue out for show, she winks. She slides both of her hands around your shaft, causing it to harden more. "Not very strange. Very plain. Seen very strange." As your shaft stands she gently massages its features with her tiny thumbs. She cups your testicles and gently rolls them in her hand. "So male you." With one hand she squeezes your shaft and with the other she starts jerking you off. Moments pass until the pleasure becomes too much. Subni positions her face below your shaft and smiles up at you seductively.
+	[handjob] (Let her make you cum)
+	[blowjob] (Pull her into a blowjob)
+	[handjob_abort] Stop... I have other ideas.
+||>>Handjob
+{handjob | pic face_cum} You stay silent as she enthusiastically works on you. She keeps taking quick glances at your reaction seemingly expecting a sign to stop. After no response, she turns off the shower and makes her tiny hands work even faster. She gives quick licks to your glans and breathes hot air along your shaft. The pleasure is too much and you cum. Subni is caught off guard and the first jet of jizz lands across her face, she quickly opens her mouth and places her tongue along underside of your cock. You empty yourself into her open mouth while she helps you with gentle tugs.<br><br>You take long breaths and look down, Subni looks back at you with a cum-covered mouth. She swallows for show and gives you a toothy smile.
+	[blowjob_end] (Gather yourself)
+||>>Blowjob
+{blowjob} You gently grab her head and pull it closer to your crotch. She seems to realize your intent and starts enthusiastically nuzzling the base of your cock. She nibbles at you and moves on to licking your glans. She glances shyly up at you and opens her mouth to take you. She suckles on you with her eyes closed and bobs herself on your shaft. You feel her small tongue flick the underside. She pushes herself and starts working faster, sliding up and down your cock, pausing and rolling the tip in her mouth. She's going to make you blow soon.
+	[cum_in_mouth] (Let her suck you off)
+	[can_i_cumface] Can I come on... your face?
+||
+{can_i_cumface | pic face_cum} She winks and slowly nods with your dick in her mouth.<br><br>She gives you a long last suckle as she draws your cock out of her mouth with a small pop. Strands of saliva droop out. She slides her small hands over your cock to jerk you off and you immediately go over the edge. Her eyes widen from the surprise and the strength of the cock in her hands. A stream of cum hits her eye forcing her to close it. She smiles patiently as you paint her face. As your orgasm dies down, your legs shake a little. Subni looks up at you with strands of cum hanging off her face. "Biggie feel nice?"
+{cum_in_mouth} Looking at the small creature give such thorough attention to you and feeling her tongue trace your features, sends you over. The orgasm almost knocks you over as the fireworks in your head go off. Your first load goes straight into Subni's throat but she quickly opens her mouth and places her tongue along underside of your cock. You empty yourself into her open mouth while she helps you with gentle tugs.<br><br>You take long breaths and look down, Subni looks back at you with a cum-covered mouth, she swallows for show and gives you a toothy smile.
+	[blowjob_end] (Gather yourself)
+||>>Anal sex
+{shower_anal} Subni obediently turns around and braces herself against the wall "Eager! It same to me." She flashes a smile at you. You kneel and place the head of your member between her firm buttocks and slowly press your hips towards her. Subni suddenly lets out a high-pitched squeak and slaps your penis away from her ass. "<b>Iieh</b>, what! No! Subni does no behind sex. Use proper hole!?"
+{reject_anal} "Nonono! Subni won't!" She hectically waives her small hands at your junk. "Have you eyes!? Look me!" She slaps her butt. "Tiny!" She crosses her arms looks up at you. "No."
+	[sorry_anal] Sorry! Let's do something else instead.
+	[ | check_stat charisma 8 reject_anal-talked_into_anal] Have you tried it before? If you have some oil around, we could test if you'd like it. //hideif.index_is.reject_anal
+	[forced_anal] (Tackle her against the wall and forcefully fuck her ass) //showif.rape_filter_off
+||
+{talked_into_anal | pic shower_anal_try} "Uumh, never try." She covers her ass with her hand. "Can feel good? In behind?" Her eyes dart to your penis. "So large. Subni not really know... Subni try." She grabs a bottle, uncorks it, pours viscous slime from it on your penis, and then spreads it all over it. She turns around and braces herself against the wall again as she props her perky butt up a bit. "Slow, oki?" She smiles over her shoulder.<br><br>You take her by the hips and place your shaft between her buttocks. You slowly grind over her anus a few times to spread the slime, Subni giggles a bit. You stop your cock on top her anus and start applying pressure. Subni bites her lower lip as her ring starts to open for you. She whimpers a bit and you stop. "No, give more. I-It no so bad." She grabs your cock and backs herself toward you. Your cocks starts slowly sinking into her. She pants and whines as your cock slides halfway into her bottom. Her whimpering turns into painful screams and she starts slapping you to pull out. You pull out. "Subni can't... Try! But no. It not feel good."
+	[cant_anal] It's okay. Let's do something else.
+	[forced_anal] (Tackle her against the wall and forcefully fuck her ass) //showif.rape_filter_off
+||>>Forced anal (rape)
+{forced_anal | start_music generic/romance_quick_sting 70 0 0 no_loop, add_flag subni_raped_anal, pic shower_anal_rape, remove_flag subni_shower_fun} You violently push her against the shower wall and press you cock against her ass. "Nononono stop!" Subni ineffectually slaps your sides as you start applying pressure to penetrate her. Her tight ring quickly parts open to accommodate your girth. She slams her hands against the wall and braces herself, shaking from the sudden pain and shock. Your glans pops into her anus and you start to slide into her more easily, you can feel Subni's muscles contract around you with her ragged breath. Whatever she rubbed on herself earlier is helping you glide into her and you hilt yourself in her ass. Subni lets out a small scream as you start pump into her. "No, please! Stop!". Her incredibly tight interior massages you with bumps and contractions as you start fucking her harder and harder against the shower wall, each thrust pushing Subni higher up the slippery wall until her toes lift off the floor. You keep her whimpering until it becomes impossible to stall your orgasm. You grip her hips and hilt your cock into her ass and release yourself into her. Her erratically contracting gut milks you dry.
+	[rape_comment] (Say nothing)
+	[rape_comment] Consider us now even.
+	[rape_comment] Maybe now you'll think twice before stealing from me.
+||
+{rape_comment} Subni gasps as you pull out and slumps into a whimpering pile.
+	[leave_index] (Get dressed and leave)
+||>>Sex against the wall
+{shower_wall_sex_fail} You grab Subni by her buttocks to lift her. Your arms shake as you strain yourself. Subni is observing your effort, confused. She tries to help you by grabbing your shoulders and jumping a little. Despite both of your efforts, you can't lift her. The two of you stop and Subni turns to you, still confused. "Subni not heavy. Should work." She slides her hands over your strained arms. "Maybe lay down, then do?"
+	[lay_down] Lay down. (Fuck her on the floor)
+	[other_things] Let me think of something.
+||
+{shover_wall_sex | pic shower_wall_fuck} You grab Subni by her buttocks and lift her up the wall. "Eaah! Strong male you." She instinctively lifts her legs around your waist. "You do Subni here?" She winks, "Not mind if you do." She reaches down to grab your penis and guides it against her entrance. As she spreads her purple flower open, you feel the slick opening against your glans. You slowly thrust into her. Her flower-like vaginal opening gradually folds onto your shaft as you slide deeper into her tight hole. Her tiny opening spreads like a rubber band around your cock and her inside is filled with large bumps that actively rub against your shaft. Halfway in, the tip hits a wall inside her. Subni gasps. 
+	[shover_wall_sex_1] Tell me if I'm hurting you.
+	[shover_wall_sex_2] (Be gentle)
+	[shover_wall_sex_3] (Push deeper)
+||
+{shover_wall_sex_1} She grins "It safe. I can take deeper. Love size you."
+{shover_wall_sex_2} "Nonono, push deeper." She grins with her eyes closed. "Deeper." She bucks her legs against your buttocks to get you moving.
+	[shover_wall_sex_3] (Push deeper)
+	[shover_wall_sex_4] I'm just worried about the size difference.
+||
+{shover_wall_sex_4} "You sweet. Let me." She wraps her legs around your hips, takes a deep breath, and forces herself down your cock. The obstruction inside her opens like another vagina. You can feel the resistance slide around your shaft. Subni engulfs your member, breathes out, and collapses back on the floor. She is reduced to soft whimpering and squirming. Her insides feel like two tight rubber-bands around your cock.
+{shover_wall_sex_3} You hold Subni still and push against her insides. To your surprise, the obstruction seems to open like another vagina inside her. You can feel the resistance slide around your shaft. You finally manage to hilt yourself inside her. You feel like you have two tight rubber bands around your cock. Subni is completely lost to her pleasure and is whimpering against the wall.
+	[shover_wall_sex_5] (Fuck her)
+||
+{shover_wall_sex_5 | add_flag subni_impregnated, pic cum_in, add_flag subni_shower_fun} Subni hops on your cock to encourage you. "Iyah! Biggie take Subni now." You grip Subni by her sides and pull her on your cock. She inhales deeply and lets out a ragged giggle. You pick up the pace and start pounding your tiny lover. She tries to steady herself against the wall but ends up sliding along it as you pound her forcefully. She suddenly lets out a high-pitched scream and her vise-like hole grips you. The sudden sensation pops your orgasm and you blow your load into her. You raise your hips and lift Subni up. You gasp for air and rest your head on the wall. She wriggles and gasps with every throb of your cock as you unload into her. Subni takes your hand and leans to it. "Biggie lover. Try babies. Is fun."
+{actual_babies_2} She pants. "Biggie big dumb too." She shows her hand "Three." She then grabs your hand. "Five. No baby."
+	[actual_babies_2] ...I can't actually make babies with you, right? //showif.index_is.shover_wall_sex_5
+	[shover_wall_sex_end] (Gather yourself)
+||>>Sex end
+{blowjob_end | remove_pic} Subni turns the shower on and quickly rinses both of you. You step out into the cool room air and reach for your pile of clothes.
+{shover_floor_sex_end | remove_pic} Your legs almost give out as you get back up. Subni turns the shower on and quickly rinses both of you. You step out into the cool room air and reach for your pile of clothes. "Subni feel this good. Biggie manly. Should make more deals." She winks.
+{shover_wall_sex_end | remove_pic} Your legs almost give out as you lower her down. Subni turns the shower on and quickly rinses both of you. You step out into the cool room air and reach for your pile of clothes. "Subni feel this good. Biggie manly. Should make more deals." She winks.
+	[get_dressed | stop_music 5] (Get dressed)
+||
+{get_dressed} As you get dressed, Subni watches you and doesn't get dressed herself. "Biggie look nice."
+	[early_leave] I should go now. I had fun, hopefully you had fun as well.
+	[early_leave_business] Thanks for the entertainment. You can consider us even now.
+	[cuddle_together] I know this is not what we agreed on but... would you want to cuddle?
+||
+{early_leave} "Subni do have fun. Biggie fun."
+{early_leave_business} "Is glad biggie is even now."
+{cuddle_together} "Sound nice... But Subni have things do."
+	[leave_index] Okay. See you then. (Leave)
+	[leave_index] Right. (Leave)
+||>>Demand money
+{give_stolen_moni} She seems completely distraught. "Subni has no money yours!"
+{give_money_orelse} She points a finger at you. "Subni not pay. Out get!"
+	[give_money_orelse] Give me the money or else... //showif.index_is.give_stolen_moni
+	[search_room] (Search her room for the adats) //hideif.clicked
+	[leave_index] (Leave)
+||
+{search_room} You ignore Subni and start rifling through her belongings. She grabs your arm and stops you. She screams at you. "<b>Out get</b>!" She angrily pushes your arm away.
+{kick_subni | play_sound ui/combat/punch 70, pic kicked} You swiftly kick her in the midsection. She gasps in anguish and folds on the floor. She tries to curse but she breaks into a ragged wheeze.
+{search_room_2 | give_money adats subni_randtick_games} You go through her belongings and sure enough, you find all of your stolen adats. Subni lays on the floor, gasping and holding her stomach.
+	[kick_subni] (Kick her) //showif.index_is.search_room
+	[search_room_2] (Search her room for the adats, again.) //showif.index_is.kick_subni
+	[leave_index] (Leave)
+||
+
+||>>Leave index
+	{leave_index | change_default_diag_file diag_after_taodal, add_flag subni_leave_taodal, start_encounter taodal taodal} (Leave)
+||

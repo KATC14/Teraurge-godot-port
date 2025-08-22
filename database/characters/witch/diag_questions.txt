@@ -1,0 +1,449 @@
+>>Start hub
+{start}
+{thanks_other} "Thanks. Did you have other questions?"
+{need_help_res} She taps gently on you. "Very sweet of you. Maybe? I'll let you know if something comes up, but... Did you have other questions?" 
+{funda_different} "Maybe? Trust me. I've dedicated my life researching it, and I still think it's a crazy thing to contemplate... So, uh, did you want to ask anything else?"
+{stop_relig_talk} "Ah... Sorry. We should probably stop talking about religion."
+{god_no_punish} "I can't remember the way there, so she must have fucked with my memory. Not that I would try again!" She looks cautiously around her.
+{god_unbelivable} "Hah! I know. But it is a rather hollow jest to make between two of us, isn't it?"
+{portal_with} She laughs. "Great! I'll take my traveling hat with me when we go!"
+{traveling_hat} "Yeah... It's a large, cumbersome thing. I just don't like rain one bit."
+{meh_place} "I get you. Maybe you'll have more fun here?"
+{record_words} "Hmm... I think that could be a start. Humm. I wonder... I think I need to check some things."
+{really_strange} "Endless days upon endless days of research through the ages, and there's no definite answer."
+{sorry_beaut} "Sorry! I just... don't like to talk about how I look."
+{sensitive_look} She sighs. "...It's complicated and I don't want to talk about it."
+{hands_interesting} She releases your hand. "Huh... Your consistency is very different from what I imagined."
+{curiosity_got_best} "It's okay! I started it and didn't even ask for permission."
+{give_hand} She giggles. "That was silly but informative. Your consistency is very different from what I imagined."
+{why_no_talk} She stares at you.
+{what_space_talking} "Stop asking questions I'm not going to answer."
+{how_u_know} "I'm a witch."
+	[show_bowl] Can you tell me anything about this bowl? //showif.has_item.mysterious_bowl //hideif.has_flag.witch_bowl_advice
+	[show_frags] Can you tell me anything about these splinters? //showif.has_item.mysterious_bowl_splinters //hideif.has_flag.witch_bowl_advice
+	[traveling_hat] You have a 'traveling hat'? Specifically for traveling? //showif.index_is.portal_with
+	[membrane_trans_1] The 'orientation' manual mentioned an interdimensional membrane that transformed me somehow. What does that mean? //hideif.clicked //showif.intelligence.6
+	[language_und] How can I understand your language? //hideif.clicked
+	[others_from_portal] Can you tell me about the others that have come through the portal? //hideif.has_flag.witch_others_portal
+	[silent_others] (Others that came through the portal) //showif.has_flag.witch_others_portal
+	[jaw_happen] Did something happen to your jaw? //hideif.clicked
+	[mom_father] Your mother is dead, but what about your father? //hideif.clicked //showif.has_flag.witch_mom_issues
+	[ | change_diag_file diag_known silent_return] (Back)
+||>>Membrane transformation question
+{membrane_trans_1} She scratches her head. "Uh, um. I have to admit it's more of a hypothesis and the evidence to support it is not very concrete."
+	[membrane_trans_2] So what's the hypothesis, then?
+||
+{membrane_trans_2} "There's a membrane over this reality that transforms matter, information, and energy of everything that comes from other universes into a compatible version for this one."
+	[membrane_trans_3] But what does it mean to me? Am I a clone? Did the original me get destroyed in the process?
+||
+{membrane_trans_3} "No... I don't think that's how it works. There's no energy between realities, and it can only work with the energy that's put into it: my spell, you, and everything that traveled in it."
+{membrane_trans_44} "...Maybe?<br><br>That's actually a pretty interesting take on it. Maybe that's the mechanism the membrane uses to translate the energy! ...I need to write this down." She quickly scratches a few symbols on a piece of paper. 
+	[membrane_trans_44] Doesn't that mean I might be... partly constructed from your spell? //showif.index_is.membrane_trans_3 //showif.intelligence.8
+	[atoms_1] So, what am I, then? Why would I need to be translated to exist here? Why mess with my atoms?
+||
+{atoms_1} She cocks her head. "What?"
+	[atoms_2] What?
+||
+{atoms_2} "What are you talking about? Atoms? What are those?"
+{atomos} "Hmm... <br><br> I have heard theories about their existence. Are you saying you came from a universe where these 'indivisible units' are confirmed to be real? What are they like?"
+	[atoms_3] Small particles that form bonds between each other and create matter.
+	[atomos] The basic indivisible units of matter. //showif.intelligence.8 //hideif.index_is.atomos
+||
+{atoms_3} "You're saying you existed as a collection of tiny particles? Like some kind of a monster made out of sand? Gods, how scary! I would fear falling apart."
+	[atoms_4] Well, not in the way you describe, but yeah, and I looked exactly the same.
+	[atoms_4] I guess that might have changed.
+||
+{atoms_4} "I have to say that I've never seen or heard of any evidence for 'atoms'."
+{atoms_5} "I've used some impressive microscopes, and nothing indicates that we are made from tiny particles."
+	[atoms_5] They are extremely small. You wouldn't be able see them with your eyes. //hideif.index_is.atoms_5
+	[atoms_55] Well, if atoms don't exist here, they wouldn't form oxygen molecules my lungs need to function, and I would suffocate.
+||
+{atoms_55} "Don't you think the translation process would fix that? Molecules? Another tiny particle? Natural rules in your reality seem a little... contrived."
+	[atoms_6] The membrane is intelligent enough to make me compatible with some proxy oxygen so I don't suffocate on arrival? Now that's contrived.
+||
+{atoms_6} "You can see the reason why the manual mentioned a 'higher power'.<br><br>Oxygen? One person that I pulled from a portal before you talked about breathing something called tidiam and was surprised the sky wasn't green."
+{god_did_it} "Let me know if you come up with something more convincing. The manual was vague about it for a reason, you know."
+	[others_from_portal] Can you tell me more about the one before me? //hideif.has_flag.pc_knowledge_onoree
+	[god_did_it] I'm just not convinced by the 'god did it' argument. Seems intellectually lazy. //hideif.index_is.god_did_it 
+	[funda_different] So, things are fundamentally different at a low level. Maybe I'm just lucky to have this place resemble my world?
+||
+
+
+
+||>>How can I understand your language?
+{language_und} "Uh... You have some hard questions. I don't know."
+	[language_hp_1] The orientation manual mentioned a 'higher power'?
+||
+{language_hp_1} "Well... Uhm... You know... gods? To be honest, there's literally no evidence on what makes everybody understand each other. But the fact that we can understand each other has created a religious concept of 'the Understanding.'"
+	[language_hp_2] The Understanding?
+||
+{language_hp_2} "It's the idea that a god or gods have given a gift to the world to further peace and communication between people. It's usually attributed to the god you worship."
+	[language_hp_3] So... is that the reason?
+	[language_logic] There's no actual info on it?
+	[do_you_worship] Do... you worship a god? (Nod at the golden statue behind her)
+||>>Language logic
+{language_logic} "There's been some- um... 'research' into the mechanics of how the abstract language information transfers, but why it happens and its exact mechanics are not understood."
+	[language_elaborate] Can you elaborate?
+||
+{language_elaborate} "There seems to be a universal web of conscious thought that connects all people, and it can translate abstract thought across communication."
+{translate_written} "Yes. You saw that yourself already."
+	[translate_written] So it can translate even written things? //showif.index_is.language_elaborate
+	[how_language] How do people learn to talk? Are they even talking in structured languages? //showif.intelligence.8
+	[really_strange] That's really strange.
+||
+{how_language} "Um... I have no idea. Nobody does research on spoken language. There's some interest in written symbols but mostly because of fashion and style.<br><br>How would you even research spoken language when everybody understands each other?"
+	[record_words] You could record words and compare them as sounds to see if there's a pattern? //showif.intelligence.10
+	[really_strange] I imagine that would be a problem.
+||>>God talk
+{language_hp_3} She bursts into laughter. "Hahaha. Sure. I talk to God constantly over dinner. She is very disappointed people have doubts about her existence."
+	[language_hp_4] Very funny. I'm new here.
+||
+{language_hp_4} "You have no gods where you come from? Oh, you have no idea how good you had it."
+	[gods_1] The god exists everywhere, even here.
+	[gods_11] Gods do exist.
+	[gods_111] A lot of people seem to think so.
+	[gods_1111] No, but a lot of people seem think so.
+	[gods_11111] No, but we do have crazy people.
+	[gods_exist] Wait... Are you saying gods exist here?
+||
+{gods_1} "Uhuh, sure. We have lots of '<b>the</b>' gods here too. Be careful, the followers of those gods are often especially insecure about their convictions."
+{gods_11} "We have lots of gods too. In all sizes and colors. One for every beggar and priest. Of course, we have several '<b>the</b>' gods if that strikes your fancy."
+	[stop_relig_talk] Your opinions don't change the truth.
+	[stop_relig_talk] The dismissive tone is not appreciated. I didn't attack your beliefs. //showif.has_stat.charisma.6
+||
+{gods_111} "Well, what do you know. You travel to another dimension, get transformed into a completely different stuff, and things stay the same but, I have to say, it'd be nice to visit a place without gods."
+{gods_1111} "Well, don't they always. It'd be nice to visit a place without gods. Take me there sometime?"
+{gods_11111} She chuckles. "We have lots of crazy too. It'd be nice to visit a place without gods. Take me there sometime?"
+	[gods_exist] Wait... Are you saying gods exist here?
+	[portal_with] Sure! Immediately after we get this portal stuff working.
+	[meh_place] Meh, I'm not really sure it's a better place.
+||
+{gods_exist} "It's a complicated thing. You know, what do you consider a god in the first place? A really powerful intelligent entity that claims it's a god?"
+{gods_exist_1} "I guess. I don't think they would like that definition."
+{gods_exist_2} "Exactly! Does omnipotence only count? Does omnipotence even make sense or exist?"
+	[gods_exist_1] Sure, a lesser god? //showif.index_is.gods_exist
+	[gods_exist_2] I guess the concept of a god is a little vague? Like counting numbers backwards from infinity. //showif.has_stat.intelligence.8 //hideif.clicked
+	[met_god] So... You've met one?
+||
+{met_god} "I... think?"
+	[god_goon] Go on.
+	[god_drug] You didn't happen to meet this god while on heavy drugs, did you?
+||
+{god_drug} She chortles. "I know what you mean. But no.<br><br>I was traveling and just kinda ran into her, and she... well, she kinda told me to fuck off."
+{god_goon} "I was traveling and just kinda ran into her, and she... well, she kinda told me to fuck off."
+{unsure_meeting} "The situation was... psychedelic. I think she pulled me into a pocket reality... and... Let's just say geometry doesn't seem to need actual rules to exist."
+{unsure_meeting_2} "She told me she was one! To be honest, I really do think she was one. One of them, I guess."
+	[unsure_meeting] So what makes you unsure you've met her? //hideif.clicked
+	[unsure_meeting_2] Why do you think she was a god? //hideif.clicked
+	[god_fuck_off] Did you trample holy ground or something?
+	[god_unbelivable] Sounds a little unbelievable.
+||
+{god_fuck_off} She chortles. "I was trying to find some... extremely rare things. Found them and met her. She didn't want me taking them, so I didn't."
+{must_be_valuable} "Valuable, incredible, dangerous... but not worth challenging a god for."
+	[must_be_valuable] Oh. What were those things? Must have been very valuable. //showif.index_is.god_fuck_off
+	[god_no_punish] She didn't punish you?
+||>>Statue question (Let's resurrect mom): This will be a quest in the future.
+{do_you_worship} She steps to the side and looks at the statue, embarrassed a little. "I- I... It's not a statue of a god."
+	[statue_1] What is it?
+||
+{statue_1 | add_flag witch_mom_issues} "It's...  It's personal..."
+	[nah_okay] Sorry, I didn't mean to offend.
+	[statue_2] It reminds you of something painful?
+||
+{nah_okay} "It's okay... It's an odd, shiny statue. Of course it would draw attention."
+{statue_2} "A little? Not really. It's just. Um... It's a thing."
+	[memorabilia] Memorabilia?
+	[what_is_it] What is it?
+||
+{memorabilia} She chortles. "Well, partly. To be honest, it's a vessel... for a dead person. "
+{what_is_it} She taps her fingers together. "It's a vessel... for a dead person. "
+	[statue_55] Just stop if it's too personal.
+||
+{statue_55} "It's okay. I think I would actually like to talk to about it."
+	[statue_66] A relative?
+||
+{statue_66} "It's my mother.<br><br> Well, ashes of her burned head, encased into the statue."
+	[pass_recent] The set-up seems ritualistic... Was it recent?
+	[mom_rack] Oh? Going by the statue, I see you inherited your mother's rack. //showif.charisma.6
+||
+{mom_rack} She yanks her head upright and stares at you in shock.
+	[mom_rack_smile] (Grin and wiggle your eyebrows)
+	[mom_rack_sorry] Sorry, I was just trying to lighten the mood. //showif.charisma.8
+||
+{mom_rack_smile} She bursts into laughter. "Hahahah. Gods! I- I really shouldn't be laughing. Sorry, mom!" She giggles as she brushes tears from her eyes.
+{mom_rack_sorry} She bursts into laughter. "Hahahah. It's okay! Gods! I really shouldn't be laughing." She giggles as she brushes tears from her eyes.
+{provocative_statue} "It was made by one of her lovers... He might have exaggerated a little." She giggles.
+{lover_funeral} "Uhh... <br><br>Well, custom urns like this are pretty common...<br><br> Okay, maybe not like this one, but it's a common method of burial."
+	[provocative_statue] Well... the statue is a little provocative. //hideif.index_is.provocative_statue
+	[pass_recent] Did she pass recently?
+	[lover_funeral] Her lover made her a funeral urn? //showif.index_is.provocative_statue
+||
+{pass_recent} "No. It's been like this for ages. It's partly because... I'm trying to summon her."
+	[sum_mom_1] ...You are trying to talk to your dead mother?
+	[sum_mom_11] ...You are trying to raise the dead?
+	[summon_mom_okay] That's admirable. I would love to have someone resurrect me after I die. //showif.charisma.6
+||
+{sum_mom_1} "Yes... I want to talk to her... and... eventually... bring her back to life."
+{sum_mom_11} "I don't want to animate a corpse. But... um... bring her back to life."
+{summon_mom_okay} She cocks her head. "You are the first one to put it that way. I- I like you putting it that way that. Others have not been as supportive."
+{others_supportive} She twitches. "I- I mean! Imaginary conversations with imaginary people in my head... N- Not real people!"
+	[sum_mom_2] I don't know how death works around here, but that seems little ambitious.
+	[sum_mom_22] How do you... resurrect someone?
+	[others_supportive] Others? //showif.index_is.summon_mom_okay
+||
+{sum_mom_22} "Very... complicatedly?"
+	[sum_complex] I imagine.
+	[sum_complex] Very funny.
+||
+{sum_mom_2} "Oh, I know... But I'm hopeful as she... didn't die a normal death."
+{sum_complex} She chortles. "Well, what'd you expect? As far as I know, it's impossible to resurrect the dead, and the only reason I'm hopeful is because she didn't die a normal death."
+	[sum_mom_3] How did she die?
+||
+{sum_mom_3} "It's... complicated. Super, extremely complicated. But I'm doing my homework, and hopefully, I can... see her again someday."
+	[need_help_res] Do you need help... resurrecting your mom?
+	[thanks_other] You do you.
+||>>YOUR JAW? (her looks)
+{jaw_happen} "No! This is how I was born. Are you going to ask about my missing toes next?"
+{prob_feet} "Gods! I'm perfectly fine and this how I look. I popped out of my mother's vagina looking like this!"
+	[prob_feet] ...Are your toes missing?  //hideif.index_is.prob_feet
+	[jaw_1] Are you sure? It really looks like you've lost your jaw.
+	[eat_anything] How do you eat anything?
+||
+{jaw_1 | add_flag pc_knowledge_five_fingers_weird} "No no no. You stop that right now. Where are your neck leaves? Why do you have a lower jaw? Why do you have... <b>gods</b>! You have five digits?"
+{eat_anything | add_flag pc_knowledge_five_fingers_weird} She snaps a long, thin tongue from her mouth and spins it around. "With my tongue! Why- Wait... Do you...?  <b>Oh gods</b>! You have five fingers!"
+	[digits] What's wrong with my fingers?
+	[teeth_biting] Okay, your feet are fine, but don't you think teeth are for biting things? Are those teeth useful for anything?
+||
+{digits} She ogles at your hands. "Nothing... Never seen someone with five digits. It's almost... grotesque. Sorry!<br><br>I didn't mean that in a bad way!"
+	[touch_digits] Great, now I feel self-conscious about my hands.
+	[touch_digits] Do you want to touch them? //showif.charisma.6
+||
+{touch_digits} She grabs your right hand and gently runs her dark digits over yours. "They feel odd. Your flesh is so soft, and it moves so freely around your bones." She excitedly wiggles the skin on the back of your hand.
+	[hands_interesting] I'm glad they are interesting.
+	[her_hand] (Grab her hand and examine it)
+||
+{her_hand} She gasps as you grab her hand but quickly relaxes as you examine her palm. The flesh is very firm but gives in. Her skin feels like a rubber tire coated with silk. You can feel long sinuous strands tense and relax under the tough skin.
+	[white_skin] (Touch the white skin on her upper arm)
+	[give_hand] (Give her hand back)
+||
+{white_skin} You travel up from her forearm and brush her white skin with your thumb. It is very soft. She suddenly backs away from you. "Woah! Hands! Just hands!" 
+	[curiosity_got_best] Sorry, my curiosity got the best of me.
+||>>Are teeth really for biting?
+{teeth_biting} "I- I- ...W- Who says teeth are for biting?"
+	[really_now] Really now. Think about it.
+||
+{really_now} "Stop! Stop!... Stop talking about how I look.<br><br>I don't want to talk about it!"
+	[peculiar_look] You look peculiar.
+	[peculiar_look] Your anatomy just doesn't make sense.
+	[ur_beaut] Sorry. You're beautiful. It's just my curiosity. //showif.charisma.8
+	[sorry_beaut] Okay! Sorry! //showif.charisma.6
+||
+{ur_beaut} "D- Do you think so? Or are you just complementing for the sake of being nice?"
+{many_beaut} "The kind... The kind that makes men fall to their knees and confess lust-confused love."
+	[many_beaut] There's many kinds of beautiful. What kind are we talking about? //showif.charisma.8 //hideif.index_is.many_beaut
+	[def_beaut] I think I should probably fall to my knees then? (Fall to your knees) //showif.index_is.many_beaut
+	[you_beaut] You're beautiful.
+	[not_my_type] You are, but... you're not my type, if you're asking that.
+||
+{def_beaut} She blushes. "S- Stop! You can just say I'm pretty!" She yanks you back up.
+{you_beaut} "Thanks... That means a lot to me."
+{not_my_type} She chortles. "No, I didn't... mean it like that... But thank you."
+	[sensitive_look] Why are you so sensitive of your looks? You're gorgeous.
+||
+{peculiar_look | play_contsound sejan/witch_angery_lp 70 1 0 3, pic angry_witch} Suddenly, tiny things start floating around her along with small flashes of electricity. "<b>I said, I didn't want to talk about it</b>!" A strong wind picks up inside the hut, and the windows bang on their frames.
+	[sorry_meltdown] Sorry! I didn't mean to upset you!
+	[sorry_meltdown] Calm down!
+||
+{sorry_meltdown | play_sound intro/intro_5 70, stop_contsound 1 5, change_environment sejan_witch_house, pic outside_abode} You feel intense heat, and prickly lightning picks you up and tosses you at the closed front door, slamming it open. You land and roll on the ground until you come to a stop. You hear ominous thunderclaps come from the hut.
+{im_sorry} The door of the hut slams closed with a thunderous bang. You hear the muffled crackling continue inside the hut.
+	[im_sorry] I'M SORRY! //showif.index_is.sorry_meltdown
+	[ | change_default_diag_file diag_known, end_encounter] (Leave)
+||>>Living alone? Father?
+{mom_father} "What? Your random questions are becoming a little too personal for me."
+	[ur_peculiar] I didn't mean to be to nosy. You're just a... peculiar character.
+	[ur_peculiar] You're right, sorry.
+||
+{ur_peculiar} She sighs. "I'm a witch. Why do you think I live alone in the forest?<br><br>I do meet with some of the villagers from time to time, so I'm not completely alone."
+	[ur_father] But... your father is still alive?
+||
+{ur_father} "My father... I will never talk about my father, and if I ever start talking about him, stop me."
+	[dad_drama] Violent and abusive?
+	[dad_drama] Doesn't approve your line of work?
+	[dad_drama] Family drama?
+||
+{dad_drama} "I'm not going to talk about him."
+	[why_no_talk] Why won't you talk about him?
+||
+
+
+
+>>OTHERS FROM THE PORTAL
+{others_from_portal | add_flag witch_others_portal} "Of course! I think it's the least I owe you. Let me think.<br><br>There was Onoree, Kushuhuhu, a large black beast, and a large metallic cylinder that destroyed my house."
+{mc_3} "I know! It's a mystery, I guess. I just hope it doesn't come back and break my walls again."
+{onoree_eaten} "No... She was too capable and smart to end up like that."
+{onoree_happen} "About two hundred days ago. I think she might have found a new life to keep herself busy."
+{where_things} "Oh? Only you came through the portal. That's interesting..."
+{clean_after} "Yeah... Should probably use something less messy."
+{trust_me} "It's not really a matter of trust. You can reveal things without intending to. I'm just being cautious."
+{of_course} "Sorry."
+{kush_knife} "Uh... Sorry, I already gave it to Onoree."
+{silent_others}
+	[onoree] Tell me about Onoree. //hideif.clicked
+	[kushuhuhu] Tell me about Kushuhuhu. //hideif.clicked
+	[lbb] Tell me about the large black beast. //hideif.clicked
+	[metal_cylinder] Tell me about the metal cylinder. //hideif.clicked
+	[humans_portal] Wait, didn't you mention humans had come through? You even had an entry in the orientation manual. //hideif.clicked
+	[start] (Back)
+||	>>Onoree
+{onoree | add_flag pc_knowledge_onoree} "She called herself Onoree. Lots of spikes, three eyes. I'm not sure if she was a biped or quadruped. She seemed to fluctuate between those. She was the one before you."
+{onoree_11} "Let's see, she had a large collar around her neck and some kind of an apron running down from it, covering her front. She seemed comfortable in it, I don't imagine she thought herself being underdressed.<br><br>She kept switching her posture between four and two legs. She had a blueish complexion."
+	[onoree_1] I imagine she was very surprised? How'd she react?
+	[onoree_11] What did she look like exactly? //hideif.index_is.onoree_11
+||
+{onoree_1} "She was positively panicked. I managed to calm her, but she fainted at least three times before that happened. She was very angry afterwards."
+{onoree_kidnap} "I- I... No, you're right. I feel bad about her, about you."
+	[onoree_kidnap] I guess that's reasonable from her. You don't get kidnapped to another reality every day. //showif.index_is.onoree_1
+	[onoree_2] So, how'd she take it?
+||
+{onoree_2} "She got very sad. Apparently, I had nabbed her in the middle of a party. The portal apparently tore the place up. She was worried if her relatives were okay."
+	[oh_onoree] Oh...
+	[on_you] You do realize that's on you?
+||
+{oh_onoree} "She calmed down after I explained it was just a portal, so her family was probably okay. She was very courteous and a good listener. I gave her some advice and money, and she left."
+{on_you} "I know... I was completely unaware the portal opening on the other end could manifest so violently!<br><br>Onoree was very courteous and a good listener. I gave her some advice and money, and she left."
+	[violent_manifest] Wait... You knew portals could manifest violently before you yanked me here!
+	[where_onoree] You don't know where she is?
+||
+{where_onoree} "No idea. She said she might visit, but I haven't heard of her."
+	[onoree_eaten] She could have been eaten by a wild animal the moment she left your hut, you know.
+	[onoree_happen] When did this happen?
+||
+{violent_manifest} "I- I thought I could fix it! Was it dangerous on your world?"
+	[where_things] It was a ball of blue light sucking everything in it. Actually... where are all the other things it ate?
+||>>Kushuhuhu
+{kushuhuhu} "Kushuhuhu... Now that was an odd encounter. A biped, large eyes. No idea about the gender. He was wrapped in white strips of cloth, and his face was painted white. He was odd."
+	[kush_1] What do you mean?
+||
+{kush_1} "He was very calm. He sat on the floor in silence until I asked his name. He bowed to me. Pulled out a very expensive-looking knife, cut himself across his chest, and gave the knife to me. He then marched out of the door and disappeared into the forest."
+{kush_suicide} "Noo... I don't think so. It was a very shallow cut."
+{stop_kush} "It happened so fast, and he seemed so sure about his actions. I- I probably should have stopped him."
+	[stop_kush] You didn't try to stop him? //hideif.clicked
+	[kush_suicide] Did he die from the cut? //hideif.clicked
+	[kush_2] You are right, that is pretty odd.
+	[kush_22] You make it sound like he expected to get pulled into the portal. //showif.has_stat.intelligence.6
+||
+{kush_22} "No... How would he know? I don't announce my experiments interdimensionally!"
+	[kush_3] It really sounds like he had a specific ritual prepared for you. Maybe he thought he had died? //showif.has_stat.intelligence.6
+	[kush_33] Maybe he could see into the future?
+||
+{kush_33} "That's a little far-fetched. I think he just thought I was a god or something."
+{kush_2} "The way he acted was so ritualistic and rehearsed. I think he might have thought I was a god or something. "
+{kush_3} "Hah! That's what I thought! I was probably a big disappointment for him."
+	[kush_name] How do you know his name was Kushuhuhu?
+||
+{kush_name} "I don't. I just call him that because that's what was carved on the knife. I figured it could be his name."
+	[kush_knife] Where's the knife? Can I see it?
+||
+
+||>>Large black beast
+{lbb} "Well... It got dumped out of the portal, looked around, and lunged at me, aaaaand... I blew it apart with a spell."
+{lbb_11} She wryly turns her head a little. "Well, wouldn't you? This kind of research is dangerous. Literally anything can come through the portal."
+	[lbb_1] I- I expected a little more. You don't get many animals through the portal?
+	[lbb_11] Wait... So when I got here, you had a spell ready to blow me into giblets? //showif.index_is.lbb
+||
+{lbb_1} She scratches her cheek. "Well, I'm pretty sure it wasn't a person. It happened very fast. I don't usually get large animals."
+{lbb_2} "Black, large claws, and teeth. The whole thing happened so fast I can't really describe it accurately. It looked dangerous and angry."
+	[lbb_2] What did it look like? //showif.index_is.lbb_1
+	[lbb_22] What happened to its remains?
+	[silent_others] Eh? Let's talk about the others.
+||
+{lbb_22} She shakes her head as if she smelled something bad. "Well... I gathered the pieces and threw them into a fire. There was a horrible smell for several days afterwards. I did find a rotten eyeball behind my drawer later."
+	[clean_after] Oh, right. You need to clean afterwards... 
+||	>>Metal cylinder
+{metal_cylinder} "It popped out of the portal, floated around, beeped, and smashed through my back wall." She points to a spot in the wall where lighter stones have replaced darker ones.
+	[mc_1] Hmm, that's not very interesting. What did it look like?
+||
+{mc_1} "It was a floating cylinder, arm length. The surface looked like polished metal. There were some darked lines etched on the caps. Very weird but very boring at the same time."
+	[mc_2] It didn't do anything?
+||
+{mc_2} "It beeped once and went throught the wall. I didn't see where it went afterwards."
+	[mc_3] Huh.
+||	>>Humans
+{humans_portal} "Humans have come through... It's just happened elsewhere. A... um... 'colleague' of mine lent me a copy of his species orienting manual. I imagine he would have had to deal with humans before."
+	[hums_1] Shouldn't you contact him for help in the portal research?
+||
+{hums_1} "I- I- I wouldn't want to do that... We're not... We don't exactly know each other? And... I didn't borrow his work, I 'borrowed' it."
+	[stole_res] Ooh... So you stole his research?
+||
+{stole_res} "Y- Yes? It's just words on paper anyway. Copying it hurts nobody! And! I only did it to help people who might be inconvenienced by the portal research!"
+{inconvenienced} "I know..." She sighs.
+	[inconvenienced] By 'inconvenienced', you mean kidnapped? //showif.index_is.stole_res
+	[who_colleque] So, who is this 'colleague', then?
+||
+{who_colleque} "Um... I'm going to keep that from you since... you know, I've stolen it. Besides, he wouldn't help with the portal research anyway! "
+{where_portals} "Uh... no. You'd probably run into my 'colleague' if you visited that place. So, I probably wouldn't want to."
+	[where_portals] Can you at least tell me where the portal research happened? //showif.index_is.who_colleque
+	[trust_me] You can trust me!
+	[of_course] Of course.
+||
+
+	
+||>>PC shows the splinters/bowl to the Witch
+{show_bowl} You show the bowl to the Witch, she cocks her head and looks at it inquisitively. "Hmm? What's so special about that bowl? It seems very mundane." She reaches to grab the bowl.
+{show_frags} You show the bowl fragments to the Witch, she cocks her head and looks at them inquisitively. "Hmm? What are these? There's something red in them?" She reaches to grab the fragments.
+	[let_take_bowl] (Let her take the bowl) //showif.index_is.show_bowl
+	[let_take_frags] (Let her take the fragments) //showif.index_is.show_frags
+	[wait_stop_touch] Wait! (Stop her)
+||
+{let_take_bowl} She picks up the bowl from you and turns it in her hands. "A wooden bowl? What's so special about this?"
+{let_take_frags} She picks up the splinters from you and turns them in her hands. "Wooden splinters? What's so special about these?"
+	[it_cursery_1] It's cursed. //showif.index_is.let_take_bowl
+	[it_cursery_2] It used to be a cursed bowl. //showif.index_is.let_take_frags
+||
+{wait_stop_touch} You pull away from the Witch, she furrows her brow. "What?"
+	[it_cursery] It's cursed.
+||
+{it_cursery} She eyes the bowl sceptically. "No, I don't think it is. There's nothing inside it."
+	[how_know_curse] How would you know?
+||
+{how_know_curse} "I know. I'm a witch."
+	[bowl_possed] When I touched it, something possessed me. //hideif.has_flag.shyni_cavequest_pc_berserk
+	[bowl_possed] When a friend touched it, something possessed her. //showif.has_flag.shyni_cavequest_berserk
+||
+{bowl_possed} "I don't think you're lying... but there's nothing inside it. Let me prove it, hand it over." She opens her hand.
+{poss_violent} "I'm a professional, give it here."
+	[giv_frags] (Give the fragments to her) //showif.has_item.mysterious_bowl_splinters
+	[giv_bowl] (Give the bowl to her) //showif.has_item.mysterious_bowl
+	[poss_violent] I don't think that's a good idea. The possession was violent. //showif.index_is.bowl_possed
+	[yank_frags] No. //showif.has_item.mysterious_bowl_splinters
+	[yank_bowl] No. //showif.has_item.mysterious_bowl
+||>>Witch takes the bowl
+{it_cursery_1} She eyes the bowl sceptically. "No, I don't think it is. There's nothing inside it." She turns it in her hands. 
+{it_cursery_2} She eyes the splinters sceptically. "No, I don't think it was. There's nothing here." She turns the pieces in her hands. 
+{giv_frags} You hand the fragments to her. "Thank you very much." She turns the pieces in her hands. 
+{giv_bowl} You hand the bowl to her. "Thank you very much." She turns it in her hands. 
+{yank_bowl} The bowl is suddenly yanked from your hands, and it lands in hers. "Thank you very much." She turns it in her hands. 
+{yank_frags} The fragments are suddenly yanked from your hands, and they land in hers. "Thank you very much." She turns the pieces in her hands. 
+{feeling_ok} "I don't feel anything. Like I said, there's nothing in it."
+	[feeling_ok] Are you feeling okay? No murderous thoughts? //hideif.clicked
+	[tell_bowl] What can you tell?  //showif.has_item.mysterious_bowl
+	[tell_fragments] What can you tell? //showif.has_item.mysterious_bowl_splinters
+||
+{tell_bowl} She sniffs the wood and furrows her brow. She spreads her hands wide, and the bowl cracks into pieces. The inside of the wood is wet with a red liquid. "I can tell you that the wood it's created from is a special kind of wood they use to make barrels to hold liquids. I think it's called 'ballom'. It absorbs liquids it comes into contact with and becomes stronger when it's fully saturated. In this case, it seems the liquid is blood." She pokes the side of one of the fragments, revealing more of the red.
+{tell_fragments} She sniffs the wood. "I can tell you that the wood it's created from is a special kind of wood they use to make barrels to hold liquids. I think it's called 'ballom'. It absorbs liquid it comes into contact with and becomes stronger when it's fully saturated. In this case, it seems the liquid is blood." She pokes the side of one of the fragments, revealing more of the red.
+{why_break_bowl} She shrugs. "Makes it easier to look inside."
+{know_barrels} "I've bought and owned a bunch of barrels. Barrel makers won't shut up about the features."
+	[why_break_bowl] Did you have to break it? //showif.index_is.tell_bowl
+	[know_barrels] How do you know so much about barrels? //hideif.clicked
+	[bowl_mat] Do they make bowls out of that material?
+||
+{bowl_mat | add_flag witch_bowl_advice} "They might, but this one is made from a barrel." She turns one of the larger pieces in her hand and reveals a faint half of a scorched barrel stamp with text.
+	[made_bowl_barrel] ...Someone made the bowl out of a barrel?
+||
+{made_bowl_barrel | give_item examined_bowl_fragments, remove_item mysterious_bowl_splinters, remove_item mysterious_bowl} "Yes. Probably from one that held viscera in it at some point. Possibly a barrel from a butchery or such." She hands the fragments back to you.
+	[feel_anythin] You didn't feel anything while holding it?
+||
+{feel_anythin} "There's nothing in it. The space where something like that could exist is empty."
+	[how_u_know] How do you know?
+	[what_space_talking] What is this 'space' you're talking about?
+||

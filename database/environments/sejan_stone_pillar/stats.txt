@@ -1,0 +1,16 @@
+interior:	no
+
+discoverable:		yes
+dicovery_message:	You have found a stone pillar.
+default_message:	Do you want to visit the stone pillar?
+
+
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_stone_pillar sejan_stone_pillar} Encounter
+||

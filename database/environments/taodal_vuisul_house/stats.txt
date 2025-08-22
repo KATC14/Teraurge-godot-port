@@ -1,0 +1,8 @@
+interior:	yes
+ambient:	0.5
+
+<SOUNDS
+generic_interior/roomtone0.100
+generic_exterior/coast.5
+sejan/forest_birds.5
+SOUNDS>

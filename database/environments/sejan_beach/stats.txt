@@ -1,0 +1,41 @@
+interior:	no
+
+<SOUNDS
+generic_exterior/coast.60
+SOUNDS>
+
+||>>ENCOUNTERS
+{encounters | curated_list random}
+	[ | start_encounter sejan_beach caenemung] Caenemung //showif.has_flag.caenemung_at_sejan_beach
+	[ | start_encounter sejan_beach caenemung] Caenemung //showif.has_flag.caenemung_at_sejan_beach
+	[ | start_encounter sejan_beach niird_f] Niird female encounter.
+	[ | start_encounter sejan_beach niird_m] Niird male encounter.
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+||

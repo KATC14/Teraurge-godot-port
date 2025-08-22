@@ -1,0 +1,154 @@
+
+>>Niird is a pale bipedal worm like creature that roams beaches at Sejan peninsula.
+>>This is a male niird.
+||
+{start | save_index encountered, add_flag niird_encountered} You come across a strange pale creature digging in the sand on the beach.
+{encountered | check_flag pc_knowledge_niird encountered knowledgeable} You meet the strange pale creature digging in the sand on the beach.
+{knowledgeable} You meet a niird digging in the sand on the beach.
+{approach_0} You carefully take a few steps towards the creature. It yanks its head out of the sand and turns it towards you. It quickly backs away and faces you.
+	[ | check_stat agility 6 approach_0-approach_1] (Carefully approach the creature)
+	[attack] (Attack)
+	[ | end_encounter] (Leave)
+||>>Approach
+{approach_1} Hunched over, you carefully plant your steps into the beach sand and slowly approach the unsuspecting thing. You continue until you are only few two steps away from it.
+{observe} You carefully sit on the sand and observe the creature. It digs in the the sand to find small creatures for food. It seems completely oblivious to your presence.
+	[observe] (Observe it silently) //hideif.index_is.observe
+	[imitate_1] (Imitate it) //showif.index_is.observe //showif.has_flag.pc_knowledge_niird
+	[ | check_stat strength 8 lunge_0-lunge_1] (Lunge at the creature and wrangle it)
+	[ | end_encounter] (Leave)
+||>>attack
+{asshold_0 | remove_pic, character_leave} You try to hold the niird and force it down, but it wrests itself away from you and sprints away.
+{attack | character_leave} You rush to strike the creature, but it panics and bolts away.
+{lunge_0 | character_leave} You jump at the unsuspecting creature. It raises its head in shock as you close your arms around its neck. The creature thrashes against your hold. Your strength fails and the creature bolts from your hold.
+	[ | check_stat endurance 8 catch_0-catch_1] (Run after the creature)
+	[letit_run] (Let it run away)
+||
+{catch_1 | change_sprite character} You sprint after the creature. After a chase, it starts to pant and slows down. You trap it between you and the water. It hesitantly dances between the directions but eventually stops and growls threateningly.
+{lunge_1} You jump at the unsuspecting creature. It raises its head in shock as you close your arms around its neck. The creature thrashes against your hold but cannot break away. You wrangle with it and trap it between you and the water. It growls threateningly at you.
+	[ | start_music sejan/fight_weak 70, start_combat lose win] (Attack)
+	[letit_run] (Let it go)
+||
+{catch_0} You sprint after the creature, but the chase tires you out before you corner it. The creature runs away. You are left alone on the beach, sweaty and panting.
+{letit_run | character_leave} The creature runs away. You are left alone on the beach.
+	[ | end_encounter] (Leave)
+||
+||>>Lose combat
+{lose | start_music sejan/fight_end 70 0 0 no_loop, character_leave} The creature strikes you down on the sand. It immediately flees and kicks up sand as it runs. You weakly stand back up and spit out sand.
+	[ | end_encounter] (Leave)
+||>>Win combat
+{win | start_music sejan/fight_end 70 0 0 no_loop} The exhausted creature falls to the ground, unable to fight back.
+	[examine] (Examine the creature)
+	[ | end_encounter] (Leave)
+||
+{examine} The creature lies on the sand, its rubbery, worm-like body expanding and contracting as it breathes. It's exhausted, its bony legs twitching, the ring of prehensile mouth parts that make up its face flexing rhythmically. You approach the creature, It lazily kicks in your direction but pulls its leg away as you get closer. You crouch next to it and run your hand along the bumpy torso. It's very soft. It almost seems like there's no bones inside it. You can feel more conventional skeletal structure in its flanks and legs.
+	[determine_sex] (Determine its sex) //showif.feral_filter_off
+	[ | end_encounter] (Leave)
+
+||
+{determine_sex | pic tongue_dick} You slide your foot down between its legs, wondering what kind of genitals it has. It squirms impotently, but it remains too exhausted to escape, submitting to you completely in the hopes that its display of surrender will appease you.<br><br>As your foot brushes between its tightly retracted legs, you notice a slit. You nudge it, hearing the creature release another one of its strange huffing sounds, squirming as you part the fleshy lips. Almost as soon as you expose the blue flesh within to air, what looks like a thick, transparent tongue flops out of it and hangs limply.
+	[touch_penis] (Touch the protrusion) //showif.index_is.determine_sex //showif.player_sex.female
+	[sex] (Have sex with the creature) //showif.index_is.determine_sex //showif.player_sex.male
+	[ | end_encounter] (Leave)
+||
+
+
+||>>Sex scene (Without knowledge)
+{sex | start_music sejan/feral 70, pic anal_pen} You quickly undress and then turn the creature on its belly. You push the creature against the ground and force its legs apart. A small, pink ring and a slimy cock greet your erection. You feel the powerful legs shift against your hips as the creature moves on the ground under your grip.
+	[anal] (Penetrate it anally)
+	[sex_stop_2] (Stop)
+||>>Anal (m/m)
+{asshold_1 | pic anal_forced} You grip harder on the niird and force it down on the ground. You keep it down until it stops thrashing and just huffs tiredly.<br><br>You push your cock against its ass again and thrust. The creature thrashes against the sand and whines as your shaft sinks deeper. The ring widens but keeps contracting erratically along your length. The creature whines hoarsely and pushes its head against the sand. The creature huffs and moves its hips to escape you, but to no avail. You push into the tight, warm orifice, the edge of the ring squeezes the base of your cock as you hilt into the immensely warm tunnel.
+{anal | pic anal_forced} You push the tip of your cock against the pink ring and push. The creature thrashes against the sand and whines as your shaft sinks deeper. The ring widens but keeps contracting erratically along your length. The creature whines hoarsely and pushes its head against the sand. The creature huffs and moves its hips to escape you, but to no avail. You push into the tight, warm orifice, the edge of the ring squeezes the base of your cock as you hilt into the immensely warm tunnel.
+	[fuck_ass_1] (Fuck its ass)
+||
+{fuck_ass_1 | pic anal_fug} You push a little deeper and then pull. The creature tries to close its legs but only pushes on your sides. It tries to contort itself away from you but resigns to its place after a few thrusts. You start a comfortable rhythm fucking the hot hole. The creature snorts and whines with every plunge. You can feel its larger muscles around the hole squeeze on your shaft as it tries to move away. You grip its hips and start pounding. The helpless runner under your vigorous assault sends sand flying all over the beach. The creature huffs and kicks as you drive yourself into its ass, the firm buttocks cushioning your forceful thrusts. You feel the familiar tenseness close in on you as you ravage the creature.
+	[fuck_ass_2] (Finish)
+||
+{fuck_ass_2 | start_music sejan/feral_end 70 0 0 no_loop, pic anal_nut} You push the creature against the sand and push as deep as you can. The ring touching the base pops your release. You spurt your load into the warm hole. You gasp and snarl at the sensation, your hands shake and your vision dims. You feel the ring contract as you unload yourself into the creature one throb at a time. You keep yourself in for a few seconds and then stand up. Your cock pops out with a suckle. The creature pants on the ground, not trying to escape anymore.
+	[dress_up_fug] (Get dressed)
+||
+
+
+||>>Grooming (Imitating the niird)
+{imitate_1 | auto_continue imitate_2} You start imitating the niird, roughly copying the huffing sounds and kicking the sand. The niird pulls its head out of the ground and turns to face you, it cocks its head and steps closer to you.
+||
+{imitate_2 | pic groom} You kick the sand once more and huff. The niird relaxes and just walks up to you. It rubs its head against your shoulder and softly pinches your skin with its face grabbers. After a while, it notices your hair and rubs your head with its feelers. The niird coves your entire body with a gentle massage with its mouth while it rubs itself against you and scratches your legs with its own. It seems to be a male niird.
+{pet_groom} You brush and pat the niird as it excitedly rubs itself against you.
+	[pet_groom] (Pet the niird) //showif.index_is.imitate_2 
+	[groom_undress] (Undress) //showif.feral_filter_off
+	[sex_stop_1] (Stop)
+||	
+{groom_undress} You undress as the niird rubs itself against you, it even grabs on your clothes and pulls on them as you take them off. After you remove all your clothing, the niird nibbles on your skin and runs its feelers all over you.
+	[fem_groom_1] (Present your rump for it)  //showif.player_sex.female //showif.index_is.groom_undress
+	[groom_mount] (Mount the niird) //showif.player_sex.male //showif.index_is.groom_undress
+	[sex_stop_2] (Stop)
+||>>malePC grooming
+{groom_mount | start_music sejan/feral 70, pic behind} You pet the niird as you deftly step behind it. You grab its hips and place your cock between its buttocks. The niird turns its head to look behind it and huffs in confusion.
+	[groom_assfug] (Penetrate it anally)
+||>>anal (m/m)
+{groom_assfug | pic anal_pen} You push the tip of your cock against the pink ring and push. The creature yanks against your grip and huffs anxiously. It's trying to get away from you.
+	[ | check_stat strength 8 asshold_0-asshold_1] (Hold it down)
+	[fugass_letgo] (Let it go)
+||
+{fugass_letgo | stop_music 3, character_leave, remove_pic} You release the niird and it sprints away.
+	[ | end_encounter] (Leave)
+||
+||>>femPC grooming
+{fem_groom_1 | start_music sejan/feral 70, pic mount_pen} You pet the niird and position yourself under its head in front of it. You bend over and push your rear against the niird's crotch. The niird tries to step away for one confused moment, but once your ass connects with its thighs, it immediately eagerly tries to mount you. You feel its wet erection slither and poke against your nethers as it tries to climb on top of your ass.
+	[fem_groom_2] (Guide its erection in you)
+||
+{fem_groom_2 | pic mount_fug, auto_continue fem_groom_3} You reach between your legs and gently grip the growing erection. You give it a slow pump and line the flat and tapered tip against your labia. The moment the niird feels your wetness, it bucks hard and sinks into you. You gasp and try to keep yourself upright. The niird begins to hump you with an overly excited pace, trying to thrust its cock as deep as it could. You almost fall down as it bucks hard against you. You gasp at the sensation of the beast's cock hammering into you without any mercy or hesitation. You lean against the humping creature as to not fall over and the dick only slides deeper into you. You feel the creature's member slowly engorge to fill you completely until the act of thrusting becomes arduous for the niird as the head of the cock becomes a bulbous knot inside you.
+||
+{fem_groom_3} Your eyes widen as you feel it throb inside you, a torrent of hot liquid flooding into your loins. No, not liquid. It feels more like warm glue, so thick and creamy that it feels as if someone is upending a bottle of liquid soap inside you. The creature's viscous ejaculate quickly fills you to capacity, a dull ache permeating your lower body as its warmth spreads through you. It clings to every fold and wrinkle, filling every detail of your insides. Its slippery organ is still lodged deep in your most intimate depths, the thick bulge digging into your g-spot and throbbing as blue blood courses through its veins.<br><br>You let out a pitiful wail as the intense stimulation finally overcomes you, the orgasm almost knocks you over, only the knotted cock in you keeping you upright. It doesn't relent, your trembling legs try to desperately keep you upright as waves of your climax crash over you, leaving you dazed and drooling, every contraction of your silken tunnel only driving that cruel bulge deeper into you.
+	[fem_groom_4] (Catch your breath)
+||
+{fem_groom_4 | start_music sejan/feral_end 70 0 0 no_loop, pic mount_nut} After torturous moment of ecstasy, the throbbing of its dexterous member ceases, and the knot begins to recede, the creature's organ provoking one last wracking rush of ecstasy as it pulls out of you. As the softening knot pops out of you, your legs give out and you fall on the sand face first. You don't even register the sand hitting your face, only a soft buzz of the climax. You feel a torrent of gluey cum leak out of you, the contractions of your muscles pushing it out of you as aftershocks tease your senses. The clumpy, sticky mass of pearly fluid sticks to your thighs, a satisfying ache saturating your trembling body as you lie beside the creature in the sand.<br><br>You take deep breaths and wait for your limbs to stop feeling numb. The sand is warm, and the niird grooms your back affectionately as you lie on the sand.
+	[groom_clean] (Clean up and get dressed)
+||
+
+
+||>>Riding (Female PC sex scene)
+{touch_penis | start_music sejan/feral 70} You reach out a tentative finger to prod at the strange protrusion. It twitches, clearly prehensile, and you watch with wide eyes as the near-transparent tube of flesh begins to fill with azure fluid. You can see it following channels, like blue ink, the strange organ engorging and beginning to swell before your eyes. It rises, growing steadily, more and more of its length extending from the segmented body of the creature. This is no tongue, it's a penis, now as long and as thick as your forearm, curling and twisting as if it had a life of its own, reaching out to you like a snake dancing to the flute of a charmer. Delicate frills emerge along its length, two of them running symmetrically from the base to the tip, giving it the appearance of a deep sea slug or some kind of a fish. The frills pulse rhythmically, as if trying to swim through the air. The beautiful shades of deep blue and the hypnotic movements mesmerise you for a moment.<br><br>The flexible appendage grips on your leg. The massive organ is almost half the length of the creature's body, coating your leg in slimy mucus as it curls around your calf with its surprising strength. 
+	[touch_tip] (Touch the tip)
+	[sex_stop_1] (Stop)
+||
+{touch_tip} You reach down and run your finger across the tip, feeling the creature's smooth flesh recede a little, like a slug that has been poked with stick. After a moment of hesitation, the winding organ continues its slow climb, attempting to curl around your hand as it did your leg. It's cool and slimy, coating your skin in a layer of mucus, almost an animal in its own right. Despite being so big and impressive, it actually feels rather delicate; it seems very sensitive to your touch.
+	[undress_for_beast] (Undress)
+	[sex_stop_1] (Stop)
+||
+{undress_for_beast} You struggle to free yourself from its increasingly tight grip on your leg, succeeding in shaking it off after wrestling with it for a moment. The creature's member recoils but stays erect, waving back and forth in the air like a cobra that's poised strike. You can feel the goo that it left on your trouser soaking through the fabric–it has the consistency of syrup, sticky and thick. It really does look and feel like some kind of giant, undersea mollusc. What would it feel like to have that winding, muscular thing probing inside you? It's large, but also flexible and supple, it looks as if it would fit if you really tried...<br><br>A strange excitement overtaking you, you fumble with your clothes, quickly shedding it and the gear. You leave your belongings in a heap beside the creature. The cool breeze blows on your bare skin as it rolls in over the ocean. The creature is still lying there, the only movement coming from it the heaving of its chest and the flexing of its azure organ.<br><br>You stand over the prone creature, conflicting emotions running through your mind.
+{really_doing} The creatures huffs excitedly, and the long azure organ quests against your skin. Your lust and curiosity beat out shame and caution.<br><br>You take what looks like the head of its smooth shaft in your hand, feeling it flex and wriggle in your palm, the rhythmic motions of the decorative frills tickling your skin. The creature doesn't seem to know what to make of you. It had taken you for a predator at first, but now you're stroking its cock. It stays still, perhaps fearing that you're going to eat it, but as you hold its sex organ in your hand, the fleshy tube begins to coil around your wrist. It's always in motion, never staying still, as if it's on a never-ending quest to find a female to breed with.
+	[really_doing] (Look at the creature) //showif.index_is.undress_for_beast
+	[copulate_with] (Have sex with the creature)
+	[sex_stop_2] (Stop)
+||
+{copulate_with | pic tentacle_dicking} You straddle the creature lying on the warm sand. The creature breathes more heavily and huffs rhythmically as you guide the flexible appendage towards your loins. Still not entirely sure if this is a good idea, you press it up against your vulva, your doubts melting away as the slick organ presses between your labia like a questing tongue. It glides across your rapidly moistening sex, cooler than a tongue but slippery and smooth. It deforms and spreads, widening itself to cover more ground, and you wonder if it can taste you or sense you in some way. Your legs begin to tremble and your knees grow weak as it presses deeper, encompassing your vulva and filling every fold with slimy flesh. The ceaseless movement is maddening, sparks dancing in your brain as it seems to graze every inch of your loins in its search. You're slick with its juices now, strands of its clear mucus dangling from between your thighs.
+	[wait_penetrate] (Wait for it to find its entrance)
+||
+{wait_penetrate | pic penetrate, auto_continue pohack_breed} A gasp escapes your lips as the alien organ locates your entrance, taking you by surprise as its slow, exploitative movements abruptly become deliberate and powerful. Suddenly what feels like seven or eight inches of hard muscle coated in slimy latex pushes inside you, burying itself as deep as you can take it before you can so much as blink. Your eyes roll back as it fills you, squirming and rippling as it glances your walls. It thrashes and slithers as if it had a will of its own, seeming to expand inside you as it stretches you open. It hits every nerve, every weak spot that you have by virtue of its malleable shape and size, conforming to the sensitive walls of your passage like someone is pumping you full of expanding foam. There's a pang of fear and uncertainty as you consider that it might not stop, but your worry is soon replaced with ecstasy as it begins to thrust. 
+
+	
+|| >>Uh, pohack? 'Tis but a worm. why does it say  pohack in the niird file
+{pohack_breed | auto_continue knotted} The creature's cock is as large as you can tolerate, it has shifted its shape and size to get as much of itself inside you as physically possible, and now those delicate frills rake against the walls of your tight passage as it pushes in and out of you. It's fucking you like a machine, thick ropes of its mucus falling from between your trembling legs and mingling with your excitement. It's like a piston, tireless and vigorous, its previously soft and pliable flesh now firm and rigid when compressed so tightly. 
+
+||
+{knotted | pic knotted} The organ abruptly stops its maddening thrusting, and your fleeting moment of disappointment is quickly ended by a new and alarming sensation. The base of the thing's cock is changing again, swelling in order to lodge itself inside you like a canine knot. You grip its slippery flesh with your hands, trying to pull it out, but it's too slick and flexible for you to be able to get a decent grip. The length of the mollusc-like appendage that's now trapped in your deepest reaches begins to spasm and pulse, a fresh wave of intense pleasure bringing you to your knees. It feels like a tongue is coating you in slime from the inside, deeper than anyone should ever be able to reach, like it's licking the entrance to your womb. You plant your hands in the sand beside the creature, its flexible member so long that it stays buried in your passage even as you change positions, more like a tentacle than anything resembling a penis. It must be two feet long now, what feels like eight or nine inches of that length plugging you up, the swelling at the base splaying you open and forcing your clitoris out from beneath its protective hood.
+	[get_off] (Get yourself off)
+||
+{get_off | auto_continue gather_urself} You can't stand it any longer, reaching a hand between your quivering thighs and rubbing yourself, your fingers made slippery by its honey-like lubricant.<br><br>Your eyes widen as you feel it throb inside you, a torrent of hot liquid flooding into your loins. No, not liquid. It feels more like warm glue, so thick and creamy that it feels as if someone is upending a bottle of liquid soap inside you. The creature's viscous ejaculate quickly fills you to capacity, a dull ache permeating your lower body as its warmth spreads through you. It clings to every fold and wrinkle, filling every detail of your insides as if it's using you for injection molding. Its slippery organ is still lodged deep in your most intimate depths, the thick bulge digging into your g-spot and throbbing as blue blood courses through its veins.<br><br>You let out a pitiful wail as you maul your clitoris, the intense stimulation finally overcoming you, a shuddering orgasm sending you toppling to the sand. Even as you lie on your side and convulse, it doesn't relent, staying buried inside you even as your trembling legs close around it desperately. Again and again the waves of your climax crash over you, leaving you dazed and drooling, every contraction of your silken tunnel only driving that cruel bulge deeper into your most sensitive spot.
+
+||
+{gather_urself | start_music sejan/feral_end 70 0 0 no_loop, pic gushing_cum} Finally, the throbbing of its dexterous member ceases, and the knot begins to recede, the creature's organ provoking one last wracking rush of ecstasy as it pulls out of you. It feels like someone is dragging a knotted rope out of your body, and you gasp as it withdraws, the deep blue erection chased by a torrent of gluey cum. There's so much of it, shooting out of you in a syrupy stream as your insides return to their usual dimensions, the contractions of your muscles pushing it out of you as aftershocks tease your senses. The clumpy, sticky mass of pearly fluid sticks to your thighs, a satisfying ache saturating your trembling body as you lie beside the creature in the sand.
+	[clean_up_mess] (Clean up and get dressed)
+||
+
+||>>Sex stop
+{sex_stop_1 | stop_music 3, remove_pic} You back away. The confused animal gets back on its feet and hesitantly follows you with its head.
+{sex_stop_2 | stop_music 5, remove_pic} You back away and get dressed. The confused animal gets back on its feet and hesitantly follows you with its head.
+	[ | end_encounter] (Leave)
+||>>Sex end
+{clean_up_mess | remove_pic} When you've finally recovered enough strength to move, you roll over and take a look at the prone creature, still awash in the warm blanket of your afterglow. It looks just as exhausted as you are. You struggle to your feet on unsteady legs, still feeling that fullness and pressure, as if its alien organ were still stuck inside you. You stumble down the beach towards the ocean, intent on washing yourself clean of its gelatinous ejaculate before returning to your usual business. 
+{dress_up_fug | remove_pic} You lazily push yourself off your strange partner and stand up. You hobble over to your clothes and get dressed. The creature gets up and carefully watches your doings.
+{groom_clean | remove_pic} You lazily push yourself off your strange partner and stand up. You hobble over to your clothes and get dressed. The niird takes a few steps and then makes a high-pitched trill at you.
+	[ | add_flag pc_sexed_niird, end_encounter] (Leave)
+||

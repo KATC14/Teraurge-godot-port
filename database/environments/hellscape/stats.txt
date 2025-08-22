@@ -1,0 +1,2 @@
+interior:	yes
+ambient:	0.5

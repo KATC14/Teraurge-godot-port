@@ -1,0 +1,40 @@
+
+||>>Start hub
+{start | save_index encountered, add_flag template_feral_encountered} You encounter an odd looking beast. It's looks very basic.
+{encountered | check_flag pc_knowledge_template_feral encountered knowledgeable} You encounter on of those unfinished, bare bones looking ferals.
+{knowledgeable} You recognize the animal as the template feral.
+	[ | start_combat feral_victory player_victory] (Attack)
+	[ | end_encounter] (Leave)
+||
+
+
+||>>Feral victory (Passive/defensive creature. Doesn't try to kill the player, just forces to leave.)
+{feral_victory} You fall to the ground defeated. The creature makes scary noises to drive you away.
+	[ | end_encounter] (Run away)
+||
+	
+||>>Player victory
+{player_victory} The creature falls defeated to the ground.
+	[examine_creature] (Examine it)
+	[ | end_encounter] (Leave)
+||
+{examine_creature} It's a very creaturely creature. I you get the impression it's not very well fleshed out, but you're pretty sure it's a female, or a male. But you can definitely have sex with it.
+	[fuck_1] (Sex the creature) //showif.player_sex.male //showif.feral_filter_off
+	[ | end_encounter] (Leave)
+||
+
+
+||>>Sex scene
+{fuck_1 | pic empty_pic} You undress and ready yourself to sex the creature.
+	[fuck_2] (Sex it)
+||
+{fuck_2 | pic empty_pic} You sex the creature really hard and then stop.
+	[sex_end] (Clean up and get dressed)
+||
+
+||>>Sex end
+{sex_end | remove_pic} You clean up and get dressed. The creature is very confused about what just happened.
+{feral_pat} You give the feral, an appreciative pat. You feel very romantic. The creature is still very confused.
+	[feral_pat] (Give the feral a pat) //hideif.index_is.feral_pat
+	[ | end_encounter] (Leave)
+||

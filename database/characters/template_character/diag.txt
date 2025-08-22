@@ -1,0 +1,43 @@
+
+
+>>This file will not appear correctly formatted if you don't have diag_white language imported into Notepad++ and selected.
+>>This character is a barebones example character to illustrate general dialogue structure.
+
+
+>>INTRO NOTES: Player meets the character for the first time. The intro usually has both characters telling their names to each other, so you don't have set a flag and check to find out if the PC has told their name to the npc
+
+
+||>>INTRO
+{start} "Hello!"
+	[intro_1] Hello!
+||
+{intro_1} "What's your name?"
+	[intro_2] My name is -name-.
+||
+{intro_2} "My name is Template."
+	[intro_end] Nice to meet you, Template.
+||
+
+
+
+>>Convohub has (Questions) dialogue option that opens a different file that contains the questions. This is because the questions are usually very wordy and mess the readability of the "main narrative" dialogue file.
+||>>CONVO HUB 1
+{intro_end | save_index met} "It's nice to meet you too."
+{met} "Hey! Nice to see you again -name-!"
+{very_pretty_yes_2 | change_sprite character} "Good talk."
+{silent_return} 
+	[very_pretty] You're very pretty Template. //hideif.clicked
+	[ | change_diag_file diag_questions start] (Questions)
+	[ | end_encounter] Bye now. (Leave)
+||>>CONVO HUB 1
+
+
+||>>You're very pretty.
+{very_pretty | change_sprite blushed} "Thank you. That makes me blush. This definitely advances our relationship."
+	[very_pretty_yes] Yes.
+||
+{very_pretty_yes} "Maybe we should get married some day."
+	[very_pretty_yes_2] Yes.
+	[very_pretty_yes_2] Eh?
+||
+

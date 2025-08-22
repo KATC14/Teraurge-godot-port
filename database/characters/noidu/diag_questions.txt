@@ -1,0 +1,86 @@
+
+||>>QUESTIONS HUB
+{start}
+{index}
+{q_you_end} "Punches, stun prods, nets, paralyzing darts, there are plenty options if one is inclined to keep the receiving party alive. Don't misunderstand me, I will kill if paid to."
+{shape_lie} He nods and chortles. "I suppose.<br><br>If there is one."
+{shape_resp} He nods sagely.
+{hard_job} "It is, but apparently I developed a reputation for being really good at it, so people started sending their capture contracts my way. Not that I'm complaining.<br><br>Nets, stun prods, paralyzing darts, there's a lot of things to make it easier if you look into it.<br><br>Or just punch them until they stop resisting."
+{q_doing_end} "It's not her, then."
+{shrug} He shrugs.
+{tell_cyber} He adds slyly. "Her."
+{philo_ambush} He chortles. "Sorry, I'll stop."
+{silent_return}
+	[q_you] Who are you? 					//hideif.clicked
+	[q_species] What species are you? 			//hideif.clicked //showif.intelligence.6
+	[q_doing] What are you doing in Taodal? 	//hideif.clicked
+	[q_cyber] What are the cybernetics for? 		//hideif.clicked //showif.intelligence.6
+	[ | change_diag_file diag_2 silent_return] (Return)
+||
+
+||>>Who are you?
+{q_you} "I'm Noidu. I'm a mercenary. I'm usually paid to hunt criminals and bring them in alive."
+{where_from} "I was born in a big city, but I have not settled anywhere since I was first paid to bounty hunt. This job takes you to places."
+	[where_from] Where are you from? //showif.index_is.q_you
+	[wat_criminals] What kind of criminals?
+||
+{wat_criminals} "Thieves, murderers, conmen, deserters, I don't discriminate if the money is good."
+	[hard_job] I imagine bringing them in alive is a lot harder than just killing them.
+||>>What species are you?
+{q_species} He furrows his brow. "Hmm? Uh, I think my shape was called 'Dmovon'"
+	[shape_1] ...Your 'shape'? What do you mean?
+	[silent_return] Oh, okay.
+||
+{shape_1} "What do you mean?"
+	[shape_2] Why do you call your species 'your shape'?
+||
+{shape_2} "Are we not all the same outside our morphology? We speak, think, laugh, and cry all the same. If our biology is the only thing that separates us, wouldn't it be gentler to call it a 'shape'?"
+	[shape_eh] That a little reductive. Biology affects a lot of things. //showif.intelligence.8
+	[shape_resp] That's a nice sentiment.
+	[silent_return] Uh, okay.
+	[shape_no] I don't think I share your sentiment.
+||
+{shape_eh} "I was only talking about people.<br><br>Even if our shapes do affect our minds, we should still show the same compassion and understanding we show to everybody else. If it means keeping up an illusory parity, I am fine with it."
+{shape_no} "Even if our shapes do affect our minds, we should still show the same compassion and understanding we show to everybody else. If it means keeping up an illusory parity, I am fine with it."
+	[shape_resp] I'm not convinced, but I can respect that.
+	[philo_ambush] We've got really philosophical all of sudden.
+	[shrug] Not something I'd do.
+	[shape_resp] I understand.
+	[shape_lie] You're fine with the illusion?
+||>>What are you doing in Taodal?
+{q_doing} "I do not know."
+{mess_memory} "Yes. I remember drinking in this tavern, but I also remember walking in the forest."
+	[mess_memory] Memory still messy? //showif.index_is.q_doing
+	[expla_1] Do you have any plausible explanations?
+||
+{expla_1} "I don't see why I would be in a backwater village if I wasn't hunting some bounty, but I have not found any notes that would explain me being here."
+	[silent_return] I see.
+	[expla_2] Say, your target wasn't a pale woman with a missing jaw?
+||
+{expla_2} "Is she good with tech?"
+	[q_doing_end] I don't think so.
+||>>What's the cybernetics for?
+{q_cyber} He glances at the cable and the case embedded in his arm. "I guess I could tell you since you've already poked the insides of it."
+	[cyber_int] It's some sort of an interface between your brain and that box, but why? And why is it on your arm? //showif.intelligence.10
+	[cyber_hear] Let me hear it, then.
+||
+{cyber_int} "Indeed, it's connected to my brain. It's needed for a special weapon."
+{cyber_hear} "It's an interface for a weapon."
+	[brain_contr] The weapon is controlled by your brain? Nice. I guess the weapon connects to the ports then? //showif.intelligence.10
+	[brain_aim] Like a brain-aimed gun, or something?
+||
+{brain_contr} "It's on my arm because it's a spear. It can create a sheath of energy around it and you need to integrate your brain into a computational unit to control it."
+{brain_aim} "It's a spear. A spear that creates a sheath of energy around it and you need to integrate your brain into a computational unit to control it. Which is what I have here."
+{preyor_pike} "Preyor pikes are very impressive. I mostly use them for the sound. The targets usually drop their weapons when they hear the angry buzz."
+	[preyor_pike] Sounds like a powerful weapon. //hideif.index_is.preyor_pike
+	[excess_acco] Excessive accommodations for a spear.
+||
+{excess_acco} "It's a nice spear, but I can use the ports to interface with other computation units as well, so it's not entirely useless outside the spear."
+{cyber_hack} "That is included in 'interfacing', yes."
+	[cyber_hack] Like, you can hack computers? //showif.index_is.excess_acco
+	[got_cyber] Where did you get it?
+||
+{got_cyber} "From a friend."
+	[tell_cyber] I suppose you're not going to tell me about him? //showif.charisma.6
+	[silent_return] I see.
+||

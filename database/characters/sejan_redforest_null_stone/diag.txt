@@ -1,0 +1,23 @@
+
+
+>>This character is a glowing stone in the Redforest near the Sejan peninsula. This character can only be encountered after Shyni reveals it.
+
+{start} You return to the odd stone with the blue glowing areas on it.
+{exam_surr} You look around. There doesn't seem to be anything noteworthy on the ground or near the stone; it's completely isolated in the middle of nowhere.
+{exam_stop | remove_pic} You get up and stop examining the stone.
+	[exam_stone] (Examine the stone)
+	[exam_surr] (Examine the surroundings) //hideif.index_is.exam_surr
+	[ | end_encounter] (Leave)
+||
+
+{exam_stone} You crouch down and take a careful look at the stone. There seems to be some kind movement behind the blue glowing parts, as if it was a rough window. The blue colors turn very slowly into darker and lighter hues as you keep staring at it. 
+{poke_stone} You carefully poke the blue surface. It feels like melted glass, its large patches of smooth surface dotted with rough spots. It almost seems like it's seeping from inside the rock.
+	[poke_stone] (Touch the blue stuff) //showif.index_is.exam_stone
+	[scratch_stone] (Scratch the blue stuff) //showif.index_is.poke_stone
+	[exam_stop] (Stop)
+||
+{scratch_stone} You pick up a small, sharp rock and scratch the surface of the blue glass. It doesn't matter how hard you press the pointed stone against it, the blue stuff doesn't seem to scratch.
+{hammer_stone} You hit the stone with a hammer. Nothing happens.
+	[hammer_stone] (Hit the stone with a hammer) //hideif.note.TBA //showif.index_is.scratch_stone
+	[exam_stop] (Stop)
+||

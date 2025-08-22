@@ -1,0 +1,41 @@
+
+>>Shop items are defined in the character's "stats.txt" inside <SHOP SHOP> tags.
+
+>>"diag_shop.txt" is a file that's automatically used when shop interface is opened for the shop character. It allows the shopkeeper have dialogue with the player as he buys and sells items.
+
+
+>>The dialogue indexes are automatically picked based on if you're trying to sell a specific item or buying it.
+>>"sell_(item name)"
+>>"buy_(item name)"
+
+
+>>Functions can disable the shop interface and remove the last item from the transaction. Essentially blocking items based on the dialogue.
+>>"disable_shop"
+>>"enable_shop"
+>>"revert_last_shop_item"
+
+
+>>start index is the thing that the shopkeeper says when the shop is opened.
+
+||
+{start} "Peruse at your leisure."
+||
+
+||>>Underwear
+{sell_underwear | revert_last_shop_item} "I don't buy used underwear."
+||
+
+||>>Nailed sock
+{sell_nailed_sock | disable_shop} "That sock has a nail in it."
+	[nailed_sock_1] You don't want to buy it?
+||
+{nailed_sock_1 | revert_last_shop_item, enable_shop} "No, please put that away."
+||
+
+
+>>You can also just hard block certain items with this kins of scripting. (This is just a temporary hack. The quest item stuff will be handled better in the future.)
+||>>Quest item blocks 
+{sell_sejan_cave_map | revert_last_shop_item}
+{sell_key_to_tornoth's_smithy | revert_last_shop_item}
+{sell_key_to_taodal_storage | revert_last_shop_item}
+||

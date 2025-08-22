@@ -1,0 +1,9 @@
+interior:	no
+
+<ENCOUNTERS
+ENCOUNTERS>
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>

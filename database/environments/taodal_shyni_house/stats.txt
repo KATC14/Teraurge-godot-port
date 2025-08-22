@@ -1,0 +1,9 @@
+interior:	yes
+ambient:	0.5
+ambient_color:	aa8157
+
+
+<SOUNDS
+generic_exterior/coast.5
+sejan/forest_birds.5
+SOUNDS>

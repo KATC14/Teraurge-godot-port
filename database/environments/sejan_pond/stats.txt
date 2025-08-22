@@ -1,0 +1,15 @@
+interior:	no
+
+discoverable:		yes
+dicovery_message:	You have found a pond with a waterfall.
+default_message:	Do you want to stop by the pond?
+
+
+<SOUNDS
+sejan/pond.30
+sejan/forest_birds.30
+SOUNDS>
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_pond sulie} Sulie encounter
+||

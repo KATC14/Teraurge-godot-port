@@ -1,0 +1,6 @@
+interior:	yes
+
+<SOUNDS
+sejan/cave_drone.60
+sejan/cave_rocks.15
+SOUNDS>

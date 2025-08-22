@@ -1,0 +1,254 @@
+
+>>Breirb is a colony of sapient worms, big and small. Watch out, for the big one may fall for you.
+
+||>>INTRO
+{start | hide_character, save_index visited_cave, change_environment sejan_beach_cave} You enter the cave. The huge entrance and a couple of holes in the ceiling let in more than enough light for you to see what's inside without too much trouble. From the entrance, you can see a big pool of water in front of and slightly below you, so you walk the short distance to its edge, taking care to not slip on the damp rock. As you get closer, you make out the wiggling shapes of multiple fish fleeing away from you, swimming off and deeper. By the time you're at the edge, they've moved either out of sight or to the opposite side of the pool. You stare at the water for a moment thinking about your next move.
+{visited_cave | hide_character, change_environment sejan_beach_cave} You return to the cave with the big pool in it. You look at the water for a moment, the fish once again hiding deep and far away from you.
+	[look_0] (Look around)
+	[ | end_encounter] (Leave)
+||
+{look_0 | auto_continue look_1} There doesn't seem to be any signs of residency in the cave, perhaps for a reason. It's a beautiful place, but the rock is too damp and uneven to use it as a camping site and the fish are being uncooperative. 
+{look_1 | change_environment sejan_beach_cave_barnacle, change_sprite inshell} As you are weighing you options something catches you attention. A few meters away from you, next to the water, there is a huge barnacle.
+	[found_breirb_1] (Move closer)
+||
+{found_breirb_1 | change_sprite inshell} You cautiously walk closer. Other than its size, there wasn't much of note about it at a distance, but now that you're just two steps away from it, you take that back. Yes, the top definitely resembles a face.
+	[found_breirb_2] (Look at it)
+||
+{found_breirb_2 | start_music sejan/breirb 70 3, play_sound sejan/breirb_open 70, change_sprite open} It suddenly moves, rotating in your direction and startles you. A worm-like creature emerges from the barnacle. "Hello. Don't worry, we won't hurt you."
+	[meeting_1] Uh... Hello?
+||>>Meeting first time
+{meeting_1 | save_index met, change_default_sprite breirb open} The face raises a bit and a long, fleshy appendage with a sharp-looking spike at its tip extends behind it, then the outer coral-like part of the barnacle dislodges in several rings as the creature rises until it's roughly as tall as you, though you don't know just how much longer it is underground. Between the coral plates, you discern a main wormy body that, to your consternation, seems to be infested by dozens of big worms that constantly wiggle and extend or retract from the main body. You stare at it as you compose yourself. "Are you not well?"
+	[meeting_2] (Stand back) You look sharp. In a bad way.
+	[meeting_3] Did you do that on purpose?
+	[meeting_4] I'm fine... Uh, nice cave.
+||>>INTRO END
+	
+	
+||>>CONVO HUB 1
+{meeting_2} "We are covered in sharp layers. We advise you to keep a safe distance."
+{meeting_3} "We realize you might be surprised, but like we've said, we won't hurt you. We did not mean to scare."
+{meeting_4} "We are Breirb. Welcome to our living space."
+{40} "Do not worry, we understand."
+{met | start_music sejan/breirb 70 3, change_environment sejan_beach_cave_barnacle} You enter the cave and head towards your coral acquaintance next to the pool. It slowly emerges from its barnacle. "We welcome you back."
+{menu_idle}
+{freject} "The sex we engaged in was just meant as a reward for dispatching our competitor."
+{get_bitter_1} "We will wait for it."
+{get_bitter_2} "As you wish."
+{later_secks} "As you want, but the large one is quite excited at the prospect."
+{tell_nuirum} "She already knows."
+	[fool_around] Do you want to fool around again? //showif.has_flag.breirb_sexed //hideif.clicked
+	[bitter_here] Here's the bitter water. //showif.has_item.bottle_of_bitter_water //showif.has_flag.breirb_fetch_bitter
+	[sex_nao] Is the big one still up for sex? //showif.has_flag.breirb_sex_raincheck
+	[ | change_diag_file diag_questions start] (Questions)
+	[34] I think I will try to help you with your problem. //showif.has_flag.breirb_rival_known //hideif.has_flag.defeated_by_breirb_rival
+	[37] I'm ready to fight against that huge thing again. //showif.has_flag.defeated_by_breirb_rival
+	[leaving] I have to go. (Leave)
+||
+{leaving} "Goodbye. Visit us whenever you want."
+	[ | end_encounter] Bye. (Leave)
+||
+
+
+||>>Breirb rival fight quest
+{help_with_rival} "Yes. There is something you can do for us, assuming you can fight. Recently, a creature has moved into one of the underwater caverns nearby and won't let us hunt in peace. Every time we try to attract some of the biggest or yummiest species of fish, it rushes here and eats or scares away our best prey. It's becoming very frustrating." Breirb's neck worms seem very agitated.
+	[33] So, what do you want me to do exactly?
+||
+{33} It points at the water. "Fight it. We've heard of its kind and making it feel threatened will make it look for another place to live. It's very strong, though. We will not force you. If you want to help us, we can easily attract the creature. Just tell us when you're ready."
+	[34] Sure, I can get rid of it for you.
+	[menu_idle] I will keep it in mind.
+||
+{34} Breirb's main body straightens up and most of its worms start to wiggle excitedly. "Great! Are you sure, though? We are talking about a really big predator here."
+	[35] On second thought...
+	[36] Yes, let's get on with it.
+||
+{35} You don't get to finish the sentence. "All right, some other time." Its body visibly relaxes.
+	[menu_idle] Some other time.
+||
+{36 | play_sound sejan/breirb_close 70, change_sprite inshell} Breirb hides inside its barnacle. "Okay, we'll prepare the bait. We wish we could help you, but the time we tried to fight it some we had to spend a really long time rebuilding the surface of our shell afterwards. We're just not mobile enough. Good luck!" A moment later you notice some silvery liquid floating on the surface of the water. It doesn't take long for a lot of fish of many different species, including some really big ones, to come investigate. It's a beautiful sight until you see a huge serpentine shadow heading for the surface.
+	[ | start_encounter sejan_beach_cave caenemung] (Get ready)
+||
+{37} Breirb points at you. "We are worried about your health. Last time you took a beating. Are you completely sure you are ready to face it?"
+	[39] Yes. I think I have a good shot at taking it down.
+	[40] You're right. Maybe I'm not ready.
+||
+{39} "We appreciate it." Breirb deploys the bait and the fish flock to it.
+	[ | start_encounter sejan_beach_cave caenemung] (Get ready)
+||>>Fight victory
+{fight_victory | play_sound sejan/breirb_open 70, change_sprite open} A minute later, Breirb emerges from its barnacle, every single worm wiggling energetically. "You did it! We sense it fleeing in the direction of the sea at a high speed and we are sure it will not come back. Thank you so much." It abruptly spears the water where you notice fish flocking around differently colored stains and brings out a big fish that it swiftly devours. It must have been pretty eager to get a good catch for once.
+	[42] I'm glad I could help.
+	[42] No problem.
+	[42] I'm awesome like that.
+||
+{42} It points at you with a hand. "You need a reward. We will hunt a fish for you anytime you want. Any kind of fish you want, if you have a preference."
+	[43] Thanks.
+||
+{43} "We are so happy! We are going to mate so much once you leave. Oh wait, how about we mate with you before you leave as a special offer just this time? Mating is always fun, so you'd enjoy it, right? Of course, we'd do that only if you wanted." You raise an eyebrow and give Breirb's body, full of worms and sharp-looking coral, a once-over.
+	[45] Nope. Thanks, but I'll pass.
+	[46] Uh, how would that work?
+||
+{45} "No problem. Our offer about the fish still stands, though. And once again, thank you for helping us get rid of that fiend."
+	[51 | change_sprite inshell] You're welcome. Have fun.
+||
+
+
+||>>SEX SCENE
+{46} Breirb stays silent for a bit longer than usual. "We are not familiar with your species so we are not quite sure either, but we've met others like you who stand on two legs and we're sure we will be able to adapt."
+	[45] Seems like a bad idea. Thanks for the offer, but I'll have to decline.
+	[47] You know, overcoming obstacles can be pretty exciting. I'll accept your offer.
+||
+{47} "First, show us your genitals. Let's see if we are compatible in any way." Even the worms in its coral plate pop up and turn towards you as if they were curious.
+	[ | add_flag breirb_sexed, sex_gate undress_m undress_f] (Undress)
+||>>wormjob male & female
+{undress_f} You remove your clothes and Breirb leans a bit closer as it examines you. "Oh, this. A few of us are familiar with this setup. Yes, we can do this. Come, lie in front of us and spread your legs."
+{undress_m} You remove your clothes and Breirb leans a bit closer as it examines you. "Oh, this. A few of us are familiar with this setup. Yes, we can do this. Come, stand in front of us, just not too close."
+	[ | start_music sejan/breirb_scene 70 3, sex_gate wormjob_m1 wormjob_f1] (Do as Breirb tells you)
+||
+{wormjob_f1 | pic wormjob_f1} You lie on the ground and spread your legs lewdly to her. Breirb's main body slides down just a little bit into the barnacle. It extends an arm closer to your crotch while keeping its hand just in front of it and stays still. "Now, let's see, this one should be able to do this."<br><br>You then notice one of the long worms on what you'd call Breirb's neck start to wiggle wildly. It detaches itself from the neck and enters the chest coral plate, then slides down one of Breirb's arms and wraps its lower half around it. It then extends towards your crotch. You look down at it curiously as it starts rubbing itself against your thigh and labia. Its body is a bit cold, but the way it undulates while caressing your skin is driving you wild.<br><br>It presses its head against your slick slit and applies pressure to penetrate you.
+{wormjob_m1 | pic wormjob_m1} Breirb's main body slides down just a little bit into the barnacle. It extends an arm closer to your crotch while keeping its hand just in front of it and stays still. "Now let's see, this one should be able to do this."<br><br>You then notice one of the long worms on what you'd call Breirb's neck start to wiggle wildly. It detaches itself from the neck and enters the chest coral plate, then slides down one of Breirb's arms and wraps its lower half around it. It then extends towards your penis. You look down at it curiously as it starts rubbing itself against your thigh and scrotum. Its body is a bit cold, but the way it undulates while caressing your skin is working and you don't take long to get erect.<br><br>With your erection standing at attention, the worm moves in front of your head and touches it lightly, making you shiver. Then its head parts in three.
+	[wormjob_m2] (Let the worm fellate you) //showif.player_sex.male
+	[wormjob_f2] (Let the worm penetrate you) //showif.player_sex.female
+||
+{wormjob_f2 | pic wormjob_f2} The round head of the worm slowly stretches your entrance and then slides in smoothly, gentle ribs undulating the stretch as it burrows deeper. You gasp and close your eyes. The worm dives as deep as it can and then starts gently wriggling. You bite your lip as the bizarre sensation rocks your mind. You inhale as the worm wedges itself in your buttocks to support its squirming movement in you. It still tries to move deeper and you can see a bump move on your abdomen as it pokes its head along your insides.<br><br>The worm suddenly stops and begins to thrash and vibrate violently inside you. You grip the ground and scream. It's like a giant floppy vibrator. The tail of the worm is erratically flinging around, spreading clingy slime all over your thighs and slapping against your skin. The strength of the worm takes away your breath. You're not going to last long. You draw ragged breath as your eyes roll backwards.
+{wormjob_m2 | pic wormjob_m2} The worm places its recently revealed mouth on the tip of your glans, then in one swift motion engulfs the entirety of your erection, making you gasp out loud and close your eyes. Its insides are, to your surprise, pretty warm, slick and, to your relief, pretty tight. It slowly moves back, then hilts you lightning-fast again and starts repeating those same two motions. It feels great, but the combination of really slow with really fast gets a bit frustrating after a while and makes you wish for a steady rhythm. Subconsciously, you move your hips forward.<br><br>Breirb speaks, "Stay put or you might hurt yourself. It's the only way it can move, so relax and enjoy it." You open your eyes and look down to see not only how the worm's body stretches every time it takes your dick into its body, but you're also vividly reminded of how close Breirb's sharp, spiky coral hand is to you and decide that it'd be a great idea to not move a muscle. Incidentally, you note how every single worm in Breirb's body is pointed in your direction, as if staring at the act. You look down again, convinced that right now looking at a worm pleasuring you is much more enjoyable than the thought of public sex in front of a crowd of worms.
+	[ | sex_gate wormjob_m3 wormjob_f3] (Let it do its thing)
+||
+{wormjob_f3 | pic wormjob_f3} The next minutes are like sweet torture. You feel the sweet release approaching and you brace yourself against the ground. You close your eyes and let the wild burn take you. The worm thrashes harder as you scream. Your whole body trembles and you can't stop gasping and sighing.<br><br>As your spasms eventually die down, the worm finally withdraws from you with undulating movement that makes you clench your teeth. Clear liquid drips from it as it raises its head between your legs. The worm then returns to its place at Breirb's neck.
+{wormjob_m3 | pic wormjob_m3} The next minutes are like sweet torture as you endure and at the same time thoroughly enjoy the worm's ministrations. Eventually you feel the sweet release approaching and, steeling yourself to not let your knees buckle and risk falling on Breirb, you close your eyes and let your load blow into the worm, who engulfs your entire length and stays put as your erection pulses wildly inside it. Your whole body trembles and you can't stop gasping and sighing.<br><br>The worm finally lets go of you, a bit of your semen dripping from its mouth and returns to its place at Breirb's neck as you regain your composure. "Tastes good," your coral-plated host comments.
+	[49 | remove_pic] (Clean up and get dressed)
+||
+{49 | start_music sejan/breirb 70 5} You quickly clean up using some water from the pool and get properly dressed again. "That was a fun experience. We are very glad we could celebrate your victory in such an entertaining way."
+	[farewell] A little weird but I kinda enjoyed it.
+	[farewell] I enjoyed that a lot, thanks.
+||
+{farewell} Breirb points at the water. "With that out of the way, remember we'll be always here if you want a yummy fish. Now please excuse us. We are going to keep celebrating like crazy."
+	[51 | change_sprite inshell] Have fun. Bye.
+||
+{51 | play_sound sejan/breirb_close 70} Breib recedes into her shell and you're left alone. You hear wet, slimy noises coming from inside the barnacle.
+	[ | end_encounter] (Leave)
+||
+
+
+
+>>Weird relationship continues by courtesy of MD
+||>>Wanna fool around again?
+{fool_around} "You wish for more reward?"
+	[ | sex_gate sex_exciting fem_reject] I think your colony is sexually attractive and I want to have more sex with it. //showif.intelligence.8
+	[ | sex_gate sex_exciting fem_reject] I want to have sex with you.
+	[ | sex_gate you_beaut fem_reject] I think you’re beautiful. //showif.charisma.6
+||>>femPC response
+{fem_reject} "We, the Breirb, do not see any productive reason to mate with a female again."
+	[freject] Oh... okay. 
+	[freject] You're not interested in some casual sex like the earlier thing? //showif.charisma.6
+||>>malePC response
+{you_beaut} Breirb pauses and you hear worms wriggle inside the hard plates. She then jerks back into life like a puppet. "Some of us think, you think of us as a… a romantic mate?"
+	[maybe_romance] Maybe?
+	[sex_exciting] I think you’re sexy.
+	[sex_exciting] I’m just sexually attracted to you.
+||
+{maybe_romance} "We do not consider you a romantic mate. We have little understanding of the concept but we know you're not one for us."
+{colony_romance} She trembles and then talks in a voice you recognize as amusement, "Yes, it would be."
+	[colony_romance] I guess a romance with a colony might be a little hard anyway. //showif.index_is.maybe_romance
+	[sex_exciting] Well, could we just fuck?
+||
+{sex_exciting} Breirb falls and wiggles slightly, after a long awkward moment it focuses the false face to you again. "You wish to breed with us? You want to create hybrids with this colony?"
+	[casul_sex] Can we have sex without the babies?
+	[yas_breed] Yes.
+||
+{yas_breed} "Can you breed with us?"
+	[maybe_breed] I don’t know. Probably not, we could try?
+	[maybe_breed] Maybe?
+	[casul_sex] Actually scratch that, can we have sex without the mutant babies?
+||>>Lets breeeeeed
+{maybe_breed} She pauses, you hear squeaks and excited worm wriggling. "We decline. If we were to mate, this colony would be the female and we would have to carry the burden of the child. They eat tremendously and you're a large species, -name-."
+{informal_babies} "We breed constantly, we are breeding right now. We understand the social norms among your people, but you do not seem to adhere to them."
+	[informal_babies] How are you so... informal about making babies? //showif.index_is.maybe_breed
+	[casul_sex] Do you want to have just casual sex, then?
+||
+{casul_sex | add_flag breirb_fetch_bitter} She pauses, you hear the worms wriggle again. "The big one wants to have recreational sex with you, but we're worried of the possible pregnancy, as is she. Bring bitter water and the big one can enjoy you."
+{the_biggie_wormy} "Yes, she is excited at the prospect of penetrative sex. She has a compatible sexual organ as well."
+	[the_biggie_wormy] The big one? The reddish, large worm that supports the.. you, the Breirb? //showif.index_is.casul_sex
+	[get_bitter_1] Sounds good, I'll go get that.
+	[get_bitter_2] I'll think about it.
+	[bitter_here] I have a bottle of bitter water right here. (Give the bottle) //showif.has_item.bottle_of_bitter_water
+||
+{bitter_here | remove_item bottle_of_bitter_water, remove_flag breirb_fetch_bitter} She extends one of her hands covered in serrated plates, takes the bottle and drops it into the hole beneath her. "Thank you. Do you wish to have sex with the large one now or later? She is anxious to have sex with you."
+	[lets_sex_up] I don't have anything to do right now, so sure.
+	[later_secks | add_flag breirb_sex_raincheck] I can't right now, I'll come back later.
+||
+{lets_sex_up} "As you wish. Please undress."
+{sex_nao} "She is. Please undress."
+	[nuirum_sex | remove_flag breirb_sex_raincheck] (Undress)
+||>>Nuirum sex. What? Who's Nuirum?
+{nuirum_sex | start_music sejan/breirb_scene 70 3, pic open_hole} You undress and place your clothes on the cold stone floor. Breirb lifts herself further up above you and presses her body against the lip of the hole. "Enter our protective cavern, -name-. Her sexual organs are below."
+{cant_comeout} "We are attached to the rock below and do not wish to deattach."
+	[cant_comeout] Can't you just come out? //showif.index_is.nuirum_sex 
+	[into_hole] (Squeeze into the hole)
+||
+{into_hole | pic cave_of_the_degenerate} You carefully sit down on the edge and lower yourself in. The large central worm moves under your feet to assist you as you descend. You can see worms all around the chamber below. You're suddenly seated by a large worm and the large central one pushes its slimy body against you. The chamber gently closes on you.
+	[wormy_1] (Massage the large one)
+||
+{wormy_1 | pic worm_rose} You slide your hands against the large worm. The surface is taut and firm, it's very muscular. You feel it flex and shudder at your touch. It twists itself to reveal a small bump and a slit in its lower half, it slowly opens like an obscene, slimy rose. It twitches excitedly.
+{wormy_pretty} The worm stalk wiggles playfully and pushes the spread orifice towards your erection. It leaks thin strands of clear slime, almost touching your cock.
+	[wormy_pretty] You're a very pretty girl. //showif.index_is.wormy_1 //showif.charisma.8
+	[wormy_2] (Rub her genitals)
+||
+{wormy_2} You place your palm against the mound and press your thumb gently on the inside of the orifice. The worm shudders and the twitching walls of the orifice close on your thumb like a slick and fat venus trap. You circle your thumb on the inside and the worm tenses and twitches as your thumb goes over the bumps and ridges inside her.
+	[wormy_3] (Penetrate her)
+||
+{wormy_3} You slowly withdraw your thumb from the orifice as it desperately tries to keep you inside with an intense suckle but eventually pops off and leaks a strand of viscous clear liquid. You wipe it on your cock and scoot little closer to her body, the worms under and behind you push slightly closer to her. You line your cock against the spread orifice and give it a slight push, sliding into the muscular opening. The sides slowly squeeze and clamp on your cock, drawing you in farther.
+	[wormy_4] (Fuck her)
+||
+{wormy_4 | pic worm_fug, auto_continue wormy_44} You grab the thick worm and push your hips against it. It responds with a shudder you feel around your cock. You lightly gasp at the sensation and slowly pull your hips away. The sides suckle on you as your cock slides out. You push back into her and then back away. You take up a slow rhythm and the worm pushes herself harder against you. The tail of the large worm suddenly brushes against your back as it pushes you in her over and over.
+||
+{wormy_44 | pic worm_prod_anal} You pick up the pace. Your thighs slap against her loudly. You feel her slick tail tense against your back and then coil around your buttocks. You twitch as the tip of her tail gently prods against your anus.
+	[plz_no_prost] (Push the tail away)
+	[prost_fug] (Keep fucking her)
+||>>Prostate fug
+{prost_fug | pic worm_prost_fug} You slow down slightly, the tail pushes against your ring and then slowly pierces into you, the slimy mass of tail coils against your prostate and wriggles gently. You grimace at the sensation. You push your head against the worm as your brace yourself. The tail pushes you toward the orifice and you begin your pumping again as she rubs your insides gently. Streaks of white flash through your head every time the tip of the tail rolls over your prostate and you buck harder into her. Every thrust feels like you're going to climax in her.
+	[prost_nut] (Finish)
+||>>orgasm
+{plz_no_prost | pic worm_nut} You nudge the curious worm tail away and it curves around your thigh to wrap around your cock. It gently tightens, rolls against it, and jerks it anxiously to help you to orgasm. You grab her body and press your hips against her as hard as you can. Your almost painfully engorged cock stretches her insides as your orgasm comes to a finish. You buck desperately to fill her. You feel the orifice contract powerfully around your cock, the large body of Breirb tries to coil back into the cave but is blocked by the coral plates above, she writhes as she tries to coil around the point of pleasure. You feel her shudder as you breathlessly try to steady yourself and throb inside her.
+	[wormy_nutted_1] (Catch your breath)
+||
+{prost_nut | pic worm_nut} You grab her body and press your hips against her as hard as you can. Her tail presses forcefully against your prostate as you release yourself into her. Your almost painfully engorged cock stretches her insides as your orgasm comes to a finish, you buck desperately to fill her. You feel the orifice contract powerfully around your cock, the large body of Breirb tries to coil back into the cave but is blocked by the coral plates above, she writhes as she tries to coil around the point of pleasure. You feel her shudder as you breathlessly try to steady yourself and throb inside her.
+	[wormy_nutted_2] (Catch your breath)
+||
+{wormy_nutted_1} You steady yourself against the worm and breathe loudly. You feel the worm pulse under your palms and calm down as your heartbeat steadies. You're still lodged into her warm and strong orifice as your cock starts to soften.
+{wormy_nutted_2} You steady yourself against the worm and breathe loudly. As the seconds drag on, you feel her tail slowly withdraw from your ass, the last gentle brush over your prostate making you tense up and gasp. You feel the worm pulse under your palms and calm down as your heartbeat steadies. You're still lodged into her warm and strong orifice as your cock starts to soften.
+{gud_wormy} The worm nudges playfully against you and you feel a squeeze around your cock.
+	[gud_wormy] Was- that good for you? //hideif.index_is.gud_wormy
+	[wormy_pullout | stop_music 5] (Pull out)
+||
+{wormy_pullout | pic cave_of_the_degenerate_2} You pull out slowly, grimacing as the sensitive glans go over her internal bumps and ridges. The sides roll off your shaft and gently release you. She leaks clear slime mixed in with cum as your cock slides out.
+	[wormy_again] Would you want to do this again some time?
+||
+{wormy_again} The body of the worm gently brushes against your cheek and tries to coil around you to hug you but is stopped by her attachment to the rock and the plates over the hole. She stops trying and bumps you playfully.
+	[wormy_push] I liked this a lot, I hope we can do it again at some point.
+	[wormy_write] I was wondering if you can write?
+||
+{wormy_write} She moves her body in a way you interpret as a nod.
+	[wormy_push] Maybe I'll bring a pen and paper next time.
+||
+{wormy_push} The worm brushes gently against you.
+{wormy_kiss} You kiss the taut and slimy body of the worm and feel a shudder ripple through her. You rub her sides appreciatively.
+	[wormy_kiss] (Kiss her) //showif.index_is.wormy_push
+	[wormy_lift] I think I should go now. Give me a lift?
+||
+{wormy_lift | start_music sejan/breirb 70 3, remove_pic} Her body twists to support your foot as you climb out of the hole. You slide on the cave floor, your body dripping thick slime on the smooth stone. Breirb settles her coral skirt over the hole and takes her formal stance. "She wants us to inform you that she had a great time. You can clean up in the water." She points her jagged hands at the water.
+	[wormy_clean] (Clean up)
+||
+{wormy_clean} You step into the cold cave water and wash the slime off you. As you're waiting for yourself to dry, Breirb chimes in, "She is very infatuated with you, but you can talk to her through us. You don't need a pen and paper."
+	[wormy_private] I'd prefer a more private conversation.
+	[wormy_private] I guess that could work.
+||
+{wormy_private} "We do not have problems with closed or 'exclusive' relationships inside the colony but we're not sure how to deal with a relationship that extends outside of it. We appreciate the large one as she facilitates our general movement but interaction with colony outsiders requires most of the colony."
+	[name_nuirum] Does she have a name?
+||
+{name_nuirum} "We are called Breirb and-<br><br>She informs us she wants you to call her 'Nuirum'...This is highly irregular!"
+{name_problem} "We do not assign names to ourselves because we recognize each other by smell and location, but we suppose you would need a name for her."
+	[name_problem] Is the name a problem? //showif.index_is.name_nuirum
+	[tell_nuirum] Tell Nuirum she's a pretty girl. //showif.charisma.8
+	[tell_nuirum] Tell Nuirum I had fun.
+||
+
+	

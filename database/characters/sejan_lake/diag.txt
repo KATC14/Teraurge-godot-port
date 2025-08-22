@@ -1,0 +1,68 @@
+>>PC meets Naigad first time he goes for a swim
+||
+{start} You stand at the edge of the lake.
+{get_out_day | change_environment sejan_lake} You swim back to the shore and dress up.
+{naigad_missing} You look around the edges of the lake, but you can't spot her.
+	[swim_meet_naigad] (Go for a swim) //hideif.clicked
+	[go_swim_day] (Go for a swim) //showif.has_flag.naigad_encountered
+	[ | day_night_gate naigad_day naigad_missing] (Look for Naigad) //showif.has_flag.naigad_at_sejan_lake
+	[ | end_encounter] (Leave)
+||
+
+
+	
+||>>Naigad intro start
+{swim_meet_naigad | change_environment sejan_lake_water, add_flag naigad_at_sejan_lake, add_flag naigad_encountered} You undress and jump into the lake. You hit the water with a splash.<br>The shock from the cool water immediately refreshes you. Combined with the warm, humid air, it creates a relaxing environment. As the gentle waves rock you, you feel like you could fall asleep.
+	[back_to_beach] (Return to the beach)
+	[look_around] (Survey the lake)
+	[dive] (Dive and explore the lake bed)
+||
+{back_to_beach} As you turn towards the beach, you notice a large shadow approaching you beneath the surface of the water.
+{look_around} You tread water and squint towards the shores surrounding the lake. The waterline is mostly composed of sand beaches with a few water carved caves. You hear a splash to your right and see a large shadow quickly approaching you beneath the surface.
+{dive} You take a deep breath and dive into the water. The water is surprisingly opaque, and you cannot see very far. As you survey the underwater, you notice a large blurred shadow in the distance, and it's coming towards you. You quickly return to the surface.
+	[punch_1_hit] (Wait until it is closer and punch it in the nose)
+	[swim_away] (Swim back to the beach)
+	[ | check_stat will 8 swim_away_nervous-stay_still] (Stay still and see what it does)
+||
+{stay_still} The underwater shadow inches closer.
+	[ | start_encounter sejan_lake_water naigad waited_in_water] (Stay still)
+	[swim_away] (Swim back to the beach)
+||
+{punch_1_hit} The shadow slowly swims closer to you. You curl your hand into a fist and wait perfectly still. As the creature starts to circle around you, you launch your fist into the front of the shadow where you assume its head is. The water splashes and your knuckles crack as they hit something hard. The creature tries to back away and sends water flying everywhere.
+	[swim_away_after_punch] (Turn and swim to the shore before it recovers)
+	[punch_2_hit] (Punch it again)
+||
+{punch_2_hit} The creature is too slow, and you quickly jab it again. Water splashes as the creature struggles to get away from you.
+{waited_after_punch_2} You wait and tread water. You cannot see the creature anymore.
+	[waited_after_punch_2] (Tread water and wait if it comes back) //hideif.clicked
+	[swim_away_after_punch] (Turn and swim to the shore)
+	[ | start_encounter sejan_lake naigad waited_after_punch] (Stay still and see what it does) //showif.will.6
+||
+{punch_1_miss} The shadow slowly swims closer to you. You curl your hand into a fist and wait. As the creature starts to circle close to, you hit the front of the shadow as hard as you can. The snake-like shadow recoils away from you, and you miss.
+{punch_2_miss} You quickly ready another punch and let it loose. A splash and no contact. You see the shadow recoil away from you again.
+	[punch_2_miss] (Punch it again) //hideif.clicked
+	[swim_away] (Swim back to the beach)
+	[ | start_encounter sejan_lake naigad waited_after_punch] (Stay still and see what it does) //showif.will.6
+||
+{swim_away} You swim back to the beach as fast as possible. You manage to reach the sand and quickly hobble out of the water.<br>You hear splashing behind you.
+{swim_away_nervous} You try to stay still, but you feel you body already involuntarily trying to escape. As another second passes, you lose your nerve. You turn and swim panicked towards the beach. You reach the sand and quickly jump out of the water.<br>You hear splashing behind you.
+	[ | start_encounter sejan_lake naigad beach_after] (Turn towards the sound)
+||
+{swim_away_after_punch} You swim to the shore. As you reach the sand, you hear irritated yelling behind you.
+	[ | start_encounter sejan_lake naigad beach_after_punch] (Turn towards the sound)
+||
+>>Swimming
+{go_swim_day | change_environment sejan_lake_water} You undress and jump into the lake. You hit the water with a splash.<br>The cool water immediately refreshes you. Combined with the warm, humid air, it creates a relaxing environment. As the gentle waves rock you, you feel like you could fall asleep.
+{survey_lake_1} You tread water and squint towards the shores surrounding the lake. The waterline is mostly composed of sand beaches with a few water-carved caves. You don't spot anything interesting.
+{dive_lake_1} You take a deep breath and dive into the water. You can't see very far underwater. The lakebed seems to be composed of the same yellow sand as the beaches, with some odd, dark streaks of mud. Otherwise, the bottom seems very empty. You return to the surface.
+	[get_out_day] (Return to the beach)
+	[survey_lake_1] (Survey the lake) //hideif.clicked
+	[dive_lake_1] (Dive and explore the lake bed) //hideif.clicked
+||
+>>Looking for Naigad
+||
+{naigad_day} You spot her. She seems to be doing something on the beach.
+	[ | start_encounter sejan_lake naigad] (Go meet her)
+	[start] (Don't bother her)
+||
+

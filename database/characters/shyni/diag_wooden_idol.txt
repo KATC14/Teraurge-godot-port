@@ -1,0 +1,120 @@
+
+
+
+||>>Wooden statue sexy times
+{start | pic wake_up_sleepy, add_flag shyni_wooden_idol_ritual, stop_music 4} You feel a poke on your cheek. You're not at first sure if it was a real sensation, but the next poke makes you open your eyes. Shyni is staring at you with subdued excitement on her face. You can see it's still dark outside.
+	[idol_ritual_1] Why are you up? Is everything okay?
+	[idol_ritual_11] Hello, beautiful. //showif.charisma.8
+||
+{idol_ritual_1} Shyni whispers quietly. "Everything's okay. I just woke up and uh... I had this idea."
+{idol_ritual_11} Shyni giggles and whispers quietly. "Hello, handsome. I woke up and uh... I had this idea."
+	[idol_ritual_2] What are you thinking?
+||
+{idol_ritual_2} You feel her hand slide down on your body and a single digit brush down your penis. You feel yourself twitch at the attention. Shyni chuckles and then whispers again. "It involves sex."
+	[yes_sex_pls] Sex? Yeah, definitely.
+	[yes_sex_pls] Some sex? 
+	[lets_magic_bang] Absolutely! Let's do it, then!
+||
+{yes_sex_pls} She nuzzles against your ear and whispers even more softly. "I want to try some magic with you."
+{sexual_magicks} She giggles. "Yeah."
+{sexual_magicks_2} She playfully slaps you. "It's sex, you silly. The whole thing is very tame."
+	[sexual_magicks] ...Sex magic? //hideif.clicked
+	[sexual_magicks_2] It's not super weird or involve- blood or anything? //hideif.clicked
+	[lets_magic_bang] Let's do some magic, then.
+||
+{lets_magic_bang | pic nude_beckon} She slowly gets up from the bed and beckons you to follow with her finger.
+{leaving_bed_tobang} She giggles and steps out of the bedroom.
+	[leaving_bed_tobang] Oh, we're leaving the bed? //showif.index_is.lets_magic_bang
+	[follow_to_ritual] (Follow her)
+||
+{follow_to_ritual | change_environment taodal_shyni_house, change_sprite nude, remove_pic, start_music sejan_taodal/shyni_romance 70 2} You follow Shyni out of the bedroom. "Soo... There's this fun ritual you can do with the house spirit."
+	[ritual_1] Sounds fun.
+	[ritual_11] With... the statue?
+||
+{ritual_1 | pic shyni_and_statue} She guides you to the wooden statue and giggles softly. "Well, it's not necessarily a strict ritual, but a general, um... 'custom' you can indulge in." She giggles. "You should basically involve the house spirit in the bedroom activities to show trust and love for it."
+{ritual_11 | pic shyni_and_statue} "Well, not necessarily a strict ritual, but a general, um... 'custom' you can indulge in." She giggles. "You should basically involve the house spirit in the bedroom activities to show trust and love for it."
+{odd_sexy} "I guess it's a bit weird... but it's just a reason to have sex, isn't it?" She winks.
+{stat_threesome} "I was just thinking we do it next to it. I really don't want any splinters trying that." She giggles.
+	[odd_sexy] That's an odd custom. //hideif.clicked
+	[stat_threesome] You want to... have a threesome with the statue? //hideif.clicked
+	[alright_statue_sexy] Alright, how do we do this?
+	[too_weird] Sorry, I think is too weird for me. 
+||
+{alright_statue_sexy | pic statue_sexy_hug} She kisses the statue lovingly, kneels on the floor and then hugs it, presenting her behind to you. "It's very easy, just do what comes naturally to you." She giggles.
+{kissy_statue} "If you want. It's just a wooden statue, I don't think it will be offended if you don't." She giggles.
+	[kissy_statue] Should I kiss the statue too? //showif.index_is.alright_statue_sexy
+	[mount_her] (Mount her)
+||>>Too weird
+{too_weird} "We would just have some sex next to it, is that too weird?"
+	[no_pls] It just weirds me out. I can't do this.
+	[alright_statue_sexy] Actually, if it's just that, I can handle that. What do I do?
+||
+{no_pls} "I- I understand. It's a bit odd." She giggles nervously. "Let's just get back to bed, alright?"
+{ritual_12} She brushes your cheek affectionately. "No, I get it. I did wake you up in the middle of the night to do a ritual. It's a bit weird."
+	[ritual_12] Sorry, I don't mean to offend or upset you, this thing is just very foreign to me. //showif.charisma.8 //showif.index_is.no_pls
+	[bed_without_sex] (Get back to bed)
+||>>SEX
+{mount_her | pic statue_threesome_1} You kneel down behind Shyni and glide your hand over her finely furred body. You feel Shyni shiver under your hand as you take hold of her hip. You guide your cock against her wet labia. You push gently and part her hot nethers. Shyni gasps as you sink into her body almost nary a resistance. She arches her back and breathes out a relaxed sigh when you hilt into her. You start a slow pump, followed by a yearning moan from Shyni.
+	[shynistat_fug_1] (Fuck Shyni)
+	[stat_kissy_0] (Kiss the statue)
+||>>Wooden idol kiss
+{stat_kissy_0 | pic statue_kiss, add_flag shyni_wooden_idol_kiss} As you keep thrusting into Shyni, you lean to kiss the wooden statue. You close your eyes and feel your lips spread against the varnished wood. The wood suddenly softens and you feel a warm, flat tongue inside your mouth as lips close with your own. 
+	[statue_eyes_open] (Open your eyes)
+	[stat_kissy_1] (Keep kissing)
+||
+{stat_kissy_1 | auto_continue stat_kissy_2, pic statue_embrace} Your heart races. A passionate lover draws you into a kiss while your hand sinks into its soft neck and you tighten your hold. The glow grows inside your mind until it sparks with pleasure and love each time your tongues cross. You thrust harder.
+{stat_kissy_2 | auto_continue stat_kissy_3} Your mind dims with the heat and glow. You claw across the soft features, trying to get a better grip to thrust harder. You hear Shyni moan and pant somewhere in the foggy distance, but you feel someone else nearer, someone else against your skin. With the kiss smothering you, you feel weak and out of breath as your finish closes in.
+||
+{statue_eyes_open | pic statue_stare} You recoil and open your eyes, your heart skips a beat. You hear Shyni breath in softly as you pause. You stare at the statue's unmoving features, and you cannot see anything out of ordinary.
+{statue_kiss_again} You close your eyes again and kiss the statue. You feel the taste of varnished wood in your mouth and its rough surface on your lips. It does not kiss back.
+	[statue_kiss_again] (Kiss the statue again) //showif.index_is.statue_eyes_open
+	[shynistat_fug_11] (Keep fucking Shyni)
+||>>Sex cont
+{stat_kissy_3 | auto_continue shynistat_nut} You part from the soft and warm kiss as the blinding pleasure makes your fingers curl around Shyni's shoulders, and you pull her forcefully against you. Shyni screams and hugs the statue as her flank quivers and her legs tremble. You unload into her and draw your breath. Your dimmed vision slowly returns with each heartbeat.
+{shynistat_fug_11 | auto_continue shynistat_fug_2, pic statue_threesome_1} You shake your head and start moving again. Shyni's hands tighten on the statue as she moans and gasps with each thrust. You huff and pant as you work her small frame against your hips, each pull eliciting a slap from her butt. Eventually, you're rocking the heavy statue back and forth with your thrusts.
+{shynistat_fug_1 | auto_continue shynistat_fug_2, pic statue_threesome_1} You keep going. Shyni's hands tighten on the statue as she moans and gasps with each thrust. You huff and pant as you work her small frame against your hips, each pull eliciting a slap from her butt. Eventually, you're rocking the heavy statue back and forth with your thrusts.
+{shynistat_fug_2 | auto_continue shynistat_nut, pic statue_threesome_2} The orgasm hits your brain with a hot, blinding burn. You grab Shyni's shoulders and pull her against you. Her buttocks slap loudly against your thighs, and you grunt from the exertion as you release. Shyni whimpers as your throbbing cock spreads her insides. She hugs the statue as her flank quivers and her legs tremble. You unload into her and draw your breath. Your dimmed vision slowly returns with each heartbeat.
+||>>FIN(N)ISH
+{shynistat_nut | stop_music 15, pic lean_but_nutted} The first clear sound you hear is Shyni laughing out of breath. She glances over her shoulder. "Oh-  my gods! Are you okay? You went absolutely mad there!" She giggles and pulls herself away from you until your cock pops out. She settles on the floor in an awkward lean, trying to ignore the sensation between her legs. You draw breath and relax.
+	[idol_ritual_end0] Yeah, I'm... I'm okay.
+	[stat_do_something] The statue... It did something. //showif.has_flag.shyni_wooden_idol_kiss
+	[idol_ritual_end0] I- I like this kind of magic.
+	[idol_ritual_end0] This- This was odd but fun.
+||
+{stat_do_something} Shyni giggles. "What do you mean?"
+{stat_hallucinate} Shyni gasps softly. "...W-what do you mean?"
+	[wtf_it_kiss_me] I- I think the statue... kissed me? It felt like it was... alive?
+	[stat_hallucinate] Sorry, I think I just imagined things, or the varnish is doing something to my brain. //hideif.index_is.stat_hallucinate
+	[statue_nothing] Ah, nevermind, It's nothing.
+||
+{wtf_it_kiss_me} Shyni raises her eyebrows. "W-what? Like... did it- m-move?" Shyni glances at the statue with bewilderment. 
+	[wtf_it_kiss_me_2] When I closed my eyes and kissed it, I felt it kiss me back.
+||
+{wtf_it_kiss_me_2} Shyni gasps. "I- I... Oh my gods! Maybe that's part of the magic? Are you sure you didn't imagine it?"
+	[idol_ritual_end_1] I don't think I imagined it.
+	[idol_ritual_end_1] I can't really tell, if felt confusing.
+	[idol_ritual_end_1] I think I just imagined it. It didn't feel real.
+||
+{idol_ritual_end_1 | auto_continue idol_ritual_end} Shyni brushes the wooden idol gently and carefully scans it over.
+{statue_nothing | auto_continue idol_ritual_end} "I- If you say so." Shyni takes a suspicious glance at the statue.
+||>>END
+{idol_ritual_end0} Shyni steadies her breathing and giggles. "I'm sure this ritual was a success. At least based on how I'm feeling." She raises her eyes to yours. "This was amazing, thanks for indulging me. We should probably go back to sleep." She leans in and kisses your cheek.
+{idol_ritual_end} Shyni rolls her butt flat against the furred carpet and raises her eyes to yours. "This was amazing, thanks for indulging me. We should probably go back to sleep." She leans in and kisses your cheek.
+{cant_cuddle} Shyni slaps you playfully. "We'll cuddle in bed, you goof."
+	[cant_cuddle] Can't we cuddle a bit? //hideif.index_is.cant_cuddle
+	[back_to_bed_0] Sounds good. (Get back to bed)
+	[woke_me_up] This whole thing kinda woke me up real good.
+||
+{woke_me_up} She giggles. "Yeah, I can imagine that! You can stay up if you want. I'm feeling spent, so I'm going to head back to bed."
+	[back_to_bed_00] Actually, I don't want you to sleep alone. I'll try to get some sleep, if it means I get to spend more time next to you. (Get back to bed)
+	[let_you_slep] Alright, I'll let you get some sleep.
+||
+{let_you_slep} You help Shyni off the floor and exchange a quick kiss. "I'll just clean up a bit and go back to bed."
+	[ | start_encounter taodal taodal] Sleep well. (Leave).
+||>>Back to bed
+{back_to_bed_0 | auto_continue bed_after_sex} You help Shyni off the floor as she staggers upright. "I'll just clean up a bit and and join you in the bed." She laughs, slaps your side, and steps towards the water buckets in the corner.
+{back_to_bed_00 | auto_continue bed_after_sex} You help Shyni off the floor as she staggers upright. "You're terribly cute. I'll just clean up a bit and and join you in the bed." She laughs, slaps your side, and steps towards the water buckets in the corner.
+||
+{bed_without_sex | change_diag_file diag_2 bed_naked} Return to bed without the ritual.
+{bed_after_sex | change_diag_file diag_2 in_bed_before_shyni} Return to bed after the ritual.
+||

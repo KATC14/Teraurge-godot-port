@@ -1,0 +1,67 @@
+
+
+
+||>>Time of day scripting
+{start | day_night_gate start_day night} Start index. (you only see this if the script has broken).
+{visited |  change_environment taodal_market, day_night_gate day night} Start index. (you only see this if the script has broken).
+||
+
+
+||>>Day
+{start_day | save_index visited} The market is full of activity. Most of the stalls on both sides are occupied by merchants selling their wares to locals and visitors alike. A couple of people are carrying crates from the pier, and you can see a small ring of people in the sidelines discussing trade deals. You browse the different goods on sale for a while. For the most part, it's just basic goods like raw materials, tools, food, or clothes, but there's also the odd artifact or mechanical contraption you don't recognize.
+{day} The market is bustling and full of people.
+{nothing_found} You tour the market but don't find anything of interest.
+{vuisul_busy} You try to get Vuisul's attention, but she seems to be too busy arguing with merchants to answer.
+	[look_around_1] (Look around the market)
+	[ | start_encounter taodal_market shyni lied_to] (Find the girl in the blue dress)			//showif.has_flag.shyni_lied_to //showif.time_filter.25.75 //hideif.has_flag.tornoth_dinner
+	[ | check_flag vuisul_too_busy talk_vuisul vuisul_busy] (Talk to Vuisul)						//showif.has_flag.vuisul_met //showif.time_filter.25.75
+	[quarters | change_environment taodal_communal_chambers] (Go to the quarters in the back)
+	[ | start_encounter taodal taodal] (Leave the market)
+||>>Night
+{night} The market is empty.
+	[quarters] (Go to the quarters in the back)
+	[ | start_encounter taodal taodal] (Leave the market)
+||
+
+||>>Vuisul
+{talk_vuisul | start_encounter taodal_market vuisul} 
+||
+
+
+||>>Living quarters (PC can sleep here)
+{quarters | change_environment taodal_communal_chambers} There's no one else here other than you. The beds are empty.
+	[visited] (Leave)
+	[ | check_flag nkaanmykiunsuns_grudge sleep grudge] (Sleep)
+||
+{sleep | advance_time_to morning} You stir from your sleep and slowly get back up. You stretch your limbs and check your belongings. You can hear sounds from outside – the market seems to be opening.
+{geddup | remove_pic} You get up. You can hear sounds from outside – the market seems to be opening.
+	[visited] (Leave)
+||
+
+
+||>>Nkaanmykiunsuns' visit
+{grudge | advance_time_to morning} You stir from your sleep and slowly get back up. You check your belongings and then pause.
+	[ohshit] (Leave)
+||
+{ohshit | pic visited, remove_flag nkaanmykiunsuns_grudge} You crouch to look at a wooden mallet and a large rusted nail set next to your bed.
+{nkaan_you_here} You talk and scan the room, the few places she might have hidden in are too brightly lit. The sleeping quarters seem empty.
+{take_mallet | give_item wooden_mallet, give_item large_nail} You pick up the mallet and the nail and then stash them.
+	[take_mallet] (Take the mallet and the nail) //hideif.clicked
+	[nkaan_you_here] Nkaan... are you here? //hideif.clicked
+	[geddup] (Get up)
+||
+
+||>>Market look around (curated_list)
+{look_around_1 | curated_list prioritized} This automatically picks one of the options if they're not hidden.
+    [ | start_encounter taodal_market shyni] Meeting Shyni //hideif.clicked //hideif.has_flag.tornoth_dinner
+    [ | start_encounter taodal_market vuisul] Meeting Vuisul //hideif.clicked
+    [nothing_found] Nothing interesting found in the market.
+||
+
+
+||>>Forced sleep index
+{rest_to_evening | change_environment taodal_communal_chambers, auto_continue waking_late} You make your way into the market sleeping hall. You're so tired you just fall on a bed and feel your conciousness slowly melt into blackness.
+||
+{waking_late | advance_time_to evening} You slowly wake up, you can hear people come into the sleeping hall. They're lying on the beds and organizing their packs. It seems like the market is closing. You can see the evening red glow from outside.
+	[visited] (Leave)
+||

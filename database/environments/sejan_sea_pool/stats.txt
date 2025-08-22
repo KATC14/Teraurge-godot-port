@@ -1,0 +1,16 @@
+interior:	no
+
+discoverable:		yes
+dicovery_message:	You have found a natural sea pool.
+default_message:	Do you want to visit the pool?
+
+
+
+<SOUNDS
+sejan/sea_pool.30
+generic_exterior/coast.15
+SOUNDS>
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_sea_pool sejan_sea_pool} Encounter
+||

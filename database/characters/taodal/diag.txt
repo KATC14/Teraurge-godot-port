@@ -1,0 +1,34 @@
+>>This file contains the "Town screen" logic for village of Taodal.
+
+
+>>The locations are simply referred by name for future code changes, that will change the normal dialogue UI for this character into a screen location based buttons.
+>>Visiting this screen will also advance time to simulate time while in town.
+||
+{start | advance_time 3, start_music sejan_taodal/town 55 3, save_index visited} You are in the coastal village of Taodal. You're surrounded by simple but sturdy stone and wood buildings, all dwarfed by the tavern built inside a giant shell.
+{visited | advance_time 3, start_music sejan_taodal/town 55 3} 
+{smithy_closed} The smithy is locked. Tornoth doesn't seem to be at home.
+{shyni_not_home} You visit Shyni's garden, but she's not there.
+{silent}
+	[silent | advance_time 3]											ADVANCE TIME (debug) 	//showif.debug
+	[ | start_encounter taodal_market taodal_market]						Market
+	[ | start_encounter taodal_saunastorage taodal_saunastorage]			Sauna					//showif.has_flag.taodal_sauna_discovered	
+	[ | start_encounter taodal_tavern taodal_tavern]						The tavern	
+	[ | check_flag tornoth_missing smithy_open smithy_closed]			The smithy				//showif.time_filter.25.75 //hideif.has_flag.tornoth_open_house
+	[ | start_encounter taodal_tornoth_smithy tornoth]					Tornoth's house			//showif.has_flag.tornoth_open_house
+	[ | start_encounter taodal_tornoth_smithy taodal_tornoth_smithy]		Sneak into Tornoth's smithy //showif.time_filter.76.24 //showif.has_flag.shyni_smithy_sneak
+	[ | start_encounter taodal_pier taodal_pier]							Pier
+	[ | check_flag shyni_not_at_home shyni_at_home shyni_not_home]		Shyni's garden			//showif.has_flag.shyni_met //showif.time_filter.25.75 //hideif.has_flag.shyni_dead //hideif.has_flag.shyni_open_house
+	[ | start_encounter taodal_shyni_house shyni]						Shyni's house				//showif.has_flag.shyni_open_house
+	[ | start_encounter taodal_uum_house miggpli]						Uum's house				//showif.has_flag.uum_house_revealed //showif.time_filter.25.75
+	[ | end_encounter]													Leave		
+||
+
+||>>Tornoth's smithy
+{smithy_open | start_encounter taodal_tornoth_smithy tornoth}
+||
+
+||>>Shyni's house
+{shyni_at_home | start_encounter taodal_shyni_garden shyni}
+||
+
+

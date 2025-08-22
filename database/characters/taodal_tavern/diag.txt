@@ -1,0 +1,18 @@
+{start | start_music sejan_taodal/tavern 70 3, save_index visited, start_encounter taodal_tavern bykaas} 
+||
+{visited | start_music sejan_taodal/tavern 70 3} The Shining Pearl is filled with sounds of life.
+{subni_gone | change_environment taodal_tavern_table_subni, add_flag subni_where_gone} You find Subni's corner empty. She seems to have left the tavern.
+{nkaan_gone | change_environment taodal_tavern_table_2, add_flag nkaanmykiunsuns_where_gone} You find Nkaanmykiunsuns's table empty. She seems to have left the tavern.
+{silent_return}
+	[ | start_encounter taodal_tavern_counter bykaas] (Go to the counter)
+	[ | start_encounter taodal_tavern_table punflen] (Look around)						//hideif.clicked
+	[subni_gone] (Talk to Subni)															//showif.has_flag.subni_leave_taodal //hideif.has_flag.subni_where_gone
+	[ | start_encounter taodal_tavern_table_subni subni] (Talk to Subni)					//showif.has_flag.subni_met //hideif.has_flag.subni_leave_taodal
+	[ | start_encounter taodal_tavern_table punflen] (Talk to Punflen)						//showif.has_flag.punflen_met
+	[ | start_encounter taodal_tavern_table_2 nkaanmykiunsuns] (Talk to Nkaanmykiunsuns)	//showif.has_flag.nkaanmykiunsuns_seen //hideif.has_flag.nkaanmykiunsuns_left_taodal //hideif.has_flag.nkaanmykiunsuns_killed_by_pc
+	[nkaan_gone] (Talk to Nkaanmykiunsuns)													//showif.has_flag.nkaanmykiunsuns_left_taodal //hideif.has_flag.nkaanmykiunsuns_where_gone
+	[ | start_encounter taodal_tavern_table_3 noidu] (Talk to Noidu) 						//showif.has_flag.noidu_seen
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+

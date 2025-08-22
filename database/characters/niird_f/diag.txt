@@ -1,0 +1,120 @@
+
+>>Niird is a pale bipedal worm like creature that roams beaches at Sejan peninsula.
+>>This is a female niird.
+||
+{start | save_index encountered, add_flag niird_encountered} You come across a strange pale creature digging in the sand on the beach.
+{encountered | check_flag pc_knowledge_niird encountered knowledgeable} You meet the strange pale creature digging in the sand on the beach.
+{knowledgeable} You meet a niird digging in the sand on the beach.
+{approach_0} You carefully take a few steps towards the creature. It yanks its head out of the sand and turns it towards you. It quickly backs away and faces you.
+	[ | check_stat agility 6 approach_0-approach_1] (Carefully approach the creature)
+	[attack] (Attack)
+	[ | end_encounter] (Leave)
+||>>Approach
+{approach_1} Hunched over, you carefully plant your steps into the beach sand and slowly approach the unsuspecting thing. You continue until you are only few two steps away from it.
+{observe} You carefully sit on the sand and observe the creature. It digs in the the sand to find small creatures for food. It seems completely oblivious to your presence.
+	[observe] (Observe it silently) //hideif.index_is.observe
+	[imitate_1] (Imitate it) //showif.index_is.observe //showif.has_flag.pc_knowledge_niird
+	[ | check_stat strength 8 lunge_0-lunge_1] (Lunge at the creature and wrangle it)
+	[ | end_encounter] (Leave)
+||>>attack
+{asshold_0 | remove_pic, character_leave} You try to hold the niird and force it down, but it wrests itself away from you and sprints away.
+{attack | character_leave} You rush to strike the creature, but it panics and bolts away.
+{lunge_0 | character_leave} You jump at the unsuspecting creature. It raises its head in shock as you close your arms around its neck. The creature thrashes against your hold. Your strength fails and the creature bolts away.
+	[ | check_stat endurance 8 catch_0-catch_1] (Run after the creature)
+	[letit_run] (Let it run away)
+||
+{catch_1 | change_sprite character} You sprint after the creature. After a chase, it starts to pant and slows down. You trap it between you and the water. It hesitantly dances between the directions but eventually stops and growls threateningly.
+{lunge_1} You jump at the unsuspecting creature. It raises its head in shock as you close your arms around its neck. The creature thrashes against your hold but cannot break away. You wrangle with it and trap it between you and the water. It growls threateningly at you.
+	[ | start_music sejan/fight_weak 70, start_combat lose win] (Attack)
+	[letit_run] (Let it go)
+||
+{catch_0} You sprint after the creature, but the chase tires you out before you corner the creature. The creature runs away. You are left alone on the beach, sweaty and panting.
+{letit_run | character_leave} The creature runs away. You are left alone on the beach.
+	[ | end_encounter] (Leave)
+||
+||>>Lose combat
+{lose | start_music sejan/fight_weak 70 0 0 no_loop, character_leave} The creature strikes you down on the sand. It immediately flees and kicks up sand as it runs. You weakly stand back up and spit out sand.
+	[ | end_encounter] (Leave)
+||>>Win combat
+{win | start_music sejan/fight_end 70 0 0 no_loop} The exhausted creature falls to the ground, unable to fight back.
+	[examine] (Examine the creature)
+	[ | end_encounter] (Leave)
+||
+{examine} You approach the creature on the sand. It lazily kicks in your direction but pulls its leg away as you get closer. You crouch next to it and run your hand along the bumpy torso. It's very soft. It almost seems like there are no bones inside it. You can feel a more conventional skeletal structure in its flanks and legs.
+{determine_sex} You raise its almost limp leg up and reveal its crotch. The creature has something that looks like a vagina and a simple anus above the slit.
+	[determine_sex] (Determine its sex) //hideif.index_is.determine_sex //showif.feral_filter_off
+	[sex] (Have sex with the creature) //showif.index_is.determine_sex //showif.player_sex.male
+	[ | end_encounter] (Leave)
+||
+
+
+||>>Sex scene (Without knowledge)
+{sex | start_music sejan/feral 70, pic spread} You quickly undress and then turn the creature on its belly. You push the creature against the ground and force its legs apart. A small pink ring and a vagina greet your erection. You feel the powerful legs shift against your hips as the creature moves on the ground under your grip.
+	[vaginal] (Penetrate it vaginally)
+	[anal] (Penetrate it anally)
+	[sex_stop] (Stop)
+||
+
+
+||>>anal
+{asshold_1 | pic anal_forced} You grip harder on the niird and force it down on the sand. You keep it down until it stops thrashing and just huffs tiredly. You push your cock against its ass again and thrust.<br><br>The niird thrashes against the sand and whines as your shaft sinks deeper. The ring widens but keeps contracting erratically along your length. The creature whines hoarsely and pushes its head against the sand. It huffs and moves its hips to escape you but to no avail. You push into the tight, warm orifice, the edge of the ring squeezes the base of your cock as you hilt into the immensely warm tunnel.
+{anal | pic anal_forced} You push the tip of your cock against the pink ring and push. The creature thrashes against the sand and whines as your shaft sinks deeper. The ring widens but keeps contracting erratically along your length. The creature whines hoarsely and pushes its head against the sand. It huffs and moves its hips to escape you but to no avail. You push into the tight, warm orifice, the edge of the ring squeezes the base of your cock as you hilt into the immensely hot tunnel.
+	[fuck_ass_1] (Fuck its ass)
+||
+{fuck_ass_1 | pic anal_fug} You push a little deeper and then pull. The creature tries to close its legs but only pushes on your sides. It tries to contort itself away from you but resigns to its place after a few thrusts. You start a comfortable rhythm fucking the hot hole. The creature snorts and whines with every plunge. You can feel its larger muscles around the hole squeeze on your shaft as it tries to move away. You grip its hips and start pounding. The helpless runner under your vigorous assault sends sand flying all over the beach. The creature huffs and kicks as you drive yourself into its ass, the firm buttocks cushioning your forceful thrusts. You feel the familiar tenseness close in on you as you ravage the creature.
+	[fuck_ass_2] (Finish)
+||
+{fuck_ass_2 | start_music sejan/feral_end 70 0 0 no_loop, pic anal_nut} You push the creature against the sand and push as deep as you can. The ring touching the base pops your release. You spurt your load into the warm hole. You gasp and snarl at the sensation, your hands shake and your vision dims. You feel the ring contract as you patiently unload yourself into the creature one throb at a time. You keep yourself in for a few seconds and then stand up. Your cock pops out with a suckle. The creature, not trying to escape anymore, pants on the ground.
+	[dress_up_fug] (Get dressed)
+||
+||>>Vaginal
+{groom_vagfug | pic fugfug, auto_continue fuck_1} You brush the tip of your cock against the warm pink lips and push. You slide easily in and feel the strong muscles grip around you as you sink deeper. The niird huffs excitedly and lies down on the sand, pulling you with it. You lower to your knees and thrust into the niird.<br><br>The canal has sinuous ribs that shift and squeeze your erection. The creature huffs and lets out a strange sound into the air as you push your whole length inside it. It looks back and pants repeatedly. It bucks its flanks against you, seemingly encouraging you.
+{vaginal | pic fugfug, auto_continue fuck_1} You brush the tip of your cock against the warm pink lips and push. You slide easily in and feel the strong muscles grip around you as you sink deeper. The canal has sinuous ribs that shift and squeeze your erection. The creature huffs and lets out a strange sound into the air as you push your whole length inside it. It looks back and pants repeatedly. It bucks its flanks against you, seemingly encouraging you.
+||
+{fuck_1} You grip its flank and start pounding. It huffs in the air as its buttocks keep slapping against you. It raises its ass upwards to meet you with every thrust. You feel the odd lips of the vagina gently grip on the underside of your shaft. The whole creature is begging you to impregnate her. It rolls its hips against you as you pause and start again. The creature's lustful demeanor just builds the familiar tension you want to release.
+	[fuck_2] (Finish)
+||
+{fuck_2 | start_music sejan/feral_end 70 0 0 no_loop, pic cum_in} You thrust a few hasty and desperate strokes. You pull yourself in as deep you can go and blow yourself into her. Her already tight canal grips harder as she realizes you're finally giving her what she wanted. Her insides try to pull you deeper and milk you hungrily with every throb. You gasp for air and collapse over her. She dutifully keeps you in her until you cannot provide her more. You pant over her soft torso as your softening cock slides out from her and into cozy care of her buttocks.
+{ass_pat} You gently pat its buttock, it lets out an exhausted but confused string of huffs. The smooth cheek wobbles slightly from the pats.
+	[ass_pat] (Pat its ass) //showif.index_is.fuck_2
+	[dress_up_fug] (Get dressed)
+||
+
+||>>Grooming (Imitating the niird)
+{imitate_1 | auto_continue imitate_2} You start imitating the niird, roughly copying the huffing sounds and kicking the sand. The niird pulls its head out of the ground and turns to face you. It cocks its head and steps closer to you.
+||
+{imitate_2 | pic groom} You kick the sand once more and huff. The niird relaxes and just walks up to you. It rubs its head against your shoulder and softly pinches your skin with its face grabbers. After a while it notices your hair and rubs your head with its feelers. The niird coves your entire body with a gentle massage with its mouth while it rubs itself against you and scratches your legs with its own. It seems to be a female niird.
+{pet_groom} You brush and pat the niird as it excitedly rubs itself against you.
+	[pet_groom] (Pet the niird) //showif.index_is.imitate_2 
+	[groom_undress] (Undress) //showif.player_sex.male //showif.feral_filter_off
+	[sex_stop_1] (Stop)
+||	
+{groom_undress} You undress as the niird rubs itself against you, it even grabs on your clothes and pulls on them as you take them off. After you remove all clothes, the niird nibbles on your skin and runs its feelers all over you.
+	[groom_mount] (Mount the niird)
+	[sex_stop_2] (Stop)
+||
+
+||>>malePC grooming
+{groom_mount | start_music sejan/feral 70, pic behind} You pet the niird as you deftly step behind it. You grab its hips and place your cock between its buttocks. The niird turns its head to look behind it, huffs once, and then bends over, presenting its rear for you. 
+	[groom_vagfug] (Penetrate it vaginally)
+	[groom_assfug] (Penetrate it anally)
+	[sex_stop_2] (Stop)
+||>>anal (grooming)
+{groom_assfug | pic anal_pen} You push the tip of your cock against the pink ring and push. The creature yanks against your grip and huffs anxiously. It's trying to get away from you.
+	[ | check_stat strength 8 asshold_0-asshold_1] (Hold it down)
+	[fugass_letgo] (Let it go)
+||
+{fugass_letgo | remove_pic, character_leave} You release the niird and it sprints away.
+	[ | end_encounter] (Leave)
+||
+
+
+||>>Sex stop
+{sex_stop_1 | stop_music 3, remove_pic} You back away. The confused animal gets back on its feet and hesitantly follows you with its head.
+{sex_stop_2 | stop_music 3, remove_pic} You back away and get dressed. The confused animal gets back on its feet and hesitantly follows you with its head.
+{sex_stop | stop_music 3, remove_pic} You stand up and get dressed. The confused creature raises its head a little as you dress up.
+	[ | end_encounter] (Leave)
+||>>Sex end
+{dress_up_fug | remove_pic, add_flag pc_sexed_niird} You lazily push yourself off your strange partner and stand up. You hobble over to your clothes and get dressed. The creature gets up and watches your doings.
+	[ | end_encounter] (Leave)
+||

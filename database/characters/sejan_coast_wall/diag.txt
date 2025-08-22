@@ -1,0 +1,31 @@
+
+>>This is a player gate to hinder movement. 
+>>Currently impassable to limit play area.
+
+||
+{start | save_index visited} A stone wall looms ahead, blocking the coastal path.
+{visited} The stone wall looms ahead, blocking the coastal path.
+{peek_side} You brace yourself against the wall and stand at the very edge of the cliff to see past the front of the wall. The wall is surprisingly thick but not as thick as wide. You see a few rough spots in the stone blocks that could act as handholds. The coastal cliff plummets downwards into the sea, but you don't see any obvious rocks or other dangers in the water. It might be possible to just jump into the water and swim past the wall, but you don't see a way to climb up from the water on the other side.
+	[investigate] (Inspect the wall)
+	[jump_into_water] (Jump into the water)					//hideif.note.TBA
+	[climb_side] (Climb the side of the wall to the other side)	//hideif.note.TBA
+	[climb_over] (Climb over the wall)						//hideif.note.TBA
+	[create_ladder] (Create a ladder to scale the wall)			//hideif.note.TBA
+	[ | end_encounter] (Leave)
+||>>Investigate
+{investigate} You take a closer look at the wall. It's very clearly not a natural formation, but there are no clues as to who built it or why.<br><br>The top edges of the stone blocks are smooth and sloped, probably to hinder anyone trying to scale the wall by hand or simply worn away by time. The rocks at the top of the wall seem more loose and natural than the large, fitted stone blocks.
+	[peek_side] Peek on the side of the wall.
+	[ | end_encounter] Leave.
+||>> Jump into the water
+{jump_into_water}
+	[jump_into_water]
+||>> Climb the side of the wall
+{climb_side}
+	[climb_side] 
+||>> Climb over the wall
+{climb_over}
+	[climb_over] 
+||>> Create a ladder
+{create_ladder}
+	[create_ladder] 
+||

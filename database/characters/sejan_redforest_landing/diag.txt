@@ -1,0 +1,13 @@
+
+||
+{start} You return to the boat on the beach.
+{sailed_to} You sail to the island of the red forest.
+	[push_out] (Sail back to the peninsula)
+	[ | end_encounter] (Leave)
+||
+{push_out | play_sound generic/objects/boat_onwater 70, auto_continue sejan, pic walking_boat} You push the boat out into the water. You hop on it as you reach deeper water and settle on the simple wooden bench.<br><br>You head back to the peninsula.
+||
+{sejan | play_sound generic/objects/boat_sail 70, pic boating, auto_continue sejan_landing} You start rowing towards the large island in the distance. After some uneventful sailing, you reach the beach and hop out to drag the boat on the beach.
+||
+{sejan_landing | play_sound generic/objects/boat_land 70, start_encounter sejan_hidden_boat sejan_hidden_boat sailed_to, set_map_location sejan_hidden_boat}
+||

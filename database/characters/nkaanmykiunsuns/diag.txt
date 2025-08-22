@@ -1,0 +1,574 @@
+
+>>This character is WIP.
+
+
+>>Nkaanmykiunsuns is a patron at the Taodal tavern. A woman with an excessive collection of knifes.
+
+
+||>>INTRO
+{start | start_music sejan_taodal/nkaanmykiunsuns 70 3, save_index silent_hello} "-name-."
+{muh_name} "Very clever. You're not even going to try? I won't laugh."
+	[how_name] How do you know my name?
+	[name_correctly] Nkaanmykiunsuns. //showif.intelligence.8 //showif.charisma.8
+	[try_name] Nkaan- myun- kiuns- suns...? //hideif.intelligence.8 //hideif.charisma.8
+	[ | check_flag nkaanmykiunsuns_knife_taken silent_hello return_knife] Nakaanymiunsusunsillyname.
+	[muh_name] That's my name alright. //showif.index_is.start
+||
+{try_name} She chortles and waves her arm encouragingly. "Try again, I'm sure you can do it."
+	[ | check_flag nkaanmykiunsuns_knife_taken try_name_2 return_knife_name_try] N- kaan- mue- kiun- suns?
+	[how_name] How do you know my name?
+||
+{how_name} She rolls her eyes. "Your conversation with Punflen wasn't exactly a whisper."
+	[ | check_flag nkaanmykiunsuns_knife_taken silent_hello return_knife] Eavesdropping is rude, you know.
+	[ | check_flag nkaanmykiunsuns_knife_taken silent_hello return_knife_flirt] I'll introduce myself again as a courtesy then. Hi, I'm -name-.
+	[ | check_flag nkaanmykiunsuns_knife_taken silent_hello return_knife] Alright.
+||
+{name_correctly} She chuckles. "Nicely done. People usually have to chew on it for a bit longer before they get it right."
+	[how_name] How do you know my name?
+	[ | check_flag nkaanmykiunsuns_knife_taken silent_hello return_knife_flirt] It's a very pretty name. It'd be a shame not to say it right.
+||>>Return the knife
+{return_knife_name_try} She flashes a grin. "At least you made an effort, I'm sure you'll get it one day.<br><br>But enough of the pleasantries. That knife you stole, return it." She taps the table with the finger.
+{return_knife_flirt} She flashes a grin. "How gentlemanly of you... That knife you stole, return it." She taps the table with her finger.
+{return_knife} "That knife you stole, return it." She taps the table with her finger.
+{give_breadknife} You set the bread knife on the table. She glances at it and then chortles with a grin. "I'll... let you keep that one. I need the dagger." She slides the bread knife back to you.
+	[give_breadknife] (Give her the bread knife) //hideif.index_is.give_breadknife //showif.has_item.bread_knife
+	[give_knife_back] (Give her the Liquen dagger)
+	[no_knife] I don't have it. (Lie) //showif.has_item.liquen_dagger
+	[no_knife] I don't have it. //hideif.has_item.liquen_dagger
+	[whats_offer] I'll sell it to you.
+	[its_mine] You discarded it. It's mine now.
+	[its_mine] No.
+||>>Sell dagger
+{its_mine} She rolls her eyes dismissively. "I'll buy it from you, then."
+	[not_sale] It's not for sale.
+	[whats_offer] What's your offer?
+||
+{whats_offer} She digs two smooth adats from her bag and deftly spins them on the table.
+{sell_sex} "Very funny." She taps the two adats.
+{nice_dagger} "It's a nice dagger."
+	[pay_2_knife] I'll take your offer. (Take the adats)
+	[nice_dagger] What's so special about this dagger? //hideif.clicked
+	[four_deal] Four and it's a deal.
+	[sell_kiss] I'll sell it for a kiss.
+	[sell_sex] A roll in the hay? //hideif.clicked
+	[not_sale] I'm not selling it.
+||>>Sell for a kiss
+{sell_kiss | pic dagger_kiss} She lunges over the table at you with her long arms and pulls you into a wet kiss. Before you understand what is happening, you feel a sinewy tongue roll inside your mouth.
+	[kiss_back] (Kiss her back)
+	[push_kiss] (Push her away)
+||
+{kiss_back | auto_continue kiss_end} You place your hands on her neck and return the sudden affection. She hums in amusement.
+{kiss_end | remove_item liquen_dagger, remove_pic} She keeps kissing you for an uncomfortable amount of time until you gently separate and she sits back.<br><br>You notice she has already taken the dagger from you. She nods appreciatively and quickly stashes the dagger somewhere under the table before returning to fiddling with her knives.
+{push_kiss | remove_item liquen_dagger, remove_pic} You shove her off you. Her mouth separates off yours with a wet pop. She laughs and wipes her mouth<br><br>You notice she has snatched the dagger from you. She stashes the dagger somewhere under the table. "Hah! Didn't expect that, did you?"
+{what_for} She flashes a grin. "For a cheap dagger."
+	[not_expect] I did not expect that.
+	[what_for] ...What was that for? //hideif.index_is.what_for
+	[too_affectionate] I was expecting an awkward kiss on the cheek.
+	[eh_sure] Sure, that'll do.
+	[too_affectionate] That felt a little bit... too affectionate?
+||
+{too_affectionate | change_sprite grin} She grins. "I like to put some effort in everything I do. It's still the cheapest dagger I've bought."
+{not_expect | change_sprite grin} She grins. "Good." She twirls the dagger, amused.
+	[suspicious_kiss] That kiss was suspicious. //hideif.has_item.nailed_sock
+	[suspicious_kiss_sock] That kiss was suspicious. //showif.has_item.nailed_sock
+	[eh_sure] Sure.
+||
+{suspicious_kiss | change_sprite character} She shrugs. "Don't read too much into it, I just needed some time to go through your stuff to find the dagger."
+{suspicious_kiss_sock | change_sprite character} She shrugs. "Don't read too much into it, I just needed some time to go through your stuff to find the dagger.<br><br>...Why are you carrying around a dirty sock with a nail in it?"
+	[is_confuse] I'm- I'm not really sure. //showif.index_is.suspicious_kiss_sock
+	[is_confuse] I have no fucking clue. //showif.index_is.suspicious_kiss_sock
+	[delusion] ...Or you like me more than you like to admit?
+	[eh_sure] Sure.
+	[liked_kiss] I liked it.
+	[tongue_stick] Did you have to stick your tongue in there as well?
+	[mouth_taste] Your mouth tastes weird.
+||
+
+
+
+||>>HUB 1
+{try_name_2} She flashes a grin. "At least you made an effort. I'm sure you'll get it one day."
+{silent_hello | start_music sejan_taodal/nkaanmykiunsuns 70 3} She silently watches as you sit down.
+{pay_2_knife | give_money adats 2, remove_item liquen_dagger} You take the two adats and hand over the knife. She raises her eyebrows and pockets the knife with a playful twirl.
+{four_deal | give_money adats 4, remove_item liquen_dagger} She grimaces and adds two more on the table. You take the four adats and hand over the knife.
+{not_sale} She shrugs. "Fine. Keep it, then."
+{mouth_taste} "Likewise."
+{liked_kiss} "Don't make it weird."
+{tongue_stick} "It's a good distraction, isn't it?"
+{is_confuse} "Uh huh."
+{give_knife_back} You hand the knife back to her. She raises her eyebrows, surprised. "Wasn't expecting that. Thank you."
+{delusion} "Well, you know what they say, <i/>'Delusion is a nice place to live in but a poor place to build in.'</i>"
+{eh_sure | change_sprite character} She adjusts her posture in the chair and looks you over.
+{no_knife} "Bah! I liked that knife."
+{reasonable_violence} "Maybe I'm crazy?"
+{poison_silent} She chuckles to herself.
+{actual_reason_0} "Still just a farm girl waiting for her dear sister." She sighs.
+{isit_real_poison} "Yes." She takes the mug from you and pours it on the floor. A puff of vapor rises up, the smell stings your nose.
+{poison_often} "From time to time." She takes the mug from you and pours it on the floor. A puff of vapor rises up, and the smell stings your nose.
+{im_out | start_music sejan_taodal/nkaanmykiunsuns 70 3, add_flag nkaanmykiunsuns_job_declined} She sighs. "Suit yourself. Would be nice to have some backup."
+{not_right_now | start_music sejan_taodal/nkaanmykiunsuns 70 3} "I'm not going anywhere. Let me know when you're free."
+{ver_thanks} She nods with a smile.
+{silent_return}
+	[let_go_job] I'm ready to go do that job with you. //showif.has_flag.nkaanmykiunsuns_job_wait
+	[why_knife] You threw a knife at me. //hideif.clicked
+	[why_wait] What are you waiting for? //hideif.has_flag.nkaanmykiunsuns_job_wait //hideif.has_flag.nkaanmykiunsuns_job_declined
+	[ | change_diag_file diag_questions start] (Questions)
+	[ | start_encounter taodal_tavern taodal_tavern] I'll be going now. (Leave)
+	[ | character_leave, stop_music 1, change_environment taodal_tavern_room_3, change_diag_file diag_tavern_cuddling start] DEBUG: Skip to fug //showif.debug
+	[ | character_leave, stop_music 1, add_flag nkaanmykiunsuns_just_cuddle, change_environment taodal_tavern_room_3, change_diag_file diag_tavern_cuddling start] DEBUG: Skip to cuddling //showif.debug
+||
+
+
+||>>You threw knife at me
+{why_knife} "Maybe I think you're cute and I have trouble expressing my feelings?<br><br>Maybe because you butchered my name? Besides, I was aiming over your shoulder."
+	[name_particular] Why are you so particular about your name?
+	[cute_too] I think you're cute too, Kiiunmykisun. //showif.charisma.8
+	[silent_return] ...Okay.
+||
+{name_particular} "I like my name."
+{name_care} "Sure I do. That's why I threw a knife at you."
+	[grace_sharp] Are you going to stab me if I say it wrong while sitting next to you?
+	[reasonable_violence] Threatening people with violence if they don't get your name right doesn't seem very reasonable.
+||
+{cute_too} She grins and holds in a laugh.
+	[grace_sharp] What? You're not going to grace me with more sharpened points of steel?
+	[name_care] Do you even care about your name that much? Why the threats?
+||
+
+
+||>>Poison offer
+{grace_sharp | stop_music 4} She raises her eyebrow. "A little messy at this distance. Maybe poison this time?" She snaps a tiny vial in half, pours its contents into her mug, and then slides it over the table to you...<br><br>You notice that the surface of the green ceramic is melting in the cloudy liquid.
+{melting_poison} She glances at the liquid and grins. "You should probably not drink it, then?"
+{ineffective_poison} She grins. "What? Are you scared of some spice in your drink?" 
+	[melting_poison] Whatever you put in there, it's melting the mug. //hideif.clicked 
+	[drink_poison] (Drink from the mug) //showif.will.8
+	[pretend_drink] (Pretend to drink from the mug)
+	[ineffective_poison] A little ineffective when you require the cooperation from your victim, don't you think? //hideif.clicked //showif.intelligence.6
+	[mug_away] (Push the mug away)
+||>>No to poison
+{mug_away} "Too scary?"
+	[voluntary_poison] I'm not going to voluntarily poison myself. //showif.intelligence.6
+	[expect_poison] What did you expect? //showif.charisma.8
+	[poison_silent] (Say nothing)
+||
+{expect_poison | change_sprite grin} She chuckles. "Bravado and bleeding lips. You know... I like you already."
+{voluntary_poison} "That's a very good reason not to drink it."
+	[isit_real_poison] Is it actual poison?
+||>>Pretend drink
+{pretend_drink | change_sprite character} You raise the mug to your shut lips and pretend to drink. She eyes you carefully and grins. "Like the taste?"
+	[after_taste] Very good. (Lie)
+	[after_taste] Horrible. (Lie)
+	[after_taste] Eh, it's a little stale. (Lie)
+||
+{after_taste} She grins maliciously. "I think it has a spicy aftertaste myself." You feel intense burning sensation on your lips and realize they're bleeding. 
+	[whatputint] What did you put in this?!
+||
+{whatputint} "Poison."
+	[poison_what] What?!
+	[poison_what] I... I guess you told me that.
+||
+{poison_what} "You need to actually ingest it to get poisoned. On skin it's just corrosive, hence the bleeding lips."
+	[actual_poison] Why would you put actual poison in the drink?
+	[could_kill] So, you could have killed me?
+	[actual_poison] What is wrong with you?
+||
+{could_kill} "You mean, you could have killed your dumb self?" She hands you a white handkerchief.
+{actual_poison} "It's a trick. Stupid people pretend to drink and get their lips sore.<br><br>I did warn you, very clearly." She hands you a white handkerchief.
+{poison_aswell} "That would just be cruelty for cruelty's sake. Just take it."
+	[drink_poison_spite] How's this for a stupid thing? (Drink the poison) //showif.will.10
+	[take_hanker] (Take the handkerchief)
+	[poison_aswell] You didn't put poison on that as well? //hideif.index_is.poison_aswell
+	[violent_idiot] Fuck off. You're a violent idiot.
+||
+{take_hanker} You take the handkerchief from her and press it against your sore bleeding lips.
+	[poison_often] So, you poison people often?
+	[violent_idiot] You're a violent idiot.
+||
+{violent_idiot} "Yes, I think we have established that. Can you fuck off now?"
+{staying_here | character_leave} She gathers her things and leaves. 
+	[staying_here] I'm staying. //showif.index_is.violent_idiot
+	[ | start_encounter taodal_tavern taodal_tavern] (Leave)
+||
+
+||>>Drink poison (uh oh)
+{drink_poison | add_flag nkaanmykiunsuns_pc_drank_poison} You lift the mug to your lips and drink. Her eyes widen in shock and she slaps the mug from your hand. Your throat feels odd.
+	[poison_0] You're not serious...
+	[poison_0] Very funny.
+	[poison_0] Uh...
+	[poison_0] Oh.
+||>>Self poisoning out of spite
+{drink_poison_spite | add_flag nkaanmykiunsuns_pc_drank_poison, add_flag nkaanmykiunsuns_pc_spite_poison} You down contents of the mug in a single swig. Her eyes widen in shock and she slaps the mug from your hand. "<b>What the fuck is wrong with you</b>!" Your throat feels odd.
+	[poison_0] Uh... You know, I didn't think this through. //hideif.intelligence.8
+	[poison_0] If your party trick involves poison, I'm very confident you have an antidote on your person. So, get to it. //showif.intelligence.8
+||
+{poison_0 | pic poisoned_0, auto_continue poison_1} You suddenly cramp and fold over in pain. She starts digging in her pockets in panic. Your vision blurs and you start to foam from your mouth. You grab the table trying to keep yourself from collapsing to the floor as you start spasming and shaking.
+{poison_1 | pic poisoned_1, auto_continue poison_2} Your eyes sting as your blurred sight starts dimming. An enveloping cold creeps up from your toes and you lose feeling in your extremities. You hit your head violently as you slump on the sticky and damp floor. Sounds fog into distant thumps. You feel shadowy figures move around you.
+{poison_2 | auto_continue poison_3} You feel a sharp stab of pain in your neck. Your mind feels like an isolated island of light trying to fend off the overpowering and smothering shadow consuming everything.
+{poison_3 | pic poisoned_2, auto_continue poison_4} The world comes into painfully sharp focus as you draw your lungs full of air. Nkaanmykiunsuns is crouched over you, staring at you wide-eyed and holding an empty syringe. You feel your body tingle all over.
+{poison_4 | auto_continue poison_5} She yanks you over and stuffs a finger down your throat. You gag and puke. A slimy, watery pool of puke that has long strands of bright blood in it. You cough a few times as the world settles around you.
+{poison_5 | pic poisoned_3, auto_continue poison_6} She lifts you off the floor and carries you out of the tavern. She gives small waves and nervous smiles at the onlooking patrons as she makes her way out while dragging you.
+||
+{poison_6}  She takes you out on the pier and stops. She props you upright and holds you still until you stop shaking. She lets go when you get your legs back. She stands back and crosses her arms.
+	[poison_stare] (Steady yourself)
+||>>POISONING ENDS
+
+||>>Talk at the pier
+{poison_stare | change_environment taodal_pier, change_sprite normal, remove_pic} "I told you... I <b>implied very strongly</b> that the drink was poisoned, and you drank it."
+	[thought_bluff] I thought you were bluffing.
+||
+{thought_bluff} She throws her arms up in irritation. "You thought what?!<br><br>I carry vials of bright liquid just in case I need to intimidate people by offering them obviously poisoned drinks?!"
+	[real_poison] Well, if you put it like that, it does seem unlikely.
+	[real_poison] So instead you use real poison to intimidate people and you're surprised this happened?
+||
+{real_poison} She makes an exasperated snarl. "How do you feel?"
+{puked_blood} "The blood you puked is just from your irritated throat. The poison is somewhat corrosive."
+	[give_syringe] I don't think I'm dying anymore. //showif.index_is.puked_blood
+	[give_syringe] I'm not woozy or shaking anymore, so that's nice.
+	[puked_blood] I just puked blood. //showif.index_is.real_poison
+	[give_syringe] I think I'm okay.
+||
+{give_syringe} She twirls a long syringe and hands it to you. "Here, the poison might have coagulated into pockets that can burst later. This will stop you from dying if that happens.<br><br>I'm sorry. I didn't actually mean to poison you."
+	[take_syringe] (Take the syringe)
+||
+{take_syringe | give_item antipoison_syringe} She hands you the syringe and you pocket it. "Right... You want to go back inside? I will get some suspicious looks if I go back in without you."
+{pretty_skirt} She looks down at her skirt and then back at you. "Thanks... It's just a random piece of cloth I wrapped on my waist to stop Punflen from staring at my ass.<br><br>You coming inside?"
+	[pretty_skirt] Your skirt is very pretty. //showif.index_is.take_syringe //showif.charisma.6
+	[stay_pier] I'll stay here for a while.
+	[go_back_inside] Sure, let's go.
+||
+{stay_pier} "Don't fall into the sea.<br><br>Take care." She walks back inside.
+	[ | start_encounter taodal_pier taodal_pier] (Take a breath)
+||>>go back inside
+{go_back_inside | change_environment taodal_tavern_table_2, change_sprite character} You walk back into the tavern. Nkaanmykiunsuns walks with you to make sure you don't fall over. You sit back at the table. An awkward moment of silence passes between you. "So, yeah. That happened."
+	[light_poisoning] It was just some light poisoning. //showif.charisma.8
+	[poisoning_yeah] Yeah...
+||
+{light_poisoning} She snickers. "I'll buy you a drink to wash it down with." She makes a quick gesture at the tavern counter.
+{poisoning_yeah} She scratches her nose in thought and then blurts out, "Let me buy you a drink, yeah?" She makes a quick gesture at the tavern counter.
+	[get_drink] Sure.
+||
+{get_drink} A waitress comes to the table and Nkaanmykiunsuns whispers something to her. She nods and leaves. "I don't know what you like, so I ordered something special."
+{not_black} She cackles. "Did someone talk you into drinking an Obassinian Black? I tried it on a dare and puked my guts out.<br><br>Don't worry, it's not that. It's a good drink."
+{you_seem_dif} She shrugs. "I guess I'm nicer to people I poison. Those that talk afterwards, I mean."
+	[not_black] It's not Obassinian Black, is it? //hideif.clicked //showif.has_flag.pc_tasted_obassinian_black
+	[you_seem_dif] You seem very different now. //showif.charisma.8 //hideif.clicked
+	[see_drink] Let's see this drink, then.
+	[see_drink] Another poisoned drink?
+||
+{see_drink | pic ver_blood_drink} The waiter comes back and sets a long glass with green liquid in it in front of you. There are large bubbles suspended in the liquid. A long, thin, orange fruit juts out of the drink. "Taste it. It's nice."
+{what_drink} "I'll tell you after you taste it."
+	[what_drink] What is it? //hideif.index_is.what_drink
+	[taste_drinky] (Taste the drink)
+||
+{taste_drinky | remove_pic} You raise the glass to your lips and take a small sip. It's very fruity, sweet, and oddly cold. "It's called 'Ver Blood'. It's named after a dangerous creature called the Ver that lives around the rivers. I like the drink a lot."
+	[ver_good] It's good, thanks.
+	[ver_bad] I don't think I like it.
+||
+{ver_good} "Glad to hear. I'm sorry about the poison, take this as an apology."
+{ver_bad} "Ah, it's a taste thing in the end, but take it as an apology for poisoning you."
+	[ver_thanks | change_environment taodal_tavern_table_2, change_sprite character] Thanks anyway.
+||
+
+
+
+||>>The actual reason for her wait.
+{why_wait} She sighs. "I am a farm girl waiting for my dear sister." She rolls her eyes at you.
+	[ | check_flag nkaanmykiunsuns_player_outta_town actual_reason_0 actual_reason_1] I want to know the actual reason.
+||
+{actual_reason_1 | stop_music 4} "And if there was, hypothetically, another reason, why would I tell you about it?"
+	[could_help_u] I could help you?
+	[you_bored] You're bored of waiting. //showif.charisma.8
+	[you_bored] You've been here for pretty long. Whoever you're waiting for got held up. //showif.intelligence.8
+||
+{could_help_u} "Yeah?"
+	[need_hand] I mean, you need help with anything?
+||
+{you_bored} She sighs. "Yeah. I don't think my 'sister' is going to show up. I'm probably either going to pack up and leave.... or do something dumb and reckless."
+	[need_hand] Sounds like you're missing a hand?
+||
+{need_hand} She nods. "I suppose you're going to volunteer?"
+	[whats_job] I don't know. What is it?
+||
+{whats_job} "You're from out of town? How far from?"
+	[far_away] Very far.
+	[from_another_world] Literally from another world.
+||
+{far_away} "Yeah, you don't look like a local, either."
+{from_another_world} "Even better."
+	[why_ask_palce] Why do you ask?
+||
+{why_ask_palce} "No reason."
+	[off_someone] You're not going to... off someone from the village, are you?
+||
+{off_someone} "No."
+	[wat_then] What, then?
+||
+{wat_then | start_music generic/tense 70 2} She quickly glances at the other patrons in the tavern and lowers her voice, "I'm hunting a murderer."
+	[you_are] You're a bounty hunter?
+	[you_are] Are you a detective?
+	[you_are] Does that mean you're an assassin?
+||
+{you_are} "You're asking more questions that I'm not going to answer."
+	[murder_job] What do you need help for?
+||
+
+||>>The job
+{murder_job} "I just need someone to stand outside and keep watch while I sneak in and poke a hole in the perp's skull."
+{you_kill_him} "Yes."
+	[you_kill_him] You're going to kill him? //hideif.index_is.you_kill_him
+	[im_out] I'm out. //showif.index_is.you_kill_him
+	[can_handle] I can handle that.
+	[leave_details] Sounds like you're leaving something out.
+||
+{leave_details} "If there's complications, you will probably get some of the action, but these things usually go smoothly."
+	[no_smooth] I have a feeling it's not going to go smoothly.
+	[who_target] Who's the target?
+||
+{who_target} She shakes her head. "Are you in or out?"
+{no_smooth} She chortles. "We'll see. Are you in or out?"
+{can_handle} "You in?"
+	[im_in] I'm in.
+	[im_out] I'm out.
+	[im_out] Sorry, the whole thing just sounds like something I shouldn't get involved in.
+||
+{im_in} "You need anything? We can go right now if you're not busy. I'd like to get this over with as soon as possible."
+	[let_go_job] Sure, let's go.
+	[not_right_now | add_flag nkaanmykiunsuns_job_wait] I can't go right now.
+||
+{let_go_job | character_leave, remove_flag nkaanmykiunsuns_job_wait} She quickly grabs her implements off the table and gets up. She motions you to follow. "Let's go."
+	[ | change_diag_file diag_hitjob start] (Follow her)
+||
+
+
+
+
+
+||>>HUB 2 (after the job)
+{after_job | start_music sejan_taodal/nkaanmykiunsuns 70 3, change_default_sprite tired, change_sprite tired} You find Nkaan's table and sit down. She looks at you silently and croaks with a weak voice, "Hi."
+{silent_return_2}
+	[what_happen] Are you okay? You don't look so good.
+||
+{what_happen} "It's... It's nothing serious. Just trouble sleeping."
+	[do_anything_for] Can I do anything for you? You look exhausted. //showif.charisma.6
+	[hope_pass] Hopefully it will pass.
+||
+{do_anything_for} She smiles faintly. "Thanks... I- I'll let you know.<br><br>I have some stuff I want to tell you."
+{hope_pass} "I want to tell you something."
+	[conf_1] Sure.
+||
+{conf_1} "That knife thing, me throwing it and all? I'm not really like that. When I came to this tavern, Punflen kept trying to hit on me. I developed this weird character for myself to scare him off, a mean knife-throwing psycho girl that was very particular about her name."
+	[conf_2] That's a little strange.
+||
+{conf_2} "To be honest, I just like fucking with people, put them on defense, make them wobble a bit around me."
+	[conf_3] Why are you telling me this?
+||
+{conf_3} "I'm not trying to scare you off like I was trying to with Punflen.<br><br>I thought saying this might clear up stuff for you."
+	[right_thing] I'm glad to hear that. //showif.charisma.6
+	[right_thing] Alright.
+||
+{right_thing | stop_music 6} "Another thing... We did the right thing."
+	[you_unconvinced] You don't sound convinced. //showif.charisma.8
+	[they_dangerous] Of course.
+	[they_dangerous] I'm not sure we did.
+||
+{you_unconvinced} "I- I don't like killing people, but... witches, warlocks, whatever; they're dangerous, and Noih has suffered enough because of them."
+{they_dangerous} "Witches, warlocks, whatever; they're dangerous, and Noih has suffered enough because of them."
+	[kill_all] Do you just kill them, regardless of what they have done?
+||
+{kill_all} "Yes."
+	[haelum_1] They can't all be bad.
+	[haelum_1] Why?
+||
+||>>The story (The Terror at Haleum)
+{haelum_1 | start_music generic/tense 60 3} "They're all dangerous. It doesn't matter how well-meaning they are. They're people-shaped bombs."
+	[haelum_2] Just because some people have immense power as individuals doesn't mean you should treat them as walking bombs. //showif.charisma.6
+	[haelum_22] Go on.
+||
+{haelum_2} "That's not what I mean, if I killed people based on the power they wield, I'd be sneaking into palaces. I mean literally. They go off and kill people."
+{haelum_22} "They go off and kill people."
+	[haelum_3] Are you saying witches... explode?
+||
+{haelum_3} She rolls her eyes to the side and reminisces: "This one job. Small village near a river in the deltas, Haleum. I had the target pinpointed into a tavern. Old guy, didn't make his witchiness very subtle, had these dangly icons and fetishes on him."
+	[haelum_4] (Listen)
+	[haelum_4] And he suddenly exploded?
+||
+{haelum_4} "I was just sitting in the corner, drinking rolli and listening to him. The fat fuck kept making these hilarious puns while talking to his friend, one even made me sneeze my drink through my nose. I had already broken his room lock, so sneaking in later would have been trivial. He just kept stuffing his face with more food and meirolli.<br><br>I was wondering if he was just going to run his mouth the whole night and then doze off on the table, but you know what that inconsiderate fucker did? After all the trouble I had went trough?"
+	[haelum_5] (Listen)
+	[haelum_5] He got a heart attack and died, didn't he? //showif.intelligence.8
+	[haelum_5] He exploded?
+	[like_sweet] Rolli? You like it sweet? //showif.has_flag.pc_knowledge_rolli
+||>>Sweet drinks
+{like_sweet} She stops her story and stares at you. "Yeah... Why?"
+	[sweet_drinks] Hard to imagine you as someone who drinks sweet drinks.
+	[good_taste] You have good taste. //showif.charisma.6
+	[meirolli_better] Meirolli is better. //showif.has_flag.pc_knowledge_meirolli
+||
+{meirolli_better} "Pftt. You stopped the story to inform me of this?"
+	[yeah_bettah] Yeah.
+||
+{yeah_bettah} She laughs. "Okay. I'm going to continue now."
+	[haelum_5_cont] Alright.
+||
+{sweet_drinks} "You mean because of what I do?<br><br>Murder people?"
+	[yeah_drink] Yeah, I guess.
+	[impish_nature] No. You just have this standoffish but impish nature about you. //showif.charisma.8
+	[haelum_5_cont_cold] I didn't mean it like that.
+||>>You have a good taste
+{good_taste} She chortles. "You hitting on me?"
+{impish_nature} She laughs. "Yeah, I guess.<br><br>Wait... Are you hitting on me?"
+	[flirt] No, but if it's working, absolutely. //showif.charisma.8
+	[flirt] Yup. //showif.will.8
+	[flirt] I can't help it.
+	[haelum_5_cont] Nah. Please continue.
+||
+{flirt} She rumbles with a low, malicious laughter. "So... what do you taste like?" She places a single claw of hers over your hand.
+	[haelum_5_cont_hot] Sweet.
+	[haelum_5_cont_hot] Sweaty.
+	[haelum_5_cont_hot] Exactly like rolli.
+||>>Critical drink opinion failure! (Nkaan fucks off and leaves Taodal)
+{yeah_drink | character_leave} "Very funny.<br><br>Sorry, I have to leave. Let's finish the story over other drinks, yeah?<br><br>Bye." She gets up and leaves.
+	[ | start_encounter taodal_tavern taodal_tavern] Bye! (Leave)
+||
+
+
+||>>Haelum cont
+{haelum_5_cont_cold} She raises her eyebrows dismissively and continues. "So... The fat fuck I was stalking stood up, raised his glass and then promptly collapsed on the table, dead."
+{haelum_5_cont_hot} She holds in her laughter as she continues. "So...<br><br>The fat fuck I was stalking stood up, raised his glass and then promptly collapsed on the table, dead."
+{haelum_5_cont} She scratches her head. "So... uh, right.<br><br>The fat fuck I was stalking stood up, raised his glass and then promptly collapsed on the table, dead."
+{haelum_5} "He stood up, raised his glass and then promptly collapsed on the table, dead... He didn't even finish his punchline."
+	[haelum_6] Easy job, then?
+	[haelum_6] Then he exploded?
+||
+{haelum_6} "I stuck around to see if he was actually dead. People did poke him a bunch and he had stopped breathing, so people just shrugged their shoulders and started shuffling out of the tavern awkwardly. Nobody knew him and the death happened so abruptly that everyone was just confused. It was a little sad."
+	[haelum_7] (Listen)
+	[haelum_7] The corpse then exploded?
+||
+{haelum_7} "I still had to get his head so I pretended to know the local priest and offered to take the body. The tavern owner gladly dumped the body on me and even provided a cart. We loaded up the smelly heap of fat on the cart and I set off, whistling as I carted the corpse through the village."
+	[haelum_8] (Listen)
+	[haelum_8_giggle] ...Then it exploded?
+||
+{haelum_8} "And then, these black thin tendrils exploded out of the body in all directions! They pierced through the buildings and the ground. One speared right next to my throat and one grazed my side. I flipped the nightmare cart and jumped back. The tendrils grew larger and twisted in unnatural ways. There were screams coming from the buildings on the sides of the road, the ones the tendrils had pierced."
+{haelum_8_giggle} She snickers. "Let me tell the story, you fucker...<br><br>Right... I was carting the corpse... and then, these black thin tendrils exploded out of the body in all directions! They pierced through the buildings and the ground. One speared right next to my throat and one grazed my side. I flipped the nightmare cart and jumped back. The tendrils grew larger and twisted in unnatural ways. There were screams coming from the buildings on the sides of the road, the ones the tendrils had pierced."
+	[haelum_9] (Listen)
+	[haelum_9] What the fuck.
+||
+{haelum_9} "The tendrils yanked screaming people from their beds through the walls and ripped roots from the ground. The black tendrils gushed unstoppably from the corpse in the cart. The people and the roots were stitched together with black tendrils, going in and out of their bodies like worms through mud until everything was squeezed together. The people stitched to the monstrosity were still screeching, they reached out to me so I could pull them off."
+	[haelum_10] (Listen)
+||
+{haelum_10} "The ball of gore then moved towards me and I ran for my dear life. When I reached the tavern I noticed the monstrosity wasn't very fast, but it was destroying houses it came across and the road as it approached the tavern. As the screaming continued, more and more people came out on the streets, armed with shovels and sticks, and they all ran when they saw it.<br><br>The whole town was running for the hills. Seeing other people panic, oddly, calmed me."
+	[haelum_11] (Listen)
+||
+{haelum_11} "I figured it was my fault, not killing the witch earlier, and I wanted to help. I jumped in front of the fleeing people and made them stop.<br><br>I lied I knew what it was and was there to kill it but needed their help. I managed to organize the people. I told them to get hay, flammable oil, long sharpened sticks and all the mugs from the tavern."
+	[haelum_12] (Listen)
+||
+{haelum_12} "Sure enough, before I understood what had happened, the carpenters were yanking lumber from the houses, dock workers were rolling oil barrels down the street, and maids were carrying piles upon piles of mugs from the tavern.<br><br>I felt like crying–I had committed to staying, but I wanted to run. The massive gore pile slowly rolled towards the tavern and I told everybody to start throwing the mugs on the street cobbles. My dumb plan was to create a field of broken shards to hurt and slow the monster."
+	[haelum_13] Did it work?
+||
+{haelum_13} "I don't know. I don't think it had any effect on it, it might have slowed it down a bit?<br><br>I did lie to the peasants that it was working. We created a hasty barricade with pointy sticks on the road and dipped balls of hay in the flammable oil and threw them at the monster. When it crushed the barricade, people started deserting, but a brave group stayed around and kept chucking oily hay at it."
+	[haelum_14] (Listen)
+||
+{haelum_14} "It was a little silly in retrospect. It couldn't catch us. It was too slow. We could have just walked away from it. At the time it was terrifying.<br><br>We kept just fleeing from it, carting and throwing the hay at it as we went. It must have looked like we were bullying it, and it just kept slowing down. After the thing had bulldozed a blood-coated path through the town and we were out of hay, I lit up a stick and threw it at it. The monster lit up like a colossal candle."
+	[haelum_15] (Listen)
+||
+{haelum_15} "There were no roars or screams. It was just a pile of corpses and roots on fire. We kept adding firewood to the pile through the night.<br><br>Our short-lived celebration was interrupted by grieving widows and mothers as people started returning. The fire was kept going until the thing was burnt to ash. In the morning, people buried the ashes with giant pile of rocks. I was hailed as a hero."
+	[haelum_16] What the fuck was that thing?
+||
+{haelum_16} "I don't know. I don't think we even killed it, it was already dying on its own when we set it on fire."
+	[haelum_17] And when you said the witches 'go off', you meant this? They spawn monsters?
+||
+{haelum_17} "Look, I don't know, but sometimes witches go boom. It's never the same either, but it's always something insane and destructive."
+	[haelum_18] Wait... do they 'explode' when you kill them?
+||
+{haelum_18} "...Not always, and witches don't have to die for the 'explosion', it can happen at any time. Those that are alive when it happens usually die very quickly... if they're lucky. The fat, funny witch was just the first time it happened to me. There's been other times, and every time it's another insane hell. It genuinely feels like witches are carrying nightmares and madness balled in their bodies. Just poking a neat hole into one makes me nervous."
+	[haelum_19] It's a disturbing story.
+	[haelum_19] Everything you've described sounds horrifying.
+||
+{haelum_19 | change_sprite tired_grin, add_flag nkaanmykiunsuns_haleum_story_told} She grins. "Yeah, I know, snorting rolli through your nose is very unpleasant."
+	[sleep_med] Nice one.
+	[how_sleep] How do you sleep at night?
+||
+{how_sleep | change_sprite tired} "I manage."
+	[sleep_med] Medication?
+||
+{sleep_med | change_sprite tired} "Yeah.<br><br>I think I should go and try sleep again. Thanks for listening, I really needed it."
+	[arm_grab] Any time. I'll let you sleep. (Leave)
+||
+
+
+||>>The arm grab
+{arm_grab | stop_music 6, pic arm_grab} You get up and start leaving. Nkaan grabs you by your arm. You turn to look at her. She averts her eyes from you.
+	[something_wrong] Is something wrong? //showif.charisma.6
+	[something_wrong] Yes?
+||
+{something_wrong | remove_pic} She lets your arm go. "Nevermind. I forgot what I was going to say."
+	[cuddle_sitdown] (Sit back down) //showif.charisma.6
+	[tell_me_then] Let me know when you remember it.
+||
+{tell_me_then} She nods. "Of course. Bye for now."
+	[ | start_encounter taodal_tavern taodal_tavern, add_flag nkaanmykiunsuns_left_taodal] See you later. (Leave)
+||>>Nkaan leaves Taodal without telling PC
+
+||>>Cuddle sitdown.
+{cuddle_sitdown} You sit back down. She looks at you quietly. A silent moment passes.
+	[just_tell] If there's something you want to tell me, just tell me.
+||
+{just_tell} "It's nothing dramatic. It's just that my 'sister' not being here has disrupted my... well, my after activities."
+	[not_habla] Sorry, I don't understand.
+	[not_habla_2] Do you need help with something?
+||
+{not_habla} "I'm leaving tomorrow."
+{not_habla_2} "No, but I am leaving tomorrow."
+{where_go} She stares at you pointedly. "Elsewhere."
+	[where_go] Where are you going? //showif.index_is.not_habla
+	[not_tell_me] You were not going to tell me you're leaving?
+	[okay_leave] Okay.
+||>>Do you want to cuddle?
+{not_tell_me} She nods. "...And I was going to ask if you wanted to...<br><br>If you wanted to cuddle with me."
+{okay_leave} "...And I was going to ask if you wanted to...<br><br>If you wanted to cuddle with me."
+	[just_cuddle] ...Cuddling?
+	[okay_cuddling] Sure.
+	[mean_sex] By that you mean sex?
+	[no_cuddling] No. //showif.will.8
+||
+{mean_sex} "No, I mean cuddling. Us together in a bed, your arms around me, holding me.<br><br>If you want sex as well, we can do that too."
+{just_cuddle} "Yes."
+	[just_cuddle] So you don't want sex? Just cuddling? //hideif.index_is.just_cuddle
+	[okay_cuddling] I'm okay with just cuddling.
+	[confuse_cuddle] I'm confused. Why?
+	[sex_cuddling] Sex and cuddling? Count me in.
+	[no_cuddling] Sorry, but no.
+||
+{confuse_cuddle} "You don't need to know. Do you want to cuddle with me or not?"
+{therapy_thing} She closes her eyes, annoyed. "It's a very simple proposition. Yes or no?"
+	[therapy_thing] Is it a therapy thing? //hideif.index_is.therapy_thing //showif.intelligence.8
+	[okay_cuddling] Sure, let's cuddle.
+	[sex_cuddling] Sex and cuddling? Count me in.
+	[no_cuddling] Sorry, but no.
+||
+{sex_cuddling | character_leave} "Sure. Let's go, then." She gets up and motions you to follow. 
+{okay_cuddling | character_leave, add_flag nkaanmykiunsuns_just_cuddle} She smiles warmly. "Let's go, then." She gets up and motions you to follow. 
+	[ | change_environment taodal_tavern_room_3, change_diag_file diag_tavern_cuddling start] (Follow her)
+||
+
+
+||>>No thanks to weird cuddling (Nkaan leaves Taodal)
+{no_cuddling} She sighs. "Yeah. I figured. Sorry for bothering you with this."
+	[too_weird] It's just too weird for me.
+	[too_weird] It's a bit much.
+	[too_weird] Sorry. //showif.charisma.6
+	[too_weird] (Say nothing)
+||
+{too_weird} "It was nice meeting you, -name-."
+	[byebye] It was a pleasure meeting you, as well.
+	[byebye] I hope we meet again.
+	[byebye] Bye.
+||
+{byebye} "Bye."
+	[ | start_encounter taodal_tavern taodal_tavern] Bye. (Leave)
+||
+
+
+
+
+
+

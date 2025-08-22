@@ -1,0 +1,18 @@
+interior:	no
+ambient:	0.1
+
+discoverable:		yes
+dicovery_message:	You have found the village of Taodal!
+default_message:	Do you want to enter the village of Taodal?
+
+
+
+||>>ENCOUNTERS
+{encounters | start_encounter taodal taodal}
+||
+
+
+<SOUNDS
+generic_exterior/coast.30
+sejan_taodal/market.5
+SOUNDS>

@@ -1,0 +1,27 @@
+
+
+
+||>>START HUB
+{start | save_index return_pillar} You come across a stone pillar broken with a large fracture in it that reveals a metal core.
+{return_pillar} You return to the broken stone pillar with the metal core.
+{investigate1} The core of pillar is made of some type of metal. The pillar's stone is ragged and weathered. There are pieces of the cracked pillar around the area.
+{investigate2} The core of the pillar contains an unfamiliar metal. The pillar's stone is ragged and weathered but upon closer inspection, you see slight indentations that could be weathered carvings.<br><br>The area around the pillar base and the broken upper part are devoid of grass and other life a few inches from where the stone connects to the dirt.<br><br>There are pieces of the cracked pillar around the area.
+{take_metal} You grab on a piece of the metal and pull but it's very solidly attached to the rest of the core. You try to pull on other outcrops but they're all unmoving and unyielding. 
+{metal1} The metal feel slightly warm to touch but you can't discern anything else about it.
+{metal2} The metal seems warmer than the ambient temperature would allow. It shows no signs of erosion or rust even in the area that's got exposed when the pillar broke.
+{take_chunk | add_flag sejan_stone_pillar_metal_taken} You crouch down and lift the piece of the core. Your fingers feel warm and sightly tickle as you pocket the piece.<br><br>You glance at the metal core and realize you're not going to be able to detach more pieces from it, even with the pickaxe.
+	[ | check_stat intelligence 8 investigate1-investigate2] (Examine the pillar)
+	[ | check_stat intelligence 8 metal1-metal2, add_flag sejan_stone_pillar_metal] (Examine the metal)
+	[take_metal] (Take some of the metal) //hideif.clicked //hideif.has_flag.sejan_stone_pillar_metal_taken
+	[pickaxe_metal] (Use a pickaxe on the core) //hideif.has_flag.sejan_stone_pillar_metal_taken //showif.has_item.pickaxe
+	[ | end_encounter] (Leave)
+||
+
+||>>I need to pickaxe some questions
+{pickaxe_metal} You raise your pickaxe and hit a promising point in the metal core. The pickaxe hits the metal with a mighty clink and leaves a clear crack in the metal, but you realize this is going to take quite some time.
+	[pickaxe_cont] (Continue with the work)
+||
+{pickaxe_cont} You keep hammering the metal with the pickaxe and eventually you manage to chip away a quite large chunk of the metal. As the piece thuds on the ground you wipe your brows and take a breather. 
+	[take_chunk] (Take the chunk of metal)
+||
+	

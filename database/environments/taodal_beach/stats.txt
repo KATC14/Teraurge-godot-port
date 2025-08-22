@@ -1,0 +1,5 @@
+interior:	no
+
+<SOUNDS
+generic_exterior/coast.60
+SOUNDS>

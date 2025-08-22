@@ -1,0 +1,29 @@
+
+
+
+||>>Sejan helmet
+{sell_ancient_sejan_helmet | disable_shop, check_flag tornoth_sejan_helmet_talk sell_ancient_sejan_helmet2 this_helmet_again} 
+{sell_ancient_sejan_helmet2} Tornoth's eyes focus on the helmet. "What's this? This is one of the helmets from the people who lived here before, isn't it? I've never seen one in such a good condition. Why are you selling it?"
+	[noneed_sejan_helmet] I don't really need it.
+	[cant_fit_helmet] Can't use It, doesn't fit me. 
+||
+{cant_fit_helmet} He eyes your head as if measuring it, and then the helmet. "Oh... this can be made to fit... but you should probably show it to Uum. I don't think she'd appreciate me roughing it up."
+{this_helmet_again} "This helmet again? Do you want it refitted or the adats for it?"
+	[sejan_helmet_refit] I'd like it refitted.
+	[sejan_helmet_pass | revert_last_shop_item] I'll show it to Uum. //showif.index_is.cant_fit_helmet
+	[sejan_helmet_pass] I'll just sell it to you.
+||
+{sejan_helmet_refit} He cracks his knuckles and grabs a rounded hammer. "I'll do it for 40 krats."
+	[sejan_helmet_refitted1] (Pay 40 krats) //showif.has_krats.40
+	[sejan_helmet_pass] I'll pass for now. 
+||
+{sejan_helmet_refitted1 | pic smithing, auto_continue sejan_helmet_refitted2, revert_last_shop_item} Tornoth grabs the helmet with tongs and shoves it into the fire, he keeps it there only a moment and then quickly pulls it out. He carefully turns the helmet and eyes your head. He mutters to himself and bangs the rounded hammer on the inside of the helmet few times. He then lines the helmet with your head and then repeats the hammer strikes again.
+{sejan_helmet_refitted2 | remove_item ancient_sejan_helmet, give_item refitted_sejan_helmet, remove_pic} After few more bangs of the hammer he grunts, dunks the helmet in the water and then hands the steaming and wet helmet to you. You carefully set the helmet on your head and it fits. Tornoth chortles satisfied. "There you go."
+{sejan_helmet_material | add_flag pc_knowledge_touhng} He picks up a discarded strip of green metal off the floor and bends it. "Seems to be the same stuff they're hauling by the barge load from the muds, 'Touhng', Doesn't rust, green, soft compared to steel so I wouldn't make nails out of it, but it's easy to repair and shape, it's a favourite for novice smiths, melts easy too."
+	[sejan_helmet_material] That seemed very easy, what is this material? //showif.intelligence.8 //showif.index_is.sejan_helmet_refitted2
+	[sejan_helmet_pass] Thanks.
+||
+{sejan_helmet_pass | enable_shop} 
+{noneed_sejan_helmet | enable_shop} He scratches his chin. "Of course, but you should show it to Uum, I imagine she would appreciate it more than me, I will probably just melt it."
+||
+

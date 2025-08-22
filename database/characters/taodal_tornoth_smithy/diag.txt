@@ -1,0 +1,7 @@
+||
+{start} You use the advice Shyni gave you to open the door and manage to sneak in. The smithy is empty.
+	[get_key] (Get the storage key from the cupboard) //showif.index_is.start
+||
+{get_key | give_item key_to_taodal_storage, remove_flag shyni_smithy_sneak} You find the cupboard and rifle through it. You find the key and take it.
+	[ | start_encounter taodal taodal] (Leave)
+||

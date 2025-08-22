@@ -1,0 +1,184 @@
+>>Vuisul is a market overseer with an interest in picnics. Unable to do much due to her circumstances, but is still proud of her handiwork.
+
+||>>INTRO
+{start | hide_character, pic market_fracas, save_index meeting_again, add_flag vuisul_met, auto_continue start_2} As you survey the market, a fight breaks out between two merchants. They argue loudly and point their limbs at each other until a short, four-legged creature skitters to the scene. The blue-clothed bug woman calms the angry merchants after a quick talk. The merchants walk off, and the bug woman turns to leave but notices you staring at her. 
+||
+{start_2 | character_return character, remove_pic} She quickly skitters to you and stops. "What now? If this is about the boat tax, I can't help you with that, and I would advise against trying to renegotiate it."
+	[sorry_what] Sorry? Boat tax? 
+	[that_about] What was that about?
+	[im_vuisul] Who are you?
+	[sorry_what] I think you're mistaken.
+||
+{that_about} She waves her scythes dismissively. "Oh! That fracas? They just can't agree not to bad mouth each other's wares, I just told them to knock it off. Sorry about the disturbance, I'll leave you to it."
+	[im_vuisul] Wait, who are you?
+	[im_vuisul] Oh, okay.
+||
+{sorry_what} "Oh! Oh, sorry! I'm imagining things already! Don't let me keep you."
+	[im_vuisul] No, it's okay. 
+	[eyes_off] Sorry for staring, I just couldn't keep my eyes off you. //showif.has_stat.charisma.8
+	[im_vuisul] Don't let me bother you.
+||
+{im_vuisul} She glances into the market crowd and then absent-mindedly back at you. "Hmm? Sorry! I'm Vuisul. I'm the... uh, the 'market overseer'? I stop people from yelling and hitting each other."
+{eyes_off} Her eyes stare forward for a moment and then slowly turn towards you. "I'm Vuisul. I'm the... uh, the 'market overseer'? I stop people from yelling at and hitting each other.<br><br>What's your name?"
+    [pc_name] My name is -name-.
+    [end_meeting] I'll be going now. (Leave) //hideif.index_is.eyes_off
+    [end_meeting | save_index this_autist_again] I'll be going now. (Leave) //showif.index_is.eyes_off
+||
+{pc_name | save_index meeting_again_2} "Nice to meet you, -name-. You're not a merchant? I've not seen you here before."
+{outta_town} "Oh, I figured as much. It's a small town after all."
+    [mind_chatting] I'm just looking around. Do you want to chat for a while?
+    [outta_town] I'm from out of town. //showif.index_is.pc_name
+||
+{end_meeting | start_encounter taodal_market taodal_market}
+||
+ 
+||>>Reheat INTRO
+{meeting_again} You look around the market and find the market overseer. She seems to recognize you. "Hey! Didn't we talk before? I'm Vuisul, the market overseer. Sorry, I don't remember your name. "
+    [pc_name] Hey! I never gave you my name, I'm -name-.
+||
+{this_autist_again} You look around the market and find the market overseer. She seems to recognize you. "Oh! Hey! If it isn't 'I'll be going now'? Did you want to talk about something?"
+    [wait_wat] Huh? I'll be going now?
+||
+{wait_wat} Vuisul lets out a giggle. "Thats your name, isn't it? It's what you said when I asked your name."
+    [true_autism] Uh... that's not what I meant. I'm -name-.
+    [some_shame] Oh god. Did I say that? I'm so sorry. I'm -name-
+||
+{true_autism} Vuisul's eyes narrow. "Y'know, you should answer people when they ask you a question."
+    [some_shame] Sorry, I didn't mean it like that.
+ 
+ 
+ 
+||>>MINI HUB
+{meeting_again_2 | start_music generic/peaceful_1 70 3} You look around the market and find the market overseer. She seems surprised to see you. "Hey! Did you want to talk about something?"
+{mind_chatting | start_music generic/peaceful_1 70 3} She chuckles softly. "Of course. As long as we remain in the market, we can chat, but I might have to dash off randomly to break up a quarrel."
+{patronizing_job} "No! I think he genuinely wants me to do this, and I can see why. I- I just... I'm just not sure what I am anymore! I've been made the guard of the asylum I was locked in!"
+{get_back} "It's settled, then. Look me up here later."
+{im_humin | start_music generic/peaceful_1 70 3} "Hello, -name- the human."
+{time_in_tao} "Two hundred something days now. I used to take a boat out here to sell my things, but I realized I had this constant yearning to come back here, so I just decided to stay."
+{okay_species} "Yeah, it's an odd thing, but supposedly not very rare in the larger cities."
+{only_one} "Yes."
+{mesterpiece | add_flag vuisul_flirt_detected} She flutters her eyes, embarrassed. "I'm not... I can't...<br><br>Thank you. That's very kind of you to say."
+{market_stressful} "It is sometimes. I receive a lot of impulsive death threats, but Taodal has plenty of burly men that'll run to my rescue and throw the troublemakers into the bay." She hums in amusement.
+{minihub_silent}
+{fair_maiden | add_flag vuisul_flirt_detected} She giggles. "I'm a woman."
+{some_shame} Vuisul lets out a hearty laugh. "Hey, don't worry about it! We all make mistakes. So, what did you need?"
+	[fair_maiden] Everyone wants to save a pretty girl.		//showif.charisma.6 //showif.index_is.market_stressful
+	[q_job] What is your job exactly?	//hideif.clicked
+	[q_rules] What are the market rules?	//hideif.clicked
+	[market_rules] (Market rules)	//showif.has_flag.vuisul_market_rules
+	[q_you] What are you?	//hideif.clicked
+	[q_attire] Your attire seems a bit heavy for the weather.	//hideif.clicked
+	[ | sex_gate flirt_index let_go] I'll be going now.
+||
+{date_reject} "Of course. I'll let you go, then."
+{let_go} "I'm here every day, so I'm not hard to find. Have a nice day."
+	[ | start_encounter taodal_market taodal_market] Bye. (Leave)
+||
+{flirt_index | check_flag vuisul_flirt_detected let_go want_sum} 
+||
+{want_sum} She raises her scythe to stop you. "Wait! I was wondering if... if you want to schedule a date with me?"
+{date_schedule} She laughs. "Sorry, it's the market speak; it sticks with you, and you start to sound like a tax collector after a while."
+	[date_schedule] 'Schedule' a date? That's very formal of you. //showif.index_is.want_sum
+	[very_interested] I am very interested.
+	[date_reject] I have other things to do.
+||
+{very_interested} "I'm not sure where to fit you in my days, but come back to me, and I'll have a spot for you."
+	[date_then] Alright, sounds good.
+||
+{date_then | save_index meeting_for_date, character_leave} "Thank you. I'll have to go now. I hope I'll see you later. Bye!" She skitters back into the market crowd. 
+	[ | start_encounter taodal_market taodal_market] Bye!
+||
+	
+||>>Your job
+{q_job} "'Market overseer', or that's what Tornoth called the job. I make sure people stay calm and follow the rules.<br><br>The merchants can get really nasty to each other if you don't slap them around once in a while."
+	[not_like_job] You refer to your job title oddly. You don't like the job?
+||
+{not_like_job} "It's not that. I'm just overwhelmed and confused by the sudden responsibility. I used to sell clothing and berries at the market, but I had a habit of chastising my fellow merchants to keep the peace. One day, Tornoth just stopped me and offered me this made up job."
+	[patronizing_job] You think he's patronizing you?
+||>>Your attire
+{q_attire | change_sprite happy} "Yes, I know it's too much, but I manage. I just have to remember to drink once in a while.<br><br>...Or do you just want to see me in skimpier clothing?" She chortles and covers her mouth.
+	[wear_less] Why not just wear less?
+	[skimpier] Maybe I do. //showif.charisma.6
+||
+{skimpier | change_sprite character} She opens her eyes in shock and stares at you, unsure. "Don't say that... The reason I wear this much is- is that my skin is poisonous, and I wouldn't want to put others into unnecessary risk."
+{wear_less | change_sprite character} "The reason I wear this much is- is that my skin is poisonous, and I wouldn't want to put others into unnecessary risk."
+{say_wut} She sighs. "My skin is poisonous."
+	[say_wut] ...Say what? //hideif.index_is.say_wut
+	[disease_or] Is it a disease, or something you were born with?
+	[sorry_know] I'm sorry, I didn't know. //showif.charisma.6
+||
+{disease_or} "I was born with it. There's nothing I can do about it."
+{sorry_know} "No reason to be apologetic. It's just a quirk of nature."
+	[limiting] I imagine it's very limiting.
+||
+{limiting} "It doesn't stop me from doing much of anything. I just have to be more careful around others."
+	[poison_own] Are you poisonous to everybody? Surely you're not poisonous to your own kind?
+||
+{poison_own} She pauses and looks to her side. "I'm the only one, and I'm not poisonous to myself, so yes."
+	[only_one] ...You're the only one?
+	[mesterpiece] One of a kind? I should have known. Masterpieces often are solitary creations. //showif.charisma.8
+||
+
+	
+||>>What are you?
+{q_you} "I'm the market overseer and a proud resident of Taodal."
+	[taodal_life] Has Taodal been good to you?
+	[what_species] I mean, what species are you?
+||
+{what_species} "My parents were of different species. I don't have a species, I'm a hybrid, or if you want to be mean about it, a mutant or an abomination."
+{very_pretty | add_flag vuisul_flirt_detected} She stutters at the sudden compliment. "T-That's very nice of you. You came out okay from the mould too." She giggles.
+	[very_pretty] You turned out very pretty. //showif.charisma.6 //showif.index_is.what_species
+	[im_humin] My species is called 'human'.
+	[okay_species] That must be an odd situation for you?
+||
+{taodal_life} "I think it's a paradise. I used to live in a fishing village in the deltas. The life there always felt more threatened and tense."
+{what_mean_village} "Definitely more violence. But people just always felt more distant. Here it feels like everybody is helping each other, and it just feels more tightly knit."
+	[what_mean_village] What do you mean? Violence? //showif.index_is.taodal_life
+	[time_in_tao] How long have you been in Taodal for?
+||>>Market rules?
+{q_rules} "Oh, I don't have my notebook here, but let me think.<br><br>No fighting, only bring a sample of your wares to the market, don't unload your wares on the dock if someone hasn't bought them, no money games, no live music, no beggars, clean your stall every evening, no sleeping in the stalls, no weapon selling... I think tools and utensils like knives are allowed?<br><br>Um.. no smelly fish, no explosives, no slaves, no prostitutes... I think those are most of them? I think I have a note from Tornoth that expands the list, but I think I left it at home today." She shrugs.
+{rule_explo} "I think someone brought a large, pressurized gas container in once, but I don't think anyone would bring something so valuable to a tiny market like this. They would never find any buyers with enough money."
+{rule_fish} "Oh, you used to be able to bring any fish to the market, but someone started importing some incredibly smelly fish that caused some people to just vomit in their presence. I hear they use the fish in some sort of drink, too."
+{rule_wep} "We don't want to be a place where people who buy weapons do their trade. It would invite the river pirates to the village, and we don't want that.<br><br>Taodal does have an armory if someone does try to attack, but there's never been anything major."
+{river_pirates} "Disgruntled peasants and criminals that operate in the rivers and bother the towns and the Horns there. They don't usually come all the way out here for anything."
+{rule_slaves} "People who sell slaves are usually the people who also deal with weapons, and we don't want them here, not to mention how distasteful slavery is in general."
+{rule_sleep} "Yeah, the merchants sometimes try to be cheeky and not clear out after dark. There's rules for stall rental that require all the stalls be emptied every night so they can be auctioned in the morning. Renting a stall only to find that it's already occupied is kinda irritating. Usually Taulsol gives a hand and throws the merchant on the pier."
+{market_rules}
+	[river_pirates] What's this about river pirates?	//showif.index_is.rule_wep
+	[rule_fish] No smelly fish? That's reasonable but odd that it's a separate rule.	//hideif.clicked
+	[rule_explo] Has someone brought explosives the the market?	//hideif.clicked
+	[rule_wep] Why are weapons not allowed? Even Tornoth doesn't make any weapons.	//hideif.clicked
+	[rule_slaves] The market has rules for slavery?		//hideif.clicked
+	[rule_sleep] People sleep in the stalls?	//hideif.clicked
+	[market_stressful | add_flag vuisul_market_rules] Sounds stressful. //hideif.clicked
+	[minihub_silent] (Return)	//showif.has_flag.vuisul_market_rules
+||
+
+||>>Meeting again
+{meet_after_sex | start_music generic/peaceful_1 70 3} Vuisul emerges from the crowd and stops you. "Hey, -name-! How are you?"
+	[just_see] Hey Vuisul! I just wanted to see you.
+||
+{just_see} Vuisul suddenly becomes very sober. "I had a lot of fun with you, -name-... but we should probably not do that again?"
+	[wat_mean_see] What do you mean?
+	[wat_mean_see] You've changed your mind?
+||
+{wat_mean_see} "I'm very busy with the market overseeing, and... I don't want to poison you just to get myself off."
+	[sex_manager] We managed just fine last time, you shouldn't worry about that.
+||
+{sex_manager} "Yeah, but there's always the risk. I don't want to make this anything more than just some mutual fun. I really needed that night with you."
+	[had_funtho] I get you. I had fun too.
+	[good_touch] Alright.
+||
+{had_funtho} She relaxes and laughs. "Look, if I need someone to touch me again, I'll let you know. You're good at that."
+	[good_touch] You're pretty good at it yourself.
+||
+{good_touch} "I loved doing that to you."
+	[liked_touch] And I liked it very much.
+||
+{liked_touch | character_leave} She chuckles. "Thanks... I think I have to return to shepherding angry merchants now.<br><br>Love you! Be seeing you. Bye!" She blows you a kiss and disappears into the crowd.
+	[ | start_encounter taodal_market taodal_market, add_flag vuisul_too_busy] Bye!
+||
+
+||>>date redirector
+{meeting_for_date | change_diag_file diag_date meeting_for_date}
+||

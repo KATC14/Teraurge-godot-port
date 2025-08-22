@@ -1,0 +1,149 @@
+
+
+
+
+
+
+||>>Tornoth initiates sex
+{tornoth_horny | random_pointer hor1-hor2} 
+||
+{hor1 | pic in_bed_together} Tornoth breathes into the back of your neck, and you feel his cock slide between your buttocks.
+{hor2 | pic in_bed_together} Tornoth slides his hand to your hip and pulls it against his erect cock.
+{thinking_back} "I want to have you again."
+	[thinking_back] You thinking of something back there? //hideif.index_is.thinking_back
+	[pc_mounted] Go ahead, Tornoth, take me.
+	[no_sex_plz] Sorry, can we... just sleep?
+||
+{no_sex_plz | change_diag_file diag_2 no_sex_plz}
+||
+
+
+
+||>>PC iniates sex 
+{iniate_sexy} His eyes focus on yours, and he leans closer to you, saying nothing but breathing hot air on your chest. He places his arm on your neck and brushes your cheek. You slide your hand over his thigh, and you feel him tense up as you slide your hand down a little and find his hardening cock.
+	[pc_mounted] Mount me, handsome.
+||
+{pc_mounted | random_pointer mount_1-mount_2-rmount_1}
+
+||>>Mounted 1
+{normal_sex | auto_continue mount_2, pic bed_mounted} Tornoth lowers you on the bed and mounts you. You feel his hands grip your hips. Tornoth's snout presses against your neck, and you hear his breathing become more excited. You feel his erection push against your thighs. 
+{mount_1 | auto_continue mount_2, pic bed_mounted} Tornoth pushes you on your stomach, and you feel his hands grip your hips. Tornoth's snout presses against your neck, and you hear his breathing become more excited. You feel his erection push against your thighs.
+||
+{mount_2 | pic bed_mounted} You spread your legs and touch the wet tip of his penis. He inhales as you deftly rub the tip, coating it with the pre-ejaculate. You feel the four pliable bumps at the front give Tornoth shivers every time your fingers run over them.
+	[guide_erect] (Guide him in you)
+||
+{rmount_1 | pic bed_mounted} Tornoth mounts you with an angry huff. You feel his wet cock press against your labia. You yelp as the cock suddenly enters you and then slowly slides into you. Tornoth presses you against the bed and tightens his grip and pulls himself closer to you. You feel him throb in you as his fingers dig harder into your hips. You gasp as he forcefully bucks into you, his testicles loudly slapping against your thighs.
+{guide_erect} You firmly palm his hot shaft and turn it slightly towards you vagina. He pushes slowly against you, and you feel the shaft slide against your hand as it smoothly enters you. Tornoth tightens his embrace and pulls himself closer to you. You feel him throb in you as his fingers hesitantly dig harder into your hips. You gasp as he suddenly bucks into you.
+	[mount_3] Oh gosh... do it. //hideif.clicked
+	[mount_3] (Brace yourself)
+||
+{mount_3} You hug his thick forearm, and he responds by hugging you even tighter. His long cock pulls out and then gently slides into you again. The sensation makes your toes tingle and abdomen cramp. He presses his head tightly against you and starts mercilessly increasing the speed. You smile with a grimace as the hot shaft slides into you over, over, and over again from behind. You feel his testicles mush against the back of your thighs as he pushes and pulls.<br><br>You feel his pace get more hurried and frustrated. He lifts your hips up as he mounts you. He flattens you against the bed and growls. You feel his testicles slap against your thighs as he works himself to breed you. Tornoth's snout rubs against your neck as his breathing grows desperately ragged.
+	[mount_orgasm | add_flag tornoth_dont_pullout] Don't- pull out... //hideif.clicked //hideif.has_flag.tornoth_please_pullout
+	[mount_orgasm] (Take it)
+||
+
+||>>Mounted 2
+{bedmount_1 | pic bed_mounted} You raise yourself on all fours on the bed, and Tornoth mounts you immediately. You feel his erection slap against your inner thigh. He nuzzles against your neck and breathes hot air against your skin, you feel goosebumps raise on your back. He steadies himself against you and suggestively moves himself towards you. You feel the tip of his cock slide along your belly, smearing precum on you.
+	[bedmount_2] Fuck me, you beast. //hideif.clicked
+	[bedmount_2] (Brace yourself)
+||
+{bedmount_2 | auto_continue bedmount_3} Tornoth's hands grip you tighter, and the head of his cock moves against your labia. Tornoths snorts frustrated into your ear and then thrusts gently but firmly into you. You gasp as the glans enter you and feel the four bumps on the underside of his cock rub against your walls. You exhale and keep your posture as he pushes himself deeper. He acts more like a horny beast than a shy smith as he bucks against you to drive himself further. You feel him exhale a satisfied sigh into your neck. You feel his large and warm testicles hang against your thighs.
+||
+{bedmount_3 | auto_continue bedmount_4} Tornoth pulls out of you and then thrusts back in. You open your mouth at the sudden sensation and then bite your lip as he does it again. He presses himself closer to you and pumps your with a deliberate speed. You try to brace yourself against the bed, but you can't keep yourself steady against his thrusts, and the only reason you're not flattened against the bed is because he is holding you against him. Your thighs slap against his massive legs as he begins to fuck you harder.
+||
+{bedmount_4 | auto_continue mount_orgasm} The relentless primal fucking yanks you back and forth like a ragdoll as Tornoth rams himself into you with a savage pace. You grimace and grip the sheets in desperate attempt to hold yourself steady as you feel his cock pulse and tighten inside you. Your legs tense as you feel your orgasm inching closer with every thrust.
+||
+
+||>>Tornoth doesn't pull out on the first time bed sex (Rules for nutting)
+{first_nut | add_flag tornoth_bed_nutted, pic mounted_nutin} Tornoth bucks violently against you, driving himself to the hilt in you. You gasp as he arches his back and roars with a deep rumble. His cock throbs in you, and you feel a gush of warmth. You yell into the mattress silently as your orgasm wrecks and contracts your abdomen, your hands erratically gripping the fabric. Tornoth weakly bucks as he throbs again, and the warmth spills out of you. Tornoth holds your hips with trembling hands, keeping himself set in you and emptying his frustration into you with each throb of his cock. You breathe erratically under him and try to regain your senses.
+	[nutin_11] (Catch your breath)
+||
+{nutin_11 | pic in_bed_together} Tornoth's hands shake and falter, he lowers himself against you and breathes in heavily. "Sorry... I didn't mean to- cum in you." You feel his cock tense inside you. "I- I got excited." He pulls out of you, and his cock slowly softens between your thighs.
+	[told_nopullout] I told you to do that, you... goofy oaf. //showif.has_flag.tornoth_dont_pullout
+	[that_messy] Don't worry about that... that was fun.
+	[that_messy] Yeah... a little messy and irresponsible.
+||
+{told_nopullout} Tornoth pauses for a moment and then asks with a sober tone, "D- Do you want me to keep doing it?"
+	[nutin_me] Yes!
+	[nutin_bitter] Sure, I'll just drink bitter water afterwards. //showif.has_flag.pc_knowledge_bitter_water
+	[nutin_avoid] I just got a little excited. We should avoid it.
+||
+{that_messy} He rumbles with a sober tone, "We should probably be a bit more careful going forward. Sorry."
+	[nutin_me] No! Please! Just keep doing it, I love it.
+	[nutin_bitter] Don't worry about it! Do me however you like, I'll just use bitter water afterwards. //showif.has_flag.pc_knowledge_bitter_water
+	[nutin_avoid] Yeah, let's try to avoid that in the future.
+||
+{nutin_me | add_flag tornoth_dont_pullout} Tornoth nuzzles the back of your neck and whispers softly, "If you become pregnant, I will take you as my wife."
+{nutin_bitter | add_flag tornoth_dont_pullout} Tornoth nuzzles the back of your neck and whispers softly, "Of course... But, if you do become pregnant, and if you wish it, I will take you as my wife."
+{nutin_avoid | add_flag tornoth_please_pullout, remove_flag tornoth_dont_pullout} Tornoth nuzzles the back of your neck and whispers softly, "Of course... But, if you do become pregnant, and if you wish it, I will take you as my wife."
+	[want_wife] ...Would you want that?
+	[avoid_wife] Let's try to avoid that for now.
+	[ofc_wife] Of course you would.
+	[cuddle_wife] (Cuddle with him)
+||
+{want_wife} "I shouldn't." He wraps his arms around you and pulls you closer.<br><br>You spend a short, soft moment in his embrace until you stir to the feeling of Tornoth's seed leaking out of you.
+{avoid_wife} He rumbles with a nod, "Of course," and pulls you closer to him.<br><br>You spend a short, soft moment in his embrace until you stir to the feeling of Tornoth's seed leaking out of you.
+{ofc_wife} He chortles and pulls you closer to him.<br><br>You spend a short, soft moment in his embrace until you stir to the feeling of Tornoth's seed leaking out of you.
+{cuddle_wife} Tornoth pulls you closer to him and lets out a deep, satisfied sigh.<br><br>You spend a short, soft moment in his embrace until you stir to the feeling of Tornoth's seed leaking out of you.
+	[some_cleanup] Did you have more water here? I could do with a clean up.
+||
+{some_cleanup} He lazily points to a corner. "In the corner." There's a white towel hanging on the wall near a wooden bucket of water.
+	[clean_up] (Clean yourself)
+||
+
+
+||>>Tornoth orgasm/ejaculation
+{mount_orgasm | check_flag tornoth_bed_nutted first_nut in_or_not}
+{in_or_not | check_flag tornoth_please_pullout nutin nutout}
+|| 
+{nutin | pic mounted_nutin} Tornoth bucks violently against you, driving himself to the hilt in you. You gasp as he arches his back and roars with a deep rumble. His cock throbs in you, you feel a gush of warmth. You yell into the mattress silently as your orgasm wrecks and contracts your abdomen, your hands erratically gripping the fabric. Tornoth weakly bucks as he throbs again, and the warmth spills out of you. Tornoth holds your hips with trembling hands, keeping himself set in you and emptying his frustration into you with each throb of his cock. You breathe erratically under him and try to regain your senses.
+	[number_sex] You- did- a number on me... Gosh. //hideif.clicked
+	[catch_breath] (Catch your breath)
+||
+{catch_breath | pic in_bed_together} You feel his softening cock throb gently inside you. He hesitantly starts to pull himself out of you. You feel the large, limp cock flop out of your nethers.
+{number_sex | pic in_bed_together} You feel his softening cock throb gently inside you. He hesitantly starts to pull himself out of you. You feel the large, limp cock flop out of your nethers. "Sorry... Do you want to clean yourself?"
+	[stop_pull] Stay a while.
+	[clean_up] I'll freshen up quick. (Clean up)
+||
+{stop_pull} You put your hand gently on him and pull him back. The girthy shaft slides between your buttocks as he settles closer to you. He rolls to your side and hugs you tightly. You feel his furry chest expand and deflate against your back as he breathes calmly.
+	[cuddle_perfect] This is perfect. //showif.clicked
+	[love_cumin] I love you cumming in me. //showif.clicked
+	[after_cuddle] (Cuddle)
+||
+{cuddle_perfect} Tornoth pulls you closer to him and chuckles. "You're perfect, -name-." <br><br>You spend a short, soft moment in his embrace until you stir to the feeling of Tornoth's seed leaking out of you.
+{love_cumin} Tornoth pulls you closer to him and rumbles into your neck, "I quite enjoy it myself too." <br><br>You spend a short, soft moment in his embrace until you stir to the feeling of Tornoth's seed leaking out of you.
+{after_cuddle} Tornoth pulls you closer to him and lets out a deep, satisfied sigh.<br><br>You spend a short, soft moment in his embrace until you stir to the feeling of Tornoth's seed leaking out of you.
+	[clean_up] (Clean up)
+||
+
+||>>Tornoth pulls out
+{nutout | auto_continue nutout_2} Tornoth bucks violently against you, driving himself to the hilt in you. You gasp as the sensation sends you over the edge. You yell into the mattress silently as your orgasm wrecks and contracts your abdomen, your hands erratically gripping the fabric. Tornoth growls weakly and pauses for a moment, holding you down with trembling hands.
+{nutout_2 | pic mounted_nutout} Tornoth suddenly bucks and then hastily pulls out of you with a wet pop. He arches and roars with a deep rumble. You feel a splash of warmth against your belly and then on your thigh. Tornoth weakly inhales as he throbs again and coats your underside with more cum. Tornoth holds your hips with trembling hands, keeping himself set on you and empties himself. You breathe erratically under him and try to regain your senses. Your underside and legs feel warm and sticky.
+	[hueg_mess] Oh gosh... w- we made a huge mess. //hideif.clicked
+	[catch_breath_messy] (Catch your breath)
+||
+{hueg_mess | pic huge_mess} Tornoth falls exhausted on the bed and takes a deep breath. "S- sorry." You catch your breath and then carefully get up. The cum covering your underside starts sliding down your torso.
+{catch_breath_messy | pic huge_mess} Tornoth falls exhausted on the bed and takes a deep breath. You catch your breath and then carefully get up. The cum covering your underside starts sliding down your torso.
+	[clean_up] (Clean up)
+||
+
+
+||>>Clean up
+{clean_up | pic bed_cleanup} You slide out of the bed and walk to the bucket. The water is slightly below room temperature and gives you goosebumps as you clean yourself. The towel is roughly woven but soft and clean.<br><br>Tornoth is lying on the bed, his chest calmly rising and falling as he breathes. You're not sure if he's awake.
+	[exit_sexscene] (Get back into bed)
+||
+{exit_sexscene | change_diag_file diag_2 bed_sex_end}
+||
+
+
+
+
+
+
+
+
+
+
+
+
+

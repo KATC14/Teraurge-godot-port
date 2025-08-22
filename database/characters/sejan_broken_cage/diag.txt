@@ -1,0 +1,20 @@
+
+>>An abandoned broken cage in the forest
+||
+{start | save_index visited} You come across a rusted cage.
+{visited} You return to the rusted cage.
+	[ | check_stat intelligence 6 look1-look2, save_index visited2] (Investigate) //hideif.clicked
+	[ | end_encounter] (Leave)
+||
+{visited2 | check_stat intelligence 6 visit_look1-visit_look2} You return to the rusted cage.
+{visit_look1} You return to the rusted cage.
+{visit_look2} You return to the rusted cage. You can still see the loose metal bars around the ruined cage.
+{look1} The rusted cage looks big enough to hold a large animal. There is a huge hole torn in the side of it.<br><br>After a cursory search, you find nothing. 
+{look2} The rusted cage looks big enough to hold a large animal. Several of the bars on one side are bent outwards and seem to have been ripped away. It's unclear whether something tried to get in or out.<br><br>After a few minutes of searching, you find a few of the cage's bars scattered around some distance away.<br>Despite how worn they are, they're still sturdy.
+{pry0} You grab onto a weak-looking, rust-covered metal bar and pull on it as hard as you can. After a few short and arduous moments, you wipe the sweat off your brows and give up.
+{pry1 | give_item rusted_metal_bar} You grab onto a weak-looking, rust-covered metal bar and pull on it as hard as you can. You decisively wrench the bar off the cage with a quick yank.<br><br>The bar seems like a useful makeshift weapon. You take it.
+{pick_bars | give_item rusted_metal_bar 3, save_index visit_look1} You dig three loose metal bars from the sand and take them. They look like they could be used as crude makeshift weapons.
+	[ | check_stat strength 8 pry0-pry1] (Pry off a metal bar) //hideif.clicked
+	[pick_bars] (Pick up the metal bars) //showif.intelligence.6 //hideif.clicked
+	[ | end_encounter] (Leave)
+||

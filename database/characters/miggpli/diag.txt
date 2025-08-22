@@ -1,0 +1,731 @@
+>>Miggpli is a wildlife researcher that's visiting the village of Taodal.
+||>>INTRO
+{start | stop_music 2, play_sound sejan/miggpli_books 70, hide_character} The door closes behind you, hitting a small chime. You hear mumbling somewhere deeper in the building and stuff falling over.
+	[intro_hello] Hello?
+||
+{intro_hello | start_music sejan_taodal/miggpli 70 1, character_return character} You hear rapid pats against the floor. An oversized and slimy-looking caterpillar enters the room and stops in front of you with a courteous bow. "Hello! Sorry about the wait. I didn't expect visitors."
+	[disturb] Sorry for disturbing. I can come back later if you're busy?
+||
+{disturb} "No! I was just arranging things out of boredom. My name's Miggpli, how can I help you?"
+	[wrong_door] -name-. Sorry, I thought Uum lived here. I must have confused the buildings.
+||
+{wrong_door} "Uum does live here! You're at the right place! She's just out of town at the moment. I have an arrangement with her to live here and keep her house tidy."
+	[uum_back] Do you know when she gets back?
+||
+{uum_back} "Hopefully not soon! I still have plenty research to do! We didn't agree to a specific time frame but I'm supposed to send her a letter when I get bored.<br><br>Did you have something urgent for her?"
+	[area_curious] No, not really. I was just curious about the history of the area.
+||
+{area_curious} "Ooh noo! I hate to see someone's curiosity go unrewarded! I'm terribly sorry but I don't think I can help you.<br><br>I'm from out of town myself. I can't really tell you anything about this village. I spend a lot of time out in the wilderness and rest of the time inside these walls."
+	[zoologist] What is it exactly you do here?
+||
+
+
+||>>Meeting after sex rejection
+{advances_rejected} Miggpli walks into the room and then stares at you, unsure. "-name-... Sorry about the.. the thing. I didn't mean to make you feel uncomfortable."
+	[whatta_hell_dude] What got into you?
+	[itsokayweok] It's okay, we don't have to talk about it. We're still friends.
+||
+{whatta_hell_dude} He wrings his upmost arms nervously. "I- I... I'm just used to Shiroo and... I've brought my habits here. I just feel I have to be more assertive here, and I overdid it."
+	[scary_miggus] You could say that, you scared me a bit.
+	[okay_miggus] It's okay.
+	[lets_nottalk] I don't want to talk about this.
+||
+{scary_miggus} "...Sorry. I wasn't drunk or anything, I- I was just nervous and I tried too much. I don't want to scare you off, you're basically my only friend here."
+{okay_miggus} "I- I was just nervous and pushed too much. I don't want to scare you off, you're basically my only friend here."
+	[still_frendo] We're still friends Miggpli, it's okay.
+	[lets_nottalk] Let's stop talking about this.
+||
+
+
+||>>CONVO HUB
+{zoologist | save_index met} "I'm cataloguing different species on this peninsula. I got a tip from another scholar that this place would have some unrecorded species."
+{met | start_music sejan_taodal/miggpli 70 3} "Oh hello, -name-! Did you want something?"
+{curse_joke} "Hah! That'd be silly. Cursed bowls? Would one make your food taste bad?"
+{can_wait} "I'm sure she can help you when she gets back."
+{okay_books} "Sorry. I know you just want some info. I'm sure Uum will help you once she comes back."
+{imma_tag} "Let me know when you're done. I'm itching to do some observations on them."
+{pass_tag} "I- I understand. It's a rather icky proposition."
+{obs_later} "Of course! Let me know when you want to go do it."
+{sex_hello | start_music sejan_taodal/miggpli 70 3} "Hey! How are you, -name-?"
+{still_frendo | start_music sejan_taodal/miggpli 70 2, save_index met} His eyes light up and he nods lightly. "Thank you."
+{lets_nottalk | start_music sejan_taodal/miggpli 70 2, save_index met} He nods. "S- so why are you here?"
+{itsokayweok} His eyes light up and he nods lightly. "Thank you, I'm still embarrassed and sorry about what happened, but thank you.<br><br>So, why are you here?"
+{drink_raincheck | add_flag miggpli_drink_promise} He nods. "Of course! Let me know when you have the time.<br><br>So, what brings you here?"
+{silent_return}
+	[lets_drinky] You wanna have that drink you promised? //showif.has_flag.miggpli_drink_promise
+	[cuoxur_observation] Do you want to go do that cuoxur observation? //showif.has_flag.miggpli_observation_wait
+	[tagged_dem_cuoxurs] I tagged those cuoxurs you wanted. //hideif.clicked //showif.counter.miggpli_f_cuoxur_tags.2 //showif.counter.miggpli_m_cuoxur_tags.2
+	[help_zoology] You mentioned you need help with cuoxurs? //hideif.clicked //showif.has_flag.miggpli_cuoxur_research
+	[contact_uum] I really need Uum's expertise. Is there any way to contact her? //hideif.clicked
+	[stone_tablet] I needed Uum's help, but I guess you might be able to help me? //showif.has_item.sejan_cave_map //hideif.clicked
+	[ | change_diag_file diag_questions start] (Questions)
+	[animal_sightings] (Animal sightings)
+	[ | start_encounter taodal taodal] I'll be going now. (Leave)
+||>>CONVO HUB
+
+
+||>>Contact uum?
+{contact_uum} "I can send her a letter, but... she only said to send the letter when I'm done. I think she's gone on a holiday. I wouldn't want to disturb her needlessly."
+{archa_opinion} "Awesome! Can you keep it safe until she gets back? I'm sure she'd love to take a look at it. I don't want to disturb her needlessly."
+	[cursed_bowl] (Show the cave map) This stone tablet has a map to a cursed wooden bowl. I need her help.
+	[archa_opinion] I'd like her opinion on this stone tablet found here at Sejan. //hideif.index_is.archa_opinion
+	[can_wait] I guess this can wait. It's not that urgent.
+||
+{cursed_bowl} He snorts. "What?"
+	[cursed_1] This stone tablet has a map to a cursed wooden bowl.
+||
+{cursed_1} "Are you serious?"
+	[yes_serious] Yes!
+	[curse_joke] I'm just joking. It's not important. (Lie)
+||
+{yes_serious} "I know things are different here but I'm not going to disturb Uum because of a magic... bowl? What?"
+	[can_wait] I know it sounds ridiculous but I really need her help.
+	[can_wait] Actually, just forget it.
+||>>Stone tablet
+{stone_tablet} He waves his hands defensively as you try to show him the tablet. "Sorry! I- I can't! I'm sure Uum knows something but I can't tell you anything you don't already know about it. I might even subtly break or erase something important if I tried anything. I have no idea how archaeology works."
+	[some_books] Maybe Uum has some books here that could share some light on it?
+||
+{some_books} "No! Uum was very specific on not touching her research! I wouldn't even know what to look for! There's thousands of books back there!"
+	[kicking_books] Weren't you arranging and kicking down stuff back there already?
+	[peek_books] Could I take a peek at the books? I might be able to find something.
+||
+{kicking_books} "That was my own stu.. research!<br><br>I'm not going to touch Uum's things."
+{peek_books} "Absolutely not! I promised Uum that her research and things would remain untouched while I'm here. You're a complete stranger too!"
+	[okay_books] Okay, I get it.
+||>>Tag cuoxurs
+{help_zoology} "Yes! I need someone to tag some cuoxurs based on their sex. I managed to tag some braqs and niirds but cuoxurs are so aggressively defensive I could never tag them."
+	[how_tag] Sure, I can do that. How do I tag them?
+||
+{how_tag | character_leave} "Let me get you some." Miggpli disappears into the back room.
+	[wait_amouls] (Wait)
+||
+{wait_amouls | character_return character} Miggpli returns and hands you a small bag. "There you go." You open the bag and find starfish-looking shells with smooth undersides. The shells seem to be painted bright red and yellow.
+	[what_amouls] What are these?
+||
+{what_amouls} "They're amouls, small aquatic creatures that stick to things. The ones in the bag are dead but if you plant their underside against, say, skin, the glue will still activate and the shell stick to the skin." 
+	[tag_cuoxur] So, I just plant those on the cuoxurs?
+||
+{tag_cuoxur} "Yes. The glue should work on most surfaces. Don't worry, the glue will deteriorate after some time and the shells fall of the creatures. They do stay long enough to do some observation of the specimens. Use the red ones on males and yellow ones on females."
+	[cuoxur_sex] How would I determine their sex?
+||
+{cuoxur_sex} "I'm pretty sure that just rubbing on the small holes on their back will excite them enough for them to produce the slime genitals. A round blob means it's a female and if it's a more pointed, long shape, then it's a male."
+{so_u_saying} Miggpli's face turns slightly purple. "I- I suppose. Zoology is sometimes a little hard to stomach, but if you just look at it as science procedure, it's not so bad.<br><br>You don't have to do this if it makes you uncomfortable."
+	[can_tag] I think I can handle that.
+	[so_u_saying] So... you're saying I have to 'excite' these creatures to find out their sex? //showif.index_is.cuoxur_sex
+	[pass_tag] Sorry, I think I'll pass.
+||
+{can_tag | add_flag miggpli_quest_cuoxur_tag, give_item bag_of_amouls} "Great! I would have never managed to do this on my own. Thank you. Let me know when you have tagged two of each sex. The cuoxur population isn't very big so I think four is an okay number."
+	[imma_tag] I'll get those cuoxurs tagged for you.
+||>>TAGGED THE CUOXURS
+{tagged_dem_cuoxurs} "Two of each sex? Great!"
+	[other_help] Glad to help.
+	[spend_time] Anything else you want help with? Or do you want to spent some time together?
+||
+{spend_time} "...Why- Why would you ask that?"
+	[hang_out] Just wondering if you want to drink or hang out together?
+||
+{hang_out} "...You mean with you? Just the two of us?"
+	[two_us_if] If you want?
+||
+{other_help} "If you're still feeling generous, I- I have some other zoology work we could do. "
+{two_us_if} He nervously scans you over. "Of course! You look... I mean, we could do some zoology?"
+	[zoology_okay] I'm okay with that.
+	[zoology_okay] What exactly?
+	[zoology_or] You mean 'zoology' or zoology?
+||
+{zoology_okay} "Animal observation! It can get very lonely sitting in a hole in a forest. It'd be fun to have help with the shoveling too."
+{zoology_or} He laughs nervously. "Sorry... I'm a little overwhelmed. I suppose we could do some animal observation together? It can get very lonely sitting in a hole in a forest. It'd be fun to have help with the shoveling too."
+	[shoveling_what] Shoveling? What do you mean?
+||
+{shoveling_what} "We could go observe the cuoxurs now that you've tagged them. We'd have to dig a small observation pit to hide ourselves."
+	[go_nao] I was thinking more along the lines of drinking and talking, but we can do that.
+	[go_nao] That could be interesting. Count me in.
+	[lotta_work] I don't know, sounds like a lot of work.
+||
+{go_nao} "Actually... we could go right now? I don't have anything other things to attend to."
+{lotta_work} "I could really use the help but you've already helped me greatly."
+	[need_anything] Sure, let's go. Do I need anything?
+	[obs_later | add_flag miggpli_observation_wait] Maybe later?
+||
+
+||>>ANIMAL SIGHTINGS
+{educated_guess} "Could have been one of the mountain drakes. They sometimes come fish near the water."
+{cuoxur_change_sex} "The specimens seem to retain their sex roles, but I will need extensive observation to confirm it. First, I would need to mark specimens so I know who's who."
+{cuoxur_mating_eww} "I- It's part of the science!" He wiggles, seemingly disappointed at your reaction.
+{domesticated_pohs} "I think they were used as mounts? I can't actually remember. Domesticated poh-acks are definitely not a normal thing."
+{niird_more} "It's apparently very dumb. You can fool it thinking you're another niird by just acting like one. Just kick up some sand and make similar noises and you'll get to hang out with one. They will try to groom you, so be prepared."
+{lukumpplar_q} "I interviewed him about that. I'm not sure what beast he is referring to. The description could fit a few inner coast animals but I've never heard the name. It could be a local name for the species."
+{serpent_desc} "What a weird creature! I should go through my books on aquatic animals if I can find something."
+{braq_dangerous} "They're probably the least dangerous animals anywhere. They might make noise and stomp around if they're wild, but you can waltz right up to them and pat them and they'll forget you're even there. Luckily, the predators here are scared of them. If you meet one again, don't scare the poor thing. The extensive domestication has made them produce excessive amounts of hormones, so the flood of stress chemicals will literally neuter them for days if terrified."
+{q_kwumui_4} "I don’t know. There was someone in Shiroo who did more extensive research into kwumui but I can’t remember their name. Montomyek- maik? Monto something."
+{animal_sightings}
+	[q_kwumui | add_flag pc_knowledge_kwumui] I met a creature with two thin legs, a long neck, soft skin flaps on sides of its head, and a ball-like tail. 	//hideif.clicked //showif.has_flag.kwumui_encountered
+	[braq_q | add_flag pc_knowledge_braq] I met a large, grey, eyeless, six-legged animal in the forest. Any idea what it was? 						//hideif.clicked //showif.has_flag.braq_encountered
+	[cuoxur_q | add_flag pc_knowledge_cuoxur] I ran into a strange pale, droning serpent with odd stumpy legs. 									//hideif.clicked //showif.has_flag.cuoxur_encountered
+	[pohack_q | add_flag pc_knowledge_pohack] A shiny, blueish serpent thing with scythe arms stopped me in the peninsula. 							//hideif.clicked //showif.has_flag.pohack_encountered
+	[niird_q  | add_flag pc_knowledge_niird] I saw a white, two-legged animal with a segmented, worm-like body, digging on a beach. 				//hideif.clicked //showif.has_flag.niird_encountered
+	[lukumpplar_q] The town guard told me about a beast called a lukumpplar. Can you tell me anything about it? 									//hideif.clicked //showif.has_flag.taulsol_lukumpplar_story
+	[shyni_monster_q] A friend mentioned a large flying beast attacking her at the shore cliffs. 													//hideif.clicked //showif.has_flag.shyni_monster_story
+	[shore_serpent_q] I encountered a giant, green-blue, aquatic serpent in a cave near the shore. 												//hideif.clicked //showif.has_flag.breirb_rival_encountered
+	[silent_return] (Back)
+||
+
+>>ANIMAL QUESTION ANSWERS
+||>>Kwumui
+{q_kwumui} "Huh? Where did you meet this creature?"
+	[q_kwumui_1] On an island off the coast of the peninsula. One with the red trees.
+||
+{q_kwumui_1} "It sounds like you met a kwumui. They’re a nomadic species that migrate over the ocean by gathering gas into their tail ball and using it as a raft while they paddle with their ear wings. I guess a flock of them found their way into the Sejan islands."
+	[q_kwumui_2] Can you tell more about them?
+||
+{q_kwumui_2} "They have big males that compete over the smaller females, very violently sometimes. The species has three sexes, the third one is a larger female that is slightly larger than the males and more aggressive. The ‘queen’ female is born very rarely but they do occur very consistently."
+	[q_kwumui_3] Why do you call the larger female a different sex?
+||
+{q_kwumui_3} "The ‘queen’ gives live birth to its children. The normal females produce eggs. The large female also fights males to breed with them."
+	[q_kwumui_4] It gives live birth but the normal females make eggs? How?
+||>>Braq
+{braq_q} "Oh? You met a wild braq? Was it eating pink stuff?"
+	[pink_stuff_1] Yes, it was eating pink stalagmites on the ground.
+||
+{pink_stuff_1} "That was a braq, then. Not really an exciting animal, to be honest. They're a common domestic animal everywhere. Milk, meat, and hides. Sejan has a population of escaped ones living in the forest."
+	[pink_stuff_2] What was the pink stuff it was eating?
+||
+{pink_stuff_2} "That was just milk. The females mark their living areas by relieving their milk on the ground. The milk ossifies into stalagmites over time that act as food reserves. The domesticated braqs have such excessive milk production that it's probably the only thing the males eat. Its smell is also the way the males find the females, they're attracted to it."
+	[braq_dangerous] Are they dangerous?
+||>>Cuoxur
+{cuoxur_q} "Oh my gods! You saw a cuoxur! Did you get close?"
+	[droned_atmeh] It stopped me and droned at me.
+||
+{droned_atmeh} "Did it do anything?"
+	[stood_there] It just stood there and droned at me. It really didn't like me.
+||
+{stood_there} "Oh, it probably just crossed your path and tried to intimidate you. You can just walk away and they won't follow you."
+	[cuoxur_more] Do you know more about them?
+||
+{cuoxur_more | add_flag miggpli_cuoxur_research} "I'm actually in the process of gathering info on them and might need some help with that. The locals called them cuoxurs, so I call them that. I managed to hide near a spot they're commonly seen at and I made a major discovery!"
+	[saw_what] What?
+||
+{saw_what} "I saw them mating!"
+	[cuoxur_mating_eww] Eww.
+	[cuoxur_mating] Is there something unconventional about their mating habits? //showif.intelligence.8
+||
+{cuoxur_mating} "They're strange! The locals thought there were no male and female distinction in the species, but there is! They rub their backs together and 'grow' genitals from ooze secreted from the pores on their backs! I've never seen anything like it."
+	[cuoxur_change_sex] Do you think their sex is fixed or they can change it at will?
+||>>Poh-ack
+{pohack_q} "Oh, you've met a poh-ack. They're found elsewhere as well. The ones here in Sejan are oddly small. They're normally almost twice their size. They're probably not getting enough nutrition from the prey animals here. Males have a horn and are slightly bigger than the females, basic stuff."
+	[twice_big] They're normally twice as big?
+	[pohack_at_sejan] How'd they end up in Sejan?
+||
+{twice_big} "Yes! They're regarded as pretty dangerous in their native lands. Particularly large ones are even worshipped as divine by primitive tribes."
+{pohack_at_sejan} "They come from fairly far away, so they must have been stowaways or been intentionally brought here. In their native lands, they're worshipped as divine by primitive tribes."
+	[pohack_worship] People worship these things? 
+||
+{pohack_worship} "Yes. Those same people also have... 'deviant rituals' involving female specimens.<br><br>But I guess that's the level of depravity one has to fall to to start worshipping wild animals."
+	[deviant_rituals] By 'deviant rituals' you mean... they have sex with them?
+||
+{deviant_rituals} "They- They hunt the poh-acks in large groups, kill the males and have the young hunters have sex with the females as a ritual into adulthood. Afterwards, they release the females back into the wild."
+	[pretty_barbaric] That sounds bizarre.
+	[pretty_barbaric] That sounds barbaric.
+	[pretty_barbaric] That's disgusting!
+	[sex_kibble] Wouldn't the females just... slice them into tiny kibble during the act? Especially if they're twice the size?
+||
+{pretty_barbaric} "The poh-acks become extremely docile if they're 'dominated', so these barbarians take advantage of that."
+{sex_kibble} "You'd think that, but poh-acks become extremely docile if they're 'dominated'. I'm sure that behavior is the reason for that stomach-turning tradition."
+{how_docile} "There was a case where a whole flock of domesticated poh-acks was eaten after their alpha was killed by a large predator. Witnesses described the poh-acks just cowering on the ground as the predator gobbled them up one by one.<br><br>I think the docility borders on paralysis for poh-acks."
+	[how_docile] How docile? //hideif.index_is.how_docile
+	[domesticated_pohs] Domesticated poh-acks? For what purpose? //showif.index_is.how_docile
+||>>Niird
+{niird_q} "One of the unique species of the Sejan peninsula! It's called a 'niird' by the locals. Probably named by the sound it makes. It eats smaller animals from the beach sand."
+	[niird_more] Can you tell me more?
+||>> Shyni told me about a monster in the cliffs?
+{shyni_monster_q} "A large shadowy flying creature with three claws? I have to say that fits many flying animals. It could have been a lot of things. Flying creatures get around well, so I can't really narrow it down based on the area."
+	[educated_guess] An educated guess on what it might have been?
+||>> Really big green water serpent that lives in a shore cave?
+{shore_serpent_q} "Sounds terrifying. How big are we talking about? Any other descriptors?"
+	[serpent_desc] Very large, five or six times as long as I'm tall, I think? No eyes and a smooth head with an odd frill around the head.
+||
+
+
+
+
+>>CUOXUR QUEST
+
+||>>CUOXUR OBSERVATION
+{cuoxur_observation | remove_flag miggpli_observation_wait} "Absolutely! I have two shovels! I don't think we need anything else. You go wait outside the town, I'll meet you there. I'll need to fetch the shovels and pack a few things." Miggpli disappears into the back room.
+{need_anything | remove_flag miggpli_observation_wait} "I have two shovels! I don't think we need anything else. You go wait outside the town, I'll meet you there. I'll need to fetch the shovels and pack a few things." Miggpli disappears into the back room.
+	[wait_outside] (Go outside the town)
+||
+{wait_outside | stop_music 3, change_environment taodal_entrance, hide_character} You take a short trip outside the town walls and stop on the road. 
+	[wait_migg] (Wait for Miggpli)
+||
+{wait_migg | character_return with_shovels, character_leave} You wait a while until you see Miggpli running down the road with two shovels he can barely carry. "Huh- So- Sorry to keep you waiting. I have the shovels. Let's go!" Miggpli marches past you into the forest.
+	[follow_migg] (Follow him)
+||
+{follow_migg | pic resting} You keep up a good pace for a while until Miggpli becomes exhausted and slows down. "Sorry, I'm not actually much of a hiker. Just a moment." Miggpli inhales and sits down to rest.
+	[take_time] Take your time, we're not in a hurry, are we?
+	[piggyback_1] You know, I could give you a ride on my back if you want?
+||
+{piggyback_1} Miggpli laughs. "You mean I'd climb on your back and you do the walking? That's funny."
+	[piggyback_2] I'm serious.
+	[take_time] Alright, take your rest.
+||>>Just rest
+{take_time | start_music generic/peaceful_sejan 50 2} Miggpli sits on the fallen tree for a while and then springs back on his many legs and motions you to follow.
+{take_time_2 | start_music generic/peaceful_sejan 50 2} Miggpli laughs. "I think I'm just going to lie here to rest." The two of you lie on the forest floor quietly until Miggpli springs back on his many legs and motions you to follow.
+	[obs_1] (Follow him)
+||>>Piggyback ride
+{piggyback_2} Miggpli cocks his head. "Oh? Um, okay! Let's try it!"
+	[ | check_stat strength 6 piggyback_fail-piggyback_succ] (Give Miggpli a piggyback ride)
+||
+{piggyback_fail} You crouch down and Miggpli climbs on your back. He tightens his grip as you stand up. "Oh, gods! Don't fall over!" You take a step and your legs falter under you. You both fall down and roll over.
+	[take_time_2] Okay, I don't think this is gonna work.
+||
+{piggyback_succ | start_music generic/peaceful_sejan 50 2, pic piggyback} You crouch down and Miggpli climbs on your back. He tightens his grip as you stand up. "Oh, gods! Don't fall over!" You take a step with no problems and start walking with Miggpli pointing you where to go. After passing a few trees, Miggpli giggles behind your head. "This is comfortable, thank you. We must look ridiculous like this, but it's terribly fun. Let me know if you're feeling tired and we'll stop this silliness."
+	[piggyback_final] I'm doing just fine, let's go.
+||>>At the observation site
+{piggyback_final | pic dig_spot} You arrive to a clearing in the forest. Miggpli jumps off your back and taps the ground with his shovel. "This is a good spot. Flat stops like this are good places to spot animals when they come out of the forest. I can put the lure somewhere there." He waves his hand excitedly towards the other end of the clearing. 
+{obs_1 | pic dig_spot} You arrive to a clearing in the forest. Miggpli taps the ground with his shovel. "This is a good spot. Flat stops like this are good places to spot animals when they come out of the forest. I can put the lure somewhere there." He waves his hand excitedly towards the other end of the clearing.
+	[obs_2] So, do we dig a hole here, then?
+||
+{obs_2} He tests the sand with his shovel. "I think this is a good spot. We just need some branches and leaves for the roof."
+	[obs_3] Why a hole? Couldn’t we just make a small tent or something like that?
+||
+{obs_3} "Holes hide your smell and sounds better, and we don’t actually have to dig very deep anyway, just deep enough to sit in it and peek outside."
+	[obs_4] Right, I'll get to it, then. (Dig)
+||
+{obs_4 | play_contsound generic/loops/digging 70 1 0 3, pic shoveling} The two of you start shoveling the tightly packed but easy to remove sand bed. After a few minutes, Miggpli is visibly exhausted. He stops and looks at you, confused. "How are you still going? You don’t have to kill yourself digging it. You can take breaks." You don’t feel very tired.
+	[obs_5] I’m not tired.
+||
+{obs_5} You keep shoveling sand as Miggpli breathes heavily. He watches you work, slightly puzzled. "How are you not tired?"
+	[obs_6] I haven’t really done much work yet.
+||
+{obs_6} You shovel more sand. "Really? Your anatomy must have great endurance. You do sweat."
+	[obs_7] Humans do have a pretty endurance-focused biology. //showif.intelligence.6
+	[obs_7] I guess.
+||
+{obs_7} "I can’t swing a shovel much at all before I get tired. Looking at you have a go at it is a little terrifying."
+	[obs_8] It’s okay, take a break, I’ll keep at it.
+||
+{obs_8} "Okay, but I’ll help you as soon as I can, please leave something for me. I’ll feel terrible if you do all the work."
+	[obs_9] No promises! (Keep digging)
+||
+{obs_9 | stop_contsound 1 4} You keep digging the hole and almost manage to shovel it completely before Miggpli returns to excavate the last few handfuls of dirt. You step out of the shallow pit and Miggpli looks a bit ashamed at you. "Sorry, I didn’t plan on you doing all the work. I honestly didn’t expect you to be so efficient at it."
+{less_apt} "I honestly haven’t seen anyone else dig holes? I just assumed it tired others the same way."
+	[obs_10] It’s okay, we save time this way. I don’t mind.
+	[less_apt] Why did you expect me to be less apt at it? //showif.index_is.obs_9
+||
+{obs_10} "Still… I’ll give you something to drink when we get back."
+	[obs_11] I’ll hold you to it.
+||
+{obs_11} "You really should. Right, we should get some twigs and leaves to cover the hole and settle in. If you get those, I’ll set the lure over there." He taps away on his multiple legs towards the other end of the clearing.
+	[build_camo] (Build the pit camouflage)
+||
+{build_camo | pic observation_pit} You gather loose branches and twigs from the edge of the forest and create a rough roof for the observation pit. You finish the cover by scattering large leaves on it. You see Miggpli still fiddling with the lure at the other end of the clearing.
+{need_help} He waves dismissively at you and continues his work.
+	[need_help] DO YOU NEED HELP? //showif.index_is.build_camo
+	[pit_step] (Step into the pit)
+||>>Smell me, AAAAAaaaaa!
+{pit_step} You crouch and sit inside the pit. Miggpli quickly joins you and hastily shoves his hands at you with a concerned expression. "Do I smell?"
+{wat_smell} He shakes his hands. "Please!"
+	[wat_smell] What? //showif.index_is.pit_step
+	[smell_hands] (Smell his hands)
+	[wat_smell] I don’t smell anything. //showif.index_is.pit_step
+||
+{smell_hands} You lean towards his hands and smell them, you notice a faint odor of the wet sand on him.
+	[smell_sand] I smell sand?
+	[smell_nuthin] I don’t smell anything.
+||
+{smell_sand} "Nothing else? I- I thought I might have spilled some of the lure on me. I can’t smell it myself at all. I hope you can."
+	[smell_nuthin] I don’t smell anything.
+||
+{smell_nuthin} "Really?<br><br>Uh... can you go smell the lure? If you can smell it, then I haven’t spilled any on me. If the cuoxur smell the observation pit, it’s going to ruin the whole thing."
+	[smell_lure] Alright. (Go smell the lure)
+||
+{smell_lure | pic cuoxur_lure} You take a small hike to the lure. It’s a bright red container jammed into the sand, its lid hanging off it by a string. You crouch and smell the opened container. An overly sweet and nauseating stench overwhelms you. 
+	[back_pit] (Get back to the pit)
+||
+{back_pit | pic observation_pit} You return and sit into the pit. Miggpli looks concerned at you. "You smell it?"
+{big_joke} "What? No! If I spilled the lure on myself, the cuoxurs will home in on this pit and notice us."
+	[big_joke] Is this an elaborate joke? //showif.index_is.back_pit
+	[sweet_smell] A very sweet smell. Like rotten fruits?
+||
+{sweet_smell} "Thank gods! I didn’t spill it on me!"
+	[wat_lure] What is the lure anyway?
+||
+{wat_lure} "Oh, it’s the giadendrin hunt pheromone. It has a very wide effect on all kinds of wildlife. It works on the cuoxur as well."
+	[giadendrin] What’s a giadendrin?
+||
+{giadendrin} "Giadendrin? Oh I guess they’re more commonly known as black sirens? They’re large, shiny creatures that try to have sex with everything. They’re not terribly pleasant."
+	[fug_all] Everything?
+||
+{fug_all} "Yes, people too. They spit out small darts of their pheromone and ensnare the animals they lure to them. They seem to have the ability to breed with a wide array of species. However, instead of normal hybridization, the fertilization only produces more of their kind."
+	[smell_sex] Wait... are you saying you just made me go smell a mind-controlling sex pheromone?
+	[one_sex] So, it’s a one sex species?
+||
+{smell_sex} Miggpli stops and gasps. "Oh no! I- I didn't- OH MY GOD. I didn't do it on purpose!<br><br>You're... You're not feeling anything, right? The smell doesn't usually have an effect on people. You'd need to get stung by a giadendrin dart to have that effect."
+	[not_feelin_it] I'm not feeling anything.
+	[maybe_bone] I don't know... Maybe you want me to jump your bones in this pit in the middle of nowhere.
+	[one_sex] Is it a one sex species?
+||
+{maybe_bone} "Uh, no- I..." "Um, giadendrin use the pheromone for hunting, females will eat everything they have sex with and males will eat their mates as well. That is, if they are not trying to breed; if they are, they will instead drag the prey into their lair and keep it there until it gives birth... and then eat them."
+{not_feelin_it} "Good!" Miggpli sighs in relief. "The pheromone is also their hunting tool, females will eat everything they have sex with and males will eat their mates as well. That is, if they are not trying to breed; if they are, they will instead drag the prey into their lair and keep it there until it gives birth... and then eat them."
+{one_sex} "No, there’s males and females. The pheromone is also the their hunting tool, females will eat everything they have sex with and males will eat their mates as well. That is, if they are not trying to breed; if they are, they will instead drag the prey into their lair and keep it there until it gives birth... and then eat them."
+	[fricked_up] That’s pretty fucked up.
+	[still_freaky] Huh.
+||
+{fricked_up} "Nature and animals will surprise you with their cruelty, but in the end, they’re just acting out their innate nature."
+	[still_freaky] Still.
+||
+{still_freaky} "Yeah, it’s pretty freaky."
+	[wait_cuoxurs] So, do we just sit still and wait for the cuoxurs to show up?
+||
+{wait_cuoxurs} "Yes. We need to be completely silent so we don’t scare them."
+	[cant_talk] We can’t talk?
+||
+{cant_talk} Miggpli opens his bag and produces a flat board with markings. "Don’t worry! I’ll teach you Oiai. We can play it silently." He places the board on the dirt and opens a bag of wooden game pieces.
+	[wat_oiai] Oiai?
+||
+{wat_oiai} "It’s a game with different pieces and they do different stuff and you have to… I can explain as we go, it’s easier that way."
+	[play_oiai] Okay, sounds good. (Play Oiai with Miggpli)
+||
+{play_oiai | auto_continue play_oiai_2} You and Miggpli start playing Oiai. You spend a silent evening moving the pieces on the board, sometimes making brief eye contact, pointing, and nods to communicate. Miggpli keeps motioning to explain the game, but by the end of the first game, you're still not sure how to play it. 
+||
+{play_oiai_2 | stop_music 3} Miggpli is just about to start a second game, but his head suddenly perks up and he peeks out of the pit. There seems to be motion in the lure's direction.
+	[look_lure] (Look at the lure)
+||
+{look_lure} You and Miggpli peek from under the camouflage roof and look at the commotion at the lure. There's four cuoxurs crowding around it. They're slithering around and rubbing against each other. Miggpli raises a small spyglass to his eye and looks keenly at the group. He stops for a moment, writes in his notebook, and then resumes watching.
+	[watch_cuoxur] (Watch the cuoxurs)
+||
+{watch_cuoxur} You squint to examine the many-legged pale serpents in the distance, you think you see one red tag on one of the cuoxurs. The creatures form a big pile and start rubbing each other's backs. It seems like they're mating. Miggpli still watches the group intensely. He lowers the spyglass for a moment and squints appreciatively at you before returning to his work.
+	[wait_miggpli] (Wait)
+||
+{wait_miggpli} You wait patiently as Miggpli jots down notes and watches the cuoxur group. Suddenly, he starts talking at you, "They're gone. There was one tagged male and two tagged females there. The fourth one was not tagged but I think it was a female too. The population seems even smaller than I expected if so many of the tagged cuoxurs happened to be here at the same time.<br><br>Thanks for being so patient. Sorry about the lengthy silence."
+	[no_botha] It doesn't bother me.
+	[cute_buggy] It's okay. You're cute doing your thing. You really get into it. //showif.charisma.6
+||
+{cute_buggy} Miggpli snorts in embarassment. "I- I must look goofy being so concentrated. I hope you did something else than just watch me write notes.<br><br>We should probably leave while we have some daylight left."
+{no_botha} Miggpli wrings his hands. "Sorry. I hope you did something else than just watch me write notes.<br><br>We should probably leave while we have some daylight left."
+	[lets_go_now | advance_time_to evening] Sounds good. (Travel to Taodal)
+||
+{lets_go_now | save_index drink_promise, remove_pic, change_environment taodal_entrance, change_sprite with_shovels} You quickly pack up and make your way back to the town. Miggpli stops and turns to you before you enter the village. "Thank you again, -name-. It's very late, so that drink I promised has to wait for later. Sorry."
+	[sleep_well] It's okay. Sleep well, Miggpli.
+	[tuck_in] Do you want me to... tuck you in? //showif.charisma.8
+||
+{tuck_in | character_leave} Miggpli lets out a sudden, nervous string of laughter and flails his arms. "I- I uh, ha ha, we- I should go. Goodnight!" He walks off.
+{sleep_well | character_leave} "You rest well too, -name-. Thank you again." He walks off.
+{thats_a_yes} You say the words out loud, but Miggpli is too far away to hear you.
+	[thats_a_yes] I'll take that as a yes. //showif.index_is.tuck_in
+	[ | start_encounter taodal taodal] (Go into the village)
+	[ | end_encounter] (Leave)
+||
+
+
+
+
+>>Miggpli and PC have something to drink (meirolli)
+||
+{drink_promise | start_music sejan_taodal/miggpli 70 3} "Hey! I was expecting you! We could have that drink I promised."
+	[drink_1] Absolutely! Lead the way.
+	[drink_raincheck] Maybe later?
+||
+
+
+
+||>>Drinky time
+{lets_drinky | character_leave, remove_flag miggpli_drink_promise} Miggpli motions you to come in further. "Absolutely! We need a better room for drinking, follow me!" Miggpli disappears into the back room.
+{drink_1 | character_leave} Miggpli motions you to come in further. "We need a better room for drinking, follow me!" Miggpli disappears into the back room.
+	[drink_2] (Follow him)
+||
+{drink_2 | change_environment taodal_uum_pillow_room, change_sprite character, remove_flag drink_promise} You follow Miggpli and emerge into a room filled with large pillows and a floor completely covered with carpets. "This is much better! Take a seat- a pillow, I mean."
+	[sit_pillow] (Sit down)
+||
+{sit_pillow | change_sprite sitting} You sit on a large blue pillow opposite of him. Miggpli falls playfully on the pillows, then sits up to face you. "Uum always had a good taste."
+	[odd_room] What an odd room.
+||
+{odd_room} "I guess it's a room for relaxing, or for naps. I like to sleep here. I wouldn't want to use Uum's bed."
+	[uumagine] I can imagine.
+||
+{uumagine} Miggpli drags a large ceramic vessel with a tap on it into room. You can hear a liquid slosh inside. "Uum said she got this for me. It's very good."
+	[what_drink] What is it?
+||
+{what_drink} "it's meirolli from Shiroo. The meirolli in the tavern is horrible, so she bought this from a trader.<br><br>Just for me, apparently."
+	[ | sex_gate male_winky fem_answer] That's nice of her.
+	[ | sex_gate male_winky fem_answer] Maybe she likes you?
+||
+{fem_answer} "It's not like that. We just know each other well." Miggpli hands a glass to you.
+{male_winky} "She does like me, but not in that way." Miggpli winks at you and hands a glass to you.
+	[take_drink] (Take the glass)
+	[sorry_no_drink] Sorry, I'd rather not.
+||
+{sorry_no_drink} "Don't care for the buzz? I understand, but I came prepared and have this as a backup.<br><br>I pressed it myself!" Miggpli produces a pitcher and pours an orange, pulp-filled drink for you.
+	[take_drink_2] (Taste your drink)
+||
+{take_drink} Miggpli tilts the vessel a little and opens the tap to fill your glass. A honey-colored liquid pours into it. Miggpli then fills his glass. "You can drink as much as you want, I don't think we're going to run out." He taps on the vessel, excited.
+	[taste_drink] (Taste your drink)
+||
+{taste_drink} You take a sip. The taste is smooth and tangy with a hint of sweet fruit. After the first sip, you feel a tickle rise up your spine into your head, where it becomes a wave of warm dullness. Miggpli gives you an appreciative nod and takes a sip from his own glass. "I can't imagine what Uum paid for this. Hopefully not too much. This is really good meirolli."
+{take_drink_2} You take a careful sip. It's a sweet fruit juice. Miggpli gives you an appreciative nod and takes a sip from his own glass. "I can't imagine what Uum paid for this. Hopefully not too much. This is really good meirolli."
+	[good_drink] Thanks.
+||
+{good_drink} "Don't thank me, let's thank Uum. We are sitting in her house and drinking her meirolli, after all.<br><br>Besides, you've earned that drink, after all that shoveling you did for me." Miggpli coyly takes another sip.
+	[ | set_counter miggpli_questions 0, check_stat charisma 6 chat_0-chat_1] It was nothing. It was a fun distraction.
+||
+
+||>>pick three topics before the man eater strikes
+{chat_0} "I had fun too." He sips from his drink. You stare at each other across the room.
+	[uh_eh_um] So, uh...
+||
+{chat_1} "I had fun too." He sips from his drink. You stare at each other across the room.
+{uh_eh_um} You fall into an awkward silence for a moment until Miggpli coughs and breaks it, "So, um, you could ask me something? Shiroo or something about zoology? I'd love to answer your questions."
+{zoology_morpho} "We're doing it to find practical uses for the animals and their products. The interest in zoology was reignited after one researcher discovered an animal that could smell and dig up rare roots after some training."
+{shiroo_school | add_flag pc_knowledge_shiroo} "A library, the town of Shiroo is named after the library called 'Shiroo'. It's a building carved into a mountain. Apparently, it was accidentally discovered a long time ago and an army of scholars moved in to rifle through it. They eventually created the town just by being there."
+{soft_comfy} "Yes, they are..." He takes a sip from his glass but kisses the edge in a way that leaves a thin string of saliva from his mouth.
+{attract_f} His antennae flick nervously. "That's an odd thing, don't you think? Why do different species try to mate with each other? I remember this one time when they thought they discovered a new species and it turned out it was just a common hybrid between two more prominent species! Apparently one species thought the spots on the other species looked similar enough for them and kept erroneously mating with them, producing infertile but numerous hybrids." He laughs nervously.
+{uum_live | add_flag uum_bad_blood_in_shiroo} "She was a senior in the group I was studying in. She had a house in Shiroo. Apparently she got into a fight with someone higher up and decided to leave. I haven't asked her about that. Don't tell her I told you."
+{fuck_pillow} Miggpli coughs and nervously grips his glass. "I- I suppose that might be a thing."
+{uh_pillow} "I don't want to know, to be honest. She'd make a dirty grin at me if I didn't pretend innocence in this matter."
+	[ | check_counter miggpli_questions 3 why_zoology nomore_qs] So, how did you end up researching zoology? 		//hideif.clicked
+	[ | check_counter miggpli_questions 3 what_shiroo nomore_qs] What's Shiroo like?								//hideif.clicked 
+	[ | check_counter miggpli_questions 3 like_taodal nomore_qs] How do you like Taodal?							//hideif.clicked 
+	[ | check_counter miggpli_questions 3 why_uum_room nomore_qs] Why does Uum have a room like this? 			//hideif.clicked 
+	[ | check_counter miggpli_questions 3 attract_miggpli nomore_qs] You know... You're very cute, Miggpli.				//hideif.clicked 
+	[nomore_qs] DEBUG: Jump to convo end.																		//showif.debug 
+||
+
+||>>So, how did you end up researching zoology?
+{why_zoology | counter miggpli_questions + 1} "My parents sent me to Shiroo for education and there was a big craze about the species morphology research back then and I got swept into it. I eventually got an apprenticeship under one of the head researchers and I've been going around cataloguing animals ever since."
+{zoology_category} "I've only collected research on 286 different species, the whole zoology research effort has the numbers in the the tens of thousands. And we even keep finding new species in areas we have already combed through, which is particularly infuriating. The work never seems to end."
+{zoology_number} "Oh, the research only includes larger species, we decided early on that we should first focus on the larger species because they're more easily catalogued. The ones that you can hold in your hand or kick away, now that's a whole another mess."
+	[zoology_number] That actually seems like a fairly small number. //showif.intelligence.8 //showif.index_is.zoology_category
+	[zoology_category] How many have you catalogued by now? //showif.intelligence.6 //showif.index_is.why_zoology
+	[zoology_morpho] What's the purpose of the zoology research?
+||>>You're very attractive Miggpli.
+{attract_miggpli | counter miggpli_questions + 1, sex_gate attract_m attract_f}
+{attract_m} He shifts his hands slightly in his lap. "You're not bad-looking yourself, -name-. How do you like the pillows?"
+	[soft_comfy] They're very soft and comfy.
+||>>What's Shiroo like?
+{what_shiroo | counter miggpli_questions + 1} "It's a pretty place, people are nice, academic and smart. I feel it's the best combination of cities and rural areas. It's a bit remote and hard to travel to, but I think it probably needs that to survive."
+{shiroo_dets} "It has buildings carved into the mountain side and stepped gardens coming down the hillside. The city is very beautiful. It's less noisy than the other cities and it doesn't smell like excrement; well, when they're not fertilizing the gardens. On one side of the city you have a swamp – a beautiful swamp, but a swamp – and on the other side you have a flat desert. It's an interesting place."
+	[shiroo_dets] Give me details. What does it look like? Sound like? //showif.index_is.what_shiroo
+	[shiroo_school] So there's a library or a school in Shiroo?
+||>>How do you like Taodal?	
+{like_taodal | counter miggpli_questions + 1} "It's a rural fishing village. There's a whole lot of those. I've visited a bunch. Taodal is very clean and calm compared to others. It's a very pleasant village, I can see why Uum moved here."
+	[uum_live] Uum used to live in Shiroo?
+||>>Why does Uum have a room like this?
+{why_uum_room | counter miggpli_questions + 1} "I asked the same thing! She said it's for reading and studying, but I'm not sure about that..." He looks around the pillow-filled room.
+	[uh_pillow] You don't think she...?
+	[fuck_pillow] Yeah, you're right, she probably fucks men here. //showif.will.8
+||
+
+||>>Miggpli's patience runs out
+{nomore_qs | remove_counter miggpli_questions, sex_gate talkend_m talkend_f} 
+||
+
+||>>Awkward femPC rejection
+{talkend_f | save_index met} Miggpli yawns loudly. "Sorry, I don't think I can remain awake for long. I had a terribly poor sleep last night. I should probably take a nap or go to sleep.<br><br>Sorry to cut this so early, but I really need to go hit the sheets. I hope you liked the drink and the talk."
+	[slep_well_manslut] Of course. Try to get some sleep, Miggpli.
+	[bed_company] Oh? Uh, do you... want company in the bed?
+||
+{bed_company} "T-Thanks, but I'll be okay. It would be terribly small for the two of us, a-and I have trouble sleeping with company, sorry."
+	[not_mean_that] That's not what I meant.
+	[slep_well_manslut] Right, I get it. Sleep well, Miggpli.
+||
+{slep_well_manslut} "I'll go throw myself in bed, then. It was nice seeing you, -name-."
+	[ | start_encounter taodal taodal] I'll be going then. (Leave)
+||
+{not_mean_that | character_leave} His legs tap nervously. "I- I'll go throw myself in bed, then. It was nice seeing you, -name-." He leaves.
+	[ | start_encounter taodal taodal] ...Okay, I'll be going then. (Leave)
+||
+
+
+||>>MIGGPLI THE MAN EATER
+{talkend_m | change_sprite character, character_leave} Miggpli suddenly jumps up. "Oh, I've completely forgotten I had snacks too! Let me get them!" Miggpli quickly sprints out.
+	[got_snacks] (Wait)
+||
+{got_snacks | pic berry_snacks} Miggpli returns with a bowl of different berries, nuts and fruits. "I didn't know what you like, so I got all kinds!"
+	[feed_me_miggpli] What do you recommend?
+||
+{feed_me_miggpli | pic berry_feeding} Miggpli sits excitedly next to you. He picks a small berry and holds it out for you. "Here, this one is my favourite."
+	[berry_1] (Eat the berry)
+||
+{berry_1} You eat the berry from Miggpli's digits. It has a sweet, fruity taste. Miggpli giggles and picks up a red berry. "This one is more fun." He holds it over your head and eggs you to open your mouth.
+	[berry_2] (Open your mouth)
+||
+{berry_2} You open your mouth and Miggpli drops the red berry in your mouth. You chew and the berry explodes into a pleasantly fresh sting. Miggpli watches you closely and picks up a larger, reddish-yellow fruit and places it gently against your lips.
+	[you_tremendous_fruit] (Bite the fruit)
+||
+{you_tremendous_fruit | stop_music 10, pic lusty_miggpli} You bite the fruit, it's crunchy like an apple but far sweeter. Soft pulp runs down your jaw.<br><br>Miggpli suddenly presses against you and runs his hands over your neck. His head presses against the nape of your neck. You feel his bulbous antennae prod against you. You feel his hands trying to undress you.
+	[said_stop] What are you doing, Miggpli?
+	[miggpli_huggly] (Let him)
+	[said_stop] Miggpli, stop.
+||
+{miggpli_huggly} You feel Miggpli's mouth gently bite on your neck as his arms start undressing you. You feel him caress your leg and torso as he moves into your lap. You lean backwards and sink deeper into the pillow as he climbs on top of you. Your clothes are slowly coming off as his stubby hands wander around your body. Miggpli nuzzles against you passionately.
+{said_stop} You feel Miggpli's mouth gently bite on your neck as his arms start undressing you. You feel him caress your leg and torso as he moves into your lap. You sink deeper into the pillow as he climbs on top of you. Your clothes are slowly coming off as his stubby hands wander around your body. Miggpli nuzzles against you passionately.
+	[stop_restrain] Slow down! (Restrain him) //showif.index_is.said_stop
+	[oki_sexsex] (Let him undress you)
+	[kiss_miggpli] (Kiss him)
+||
+{stop_restrain | pic lusty_ashamed} You grab Miggpli's upper hands. He suddenly stops and looks a bit ashamed. "S- sorry. I don't know what- got into me. You're very attractive."
+{no_feels_u} Miggpli flutters his eyes. "It would be just some fun, nothing serious. I'm sure you're not against, fun or pleasure." 
+{miggpli_drunk} Miggpli shakes his head. "One glass doesn't get me drunk, -name-. it just makes me a little braver. You know how I'm normally. Don't worry about it." 
+	[miggpli_drunk] Miggpli, you're drunk. //hideif.clicked
+	[no_feels_u] I don't feel that way about you Miggpli. //hideif.clicked
+	[youre_friend] We're just friends.
+	[no_gay_plz] Miggpli, I like females.
+	[oki_sex] ...Okay. (Let him)
+	[stop_miggpli] Miggpli, stop. //hideif.index_is.stop_restrain
+||
+{youre_friend} "And we'll be friends afterwards too.<br><br>Say nothing and I'll do everything. You will merely enjoy." Miggpli's hands brush longingly against your sides.
+{no_gay_plz} "I'll be one for you. I'll be deft, soft, and submissive as any female... for you. It's just the two of us, nobody has to know. You don't have to do anything.<br><br>Say nothing and I'll do everything. You will merely enjoy." Miggpli's hands brush longingly against your sides.
+	[oki_sex] (Let him)
+	[stand_up] I said no. (Push him off and stand up)
+||>>Reject advances
+{stop_miggpli} Miggpli freezes and then carefully steps off you. He hangs his head, ashamed. "...Sorry."
+{stand_up} You push him off you and stand up. Miggpli lowers his head, ashamed. "...Sorry."
+	[what_is_dis] What got into you?
+	[simmer_down] It's okay, just calm down a bit. //showif.charisma.6
+||
+{what_is_dis} Miggpli stands up. "Sorry. I- I'm sorry. I think I just... got the signals mixed up."
+{simmer_down} Miggpli stands up. "Sorry... I did get a little too excited there."
+	[act_oddly] Are you okay? I like this, but you're acting very oddly.
+	[pretend_never] I get you. Can we just pretend this never happened? I like you as a friend.
+	[yeah_you_sexfiend] Yeah, you did.
+||
+{pretend_never | remove_pic} "I would be okay with that."
+	[leave_now] Let's do that. I had fun, but I'll leave for now.
+||
+{leave_now} "Bye.<br><br>Sorry again."
+{yeah_you_sexfiend | remove_pic} "I'm sorry. I need some alone time. Could you leave, please?"
+	[sex_stop_now] It's okay. I'll be going now. (Leave) //showif.charisma.6
+	[sex_stop_now] (Leave)
+||
+{sex_stop_now | save_index advances_rejected, start_encounter taodal taodal} 
+
+
+||>>What is this horniness??!
+{act_oddly} He looks puzzled at you. "W-what do you mean?"
+{horny_drunk} Miggpli looks at his drink glass. "I- I just drank one glass of meirolli. I'm not that lightweight!"
+	[sudden_aggro] It's just very sudden and aggressive.
+	[horny_drunk] Are you sure you're not, you know... intoxicated? //showif.index_is.act_oddly
+	[no_indication] You didn't give much indication you were going to jump my bones. Kinda took me by surprise.
+||
+{sudden_aggro} He wrings the multiple of his hands and sighs. "Sorry. I didn't think- I just thought that- ... I guess I assumed you wouldn't help me and want to talk to me like this if you weren't interested, a-and I just thought I could just go for it."
+{no_indication} He wrings the multiple of his hands and sighs. "I-I guess I didn't. Sorry. I didn't think- I just thought that- ... I guess I assumed you wouldn't help me and want to talk to me like this if you weren't interested, a-and I just thought I could just go for it."
+{just_ask_dicc} He nods and sighs. "It just seems so... forward and unromantic."
+	[little_slower] Can we just, do this a bit slower?
+	[just_ask_dicc] You could have just asked? //showif.index_is.sudden_aggro
+||
+{little_slower} Miggpli gently touches your chest. "Y- yes..." He carefully starts to undress himself.
+	[kiss_miggpli] (Kiss him)
+	[chesty_undressy] (Undress)
+||
+{chesty_undressy | start_music generic/romance_quick 70 3, pic kissy_chesty, auto_continue sex_11} After Miggpli's clothes slowly fall off him on the floor, he slides his soft hands under your clothes and helps you undress. After enough of your skin has been exposed, he gently kisses your bare chest, his antennas wiggling from excitement against your skin.
+||
+
+
+||>>Male PC sex scene
+{kiss_miggpli | start_music generic/romance_quick 70 3, pic kissy_miggles, auto_continue kiss_chesty} You place your hand on the side of his head and guide him into a kiss. His face bulbs part and you stick your tongue into his mouth. Miggpli's antennae twitch against the sides of your head. 
+{kiss_chesty | start_music generic/romance_quick 70 3, pic kissy_chesty, auto_continue sex_1} He pulls himself off and stares at you with his large eyes. His head falls into the nape of your neck. Miggpli's hands slip into your clothes and he slowly drags them off you as he breathes your scent in. He plants soft kisses over your body as he runs his many hands over your muscles. 
+{oki_sexsex | start_music generic/romance_quick 70 3, pic kissy_chesty, auto_continue sex_1} Miggpli's hands slip into your clothes and he slowly drags them off you as he breathes your scent in. He plants soft kisses over your body as he runs his many hands over your muscles. 
+{oki_sex | start_music generic/romance_quick 70 3, pic kissy_chesty, auto_continue sex_1} You release Miggpli's hands and he immediately returns to his passionate cuddling. His hands slip into your clothes and he slowly drags them off you as he breathes your scent in. He plants soft kisses over your body as he runs his many hands over your muscles. 
+||
+{sex_11 | add_flag miggpli_sexed, auto_continue sex_2} He embraces you naked and sighs. You feel your cock brush against his soft underside, he rubs it against himself. He starts slowly sliding off you, planting needy kisses along your torso.
+{sex_1 | add_flag miggpli_sexed, auto_continue sex_2} Miggpli quickly unbuttons his clothing and it falls off him gracefully. He embraces you naked and sighs. You feel your cock brush against his soft underside, he rubs it against himself. He starts slowly sliding off you, planting needy kisses along your torso.
+||>>BJ (we need you defending us with the MG 42)
+{sex_2 | pic blowjob, auto_continue sex_3} Miggpli falls between your legs and takes your half-erection in his hands. He nuzzles your thighs and then takes the head of your cock into his mouth. Your glans sinks between the two bulbous features. Miggpli closes his eyes and gently savours the tip of your cock in his mouth. You gasp at the sensation and intensity of his care. Miggpli works you almost deliriously. A streak of saliva droops from his mouth as he excitedly works the head.
+||
+{sex_3 | pic blowjob_deeper, auto_continue sex_4} Miggpli slows down and takes you deeper into his mouth with a single smooth movement of his head. The sensation of his mouth sliding down your cock makes your legs tense, and a ragged gasp escapes your lips. Miggpli looks into your eyes. A sense of gratitude and love beams from his face as he begins to move up and down on your dick. His soft face antennae poke along your thighs as he continues.
+||
+{sex_4} Miggpli closes his eyes again and increases his pace. You sit upright from the force of the pleasure as he sucks your cock in a fast and smooth figure eight movement. His arms wrap around the base of your shaft and he gently massages your testicles with his stubby digits. As Miggpli yearningly suckles on your cock, you feel a pressure grow; you won't last long.
+	[stop_bj] W- Wait... (Stop him)
+	[cum_mouth] (Let him blow you)
+||
+{cum_mouth} Miggpli notices your closing in orgasm and works you harder. The intense suckling and gentle hands around your shaft are too much. You gasp and grimace as you come into Miggpli's mouth. He eagerly keeps working you through your orgasm, almost making you scream from the sensitivity. His soft mouth suckles and sucks all you can give him. Miggpli suddenly grabs your thighs and starts shaking, he lets your cock slip out of his mouth and cries out. His body jerks and he starts gasping for air. He steadies himself against you and breathes loudly.
+	[bj_orgasm] W- what... was that?
+||
+{bj_orgasm | pic blowjob_nut} Miggpli breathes deeply, long strand of cum still connecting his mouth to your cock. He just looks up at you with his big eyes and sighs. "I- I came."
+	[you_came] ...You did?
+||
+
+||>>Ass fug
+{stop_bj | pic dick_riding} You place your hand on his head to slow him to a stop. Miggpli opens his eyes and detaches himself off your cock, he gives a gentle kiss on the tip and turns to you. He climbs on top of you again, his smooth underside sliding against your cock. You feel him rub your shaft with his back legs. He places the head of your cock against him, against a slit under him.
+	[cowboy_1] (Let him ride you)
+||
+{cowboy_1 | auto_continue cowboy_2} You lie back as he braces himself against your shoulders. He brings his rear down and your slick cock slides into his tight hole. He presses himself right down to your base. You feel his ring contract as he moans softly into your ear. He rolls his rump gently, and you feel his movement massage your cock pleasurably. He slowly brings up his rhythm to ride you. You feel his stubby digits grip your shoulders harder.
+||
+{cowboy_2} Miggpli suddenly grips your shoulders painfully and cries out. You feel him contract around your cock erratically. His stubby arms flail around your body as he tries to keep himself upright on you. Miggpli collapses on you and breathes raggedly. You hear him whisper into your neck, "Gods. Hold me." He tries to hug you as best as he can. You feel a patch of sticky liquid between you and Miggpli.
+	[fug_caterpillar_boi] (Fuck him)
+	[cowboy_3] Y-You okay, Miggpli?
+||
+{cowboy_3} Miggpli steadies his breath. "I- I... you didn't come yet... of course you didn't... my gods."
+{go_or_no} "Please... just take me." You feel his hands grip you little tighter.
+	[go_or_no] You want me to keep going? //showif.index_is.cowboy_3
+	[fug_caterpillar_boi] (Fuck him)
+||
+{fug_caterpillar_boi} You grip Miggpli's lower half and pull him down on your cock. Miggpli gasps and whines. "Do it, do it." He hugs you tighter. You thrust upwards and begin to pound him. Miggpli holds on to you as forcefully fuck him, eliciting small whines and a tightening grip on you. His legs flail around your body as you ravish him. As you continue, you feel yourself closing in on your climax.
+	[cum_in] (Finish)
+||
+{cum_in | stop_music 6, pic sex_rest} You pull Miggpli down on your cock and meet him with a thrust to reach the deepest you can. His tight ring slides to the base of your shaft and you're pushed over the edge. You burst into Miggpli with a hard throb. Miggpli screams again and you feel the ring tighten around the base of your cock. You hold him against you and empty yourself into him, each throb making Miggpli shiver. Soon, you're both heaving wrecks piled on top of each other. The tickling over your body starts to fade and you hear Miggpli breathe calmly into your neck, his arms limp on his sides.
+{you_came | stop_music 6, pic sex_rest} He nods. "Thanks..." Miggpli climbs on top of you and nuzzles into your neck while still breathing loudly. You're still trying to catch your breath from the orgasm.<br><br>The tickling over you starts fading and you hear Miggpli breathe calmly into your neck, his arms limp on his sides.
+{weird_orgasm_1 | add_flag miggpli_skin_feels} He explains with a raspy, soft voice into your ear, "It's a... nervous system signals- coming trough your skin. My skin can read yours... I felt your orgasm and it- it nudged me off... really hard."
+{weird_orgasm_2 | add_flag miggpli_skin_feels} He explains with a raspy, soft voice into your ear, "It's a... nervous system signals- coming trough your skin. My skin can read yours... I felt your pleasure and it- it nudged my orgasm off... really hard."
+	[weird_orgasm_1] H- How did you get off? //showif.index_is.you_came
+	[weird_orgasm_2] H- How are you so sensitive? //showif.index_is.cum_in
+	[u_oki] Yo... You okay? That was fun. //hideif.index_is.cum_in //hideif.index_is.weird_orgasm_1
+	[u_oki_dick_already_out_yo] Yo... You okay? That was fun. //hideif.index_is.you_came //hideif.index_is.weird_orgasm_2
+||>>Pillow talk (in the pillow room, on top of a giant pillow)
+{u_oki} He whines with a weak voice, "I'm okay... Ah, thank you." He hugs you. You feel your cock slip out of him as he shifts on top of you. Miggpli gasps and then inhales loudly. "Y-You really showed me. Gods."
+{u_oki_dick_already_out_yo} He whines with a weak voice, "I'm okay... Ah, thank you." He hugs you. You feel your cock slide against him as he shifts on top of you. Miggpli gasps and then inhales loudly. "Y-You really showed me. Gods."
+	[hug_afterfug] (Hug him)
+||
+{hug_afterfug} You embrace each other for a moment. The room is filled with quiet breathing. Miggpli nuzzles against your neck and sighs. "We should do this again sometime."
+	[how_long_here] How long are you in town for?
+||
+{how_long_here | start_music generic/romance_soft 70 1} "I think I have most of the animals on the peninsula mapped out. I will probably have to observe the cuoxurs for a little longer to get more data, but I'm mostly done." He brushes your cheek. "I'll stick around for a while. It's less lonesome with you here. I can always make my research more extensive."
+	[where_go] Where are you planning to go?
+||
+{where_go} "Back to Shiroo to give Uum her house back."
+{visit_you} "Please do. I think I can always find use for a body like yours." He wiggles his rear playfully.
+	[visit_you] Maybe I'll visit you there. //showif.index_is.where_go
+	[different_drink] You're a little different after a drink.
+||
+{different_drink} "Uum always teases me about that. I guess that's why she bought that enormous cask of meirolli for me."
+	[cute_both] You're cute both ways.
+	[meiwork] It does seem to work though.
+||
+{cute_both} "You're handsome, -name-." Miggpli rests his head on you, and after a short moment you hear soft snoring. He's completely limp on top of you.
+{meiwork} Miggpli laughs softly and rests his head on you. After a short moment, you hear soft snoring. He's completely limp on top of you.
+{u_slep} You get no answer and the snoring continues.
+	[u_slep] (Whisper) Miggpli, did you fall asleep? //hideif.index_is.u_slep
+	[miggpli_nap | advance_time_to evening] (Take a nap)
+||
+
+||>>Waking up
+{miggpli_nap | stop_music 10, remove_pic, hide_character, add_flag miggpli_sexed} You slowly wake up and realize you're still in the pillow room. Miggpli is not on top of you anymore and you're covered by a blanket. You hear soft pats on the floor outside the room.
+	[u_there] Miggpli?
+	[get_uppo_2] (Get dressed)
+||
+{u_there | character_return character} Miggpli walks in. "You're awake! I couldn't make myself wake you up. You're very cute sleeping. You can sleep for as long as you want. You don't have to get up yet." 
+	[get_uppo_1] I think I'm okay for now. (Get dressed)
+||
+{get_uppo_1} You stand up and grab your clothes from the floor. You start clothing yourself. Miggpli shyly glances at your naked body.
+{get_uppo_2 | change_sprite character} You stand up and grab your clothes from the floor. You're in process of clothing yourself when Miggpli walks in. "You're awake! I couldn't make myself wake you up. You're very cute sleeping." 
+	[watch_dress] You like watching me get dressed?
+	[fun_cute] You're very cute and fun in bed, Miggpli.
+||
+{watch_dress} "I- I do...  I like seeing them come off too."
+	[next_bang] I'm sure you'll get to see that again.
+	[fun_cute] You're very cute and fun in bed, Miggpli.
+||
+{fun_cute} Miggpli wrings his stubby arms. "Y- You're all those things too... I guess it just was a big pillow in this case." He giggles nervously.
+	[next_bang] We'll do it right the next time.
+	[go_seconds] Want to go for seconds?
+	[eat_sumtin] Do you want to eat something?
+||
+{next_bang} "Gods... I'll hold you to that then. I- I have to go now, I was supposed to meet a merchant today about some paper supplies, and I think I'm late already." He panics and flails at the door.
+{eat_sumtin} He snorts in shock and then blushes. "Was, that a joke a- about- you know? Nevermind! I- I have to go now, I was supposed to meet a merchant today about some paper supplies, and I think I'm late already." He panics and flails at the door.
+{go_seconds} He blushes. "Gods.. um... . I- I have to go now, I was supposed to meet a merchant today about some paper supplies, and I think I'm late already." He panics and flails at the door.
+	[later_see] Go do that. I'll see you later.
+||
+{later_see | character_leave, save_index sex_hello, remove_flag miggpli_drink_promise, play_sound generic/objects/door_close 70} "I'll look forward to that. Bye!" You hear the door close and you're left alone in the house.
+	[ | start_encounter taodal taodal] (Leave)
+||

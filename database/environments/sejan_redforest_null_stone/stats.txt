@@ -1,0 +1,7 @@
+interior:	no
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+sejan/cave_sinister.40
+SOUNDS>

@@ -1,0 +1,6 @@
+interior:	yes
+ambient:	0.5
+
+<SOUNDS
+sejan/cave_sinister.60
+SOUNDS>

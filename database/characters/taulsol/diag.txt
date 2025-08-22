@@ -1,0 +1,310 @@
+
+>>Taulsol will meet the player at the Taodal entrance and force him to meet Tornoth.
+
+>>Ideas for improvement:
+	>>Proper fight with Taulsol. (Will need a fair bit of writing to pull it off.)
+||
+{start | stop_music 3, save_index visited} You follow a dirt road towards a wooden palisade. When you are about fifty meters from the gate, a tall one-armed individual that had been standing on one side of the road meets you, "Halt. You are new to this village. If you wish to enter, you must come with me first. There are some questions that need answers."
+{visited | stop_music 3} You approach the village of Taodal once more. Like the last time, the same guard is there to meet you, "You know the rules. Are you going to come with me or not?"
+{if_refuse} He straightens up his pose, looking even taller now. "Then I'm afraid I can't let you enter."
+{visited_before} "I have very keen eyes and reliable memory." The green medallion around his neck glows faintly.
+	[come_along] Okay, I'll come along.
+	[visited_before] How do you know I haven't visited before? //hideif.clicked
+	[if_refuse] What if I refuse?  //hideif.clicked
+	[leave] Then I'm going on my way.
+	[ | add_flag taulsol_shoved, check_stat agility 8 sho0-sho1] Get out of my way. (Shove him)
+||>>Leave
+{leave} "As you wish."
+{leave_after_fight} You get up and dust yourself. "As you wish."
+	[ | end_encounter] (Leave)
+||>>Shove
+{sho0 | play_sound generic/interactions/tackle 70} You try to push him out of your way, but as soon as you extend your arm towards his chest, he uses his lower right leg to swipe both of yours. You react too late and fall on your back. Looking up from the ground, you find yourself face to face with the tip of the guard's spear. "I really don't want to hurt you. Now choose. Will you visit Tornoth or will you leave?"
+{sho1} You try to push him out of your way, but as soon as you extend your arm towards his chest, he uses his lower right leg to try to swipe both of yours. You jump up with enough time to fully avoid the swipe, but the moment your feet hit the ground, you find yourself face to face with the guard, his teeth mere centimeters from your eyes and the tip of his knife pressed against the left side of your neck. You freeze instinctively. "That was pretty good. If it was another guard, you might have caught him by surprise, but I'm afraid I'm the best one around here, and I really can't let you enter unless you come with me first. What is it?"
+	[after_fight] Fine, I'll come with you. //showif.index_is.sho0
+	[after_fight_1] Fine, I'll come with you. //showif.index_is.sho1
+	[leave_after_fight] I think I'll hit the road.
+||>>Accept to go after fight
+{after_fight} "Glad to hear that." He extends his hand to help you off the ground.
+	[accept_hand] (Accept his help)
+	[refuse_hand] (Ignore his help)
+||>>Accept to go
+{accept_hand} You grab his hand and he effortlessly lifts you up. 
+{refuse_hand} You ignore his hand and get on your feet on your own. The guard lets out a short huff and withdraws his hand. 
+{come_along} "It's nothing serious, Tornoth just wants to ask you a few questions."
+{who_tornoth} "A blacksmith, a village elder, and the closest thing this village has to a leader."
+{after_fight_1} "Glad to hear that." He withdraws the knife from your throat and steps back.
+	[who_tornoth] Who is this Tornoth? //hideif.index_is.who_tornoth
+	[ | day_night_gate good_time too_late] Take me to Tornoth, then.
+||
+{good_time} "He's probably in his smithy, please follow me."
+	[meet_tornoth] (Follow him)
+||
+{too_late} "The only problem is that it's late, and I'd rather not bother Tornoth. But don't worry, I'll take you to a nice place where you can spend the night."
+	[accept_to_go] Lead the way. (Follow him)
+||
+{accept_to_go | hide_sprite, change_environment taodal} You walk together past the gate. It's a quiet village. As you follow the guard on the packed sand road, you hear faint music and voices coming from a building built into a colossal shell on the shore. The guard motions you to follow him into a large building in the middle of the village.
+	[accept_to_go_2] (Keep following the guard)
+||
+{accept_to_go_2 | change_environment taodal_market} You follow the guard into the large building. Its front is completely open, and its walls are lined with empty but colorful stalls. It seems like a market for goods. The guard leads you to a door at the back and opens it for you.
+	[23 | change_environment taodal_communal_chambers, change_sprite character] (Go inside)
+||>>COMMUNAL QUARTERS
+{23} Inside there's a spartan room with sleeping rolls on the floor. "Huh, it's rarely empty. But it has been an unusually slow day. Anyway, you can rest here until the morning. I'll come back at dawn and take you to see Tornoth."
+{24} He cocks his head, then shakes it quickly a few times. "A prisoner? No, no, you're a guest for now, and, technically speaking, you are free to leave. Tornoth just wants to talk to you first. There's no locks on the door, but walking around the village at night uninvited would cause a really bad first impression on Tornoth. Just rest for a while, this place is pretty comfy."
+	[24] Am I a prisoner? //hideif.index_is.24
+	[25] Fine.
+	[26] Okay. Thanks.
+	[27] Thanks. And I'm sorry for earlier. //showif.has_flag.taulsol_shoved
+||
+{25} "Good night. See you later."
+{26} "You're welcome. Good night."
+{27} His throat puffs slightly. "Hey, no problem. Apology accepted, just try to not start any trouble again. Good night."
+	[28 | character_leave] Sure.
+||
+{28} The one-armed guard leaves the room and closes the door. The room is fairly pragmatic but clean and warm. You sit on one of the sleeping rolls and realize you feel fairly tired.
+	[waking_up | advance_time_to morning] (Sleep)
+||
+{waking_up} The next morning, right at dawn, the guard politely knocks the floor with his spear to wake you up.
+	[29 | change_sprite no_armor] (Get up)
+||
+{29} "Good morning. Let's go see Tornoth." He motions you to follow.
+{you_underdressed} "That armor? In this climate? I'd rather not. Follow me, I'll show you to Tornoth." He motions you to follow.
+	[meet_tornoth] Let's go, then. (Follow him)
+	[you_underdressed] Uh, what's with the get up? Aren't you a little underdressed? //showif.index_is.29
+||
+{meet_tornoth | start_music sejan_taodal/town 55 3, change_default_sprite taulsol no_armor, hide_sprite, change_environment taodal, save_index pier_meet, discover_location taodal, set_map_location taodal} You walk together towards a building with a big chimney spewing a column of smoke, clanging noises getting louder as you approach. As soon as you reach the front of said building, you realize it's a forge when you see a huge blacksmith working on some metal on an anvil. The guard lightly pushes you forward and then casually walks away. The blacksmith stops his hammering and looks at you.
+	[ | start_encounter taodal_tornoth_smithy tornoth] (Meet Tornoth)
+||
+
+
+
+
+>>After meeting the player at the Taodal gate, Taulsol spends his time at the Taodal pier.
+||>>PIER INTRO
+{pier_meet | start_music sejan_taodal/taulsol 70 3, save_index known, add_flag taulsol_met_at_pier} "Why, hello there."
+	[32] Hey there. I didn't expect to see you here.
+	[33] Oh, it's you. I take you're off-duty.
+||
+{32} He cocks his head. "That's funny, everyone in Taodal knows fishing is my main job. But I suppose it's not unexpected considering the circumstances under how we've met. How about I introduce myself properly this time?<br><br>I'm Taulsol the fisherman. And you are...?"
+{33} He shakes his head slowly. "Not thrilled to see me, I take. But no, I'm not exactly off-duty. Allow me to introduce myself properly.<br><br>I'm Taulsol the fisherman. And what's your name?"
+	[34] -name-. (Offer a handshake) 
+	[34] My name is -name-. 
+||
+{34} You extend one hand. Taulsol stares at it for a moment before you retract it once you realize he doesn't have a free hand at the moment. "Okay, -name-, we're now properly acquainted."
+	[35] Say, do you have some spare time to chat?
+	[36] Well, Taulsol, I have to go somewhere else. Goodbye.
+||
+
+||>>PIER HUB
+{35} He glances at his fishing equipment and then back to you. "As a matter of fact, I do. What do you want to talk about?"
+{known | start_music sejan_taodal/taulsol 70 3} "Hi. I don't suppose you're here for some fishing tips?"
+{buddy | start_music sejan_taodal/taulsol 70 3} "Hey there."
+{friend | start_music sejan_taodal/taulsol 70 3} "Hey there, -name-!"
+{gate_attack | remove_flag taulsol_shoved} "It's okay. Being a guard often means I meet people at their worst. As far as I'm concerned, I've already forgotten about it. Now do me a favor and forget about it too." Taulsol taps the ground with his tail twice.
+{cond_forgotten} He nods. "It was just a small brawl." 
+{silent_return} 
+	[lost_arm_continued] You didn't finish the story last time. What happened after you lost your arm? //hideif.clicked //showif.has_flag.taulsol_arm_info
+	[cond_forgotten] Thank you, consider it forgotten. //showif.charisma.6 //showif.index_is.gate_attack
+	[gate_attack] I'm sorry for attacking you at the gate. //showif.has_flag.taulsol_shoved
+	[questions] (Questions)
+	[ | start_encounter taodal taodal] I have to go. (Leave)
+||
+
+||>>QUESTIONS HUB
+{questions}
+	[lost_arm | add_flag taulsol_arm_info] Do you mind if I ask how you've lost your arm? //hideif.clicked
+	[87 | add_flag taulsol_taught_move_legswipe] Since you were an adventurer and clearly can defend yourself, are there any tricks you can teach me? //hideif.clicked //showif.has_flag.taulsol_was_adventurer
+	[more_training] Would you want to train me some more? //hideif.clicked //showif.has_flag.taulsol_taught_move_legswipe
+	[what_areu] Sorry, but... what are you? //hideif.clicked
+	[45] So, you were an adventurer? //showif.has_flag.taulsol_was_adventurer //hideif.clicked
+	[37] So, are you a fisherman, a guard, or what? //hideif.clicked
+	[silent_return] (Return)
+||
+
+
+||>>Leaving
+{36} "See ya." 
+{49 | character_leave} "Thanks for understanding. See ya!" Taulsol trots past you to meet the man.
+{69 | character_leave} "Bye! I'll tell you the rest of the story some other time if you want!" He starts running off in the direction of the smithy, still carrying his spear.
+{82 | character_leave} "Bye!" Taulsol grabs the basket and heads for the Shining Pearl, and you are left alone on the pier.
+{84 | character_leave} "Bye!" Taulsol carefully rips the fish off his spear and throws it in a nearby basket that he then picks up and heads for the Shining Pearl.
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+
+||>>So are you a fisherman, a guard or what?
+{37 | add_flag taulsol_was_adventurer} He lets out a short, deep chuckle. "I'm a fisherman. Most of the time at least. It's a small village, so I help around whenever I can, usually by participating in guard duty or by helping haul stuff around. Turns out roaming around the lands for more than half of your life makes you develop a variety of skills other people find useful. I even worked as the Shining Pearl's cook this one time." He glances at the huge shell next to the pier as if reminiscing.
+	[38] You sound like a dependable fellow.
+	[questions] I see.
+||
+{38} Taulsol shrugs. "I try. And let's be honest, as much as I love fishing, it can get a bit boring sometimes. A little variety doesn't hurt."
+	[questions] I guess.
+||>>Your species?
+{what_areu} "I'm an Ardub. From my perspective, we're pretty normal folk as far as bipedals are concerned – especially compared to your species, since we both have two eyes with a mouth under them and four limbs. Well, at least normally. Other than that... I suppose we prefer living near the coast. Oh, and thanks to this sac, we can hold our breath for a really long time. Not as good as being able to breathe underwater but invaluable if you need to gut an entire crate of stinkfish." 
+	[full_neck] So, what does it look full?
+||
+{full_neck | change_sprite inflated} He takes a long, deep breath and the sac under his neck inflates.
+	[40] That looks a bit disturbing.
+	[41] How long can you hold your breath for?
+||
+{40 | change_sprite no_armor} Taulsol exhales, and his neck deflates. "Yeah, I've heard that before. Can't please every culture and species' aesthetic sensibilities."
+{41 | change_sprite no_armor} Taulsol exhales, and his neck deflates. He points with his spear at a distant buoy. "Long enough to swim there and back or walk three laps around the village if I take it easy."
+{hold_breath} He points with his spear at a distant buoy. "Long enough to swim there and back or walk three laps around the village if I take it easy."
+	[hold_breath] So, how long can you hold your breath with that for? //showif.index_is.40
+	[43] Impressive.
+	[44] Eh, I've seen better.
+||
+{43} "I can't say I can complain. Anyway, is your curiosity about my species satisfied?"
+{44} "I'm sure you have. But I still think I can hold my breath longer than the average Ardub. So, is your curiosity about us satisfied now?"
+	[questions] Yep.
+||>>So you were an adventurer?
+{45} Taulsol straightens his back. "That I was. My parents died in an accident shortly after my coming of age, and I decided to move to another place. One thing led to another, and before I knew it, I found myself traveling all over this side of Noih, exploring places, fighting for my life a fair share of times, and occasionally working as a guide, escort or, as I liked to call it, 'general problem solver'." He snickers to himself.
+{wat_noih | add_flag pc_knowledge_world_name} "It's one of the names for this continent. Some people call it Lumborkem; Kem for this half and Lumbor for the other half."
+	[wat_noih] Noih? //hideif.has_flag.pc_knowledge_world_name
+	[46] What do you mean by problem solver?
+	[47] You didn't do anything illegal, did you?
+||
+{46} "Just helping people in need. You know, doing guard duty for a store, killing or driving off the beast eating some farmer's livestock, hunting down some criminal, delivering packages to other places... That kind of stuff. Just like fishing, as much as I loved dicking around on my own, things get stale after a while. Now imagine doing it for almost six thousand days."
+{47} He raises his hand defensively. "Nothing illegal, I swear. Though laws can be pretty lax in some places. Nah, I just helped people with tasks that required either a particular set of skills not everyone has or a traveling lifestyle. Almost six thousand days of traveling around would have gotten boring if I was always on my own in the wilderness."
+	[48] Six thousand days, huh.
+	[48] Things probably got stale after five thousand days.
+||
+{48} "I was still having fun and enjoying that lifestyle. I would have retired eventually, of course, but if I hadn't lost my arm, I probably would have continued like that for a few more hundred days, maybe another-" Another voice cuts him off. Someone standing on the nearby beach loudly called Taulsol and is now beckoning him over.
+	[49 | save_index buddy] Duty calls, huh? We'll talk some other time.
+||>>Do you mind if I ask how you lost your arm?
+{lost_arm} He wiggles his stump. "This? Of course you can. I accepted a risky job, messed up, and lost my arm as a consequence, that's all."
+	[58] That's all you have to say? Sounds like a steep price to pay.
+	[58] Oh, if it's just an arm...
+||
+{58} "Okay, it sucked, but I'm okay now, and that's all that matters. But if you want to know what happened, I'll tell you. A thousand days ago, I accepted a bounty to track and kill some beast that killed a few villagers in rapid succession in a small town far away from here and never left any traces of its whereabouts."
+	[59] Go on.
+||
+{59} "I confirmed that the beast was indeed covering its tracks really well and decided that, since tracking it was borderline impossible, I could try to get it to come to me by acting as bait. So, I set up camp in the general area those villagers were killed in, and for the next three days, I acted as best as I could as if I was just a clueless traveler interested in the local flora."
+	[60] And then?
+||
+{60 | add_flag taulsol_lukumpplar_story} "Then I performed my part as a clueless traveler too well, noticing way too late the rustling of leaves a few steps behind me. I barely had time to raise my spear when a lukumpplar lunged at me from behind a bush. A lukumpplar. Those things are supposed to live in the opposite corner of Noih!"
+	[61] Wow.
+	[62] What's a lukumpplar?
+||
+{62} "A very cunning and dangerous predator. It's big, it walks on three legs using the back one to launch itself at its prey, its back is covered in spiky bony barbs, and it has a huge mouth full of sharp teeth backed by a jaw capable of shattering most bones."
+	[61] Sounds nasty. Please continue your story.
+||
+{61} "My spear shattered in half, but it still confused the beast's aim enough for it to bite into my arm and not my neck. We went down, the lukumpplar on me, still firmly latched to my arm. I got the air knocked out of my lungs, and the pain clouded my mind, so I instinctively started punching its head with my free hand with no effect."
+	[63] How did you survive that?
+||
+{63} "At some point I realized the upper half of my broken spear was lying on my neck. Then one moment I was punching it, and the next one I had grabbed the spear and stabbed it in its eye. It instantly went limp, relaxed its jaw, and slumped over me.<br><br>Later on I was told the spear's tip hit exactly the only junction in its skull and penetrated its brain. It had been the mother of all lucky hits. I'm glad I'm alive thanks to that, but part of me still wishes there had been at least some skill involved on my part."
+	[64] Yeah, at least you're still alive.
+	[64] Being alive is the most important thing.
+||
+{64} "I pushed the lukumpplar off me and looked at the beast, trying to identify it. I didn't know what it was at the time, but I did notice a piece of garment stuck in its barbs that coincided with the description of what one of its victims was wearing, so I knew I caught the bastard.<br><br>That's when my high ended, and my arm started to hurt. Badly. It was broken, and I was bleeding out."
+	[65] Yikes.
+||
+{65} "Yikes indeed. I applied a rudimentary tourniquet and set the bone as best as I could, but the wound itself wasn't the real problem. Do you know how much crap there is in a lukumpplar's mouth? They have so much nasty stuff cultivating there, some of it unique to the species, that it overwhelms any normal immune system in less than a day.<br><br>By the time I managed to reach the nearest road, the wound was already infected. By the time I arrived back at the village with the help of some travelers, the flesh around the wound was rotting off."
+	[66] That's awful.
+	[66] Ew.
+||
+{66} He sighs, absent-mindedly caressing his stump. "I don't remember much after that. The infection was so strong and I was so weakened they couldn't focus on it all. They could either fight the infection spreading through my body or heal the wound in my arm and the flesh around it. The infection would kill me, unlike the wound. It was an easy choice. At least I didn't feel a thing, and the recovery was completely painless too. And hey, I finished my job and got paid extra, so that's something." He raises his head proudly.
+	[67] That's that spirit... I guess.
+	[67] (Chuckle)
+||
+{67} "And then some eighty days later I met Tornoth and... ah, crap!" He slaps his chest.
+	[68] What's wrong?
+||
+{68} "I just remembered I needed to talk with him about one of my fishing spears. Sorry, I really need to go. I won't hear the end of it if he starts working on it and I ask him to change it again." The tip of his tail restlessly wags left and right.
+	[69] We'll talk some other time, then.
+||>>Continuing the lost arm story
+{lost_arm_continued} "Ah yes, I still remember the earful I got from Tornoth for dashing across the village with my spear in hand. At least I was justified in that he was about to start working on those modifications I wanted. But sure, the rest of the story. We left off just after I got my arm amputated, right?"
+	[71] Yes.
+	[71] (Nod)
+||
+{71} "Good, so I spent a lot of days recovering and learning to live with just one arm. Turns out that after some practice I could still do almost everything I could do before, although in many cases it required some adaptation. Of course, some people suggested I should get one of those bionic prosthesis, but I rejected the idea. I don't really need it.<br><br>Perhaps once I'm old if I start struggling with everyday life, but for now, having one arm doesn't hinder me, and I actually like the extra challenge." He twirls the spear in the air and then brings it down with a loud thud.
+	[72] That's remarkable.
+	[73] Sounds like you're handicapping yourself needlessly.
+||
+{72} "Thanks. Back to the story, once I was fully recovered, I tried to get back in business for about twenty days. Traveling and surviving in the wilderness was pretty easy, but I quickly found out most people aren't exactly willing to hire a cripple in my line of work, so I started avoiding towns and visiting only smaller villages where people had fewer choices when hiring.<br><br>And that's when Taodal comes into play."
+{73} "There's a bit of truth in that, and I get where you're coming from, but I've lived on my own most of my life, welcoming challenges with open arms as long as they were reasonable. It's just how I am.<br><br>But back to the story, once I was fully recovered, I tried to get back in business for about twenty days. Traveling and surviving in the wilderness was pretty easy, but I quickly found out most people aren't exactly willing to hire a cripple in my line of work, so I started avoiding towns and visiting only smaller villages where people had fewer choices when hiring.<br><br>And that's when Taodal comes into play."
+	[74] Aha.
+||
+{74} He nods at the smithy. "I heard about this small village in Sejan and decided to visit it out of curiosity. So, of course as soon as I arrive, Tornoth wanted to speak with me to tell me the village's rules and size me up. I remember he seemed pretty interested in my past and how well I was doing without an arm.<br><br>Then he told me to visit him again whenever I was ready to leave. So, the next day I did so, expecting to perhaps get some job offer, but instead, Tornoth offered me to settle down here."
+	[75] So, I take it you accepted, and that's how you've ended up here.
+	[76] And did you accept?
+||
+{75} "Not quite. I rejected the offer and headed off in the direction of the lake, but that night while making camp I thought hard about it. Retirement suddenly started sounding like a good idea, and I liked what I saw during my short stay in Taodal. So, the next day I returned and asked Tornoth why he offered me to stay, and we had a long talk that I won't bother summarizing.<br><br>Let's just say he understood perfectly well how I am and what I expected of life and earned my most absolute respect."
+{76} "I actually didn't. Right then I wasn't considering retiring, so I rejected Tornoth's offer and headed off in the direction of the lake, but that night while making camp I thought hard about it. Retirement suddenly started sounding like a good idea, and I liked what I saw during my short stay in Taodal. So, the next day I returned and asked Tornoth why he offered me to stay, and we had a long talk that I won't bother summarizing.<br><br>Let's just say he understood perfectly well how I am and what I expected of life and earned my most absolute respect."
+	[77] That's a bit vague. Can't you elaborate?
+||
+{77} "I feel appreciated. Among other things, I can cook, fight, hunt, fish, negotiate, track, swim, do maintenance work on buildings and weapons, haul crates, and even sew as long as it's simple patchwork. Those are skills that are sooner or later needed in every small village and let me help around when someone needs an extra hand or falls ill. And I can see how my efforts, just like everyone else's, make a difference, all the while being able to focus on my favourite job most of the time.<br><br>Tornoth knew that would make me happy and incidentally loyal to the village, ensuring I wouldn't cause trouble. And that's how I ended up here, living a bachelor's life in one of the most normal, quiet villages I've ever seen. Which, mind you, is something you learn to appreciate after you have spent half of your life on the road and reached a certain age."
+	[78 | save_index friend] ...How old are you? 
+||
+{78 | character_leave} Taulsol gurgles. "I... like to think I'm not middle-aged yet, even if most people will disagree. But just look at me! I'm still quite the catch for the ladies. And speaking of catches..." His torso snaps to the left and he throws his spear at the water, then jumps off the pier after it, disappearing under the water.
+	[79] (Wait)
+||>>"Quite a catch" flirt
+{79 | change_sprite no_armor} A few seconds later, Taulsol's head emerges from the water, followed by his arm, holding up his spear triumphantly. A big, eyeless fish with a proboscis flaps at the end of the spear. He drags himself awkwardly back on the platform. "The nerve of this jerk, ignoring all the fishing poles and nets and then swimming without a care next to me."
+	[80] Quite the catch indeed. That's a big fish.
+	[ | sex_gate buddy_pc flirt_pc] (Snicker) No wonder you're still a bachelor.
+||
+{80} He rips the fish off the spear and throws it into a basket. "I've caught bigger."
+	[83] I'll take your word for it.
+||
+{buddy_pc} "What? I'm totally husband material, and being a bachelor is fine too. Being open to ladies hitting on me ever since I've left my home has always... well, most of the time, been a big boon as far as I'm concerned."
+{flirt_pc} "What? I'm totally husband material... but being a bachelor is fine too. Being open to ladies hitting on me ever since I've left my home has always... well, most of the time, been a big boon as far as I'm concerned." He winks.
+	[83] I was just kidding.
+||
+{83} He chuckles. "Well, it was fun talking to you, but I need to sell this fellow stuck on my spear together with some of his buddies I caught earlier. Come talk with me again whenever you want. I need to get these fish moving."
+	[82] I'll let you go. I hope you can finish your story sometime.
+	[84] I'll hold you to your word.
+||
+
+	
+	
+	
+	
+||>>Training 1 Teaching a move (Leg swipe)
+{87 | add_flag taulsol_taught_move_legswipe} He gives you a slow once over. "I can teach you how to do a fast and effective low leg swipe. It should be easy to learn with your anatomy, many people and animals don't expect it when fighting, and you're unlikely to seriously hurt anyone with it."
+	[88] Perfect, teach me. (Learn the leg swipe)
+||
+{88 | pic leg_swipe_lesson, give_card leg_sweep, give_card leg_sweep} You walk to the nearby beach, and for the next couple of hours, Taulsol teaches you how to properly balance your body and apply the strength and momentum needed to execute a quick swipe with either of your legs and how to recover as fast as possible if your enemy dodges it. Every now and then a handful of villagers and sailors stop in their tracks to watch you two, jokingly cheering every time Taulsol knocks you down while showcasing the move.
+	[cont_lesson | advance_time_to evening] (Continue your lesson)
+||
+
+
+||>>Training 2
+{more_training | add_flag taulsol_taught_move_legswipe} He laughs. "I don't mind. Training is, after all, the mother of skill."
+	[leggy_sweep_2] Let's get to it. (Train the leg swipe)
+||
+{leggy_sweep_2 | pic leg_swipe_lesson, give_card leg_sweep, give_card leg_sweep} You walk to the nearby beach, and for the next couple of hours, you rehearse the leg sweep over and over. Your antics gather a small audience on the pier that cheers and laughs as you knock each other into the sand.
+	[lesson_stumble | advance_time_to evening] (Continue your lesson)
+||
+||>>sex start
+{lesson_stumble | auto_continue lesson_stumble_2} As the day grows darker, the tiny crowd slowly disperses. You're both sore and exhausted, but you still start another round of sparring. The rehearsed movement quickly turns into a chaotic stumble that knocks both of you off your feet.
+||
+{lesson_stumble_2 | pic taulsol_stumble, play_sound generic/interactions/tackle 70, change_environment taodal_beach} You fall on the sand with a thud, and when you open your eyes, you find Taulsol huffing on top of you.<br><br>You're both wet with sweat and panting. His eyes glance at yours and then shyly turn away. "Sorry, let me get off you."
+	[get_off_me_sweaty_lizzerdman] You do that.
+	[pushed_off] (Push him off you)
+	[wanna_fug] Do you... wanna...? 
+||>>You wanna fuck?
+{wanna_fug} Taulsol pauses turns head back to you. "What?" He shakes his head like he has trouble hearing.
+	[ | stop_music 5, gender_gate male_reject female_accept] You wanna fuck? Here, right now?
+	[joke_ha_ha] I'm just joking. You can get off me now.
+||
+{female_accept | change_diag_file diag_piersex female_accept} 
+{male_reject | change_diag_file diag_piersex male_reject} 
+||
+
+||>>Lesson over
+{joke_ha_ha | remove_pic} Taulsol chuckles. He clambers off the ground and helps you up. "I think we should stop. Besides, I don't think I can teach you anything else." He pants.
+{get_off_me_sweaty_lizzerdman | remove_pic} Taulsol clambers off the ground and helps you up. "I think we should stop. Besides, I don't think I can teach you anything else." He pants.
+{pushed_off | remove_pic} You give Taulsol a shove, and he jumps off you with a friendly laugh. You get up and pat yourself. "I think we should stop. Besides, I don't think I can teach you anything else." He pants.
+	[lesson_thank] Yeah, thanks for the lesson.
+||
+
+
+||>>Lesson over
+{cont_lesson | remove_pic, change_environment taodal_beach} As the evening drags darker, the tiny crowd slowly disperses. You are sore and exhausted. The profusely sweating Taulsol shakes his head. "I think you got it." He pants.
+	[lesson_thank] Thanks. I'll try to remember what you taught me.
+||
+{lesson_thank} "My pleasure. I really should be in my bed by now. You should rest too."
+	[lesson_bye] Of course. See you later.
+||
+{lesson_bye | character_leave} "I'll be off, then. Sleep well." Taulsol walks off.
+	[ | start_encounter taodal taodal] (Leave)
+||

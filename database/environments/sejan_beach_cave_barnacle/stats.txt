@@ -1,0 +1,8 @@
+interior:	yes
+ambient:	0.3
+
+<SOUNDS
+misc/old_cave_water_drops.40
+misc/old_cave_ambience.80
+sejan/beach_cave_squirms.20
+SOUNDS>

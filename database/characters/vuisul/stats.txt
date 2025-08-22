@@ -1,0 +1,33 @@
+default_env:	taodal_market
+text_color:		CFCDC9
+bubble_color:	4F477F
+
+<STATS
+charisma:		7
+will:			6
+intelligence	8
+perception: 	8
+agility:		6
+strength:		5
+endurance:		6
+
+hitpoints:		30
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	0
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+panicked_slap
+panicked_slap
+panicked_slap
+right_hook
+right_hook
+body_tackle
+CARDS>

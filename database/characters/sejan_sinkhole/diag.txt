@@ -1,0 +1,42 @@
+
+
+||>>START
+{start | pic leg_sunk, save_index visited, discover_location sejan_sinkhole, play_sound sejan/sinkhole_stuck 70} You're suddenly stopped as one of your feet sinks into the sand.
+	[ | check_stat agility 10 succ-roll] (Pull your leg free) 
+	[ | check_stat agility 8 lasso1-lasso2] (Lasso a tree branch) //showif.intelligence.6 //showif.has_item.roll_of_rope
+||
+{succ | auto_continue succ_2} While you struggle to pull your leg free, you sink more into the ground until you're knee-deep in the sand.
+{lasso1 | auto_continue succ_2} You try to take out your rope but you can't manage to do it before you're knee-deep in the sand.
+{succ_2 | auto_continue succ_3, pic sunk_halfway} Suddenly your legs hit solid ground that immediately crumbles and you fall deeper.<br><br>After a short fall you find yourself stuck up to your waist. You kick your legs and feel nothing below you. 
+||
+
+||>>OUTSIDE SINKHOLE HUB
+{visited} You return to the sink hole you created.
+{climb_out | remove_pic} You use the mound of collapsed ground resting against the chamber and the exposed roots to climb out.
+{roll | play_sound sejan/sinkhole_collapse 70, remove_pic} Without hesitation, you immediately dive to the side and roll away from the sand.<br><br>Behind you, you hear dirt and rocks falling.<br><br>Rocks strike a hard surface with an echoing crack as the ground collapses into a hole.
+{lasso2 | play_sound sejan/sinkhole_collapse 70, remove_pic} Without hesitation, you quickly create a rope around a branch and pull yourself out.<br><br>The ground rumbles as you hear dirt and rocks falling.<br><br>Rocks strike a hard surface with an echoing crack as the ground collapses into a hole.
+{look_down} You can't see much outside of the lit area immediately below the hole. One side of the hole is next to a wall covered in roots. 
+	[look_down] (Look into the sinkhole) //hideif.clicked
+	[climb_down2] (Climb down)
+	[ | end_encounter] (Leave)
+||
+
+||>>INSIDE SINK HOLE HUB
+{succ_3 | play_sound sejan/sinkhole_collapse 70, pic chamber} Before you can think of what to do next, the ground surrounding you completely gives away and collapses into the dark pit below you.<br><br>You fall for less than a second before slamming into the ground below the ground. You're in a chamber revealed by the collapsed ground.
+{look | pic chamber} You look around but can't see much. Behind you, the wall has a few roots sticking you that you might be able to climb. All you can tell is that, from the acoustics of the chamber, outside of the the small lit area you're standing in, the chamber extends significantly in front of you. 
+{torch | play_sound generic/objects/torch 70, give_money krats 38} With the torch lit, you can now see that you're standing in a simple empty chamber. The only thing you see besides a few jutting rocks and roots are several krats stuck to the ground.<br><br>You take the krats off the ground. You count 38. 
+{climb_down2 | pic chamber} Using the roots on the wall, you climb down into the sink-hole. 
+	[look] (Look around) //hideif.clicked
+	[torch] (Light a torch) //hideif.clicked //showif.has_item.torch
+	[climb_out] (Climb out) 
+||
+ 
+||>>Tunnels going deeper underground
+{tunnels_discovered} As you raise your torch you can see that the rock and earth walls of the chamber are perforated by countless tunnels that travel deeper underground.
+	[tunnels_discovered] (Investigate the tunnels)
+||
+
+
+
+
+

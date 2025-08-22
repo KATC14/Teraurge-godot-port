@@ -1,0 +1,737 @@
+
+||>>starting the red forest island adventure
+{start | remove_flag shyni_redforest_adventure_open, add_flag shyni_redforest_adventure} "I would never have done it without you! We should leave at dawn. We can wait here and sleep the night together. We have to hike across the peninsula to the boat and then row over to the island. When we get there, it'll be evening."
+	[adventure_plan] Alright, sounds like a plan.
+	[smut_stone | change_environment sejan_redforest, stop_music 3] QUICK DEBUG TO SMUTTY SMUT STONE ==> //showif.debug
+||
+{adventure_plan} She giggles. "I need some help with picking the ripe narbs from the garden, someone with strong hands..."
+{narb_weakarm} "Oh, don't worry! I'll help you!" She giggles.
+	[narb_weakarm] Uh, I guess I'm not the person for the job, then. //hideif.strength.6 //showif.index_is.adventure_plan
+	[narb_picking] Let's get to it, then. (Help Shyni with the narbs)
+||
+{narb_picking | start_music generic/peaceful_sejan 70 3, pic narb_garden, advance_time_to evening} You spend the rest of the day working in Shyni's garden with her. You're both covered in mud and sweat when the day ends. Shyni, completely exhausted from the work, motions you to stop and follow her back into the house.
+	[narb_picking_ends] (Go back inside)
+||
+{narb_picking_ends | pic shyni_with_soap} Shyni throws her clothes away, walks to a large wooden bucket of water and picks up a soap bar. She commands you with a tired voice, "Undress and come here."
+	[ | sex_gate narb_cleanup_m narb_cleanup_f] (Undress and go to her)
+||
+{narb_cleanup_m | pic soapy_shyni} You throw your clothes off and meet Shyni. You both lazily clean each other with the soap and the lukewarm water. You're both so tired you can't come up with anything to say. Shyni can't even conjure a giggle when you rub the specks of mud off her fur. Shyni turns to you with tired eyes. "You're very handsome, -name-." She brushes your cheek with her soapy thumb. 
+{narb_cleanup_f | pic soapy_shyni} You throw your clothes off and meet Shyni. You both lazily clean each other with the soap and the lukewarm water. You're both so tired you can't come up with anything to say. Shyni can't even conjure a giggle when you rub the specks of mud off her fur. Shyni turns to you with tired eyes. "You're very beautiful, -name-." She brushes your cheek with her soapy thumb. 
+	[gorg_clean] You're beautiful, even with the mud.
+	[gorg_clean] You're gorgeous.
+||
+{gorg_clean | play_sound generic/interactions/splash_small 70, pic soapy_shyni} She nods affectionately and gets up. She picks up a smaller bucket of water and just turns it on you. You twitch as the slightly colder water sloshes over you and washes away the soap. Shyni laughs. "Okay! Now do me!" She points at a bucket next to her.
+{bucket_warning | pic soapy_shyni} She playfully kicks you in the shin. "That wouldn't have been nearly as fun! Do me now!"
+	[bucket_water] (Empty the bucket on her)
+	[bucket_warning] ...You could have warned me. //hideif.index_is.bucket_warning
+||
+{bucket_water | play_sound generic/interactions/splash_small 70} You pick up the bucket and upend it on Shyni. She yells with a high-pitched scream and flails her arms hysterically. The water leaves her hair flat against her body. She trembles. "O- Oh my g- gods. That was w- way c- colder than I- I expected." She shivers and drips water.
+	[bucket_dry] Sorry! I didn't realize it was so cold. //showif.charisma.6
+	[bucket_dry] I thought the water would be same as the other?
+||
+{bucket_dry} She reaches for a towel and wraps herself into it. "It's nothing! The other bucket must have been here longer." She sits on the floor and curls under the towel.
+	[bucket_dry_1] (Dry yourself)
+||
+{bucket_dry_1 | play_sound generic/interactions/towel 50, pic towel_shyni} You pick up a towel and dry yourself. Shyni stops shivering and looks up at you from under the blanket. "Hi." She squints her eyes.
+	[blankit_1] Hi. Is it warm in there?
+||
+{blankit_1 | pic towel_shyni} You crouch to talk to her. She nods. "Yes. It's very comfy."
+{blankit_space} She lets out a tired and slightly hoarse giggle.
+	[blankit_space] Is there space for me under there? //showif.charisma.6 //showif.index_is.blankit_1
+	[should_bed] Should we go to bed? You said we have a lot of walking to do tomorrow.
+||
+{should_bed} She nods and gets up. "Yeah, we should go to bed, or I'm going to fall asleep right here." She hangs the towel and beckons you to follow her.
+	[bed_follow] (Follow her to bed)
+||
+{bed_follow | pic in_bed} Shyni falls on her bed lazily. She scoots her rump a little to make room for you. You lie next to her and wrap your arm around her. She sighs contently. You dig your head into her neck, her soft hair smothering your face pleasantly.<br><br>Shyni takes your hand and holds it against herself. The house and the village is quiet, and you can faintly hear the waves wash on the beach. You feel yourself slip into a paralysing relaxedness, and your mind slowly sinks into a fuzzy dimness.
+	[time_for_adventure] (Sleep)
+||>>WAKE UP! Adventure time!
+{time_for_adventure | advance_time_to morning, pic bed_wakeup_alone, hide_character} You're woken up by Shyni poking your nose and giggling. "We gotta go! I have everything ready. Put on your clothes and meet me at the village entrance." She gives you a quick kiss on the forehead and leaves. You rise from the bed confused and blinking your eyes.
+	[whut_wake] ...W-what?
+||
+{whut_wake | play_sound generic/objects/door_close 70, remove_pic, hide_character} You hear the door close as she leaves the house.
+	[getdressup] (Get dressed and head out)
+||
+{getdressup | change_environment taodal, remove_pic, auto_continue out_taodal} You throw the blanket aside and find your clothes. You quickly get dressed and head out. The village is still quiet, but you can hear people waking up and walking on the streets. You make your way through the village and out through the gates. 
+||
+{out_taodal | start_music sejan_taodal/shyni 70 3, change_environment taodal_entrance, change_sprite backpacked} You see Shyni leaning against a tree in the distance. You go over to her. "Sorry about the rude wake up."
+	[whut_hurry] What's the hurry?
+||
+{whut_hurry} "It's easier to sneak out of the village in the early morning. I don't want to explain to Taulsol or dad where I'm going."
+	[whut_earlier] Ah, okay. You could have just woken me up earlier.
+||
+{whut_earlier} "You looked so cute! I packed the bags myself because I couldn't force myself to wake you! I hope you managed to sleep well, we have some distance to cover."
+{love_backpack} "Thanks. It's a little worn, but I like it too."
+	[love_backpack] Love the backpack. //showif.index_is.whut_earlier //showif.charisma.6
+	[where_wegoin] So, where are we going?
+||
+{where_wegoin} "Through the forest to the other side of the peninsula. There's a footpath we can travel most of the journey."
+{carry_packforyou} "Nope! You can carry it when I start whining how heavy it is. Until that happens, I'm carrying it." She giggles.
+	[carry_packforyou] I can carry the backpack for you. //showif.index_is.where_wegoin
+	[lets_go_trek] Let's go, then.
+||
+{lets_go_trek | character_leave} "Follow me!" She motions you to follow and tramps into the forest.
+	[start_trek] (Travel with Shyni)
+||>>Trek through the peninsula
+{start_trek | advance_time_to noon, pic traveling} You set out into the forest following Shyni as she expertly finds the paths through it.<br><br>After some distance through the forest, Shyni huffs and slows down a bit. "I like walking in the forest. It somehow feels super comfortable and homely. The way the light filters through the trees and all."
+	[walk_forever] You do seem to like outdoors a lot. No wonder they have trouble keeping you in the village.
+||
+{walk_forever | pic hand_holding} "Also, walking with you... You know that feeling when you suddenly realize how natural something new is?" She grabs your hand and walks hand in hand with you. "I- I feel like I could walk my whole life with you." Her hand grips yours slightly harder.
+	[hand_walk] I feel the same way about you.
+	[hand_walk] Let us hold hands longer then. //showif.charisma.8
+	[hand_walk] That's a beautiful way to say it.
+||
+{hand_walk} She giggles and pats you on the arm.<br><br>You walk through the forest together. After endless trees, you can see the sea glimmer through the trunks. Shyni screams in excitement and skips into a run.
+	[discover_boat] (Go after her)
+||
+
+||>>SAILING TO THE ISLAND
+{discover_boat | remove_pic, change_environment sejan_hidden_boat, change_sprite backpacked} You see Shyni run across the sand towards a collection of rocks near the water. She does something and suddenly unveils a boat tied to the rocks. You get closer and see there's a worn tarp of the same color as the sand. Shyni looks inside the boat and turns to you. "This is our boat!" 
+{oh_your_boat | remove_pic, change_environment sejan_hidden_boat} She laughs. "I thought I hid it better!"
+	[oh_your_boat] Oh, it's your boat? I found it when I wandered around here. //showif.has_discovered.sejan_hidden_boat //showif.index_is.discover_boat
+	[boat_what] What is it doing here, anyway?
+||
+{boat_what | remove_encounter sejan_hidden_boat 0, discover_location sejan_hidden_boat} "I... um, I hid it here from dad. I used to go fishing with it, but dad was always guarding the boat and limiting its use. One day, I sailed here and tied it to these rocks, walked back to Taodal and told dad that I had forgotten to tie the boat and it had drifted away." 
+	[why_steal_boat] Why?
+||
+{why_steal_boat} "I just wanted to use the boat whenever I wanted. I had sailed to the island and wanted to visit it again. Dad wasn't even mad, he was just sad that he lost the boat. He made a new one later."
+	[talk_abut_boat] You could talk to him about it.
+||
+{talk_abut_boat} She sighs. "It's harder than you'd think. I feel guilty for being so... adventurous? But I don't want to make dad worry."
+{dawn_sneak} "I do it constantly and I left a note that I went camping to gather berries. I'll pick up some when we get back."
+	[dawn_sneak] Is he okay with you sneaking out into the forest at dawn? //showif.index_is.talk_abut_boat
+	[might_understand] I'm sure he'd understand. He might even be happy seeing the boat again.
+	[set_sail_dark] We should probably set sail before it gets too dark.
+||
+{might_understand} "You're probably right, but... let's get rowing before it gets dark! Let's push the boat on the water."
+{set_sail_dark} "Yes! We really don't want to row in the dark."
+	[push_out_boat] (Push the boat out to sea)
+||
+{push_out_boat | play_sound generic/objects/boat_onwater 70, start_music generic/peaceful_sejan 70 3, pic boat_out} You push the boat out to sea together. You help Shyni on and then hop on yourself. The boat wobbles as you take your seats, the water drums the bottom of the boat as it drips from your wet legs. Shyni turns to look behind her and points at a distant island in the horizon. "Just head for that island with the red trees." She turns back to you. "There's a nice beach on this side of the island, so we can put the boat wherever we land."
+	[sail_to_island] (Start rowing)
+||
+{sail_to_island | play_sound generic/objects/boat_sail 70, pic sailing_with_shyni} You grab oars and start rowing. Shyni almost falls over on the first stroke but grabs her bench and just giggles.<br><br>The peninsula starts to fall behind you as you keep rowing towards the island and further into the sea. The sky slowly turns dark red as the day begins to end. Shyni turns to face the sea wind, her long hair billowing in the breeze. She glances at you. "Thank you... I've never shared my trips with anyone, and it feels amazing sharing them with you."
+	[contagious_enthus] I like this too. Your enthusiasm is cute and contagious. //showif.charisma.8
+	[island_dangerous] As long as it's not terribly dangerous.
+	[island_plan] So, what's your plan for the island?
+||
+{contagious_enthus} She blushes. "I suppose. Don't let the excitable young girl drag you witlessly about, you hear me?" She laughs and then turns her head back into the wind.
+{island_dangerous} "I don't like danger that much myself either, but you always agree to some danger when you leave home like this." She puts her finger in the water and drags it across the surface as the boat slices through the gentle waves. She sighs. "I love this."
+{island_plan} "When we get there, it's going to be late, so we should just put up a tent and eat something this evening. I've visited this island before a few times, and I've found a bunch of cool things I want to show you. They're all perfectly save as well!"
+	[island_row] Let's get there, then. (Sail to the island)
+||
+
+||>>ARRIVING TO THE ISLAND
+{island_row | advance_time_to evening} After a while of strenuous rowing, Shyni yells, "There's a good spot, aim there!" She points at a sandy beach. 
+	[beachy_boat] (Beach the boat)	
+||
+{beachy_boat | remove_pic, change_environment sejan_redforest_landing, play_sound generic/objects/boat_land 70, character_leave, discover_location sejan_redforest_landing} You row near the shore and then jump out to pull the boat out of the water. Shyni ties it to a rock. "Here we are! We should set up a tent near the trees." She walks off.
+	[camp_set] (Help Shyni set up the tent)
+||
+{camp_set | pic island_tent} You quickly erect a small tent from the boat tarp and some dry branches on the ground. Shyni immediately dives in and groans audibly.
+	[tent_dive] (Go into the tent)	
+||
+{tent_dive | play_sound sejan/redforest_tent_flap 70, pic in_tent} You follow her into the cramped tent and sit down. She raises her eyes to yours. "It's a bit small, but I think we'll manage. We'll just sleep on top of each other!"
+	[adventure_tired] Yeah, we'll manage.
+	[adventure_tired] Feeling tired?
+||
+{adventure_tired} "I'm very tired. We should just go to sleep and wake up early tomorrow."
+{how_tired} She giggles. "No! I don't want to just lie there half-dead while you.. do me!"
+	[how_tired] ...How tired are you? //showif.index_is.adventure_tired
+	[get_here_you] Alright, come here.
+||
+{get_here_you} You both awkwardly undress inside the cramped tent. Shyni then climbs on top of you and hugs you. She nuzzles into your neck and drags her dress over the two of you. She whispers into your neck, "This is nice." She brushes your face and then quietly whispers, "I love you." The strenuous day and her calm breathing make you drowsy, and you soon feel yourself slipping into sleep.
+	[first_morning] (Sleep)
+||
+
+||>>First morning
+{first_morning | advance_time_to morning, pic in_tent} You wake up with Shyni sleeping on your chest. She rouses and turns her eyes to you. "Hi, -name-. Good morning."
+	[marning_shyni] Good morning.
+||
+{marning_shyni} She gets up and picks up her clothes. She crouches out of the tent with the clothes bunched up in her hands.
+	[marning_dress] (Get dressed)
+||
+{marning_dress | start_music generic/peaceful_1 70 3, change_sprite character, remove_pic} You awkwardly get dressed inside the tent and then crawl out. Shyni meets you outside. "Did you sleep well?"
+	[great_blankit] You're a great blanket. //showif.charisma.8
+	[back_stiff] My back is a little stiff, but I definitely didn't get cold. 
+||
+{back_stiff} "We should have brought an actual travel bed with us.<br><br>So... I was thinking we could eat and then go explore! I have some places I want to show you on this island!"
+{great_blankit} "And you're a great mattress!<br><br>I was thinking we could eat and then go explore! I have some places I want to show you on this island!"
+	[normal_dinner] Yeah, food sounds good.
+	[what_if_swimming] What if... we go swimming?
+||
+{what_if_swimming | character_leave} She glances at the water. "Oh?... Definitely!" She runs towards the water with a giggle and undresses as she goes.
+	[swim_time] (Go swimming with Shyni)
+||>>Swimming
+{swim_time | play_sound generic/interactions/splash_big 70, pic island_swimming} You both splash into the water, and Shyni screams with joy. You spend an inordinate amount of time just splashing each other with water, hugging, and swimming. The sea seems very calm and the weather very clear. You feel a pang of hunger as your stomach growls.
+	[weird_fish] Okay, I'm getting kinda hungry now, we could go and eat something now.
+	[weird_fish] You seem to like swimming.
+||>>retarded fish
+{weird_fish} Shyni suddenly screams, "Aaah!" She raises her hands from the water and starts giggling. She points down into the water. "It's circling me! Aah! Why is it circling me?" You see a fish swim around her waist in circles.
+{fish_dang} Shyni giggles as she watches the fish swim around her. "It's just a normal ohmun. Why is it doing this!? What a weird fish!" Her head tracks the fish as she observes it with a childlike glee.
+	[fish_dang] Is it dangerous? //showif.index_is.weird_fish
+	[fish_like | play_sound generic/interactions/splash_big 70] Maybe it likes you?
+	[ | play_sound generic/interactions/splash_big 70, check_stat agility 8 catch_0-catch_1] (Catch the fish)
+	[scare_fish | play_sound generic/interactions/splash_big 70] (Scare the fish away)
+||
+{fish_like} "You have a competitor, -name-!" She looks closer into the water. "Though I wouldn't kiss that face! I would eat it, however!" She strikes into the water with her clawed hands. She's momentarily immersed in a splash of water.
+	[u_catch_it] Did you catch it?
+||
+{u_catch_it} She stands up with empty hands and growls with a sorrowful tone. "No..."
+{scare_fish} You wade forwards a little and then splash water near Shyni. The fish quickly bolts away and disappears into the waters. Shyni lets out a disappointed yell. "<b>Hey</b>! Why'd you do that!"
+	[fishie_romance] I don't like competitors. //showif.charisma.8 //showif.index_is.scare_fish
+	[just_fishie] Oh, come here, you. It was just a fish.
+	[eaty_plan] Were you planning on eating it?
+||
+{fishie_romance} She giggles and wades through the water to hug you. "Oh, that butt face didn't have anything on you... but it looked kinda tasty."
+{just_fishie} "Yeah..." She wades to you and hugs you. "But It looked kinda tasty."
+{eaty_plan} She wades through the water to hug you. She whispers with a guilty tone, "...It looked kinda tasty."
+	[could_fish] We could try to fish?
+	[food_with_you] You brought food with you, didn't you?
+||
+{could_fish} "Nah, we don't have time for that, besides, I wanna take you on the tour I had planned!" She glances at the beach. "We should get dressed and eat something!" She starts wading towards the beach.
+{food_with_you} "Yeah..." She glances at the beach. "We should get dressed and eat something. I wanna take you on the tour I had planned!" She starts wading determinedly towards the beach.
+	[normal_dinner] (Go to the beach)
+||
+{catch_0} You wade in the water and then lunge at the fish circling her. The back of your hand hits the fish, you quickly correct yourself and try to grab it, but it bolts away and disappears into the waters. You fall against Shyni and she grabs you. She laughs. "Did you get it?"
+	[nocatch_1] Almost.
+	[nocatch_2] I wasn't even close.
+||
+{nocatch_1} You get up as she giggles. "We could wait and see if it wants to circle around me again." She brushes her clawed fingers on your chest. "I'm actually feeling a little cold already. Funny, since the waters here are usually very warm." She glances at the beach. "We should get dressed and eat something. I wanna take you on the tour I had planned!" She starts wading towards the beach.
+{nocatch_2} You get up as she giggles. "Oh, don't be so hard on yourself! I've never caught a fish with my hands, and even dad can catch them with his hands only by punching the water so hard they go unconscious!" She brushes her clawed fingers on your chest. "I'm actually feeling a little cold already. Funny, since the waters here are usually very warm." She glances at the beach. "We should get dressed and eat something. I wanna take you on the tour I had planned!" She starts wading towards the beach.
+	[normal_dinner] (Follow Shyni)
+||
+
+||>>Fish caught
+{catch_1} You take a few deft steps in the water and then lunge at the fish circling her. Your hands hit the fish, and you grip it tightly. You yank it out of the water, and it begins to flounder in panic in your hands. Shyni screams with glee.
+	[snibbity_snabbity] What do you want to do with it?
+||
+{snibbity_snabbity | play_sound sejan/redforest_fish_morph 70} Shyni trawls next to you and holds the fish still. Suddenly, her tongue shoots out and bites through the head of the fish. You're both sprayed with specks of viscera.
+	[shynimorph_1] Fuck, that's scary.
+	[shynimorph_2] Woah, you can do that?
+	[shynimorph_3] We could have just fetched a knife, you barbarian.
+||	
+{shynimorph_1} The fish twitches a few times in your hands and then goes limp. Shyni takes the fish from you and splashes some water on her face. "Ugh, I don't get how dad does it." She rinses her tongue and then gets back up again with a few specks on her face. "You think so? Imagine how I feel when I kiss you."
+{brush_specks} You wet your hand and reach to touch her face. She giggles as you brush off the few remaining specks.
+	[brush_specks] (Brush the specks off her) //showif.index_is.shynimorph_1
+	[kiss_anxiety] Are you afraid of kissing me?
+||
+{kiss_anxiety} "I'm not scared of kissing you! I just feel vulnerable when I put my tongue inside your mouth. You have those flat, chisel-like teeth. It just feels like you could easily bite off my tongue at any point."
+	[fish_now] I had never considered that.
+||
+{shynimorph_2} The fish twitches a few times in your hands and then goes limp. Shyni takes the fish from you and splashes some water on her face. "Ugh, I don't get how dad does it." She rinses her tongue and then gets back up again with a few specks on her face. "I just bit the fish. Ugh, when dad does it, it's cleaner. He tried to teach me too, but I didn't pay attention."
+{shynimorph_3} The fish twitches a few times in your hands and then goes limp. Shyni takes the fish from you and splashes some water on her face. "Ugh, I don't get how dad does it." She rinses her tongue and then gets back up again with a few specks on her face. "I just wanted to try out a trick my father keeps doing, though when dad does it, it's cleaner."
+{brush_specks_2} You wet your hand and reach to touch her face. She giggles as you brush off the few remaining specks.
+	[brush_specks_2] (Brush the specks off her) //hideif.index_is.brush_specks_2
+	[bloody_fishie] It's definitely scarier when you make the blood explode everywhere.
+	[fish_now] Well, the fish is dead, so I'd say you did okay.
+||
+{bloody_fishie} She makes a playful glance at you. "You think so?" She giggles and turns the dead fish in her hands. "Come! I wanna roast and eat this fish! We hunted it together!" She dashes excitedly towards the beach.
+{fish_now} Shyni turns the dead fish in her hands. "Come! I wanna roast and eat this fish! We hunted it together!" She dashes excitedly towards the beach.
+	[lets_eat_the_fishie] (Go after her)
+||
+
+
+
+||>>Camp food
+{lets_eat_the_fishie | pic adventure_dinner} You create a small campfire, and Shyni lights it with an odd-looking gadget. She cuts up the fish into two slices and roasts them on a blackened pan. She offers you one of the slices on the point of her dagger. "Here!"
+{safe_fishy} "Yeah, it's just an ohmun. They're a common fish here."
+	[safe_fishy] You're sure it's safe? //showif.index_is.lets_eat_the_fishie
+	[can_has_narb] You can eat it. Did you bring something less... meaty?
+	[eaty_dinner] (Eat)
+||
+{normal_dinner | pic adventure_dinner} You create a small campfire, and Shyni lights it with an odd-looking gadget. She digs inside her backpack and takes out wrappings of white cloth; she unwraps them and reveals reddish meat. She roasts them on a blackened pan and then presents you a piece on the point of her dagger.
+{what_is_meat} She jumps as she excitedly proclaims. "Braq! Greasy and tasty."
+	[what_is_meat] What is it? //showif.index_is.normal_dinner
+	[can_has_narb] You can eat it. Did you bring something less... meaty?
+	[eaty_dinner] Thanks. (Eat)
+||
+{can_has_narb} She giggles and digs up a narb from her bag. "How's this?"
+	[eaty_dinner] Thanks. (Eat the narb)
+||
+
+
+||>>Eat the thing (Why do I write these things)
+{eaty_dinner | advance_time_to noon} You spend a quiet moment eating your food. You finish before Shyni and start cleaning your fingers.
+	[planny_islando] You wanted to show me rocks or something?
+||
+{planny_islando} Her tongue flicks out of her slits to snag the last pieces of her food. "Yeah! There's some stuff I want to show you in the forest."
+	[headout_1] You ready to head out?
+||
+{headout_1 | remove_pic, change_environment sejan_redforest_landing, change_sprite character} She kicks sand on the campfire, throws the pan into the backpack, and stands up. "Now I am! We need to walk a bit into the inland to reach the first stop."
+	[headout_2] Let's go, then. (Follow Shyni into the forest)
+||
+{headout_2 | change_environment sejan_redforest} You travel into the forest of the island and walk beneath the red canopy.
+{why_red_tree} Shyni shrugs. "There's some red glowy stuff that grows on the trees. I think it could be a tree parasite or something. It glows in the dark too... which is weird." She pokes a strand of the red stuff hanging from a tree.
+	[why_red_tree] What makes the trees red here? //showif.index_is.headout_2
+	[story_stone] (Keep walking)
+||
+
+
+||>>The story stone (This baby can hold so much story)
+{story_stone | stop_music 6, change_environment sejan_redforest_story_stone} Shyni leads you to a large rock with a strange symbol. She giggles. "Do me a favor and tell me what this symbol says." She slaps the rock.
+	[sstory_1] Oh, I've actually seen this rock before. //showif.has_flag.redforest_story_stone_read
+	[story_1] (Read the symbol)
+||
+{sstory_1} "Really? Well, I guess it's not that inconspicuous. What did you think about it?"
+	[single_symbol] The single symbol story thing is really weird, how is that possible?
+||
+{story_1 | auto_continue story_2, add_flag redforest_story_stone_read} You crouch to read the symbol. Your mind spins as it tries to understand the amount of inexplicable information you're receiving. The symbol reads:<br> "A fisherman and his wife lived on these shores. Uncounted days had bonded them with deep love. As strong as the fisherman's wife's trust for him was, she still always worried to see him leave for the sea, for the sea was harsh. The fisherman left for the sea, one day after another, and always came back. The wife accepted the mistress sea as his second love."
+||
+{story_2 | auto_continue story_3} "Their love was not without grief, as they could not conceive a child, no matter how many days they had spent loving each other in their home. One day, when the husband was absent on the sea, the wife was confronted by the sea queen. She told her not to worry, as she were to give her a child, but the fisherman must abandon the sea, she offered. The sea queen returned to the waters, and the wife rushed to tell her husband of her offer. The fisherman accepted the offer with a smile on his face, vowing to leave the sea alone."
+||
+{story_3 | auto_continue story_stop} "The sea queen entered their home, and the fisherman took her in their bed. Every day she returned to be bedded, until one day, she returns with a round belly. The wife and the husband shower her with love and praise. She stays with them until the child is born. The fisherman's wife holds the child in her arms, knowing he would never have her eyes but would always be filled by her love. The fisherman never returns to the sea."
+||
+{story_stop | remove_pic} You finish the story and get back up. Shyni raises her gaze from the stone to you. "What did you think?"
+	[single_symbol] How is this possible? How am I reading a complete story from that symbol?
+||
+{single_symbol} She almost whispers her answer. "The Understanding! I've heard there are other symbols like this, and they serve as a proof of the existence of the Understanding."
+	[understanding] The Understanding?
+	[understanding] You mean the thing that lets us understand each other?
+||
+{understanding} "The gift the gods gave us, so we all people could understand each other!<br><br>What did you think about the story? It's quite sweet."
+	[story_twist] To be honest, I was expecting some horrific twist to it.
+	[story_weird] It's really weird.
+	[story_simple] It's very simple.
+	[story_simple] It's a story I suppose.
+	[story_nice] It's nice.
+||
+{story_twist} She raises her eyebrow. "What? Why?"
+	[queen_ominous] It seemed to go too well, and the sea queen seemed ominous.
+	[story_moral] It kinda seemed like a short morality fable, but I don't think there's a lesson there.
+||
+{story_weird} "What do you mean?"
+	[preg_weird] I mean... the fisherman has sex with a 'sea queen' to make her pregnant, so they can have a kid.
+||
+{story_moral} She giggles. "I think the stories with a moral to them are boring, but I can see what you mean."
+{preg_weird} "I guess that's a little unusual, but even the wife book has examples of parents making children outside their relationship. Making a baby with a sea person that just appears out of nowhere and suggests that? Yeah, that's a little weird."
+{queen_ominous} "Yeah, she's kinda creepy, but she seemed nice."
+{story_nice} She shrugs. "Really? I thought it's too simple to be enjoyed much, but I guess you can only fit so much story into a single symbol. It makes my head dizzy when I look at it already."
+{story_simple} She shrugs. "Yeah, it's super simple and short, but I guess you can only fit so much story into a single symbol. It makes my head dizzy when I look at it already."
+	[why_symbol] I wonder why this symbol is here.
+	[how_find] How'd you find this?
+||
+{why_symbol} "I think it was made by the people who lived here before, the ones who made all the spearheads."
+{how_find} "I sailed here and then wandered about. I saw a lone rock in the forest and decided to take a look at it, and there it was! I think it was made by the people who lived on the peninsula before, the ones who made all the spearheads."
+	[what_happen_to] Do you have ideas what happened to them?
+	[little_left] Kinda creepy there's so little left of them. You'd think there would be some stone buildings still standing.
+||
+{what_happen_to} "No idea! There might have been a war or something, since there's so many spearheads about, but how do you fight a war that nobody survives?"
+{little_left} "It might have been a war or something, since there's so many spearheads about, but how do you fight a war that nobody survives? Even the buildings?"
+	[storystone_stop] Huh... Did you want to show me something else?
+||
+{storystone_stop | character_leave} "There are two other things I want to show you! Come! Next one is just a short distance from here." She skips ahead.
+	[null_stone] (Follow her)
+||>>The null stone
+{null_stone | change_environment sejan_redforest_null_stone, change_sprite character} Shyni excitedly leads you through the underbrush to a mound of sand. She quickly kicks and digs the mound open to reveal a rock with glowing blue veins. Shyni digs up a strange, glowing rock. She presents the rock to you and growls proudly.
+	[hufhuf] What is that?
+	[hufhuf] I don't think we should go near that rock.
+||
+{hufhuf} Shyni cocks her head and growls with a curious tone.
+	[growl_1] What are you doing?
+||
+{growl_1} Shyni growls, annoyed.
+	[growl_2] I don't understand you, Shyni, just tell me!
+||
+{growl_2} She growls more and swings her arms around like she's trying to explain something.
+	[growl_3] (Gesture to her that you can't understand)
+||
+{growl_3} You try your best to gesture to her that you can't understand her. She stops and her eyes widen.
+	[growl_4] (Point at the rock)
+||
+{growl_4 | character_leave} You both point at the rock. Shyni's eyes widen in shock, she screams and bolts into the forest.
+	[run_away_from_the_immobile_rock] (Run after her)
+||
+{run_away_from_the_immobile_rock | change_environment sejan_redforest, change_sprite character} You run after Shyni and catch her. She grabs you by your clothes and with panic in her eyes yells at you. "<b>Can you understand me</b>!?" 
+	[i_understand] Calm down! I understand you.
+	[dick_move_man] Huf huf, bla bla.
+||
+{dick_move_man} She bursts into tears. "Oh gods."
+	[sorry_und] Sorry, I was just joking. I can understand you.
+||
+{sorry_und} Her face brightens up and she wipes her eyes. "Oh my gods! I- I thought we might never understand each other again!"
+{i_understand} Her face brightens up and she calms down. "Oh my gods! I- I thought we might never understand each other again!"
+	[rock_is_the_butler] Did the rock do it?
+||
+{rock_is_the_butler} She stares in shock in the direction of the glowing rock. "It took away the Understanding! What is it?"
+	[rocky_confus] It's a rock that can take away our ability to speak to each other.
+	[rocky_confus] The blue stuff inside the rock is probably the real culprit. //showif.intelligence.8
+||
+{rocky_confus} She turns to you. "It's horrifying! Let's never go near it ever again!<br><br>You... You made really odd sounds."
+{rock_localized} "But what if staying too long near the rock leaves you like that!? I'm not going near that thing!"
+	[rock_localized] The effect of the rock seems localized. //showif.index_is.rocky_confus //showif.intelligence.6
+	[growly_girl] I've never noticed you growl all the time.
+||
+{growly_girl} "And you never growl! I've never paid any attention to the sounds you make, but they're very... odd." 
+	[other_stuff_show] Okay, we've seen the blue, glowy danger rock. Did you have other stuff you wanted to show me?
+||
+{other_stuff_show} "Just one! But I saved the best one for last! Come! Just a short stroll this way!" She walks into the forest.
+	[smut_stone] (Follow)
+||
+
+||>>The smut stone
+{smut_stone | pic smut_stone} You follow Shyni through the forest to another mound of sand that she digs and kicks away quickly. She reveals a stone slab with a carved picture. She grabs the top edge and heaves the tablet upright. The tablet sinks into the sand slightly and props itself upright. Shyni hastily adds a weak-looking twig to support the tablet. She catches her breath and then proudly presents the tablet to you. "So, what do you think?"
+{another_tablet} She giggles. "I know! Take a closer look!"
+	[another_tablet] ...It's another stone tablet. //showif.index_is.smut_stone
+	[smut_closer] (Examine the tablet)
+||
+{smut_closer} You crouch down and look at the carvings on the tablet. It's full of sex acts. The tablet is covered with scenes of different activites. You can't find any writing anywhere. You notice the stone face has some sort of colored stones attached to it. The stones seem to be glued to their indents with some sort of resin.
+	[full_porn] It's beautiful. //showif.charisma.6
+	[full_porn] It's... full of porn?
+	[stones_value] Those stones look valuable. //showif.intelligence.6
+||
+{full_porn} She giggles. "Yes! There's also gems glued to it!<br><br>The tablet has to be valuable! I want to take it to the village."
+{stones_value} She giggles. "Yeah!<br><br>The tablet has to be valuable! I want to take it to the village."
+	[lets_take_tablet] Well, let's take it, then.
+	[just_stones_maybe] We could just take the stones?
+||
+{just_stones_maybe} "I- I don't like just picking the stones out of it. I thought we could drag it to Taodal with together. You're bigger than I am, and I can move it a little already. Give it a test lift."
+{uh_not_really} "Don't be so sure, you're really tall! Give it a test!"
+	[uh_not_really] Shyni, I really don't think I can lift that. //showif.index_is.just_stones_maybe //hideif.strength.8
+	[ | check_stat strength 6-8-10 lift_0-lift_1-lift_2-lift_3] (Lift the stone tablet)
+||
+{lets_take_tablet} "One problem, it's very heavy. I thought we could drag it to Taodal together. You're bigger than I am, and I can move it a little already."
+	[uh_not_really] Actually... I don't think I can lift that. //hideif.strength.8
+	[ | check_stat strength 6-8-10 lift_0-lift_1-lift_2-lift_3] Let me try. (Lift the stone tablet)
+||
+{lift_0} You lift the tablet with all your strength, but you can barely lift it off the ground, and your back feels like it's going to break when you're pulling it up.
+{lift_1} You grab the tablet and lift it, you can almost get it to your chest but not quite. "You can lift it off the ground! Oh my god! I knew this would work out!"
+{lift_2} You grab the tablet and lift it to your lap. "You can lift it off the ground! Oh my god! I knew this would work out!"
+{lift_3} You grab the tablet and lift it to your chest and then heave it over your head. Shyni's eyes go wide, and she screams with glee. "How!? Oh my god! I knew this would work out!"
+	[ | play_sound sejan/redforest_tablet_put 70, check_stat strength 6-8-10 tabdown_0-tabdown_1-tabdown_2-tabdown_3] (Put the tablet down)
+||
+{tabdown_0} You stop trying to lift the stone and lean it back against the stick. "Oh, well... I'm sure we can drag it to the tent together."
+{tabdown_1} You bring the tablet down with a heavy thud and prop it against the stick. "We can probably get it to the tent together? Right?"
+{tabdown_2} You bring the tablet carefully down and prop it against the stick. "Do you think you can carry it the whole way? We can take breaks, but it's already getting a little dark, so we should probably get moving."
+{tabdown_3} You bring the tablet carefully down and prop it against the stick. "That seemed super easy for you! Do you think you can carry it the whole way? We can take breaks, but it's already getting a little dark, so we should probably get moving."
+{tooweak_nocarry} "It's okay! We can drag it to the camp together! I brought some rope so we could make a sled for the tablet. It's easier that way, anyway."
+	[tablet_sled_1] I'll carry it. //showif.strength.8
+	[tooweak_nocarry] I- I don't think I can carry it. //hideif.strength.8 //hideif.index_is.tooweak_nocarry
+	[just_stones] We should just take the stones and leave the tablet.
+	[tablet_sled_2] Let's make the sled. //showif.index_is.tooweak_nocarry
+	[tablet_sled_2] Let's make a quick sled for it, it's easier to drag than to carry. //showif.intelligence.6 //hideif.index_is.tooweak_nocarry
+||
+{just_stones} "I- I don't want to separate them! They're a complete artifact together. We could make a sled for the tablet. I even brought some rope for that purpose! It's easier that way, anyway."
+	[sail_back_rock] It's still a big hunk of rock to carry around, can we even sail back with it?
+	[tablet_sled_2] Sure, we can do the sled thing.
+||
+{sail_back_rock | add_flag shyni_smut_tablet_gems} She sighs in defeat. "I guess it's pretty big, but I suppose it will stay here anyway. Sure, let's take the stones." She unsheathes her knife and starts popping the stones off one by one, until she has a handful. She puts them in her pocket. "We can head back now."
+	[travel_no_tablet] (Travel back to the camp)
+||
+{tablet_sled_1} Shyni scratches her chin. "I don't think you should. I brought some rope so we could make a sled for the tablet. It's easier that way, anyway." She immediately starts looking for materials for the sled.<br><br>You quickly assemble a basic sled for the stone tablet, and Shyni ties the whole thing together with a small rope. You set out to pull the tablet through the forest.
+{tablet_sled_2} You quickly assemble a basic sled for the stone tablet, and Shyni ties the whole thing together with a small rope. You set out to pull the tablet through the forest.
+	[rain_suddenly] (Drag the stone to camp)
+||
+{rain_suddenly | play_sound generic/ambient/rain_thunder 70, advance_time_to evening, pic sudden_storm} You set out to pull the tablet through the forest. You manage to drag the tablet most of the way there until you suddenly hear a ominous low boom of thunder. Shyni and you stare into the sky. There's a dark thundercloud above you.<br><br>A single raindrop hits your face.
+{wat_thunder} Shyni peers at the cloud. "I think we just couldn't see it form from under the trees? It looks really bad, like flooding bad."
+	[wat_thunder] Where the hell did that come from? //showif.index_is.rain_suddenly
+	[rain_1] Let's hurry. (Continue to the camp)
+||>>These descriptions are split for audio effects and for the build up.
+{rain_1 | play_contsound generic/loops/rain 65 1 0 5, auto_continue rain_2} You start running. You can hear the wall of rain shower the trees behind you. Shyni hikes beside you as you drag the tablet-laden sled.
+||
+{rain_2 | auto_continue rain_3} Your running steps suddenly turn into wet slaps. There are long streams of water coming from the inner island, they streak across the sandy ground, and they're quickly growing larger. Shyni gracefully jumps over the streams as she runs. She stops and motions you to hurry.<br><br>You run through the streams, every gushing line of water trying to yank the tablet downstream as the sled crosses them.
+||
+{rain_3 | play_contsound generic/loops/flood 55 2 0 6, pic storm_stuck} The rain catches you, and the downpour is immense. You're immediately completely soaked and you can barely make out Shyni in the rain as she runs ahead and climbs an embankment to get away from the rapidly growing flooding. There are no longer individual streams, and the ground is completely flooded.<br><br>You wade through the water as far as you can, but you're stopped when the current grabs the sled; you can barely hold on to it. The water is rising at a shocking rate.
+	[ | check_stat strength 8 carrytab_0-carrytab_1] (Carry the tablet)
+	[let_tablet_go] (Let the tablet go)
+||>>Stone tablet challenge
+{carrytab_1} You detach the tablet from the sled and lift it off. The current violently yanks the makeshift frame downstream. You lift the tablet and feel the sand under your feet quickly erode away. You hobble and struggle to keep yourself upright. Shyni covers her mouth in shock and worriedly screams, "Leave it! Get out of there!" She stretches her arm out for you. The embankment is only a few steps away, but the stream is quickly growing stronger and the tablet weighs heavily in your arms.
+	[drop_tablet] (Drop the tablet)
+	[ | check_stat agility 6 ford_0-ford_1] (Ford the stream)
+	[ | check_stat strength 10 tabthrow_0-tabthrow_1] (Throw the tablet on the embankment)
+||
+{ford_1} You take an unsteady step towards the embankment as the momentum of the water tries to push you over. You hobble against the water but find ground as you make your way through the water. You lean against the embankment to brace against the current. Shyni grabs on the tablet and tries ineffectually to pull it up. You feel the muddy ground quickly erode beneath your feet. You feel your body shake and sweat from the exertion.
+	[ | check_stat endurance 6 tablift_0-tablift_1] (Lift the tablet on the embankment.)
+||
+
+
+||>>Tablet saved
+{tabthrow_1} You inhale and tense your muscles. With an explosive burst of strength, you roar and heave the tablet into the air. Shyni stares wide-eyed as the stone tablet lands next to her with a wet thud. She turns back to you in disbelief. "Oh my gods! How..." She shakes her head and shakes her arm for you. "Come here!"
+{tablift_1} You steady your feet and push yourself one last time to lift the tablet on to the embankment. You grunt and yell, but you slowly slide the tablet over the edge of the embankment. Shyni screams happily. "You did it! You really did it!" She crouches down and grabs your arm.
+	[tablet_saved] (Climb on the embankment)
+||
+{tablet_saved | add_flag shyni_smut_tablet_saved} You ford the stream and grab Shyni's arm. She almost falls down herself but steadies herself on the exposed roots. You manage to clamber the mud wall and stop to catch your breath. Shyni brushes your cheek. "You okay?" She looks at the stone tablet on the muddy grass. "That was incredible! I have no idea how you did that. I can barely move it!"
+	[why_not_paper] Why can't these people use paper!
+	[do_you_lift] Lifting heavy stuff does that, I guess.
+	[anything_for_you] Anything for you. //showif.charisma.6
+||
+{anything_for_you} "Oh, you crazy thing!" She grabs your head and gives you a quick kiss on your cheek.
+{why_not_paper} She giggles, grabs your head, and gives you a quick kiss on your cheek.
+	[do_you_lift] That makes all this worth it.
+	[moar_later] Do I get more later?
+||
+{do_you_lift} She brushes your cheek with amazement in her eyes. "It was amazing." She quickly stands up and gives you a soft, playful kick to your side. "We really have to go now before this dirt mound gets washed away as well. I'll try to help you with the tablet." You get up and pick up the tablet. The rain drums the flowing waters behind you. You see a small tree get carried off by the flow.
+{moar_later} She whispers into your ear with a husky tone, "You'll get everything." She quickly stands up and gives you a soft, playful kick to your side. "Okay, we really have to go now before this dirt mound gets washed away as well. I'll try to help you with the tablet." You get up. The rain drums the flowing waters behind you. You see a small tree get carried off by the flow.
+	[tocamp_got_tablet] Alright, let's go. (Travel to the camp)
+||
+
+||>>Tablet is lost
+{drop_tablet | play_sound sejan/redforest_tablet_drop 100} You drop the tablet into the water. The current immediately yanks the heavy stone down the violent stream. The tablet disappears in the murky water. Shyni crouches on the embankment and screams worriedly, "Get out of there!" She stretches her arm out for you.
+{let_tablet_go | play_sound sejan/redforest_tablet_drop 100} You let go of the sled. The current immediately yanks it and the heavy stone down the violent stream. The tablet disappears in the murky water. Shyni crouches on the embankment and screams worriedly, "Get out of there!" She stretches her arm out for you.
+{ford_0 | play_sound sejan/redforest_tablet_drop 100} You take an unsteady step towards the embankment as the momentum of the water tries to push you over. Your foot can't find solid ground and you step into soft, running mud. You fall sideways into the water, and you lose your grasp of the tablet. Shyni screams. You flail in the current and grab the exposed roots of the embankment. She crouches down and grabs your arm. 
+{tablift_0 | play_sound sejan/redforest_tablet_drop 100} You steady your feet and push yourself one last time to lift the tablet on to the embankment. You grunt and yell, but you can't find any more strength in your body, you're spent. Your feet drag down the muddy bank as you struggle with the heavy tablet. Your hands give out and the tablet slips down and into the water. Shyni gasps and then quickly grabs your arm. 
+{carrytab_0 | play_sound sejan/redforest_tablet_drop 100} You detach the tablet from the sled and try to lift it, but it's too heavy and slippery, your hold on the tablet fails and you drop it into the water. The violent current immediately yanks the heavy stone tablet downstream, and it disappears in the murky waters. Shyni crouches on the embankment and screams worriedly, "Leave it! Get out of there!" She stretches her arm out for you.
+{tabthrow_0 | play_sound sejan/redforest_tablet_drop 100} You inhale and tense your muscles. With an explosive burst of strength, you roar and heave the tablet into the air. The tablet crashes into the side of the embankment and falls into the torrent of water. Shyni stares as the tablet is pushed along the violent currents. She shakes her head and reaches her arm for you. "Get here!"
+	[tablet_is_lost] (Climb on the embankment)
+||
+{tablet_is_lost | add_flag shyni_smut_tablet_lost} You ford the stream and grab Shyni's arm. She almost falls down herself but steadies herself on the exposed roots. You manage to clamber up the mud wall and stop to catch your breath. Shyni brushes you cheek. "Are you okay?"
+	[too_heavy] Sorry, the tablet was too heavy.
+	[insane_storm] This storm is insane.
+||
+{too_heavy} She gives you a peck on the cheek. "Oh it was just a piece of rock! It's the storm's fault!" She ruffles your hair.
+	[feels_bad] Still, feels bad.
+||
+{insane_storm} She pulls you up. "Yeah! We need to get out of the rain before this dirt mound gets washed away as well!" You get up. The rain drums the flowing waters behind you. You see a small tree get carried off by the flow.
+{feels_bad} She pulls you up. "We need to get out of the rain before this dirt mound gets washed away as well!" You get up. The rain drums the flowing waters behind you. You see a small tree get carried off by the flow.
+	[tocamp_lost_tablet] (Travel to the camp)
+||
+
+
+||>>Travel without the tablet
+{travel_no_tablet | play_contsound generic/loops/rain 65 1 0 4, advance_time_to evening, auto_continue notablet_1, pic sudden_storm} You manage to walk most of the way there until you suddenly hear a ominous low boom of thunder. Shyni and you stare into the sky. There's a dark thundercloud above you.<br><br>You start running. You can hear the wall of rain shower the trees behind you. 
+||
+{notablet_1 | auto_continue notablet_2} Your running steps suddenly turn into wet slaps. There are long streams of water coming from the inner island. They streak across the sandy ground, and they're quickly growing larger. Shyni gracefully jumps over the streams as she runs, she stops and motions you to hurry. You run through the streams.
+||
+{notablet_2 | play_contsound generic/loops/flood 55 2 0 4, auto_continue notablet_3} The rain catches you, and the downpour is immense. You're immediately completely soaked. You can barely make out Shyni in the rain as she runs ahead and climbs an embankment to get away from the rapidly growing flooding. There are no longer individual streams, and the ground is completely flooded. You wade through the water and climb the embankment.
+||
+{notablet_3 | stop_contsound 2 4} You glance behind you, the whole place is flooding. You even see a small tree get carried off by the flow as it gets stronger and stronger. Shyni yanks your arms. "Let's go!" You continue running towards the tent and reach it. Shyni quickly dives into the tent to escape the rain.
+	[tent_cover] (Go in the tent)
+||
+
+||>>Back at the tent
+{tocamp_got_tablet | stop_contsound 2 4, pic island_tent} You run in the heavy rain with the tablet and follow Shyni. You finally see the tent, and Shyni stops you. "Put the tablet between those trees!" You set the tablet between a tight group of trees near the tent. Shyni quickly dives into the tent to escape the rain.
+{tocamp_lost_tablet | stop_contsound 2 4, pic island_tent} You run in the heavy rain and follow Shyni. You finally see the tent and Shyni quickly dives into the tent to escape the rain.
+	[tent_cover] (Go in the tent)
+||
+	
+	
+	
+||>>The night in the tent
+{tent_cover | pic in_tent, play_contsound generic/loops/rain_muffled 40 1 1 1, play_contsound sejan/redforest_tent_drops 60 2 1, play_sound sejan/redforest_tent_flap 70} You duck inside the tent and find Shyni squeezing the water out of her hair. You push past her and sit on the ground.
+	[weird_storm] Where did that storm come from? It just appeared out of nowhere!
+||
+{weird_storm} Shyni squeezes her wet hair and laughs. "What if... the tablet is cursed!" She shakes as she laughs.
+	[curse_nojoke] Don't joke about that.
+	[curse_maybe] It could be.
+	[curse_veryfun] Very funny.
+||
+{curse_maybe} "Nah! I've seen a few flash storms like this. The usually form over this specific island, but Sejan gets them too. They're very odd. First, no clouds, and then, massive dark clouds out of nowhere!"
+{curse_nojoke} She takes a sober tone. "I've seen a few flash storms like this. The usually form over this specific island, but Sejan gets them too. They're very odd. First, no clouds, and then, massive dark clouds out of nowhere!"
+{curse_veryfun} "I've seen a few flash storms like this. The usually form over this specific island, but Sejan gets them too. They're very odd. First, no clouds, and then, massive dark clouds out of nowhere!"
+	[why_storms] Do you know what causes them?
+	[wet_clothes] That was a lot of water.
+||
+{why_storms} "No idea. I guess the temperature or other clouds or something? I think we were just super unlucky."
+	[shyni_wet] Well, the storm did get you wet, so it's not all bad. //showif.charisma.8
+	[wet_clothes] That was a lot of water.
+||
+{shyni_wet} She giggles. "Yeah... I think we should take our clothes off."
+{wet_clothes} "Yeah... I think we should take our clothes off."
+	[dontmind_clothes] I don't mind if we do. (Undress)
+||
+{dontmind_clothes | start_music generic/romance_quick 70 3} You undress, and Shyni absent-mindedly brushes her claw up your bare chest and leans closer.
+	[ | sex_gate male_tentsex fem_tentsex] How do we do this?
+||
+
+||>>Tent sex (femPC)
+{fem_tentsex | pic purple_tent} She whispers coyly, "Let's do that thing." She raises her eyebrows suggestively.
+{braid_hair} She giggles. "Noo! The sex thing!"
+	[braid_hair] Braid each other's hair? //showif.index_is.fem_tentsex
+	[fem_69] You mean the 69?
+	[ring_love] 'The ring of love'?
+||
+{fem_69} "No, I- meant.. What's 69?" 
+	[is_numba] It's what you call 'the ring of love' in my world.
+||
+{is_numba} "Why is it a number? Is it on a list or something?"
+	[symbolism] The number symbols form a picture that resemble the act.
+||
+{symbolism | pic 69_and_69} You draw a 69 on the ground. "Oh, hah! Cool. I only knew this kind of 69." She draws three symbols on the ground.
+	[69more_fun] Mine is more fun.
+	[third_girl] We'd probably need a third girl for yours, or a guy.
+||
+{third_girl} She blushes. "What do you mea-" She glances at her symbols again and blushes. "Oh... Yeah, I think you're right."
+{69more_fun} "It is, or I at least think it is..." She flutters her eyes at you.
+{ring_love} She flutters her eyes. "Yeah..."
+	[get_over_here] Come here. (Pull her on top of you)
+||
+{get_over_here | pic purple_tent} You grab Shyni and pull her on top of you. She gasps and tries to conform. You find yourself under Shyni's ass with her vagina right above your face. Shyni raises her head and looks unsure at you. "Uh, how... do you-?"
+	[tentsex_f1] (Give her cunnilingus)
+||
+{tentsex_f1 | auto_continue tentsex_f2, pic purple_tent} You lean between her thighs and bury your tongue into her pussy. Shyni yelps and twitches, her toes wiggle beside your head as she gasps for air. You let up, and she dives between your legs. Shyni's front slit presses against your vagina, and you then feel her proboscis slide into you. Your back arches as it penetrates deeply into you. You grip Shyni's hips and moan against her thigh as she probes deeper with her proboscis.
+||
+{tentsex_f2 | auto_continue tentsex_f3} Your body tenses and rocks as Shyni continues her probing. You steel yourself and attack back. You twirl your tongue furiously around her clitoris and feel Shyni's legs squeeze your head in surprise. Shyni lets out a surprised yelp and suppresses a scream. You grip her buttocks harder and plunge your tongue into her. You feel Shyni's claws dig into your skin as she whines.
+||
+{tentsex_f3 | auto_continue tentsex_f4} Shyni forces herself to move and presses her mouth slit against your pussy. She suddenly begins to pump her tongue in and out of you at high speed. It slides against your g-spot with each thrust. You gasp, squeeze your hands, and in delirious, pleasure-fogged anxiety gently bite on Shyni's clit. Shyni screams in pleasure, and her tongue extends painfully far into you. The sensation sets off your orgasm, and you arch your back against the ground in a silent scream.
+||
+{tentsex_f4} As the maddening shaking and trembling stops, and your extremities regain their sense of touch, Shyni lifts her large ass off you and flops on you, completely spent and panting. She gives you an exhausted kiss on the cheek.
+	[tent_sexend_f] (Hug her)
+||
+
+||>>Tent sex (malePC)
+{male_tentsex | pic purple_tent} She looks around the tent and considers. "Uh, I think we could..." She pushes you aside gently and rolls on her ass. She lifts her leg over you and you turn to face her. "Maybe like this?" She steadies herself by grabbing your shoulders and leans back a bit. You find yourself between her thighs, leaning on top of her.
+	[tentsex_m0] This could work.
+||
+{tentsex_m0} She spreads her thighs even more and uncovers your erection. She leans up and hugs you for support. She nuzzles against your cheek and gives your cock a gentle pump and guides it against her nethers. You feel her vaginal lips caress your glans. She whispers into your ear, "Breed me like a mare, -name-."
+	[tentsex_m1] (Penetrate her) 
+||
+{tentsex_m1} You gently let your hips fall and slide inside Shyni, she lets out an excited whine and arches her back. She whispers. "Gods, I love this feeling." She cradles your head into her hands as you hilt yourself to the bottom of her canal. You feel Shyni's legs wrap around you and push your buttocks gently.
+	[tentsex_m2] (Fuck her) 
+||
+{tentsex_m2} You pull back and start slowly fucking her. She moans and holds your head. "Don't hold back, just give it all to me." You buck deep into her, she gasps and giggles. You keep pounding her as she clings to you and eggs you on with breathy gasps, her feet swaying above you as you keep up your relentless pace. You feel her squeeze around your cock as she screams into your neck and holds you tighter. Her orgasm sends you over the edge.
+	[tentsex_m3] (Finish in her)
+||
+{tentsex_m3} You thrust one last time and release. Shyni grips you as hard as she can and lets out a long, ragged whine as you throb inside her. Your legs feel numb and ticklish as you try to drive yourself deeper into her. You exhale and let your brain rearrange itself from the shock of the orgasm. You fall against the bedroll and feel Shyni's hair and horns poke you in the chest as you try to support yourself over her.
+	[tentsex_4] (Catch your breath)
+||
+{tentsex_4 | stop_music 8} You feel Shyni contract around your cock a few more times as she breathes heavily. She hugs you.
+	[hair_ruff] (Ruffle her hair)
+	[tentsex_luv] I love you, Shyni.
+||
+{hair_ruff} You playfully mess up her hair and scratch the side of her head. She giggles. "Gosh, I love the way you take me." She brushes your neck. You feel your softening cock slowly sliding out of her. She gasps as it pops out and tries to close her thighs. You get out of the way, and she shyly clamps her thighs. "Oh gods, sorry, I haven't gotten used to that yet. I- I think I should take a quick run in the rain."
+{tentsex_luv} She nudges her head weakly against your chest. "I love you too." She sighs softly. "Gosh, I love the way you take me." She brushes your neck. You feel your softening cock slowly sliding out of her. She gasps as it pops out and tries to close her thighs. You get out of the way, and she shyly clamps her thighs. "Oh gods, sorry, I haven't gotten used to that yet. I- I think I should take a quick run in the rain."
+	[no_embarras] Don't be embarrassed about it.
+	[sorry_mess] Sorry, I feel bad about making a mess. //showif.charisma.6
+||
+{no_embarras} She squeaks shyly. "I- It just feels weird. I'm not embarrassed about it..." She sits up and awkwardly crawls past you. "Just a moment!" She disappears into the rain as the tent flap closes behind her, and you get a quick flash of her nude bottom.
+{sorry_mess} She giggles shyly. "Don't worry about it!" She sits up and awkwardly crawls past you. "Just a moment!" She disappears into the rain as the tent flap closes behind her, and you get a quick flash of her nude bottom.
+	[tent_wait] (Wait)
+||>>Tent sex end
+{tent_wait} You lie down and wait. You can only hear the heavy drain drum against the tent, and after a moment, Shyni dives back into the tent and straddles you with a giggle. "I wanna sleep on top of you! We can just pile our clothes on as blankets if we get cold!" She leans down and presses her furry skin against you. Her breasts poke you in the chest as she settles herself. She sighs contently.
+	[worry_horny] Not worried about making me horny again? You're doing a fine job at that.
+	[hug_after_fug] (Hug her)
+||
+{worry_horny} "Not worried in the slightest! If you feel like you want to do it again, just grip my sides and take me!" She wiggles her bottom and giggles.
+	[wake_for_fug] I don't think I'd want to wake you up for something like that.
+	[do_wake_fug] I'll do that.
+||
+{wake_for_fug} She chortles. "Can I wake you if I get the feeling? You can wake me."
+{do_wake_fug} "I'll wake you up if I get the feeling myself, then." She giggles.
+	[ofcourse_fug] Of course. 
+||
+{tent_sexend_f | stop_music 8} You hug Shyni and press her furry skin against you. Her breasts poke you in the chest as she settles herself. She sighs contently. She shivers as your hands brush against her back and nuzzles against you. The two of you spend a silent moment in each other's arms only for the silence to be suddenly broken by Shyni's soft snore. She sleeps limply in your embrace.
+{hug_after_fug} You wrap your hands around her. She shivers as your hands brush against her back, and she nuzzles against you. The two of you spend a silent moment in each other's arms only for the silence to be suddenly broken by Shyni's soft snore. She sleeps limply in your embrace.
+{ofcourse_fug} She giggles and nuzzles against you. The two of you spend a silent moment in each other's arms only for the silence to be suddenly broken by Shyni's soft snore. She sleeps limply in your embrace.
+	[cloth_blanket] (Cover her with some clothes)
+||
+{cloth_blanket} You carefully drag some of your and Shyni's clothing on top of you for a makeshift blanket. Shyni hugs you a little harder and snores. Her quiet snoring and the tapping of the rain makes you lose your sense of time, and you feel yourself slowly immerse into the Shyni's warm hug. You drift into the soft blackness.
+	[slep_second | stop_contsound 1 6, stop_contsound 2 6] (Sleep)
+||>>Second morning
+{slep_second | advance_time_to morning, pic purple_tent_morning} Your consciousness flutters into reality. You blink your eyes and stare at the daylight-lit tent fabric. Shyni is sleeping naked on top of you.
+	[wake_brush] (Brush her cheek)
+||
+{wake_brush} You gently rub her cheek, and her eyes flutter open. Her eyes focus on you. "This is nice." She hugs you. "My head feels a little odd, but lying here is perfect." She nuzzles against you.
+	[aslong_as] Lie there as long as you want.
+||
+{aslong_as} She snorts lovingly and lies on top of you. After a moment, she suddenly stirs and sits up. She looks down at you. "I'll go check the boat." She starts awkwardly dressing herself on top of you and then scrambles out of the tent.
+	[morning_dressed] (Get dressed)
+||
+{morning_dressed} You get dressed and step out of the tent. The beach is pocked with small puddles and streaks of water. Everything smells wet. You hear Shyni shout behind you somewhere on the beach.
+	[morning2_1] (Go to Shyni)
+||>>(This bad boy can hold so many smut stones)
+{morning2_1 | change_environment sejan_redforest_landing, change_sprite character, remove_pic} You walk down the beach and meet up with Shyni. The boat seems intact. "There's some water in it, but the rope held. It's okay for the return trip." She slaps the side of the boat.
+	[morning2_2] Do you want to do anything else on this island?
+	[more_storms] I think we should go before we get more unexpected storms.
+||
+{morning2_2} "I didn't actually have anything else in mind for this trip. Some food, funny rocks and... well, some sex with you."
+	[morning2_3] I like your planning.
+||
+{morning2_3} She giggles. "I didn't pack more food for us, anyway. I guess we could fish some more, but I don't like fish that much.<br><br>I think we should pack up and head back."
+{more_storms} She glances up at the sky. "Yeah, what was that storm even? You're right, we should go."
+	[liftboat_tablet] If you pack the tent, I'll lift the tablet on the boat. //showif.has_flag.shyni_smut_tablet_saved
+	[help_packing] I'll help you with the tent. //showif.has_flag.shyni_smut_tablet_lost
+||>>Lifty rocky tabby
+{liftboat_tablet} "Oh gods! I forgot about the tablet completely! Oh my gods! We managed to drag it here. I can't wait to hear what Uum says about it!<br><br>I wonder if she'll want to buy it!"
+	[tablet_worth_alot] It's pretty and well preserved, I think it might be worth a lot of money.
+||
+{tablet_worth_alot} "I'll pack up the tent and the other stuff.<br><br>Let me know if you want help with the tablet." She hurries back towards the tent.
+	[getthe_tablet] (Go see the tablet)
+||
+{getthe_tablet | pic tablet_tied} You find the tablet tied to a tree next to the tent. It has sunk into the ground a bit.
+	[tablet_into_boat] (Lift the tablet into the boat)
+||
+{tablet_into_boat | remove_pic, hide_character} You remove the rope and heave the tablet up. You walk down the beach, sinking deeper into the sand with each step as you make your way to the boat. You carefully lay the tablet over the edge and set it on the damp boat floor. 
+	[sweaty_lifter] (Catch your breath)
+||
+{sweaty_lifter | character_return backpacked} You wipe your forehead and lean on the boat to catch your breath. Shyni comes down the beach, beaming with excitement and carrying her rucksack. "How did you get this strong? It's amazing. That thing weighs way more than I do!"
+	[lifty_sexy] Maybe I should lift you around more.
+||
+{lifty_sexy} She giggles and deftly brushes your resting forearm. "Maybe you should.<br><br>The wife book has some ideas about lifting women."
+	[lifty_ideas] I have no idea what you're referring to.
+	[lifty_ideas] Really? Me too.
+	[lifty_ideas] Sounds great.
+||
+{lifty_ideas} She gives you a playful poke. "You wanna row too?"
+	[ofcourse_row] Of course.
+	[sea_forever] Yeah, I can do that. If you'd do it, we'd be at the sea forever.
+||
+	
+||>>Leaving the island
+{help_packing | change_sprite backpacked, pic shyni_inboat} You help Shyni breakdown the tent and pack it into her backpack. She throws the rucksack into the boat and climbs in. "I think we're ready for the journey back!"
+{ofcourse_row | pic shyni_inboat} She throws the rucksack into the boat and climbs in. "Push us out to the sea, muscles!" She drags the rope into the boat.
+{sea_forever | pic shyni_inboat} She throws the rucksack into the boat and climbs in. "You're right! Push us out to the sea, muscles!" She drags the rope into the boat.
+	[ | play_sound generic/objects/boat_onwater 70, check_flag shyni_smut_tablet_saved pushy_boaty kissy_boaty] (Push the boat out to the sea)
+||
+{kissy_boaty} You push the boat away from the shallow beach and then climb aboard and grab the oars. Shyni looks at you appreciatively. "You're amazing, -name-. I had a lot of fun here, not to mention the tablet! I wasn't even sure if we could drag it out of here, but you did it somehow!" She jumps into your lap and kisses you.
+	[kissy_boaty_1] (Kiss her)
+||
+{kissy_boaty_1 | pic romance_kissy, auto_continue kissy_boaty_2} You put your hands on her cheeks and kiss her. She grabs your head as well. You feel her tongue gently enter your mouth and rub against yours.
+{kissy_boaty_2 | pic sailing_with_shyni} The boat suddenly wobbles, and Shyni almost falls over but grabs the edge to steady herself. She giggles. "Okay, maybe we should be on our way now." She carefully steps to the other end of the boat and sits down.
+{pushy_boaty | pic sailing_with_shyni} You push the boat away from the shallow beach and then climb aboard and grab the oars. Shyni gives you an appreciative nod.
+{thats_sejan} She glances behind her. "Yup, that's home. We're going to have to walk across the peninsula again, so don't kill yourself rowing."
+	[thats_sejan] Right... Sejan is probably that smear on the horizon there? //hideif.index_is.thats_sejan
+	[row_back] (Start rowing)
+||
+{row_back | advance_time_to noon, play_sound generic/objects/boat_sail 70} You row through the calm waves, and slowly but eventually, the peninsula widens to cover your whole view. Shyni perks up as the beach closes in and stands up. "There! Aim for those rocks!" She points at the familiar rocks the boat was originally tied to.
+	[sailed_back] (Beach the boat)
+||
+{sailed_back | remove_pic, change_environment sejan_hidden_boat, change_sprite backpacked, play_sound generic/objects/boat_land 70, start_music generic/peaceful_sejan 70 3} You row as close as you can and then jump out to pull the boat on the shore. Shyni quickly unravels the tarp that acted as your tent and covers the boat again. "There! If you happen to wander around here, you can use this boat. Just bring it here again."
+{worry_waves} "I chose this place precisely because there's almost no waves here. The water doesn't come up either. The rocks probably help the boat stay put too.<br><br>Nah, I'm not worried."
+	[worry_waves] You're not worried the waves might carry it off? //showif.index_is.sailed_back
+	[travel_back_across | advance_time_to evening] (Travel to Taodal)
+||
+{travel_back_across | change_environment taodal_entrance} You set out into the forest once again. After traveling for the whole day, you step out of the trees and onto the Taodal's village road. Shyni jumps after you and laughs, tired. "My legs are going to be so sore tomorrow."
+	[tothe_house] Well, at least it's over now. Soon you can fall on your bed.
+	[tothe_house] Few more steps to go.
+||
+{tothe_house} "Yeah, let's go." She starts walking towards the village.
+	[ | check_flag shyni_smut_tablet_saved tothe_house_0 tothe_house_1] (Travel to Shyni's house)
+||
+{tothe_house_1 | change_environment taodal_shyni_garden, change_sprite character, character_leave} You walk through the darkening village and reach Shyni's house. She unlocks the door and throws her backpack inside. "I'll go say hi to dad, just to let him know I'm back. You take the tablet inside. I'll come back as soon as I can." She bolts off in tired but hurried steps.
+	[tothe_house_3] (Carry the tablet inside)
+||
+{tothe_house_0 | change_environment taodal_shyni_garden, change_sprite character, character_leave} You walk through the darkening village and reach Shyni's house. She unlocks the door and throws her backpack inside. "I'll go say hi to dad, just to let him know I'm back. You go inside. I'll come back as soon as I can." She bolts off in tired but hurried steps.
+	[tothe_house_4] (Go inside)
+||
+{tothe_house_3 | change_environment taodal_shyni_house, character_return character} You detach the tablet from the new sled and carry it inside. You carry it in Shyni's bedroom and carefully set it against the wall. You hear the door open and go meet Shyni. "Gods, I'm tired. Come sleep, -name-."
+{tothe_house_4 | change_environment taodal_shyni_house, character_return character} You shamble into Shyni's bedroom and lie on the bed, completely tired. After a short moment, you hear the door open and go meet Shyni. "Gods, I'm tired. Come sleep, -name-."
+	[adventure_over] (Go sleep with her)
+||
+
+||>>In bed after adventure
+{adventure_over | pic in_bed, start_music generic/romance_soft 70 3} You undress and slump into the bed. She sighs contently and lifts your hand over her. "I really liked that, I even liked coming back tired with you."
+	[got_loot_gems] We even got some loot this time. //showif.has_flag.shyni_smut_tablet_gems
+	[got_loot_tablet] We did get a whole tablet worth of smut with us. //showif.has_flag.shyni_smut_tablet_saved
+	[fun_thing] It was a lot of fun, the whole thing.
+||
+{got_loot_gems} "We should show them to Uum or some merchant. I'm sure they're worth a bunch of adats."
+	[adventure_slep] Yeah.
+||
+{got_loot_tablet} "We gotta show that thing to Uum. I'm sure it's worth a whole bunch of adats."
+	[not_keep] You don't want to keep it?
+	[worth_something] It's definitely worth something.
+||
+{not_keep} She chuckles softly. "Nah, I'm definitely going to trace the carvings on paper before giving it away, but I'm more interested in seeing how valuable it is."
+{worth_something} "Yeah! If the tablet itself isn't worth anything, the stones have to be."
+	[adventure_slep] Yeah.
+||
+{fun_thing} "I loved it. It was most fun I've ever had. Thank you."
+	[adventure_slep] Thank you too.
+||
+
+
+||>>Time to sleep
+{adventure_slep} She nuzzles against the palm of your hand and falls silent, a quiet moment later you hear her snore softly. You feel drowsy and sore.
+	[ | advance_time_to morning, change_default_diag_file shyni diag_2, change_diag_file diag_2 redforest_morning, add_flag shyni_redforest_adventure] (Sleep)
+||
+

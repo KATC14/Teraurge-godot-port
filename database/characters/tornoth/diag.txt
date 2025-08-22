@@ -1,0 +1,593 @@
+
+
+||>>INTRO
+{start} The huge blacksmith stops his hammering and carefully looks you over.
+	[hello_1] Hello.
+	[hello_2] You must be Tornoth. (Offer a handshake)
+	[hello_3] This is a very odd way of treating visitors.
+	[tease_3] DEBUG: Skip to dinner scene //showif.debug
+||
+{hello_1} Tornoth looks sternly into your eyes. "Greetings."
+{hello_2 | play_sound sejan/tornoth_grip 70} He grabs your hand with a crushing grip. "And you must be the stranger wandering the peninsula."
+{hello_3} "Visitors don't come from the peninsula. They come by sea.<br><br>Usually."
+	[where_from_1] So, you're the village leader? The guard was very adamant about meeting you.
+	[where_from_2] What's this about?
+||>>How did you get here?
+{where_from_1} "You could say that. You gave Taulsol a proper fright when he realized there was someone skulking around the peninsula. Nobody comes to this village by foot. How'd you end up on the peninsula?"
+{where_from_2} "Nobody comes to this village by foot. How'd you end up on the peninsula?" 
+{h6} Tornoth waves his hand. "How did you end up here?" 
+	[h4] Why do you want to know?
+	[h5] The Witch dragged me here from another world. Told me to head here.
+	[h6] I'm sorry if I've been a nuisance. //hideif.index_is.h6
+||
+{h4} "Because there's two possibilities. You either shipwrecked on the peninsula or it's her doings again. I want to know which."
+	[h8] I shipwrecked. (Lie)
+	[h5] Are you talking about the Witch?
+||
+{h5} "It's this again! This is becoming a habit of hers. A bad habit." He sighs.
+	[h9] Has this happened many times?
+	[stop_herself] She doesn't seem to be able to stop herself.
+||
+{h9} "Yes. Too many times. I should talk to her about it." 
+{stop_herself} "I should talk to her about it." 
+	[ami_trouble] Am I in trouble?
+	[h10] Did any of them look like me?
+	[interrogation] So was this it? Anything else before you let me go?
+||
+{h10} "It's been a while, but I don't think any of them looked like you."
+	[h11] Do you know where they are now?
+||
+{h11} "They don't live here. Probably took a boat out. Could be anywhere now."
+	[interrogation] I see, thanks.
+||
+{h8 | add_flag tornoth_shipwreck_lie} "I see."
+{ami_trouble} "No. You are just another unfortunate soul she has dragged here."
+	[interrogation] So was this it? Anything else?
+||>>Other questions
+{interrogation} "Before I let you go, I need to ask you a few simple questions. We don't get many visitors on foot."
+	[i1] Sure, anything you want to know.
+	[i2] Can I ask a few questions from you too?
+	[i3] Is this an interrogation?
+||
+{i1} "Alright, what's your name?"
+{i2} "I can answer your questions after this. Now, what is your name?"
+{i5} "We don't get many strangers on foot, and many of those few have been unsavory."
+	[i6] My name is -name-.
+||
+{i3} "Yes. Now, what is your name?"
+	[i6] Alright then, it's -name-.
+	[i5] Why? Are you expecting trouble?
+||
+{i6} "Right.<br><br>What are you planning to do in the village?"
+	[a1] I won't stay here long. Probably see if I can find a boat out.
+	[a2] See the village a bit? Then figure out what I want to do.
+	[a3] I'll stock up and explore the peninsula.
+	[a4] I might hit the tavern and see if there's any action there.
+||
+{a1} "That's probably for the best. The traders spend their time in the tavern. If you're looking for a boat out, you can pay one of them to get you out of here."
+{a2} "There's a market and a tavern in the village, you should see those, but don't bother the people in the village. If you need to stay longer, try to keep to the tavern."
+{a3} "The tavern and the market will help you with that. The Sejan peninsula is home to some dangerous creatures, but if you don't bother them, most will leave you alone."
+	[interrogation_over1] Am I free to go now?
+||
+{a4} "And what would you mean by 'action'?"
+	[a77] See if there's entertainment or work.
+	[a6] Sex! See if I could get some tail or fin... or something.
+	[a7] Just general entertainment. Music, dancing, the lot.
+||
+{a6} "If you mean to find a prostitute, you won't. I feel you should go to the tavern and stay there."
+	[ | sex_branch maybe_sex_m maybe_sex_f] I didn't really mean a prostitute, but sure, whatever.
+	[interrogation_over_bad4] Maybe I will.
+||
+{a7} "You are in luck, then! Bykaas, the tavern owner, is the best dancer I've ever seen. You might want to ask her about it."
+{a77} "The tavern has music and drinks. Very likely some work too."
+	[interrogation_over2] Thanks... I'll keep that in mind.
+||
+{interrogation_over1} "You're free to go. Try not to scare Taulsol again, and spend some money at the market."
+{interrogation_over2 | add_flag tornoth_say_hi_bykaas} "Right, that's all I wanted from you. You're free to go. If you visit the tavern, say hi to Bykaas from me."
+{interrogation_over_bad2} "You are free to go. You should probably stay out of the village and keep to the tavern."
+{interrogation_over_bad4} "You really should."
+{maybe_sex_m} "I don't really care what you plan to do with your dick. You can go now."
+{maybe_sex_f} "Well. I'm sure you will find someone. You can go now."
+{buy} "Come back later. I have things to do at the moment." He lazily lifts his hand at the door.
+	[ | save_index smithy, start_encounter taodal taodal] I'll be going, then. (Leave)
+	[buy] You are a smith, right? I'm interested in seeing your wares. //hideif.index_is.buy
+||
+>>INTRO END
+
+
+
+
+||>>CONVO HUB 1
+{smithy | start_music sejan_taodal/tornoth 70 3} "-name-, was it? Welcome."
+{exit_shop} "Anything else?"
+{flirt_m1} He snorts, amused. "Yes, you could say that."
+{later_dinner | add_flag tornoth_open_dinner} "Of course. Consider it an open invitation."
+{norm_hello | start_music sejan_taodal/tornoth 70 3} "Hello, -name-."
+{flirt_wat} He chortles, amused. "I’m flattered, but the prices will stay where they are. I hope you'll have fun with Shyni... and treat her right."
+{silent_return} 
+{no_weaps | add_flag tornoth_makes_no_weapons} "I don't make or sell weapons."
+{why_weap} "I'm a blacksmith, not an armorer."
+	[why_weap] Why? //showif.index_is.no_weaps
+	[open_dinner] Is that offer for a dinner still open? We could have that now. //showif.has_flag.tornoth_open_dinner //hideif.index_is.later_dinner
+	[ | add_flag tornoth_inventory_opened, start_shop start exit_shop] I'd like to buy something.
+	[ | add_flag tornoth_flirted, sex_gate flirt_m flirt_f] Anyone ever tell you you're quite handsome? //hideif.clicked
+	[no_weaps] I noticed you don't sell any weapons. Could you make me one? //hideif.clicked //showif.has_flag.tornoth_inventory_opened
+	[ | change_diag_file diag_questions start] (Questions)
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+
+
+||>>Convo hub 2 (lover)
+{lover | start_music sejan_taodal/tornoth 70 3, change_sprite character} Tornoth growls softly, "-name-."
+{exit_shop_lover} 
+{bad_memories} "No... Just memories."
+{get_used_to} "Hah! I will try."
+{cant_promise} "You are a monster... a lady monster."
+{boat_later | add_flag tornoth_fishing_open} He nods. "Of course. I will have to check those traps daily anyway."
+	[boat_letsgo] We could go fishing now. //showif.has_flag.tornoth_fishing_open //hideif.index_is.boat_later
+	[hi_handsome] Hey, handsome. //hideif.clicked
+	[finish_bed | remove_flag tornoth_building_bed] So... did you ever finish that bed you were working on? //showif.has_flag.tornoth_building_bed
+	[ | add_flag tornoth_inventory_opened, start_shop start exit_shop_lover] I'd like to buy something.
+	[ | change_diag_file diag_questions start] (Questions) 
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+
+
+
+||>>Male PC flirt
+{flirt_m} He raises his head in surprise. "Sorry? I- Hrmm... I'm afraid you have misdirected the point of your sword."
+	[flirt_m1] Uh... I assume you mean you're not- erm... fond of 'swords'?
+	[silent_return] Oh, okay.
+||>>Hi handsome
+{hi_handsome} "Please... don't. That hits my ears in an odd way."
+	[prefer_stud] Would you prefer 'stud?'
+	[like_handsome] But I like calling you that.
+	[know_that_well] Sorry, I didn't mean anything by it. //showif.charisma.6
+||
+{prefer_stud} "Gods... Just... Don't call me that around Shyni. She might not understand."
+	[cant_promise] I can't promise anything...
+||
+{like_handsome} He snorts amused. "You can keep calling me that... It's just been a long time since someone called me that. It digs up memories."
+{know_that_well} "No, it's just been long time since... someone used a pet name for me. It digs up memories."
+	[bad_memories] Bad memories?
+	[get_used_to] Get used to it... handsome.
+||
+	
+||>>WORRIED ABOUT SHYNI (Shyni is missing) (This needs an extension but also needs V4 content)
+{worried_of_shyni} Tornoth is stomping around the smithy anxiously. He spots you enter and confronts you, "Have you seen Shyni? She hasn't been home. I cannot find her anywhere."
+	[no_idea] Sorry, I- I... have no idea where she is. (Lie)
+||
+{no_idea | character_leave, add_flag tornoth_missing} He mumbles to himself, "She must have gone back to the wall... or the caves." He hastily leaves the smithy.
+	[ | start_encounter taodal taodal] (Leave)
+||
+	
+||>>Female PC flirt
+{flirt_f | check_flag shyni_dinner flirt_ff flirt_wat}
+||
+{flirt_ff} He chortles, amused. "I’m flattered, but the prices will stay where they are."
+	[flirt_0] I’m not after the prices, big guy.
+||
+{flirt_0} He looks stunned, shaking his head to clear it. "...What?"
+	[flirt_1] It's just a compliment.
+	[flirt_2] Oh, don't play dumb.
+||
+{flirt_1} "Thank you, but I'm old enough to know what you're after.<br><br>Listen, you are too young, and I'm... too old."
+{flirt_2} He raises his eyebrow in surprise. "Right... listen, you are too young, and I'm... old."
+	[flirt_11] What's age got to do with it?
+	[flirt_11] Maybe you're perfect the way you are? //showif.charisma.8
+	[flirt_12] By too old, do you mean your... you know? Doesn't work? //hideif.charisma.6
+||
+{flirt_11} "I... I wouldn't want to complicate my life beyond what it is now. Besides, I'm busy, I need to make a box of nails and... the sauna needs scrubbing..."
+{flirt_12} "What? No! I-  I'm just very busy, I need to make a box of nails and... the sauna needs scrubbing..."
+	[chore_help] I'll help, that'll give you some time to... socialize.
+	[flirt_6] I understand I might not appeal to you, but just say it and stop dancing around it.
+||
+{flirt_6} His eyes open in shock. "No, I- It's not that... I'm just very busy, and I don't think you..."
+	[flirt_7] So, you do like how I look.
+	[chore_help] Oh, stop it, I'll help you with the chores, and afterwards, we'll have nice little chat. //showif.will.8
+||
+{flirt_7} He tries to compose himself as his face takes on a more purplish color. "You look fine, sure, but...<br><br>I'm – I'm just not husband material."
+	[fine_husband] I'm not looking for a husband, just for some... mutual entertainment. That isn't wrong, right?
+	[fine_husband] I'm sure you'd make a fine husband, but I'm a discerning girl, and I'm excited for a test drive.
+||
+{fine_husband | character_leave} He snorts, exasperated. "Sorry, I really need to attend to my chores.<br><br>Uh, bye for now." He carefully steps around you and walks out.
+{chore_help | character_leave} He snorts, exasperated. "I wouldn't- You don't have to- Sorry, I really need to attend to my chores.<br><br>Uh, bye for now." He carefully steps around you and walks out.
+	[ | save_index teased, start_encounter taodal taodal] (Leave)
+||
+
+||>>Tease flirt 2
+{teased | start_music sejan_taodal/tornoth 70 3, change_sprite character, save_index norm_hello} Tornoth eyes you as you walk in. He inhales. "Sorry. I was rude last time.<br><br>I haven't had such attention from many people."
+	[tease_22] No, I'm sorry, I came on to you too hard.
+	[tease_22] Your reaction was peculiar but very cute. //showif.charisma.8
+||
+{tease_22} "I didn't mean... Your words were welcome, but I- I... I'm not used to it. To be honest, I didn't remember how to respond.<br><br>You're a beautiful woman, -name-."
+	[tease_3] Simple, yet effective. 
+	[tease_3] I get it.
+||
+{tease_3} "Would you like to have a dinner with me and my daughter? We could go to the sauna afterwards."
+{not_just_us} Tornoth scratches his head nervously. "She's making the food, and we always eat dinner together.<br><br>I wasn't planning her coming to the sauna with us, we haven't gone to sauna together after- Well, after she's become more womanly."
+	[not_just_us] ...Why not just the two of us? //showif.index_is.tease_3
+	[sounds_gud_dinner] That sounds delightful, yes please.
+	[later_dinner] Maybe later?
+||
+{open_dinner | remove_flag tornoth_open_dinner} "Yes! The offer is still open. If you wait for a moment, I'll set the table, and we can eat."
+{sounds_gud_dinner | remove_flag tornoth_open_dinner} "Great! If you wait for a moment, I'll set the table, and we can eat."
+	[dinner_with_tornoth] Sounds good.
+||
+
+
+||>>Shyni & Tornoth dinner
+{dinner_with_shyni | change_diag_file diag_dinner shyni_guest} This is the index that initiates the dinner with femPC as Shyni's guest.
+{dinner_with_tornoth | change_diag_file diag_dinner tornoth_guest} This is the index that initiates the dinner with femPC as Tornoth's guest.
+||
+
+		
+||>>SAUNA AFTER DINNER
+{tornoth_sauna | stop_music 6, change_environment taodal, auto_continue into_sauna, hide_character} You take a short stroll up the street to the sauna. The village has quieted down as the evening turned red. Tornoth opens the door to the sauna for you.
+||
+{into_sauna | play_sound generic/objects/door_close 70, change_environment taodal_saunastorage, change_sprite character, add_flag shyni_met} You go in and find yourself in a warm washing room of the sauna. You can hear flames crackling in the room beyond. Tornoth closes the door and locks it. "I've kept the sauna warm for the evening. It's reserved for us for the night, so we don't have to worry about others wandering in."
+{build_sauna} "I did. It used to be just a simple storage building, but I expanded it and built the sauna into it later."
+{comfy_sauna} He stammers. "T- Thank you. I am very proud of it. The stonework was a terrifying amount of work, and I was very inexperienced with it. Many a curse was laid between the stones." He laughs with throaty rumble.
+	[comfy_sauna] It's a pretty sauna. Very comfy. //showif.index_is.build_sauna
+	[build_sauna] Did you build this sauna yourself? //showif.intelligence.6 //showif.index_is.into_sauna
+	[sauna_undress_2] (Undress)
+	[undress_forme] Well... go ahead, undress for me. //showif.will.8
+||	
+{undress_forme | auto_continue undress_forme_1} He chortles. "Of course, -name-."
+||
+{undress_forme_1 | change_sprite nude} He looks you in the eyes and removes his clothes with a patient pace. He drops the clothes on the floor and then rumbles with a husky tone, "Now you."
+	[sauna_undress] (Undress)
+||	
+{sauna_undress_2 | change_sprite nude} As you undress, Tornoth throws his clothes on the floor and eyes you curiously. "You're beautiful."
+{sauna_undress} You undress. Tornoth eyes you curiously. "You're beautiful."
+	[handsome_too] And you're handsome.
+	[thanks_beaut] Thank you.
+||	
+{handsome_too} "I... I don't mean that as an empty thing. I really think you're beautiful.<br><br>Uhm- Let's go in before it cools."
+{thanks_beaut} He waves you courteously into the sauna. "Let's go in before it gets cold."
+	[get_in_sauna] (Get in the sauna)
+||>>Talk with Tornoth in the sauna
+{get_in_sauna | start_music generic/romance_soft 70 2, change_environment taodal_sauna, change_sprite tornoth_sauna} You follow him in and settle yourself on the bench. Tornoth throws some water on the stones. A jet of hot steam brushes past your face. "I've almost forgotten how much I liked this." He relaxes and leans forward.
+	[this_nice] Yeah, this is nice.
+||
+{this_nice} He wipes his brow with the back of his hand and sighs. "Say, would you mind... if I shared something personal?"
+	[talking_2] Sure.
+||
+{talking_2} He throws more water on the stones. "What do you think about Shyni?"
+	[talking_3] She's a lovely girl.
+	[talking_33] What do you mean?
+||
+{talking_33} "It doesn't matter... She's- I don't know... She's malformed. She was very small as a baby. I thought nothing of it. Babies are small. She was just an unusually small baby."
+{talking_3} "Shyni... She's- I don't know... She's malformed. She was very small as a baby. I thought nothing of it. Babies are small. She was just an unusually small baby."
+	[talking_4] What do you mean? Are you sure she's malformed?
+||
+{talking_4} "She grew slowly. I thought I was not feeding her properly and she was a runt because of my cooking, but her proportions are... off too.<br><br>She stopped growing some time ago... She was supposed to grow taller than me."
+	[talking_5] Does she know?
+||
+{talking_5} "No, she's never paid any attention to her height. She doesn't seem to mind, so I haven't told her."
+	[talking_6] As long as she's happy, I don't think it really matters.
+||
+{talking_6} "I think so too...<br><br>I just needed to share my worry. It's been weighing on me."
+	[caress_1] Hey, we're here to relax. (Caress his thigh)
+||
+{caress_1} Tornoth turns his gaze on you. "-name-..." You notice his large cock already stiffen at the thought.
+	[caress_2] (Move your hand onto his penis)
+||
+{caress_2 | pic erection} He gasps at your touch. You feel his shaft throb hotly in your palm.
+	[straddle_tornoth] (Straddle his lap)
+||>>SAUNA SEX SCENE
+{straddle_tornoth | pic straddle} You straddle Tornoth, and he grabs your hips. The large shaft brushes against your nethers. You can feel it pulsing against your skin. "-name-, I don't know if we should. I'm not ready for another... marriage."
+	[fun_with_friend] (Stroke his mane) Oh, you don't have to marry me. This is just some mutual fun.
+||
+{fun_with_friend} "It's not just that, I- I don't want more children." You feel the tip of his shaft prod against your labia.
+	[impale_on_cock] I'll just take bitter water afterwards. (Lower yourself on his cock) //showif.has_flag.pc_knowledge_bitter_water
+	[impale_on_cock] Make sure you pull out, then. (Lower yourself on his cock)
+||
+{impale_on_cock | pic riding} You let your weight pull you down on Tornoth's cock. His large member slips easily into your slick pussy. He gasps and grabs your hips in shock. You slowly slide down and take more of him until you're filled completely. You feel his cock engorge in you with an excited throb. Tornoth stares at you in disbelief and tries to steady his breath.
+	[ride_tornoth] (Ride him)
+||
+{ride_tornoth | pic riding} Tornoth supports your back as you bounce on his lap. You feel his cock spreading you almost painfully. You are so stuffed you feel the large veins massage you every time your fall down his shaft.<br><br>You can feel Tornoth's orgasm approaching as he squints and tries to lift you off his cock.
+	[tornoth_inside] (Force him to finish in you)
+	[tornoth_outside] (Let him pull out.)
+||
+{tornoth_inside | pic cum_in} You pull yourself even closer to him, his cock sinking even deeper into you. You feel Tornoth trying to claw you off him, but he quickly succumbs to an orgasm. A grunt turns into a muffled roar as he grabs the bench with both hands and involuntarily thrusts into you, lifting you. Then, you feel it; his cock tenses, and you feel his seed gush into you. It sends you over, your body cramps from the pleasure, and you dig your fingers into Tornoth's shoulders. An involuntary whine escapes your lips as the waves of ecstasy run through you. You collapse against Tornoth.<br><br>Slumped against his chest, you feel his hot breath in your hair.
+	[winded_inside] (Catch your breath)
+||
+{winded_inside} You hear a soft murmur behind your head, "Why... did you do that?"
+	[not_sure_why] I'm not sure...
+	[not_sure_why] It seemed like the fun thing to do.
+||
+{not_sure_why | add_flag pc_knowledge_bitter_water} Tornoth sighs. He lifts your head to face him. He buries his snout into your neck and exhales. "Look... Ask Bykaas for bitter water and... if you still get pregnant, come back to me. I'll take care of both of you." He pets your head.
+	[worry_preg] Thanks. I'll do that.
+	[worry_preg] Thanks... But I'm sure I'm not going to get pregnant from this one time.
+||
+{tornoth_outside | pic cum_out} Tornoth hastily lifts you off him, and the fat shaft audibly pops out. The cock tenses and slaps painfully against your stomach. Before you realize what has happened, you feel the sticky spray forcefully hit you in the face. Tornoth grunts, and another spray slams into your face. You cover the tip of his penis to block the assault. Hot ejaculate gushes in between your fingers. The throbbing slowly dies down, and Tornoth's hands release your thighs. Spent, Tornoth inhales and tries to steady his breath. You feel the cock throb a few more times in your hand.<br><br>You hesitantly open the eye that's not covered in cum.
+	[covered_in_cum] Oh! You beast!
+	[covered_in_cum] Little pent up, are we?
+||
+{covered_in_cum | pic riding} Tornoth gasps and inhales. "Sorry... I didn't... mean to do that." He straightens himself and drags a bucket of water closer to you. He carefully pours some of the lukewarm water on your head. The sticky ropes wash off your face. He gently and dutifully rubs your skin to remove the rest. 
+	[tornoth_cunning] Thanks.
+||
+{tornoth_cunning | pic cunning_tornoth} "I'd like you to join me in the afterglow." Tornoth lowers you on your back and buries his snout between your legs. You feel his slimy proboscis slide in you. He gently rolls it against your vaginal walls until the pleasure builds to an explosive orgasm. You grab his head and cry out. You instinctively try to close your legs, but Tornoth forcefully holds them open. He keeps rolling his proboscis inside you through your orgasm. You writhe against the blinding pleasure, it feels like torture.<br><br>Eventually, he withdraws his head from your nethers. The tension evaporates, and you melt on the smooth wooden bench, unable to open your eyes. You feel his rough hand affectionately caress your leg.
+	[you_fun] I thought- You were incapable of having fun. I guess I was wrong.
+||>>Sex aftermath
+{you_fun | auto_continue drink_after, remove_pic} "I'm old, not a corpse.<br><br>You are a very lovely woman, -name-."
+{worry_preg | auto_continue drink_after, remove_pic} "Less unlikely things have happened..."
+||
+{drink_after} The two of you rest and wait for the embers slowly fade. Tornoth turns to you. "I think... this was something I needed. Thank you."
+	[again_someday] I would love to do this again someday.
+||
+{again_someday} He snorts. "Maybe. It's getting late, and I must wake up early tomorrow." He throws the last of the water on the cooling stones.
+	[sleep_with] We don't have to part ways just yet. Do you want to sleep together tonight?
+||
+{sleep_with} He raises his head in surprise. "Of course.<br><br>My bed might be a little small for two, but I'm sure you'll fit in."
+	[walk_to_house] Shall we, then? (Walk to Tornoth's house)
+||
+{walk_to_house | advance_time_to night, play_sound generic/interactions/hug 60, pic in_bed, add_flag pc_sexed_tornoth} The two of you walk to his smithy. Tornoth opens a door at the back of the building and reveals a dimly lit room with a bed. "Sorry. I don't usually share my bed." He strips and lies on the bed. You undress and climb into the bed yourself too, squeezing comfortably next to Tornoth's warm and furry body. The low rumble of his breathing makes you sleepy. He closes his large arm around you and starts to quietly snore.
+	[waking_next_tornoth | stop_music 8] (Sleep)
+||>>MORNING AFTER SAUNA
+{waking_next_tornoth | advance_time_to morning} You wake next to Tornoth, his arm slung over you and your head resting on his furry body. He quietly wheezes long breaths as he sleeps. You can hear his heart thump steadily in his chest.
+{sleepy_handsome} Tornoth crinkles his face a bit and hugs you tighter but continues sleeping.
+{rub_fur} You comb your fingers through his thick white fur. You can feel pleasant warmth radiate from his skin. Tornoth's breathing slows down, and he tenses slightly. As you slide your hand down his stomach, you hit your hand on something wet. You realize Tornoth's penis is fully erect.
+	[sleepy_handsome] Hey, handsome. //hideif.clicked
+	[pinch_sleepy] (Pinch his face) You like sleeping, don't you? //showif.index_is.sleepy_handsome
+	[rub_sleepy_penis] (Touch his penis) //showif.index_is.rub_fur
+	[rub_fur] (Rub his fur) //hideif.clicked
+	[get_out_bed] (Get out of the bed)
+||
+{rub_sleepy_penis} You gently stroke your thumb over the oozing head of his cock. Tornoth twitches in his sleep as you do it. You grasp the shaft and slide your hand downwards his entire slick length. He lets out a sigh. You keep thumbing the flat and knobbly head as he shifts his weight on the bed. He eventually wakes up with a grunt. "W- What are you doing?" 
+	[just_waking] Just waking you up.
+	[just_waking] Sorry, I couldn't keep my hands off it.
+||
+{just_waking | pic bedroom_eyes} He grunts and gently grabs your hand. "Maybe not right now." He turns his head to face you. "Did you sleep well?" His hand brushes against your back. He grunts satisfied and holds you closer.
+{pinch_sleepy | pic bedroom_eyes} You pinch his face. He crinkles his brow and snorts. "Hmh...?" He pauses and turns his head to face you. "Morning. Did you sleep well?" His hand brushes against your back. He grunts satisfied and holds you closer.
+{morning_lovin} "It's not that... I'm just sore... from the last night." He snorts.
+	[morning_lovin] Can't I give you some morning lovin'? //showif.index_is.just_waking
+	[well_soon] Sorry! I hope you get well soon. //showif.index_is.morning_lovin
+	[sleepy_baby] I slept like a baby. You're a great sleep buddy.
+	[you_feel] How do you feel?
+||
+{well_soon} "I'll think I will survive. I've just not experienced... you, before."
+{sleepy_baby} "I was afraid you might not fit in properly. I... had forgotten how nice waking up to someone felt."
+{you_feel} "I feel good. I... had forgotten how nice waking up to someone felt."
+	[into_more] You're very snuggly. I'd sleep with you every night if I could fit you in my pocket.
+	[into_more] You're so cute and caring.
+||
+{into_more | remove_pic, change_environment taodal_tornoth_smithy, change_sprite nude} He gets up from the bed and you follow him. "-name-... We shouldn't make this into more than it is. I can't have you like this."
+{what_likethis} "I wouldn't know what to do with you. I- I like this, I like you, but I can't fit you into my life."
+	[what_likethis] What do you mean? //showif.index_is.into_more
+	[just_sex] Don't worry, it was just some sex. Sleeping in your bed was just a cute bonus.
+	[more_fast] I guess... wishing for more so fast would be a little hasty.
+||
+{just_sex} "I hope we can... continue our friendship. This was very welcome."
+{more_fast} "Sorry... <br><br>I hope we can... continue our friendship, but I don't know how to... be something right now."
+{get_out_bed | remove_pic, change_environment taodal_tornoth_smithy, change_sprite nude} You climb over Tornoth and out of the bed. Tornoth wakes up and lazily lifts himself up as well and grunts. "Are you leaving already?"
+	[bye_kiss] Do you want to give me a goodbye kiss? 
+	[get_going] I think I should get going. (Get dressed)
+||
+{bye_kiss | auto_continue bye_kiss_2, pic kiss} Tornoth closes his large hands around you and presses his snout against your mouth. A proboscis parts your lips and slips into your mouth. You roll your tongue against it.
+||
+{bye_kiss_2 | remove_pic} You slowly part your kiss and sit back. "I'm not much of a kisser, but there."
+	[get_going] I should go. (Get dressed)
+||
+{get_going} "Be seeing you."
+	[ | save_index bed_build, start_encounter taodal taodal] You too. (Leave)
+||
+
+
+||>>Bedframe
+{bed_build | start_music sejan_taodal/tornoth 70 3, pic bedframe} You find Tornoth on the floor of his smithy. He’s hammering large nails into a simple wooden frame. He notices you and stops. "It’s nice to see you, -name-"
+	[bed_1] Hey. What are you working on?
+||
+{bed_1 | remove_pic} He gets up and quickly glances at the unfinished frame. "It’s nothing, really."
+	[bed_22] Is that a frame for a bed? //showif.intelligence.6
+	[bed_2] No, seriously, tell me, I didn’t realize you were into carpentry.
+||
+{bed_22} "It’s a bed frame, yes."
+{bed_2} "It’s just a bed frame."
+	[bed_3] It’s pretty wide for a bed, even for you.
+	[bed_3] Why are you building a bed?
+||
+{bed_3} He sighs. "I don’t want you to be uncomfortable… I mean- If you want to share it again."
+	[bed_4] You’re building a new bed for your one night fling?
+	[bed_44] That's very kind of you.
+||
+{bed_4} "I enjoy you."
+{bed_44} "Thank you... I- I like you."
+	[bed_5] I enjoy you too, but don’t you think this feels... too serious? //showif.index_is.bed_4
+	[bed_55] You're very kind to enlarge your bed for me.
+||
+{bed_5} He chortles nervously. "I’m reinforcing my bed, and you think it’s too serious?" He scratches his neck.
+{bed_55} He chortles. "I just felt it was too small for us, I don't want to crush you under me." He scratches his neck.
+	[bed_6] So… what are you going to use for the mattress?
+||
+{bed_6} He stops for a second and looks hesitantly into your eyes. "I- I suppose I shouldn’t go for straw this time?"
+	[bed_7] Something soft and smooth?
+	[bed_7] I don’t mind the straw if you’re there.
+||
+{bed_7 | character_leave} "I know some traders… I think they might be leaving soon.<br><br>It was nice to see you, -name-... I need to hurry." Tornoth runs out of the smithy.
+{inspect_bed | pic bedframe} The bed frame is exceptionally wide, the corners are reinforced with thick and sturdy iron braces. The wood is rough and unpolished. It’s still missing many pieces.
+	[inspect_bed] (Inspect the bed frame) //hideif.index_is.inspect_bed
+	[ | add_flag tornoth_building_bed, save_index lover, start_encounter taodal taodal] (Leave)
+||
+
+
+
+
+
+
+||>>Fishing with Tornoth
+{finish_bed} He lets out a guttural chuckle. "I did. It's in the bedroom."
+	[takebed_look] Oh! Can I take a look?
+	[takebed_look] Did it turn out okay?
+||
+{takebed_look} "You can see it.... but I have to go check my fish traps. Can I interest you with a boat trip?"
+{boat_why} "I want to spend time together, away from the town."
+{boat_ravish} He lets out an embarrassed, throaty laugh. "I- I don't think we should try that, the boat might capsize."
+	[boat_ravish] Are you planning to ravish me in the middle of the bay? //hideif.clicked
+	[boat_why] Why? //showif.index_is.takebed_look
+	[boat_foreplay] Is this your idea of foreplay?
+	[boat_lovedat] I would love to go fishing with you.
+||
+{boat_foreplay} "Come fish with me, and I'll set a hot bath for you afterwards."
+	[fishing_yes] I can't refuse something like that. Absolutely.
+	[boat_later] Maybe later? Kinda busy at the moment.
+||
+{boat_lovedat} "I will set a hot bath for you afterwards."
+	[fishing_yes] I would love that.
+	[fishing_dirty] Is fishing dirty business?
+||
+{fishing_dirty} "No, not really... well, I guess that depends on the fish we find.<br><br>We can go right now. I have a boat ready by the pier."
+{fishing_yes} He snorts and nods. "We can go right now. I have a boat ready by the pier."
+{fishing_need} "Just yourself."
+	[fishing_need] Do I need anything? //hideif.index_is.fishing_need
+	[boat_letsgo] Let's go, then!
+	[boat_later] Maybe later? Kinda busy at the moment.
+||
+
+
+||>>BOATING WITH TORNOTH
+{boat_letsgo | stop_music 3, auto_continue boat_2, character_leave} "Great! I'll lock the smithy. Just a moment." Tornoth goes to his cupboard and starts rifling through it.
+||
+{boat_2 | advance_time_to evening, change_environment taodal_pier, auto_continue boat_3, pic boating, play_sound generic/objects/boat_onwater 70} Tornoth locks the smithy, and you make it down to the pier. Tornoth unties a sturdy looking boat and pushes it into the water. He steps into it, and you follow. He takes a few long oar strokes, and the boat glides out of the pier.
+||
+{boat_3 | play_sound generic/objects/boat_sail 70} Tornoth doesn't stop rowing when he starts talking to you. "You're very beautiful, -name-." He makes quick eye contact with you.
+	[boat_4] And you're very handsome, Tornoth.
+||
+{boat_4} Tornoth silently rows for a while and then blurts out. "Do you like fish?"
+{fish_smalltalk} He grunts. "...Yes." He shrugs. "Do you like fish?"
+	[fish_smalltalk] ...Are you making small talk, Tornoth? //showif.charisma.8 //hideif.index_is.fish_smalltalk
+	[fish_notreal] Not really.
+	[fish_yeah] Yeah.
+	[fish_depends] It depends on the fish, I guess.
+	[fish_somtimes] Sometimes.
+||
+{fish_notreal} "I know... we- Taodal, really should claim some farmland from the peninsula."
+{fish_yeah} "Fish is good, but Taodal really needs more different foods. We- Taodal, really should claim some farmland from the peninsula."
+{fish_depends} "Yes, that is true. I wouldn't want to eat everything people call fish. We- Taodal, really should claim some farmland from the peninsula."
+{fish_somtimes} "I wish Taodal was that lucky. We- Taodal, really should claim some farmland from the peninsula."
+	[fish_trap_1] You're planning to build a farm?
+||
+{fish_trap_1 | play_sound generic/interactions/splash_small 70, pic fish_traps} Tornoth stops the boat and grabs onto a buoy. He lifts a fish trap above the water. He turns it a few times, but there's nothing in it. He drops it back into the water. He starts rowing again and takes a glance at you. "Maybe, but I wasn't planning it for myself. I like my current work."
+	[farm_forme] ...Are you suggesting building a farm, for me? //showif.charisma.8
+	[farm_food] Farm would definitely diversify the food a bit.
+||
+{farm_food | pic boating} He keeps rowing and then shyly asks. "Would you want one for yourself? I- I don't mean to press you into work, I was just considering your current, uhm..." He coughs and then unsuredly looks at you. "-your current circumstances? That you might want to have a place to call your own."
+{farm_forme | pic boating} He keeps rowing and then shyly answers. "I- I don't mean to press you into work, I was just considering your current, uhm..." He coughs and then unsuredly looks at you. "-your current circumstances? That you might want to have a place to call your own."
+{farm_normal} He snorts. "I suppose I do. I make the offer often to people I think might make Taodal a better place." He glances at you while rowing.
+	[farm_normal] Is this normal? Do you just build houses to people if they want to live in Taodal? //hideif.index_is.farm_normal
+	[farm_withyou] I could live with you.
+	[nod_response] I think I would like that.
+	[farm_notsettle] That's... very nice of you, but I'm not really sure if I want to settle in Taodal.
+||
+{farm_withyou} "I... I would love that, but I don't want to leave you dependent on me if this doesn't work."
+	[nod_response] Maybe you have to build that farm, then, just in case.
+	[nod_response] You're very kind.
+||
+{farm_notsettle} "I understand that, none of the people with your background have stayed in Taodal. A new world might curse one with wanderlust."
+	[nod_response] Don't get me wrong, I want to spend time with you.
+	[nod_response] I guess.
+||
+{nod_response | auto_continue fish_trap_2} Tornoth nods silently and keeps rowing.
+||
+{fish_trap_2 | play_sound generic/interactions/splash_small 70, pic fish_traps} Tornoth stops the boat again and lifts a fish trap from the water. He turns it in his hands and scratches his head. "Still nothing." He throws the trap in the water, sits down, and scratches his chin. "Probably some fish eater moved near the peninsula again." He grabs the oars and starts rowing again. "Might have to hunt it."
+	[seamonsta] Like a sea monster?
+	[seamonsta] Hopefully nothing serious.
+||
+{seamonsta | pic boating} Tornoth shrugs. "Something, or the traps just didn't catch anything this time." He snorts. "We're done here. We can head back and have that bath I promised."
+	[end_fishing] Sounds terrific.
+||
+{end_fishing | stop_music 7, play_sound generic/objects/boat_land 70, change_environment taodal, hide_character, auto_continue bath_start, remove_pic} Tornoth rows the boat to the pier and beaches it. You receive curious stares from nearby villagers as you walk up the pier and enter the smithy.
+||
+	
+||>>Bathing
+{bath_start | change_environment taodal_tornoth_smithy, change_sprite character, auto_continue giv_key} Tornoth stops and starts digging in his apron's pockets. "First, this..."
+||
+{giv_key | add_flag tornoth_open_house} He produces a rough iron key and hands it to you. "So you can come and go as you like. Don't worry about waking me, I'm a heavy sleeper."
+{key_smithy} "Yes, I made it for you."
+	[key_smithy] This is a key to the smithy? //showif.index_is.giv_key
+	[bath_start_1] Thank you.
+||
+{bath_start_1 | character_leave, auto_continue bath_start_2} Tornoth nods. "Let me just set the bath, and..." He walks to a large, steaming vessel on a stove in the corner of the room.
+||
+{bath_start_2 | pic bath} Tornoth lifts a large vessel off the fire and pours the hot water into a partially filled wooden bathtub. A warm mist fills the room. Tornoth then sets it on the floor, tests the water with his hand, and nods. "Climb in, and I'll wash you." 
+{wash_u_after} He chuckles. "Of course."
+	[fluffy_torny] Perfect! I'm going to scrub you into a fluffy ball of fur! //showif.charisma.8 //showif.index_is.wash_u_after
+	[wash_u_after] Can I wash you afterwards? //showif.index_is.bath_start_2
+	[undress_bath] (Undress)
+||
+{fluffy_torny} Tornoth laughs nervously. "I- I guess I have no choice, then. You'll have to get into the pot yourself first."
+	[undress_bath] (Undress)
+||
+{undress_bath | start_music sejan_taodal/tornoth_romance 70 3, pic nude_embrace} You start undressing. Tornoth gently helps you with your clothes and then removes his.
+{good_shape} "Fish and smithing. It's not good for your fingers though."
+	[good_shape] How do you keep yourself in such a nice shape? //showif.index_is.undress_bath
+	[into_bath] (Get in the bath)
+||
+{into_bath | pic bathing_fempc} You step into the bath water. It's very warm. You sit down and gasp from the heat. Tornoth sits next to the bathtub and then pours more hot water on you while rubbing you. You can feel the tension in your muscles melt away as his strong hands massage your shoulders. You slide even deeper into the hot water. Tornoth hums and plays with your hair as he continues.
+	[real_good] Oh damn, you're really good at this.
+	[getin_bath] Wanna get in with me?
+||
+{real_good | auto_continue bath_over} He snorts. "Thank you." <br><br>You spend a relaxing moment in the bathtub as Tornoth continues his firm but gentle work on your body. Only the splashing of the water and the gentle crackle of fireplace fill the silence.
+{getin_bath | auto_continue bath_over} He chuckles. "I would, but we can't fit in at the same time." <br><br>You spend a relaxing moment in the bathtub as Tornoth continues his firm but gentle work on your body. Only the splashing of the water and the gentle crackle of fireplace fill the silence.
+||
+{bath_over} Tornoth stops massaging you and spends a moment just fiddling with your hair. He rumbles with a soft tone. "How did you like it?"
+{nice_bath} "I haven't bathed anyone since Shyni was a child. I wasn't sure if I was still any good at it." He rubs his snout against your cheek affectionately. "May I have the bath now?"
+	[stay_bath] Can I just stay here for the rest of the night?
+	[nice_bath] It was very nice. //hideif.index_is.bath_over
+	[exit_bath] Here you go, all yours. (Get out of the bath) //showif.index_is.nice_bath
+||
+{stay_bath} He chortles. "I don't think that would be good for you, and I should clean up too."
+{stay_bath_2} He ruffles your hair. "I have to insist, I don't want to sleep dirty next to you."
+	[stay_bath_2] Pleeease! //showif.index_is.stay_bath
+	[make_exit_bath] Make me! //showif.index_is.stay_bath_2
+	[exit_bath] Alright, alright. (Get out of the bath)
+||
+{make_exit_bath | play_sound generic/interactions/splash_small 60, auto_continue exit_bath_2, pic nude_embrace} Tornoth kisses you on the cheek, grabs you by the shoulders, and with a single heave lifts you up and out of the bath. The cold air gives you goosebumps, and a shiver travels up your back. Tornoth presses you against him and hugs you. You feel his stubby fur prickle your skin softly and his body emanating strong, enveloping heat.
+{exit_bath | play_sound generic/interactions/splash_small 60, auto_continue exit_bath_2, pic nude_embrace} You stand up from the hot water and step out of the bath, dripping water on the stone floor. The cold air gives you goosebumps, and a shiver travels up your back. Tornoth presses you against him and hugs you. You feel his stubby fur prickle your skin softly and his body emanating strong, enveloping heat.
+||
+{exit_bath_2 | pic bathing_tornoth} Tornoth lets you go and steps into the bath. The water spills over the lip as he sits down, splashing some of it on your body. He can barely fit into the bathtub, and it creaks against his mass. He awkwardly bends his legs against the wall of the tub to fit better.<br><br>You kneel next to the bathtub and start washing him. Tornoth rumbles with a pleased hum as you run your hands over his features. The white fur on his body turns into soft, clingy strands that flatten against his skin as they get wet. You can see the water become cloudy with grey ash and sawdust.
+	[last_wash] When was the last time you washed?
+	[last_wash_brush] Do you have a brush or something?
+||
+{last_wash} He opens one eye to look at you while keeping the other closed as he enjoys your hands moving on him. "Why? I always rinse myself after the sauna."
+{last_wash_brush} He opens one eye to look at you while keeping the other closed as he enjoys your hands moving on him. "I have one I use to clean up the sauna floor... Why? I always rinse myself after the sauna."
+	[lotta_dirt] I'm getting a lot of dirt off you.
+	[washywash] Doesn't matter, hold still now.
+||
+{lotta_dirt} "Sorry, I suppose just pouring some water on myself after a sauna isn't enough. This bath is very welcome change."
+	[washywash] Yeah, I don't think that's enough. Stay still for me.
+||
+{washywash | auto_continue tornoth_get_out} You keep washing Tornoth, and he rumbles with satisfaction as you brush his fur and pour water on him.
+||
+{tornoth_get_out | pic nude_embrace} After a while, Tornoth stands up and steps out of the bath. He drips water on the floor as he squeezes water out of his fur. He grabs two white towels off the wall and hands the other to you. Tornoth starts rubbing you with the towel. Its surface is rough, but it's pleasantly thick and soft.
+	[towel_dry] (Dry Tornoth)
+||
+{towel_dry | play_sound generic/interactions/towel 70} You dry each other with the towels. Tornoth gently but thoroughly dries you, ruffling your hair in the process. You notice Tornoth's cock grow longer and stiffer between his legs as you rub his body with the towel.
+{hansum_again} He rumbles back at you affectionately. "And you're beautiful, -name-."
+	[cocky_touch] (Touch his cock)
+	[hansum_again] You're very handsome. //showif.index_is.towel_dry
+	[lets_go_bed] Take me to bed, Tornoth. 
+||
+{cocky_touch} You wrap your hand around his cock and immediately feel a hot throb harden the shaft. Tornoth stops rubbing you with the towel and buries his snout into your neck, breathing hot air down your neck.
+{cock_investigate | pic cock} You take a better grip on his cock and gently turn it to look at its features. Tornoth whines softly as your thumbs trace the bumps and the lines. The stubby flaps at the end of the penis are soft and flexible. The four bumps on the underside are firm, and the space between the bumps is very soft. You press your thumb between the four bumps, which causes Tornoth to elicit a growl and grip your shoulders. You slide your palm against his testicles and give them an exploratory massage. They're heavy, but the skin is soft and smooth. The cock throbs anxiously and spills thick precum down the shaft.
+	[cock_investigate] (Take a closer look at his cock) //showif.index_is.cocky_touch
+	[kiss_cock] You're a magnificent male specimen, Tornoth. (Kiss the head of his cock) //showif.index_is.cock_investigate //showif.charisma.8
+	[lets_go_bed] Let's go to bed, Tornoth.
+||
+{kiss_cock} You plant your lips right between the two stubby flaps and then stick your tongue against his cock hole, spreading his precum around your mouth. Tornoth shakes, grips your shoulders, and lets out a long growl.
+	[horny_torny] You like that, handsome?
+	[horny_torny] (Massage his cock)
+||
+{horny_torny | play_sound sejan/tornoth_bed_throw 70, auto_continue wild_rough_sex} Before you manage to do anything else, Tornoth lifts you up and throws you on the bed on your stomach. You huff as you hit the soft mattress. The bed frame squeaks as two large hands sink into the mattress beside you. Tornoth nuzzles against your head, breathing like a wild beast in heat. You feel his cock rest between your buttocks, throbbing hotly. 
+||>>change diag file and rough sex scene
+{wild_rough_sex | change_default_diag_file tornoth diag_2, save_index start, change_diag_file diag_bedsex rmount_1} 
+||
+
+||
+{lets_go_bed | auto_continue normal_sex} Tornoth bends his knees and lifts you up in his arms. He softly rumbles as he takes a few steps and lowers you on the soft bed. He kisses you on the neck with a gentle bite from his proboscis.
+||>>change diag file and normal sex scene
+{normal_sex | change_default_diag_file tornoth diag_2, save_index start, change_diag_file diag_bedsex normal_sex} 
+||

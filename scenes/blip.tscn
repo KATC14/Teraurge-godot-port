@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlbdmvkqjms4b"]
+
+[ext_resource type="Texture2D" uid="uid://dqy5kkx27xdwn" path="res://assets/images/blip.png" id="1_wt1vn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y0end"]
+radius = 4.0
+
+[node name="Area2D" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(3.968, 3.967)
+scale = Vector2(0.031, 0.031)
+texture = ExtResource("1_wt1vn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 4)
+shape = SubResource("CircleShape2D_y0end")

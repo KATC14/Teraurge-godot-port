@@ -1,0 +1,16 @@
+interior:	no
+
+discoverable:		no
+dicovery_message:	You have somehow found a sinkhole that's not yet detectable!
+default_message:	Do you want to visit the sinkhole?
+
+
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_sinkhole sejan_sinkhole} Encounter
+||

@@ -1,0 +1,193 @@
+
+||
+{start | stop_music 8} She clears her throat. "Um... So, as we agreed... vaginal penetration, light kissing and touching, as agreed. You can undress." She throws the notepad back into her bag.
+	[undress] (Undress)
+||
+{undress} She eyes you curiously as you take off your clothes. "Why did you want to have sex with me? We look very different, I can't imagine... I mean, I don't think... Don't get me wrong, but I don't find you very... sexually appealing? But I seem to excite you." She glances at your half-hard erection.
+	[talk_after] Sheesh, that's a little harsh. Maybe we can talk after this?
+	[ur_sexay] That's okay. I do think you're sexy.
+||
+{ur_sexay} She moves a little closer. "If you don't mind, can you tell me what... makes me so appealing to you? We are not very similar and I can't imagine your females looking like me."
+{whole_appeal} "Of course not, but humor me."
+	[beautiful_taboo] You're a beautiful, exotic, forbidden thing and that excites me beyond all reason. You're a beautiful taboo. //showif.charisma.10
+	[beautiful_taboo] You're smart and funny. It's not really about what you look like. I want to appreciate the mind inside by making love to its vessel. //showif.intelligence.8 //showif.charisma.8
+	[whole_appeal] I can't reduce you to a specific thing. //showif.charisma.6 //hideif.index_is.ur_sexay
+	[you_pretty] You have beautiful eyes.
+	[you_pretty] Your exotic body is just very appealing to me.
+	[you_pretty] I just like the idea of having sex with something so different and foreign.
+||
+{beautiful_taboo} She flutters her eyes in disbelief. "I- I don't know what to say... Oh I- Thank you. I had no idea..." She shivers and carefully moves closer, so close that you can feel the heat from her body.
+	[tell_me_how | start_music sejan/naigad_romance 70 3] I don't want to make you feel uncomfortable. Tell me how you want to do this.
+	[kiss_neck | start_music sejan/naigad_romance 70 3] (Kiss her neck)
+	[touch_her | start_music sejan/naigad_romance 70 3] Should we get to it, then? (Finger her)
+||>>Sex (hands, penetrative)
+{you_pretty | pic spread} "Oh, you don't have to flatter me to get sex. We've already agreed to it." She uncoils and presents her underside to you. "But, be gentle." Two triangular flaps open to reveal her slit.
+{not_complicate | pic spread} "I- I get it. It's a business thing after all." She uncoils and presents her underside to you. "This is for you." Two triangular flaps open to reveal her slit.
+{do_things_you | pic spread} "Aah! Such a gentleman." She uncoils and presents her underside to you. "Do your worst." Two triangular flaps open to reveal her slit.
+{talk_after | pic spread} "Sorry, I didn't mean to... ah. Sorry. We did agree to this. Now..." She uncoils and presents her underside to you. "Be gentle." Two triangular flaps open to reveal her slit.
+{touch_her | pic spread} You kneel next to her as she awkwardly tries to relax and uncoil for you. "Uh... What are you doing?" You press your thumb gently against the side of her tubular entrance. It's almost completely frictionless and slick with clear fluid. She gasps. "You- You don't have to do-" She inhales as you slide your thumb over the smooth surface. "...that."
+{stop_talking} "We agreed on 'light' touching! Please!" She squirms under your finger as you roll it around her slick genitals. You can feel her twitches under your thumb. Her hole visibly contracts as your thumb rides over and under the folds.
+	[touch_her] (Finger her) //showif.index_is.talk_after
+	[touch_her] (Finger her) //showif.index_is.you_pretty
+	[stop_talking] Can you stop talking? Just relax. //showif.index_is.touch_her
+	[finger_bang] (Get her off with your fingers) //showif.index_is.touch_her
+	[finger_bang] (Get her off with your fingers) //showif.index_is.stop_talking
+	[pen_naigad] (Penetrate her)
+||
+{finger_bang | pic exhausted} You spread your fingers on the bare area and massage her. She squirms and gasps against the beach but keeps herself steady for you. You use both hands and symmetrically brush along the shape of the organ. She presses her head against the sand and breathes heavily. You push your thumbs into her slit and massage the walls as they press around your digits. Naigad's tail wraps around your torso while she lifts her head towards the sky and screams. She twitches and pants with her eyes closed. She falls back down like a rope and then lazily lifts her head towards you, still panting. "Cou- Could you just stick in already? Actually... Wait. Give me a moment." She pants.  
+	[give_moment] (Give her a moment)
+	[cute_fingered] You look cute like that.
+||
+{cute_fingered | pic spread} Exhausted, she lets out a weak chortle. "Stop... I liked that." She inhales and exhales. "Okay, go for it, lover." She adjusts her posture for you, giving you easy access to her.
+{give_moment | pic spread} She inhales and exhales. She closes her eyes for a moment and then opens them. "Okay, go for it, lover." She adjusts her posture for you, giving you easy access to her.
+	[pen_naigad] (Penetrate her)
+||
+{pen_naigad | pic penetration} You climb over Naigad. She glances at you shyly as you line yourself with her genitals. "Oh, I- I didn't realize this would feel so... Ah!" You press your shaft against her slit and the tip slips in. Her hole grips you and seemingly suckles on your glans. You gasp at the odd sensation. Naigad inhales and stretches herself on the sand. You hesitantly push deeper. Her vaginal walls are like velour sliding over your cock. Naigad curls her tail around your leg. You carefully push yourself as deep as you can go and then pause to enjoy the sensation of her muscles compressing around you.
+	[fug_naigad] (Fuck her)
+||
+{fug_naigad | pic beach_fuck} You lower yourself against her and embrace her. As your head rests on her soft and bumpy underside, you hear her heart race. You pull your hips back and then thrust into her, starting a steady rhythm. She tries to stay quiet but breaks as you keep the pace up. She quietly moans and rubs her head against the ground, arcing and driving your thrusts deeper. She obediently and patiently takes your pounding as she wobbles from the humping. You can feel her hole tighten as her body eggs you on. She moans louder. Her tail strikes against the sand.
+	[finish_in] (Finish in her)
+	[pull_out] (Pull out)
+||>>cum in
+{finish_in | stop_music 13, pic exhausted} You hug Naigad harder and push deeply into her. She screams and curls around you. Her velvet hole twists powerfully around your member. You gasp in ecstasy and spasm. You empty yourself into her as she gasps for air, turning on the sand. You put your legs around her and push deeper. Your brain hits you with a dopamine bomb and your mind crackles with pleasure as you push your head against Naigad's soft underside. The two of you stay coupled for a few sweaty moments. "You- You should have pulled out." She inhales. "It's not very gentlemanly... T- To impregnate on the first date." She giggles.
+	[get_you_preg] ...I can't get you pregnant, can I?
+	[stop_mahself] Sorry. I couldn't stop myself.
+||
+{stop_mahself | pic love_head} "It's okay. Just a little harder to clean... " She playfully squeezes you with her vaginal muscles. "Hah! We would have some freaky-looking kids."
+{get_you_preg | pic love_head} She rolls her tongue slyly. "Possibly? I've seen crazier pairings. But don't worry, I'll be downing some bitter water anyway." She playfully squeezes you with her vaginal muscles. "Hah! We would have some freaky-looking kids."
+{impreg_weird} "A little weird, but... I guess I should take that as a compliment. Thanks, but I'd be a terribly poor mother to our mutant children." She shifts herself under you. "Mind lifting yourself off me now?" She gently pats you with the side of her beak.
+	[impreg_weird] Is it weird that the thought of impregnating you turns me on? //showif.index_is.get_you_preg
+	[get_off_naigad_1] (Get up)
+||>>cum out
+{pull_out | stop_music 13, pic love_head} You prop yourself up against Naigad and prepare to pull out. She suddenly screams and curls around you. Her velvet hole twists powerfully around your member. You gasp in ecstasy and pull out with a wet pop. You climax and paint her underside with cum. She breathes heavily on your neck and nuzzles your nape. She whispers. "That's it... Don't worry about making a mess. Just relax..." You cover her skin with ropes of cum until you're left shaking, straddling her. She pokes her beak against your nose. "There. That was fun, wasn't it?" You pant and try to steady yourself.
+	[sorry_mess] ...S- Sorry about the mess. 
+	[gather_climax] (Gather yourself)
+||
+{sorry_mess | pic love_head} She nuzzles your neck. "No apologies, enjoy the glow." She nips you playfully. "It'll wash off easily in the water." The two of you lean against each other for a silent moment as you steady your breath.
+{gather_climax | pic love_head} She nuzzles your neck and nips you playfully. The two of you lean against each other for a silent moment as you steady your breath.
+{this_nice} She nudges you. "Okay. I think we're both done now. Get dressed, lover boy." She gives you a gentle bop on your forehead.
+	[this_nice] This is nice. //hideif.index_is.this_nice
+	[get_off_naigad_2] (Stand up)
+||>>aftermath
+{get_off_naigad_1 | remove_pic} You lift yourself and your softening cock slides out of Naigad. She gasps and curls. She lifts her head and straightens herself. "Ah... I think that was your payment then... Thank you again." She looks over the lake.
+{get_off_naigad_2 | remove_pic} You get off Naigad and stand up. She lifts her head and straightens herself. "Ah... I think that was your payment, then... Thank you again." She looks over the lake.
+	[ | change_diag_file diag naigad_leaving] (Get dressed)
+||
+
+
+
+
+||>>Romantic encounter (kissing & touching)
+{tell_me_how | pic love_head} She tries to collect herself. "I- I think we- You should start with the light touching and kissing. Just to make this a little less... awkward." She raises herself higher and turns her head to expose her neck to you.
+	[kiss_neck] (Kiss her neck)
+	[kiss_soft_part] (Kiss the soft part under her jaw)
+||
+{kiss_neck | pic love_head} You gently embrace her upper half and kiss the joint between her jaw and neck. You can feel strong, hot heartbeats under the skin with your lips. Her body tenses and relaxes as you plant more careful kisses over her neck. She hesitantly rests her large head over your shoulder and tucks her snout into your neck. You feel her warm breath on your nape.
+{kiss_soft_part | pic love_head} You gently raise her jaw and kiss the incredibly smooth and soft underside, she gasps as you nuzzle her. You can feel strong, hot heartbeats under the skin with your lips. Her body tenses and relaxes as you plant more careful kisses over her neck. She hesitantly rests her large head over your shoulder and tucks her snout into your neck. You feel her warm breath on your nape.
+	[lovebite] (Give her a love bite)
+	[massage_neck] (Massage her head)
+||
+{lovebite} You gently nip on her skin. You hear her softly gasp behind your back. She pushes her weight against you to expose more of her neck. You feel her tail lightly wrap around your ankle.
+	[massage_neck] (Rub her temples and kiss her neck)
+||
+{massage_neck} You place your palms on the sides of her head and gently but firmly rub them in a circular motion. You feel tension in her jaw muscles loosen, and she starts to hum in satisfaction into your ear. You feel a quick lick wet your earlobe and hot air brushing past it as she whispers into it, "Why all this attention to me? It just doesn't seem like a proper transaction anymore."
+	[like_giving] Just relax and let me appreciate you.
+||
+{like_giving} She whispers hesitantly, with a frail voice. "Is it safe to... fall for you? A little bit? I want this to go over the boundaries we set..." You feel her warm body coil tighter around you as she pulls closer.
+	[anything_uwant] Of course, anything you want.
+	[promise_catch] How far do you want to fall? I'll catch you. //showif.charisma.8
+	[not_complicate] We... shouldn't complicate things, just relax and enjoy this.
+||
+{anything_uwant} You feel a strong shiver vibrate through Naigad. She whispers, "Kiss me," and rubs her pointed snout affectionately against your neck.
+{promise_catch} "Oh gods. You are a goof." You feel a strong shiver vibrate through Naigad. She whispers, "Kiss me," and rubs her pointed snout affectionately against your neck.
+	[kiss_naigad] (Kiss her)
+	[kiss_workhow] I'm not sure how that would work.
+||>>Deep kiss
+{kiss_workhow | pic kiss} You open your mouth to ask her but she leans into it before you manage to say anything.<br><br>You can feel her bare bottom teeth lightly scrape on your lips as she tries to form a seal with you. She opens her mouth more and you feel her tongue push into you. Its smooth and coated surface glides around the inside of your mouth. It tastes like sweet fruit. Naigad pushes her tongue deeper into your throat. The slick muscle triggers no gag reflex as you feel it twist deeper until you realize you can't draw breath. Naigad hums affectionately and you can feel your head shake from the low bass.
+{kiss_naigad | pic kiss} You gently hold her head as she pulls from your neck and comes face to face with you. She looks into your eyes, unsure, trying to gauge your thoughts. You turn her head slightly and kiss her. You can feel her bare bottom teeth lightly scrape on your lips as you try to form a seal with her mouth. She opens her mouth slightly and you feel her tongue push into you. Its smooth and coated surface glides around the inside of your mouth. It tastes like sweet fruit. Naigad pushes her tongue deeper into your throat. The slick muscle triggers no gag reflex as you feel it twist deeper until you realize you can't draw breath. Naigad hums affectionately and you can feel your head shake from the low bass.
+	[tap_beak] (Tap on her beak to get her attention)
+	[wait_tongue] (Let her continue)
+||
+{tap_beak | pic love_head} You lightly tap on her beak. She opens her eyes slowly and begins to pulls herself off you. You can feel the long tongue slide from deep within as she pulls her head away, and her tongue lazily follows and rolls back into her maw. A long strand of combined saliva connects briefly the two mouths before it breaks and wraps around her jaw. You draw a deep breath to stave off the lightheadedness that crept up on you. Naigad opens her mouth in shock. "Oh no! Sorry! I didn't realize. I should have! I- I are you okay?" She taps your forehead with her beak.
+	[tongues_big] I'm okay! I'm just not used to tongues that big. It felt nice though.
+	[kiss_diff] I get the feeling your kind kisses differently.
+||>>Knocked unconscious by a kiss
+{wait_tongue | change_env_sounds generic_exterior/lake.20-generic_exterior/lake.14, change_env_sounds sejan/forest_birds.10-sejan/forest_birds.5} You lightly place your hands on the back of her head and enjoy the strange enveloping feeling this kiss gives you. She seems almost drowsy as she rolls her tongue inside you. The humming makes you feel sleepy. You feel like you could just fall asleep as her immense body heat radiates a calming blanket and her soft low hum dulls your senses. Your hands become numb and fall to the side. You can't stay awake. A tinge of panic makes your body twitch when you realize you can't breathe. You feel the numbness overtake you.
+	[knockedthefugout] ...
+||
+{knockedthefugout | change_env_sounds generic_exterior/lake.14-generic_exterior/lake.0, change_env_sounds sejan/forest_birds.5-sejan/forest_birds.0, pic unconscious, auto_continue wakeup_kiss} You see blurry shapes and feel warm sensations around the edges of your unconscious mind.
+
+||
+{wakeup_kiss | change_env_sounds generic_exterior/lake.0-generic_exterior/lake.20, change_env_sounds sejan/forest_birds.0-sejan/forest_birds.10, pic blurry_wakeup} You feel warm, very warm, like wrapped up in a heated towel. Distant sounds become clearer as the numbness turns into coherent tactility again. Naigad has wrapped herself around you and propped you upright. It almost feels like she's hugging you. You feel her hot breath on your nape as she whispers, "Are you awake?" You try to plant your feet properly on the ground as your head clears. She uncoils a bit and lets you move more. "Sorry, I didn't realize I was suffocating you until you fell unconscious. I've only ever kissed my kind before."
+	[strange_pleasant] It was a strangely pleasant experience. A little panic-inducing, but waking up like this definitely makes up for it.
+	[strange_pleasant] How long was I out?
+||
+{strange_pleasant | add_flag naigad_had_amoment, pic kiss_support} "I didn't want to wake you too soon. You looked so peaceful. Don't worry, you didn't sleep for too long, just a short moment." She hums and brushes her face against you. "It was a strange moment. Holding you like this on this silent beach. I felt your heart beat in your chest... It was almost magical." She grins affectionately at you. "I imagine you want to continue our amorous adventure. Sorry for knocking you out." She plants a wet kiss with her tongue on your chest.
+{tongues_big} "Oh, you liked that? " She grins at you. "I would love to explore your body some more..."
+{kiss_diff} "Oh, we don't kiss at all. It's just tongue stuff." She grins at you.
+	[very_sexay] You're very, very sexy, you know that?
+	[very_sexay] I would love that.	//showif.index_is.tongues_big
+||>>Blowjob
+{very_sexay | pic love_head} "I'm starting to understand why you like me so much." She plants another kiss on your chest. "I'm caring..." She kisses lower on your torso. "Beautiful..." She kisses even lower. "Smart..." You feel her wet tongue on your inner thigh. "...And a fun person to be around." She grins upwards at you as your erect cock rests on top of her beak.
+	[bj_rules] I thought we had rules...
+	[head_pet] (Pet her head softly)
+||
+{head_pet | pic blowjob} She purrs under your hand and nuzzles the base of your cock. She twists her tongue around it, you feel hot, wet squeezing glide across your shaft as she pulls it along. She wraps her tongue twice more around it and pulls the whole bundle into her hot maw and closes on it. She then glances upwards as if to taunt you. She winks at you as intense pulsing and bobbing motions around your cock take you by surprise. You clench your teeth and balance yourself by holding onto her head. She adds a twisting motion by rhythmically turning her head as the tongue slides and pulls, her milky, purple eyes still staring at you the entire time. The assault of pleasure makes your feet shake. You can't take this for very long.
+{bj_rules | pic blowjob} She grins. "This counts as light kissing." She nuzzles the base of your cock and twists her tongue around it, you feel hot, wet squeezing glide across your shaft as she pulls it along. She wraps her tongue twice more around it and pulls the whole bundle into her hot maw and closes on it. She then glances upwards as if to taunt you. She winks at you as intense pulsing and bobbing motions around your cock take you by surprise. You clench your teeth and balance yourself by holding onto her head. She adds a twisting motion by rhythmically turning her head as the tongue slides and pulls, her milky, purple eyes still staring at you the entire time. The assault of pleasure makes your feet shake. You can't take this for very long.
+	[stop_bj] (Stop her) 
+	[let_blow] (Let her blow you)
+||
+{stop_bj} You tap her on the cheek and gently push her off you. She gives your shaft a playful lick. "You're not going to let me finish you?"
+	[do_things_you] I want to do things to you as well. 
+	[just_do_it] ...Actually, just do it.
+||
+{just_do_it} She smacks her tongue, slides you back into her mouth, and continues.<br><br>She keeps her unrelenting motion up, until suddenly, she starts to hum. The powerful low bass makes your cock vibrate against the rings of the coiled tongue. The sensation completely overwhelms your mind, your legs struggle to keep you upright. You fall backwards into the warm sand, Naigad still attached to your cock like a giant leech from hell, trying to suck your soul through your urethra. The orgasm knocks your mind blank and you thrust into her maw desperately. She stops her sucking and lets your cock twitch inside her coiled tongue. You can see the messy mix of cum and saliva stream in long streaks from her half-open mouth. The rush calms down and you breathe deep while staring into the sky. Naigad pulls her messy tongue off your cock and swallows. She grins, satisfied, and then resumes nursing the spent shaft, carefully licking it clean.
+{let_blow} She keeps her unrelenting motion up, until suddenly, she starts to hum. The powerful low bass makes your cock vibrate against the rings of the coiled tongue. The sensation completely overwhelms your mind, your legs struggle to keep you upright. You fall backwards into the warm sand, Naigad still attached to your cock like a giant leech from hell, trying to suck your soul through your urethra. The orgasm knocks your mind blank and you thrust into her maw desperately. She stops her sucking and lets your cock twitch inside her coiled tongue. You can see the messy mix of cum and saliva stream in long streaks from her half-open mouth. The rush calms down and you breathe deep while staring into the sky. Naigad pulls her messy tongue off your cock and swallows. She grins, satisfied, and then resumes nursing the spent shaft, carefully licking it clean.
+	[holy_fuck | stop_music 8] Holy fuck!
+	[just_lie_1 | stop_music 8] (Just lie there)
+||
+{just_lie_1 | pic lay_around} You feel yourself sink a little into the fine, warm sand as you close your eyes, Naigad still gently gliding long licks off your softening cock. You can hear the wind rustle the leaves and waves quietly washing the sands. You feel Naigad quietly shifting her weight and moving next to you. You hear her roll on the sand next to you and softly hum. The base of your cock feels a little sore, like someone had tried to pull it off violently.
+	[cock_sore] You did a number on me. My cock hurts.
+	[just_lie_2] (Just lie there)
+||
+{just_lie_2} The two of you silently lie on the sand. After a blissful moment of silence and drowsy lightness, you hear sand shift as Naigad turns her head to you. "You're a lot of fun. I presume you're satisfied with your payment?" She giggles. 
+{holy_fuck | pic lay_around} You hear laughter from the direction of your crotch. Naigad clambers next to you, giggling. "I'm not a priest, but I'm sure a few gods would bless this mess." She catches a strand of saliva dripping from her mouth.
+{cock_sore} She turns her head to you. "Oh gods! Sorry! I might have been a little too excited." She pushes against your neck and whispers slyly. "Maybe I should kiss it to make it better..."
+	[dick_fall_off] I could go for seconds but I'm pretty sure my dick would fall off if I tried.
+	[ur_lotoffun] You're a lot of fun. I'm very satisfied with this transaction.
+	[spent_disappointed] Spent, demolished, annihilated, and a little disappointed I didn't stick my dick in you.
+||
+{dick_fall_off} She laughs quietly in your ear. "Let us not tempt fate, then." She slaps you playfully with her tail.
+{ur_lotoffun} She laughs quietly in your ear. "I do like <b>hard</b> currency in my dealings." She slaps you playfully with her tail.
+{spent_disappointed} She laughs quietly in your ear. "The tongue coil of doom is a good replacement though?" She slaps you playfully with her tail.
+	[naigad_plans] So, what are you going to do next? You seem to have plans for that thing we dredged up?
+	[coil_of_doom] Oh, you've named the constrictor that lives in your mouth? //showif.index_is.spent_disappointed
+||
+{naigad_plans} "You're a real sweetheart, but I just don't share my plans with people. It's a self-preservation instinct I've learned the hard way... so don't take it personally."
+{coil_of_doom} She laughs. "Thanks for feeding it." 
+	[sure_ok] Sure, I get it. //showif.index_is.naigad_plans
+	[sure_ok] This whole thing was fun.
+	[help_notneeded] I imagine you won't need my help going forward? Having five fingers is a very situational superpower after all. //showif.charisma.8
+||
+{sure_ok | remove_pic} Naigad stands upright and you follow as to not make the conversation awkward. "I- I should go. This was fun." She glances at the lake and then at you, unsure.
+{help_notneeded | remove_pic} Naigad stands upright and you follow as to not make the conversation awkward. "I'm sure ladies appreciate the number of digits you have at hand, but no. I'm afraid your usefulness to me is limited. Not that it's a bad thing.<br><br>I... I think I should go, as fun as this has been." She glances at the lake and then to you, unsure.
+	[ | check_flag naigad_had_amoment no_moment yes_moment] Naigad... did we have a moment back there?
+	[hope_success] I hope you're successful in whatever you're doing.
+	[meet_again] Will we meet again?
+||>>romantic aftermath
+{yes_moment | add_flag naigad_starcrossed_lover, character_leave} She turns to face the lake and hangs her head slightly. "I... think we did." She gracefully leaps into the lake and disappears with a splash.
+{no_moment | character_leave} She snorts, amused. "You're a funny man, -name-." She gracefully leaps into the lake and disappears with a splash.
+{hope_success | character_leave} "I hope for that too. Farewell, -name-!" She gracefully leaps into the lake and disappears with a splash.
+{meet_again | character_leave} "Very unlikely! I wish you a good life and farewell." She gracefully leaps into the lake and disappears with a splash.
+{sit_on_shore} You sit on the beach. The lake feels eerily silent and cold compared to the moment earlier. You can't see or hear Naigad.
+{please_dont_go} You watch the surface of the settled lake as leaves rustle in the wind. The lake stays silent and there is no answer.
+	[please_dont_go] Naigad... Please don't go. //showif.index_is.yes_moment
+	[sit_on_shore] (Sit on the shore for a while) //hideif.index_is.sit_on_shore
+	[ | change_diag_file diag after_sex] (Get dressed)
+||
+	
+	
+	
+	
+	
+	

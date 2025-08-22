@@ -1,0 +1,39 @@
+default_env:	sejan_forest
+
+
+
+<STATS
+charisma:		4
+will:			4
+intelligence	4
+agility:		10
+strength:		6
+endurance:		6
+
+hitpoints:		30
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	0
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+hooked_slash
+hooked_slash
+hooked_slash
+bite
+slash
+slash
+slash
+snap_bite
+snap_bite
+tail_whip
+tail_whip
+tail_whip
+body_tackle
+CARDS>

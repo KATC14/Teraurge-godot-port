@@ -1,0 +1,173 @@
+
+
+{after_sex | start_music sejan_taodal/taulsol 70 3, sex_gate after_sex_malepc after_sex_fempc}
+
+||>>after sex with femPC
+{after_sex_fempc | save_index we_banged} Taulsol springs up to meet you and flashes a quick smile. "Hello, -name-!"
+	[femafter_1] You seem happy, something happen?
+||
+{femafter_1} "You know exactly what happened." He gives you a not so subtle wink.
+	[femafter_2] Yes, I suppose I do...
+||
+{femafter_2} Taulsol scratches his head. "I actually wanted to talk about that."
+	[talk_abut_f] What about it?
+||>>after sex with malePC
+{after_sex_malepc | save_index we_banged} As Taulsol notices you, he looks nervously over the pier and shyly brings his eyes to you. "Hello, -name-."
+	[maleafter_1] What's wrong?
+	[maleafter_11] Is this about the thing we did? //showif.charisma.6
+||
+{maleafter_1} He laughs nervously and nods at the beach. "It's just the thing we did on that beach. It was fun."
+{maleafter_11} He laughs nervously. "Yeah, it's about that."
+	[maleafter_2] What about it?
+	[maleafter_22] It didn't leave a sour taste for you, did it? //showif.charisma.6
+||
+{maleafter_22} He shakes his head. "No, not at all.<br><br>It's just... I see you very differently now. It's strange."
+{maleafter_2} "It's just... I see you very differently now. It's strange."
+	[maleafter_3] In what way?
+||
+{maleafter_3} He coughs. "Not in a bad way."
+	[talk_abut_m] That's good to hear.
+||>>About that beach sex
+{talk_abut_m} "And one thing about that... I- I know I didn't make it clear at the time, but we shouldn't take this as a serious thing, and we probably shouldn't do it again."
+{talk_abut_f} "I- I know I didn't make it clear at the time, but we shouldn't take this as a serious thing, and we probably shouldn't do it again."
+	[talk_abut_1] Oh, don't worry about it. It was just some fun.
+	[talk_abut_samesex] It's not because I'm a man, is it? //showif.player_sex.male
+	[talk_abut_11] ...Are you sure? I'd love to spend more time with you.
+	[talk_abut_111] The guard stuff probably gets in the way, duty calls and all that?
+||
+{talk_abut_samesex} "I-It's not about that, It's really not about that.<br><br>I just... usually make the score clear before engaging in things like this, but ours was such a sudden thing I stopped thinking."
+{talk_abut_1} He sighs. "Thank the gods! I usually make the score clear before engaging in things like this but ours was such a sudden thing I stopped thinking."
+{talk_abut_111} He nods. "My job does make it harder, but I usually make the score clear before engaging in things like this but ours was such a sudden thing I stopped thinking."
+	[fuck_friends] If you ever feel like doing another 'sudden thing', let me know. We can mess up the beach some more together. //showif.charisma.8
+	[fucky_frendo] I get it, no harm, just fun.
+||
+{talk_abut_11} "I'd love to spend more time with you too, but we should keep it at 'friends'. I don't want to lead you on that we could become something else in the future, I- I can't promise something like that, not right now."
+	[fucky_frendo] I'm okay with friends.
+	[fuck_friends] Can we still fuck? //showif.will.8
+	[fucky_bitter] I guess that's something I'll have to live with.
+||
+
+
+||>>CONVO HUB
+{we_banged | start_music sejan_taodal/taulsol 70 3} "Hello, -name-."
+{fuck_friends} Taulsol's mouth clamps up and his finger taps nervously on the spear. "Um- Uh, I- I... will let you know."
+{fucky_frendo} "Thank you, you have no idea how relieved I am."
+{fucky_bitter} "I'm sorry, -name-. I should have told you beforehand, it's my fault." He lowers his head slightly.
+{hello} "Hey there, -name-."
+{ask_bykaas | add_flag bykaas_ask_robotarm} "You know, I think Bykaas talked about a friend or a cousin of hers that had a robot arm. You could ask her about it? She might know how this works."
+{glad_help} "I'll find a way to repay this to you somehow, I promise."
+{silent_return} 
+	[want_sum_arm] I have come into possession of a spare arm, and I thought you might be interested in it? //showif.has_item.robot_arm //hideif.clicked
+	[arm_install] I know how to install the arm. //showif.has_flag.pc_knowledge_biomuh //hideif.has_flag.taulsol_has_robotarm //showif.has_item.robot_arm //hideif.clicked
+	[how_doing] How are you doing? How's the arm? //showif.has_flag.taulsol_has_robotarm //hideif.clicked
+	[ | start_encounter taodal taodal] Bye for now. (Leave)
+||>>CONVO HUB
+
+
+||
+{arm_end} You hear someone call for Taulsol in the village, he turns his head to the sound and waves his arm. "Thank you again, I'll try to acclimate to it. Maybe show it off and scare a few friends.<br><br>I believe I'm needed elsewhere, sorry. Thank you again, but I have to go. Bye for now!"
+{arm_boon} You hear someone call for Taulsol in the village, he turns his head to the sound and waves his arm. "I think it will be a boon for me. Thank you again, I'll try to acclimate to it. Maybe show it off and scare few friends.<br><br>I believe I'm needed elsewhere, sorry. Thank you again, but I have to go. Bye for now!"
+	[bye_arm] Of course, have fun with it.
+||
+{bye_arm | character_leave} He nods and walks off.
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+||>>How you doin'
+{how_doing} "It's incredible. It really feels like a real arm. Even the downward facing thumb isn't giving me any trouble. It's not actually as clumsy as it seems."
+	[no_issues] You're not having any pain or other issues?
+||
+{no_issues} He looks at the arm. "Not really. I feel the stump itch sometimes, but it goes away after a while. The arm seems to work perfectly. I cannot thank you enough!"
+	[glad_help] I'm just glad to help.
+||
+
+
+||>>NEED A HAND???
+{want_sum_arm} He cocks his head quizzically. "What do you mean?"
+	[here_arm] (Show Taulsol the robot arm)
+||
+{here_arm} You produce the arm and show it to Taulsol; his eyes bug out of his head. "T-That's a cybernetic arm? Are you serious? Where did you get it?" He pokes it in disbelief.
+	[letsarm_1] A shady serpent woman at the lake gave it to me for a favor. I thought you could use it?
+	[letsarm_1] I got it as a payment for a favor.
+||>>Arm declined (Taulsol refuses the arm but later thinks it over and accepts)
+{letsarm_0} "And you want to give it to me? I- I don't know." He shakes his head nervously.
+	[what_mean_arm] What do you mean?
+||
+{what_mean_arm} "Sorry, I don't think I want it. I- I'm fine like this. I don't actually need a new arm, and putting on a robot arm doesn't bring back my old arm.<br><br>I appreciate the thought, but I have to decline."
+	[scared_arm] You're not just scared of putting it on, are you? //showif.charisma.8
+	[scared_arm] Are you sure?
+||
+{scared_arm} "I just don't want it. Thank you, but no, thanks."
+	[okay_arm] Alright, if you're sure.
+	[sure_arm] Let me know if you change your mind.
+||
+{okay_arm} "Sorry. Thank you, but... I can't."
+{sure_arm} He nods.
+||>>Arm accepted
+{letsarm_1} Taulsol stares at the arm for a moment, stunned. "How do you, uh, put it on?"
+	[armstall_2] We have to water the soft material at the end, poke holes in the stump, stick them together, and turn the power on. //showif.has_flag.pc_knowledge_biomuh
+	[how_indeed] I'm not sure. //hideif.has_flag.pc_knowledge_biomuh //showif.charisma.6
+	[how_indeed] Uh... I don't know. //hideif.has_flag.pc_knowledge_biomuh
+||
+{how_indeed} "Huh." Taulsol scratches his head.
+	[ask_bykaas] We could just try to put it on the stump and see what happens?
+	[ask_bykaas] Yeah, I think I should look into that.
+||
+
+||>>installing the new arm
+{arm_install} Taulsol perks at the sight of the arm. "So, how do we install it?"
+	[armstall_2] We have to water the soft material at the end, poke holes in the stump, stick them together and turn the power on.
+||
+{armstall_2} "...Poke holes in my stump? Are you sure? I really don't want to do that and find out it doesn't work."
+	[armstall_3] The biomuh needs the holes to grow into your nerves and bone. 
+||
+{armstall_3 | pic armstall} "Well, I guess I'll heal anyway if it doesn't work." Taulsol unsheathes his knife and makes several cuts into the stump. "F-Fuck... It doesn't hurt as much as I thought, but it stings bad."
+{you_cut_urself} "Just stick the arm on so I can bandage this if it doesn't work."
+	[you_cut_urself] Woah! You could have given a warning or something. //showif.index_is.armstall_3
+	[armstall_4] (Dip the robot arm in the water)
+||
+{armstall_4} You lean over the pier to dip the end of the arm in water and then lift it back.
+	[armstall_5] (Stick the arm on the cut stump)
+||
+{armstall_5} Taulsol grimaces as you press the wet and soft biomuh-covered arm over the stump. 
+	[armstall_6] (Turn the power on)
+||
+{armstall_6 | play_sound generic/tech/start_mix 70} You press the power button, and the arm whirs alive. Taulsol's eyes widen from shock, and he stares at the stump covered by the arm. "I-It's definitely doing something."
+	[armstall_7] Do you want me to stop?
+	[armstall_77] We should hold it for a while, so it's properly attached.
+||
+{armstall_7} "No. Let's give it some time. It's kinda tickling? It burns a bit. I can feel something cold in my stump. It's not really hurting."
+	[armstall_8] (Wait and hold the arm)
+||
+{armstall_77} "That sounds sensible. It's just tickling a little anyway." You keep the arm still and pressed on Taulsol while he tries to peek under the arm. A few passing people make odd glances at you, and Taulsol gives them awkward nods.<br><br>Tausol taps the arm. "I don't feel the tickling anymore. I think it's attached. Let it go."
+{armstall_8} You keep the arm still and pressed on Taulsol while he tries to peek under the arm. A few passing people make odd glances at you, and Taulsol gives them awkward nods.<br><br>Tausol taps the arm. "I don't feel the tickling anymore. I think it's attached. Let it go."
+	[armstall_9] (Let go of the arm)
+||
+{armstall_9} You release your hold on the arm – it stays on. The arm suddenly moves, and Taulsol laughs in shock. "I can feel the wind on it!"
+	[armstall_10] Does it work properly? Try to flex it a bit.
+||>>Yup, It's a right handed arm, check the original sketch in Naigad's quest.
+{armstall_10} He laughs and flexes the arm. He looks at the hand and then suddenly stops. "Uh, -name-... I think we might have a problem."
+	[thumb_prob] It's not hurting you, is it?!
+	[thumb_prob] Is something broken?
+||
+{thumb_prob | change_default_sprite taulsol robot_armed, change_sprite robot_armed, remove_pic} "No... I think it's working and all, but... Is the thumb supposed to point downwards?" You look at the arm. You have installed a right arm on his left side. The thumb points down.
+	[fuck_uninstall] Fuck. Maybe we can take it off?
+	[cry_laugh] ...I don't know whether to cry or laugh.
+||
+{fuck_uninstall} "I don't think... that's possible. I can feel cold tendrils extend pretty far up my stump. I can feel the wind on the arm... It's pretty disconcerting."
+	[switch_thumb] We can't leave it like that. Maybe we can switch the... um, the thumb side?
+	[switch_thumb_2] Are you okay with it?
+||
+{cry_laugh} "Laugh a bit. It looks really odd, but I don't think using the hand will be a problem? The downward thumb might even help with carrying stuff?" He wiggles the fingers on the robotic hand and chortles.
+{switch_thumb} "It looks really odd, but I don't think using the hand will be a problem? The downward thumb might even help with carrying stuff?" He wiggles the fingers on the robotic hand and chortles.
+{switch_thumb_2} "It looks really odd, but I don't mind it. The downward thumb might even help with carrying stuff?" He wiggles the fingers on the robotic hand and chortles.
+	[arm_arm] I feel a bit guilty installing a wonky arm on you.
+	[arm_arm] If you're okay with it, I am too.
+||
+{arm_arm | add_flag taulsol_has_robotarm} "I had no idea these things were so life-like. Just looking it move as I... move it. It's like I'm animating some sort of a corpse or something. The five fingers feel really strange. I think it's confusing my brain a bit."
+	[no_trouble] I hope it keeps working and doesn't cause any trouble for you.
+||
+{no_trouble} "So far, so good. I think it will hold up.<br><br>Thank you, -name-. An arm is a rare gift."
+	[arm_end] My pleasure.
+	[arm_boon] I hope it helps you in some way.
+||

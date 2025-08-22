@@ -1,0 +1,16 @@
+interior:	no
+
+discoverable:		yes
+dicovery_message:	You have found an abandoned well.
+default_message:	Do you want to visit the abandoned well?
+
+
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_abandoned_well sejan_abandoned_well} Encounter
+||

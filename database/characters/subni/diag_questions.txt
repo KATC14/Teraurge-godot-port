@@ -1,0 +1,159 @@
+
+
+||>>Question over
+{question_over | counter subni_earned_questions - 1} "Oki, you got question. More game?"
+	[ | check_counter subni_earned_questions 1 earn_more has_earned] Can I ask another question?
+	[ | change_diag_file diag lose_rigged] Okay, sure.
+	[ | change_default_diag_file subni diag, start_encounter taodal_tavern taodal_tavern] Nah. I'll be going now. (Leave)
+||
+{earn_more} "Nuh! One game, one question!<br><br>Play more, then?"
+	[ | change_diag_file diag lose_rigged] Sure, deal the Randticks.
+	[ | change_default_diag_file subni diag, start_encounter taodal_tavern taodal_tavern] Nah. I'll be going now. (Leave)
+||>>QUESTIONS HUB
+{start}
+{has_earned} "Earned questions. Ask."
+{not_warm_enough} "Subni prefers warmer. Not eat well, fat lacking. The skins help for now. Sorry, answer not very interesting, ask another question."
+	[funny_talk] All talk is translated somehow in this world, but the way you talk seems a bit- you know... funny?  //hideif.clicked
+	[skin_condition] Are you alright? There seem to be... growths on your head. What are they?  //hideif.clicked
+	[get_to_know_better] Do you think we could get to know each other a little more... intimately?  //hideif.clicked
+	[know_about_taodal] What do you know about Taodal?  //hideif.clicked
+	[what_do_you_do] What do you usually do around here?  //hideif.clicked
+	[taodal_people] What do you think about the people here?  //hideif.clicked
+	[not_warm_enough] The temperature here is really warm, do you really need that much clothing?  //hideif.clicked
+	[ | change_diag_file diag silent_return] (Back)
+||>>Funny talk
+{funny_talk} Subni snorts a laugh at you. "Should hear you, you. Subni keeping serious very hard. What does me sound like?"
+	[i_sound_funny] Wait, I sound funny to you?
+	[how_you_sound] Your talk is kinda stilted, and the words are kinda jumbled, but it's still understandable.
+||
+{how_you_sound} Subni's mouth turns into a sad frown. "That not funny. That only understanding made hard. No strange noise or silliness?"
+	[i_sound_funny] Do I make strange noises?
+	[i_sound_funny] Nothing, sorry.
+||
+{i_sound_funny} Subni giggles. "Sorry! You sounds very odd. Like angry breathing, then word, happy breathing, then word. Whinny bang and more words."
+	[i_sound_what] ...What?
+	[retarded_yoda] Well, you sound like a retarded Yoda.
+||
+{i_sound_what} "Yes! It very entertaining. Very odd, can understand still. Think."
+	[sounds_bizarre] I have no idea of what you just described. It sounds bizarre.
+	[game_face] How are you not constantly laughing at me?
+||
+{retarded_yoda} "Yoda surely beautiful, rich?"
+	[not_really] Not really.
+	[pretty_yoda] Sure, she's pretty. (Lie)
+||
+{sounds_bizarre} "It be what it be. Don't worry, it not so bad."
+{game_face} "Game face! Good for games."
+{not_really} "You tease."
+{pretty_yoda} "Subni dumb, pretty girl, then." She smiles.
+	[question_over] Right.
+||>>Skin condition
+{skin_condition} She taps one. It produces a hard knocking sound. "Horns!<br><br>Subni has sickness. It grows horns. No normal horns, be smooth head."
+{what_illness} "Silly illness? Subni knows not."
+	[what_illness] What kind of illness makes horns grow out of you? //hideif.index_is.what_illness
+	[contagious] Is it contagious?
+	[horrible_horns] That sounds horrible.
+	[horns_hurt] Do they hurt?
+||
+{contagious} "Noo!... Actually, not know. But! Subni never seen anyone get sick and no one concerned."
+	[so_dont_know] So... You don't know?
+	[question_over] Okay.
+||
+{so_dont_know} "No, Subni not know. Scared little but not hurt but sometime itchy."
+{horrible_horns} "Is not. It not hurt but sometime itchy."
+{horns_hurt} "Not hurt but itchy sometime."
+	[scratch_horns] Want me to scratch?
+	[seen_doctor] Have you seen a doctor?
+||
+{scratch_horns} She giggles. "Do scratch."
+{joking_scratch} "Scratch! is okay!"
+	[scratch_head] (Scratch her head)
+	[joking_scratch] I was just joking. //hideif.index_is.joking_scratch
+	[seen_doctor] Have you seen a doctor?
+||
+{seen_doctor} She sighs. "Try find doctor in city. Not find one. Horns not bother but concerned."
+	[find_doctor] Do you want me to find a doctor for you?
+	[question_over] If you say so.
+||
+{find_doctor} "Is okay. Horns not bother. No need."
+	[should_dr] I really think you should have a doctor take a look at that.
+	[question_over] If you say so.
+||
+{should_dr} "If find doctor. Let know."
+	[question_over] Sure.
+||
+{scratch_head} You scratch the soft fur on the side of her head, under the horns. She smiles slyly at you. "Five finger feel funny."
+	[seen_doctor] Have you seen a doctor about those?
+	[scratch_else] Wanna have me scratch you anywhere else?
+	[soft_fur] You have really soft fur.
+||
+{scratch_else} Her voice has a soft rumble. "You good scratch. Subni good now. No need elsewhere..."
+{soft_fur} Her voice has a soft rumble. "Thank. You good scratch."
+	[question_over] Sure.
+	[question_over] You're nice to scratch too.
+||>>Get to know better
+{get_to_know_better} She cocks her head, confused. "What?"
+	[akward_intimacy] You know... uh- intimately.
+	[blunt_flirt] I want to carry you to your room for consensual sex between two adults. //showif.has_stat.charisma.6 //showif.has_stat.will.6
+||
+{akward_intimacy} "What mean?"
+	[interested_in_fun] I'm just wondering if you're interested in having 'fun'?
+	[subni_tease] Actually... Nevermind!
+||
+{interested_in_fun} "Games fun! Throw Randticks!"
+	[subni_tease_1] ...I was talking about sex.
+	[subni_tease] Sure... We can play.
+	[subni_tease] Nevermind.
+||
+{subni_tease} "Subni tease!<br><br>Get what you mean but not here to... polish spears! Subni fine alone. Subni flattered. You large hunky."
+{subni_tease_1} She giggles uncontrollably. "Subni tease!<br><br>Got first what you mean! Is sorry, Subni fine alone. Flattered. You large hunky."
+{blunt_flirt} She bursts into laughter. "People hit Subni but never like that. Silly!<br><br>If talk me like that far early, Subni jump on you for fun. Is sorry, Subni is fine alone for this time. Subni thank for laughs, attention. Nice you."
+	[question_over] Oh, well, let me know if you change your mind. I bet you're a lot of fun.
+||>>Taodal
+{know_about_taodal} "Boats come, go. Tavern people come, go. Not know much village."
+	[oneof_locals] I'm guessing you're not one of the locals, then?
+||
+{oneof_locals} "No. Come here on boat."
+{where_come} "Take boat from city. Up river, at edge of sands."
+	[why_come] Why'd you come here?
+	[where_come] Where did you come from? //hideif.index_is.where_come
+||
+{why_come} "Subni... not talk of that. Sorry."
+	[question_over] That's okay.
+	[why_not_where] Why not?
+||
+{why_not_where} "Is personal. Sorry."
+	[question_over] Okay.
+||>>what do you do
+{what_do_you_do} "Play game, sleep, play game again! Is waiting."
+{how_long_here} "Not long but long to bored."
+	[how_long_here] How long have you been here? //hideif.index_is.how_long_here
+	[what_waiting] What are you waiting for?
+||
+{what_waiting} "Subni... not tell. Sorry."
+	[question_over] That's okay.
+	[why_not_tell] Why not?
+||
+{why_not_tell} "Just... No."
+	[question_over] Okay.
+||>>taodal people
+{taodal_people} "People in tavern nice. Keep themselves. Bykaas nice. Not know village people but angry and nosy mayor."
+	[talking_tornoth] Are you talking about Tornoth?
+||
+{talking_tornoth} "Wanted know why I keep so long."
+	[tornoth_nosy] Yeah, he's pretty nosy.
+	[actually_why_here] Actually... What do you do here?
+||
+{tornoth_nosy} "Tornoth try scare. Empty air mostly. Weakness to women, any women. So, Subni melt him."
+	[tornoth_weakness] He has a weakness for women?
+	[tornoth_questioned] He questioned me when I got here too.
+||
+{tornoth_questioned} "Why here? What do? What name? And all. Tiny tyrant!"
+	[question_over] Yeah!
+||
+{tornoth_weakness} "Yes! Women make sad and happy. Has history. Maybe wife problem?"
+	[question_over] Interesting.
+||
+{actually_why_here} "Topic different. Different question."
+	[question_over] Right.
+||

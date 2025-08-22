@@ -1,0 +1,25 @@
+
+
+
+>>This is an environment with a mystery box and a rusted cleaver weapon. This is supposed to be a larger thing, but you know... deadlines and stuff.
+||
+{start | save_index visited} Walking down the narrow beach, you're stopped by a vertical cliff face. The shaded nook seems to be the end of the beach.
+{visited} You stop by the shaded nook.
+{take_box | remove_pic} You stash the box and get up.
+	[investigate] (Look around) //hideif.clicked
+	[ | end_encounter] (Leave)
+||
+
+||>>Old box
+{investigate | pic cleaver_box} You take a quick walk around the nook. As you trace the edge of the cliff, you find old, half-rotten wooden boards. You move the boards and dig the sand a bit and find a small metal box with a rusted sword or a cleaver resting on it.
+	[take_cleaver] (Take the cleaver and examine the box)
+||
+{take_cleaver | give_item rusted_cleaver} The cleaver is heavy and pocked with rust. The edge is so worn it has become serrated. You stash it.<br><br>You pick up the metal box out of the sand, it's very heavy for its size. You knock on its surface, and the dull bang seems to indicate the metal is very thick. The front of the box has an angular lock integrated into the shell. The box has no inscriptions or symbols on it. In stark contrast to the cleaver that rested on top of it, it has no rust on it.
+{force_open} You try to grip on the box, but the sides are too smooth, and the lid is fitted too well. You wrangle with the box but cannot open it.
+{lockpick} You take a nail and start poking inside the lock. The rough nail barely fits into the keyhole, and you cannot move it inside of it much at all.
+{crowbar_open} You take out your crowbar and try to jam it between the lid and the base. The slit is too thin to fit the crowbar in. You give up. 
+	[force_open] (Force the box open) //hideif.clicked
+	[lockpick] (Use a nail to pick the lock) //hideif.clicked //showif.has_item.box_of_nails //showif.intelligence.8 
+	[crowbar_open] (Crowbar the box open) //hideif.clicked //showif.has_item.crowbar
+	[take_box | give_item the_odd_lock_box] (Take the box)
+||

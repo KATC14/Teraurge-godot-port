@@ -1,0 +1,82 @@
+>>Everything related to drinks is here now
+
+||>>return to main diag
+{silent_return | change_diag_file diag silent_return} 
+||
+
+||>>Drinks menu
+{start}
+{drink_suggest | add_flag pc_knowledge_meirolli, add_flag pc_knowledge_rolli} "Well... I usually just tell people to order meirolli, but the batch I've got has a consistency of water, so don't. You should order rolli. I know people don't like the sweet taste but it's better than watery meirolli."
+{describe_meirolli} "Oh? Oh!<br><br>You must come from far away? Uh... Meirolli is a common drink. Tangy and gets you drunk. Rolli is just less refined meirolli. Still sweet, doesn't really get you drunk but gives you a buzz. They're made from various jungle fruits, but cheap stuff is just a mix of the leftovers. I sell the cheap stuff."
+{pass_ob} "That's perfectly reasonable! I wouldn't want to mop up the puke anyway."
+{obassinian_black_2 | add_flag bykaas_obassinian_black_no} "I'm not going to give you another glass of that horrific mess."
+	[drink_suggest] I have no idea what kind of drinks you serve. Can you suggest some?	//hideif.clicked
+	[describe_meirolli] Could you describe meirolli and rolli?	//showif.index_is.drink_suggest
+	[meirolli] Meirolli, please.	//showif.has_flag.pc_knowledge_meirolli
+	[rolli] Rolli, please.	//showif.has_flag.pc_knowledge_rolli
+	[obassinian_black] Obassinian Black, please.	//showif.has_flag.pc_knowledge_obassinian_black //hideif.has_flag.bykaas_obassinian_black_no
+	[silent_return] (Back)
+||
+
+||>>Meirolli
+{meirolli} "That's four krats."
+	[buy_meirolli | take_money krats 4] (Pay four krats) //showif.has_krats.4
+	[silent_return] ...I'll pass.
+||
+{buy_meirolli | play_sound generic/objects/glass_pour 70, pic drink_meirolli} Bykaas bends over and clinks behind the counter. She slides you a green mug with honey-colored liquid in it. It smells tangy and dry.
+	[ | change_diag_file diag drink_meirolli] (Drink it)
+||>>Rolli
+{rolli} "That's four krats."
+	[buy_rolli | take_money krats 4] (Pay four krats) //showif.has_krats.4
+	[silent_return] ...I'll pass.
+||
+{buy_rolli | play_sound generic/objects/glass_pour 70, pic drink_rolli} Bykaas bends over and clinks behind the counter. She slides you a green mug of honey-colored liquid with excessive foam sliding down the side. It smells almost like a freshly peeled banana but stronger.
+	[ | change_diag_file diag drink_rolli] (Drink it)
+||>>Obassinian Black
+{obassinian_black | check_flag bykaas_obassinian_black obassinian_black_1 obassinian_black_2}
+{obassinian_black_1} "Fancy! But, are you... sure? You do know what that drink is?"
+	[take_ob] Of course. Just pour it for me. (Lie)
+	[explain_ob] I have no idea, please tell me.
+||
+{explain_ob} "It's a black, chunky soup of half rotten fungi you drink from a glass."
+{why_drink_ob} "No idea! I do have several bottles of it at the back because people keep asking for it.<br><br>The frigging thing is named after a plague!"
+	[why_drink_ob] ...Why would anyone drink that? //showif.index_is.explain_ob
+	[impress_ob] ...Would you be impressed if I downed a glass?
+	[take_ob] I'll take it.
+	[pass_ob] I've changed my mind. I don't want an Obassinian Black any more.
+||
+{impress_ob} "Pff! I would be! I would be! I've seen so many people spew their guts on the first sip that I know you have no chance.<br><br>I would have to take ten krats for the misery you're about to immerse yourself in."
+{take_ob} "I will have to take ten krats for the misery you're about to immerse yourself in."
+	[try_ob | take_money krats 10] Pour it. (Pay ten krats) //showif.has_krats.10
+	[pass_ob] ...I'll pass.
+||
+{try_ob | pic drink_obassinian} "You asked for it." She disappears for a second and comes back with a glass filled with runny, black slime with small chunks of feathered white spots. The smell of rotten fruit and a hint of vinegar fill the air.
+{supposed_look_ob} "As far as I know..." She clinks the glass with her finger. The black mess wiggles slightly. "-Yes."
+	[supposed_look_ob] ...Is it supposed to look like that? //hideif.index_is.supposed_look_ob
+	[ | add_flag pc_tasted_obassinian_black, check_stat will 6-8-10 ob0-ob1-ob2-ob3, add_flag bykaas_obassinian_black] (Drink it)
+	[pass_ob | remove_pic] Actually, keep the money. I'll pass.
+||>>Puke challenge
+{ob0} You lift the mug to your lips and the disgusting smell smothers you completely. Your stomach turns and you spew all over the mug, the counter, and Bykaas. She jumps away as you fold over and puke on the floor. You feel your stomach empty completely and then you loudly draw breath as the torrent stops.
+	[outside_go] (Get up)
+||
+{ob1} You lift the mug to your lips, quickly sip, and gag. You try to cover your mouth but the puke forces itself past your lips and fingers. You turn to wretch on the floor. You empty your stomach completely and then loudly draw breath as the torrent stops.
+	[outside_go] (Get up)
+||
+{ob2} You lift the mug to drink. An absolutely horrifying smell smothers you but you tilt the glass and the sludge slides into your mouth. The taste is indescribably bad. You can feel chunks get stuck in your throat as you swallow the thick mess. You desperately down the last drop of the disgusting soup and grimace. Bykaas looks concerned at you. "Are you feeling okay?" You can feel your stomach churn as you try to calm yourself, but you fold over and puke on the floor. You empty your stomach completely and then loudly draw breath as the torrent stops.
+	[outside_go] (Get up)
+||
+{ob3 | remove_pic} You lift the mug to drink. An absolutely horrifying smell smothers you but you tilt the glass and the sludge slides into your mouth. The taste is indescribably bad. You can feel chunks get stuck in your throat as you swallow the thick mess. You down the last drips and notice the small white chunks still clinging to the glass. You notice Bykaas slowly reaching for the mop. You shake your head and the overwhelming taste slowly fades from your mouth.
+	[disgusting_ob] That was disgusting.
+	[nice_ob] It tasted pretty nice. (Lie)
+||
+{disgusting_ob} "Oh, the lords of the plains and fires... How did you manage that? It was disgusting to just watch you drink it. I think I saw one of the chunks move."
+{nice_ob} "Even if you liked it... I'm not going to believe you... It was disgusting to just watch you drink it. I think I saw one of the chunks move."
+	[ | change_diag_file diag impressive_ob] Pretty impressive?
+	[ | change_diag_file diag not_doing_that] Yeah... I'm not doing that again.
+||
+{outside_go} You fight your cramping stomach muscles as you get up. Bykaas grabs you. "I shouldn't have given you that. Outside! Go!" She yanks you up and pushes you at the tavern door. You hobble through the drinking hall, holding your mouth.
+	[gogo_outside] (Go outside)
+||
+{gogo_outside | change_environment taodal_pier, remove_pic, hide_character} You reach the pier and bend over the railing. You cough a few spits and chunks into the water. You feel a little better.
+	[ | start_encounter taodal_pier taodal_pier] (Gather yourself)
+||

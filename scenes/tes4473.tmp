@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://crcxbt553wlb7"]
+
+[ext_resource type="Texture2D" uid="uid://nexboshpev63" path="res://assets/images/clouds1.png" id="1_kodsi"]
+[ext_resource type="Script" path="res://scripts/test1.gd" id="1_lhoak"]
+[ext_resource type="Shader" path="res://scripts/testt.gdshader" id="2_dgwpj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkah7"]
+shader = ExtResource("2_dgwpj")
+shader_parameter/base1 = Vector4(1, 1, 1, 1)
+shader_parameter/blend1 = Vector4(1, 1, 1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_lhoak")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_pkah7")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_kodsi")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

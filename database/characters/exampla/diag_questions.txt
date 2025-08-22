@@ -1,0 +1,65 @@
+
+
+>>This is a example (Questions) diag file.
+ 
+>>The questions hub often gets a lot of return indexes from question ends and it bloats it fairly fat.
+
+
+||>>QUESTIONS HUB
+{start} 
+{why_no_dialogue} "It's because the start index in the diag_questions doesn't have any text in the npc line.<br><br>The great and powerful wizard MD figured that having exit and entry lines like 'can I ask you few questions?' and 'I hope my answers sated your curiosity' were corny, grating and unnecessary after a while.<br><br>Aaaaaaand I do agree with him."
+{not_care} "Makes sense."
+{keep_doing_it} "Sorry. I can't stop myself around smelly people."
+{do_not_think} "I know. I know...<br><br>It's best not to think about it."
+{makes_sense} "Uh huh, It does. doesn't it."
+	[why_no_dialogue] Why do you have no dialogue when I pick the (Questions) option? //showif.index_is.start //hideif.clicked
+	[tragic_backstory] So... Uh, what's your backstory? //hideif.clicked
+	[ur_mom] Why did you say that stuff about my mom? //showif.has_flag.exampla_did_your_mom //hideif.clicked
+	[ | change_diag_file diag silent_return] (Return)
+||>>QUESTIONS HUB
+	
+
+
+	
+||>>Tragic backstory
+{tragic_backstory} She checks her notes. "It seems... My parents were killed during a particularly violent storm and MD raised me as an apprentice to his craft.<br><br>Why is this retard man writing this shit again? Isn't this just a porn game?"
+	[bleh] Okay.
+	[emotional_connection] I think it's supposed to create an emotional connection with the porn?
+||
+{emotional_connection} "Does it?"
+	[bleh] I'm not sure, but it's kinda interesting.
+	[bleh] Ehh... I'm here to just look at the pics.
+||
+{bleh} "Pfft... You wanna hear the real shit? My actual backstory?"
+{meta_joke} "That's true, but the whole thing is more complicated and sordid."
+	[meta_joke] You're a meta joke inside a porn game about xenophilia? //showif.index_is.bleh
+	[sure_give] Sure, give it to me.
+	[not_care] Eh, I don't care.
+||
+{sure_give} "You see, I've existed in different forms for a while, but always as a blue lizard. Sometimes with tits, sometimes on fours with horns. But always as a blue lizard.<br><br><b>He</b> came up with me in his puberty and developed a perverted emotional connection between us.<br><br>I fear..." She hesitates.
+	[wat_meand] ...Fear what?
+||	
+{wat_meand | change_sprite peekaboo} "I- I'm his muse."
+	[what_is_that] What!?
+	[what_is_that_2] Oh okay.
+||
+{what_is_that | change_sprite character} "What is what dearie?"
+{what_is_that_2 | change_sprite character} "Yeah."
+	[hostile_affair] If you're his muse, why is your relationship so... Hostile?
+||
+{hostile_affair} "I think he's just very self critical, but can't deal with it in a healthy manner, so he does this borderline schizophrenic thing and makes fictional characters berate him."
+	[do_not_think] Right...
+||>>Tragic backstory
+
+
+
+||>>Why stuff about my mom?
+{ur_mom} "To illustrate flag revealed questions! Not to be rude or abrasive. Never."
+	[makes_sense] Oh, okay. Makes sense I guess.
+	[very_rude] It was very rude.
+||
+{very_rude} "Apologies. Meeting degenerates just fires me right up."
+	[keep_doing_it] You keep doing it. 
+||>>Why stuff about my mom?
+
+

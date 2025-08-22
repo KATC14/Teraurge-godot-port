@@ -1,0 +1,107 @@
+
+>>Okay the main diag is chopped up in three main diags now, this, diag_drinks for the drinks and diag_questions for talkies and talking about bitter for the first time
+>>the main diag retains the intro, blue room prelude, and regular bitter buyer indexes
+
+>>Bykaas is a tavern owner with an interest in gossip, dancing and... massages.
+
+
+||
+{start | save_index met, change_default_sprite bykaas at_counter} You enter the structure and are submerged into the ambience of people eating, drinking and talking. The floor is wooden, but the shell forms its walls and tall ceiling. The rest of what you see is for the most part in line with what you would expect in a traditional tavern. There are tables and stools of differing heights everywhere.<br><br>A tall, insect-like creature saunters over to meet you. "Hey! You're new! Welcome to the Shining Pearl!"
+	[looking_around] Just looking around.
+	[is_this_pub] I'm new here. What's this place? A pub?
+	[introduction] Hi, I'm -name-. Who are you?
+||
+{looking_around} "Ah! The giant shell must have grabbed your eye right away. An excellent lure for catching customers, don't you think?"
+	[stand_out_1] It does stand out pretty well.
+	[stand_out_2] If you say so.
+||
+{stand_out_1} "I have not seen you here... Who might you be?"
+{stand_out_2} "You have many giant shells where you're from? Hmm? Who are you?"
+	[introduction] My name is -name-.
+||
+{is_this_pub} "A tavern, actually.<br><br>We have rooms with beds and- wait for it...! Showers!"
+	[youre_waiter] Are you a waiter?
+	[introduction] I'm -name-. Who are you?
+||
+{youre_waiter} "Yes... But I am also the owner of this large shell and the business inside it."
+{not_to_offend} "None taken. I do usually just serve customers and clean up the puke puddles, so that's a reasonable assumption to make."
+	[not_to_offend] Sorry, I didn't mean to offend. //hideif.index_is.not_to_offend
+	[introduction] My name is -name-. Nice to meet you.
+||
+{introduction | add_flag pc_met_bykaas} "Bykaas. Proprietor, waiter, entertainer, and a resident of Taodal. Good to meet you, -name-."
+	[convo_hub_2] You're Bykaas? Tornoth told me to say hello. //showif.has_flag.tornoth_say_hi_bykaas
+	[convo_hub_1] Nice to meet you, Bykaas.
+||>>Intro end
+{convo_hub_1 | character_leave} "Can I help you with anything? You look thirsty. You want to order something? I'll be at the counter if you need anything. It was nice meeting you, but I'm afraid I must wrestle my work once again. Be seeing you." She saunters off.
+{convo_hub_2 | character_leave, remove_flag tornoth_say_hi_bykaas} "Oh, I see you've met the curmudgeon.<br><br>Hopefully the meeting wasn't too off-putting. He means well, but he's about as tactful as a club. Ah well...<br><br>If you need drinks, food or a bed, I'll be at the counter. Chairs and tables are free." She saunters off.
+	[ | start_encounter taodal_tavern taodal_tavern] (Explore the tavern)
+||
+
+||>>Main convo hub 
+{reconsider_bed} "You can use the public housing at the back of the market building. But note that those facilities are lacking in privacy and... showers!"
+{met} "-name-? Pleasure seeing you here. A drink?"
+{had_sex} "Pleasure seeing you here... -name-."
+{shots_still_free | play_sound generic/objects/glass_pour 70, add_flag bykaas_pc_drinks_bitter_for_fun} She laughs. "For you? Always. Developed a taste for it? You do you." She pours a shot for you and you down it. It tastes bitter.
+{bitter_shot_m | play_sound generic/objects/glass_pour 70} She chuckles and puts down a shot of bitter water for you, you drink it. It tastes bitter.
+{bitter_bottle_m | take_money krats 10, give_item bottle_of_bitter_water} You give her ten krats and she hands you a bottle of bitter water.
+{taul_poor} "I promised him I wouldn't tell anyone. Sorry! We should stop before I spill the details." She giggles.
+{taul_weird} "Of course, we should stop before this gets out of hand." Bykaas laughs.
+{biggus_dikkus} She taps on the counter. "Oh girl, I hope you're not letting that man go, or I'm getting on that ride."
+{harmless_gossip} "It's just some harmless gossip! But I'll respect your wishes. I hope you have plenty of fun in the future as well!"
+{do_mind} "Of course, just small talk."
+{impressive_ob} "Yeah... pretty impressive. Just... don't try to kiss anyone for a while."
+{not_doing_that} "I'm pretty sure the whole drink is just a gag. In two ways."
+{drink_rolli | remove_pic} As you drink, waves of bitter stuff surprise you. After you clear some of the foam away you notice red streaks suspended in the drink. The sudden changes of taste take you on a pleasant tour as the drink depletes. The very bottom of the drink is a dark, bitter red that jolts you awake with a hair-raising bitterness.
+{drink_meirolli | remove_pic} The honey-colored liquid goes down easy. You notice the drink almost completely loses any taste after you have drank one third of it. The rest tastes almost like water.
+{silent_return}
+	[ | sex_gate sell_bitter_m sell_bitter_f] Bitter water, please.	//showif.has_flag.bykaas_bitter_water_seller
+	[ | check_flag bykaas_prostituted obassinian_blue obassinian_blue2] Obassinian Blue, please. 	//showif.has_flag.bykaas_obassinian_blue
+	[ | change_diag_file diag_drinks start] (Drinks)
+	[ | change_diag_file diag_questions start] (Questions)
+	[ | start_encounter taodal_tavern taodal_tavern] (Leave)
+||
+
+||>>Obassinian Blue (Prostitution password)
+{obassinian_blue | add_flag pc_knowledge_obassinian_black} She twitches and raises her head. "Sorry. You mean Obassinian <b>Black</b>?"
+	[blue_blue] Blue, like the sea and the sky.
+	[ | change_diag_file diag_drinks obassinian_black] Yes, Obassinian Black... Of course.
+||
+{blue_blue} "Right... Of course. That's one adat."
+{blue_exotic_sure} "Perfect! The Obassinian Blue will cost you a single adat."
+{steep_drink} "You're right. It's an absolutely ridiculous price for one drink."
+	[steep_drink] That's a little steep for one drink? //hideif.index_is.steep_drink
+	[blue_adat | take_money adats 1] (Give her an adat) //showif.has_adats.1
+	[silent_return] I think I'll have to pass. 
+||
+{blue_adat | play_sound generic/objects/glass_empty 70, character_leave} She picks up the adat and taps it. Satisfied, she then goes to work. You hear her clinking and hustling behind the counter. She slides a mug to you. "I hope you like your drink." She leaves.
+{where_wait | character_leave} You only hear her footsteps as she disappears into the back of the building.
+	[where_wait] Where are you going? Wait a minute! //showif.index_is.blue_adat
+	[into_mug] (Drink from the mug)
+||
+{into_mug | pic mug_note} You lift the mug to drink from it, but it's oddly light. It doesn't have any liquid in it, just a small note. It simply reads: "Last door at the end of the hallway."
+	[navigate_blueroom] (Navigate to the room)
+||
+{navigate_blueroom} You follow Bykaas's example. You go into the hallway that extends away from the drinking hall and into the guts of the building. You walk into it, passing people and doors until you're at the very end. You find a door named 'Blue Room'.
+	[ | change_diag_file diag_tavern_sex start] (Go in)
+||>>Done this before
+{obassinian_blue2} "Oh my... One adat please."
+	[obassinian_blue22 | take_money adats 1] (Give her an adat) //showif.has_adats.1
+	[silent_return] I think I have to pass. 
+||
+{obassinian_blue22 | pic mug_note} She hustles behind the counter and then slides you a mug with a piece of paper in it. She leaves. You wait anxiously for a few seconds and then go to the blue room.
+	[ | change_diag_file diag_tavern_sex start] (Go in)
+||
+
+||>>BITTER WATER malePC (regular)
+{sell_bitter_m} She chuckles. "The bottle I imagine?"
+	[bitter_shot_m] A shot. //showif.has_flag.bykaas_pc_drinks_bitter_for_fun
+	[shots_still_free] Are the shots still free? //hideif.has_flag.bykaas_pc_drinks_bitter_for_fun
+	[bitter_bottle_m] A bottle. //showif.has_krats.10
+	[silent_return] Nevermind.
+
+||>>BITTER WATER femPC (regular)
+{sell_bitter_f} "A shot or a bottle?"
+	[ | change_diag_file diag_questions bitter_shot_f] A shot.
+	[ | change_diag_file diag_questions bitter_bottle_f] A bottle. //showif.has_krats.2
+	[silent_return] Nevermind.
+||

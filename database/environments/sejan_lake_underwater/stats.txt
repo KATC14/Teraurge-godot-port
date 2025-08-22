@@ -1,0 +1,5 @@
+interior:	no
+
+<SOUNDS
+sejan/lake_underwater.30
+SOUNDS>

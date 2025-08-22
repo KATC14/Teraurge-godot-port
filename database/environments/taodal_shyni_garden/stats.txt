@@ -1,0 +1,7 @@
+interior:	no
+ambient:	0.3
+
+<SOUNDS
+generic_exterior/coast.20
+sejan/forest_birds.15
+SOUNDS>

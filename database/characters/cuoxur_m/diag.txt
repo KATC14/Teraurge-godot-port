@@ -1,0 +1,83 @@
+>>Start
+{start | save_index encountered, add_flag cuoxur_encountered} A droning sound fills your ears. A creature standing tall on its tail slithers into plain sight. It slowly turns to face you. You raise your hand and greet it, but it only jerks its body back and forth violently once, and the droning noise intensifies. Whatever it is, it's not sentient and it doesn't seem happy to see you, either.
+{encountered | check_flag pc_knowledge_cuoxur encountered knowledgeable} Your journey is interrupted when you hear a familiar droning. Sure enough, another one of these creatures has crossed your path and, once again, it doesn't seem at all pleased with your presence.
+{knowledgeable} The droning you can expect from the cuoxurs that inhabit this area starts to fill your ears. Mere seconds later, one of them, looking as angry as expected, confronts you.
+	[ | start_music sejan/fight_weak 70, start_combat pc_defeat pc_victory] (Fight it)
+	[flee] (Back away and flee) //hideif.has_flag.pc_knowledge_cuoxur
+	[leave_alone] (Leave it alone) //showif.has_flag.pc_knowledge_cuoxur
+||>>Fight defeat
+{pc_defeat | start_music sejan/fight_end 70 0 0 no_loop} The droning becomes unbearable and you suddenly lose all strength and are barely able to register you're falling down as you black out. Moments later, you regain consciousness. The droning is still there, but it's becoming fainter. You weakly raise your head and catch a glimpse of the creature slithering away and disappearing. In less than a minute, the droning ceases and you start to feel better. Slowly, you sit up and give yourself a few minutes to recover before continuing your trip, physically intact but experiencing a small headache.
+	[ | end_encounter] (Leave)
+||>>Fight victory
+{pc_victory | start_music sejan/fight_end 70 0 0 no_loop} The creature goes down. The big fork-like appendages below its front get partially buried in the dirt as it tries to support itself, then it finally remains almost motionless except for a slight waggling of its tail as the droning in your ears all but disappears.
+	[examine] (Examine the creature)
+	[ | end_encounter] (Leave)
+||
+{examine} You cautiously get closer to it and touch its back lightly. It doesn't react in any way. Feeling more confident, you run a hand over its lower back. It's a solid shell that seems to cover its entire back and head other than some thin elongated openings on the front of the head. Its underside is also pretty hard. It's not quite as firm as its back but it barely gives in when you squeeze it. Finally, its tail is fleshy but the skin is rough and somewhat unpleasant to the touch. When you grab the forked end of the tail, the many legs it uses to help its movement when slithering twitch slightly.
+	[sex_determined | pic goo_cock] (Stroke its genital glands) //showif.has_flag.pc_knowledge_cuoxur //showif.feral_filter_off
+	[sex_determined] (Stroke its genital glands) //showif.has_flag.pc_knowledge_cuoxur //hideif.feral_filter_off
+	[determine_sex] (Determine its sex) //hideif.has_flag.pc_knowledge_cuoxur //showif.feral_filter_off
+	[ | end_encounter] (Leave)
+||
+{sex_determined} You take a close look at the multitude of small pores on the upper section of its otherwise perfectly smooth shell. Carefully, you begin to gently caress the area up and down with your right hand. It takes just a couple of strokes until the droning rises in intensity again, only this time it sounds like an excited, more high-pitched buzz.<br><br>A thick, pink goo begins to exude from the pores. It congeals on the surface of that area then slowly rises as more of the substance is pumped until a big phallus-shaped semi-transparent blob of the jelly-like substance is resting on the cuoxur's back.<br><br>You poke it with a finger. Its surface has a tough film over it and offers considerable resistance.
+{tag_cuoxur | counter miggpli_m_cuoxur_tags + 1} You take one of the red-painted amouls and plant it on the cuoxur's back. It immediately sticks to its skin. The cuoxur doesn't seem to mind that it's there.
+	[tag_cuoxur] (Tag the cuoxur) //showif.has_flag.miggpli_quest_cuoxur_tag //hideif.counter.miggpli_m_cuoxur_tags.2 //hideif.index_is.tag_cuoxur
+	[sex] (Have sex with the creature) //showif.feral_filter_off
+	[ | end_encounter] (Leave)
+||>>Leave hub
+{determine_sex} You spend a few more minutes examining the creature's body trying to find anything that could shed light on its sex, such as looking for orifices or soft fleshy bits. It's in vain, as you cannot find anything that could inform you of the creature's sex. The only feature you find are the tiny holes on the top of its head.
+{flee} Without turning your back on it, you briskly start stepping back. The droning noise fades slightly and it slithers away. You jog in the opposite direction for a short moment until the droning finally ceases completely. Afterwards, you wait a few minutes until you're sure the creature isn't around to resume your journey.
+{leave_alone} Knowing it will go on its merry way if you act quickly and leave it be, you walk away from the cuoxur at a fast pace until the droning ceases. You wait a couple of minutes to be sure it's gone before resuming your journey.
+	[ | end_encounter] (Leave)
+||
+
+
+||>>Creature sex scene (With knowledge)
+{sex | start_music sejan/feral 70 3} You undress and kneel beside the creature.
+	[penetrate_penis] (Penetrate the goo penis) //showif.player_sex.male
+	[sex_1] (Straddle the goo penis) //showif.player_sex.female
+	[sex_stop] (Stop)
+||>>femPC sex
+{sex_1 | pic penetrate, add_flag pc_sexed_cuoxur} You straddle the cuoxur male and the goo-formed erection wobbles between your thighs. You grab the shaft and bring it towards your lips. You gasp as it responds by growing in length and prodding your wet nethers. You plant your knees firmly on the ground and then slowly lower yourself down onto the strange phallus. The shaft is smooth and slick, allowing to slide inside easily. The knot of goo at the base stops you as you hilt it. The gooey cock throbs tentatively inside you as you slowly roll your hips. The cuoxur male tenses under you and drones softly. You run your hands over the creature's slick skin as you savor the sensation.
+	[sex_2] (Ride the cuoxur)
+||
+{sex_2 | pic ride, auto_continue sex_3} You begin to slowly ride the cuoxur. The goo pulses and throbs harder in response to your motions. The reaction from the creature only makes you more confident and you keep a steady rhythm. The knot of goo at the base softens on every downward thrust and encourages you to speed up until you're driving the cuoxur into the ground with every bump. You feel the shaft engorge, it throbs and bloats until it feels too large to fit inside you, but it still squeezes in each time. The cuoxur under you writhes and drones desperately.
+
+||
+{sex_3 | pic resonance_cascade, auto_continue sex_4} The shaft of goo suddenly twitches violently and hardens. It starts pulsing faster and faster until the throbbing becomes a vibration. The sensation stops you in your tracks and you gasp. You press yourself harder against the blob of goo and feel the oscillations massage you. Your eyes roll backwards and you draw a ragged breath. You feel like you're sitting on a bomb ready to go off. Your toes curl and your muscles cramp. You prop yourself up against the cuoxur as it vibrates intensely. The cuoxur's powerful droning syncs with the vibration and you become completely disoriented as the resonance overwhelms you.
+
+||
+{sex_4 | start_music sejan/feral_end 70 0 0 no_loop, pic ride_cum} The cuoxur suddenly stops vibrating and droning. It arcs its back, driving its erection into you. The goo swells, releasing a jet of hot ejaculate. The sensations send you over the edge and you scream. Your brain snaps and crackles with light and you dig your fingers deeper into your partner's hide. You feel like biting something, but you just grimace and whine in ecstasy. The cuoxur twists its tail around your ankle as it desperately tries to bury itself deeper. You gasp as the swollen member moves inside you.
+	[sex_5] (Calm down)
+||
+{sex_5 | pic neckholes} You and the cuoxur take a few minutes to wind down. You're still panting and sweating. You can feel the gooey cock pull out and shrink away. As the goo recedes back into the creature, its sticky surface picks you entirely clean.
+	[sex_6] (Dress up)
+||
+{sex_6 | remove_pic} You gather yourself and get up. The cuoxur snuggles your leg as you stand over it. You step off the creature and get dressed.
+{cuoxur_pat} You bend down and pat the creature. It responds by pushing against your hand like an affectionate kitten. 
+	[cuoxur_pat] (Pat the cuoxur) //showif.index_is.sex_6
+	[ | end_encounter] (Leave)
+||
+
+||>>Goo-penis penetration (m/m)
+{penetrate_penis | pic goo_cock_pen, add_flag pc_sexed_cuoxur} You position yourself over the cuoxur, the creature lying between your legs, and flex your knees to lower yourself just a bit. Next, you grab the side of the animal's neck, using the flute along the side of its shell as a handle, and raise the cuoxur's light upper body to align the blob on its back against your erection.<br><br>You pull it towards you as you slowly thrust forward with your hips, savouring it. Your glans presses against it, deforming it but not penetrating.
+	[pen_harder] (Thrust harder)
+||
+{pen_harder | pic goo_cock_fug} You grab the blob penis and slowly push harder against it. Suddenly, you feel the surface open and let your glans in, the edges of the tough surface acting like a tight ring around your cock as you plunge deeper into the blob. Your erection is enveloped by the goo. It's thick enough to offer a nice amount of resistance and tightness. You push as deep as you can and pause for a moment. The cuoxur under you shudders and the goo-penis twitches slightly.
+	[fug_blob_penis] (Fuck the blob)
+||
+{fug_blob_penis} As you pull back, the jelly quickly returns into place to fill in the empty space left by your retreating dick, only to be pushed aside once more as you plunge in again, creating a unique, wonderful sensation that's only enhanced by the way it seems to try to suck you in until you're balls deep each time you push forward. You can feel the slime-formed penis harden and throb around your cock with your thrusts.<br><br>As you settle into a comfortable pace, you barely notice the buzzing in your ears becoming more erratic and high-pitched. The rod of goo bounces up and down with your pace.
+	[nut_goopenis] (Finish in the blob)
+||
+{nut_goopenis | start_music sejan/feral_end 70 0 0 no_loop, pic goo_cock_nut} Your rhythm increases as minutes pass. By the time you feel your orgasm approaching, you're fucking the cuoxur at a feverish pace. Unable to hold it in any longer you grit your teeth and let go.<br><br>As you thrust inside the blob one last time, you feel the goo member contract and then shoot thicker slime against and around your cock buried in it. Your streams join further up and shoot out of the tip of the slime penis.<br><br>You gasp with each synchronized throb and ride out the weakening sensation of the orgasm.
+	[aftermath] (Pull out)
+||
+{aftermath | pic neckholes} You pull out of the cuoxur and carefully let it rest on its front appendages again. The pink blob dissolves and gets absorbed back into the pores together with any semen that remained in it until the creature's back is so completely clean that it looks as if the events that just transpired never even happened.<br><br>You look down and realize your crotch is a wet slimy mess.
+	[clean_up] (Get dressed)
+||
+
+||>>Sex stop
+{clean_up | remove_pic} It takes you a bit longer than usual to clean up and get dressed, but you're finally ready to continue your quest. The cuoxur's buzzing returned to its normal droning a while back, but it seems unwilling to move or attack you.
+{sex_stop} You stand up. The confused creature raises its head a little as the goo erection recedes back into its neck. You get dressed.
+	[ | end_encounter] (Leave)
+||

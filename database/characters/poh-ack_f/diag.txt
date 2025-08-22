@@ -1,0 +1,48 @@
+||>>INTRO
+{start | save_index encountered, add_flag pohack_encountered} As you walk through the jungle, you hear a low hiss on the ground next to you. You barely have time to jump back as a pair of scythe-like arms lunge forward from the ground. While you take a few steps back, a creature slithers out of the hole hissing all the time and stands upright on its long tail until it's almost your height.<br><br>You try to wave at it, but it just moves forward, takes a swipe in your direction while emitting a sharp hiss, and moves back. Whatever it is, it's not sapient and it doesn't like your presence.
+{encountered | check_flag pc_knowledge_pohack encountered knowledgeable} You hear a low hissing noise you've heard before. Immediately you start looking at the ground around you and quickly notice a hole with two scythe-shaped arms coming out of it. Its very angry inhabitant quickly comes out of the lair to drive you away.
+{knowledgeable} While walking through an area of the jungle where vegetation is moderately less thick, you hear the characteristic hissing of a <b>poh-ack</b> coming from the ground near you. You carefully take a step in the opposite direction as a female specimen emerges from a nearby hole and stands upright on her tail, hissing unpleasantly as a warning that she wants you to get out of here fast.
+	[ | start_music sejan/fight_weak 70, start_combat lose win] (Attack)
+	[back_away] (Back away)
+||
+{back_away} You slowly walk away, the creature facing you and hissing the whole time until it's almost out of your sight. When you're far away enough, it slowly slithers back into its hole.
+	[ | end_encounter] (Leave)
+||>>Combat loss
+{lose | start_music sejan/fight_end 70 0 0 no_loop} The creature is too much for you, and you are forced to retreat. Fortunately, it seems it just wanted to drive you away, and it doesn't chase you. When you're far enough, you stop to treat some minor cuts and repair some tatters in your clothes and continue your journey, vowing to be more careful the next time.
+	[ | end_encounter] (Leave)
+||>>Combat win
+{win | start_music sejan/fight_end 70 0 0 no_loop} When that last blow hits the creature, it immediately ducks to the ground and presses itself against it. Its hisses change in tone, and it covers its head with its arms as best as it can. There's no doubt it has surrendered, but instead of just retreating into its lair, it has become submissive.
+{no_examine} You take a step towards the creature but stop when you realize how dangerous it looks. Looking at the hooked scythes, you cannot bring yourself closer to the creature despite its cowering posture.
+	[ | check_flag pc_knowledge_pohack no_examine examine] (Examine the creature) //showif.index_is.win
+	[ | end_encounter] (Leave)
+||>>Examination
+{examine} Knowing how docile poh-acks become, you walk around it and carefully crouch next to the creature. Slowly, you extend one hand towards its body and touch the hard shell on its back, then the bony ridges on its upper tail. Seeing how it doesn't seem to mind it, you proceed to touch its sides. You can clearly feel its ribs through the somewhat rough skin. When touching its arm closer to you, you notice, to your surprise, how relaxed the beast actually is.<br><br>You grab its arm without any resistance and feel it. Its upper part has some sort of exoskeleton, but it's not very hard, just like a soft shell crab's, and only the scythe-like phalanx at the end is harder, though not very sharp. Then, you quickly caress its neck, which is very wiry and not very pleasant to the touch, before patting the top of its head, which is covered by an exoskeleton harder than the one on its upper arms. Wisely, you decide to skip the mouth.
+	[ | end_encounter] (Leave)
+	[examine_sex] (Examine its sex) //showif.feral_filter_off
+||
+{examine_sex} You grab its long tail with both hands. It is very muscular and flexible, and you take note of a tiny hole near its end that closely resembles an anus. Finally, you notice the slit in the upper third of its tail and carefully spread it. This creature is unmistakably a female.
+	[have_sex] (Have sex with the creature) //showif.player_sex.male
+	[ | end_encounter] (Leave)
+||	
+
+
+
+||>>Sex scene (male PC)
+{have_sex | start_music sejan/feral 70 3} Remembering what you learned of primitive tribes having sex with female poh-acks as a manhood ritual, a perverse thought crosses your mind as you stare at the docile creature at your feet. You drop your pants. 
+	[fug] (Penetrate her)
+||
+{fug | pic penetration, add_flag pc_sexed_pohack} You grab the poh-ack by the armpits and pull her up until you're more or less face to face, a safe bit of distance in-between just in case. After hooking her arms around your shoulders, making sure she doesn't hurt you with her claws, you put an arm around her back and grab her tail just behind her slit with your free hand.<br><br>With the poh-ack secured in a safe and comfortable enough position, you begin guiding her tail to rub her slit against your half-erect cock. After a few moments, she lets out a soft hiss, and you feel moisture at the tip of your glans. It seems like you're both ready.<br<br>Guiding her tail, you pull it closer as you push forward with your hips, tiny fleshy ribs caressing your erection all the way through as you penetrate her tight canal.
+	[fug2] (Fuck the poh-ack)
+||
+{fug2 | pic facetoface} Using your hand and hips, you fuck her, setting into a nice rhythm. The poh-ack sometimes hisses in a way that to you seems appreciative, so you keep at it, knowing she won't bite your face off.<br><br>A few minutes later, though, she actually coils the end of her tail around one of your legs, and you feel her moving her tail on her own to help you bang her. You let go of the tail to make sure, and indeed, she keeps mating with you. Excited by this development, you decide to let the beast do you for a while, enjoying the moment.<br><br>After a while, however, the poh-ack's movements become erratic and more intense, and she starts to whimper and drool. 
+	[fug_harder] (Fuck harder)
+||
+{fug_harder | pic behind} You lift her tail, bend it over her body, and put a hand on her shell to keep her pressed against the ground. The creature occasionally lets out long, drawn-out hisses as you keep plunging into her hole. The poh-ack squirms and twitches as you pick up your pace. You can feel the tensing tail muscles around your cock as you constantly hilt into its tight, ribbed hole.<br><br>Holding on to the poh-ack becomes harder as its movements become more unpredictable and intense alongside her whimpering and drooling. Encouraged by your partner, you thrust harder and faster.
+	[cum_in] (Finish in)
+||
+{cum_in | start_music sejan/feral_end 70 0 0 no_loop, pic cum_in} Knowing she's having an orgasm, or at least a great time, you conclude that it's a good time to let go of any self-control and cum. You grab her tail again and hump her as fast as you can, the combined effort of your hips, hands, and her waist bringing you quickly to your climax. You press her tail against your crotch and pump her full of your semen, your knees wobbling and almost making you fall forward.<br><br>When you recover from the orgasm, the poh-ack female slides limply from your hold and falls to the ground. She twitches while her love-hole squeezes hot cum out as it contracts rhythmically.
+	[clean_up] (Clean up and get dressed)
+||>>Sex end
+{clean_up | remove_pic} When it's over, you gently lay her down on the ground on her back and clean up as the poh-ack keeps hissing gently and whimpering without moving an inch, either too satisfied or tired to resume her submissive stance. Once you're ready, you give her one last glance and walk away in the direction of your planned destination, whistling happily after a satisfying romp.
+	[ | end_encounter] (Leave)
+||

@@ -1,0 +1,16 @@
+interior:	no
+
+discoverable:		yes
+dicovery_message:	You have found a hidden boat by the shore.
+default_message:	Do you want to stop by the hidden boat?
+
+
+<SOUNDS
+generic_exterior/coast.60
+SOUNDS>
+
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_hidden_boat sejan_hidden_boat} Hidden boat encounter
+||
+

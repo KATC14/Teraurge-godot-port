@@ -1,0 +1,55 @@
+
+
+
+||>>Start hub
+{start | save_index encountered, add_flag kwumui_encountered} You come across an odd, green, bird-like creature. It stares at you, confused and unsure.
+{encountered | check_flag pc_knowledge_kwumui encountered knowledgeable} You come across one of those odd bird-like creatures. It stares at you, confused and unsure.
+{knowledgeable} You come across a kwumui female. It stares at you anxiously.
+{fought_male} The large scarred creature warbles a high-pitched whine and slowly disappears into the forest. The smaller creature steps from behind the tree and comes closer to you. It cocks its head and stares at you.
+	[move_closer] (Move closer)
+	[no_fight] (Attack) //hideif.clicked
+	[ | end_encounter] (Leave)
+||
+
+||>>move closer
+{no_fight} You get ready for a fight and step closer to the small creature. It lets out a string of harmonious warbles and lowers its head.
+	[move_closer2] (Move closer)
+	[ | end_encounter] (Leave it alone)
+||
+
+||>>Examine
+{move_closer} You step closer to the small creature but it only lets out a string of harmonious warbles and lowers its head.
+{move_closer2} It doesn't respond to your aggression and keeps its head lowered.
+{examine} You crouch and place your hand on the creature and it shudders at your touch. The skin is oddly smooth and rubbery, almost something you'd expect a marine creature to have. The small creature doesn't mind you touching it as you examine its body. The large 'ears' are very soft and seem more like bags hanging from its head rather than rigid flaps. You can clearly feel a spine and bones under the firm muscles. The ball at the end of its tail is not as soft as the ears and has more structure to it. It seems like it has air in it.
+	[examine] (Examine the creature) //hideif.index_is.examine
+	[sex_determine | pic presenting] (Determine its sex) //showif.feral_filter_off
+	[sex_determine] (Determine its sex) //hideif.feral_filter_off
+	[ | end_encounter] (Leave)
+||
+{sex_determine} You turn the creature around and lift its oddly shaped tail to look between its legs. The small creature warbles and lowers its head against the sand. It presents its rear for you. There's a single simple slit on top of round mound and an anus under its tail.
+	[slit_test] (Test the slit with your finger) //showif.feral_filter_off
+	[ | end_encounter] (Leave)
+||
+{slit_test} You gently push your middle finger against the slit. The lips part and reveal bright purple, wet tissue inside. You press a little deeper and the creature coos softly, widening its stance and lifting its rear more. The creature definitely seems to be a female.
+	[have_sex] (Have sex with the creature) //showif.player_sex.male
+	[ | end_encounter] (Leave)
+||
+
+||>>Sex scene
+{have_sex | start_music sejan/feral 70 3, pic vag_pen} You quickly take your clothes off. The creature keeps presenting as you undress but takes curious looks behind her. You set yourself on your knees behind the creature, your erection pointing towards her presenting rear, pressed against the mound.
+	[vag_1] (Penetrate it vaginally) 
+	[stop_sex] (Stop)
+||
+{vag_1 | pic vag_fug, add_flag pc_sexed_kwumui} You grip its legs and move closer. Your cock easily slips in. The creature coos and rubs against the sand. It bucks its hips towards you and you sink deeper into her rear. She keeps adjusting her stance to get you deeper until you're in her completely. You feel the tip of your cock push against a soft wall inside her. Her hot insides tug and jerk around your shaft. You exhale and pause for a moment.
+	[vag_2] (Fuck it)
+||
+{vag_2} You slowly push her rump away and then slowly sink yourself into her again. The creature coos with every push and pull, rubbing its head against the sand, as its ears flop from side to side. You gradually pick up your pace, the meat on her thighs wobbling from the movement until they're loudly slapping against you. The tight channel around your cock starts to contract and the creature pulls up its head and wails a breathy warble as you keep your pumping up. You're not going to be able to keep it up any more.
+	[nut_in] (Finish)
+||
+{nut_in | start_music sejan/feral_end 70 0 0 no_loop, pic vag_nut} You pull her closer and grimace as you unload into her. She goes silent, stops moving, and pushes against you to get you deeper. Her insides clamp on you and draw out every throb you give her. Her slit feels like it's suckling your cock.<br><br>Your arms grow weak and numb as your climax dies down, your partner still enthusiastically pushing herself against you to keep you inside. After a while, the small female warbles and slowly detaches herself from you. She stands up straight and turns her head to look at you, slightly puzzled.
+	[get_dressed] (Get dressed)
+||
+{stop_sex | remove_pic} You stop and get dressed. The small creature turns to you, confused.
+{get_dressed | remove_pic} You get up and start gathering your clothes from the ground. The small creature hobbles to its feet and warbles shyly. It comes closer and affectionately rubs its head against your leg.
+	[ | end_encounter] (Leave)
+||

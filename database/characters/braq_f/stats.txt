@@ -1,0 +1,41 @@
+default_env:	sejan_forest
+
+
+
+<STATS
+charisma:		0
+will:			4
+intelligence	2
+perception: 	4
+agility:		4
+strength:		10
+endurance:		6
+
+hitpoints:		80
+
+heat_res:	0
+cold_res:	0
+impact_res:	2
+slash_res:	0
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+massive_tackle
+massive_tackle
+stomp
+stomp
+stomp
+stomp
+stomp
+stomp
+stomp
+stomp
+headbutt
+headbutt
+headbutt
+headbutt
+CARDS>

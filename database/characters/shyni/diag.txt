@@ -1,0 +1,316 @@
+
+>>Introduction block start
+{start | add_flag shyni_encountered, start_music sejan_taodal/shyni 70 3} As you wander through the marketplace, you are stopped by a short girl in a blue dress. Her curious eyes dart around your person.
+	[hello_1] Hello?
+	[hello_2] Am I really that strange?
+	[ignore_hello] (Ignore her)
+	[debug_jump_1] DEBUG: Jump to content after the sauna scene. //showif.debug
+	[debug_jump_2] DEBUG: Jump to redforest adventure. //showif.debug
+||
+{debug_jump_1 | add_flag shyni_met, change_default_diag_file shyni diag_2, start_encounter taodal_shyni_garden shyni}
+{debug_jump_2 | add_flag shyni_met, add_flag shyni_open_house, change_default_diag_file shyni diag_redforest, start_encounter taodal_shyni_house shyni}
+||
+
+
+
+
+
+
+||
+{hello_1} "Hi! Sorry, I- I... are you the one who came from the peninsula?" She wrings her clawed hands nervously.
+{hello_2} "No!  Sorry, I- I... are you the one who came from the peninsula?"
+{ignore_hello} As you turn away from her, she tugs on your arm. "Sorry, I- I... are you the one who came from the peninsula?"
+	[hello_yes] Yeah, that's me alright.
+	[hello_maybe] Maybe, why?
+	[ | check_stat charisma 8 hello_no_0-hello_no_1] No, you seem to have mixed me up with someone else. (Lie)
+||
+{hello_yes} Her eyes gleam with joy and she shakes from excitement. "Witch pulled you out of the ether! Gods, you look odd! I can't imagine how disorienting this must be for you!"
+	[not_sure_dream] It's pretty weird. I'm still not sure if I'm not just dreaming.
+	[you_look_odd] What's so odd about me?
+	[medieval_fantasy] It's not that disorienting. Kinda feels like a medieval fantasy with monsters as people.
+||
+{hello_maybe} "Gah! Please! I just really want to talk to someone who's not lived their whole life in Taodal. It's a nice place but just as smothering."
+	[hello_yes] Okay, I did come from the peninsula.
+	[ | check_stat charisma 8 hello_no_0-hello_no_1] Sorry, I didn't come from the peninsula. (Lie)
+||
+{hello_no_0} She squints her eyes. "Oh- ...Wait. You're... lying? Are you in trouble or something?"
+{hello_no_00} She leans closer to you and whispers under her breath. "Are you in trouble? Let me help if you are. To be honest, I just wanted to talk to you." 
+	[hello_no_00] I have no idea what you're talking about.	//hideif.index_is.hello_no_00
+	[hello_yes] No, nothing like that. I was just trying to be careful. This is, after all, completely new to me and I don't know you.
+||
+{hello_no_1 | add_flag shyni_lied_to, character_leave} Her excitement fizzles out and she hangs her head in disappointment. "I could have sworn... Sorry, I'll let you go on your way now." She leaves.
+	[ | start_music sejan_taodal/town 55 3, start_encounter taodal_market taodal_market] Bye.
+||
+||>>Meeting Shyni again at the market
+{lied_to} You find the girl. She seems surprised to see you again.
+	[hello_yes | remove_flag shyni_lied_to] Hey, I lied to you about me not coming from the peninsula, sorry.
+	[ | start_music sejan_taodal/town 55 3, start_encounter taodal_market taodal_market] (Ignore her)
+||
+{you_look_odd  | add_flag pc_knowledge_five_fingers_weird} She points at your hand. "I've never seen anyone with <b>five</b> digits. Your hands look so crowded! Aaah! It's so weird and cool."
+{mouth_slits} "Well... I don't have a jaw so that's not really a thing for me but I do have this." A long tubular tongue juts out one of the side slits and quickly retracts back inside. 
+{fingers_trippy} "Yeah, three or four is the usual. Even two is more common than five, Sheesh! They look so odd." She glances at her own three digits.
+	[mouth_slits] Well I've never seen anyone with... Slits for a mouth. How do you even bite anything?		//hideif.clicked
+	[fingers_trippy] Now that you mentioned it. My digits do look kinda crowded.	//hideif.clicked
+	[introduction] So, why did you stop me? Did you want to tell me something?
+||
+{medieval_fantasy} She recoils in amazement. "Already with the bizarre words! Medieval age? Is that a time period from your world?"
+	[strange_words] I got a lot more strange words in me, if you're interested.
+	[actually_is] It is actually.
+||
+{not_sure_dream} She snorts, amused. "That's nice of you to dream about me then. You could pinch yourself if you're not sure."
+	[flirt_dream] I did not realize I had such a good taste.  //showif.charisma.8
+	[pinch_self] (Pinch yourself)
+	[could_use_sleep] I'm not that worried. I could use some more sleep.
+||
+{pinch_self} You close your eyes and pinch yourself. Nothing happens. "I was worried for a moment there I would suddenly pop out of existence. You okay there?"
+	[introduction] Worth a try I guess.
+||
+{strange_words} "I love new words! I'm Shyni what's your name?"
+{actually_is} "We absolute have to talk more later! I'm Shyni. What's your name?"
+{introduction} "I completely forgot! My name is Shyni. It's awesome to meet you... uh." She flails her hand towards you.
+{flirt_dream | change_sprite blushed} Her face turns to deep purple. "Soo... My- My name is Shyni. I'd love to know yours."
+{could_use_sleep} She lets out a long snort you recognize as laughter. "If  I'm stuck in your dream, I'd love to know your name. Mine's Shyni."
+	[tell_name] My name is -name-.
+	[tell_name] -name-. It's nice to meet you, Shyni.
+||
+{tell_name | change_sprite character} "-name-! I love meeting new people! Would you be interested having a longer conversation later? I would love to talk your ears off right now but I have other commitments I'm supposed to attend to, unfortunately."
+	[sure_where] Sure! Where do you want to meet?
+	[not_sure_time] I'm not sure if I have the time.
+||
+{sure_where | character_leave} She bounces with delight. "You remember that smithy where my father interrogated you? My house is just behind that one. Don't bother knocking, I'm very likely in the backyard. Sorry! I have to go now! See you later!" She disappears into the crowd.
+{not_sure_time} "Please! If you find the time, I would love to talk to you some more. I live in the house behind the smithy. I'm usually in the backyard doing my thing. Gotta go now. See you later!"
+	[ | start_music sejan_taodal/town 55 3, add_flag shyni_met, save_index meeting_again, start_encounter taodal_market taodal_market] Bye!
+||
+NOTES
+	Introduction block end
+		Next: Player meets Shyni at her house (in the backyard garden) and they have a free-form conversation. Before player leaves the conversation Shyni will drop a hook for an adventure she needs the player for.
+NOTES
+||
+{meeting_again | start_music sejan_taodal/shyni 70 3, save_index acquaintance} You find Shyni's house and head to the backyard. You find her shoveling dirt in her garden. As she sees you approach, she throws the shovel aside and clumsily skips over the dirt mounds and plants. "You came!"
+	[meeting_again_hey] Hey! Nice to see you again!
+	[meeting_again_hey] Hi again.
+||
+{meeting_again_hey} "I was so worried you weren't interested in talking to me. This town is very dull when you get to know it."
+	[flirt_interesting] Well clearly you're not from around here, then. //showif.charisma.6
+	[like_new_people] I like talking to new people and learning new things.
+	[free_info] A man in my situation really shouldn't pass on free info. //showif.player_sex.male
+	[free_info] A woman in my situation really shouldn't pass on free info. //showif.player_sex.female
+||
+{flirt_interesting | change_sprite blushed} Her face quickly takes on a more purplish color. "You... You are very i- interesting too. Then again... you are from another world!"
+{like_new_people} "Me too! We are going to get along so well!"
+{free_info} She snaps into attention. "I promise I will help you overcome this awful transition in any way I can."
+	[info_1] Do you want to go back inside or is this fine?
+	[info_2] Any specific topics you wanted to talk about? I imagine you have many questions.
+||
+{info_1 | change_sprite character} "Nah! This is just fine. My house is a bit stuffy anyway. Ask something! Uh... I mean, if you want to."
+{info_2 | change_sprite character} "You ask something first! Uh... I mean, if you want to."
+	[ask_something_1] Nah, you go first, ask something.
+	[ | start_music generic/peaceful_sejan 70 4, change_diag_file diag_questions start] Sure! Let me think of something... (Questions)
+||
+>>Main menu block 
+>>Player questions are separated into "diag_questions.txt"
+||
+{acquaintance | start_music sejan_taodal/shyni 70 3} "Hey! Nice to see you again. Did you want to talk about something?"
+{had_adventure | stop_music 3, change_sprite character} "Hey! I was hoping you'd visit."
+{fireproof_joke} She giggles. "Stop! I can't take anything you say seriously now. I think I asked a lot of questions there. It's your turn now."
+{fireproof_serious | add_flag shyni_thinks_pc_fireproof} "Oh... I guess you would be, living in such a place.<br><br>That's pretty cool! Ask me something now!"
+{fireproof_serious_fail} She giggles. "Sure you are!<br><br>Ask me something now."
+{q_world_boring} "Oh, okay. I think I asked bunch a questions there. You ask something now."
+{tiny_comps} "Crazy! Okay, now you ask something."
+{silent_return}
+	[ | start_music generic/peaceful_sejan 70 3, change_diag_file diag_questions start] (Questions)
+	[still_dinner] Do you still want to have dinner? //showif.has_flag.shyni_dinner_open
+	[ | change_diag_file diag_quest_cave adventure, change_default_diag_file shyni diag_quest_cave] You asked me go on an adventure with you. What was that about? //showif.has_flag.shyni_cavequest_rejected //hideif.has_flag.shyni_had_cave_adventure
+	[ | check_flag shyni_cave_trauma everything_ok little_adventure] Hey... About the thing, in the caves... //showif.has_flag.shyni_had_cave_adventure
+	[ | check_flag shyni_cavequest_hook leave cavequest_check] I gotta go. (Leave)
+||
+{waiting_for_tablet | change_diag_file diag_quest_cave waiting_for_tablet, change_default_diag_file shyni diag_quest_cave} 
+
+||>>Leave
+{leave | start_encounter taodal taodal}
+||>>Cavequest hook & script 
+{cavequest_check | sex_gate cavequest_start dinner_check}			Player sex check. MalePCs go straight to cave adventure while femPC gets the dinner first.
+{dinner_check | check_flag shyni_dinner dinner_ask cavequest_start}	Dinner check. FemPC must have been Shyni's guest on the dinner to get the cave adventure.
+{cavequest_start | change_diag_file diag_quest_cave start} 
+||
+
+
+||>>Would you like to come for dinner? (femPC only)
+{dinner_ask | check_flag tornoth_dinner dinner_ask_2 leave}
+{dinner_ask_2 | add_flag shyni_dinner_open, remove_flag shyni_cavequest_hook} "Hey! Before you go! D-do you want to eat dinner with us?"
+{dinner_with_dad} "Y-Yes. We can go right now."
+{still_dinner} Her eyes light up. "Yes! We can go right now!"
+	[start_dinner] I would like that.
+	[dinner_with_dad] You and your father? //showif.index_is.dinner_ask_2
+	[cant_dinner_1] I can't right now.
+||
+{start_dinner | remove_flag shyni_dinner_open} She jumps excitedly and squeals with joy. She yanks your arm. "Come! The food should be ready by now!" 
+	[ | start_encounter taodal_tornoth_smithy tornoth dinner_with_shyni] Alright. (Follow her)
+||
+{cant_dinner_1} "It's okay! We can have that dinner any day, anyway."
+	[cant_dinner_2] I'll keep that in mind. I'll be going now.
+||
+{cant_dinner_2} "Alright. Bye!" She waves for goodbye.
+	[ | start_encounter taodal taodal] Bye. (Leave)
+||
+	
+||>>Dinner end
+{dinner_end} Shyni gets up from her stool and walks over to you. "Sorry about dad, he's a little awkward around women."
+	[not_shy] He didn't seem that way when he greeted me when I came to the village.
+	[opened_up] He opened up after a few words, he's not that shy.
+||
+{opened_up} She shrugs. "Yeah, I guess... But I think it's because of mom or what happened. He's never told me anything, but he generally can't handle talking to women outside of smithing business."
+{not_shy} "I think it's because of mom or what happened. He's never told me anything, but he generally can't handle talking to women outside of business."
+	[seem_lonely] He seems lonely.
+	[poor_torny] Huh.
+||
+{seem_lonely} "He is lonely, but he never admits it. He really needs a woman for himself."
+	[hit_torny] Nobody is hitting on the village leader?
+||
+{hit_torny} Shyni shrugs. "You'd think so, but he's just intimidating and too official all the time."
+	[poor_torny] Poor Tornoth.
+	[hook_him_up] You have to hook him up with someone.
+||
+{hook_him_up} "T- That's... You think he'd be happier? Maybe he needs a push?"
+	[hook_possibly] Possibly?
+	[hook_possibly] I think he'd love it.
+	[hook_possibly] I'm not that sure, to be honest. He might take offense. //showif.charisma.6
+||
+{hook_possibly} Shyni rubs her chin. "I have to think about this."
+	[dinner_go_well] Do you think the dinner went well?
+||
+{poor_torny} She shrugs. "Well, anyway! Dinner went really well, dad likes you."
+{dinner_go_well} "It went really well, dad likes you."
+	[dinner_fun] I had fun too.
+||
+{dinner_fun} "I guess you have to leave now... I promised dad I'd clean up the table."
+	[help_clean] I'll help you!
+	[just_you_clean] By yourself?
+||
+{just_you_clean} She laughs. "Yes! Please don't help! After dad is done with the sauna, he'll probably march back naked. You'll know when I let out a blood-curdling scream and run away!" She laughs nervously.
+{help_clean} She laughs. "Please don't! After dad is done with the sauna, he'll probably march back naked. You'll know when I let out a blood-curdling scream and run away!" She laughs nervously.
+	[should_go] You're right, I should run.
+	[see_tornoth_naked] Oh, maybe I should stay to see that.
+||
+{see_tornoth_naked | change_sprite blushed} She blushes and covers her mouth. "Oh my gods! Don't talk about my father like that!" She giggles hysterically.
+{good_looking_man} "I guess! If you think so! But you really have to leave! I'll die from embarrassment if you don't!"
+	[good_looking_man] He's a good-looking man, that's all. //showif.index_is.see_tornoth_naked
+	[should_go] Alright, I'll leave.
+||
+{should_go | change_sprite character} "I hope the food was good and this wasn't too awkward."
+	[ | start_encounter taodal taodal] It was just fine! Bye now! (Leave)
+||
+
+	
+	
+||>>Your world? (Shyni asks about something)
+{ask_something_1} "Okay... Hmmm. Where are you from? I mean, what was your world like?"
+	[q_world_1] It looks pretty similar to this. Blue sky, green forests, things like that. I guess the big difference is the lack of a sun.
+	[q_world_2] It was a pretty crappy and dull place. I like this place more.
+||
+{q_world_1} Her eyes light up in excitement. "Sun what...?"
+{disbelieve_sun} "Tell me."
+	[disbelieve_sun] You wouldn't believe me if I told you. //hideif.index_is.disbelieve_sun
+	[sun_is] Sun is a giant fireball in the sky that lights the world during the day.
+||
+{sun_is} "What?<br><br>Why would there be a giant fireball in the sky? That sounds way too silly. You- you are trying to pull my leg."
+{serious_sun} "Sorry. It's just very odd. Please go on."
+	[serious_sun] I'm serious. //hideif.index_is.serious_sun
+	[moon_is] And the Moon is a giant pale rock that hangs in the sky. During the night, it reflects the light from the Sun.
+	[stars_are] And stars are endless distant suns that dot the night sky like tiny candles.
+||
+{moon_is} "How would a giant rock float in the sky? Wouldn't it just fall down?"
+{stars_are} "So there's endless giant fireballs everywhere in the sky? Do they rain down? How did they get up there?"
+	[reason_comp] Well there's a reason for it, but the explanation gets really complicated really fast.
+||
+{reason_comp} "I like to think I'm pretty smart. Try me."
+	[stuff_falls] Well, shortly put, stuff doesn't fall in one direction.
+||
+{stuff_falls} "... Okay. I- I don't...<br><br>What kind of a messed up nightmare universe are you from?"
+	[pretty_same] It actually looks very much like this one.
+	[fire_immune] Humans are actually immune to fire because of the constant fireball rain.
+||
+{fire_immune} "I guess... That would make sense... Wait, are you joking?"
+	[fireproof_joke] I'm joking, you dummy.
+	[ | check_stat charisma 8 fireproof_serious_fail-fireproof_serious] I'm serious. I'm completely immune to fire. (Lie)
+||
+{q_world_2} Her excitement deflates visibly. "Oh, okay. There's nothing interesting in your world?"
+{pretty_same} "Weird... Is there anything else really odd about your world?"
+	[q_world_3] Well, we do have these small computers that can be used to communicate with people anywhere in the world.
+	[q_world_boring] No, not really.
+||
+{q_world_3} "Computers like the one that plays music in the tavern? How small? Same size as I am?"
+	[tiny_comps] Computers the size of your hand.
+||
+
+
+||>>Adventure Aftermath (Reconciliation)
+{little_adventure | add_flag uum_house_revealed} She raises her eyes to yours. "Y- You should show the stone tablet to Uum. She's an archaeologist. Her house has a blue plaque on the door." She absent-mindedly turns her eyes to the ground.
+	[shyni_sorry] Are you feeling better? //showif.has_flag.shyni_cavequest_berserk
+	[attacking_you] I'm sorry about attacking you in the cave. //showif.has_flag.shyni_cavequest_pc_berserk //hideif.has_flag.shyni_cavequest_raped
+	[the_thing] I want to say something but I... don't really know what to say. //showif.has_flag.shyni_cavequest_raped
+||>>PC berserk
+{the_thing} She puts her small hand on your mouth. "No, don't say that... It was the bowl. I felt it when we entered the chamber. The drums? It wasn't you."
+	[still_sorry] I know... I just felt the need to say I'm sorry. Can you forgive me?
+||
+{still_sorry} "I would forgive you but... you're the victim. We both are. The monster is whatever evil resided in the bowl."
+	[coulda_killed] I could have killed you.
+||
+{coulda_killed} She slaps you gently. "Are you listening to me?"
+	[immense_guilt] I feel guilt and... I'm not sure how to talk to you anymore.
+||
+{immense_guilt} "I know what you mean... I felt... fear, seeing you again, I- I wanted to run away. But we both know each other better than that, and we can't let crimes of others control us."
+	[uright] You're right.
+||
+{uright} "Talking to you... It dispels the fear. I thought I'd feel nervous, but I feel safe."
+	[talk_more] We should talk more often.
+||
+{talk_more} "I know... I don't want to retreat away from you because of this and...<br><br>I like you."
+	[ilike_youtoo] I like you too.
+||
+{ilike_youtoo} "I'm glad...<br><br>I need... I need time for myself. I feel ill looking at you."
+	[i_understand] ...I understand.
+||
+{i_understand} She grabs one of your hands and holds it. "I don't hate you. I- I like you. I just need to get better."
+	[get_well] I hope you feel better soon.
+||
+{get_well | character_leave} She gives you your hand back. "Be seeing you." She returns into her house.
+	[ | add_flag shyni_not_at_home, start_encounter taodal taodal] Bye. (Leave)
+||
+
+||>>Shyni berserk
+{shyni_sorry} She rings her hands nervously. "...I got some sleep...<br><br>About the thing, that happened... I- I'm sorry. "
+	[noneed_sorry] Please don't... You're the victim.
+	[noneed_sorry] It's okay.
+||
+{noneed_sorry} "I know... But I feel the need to say it anyway. The feelings felt like they were my own... I saw nightmares about you, that... I killed you in the cave."
+	[coulda_worse] I'm not bothered by what you did in the cave. Everything ended well. It could have been a lot worse.
+||
+{coulda_worse} "It makes me feel better. Thinking, I'm the bigger victim here."
+	[bystander] You are the victim here, I was just... collateral damage to the crime perpetrated on you.
+||
+{bystander} "... I want to go back, like we were before. I want to get rid of this sick feeling."
+	[share_sauna] We can do that. Do you want to talk about something?
+||
+
+
+||>>Adventure Aftermath (everything ok)
+{attacking_you | start_music sejan_taodal/shyni 70 3, add_flag uum_house_revealed} "Hey! It's okay! Nothing serious happened.<br><br>You should show the stone tablet to Uum. She's an archaeologist. Her house has a blue plaque at the door." 
+{everything_ok | start_music sejan_taodal/shyni 70 3, add_flag uum_house_revealed} "Hey! You should show the stone tablet to Uum. She's an archaeologist. Her house has a blue plaque at the door." 
+	[share_sauna_2] I'll do that. Might reveal something about the cave and the bowl.
+||>>Sharing a sauna
+{share_sauna_2} "Good.<br><br> I was wondering... -name-... Would you want to... Uh... Like- to share a sauna?"
+{share_sauna | start_music sejan_taodal/shyni 70 3} "-name-... Would you want to... Uh... Like- to share a sauna?"
+	[steamy_1] Oh, you mean like... two of us, nude and in a steamy room?
+	[okay_withdat] Are you... okay with that? ...After what happened? //showif.has_flag.shyni_berserk
+||
+{okay_withdat} "I'm okay with it.<br>Are you okay with it?"
+	[steamy_1] I'm okay with it.
+||
+{steamy_1 | change_sprite blushed} She blushes and nervously picks at her claws. A high-pitched whine comes out of her throat. "Yyeees!? Itwouldn'tbetoomuch? I- I mean... I just want to unwind and relax... We- We could talk? You know. Right...?"
+	[sure_idlove] Sure, I'd love to.
+||
+{sure_idlove | character_leave} She jiggles from excitement. "Let's go, then! We must stoke the fire so... it'll be warm when- Come! We can go now." She rushes past you.
+	[ | change_diag_file diag_sauna_sex start, change_sprite character] (Follow her)
+||
+

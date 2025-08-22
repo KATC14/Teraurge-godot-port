@@ -1,0 +1,107 @@
+{start | save_index visited} A short jog takes you to the building covered with rocks. The wooden front seems more aged than the other buildings in the village. You try the heavy door. It opens with a low groan, and you walk in. As the door closes behind you, you notice it has a latch on the inside.<br><br>The windowless room is dimly lit with a single lamp fixed to the ceiling. The sides of the room have various buckets, bottles, and towels strewn about. The room has a musky odour to it.
+{sauna_door} You peek into the dark room. It's a small room with simple wooden benches and an elaborate fireplace in the corner. It resembles a sauna or a steam room of some kind.
+{leave_storage | change_environment taodal_saunastorage, remove_pic} You close the large door and lock it again with the padlock.
+{leave_storage_broken | change_environment taodal_saunastorage, remove_pic} You close the large door and lift the padlock anchor back into its loose bolt holes. 
+{visited | remove_pic} 
+	[sauna_door] (Look into the room on the right) //hideif.clicked
+	[storage_door] (Look at the locked door)
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+NOTES
+
+STORAGE ROOM ITEMS
+	sejan_cave_map
+	tornoth's_axe
+	mysterious_bone_statuette
+
+NOTES
+
+
+||>>STORAGE DOOR
+{storage_door | remove_pic} The large wooden door is reinforced with wrought iron, and a colossal padlock locks it.
+{storage_door_return | remove_pic}
+	[storage_room | play_sound generic/objects/door_unlock 70] (Use the key to open the lock) //showif.has_item.key_to_taodal_storage
+	[storage_room] (Pull the loose padlock anchor off to enter the room) //showif.has_flag.taodal_storage_door_broken
+	[inspect_padlock] (Look at the padlock) //hideif.has_flag.taodal_storage_door_broken
+	[inspect_reinforcement] (Inspect the reinforcement) //hideif.has_flag.taodal_storage_door_broken
+	[visited] (Return)
+||>>Padlock
+{inspect_padlock | pic padlock} The absurdly large padlock is made from wrought iron and is extremely heavy. The surface has very little rust on it, and it's generally in good condition. The padlock is in fact so large that you can easily see into the mechanism through the keyhole. It seems simpler than you'd expect a lock to be. You note that you can fit two fingers into the keyhole.
+	[ | check_stat agility 6 lockpick_0-lockpick_1] (Feel the inside of the lock with your fingers)
+	[storage_door_return] (Return)
+||
+{lockpick_0} You finger the lock carefully. Some parts of the mechanism move when pushed, but you don't find anything to indicate how to open the lock. 
+	[storage_door_return] (Return)
+||
+{lockpick_1} You finger the lock carefully. As you push a small metal pad inside the padlock, you can hear a faint but delightfully clean click.<br><br>You find three more clicking pads inside the lock, but you can only hold two of them down with your fingers. You cannot fit a third finger inside the keyhole. You need something sturdy and thin to hold down the third pad.
+	[lock_open | play_sound generic/objects/door_unlock 70] (Use a nail to press the third pad) //showif.has_item.box_of_nails
+	[storage_door_return] (Return)
+||
+{lock_open} You twist your fingers into the lock and carefully press the final pad down with an iron nail. The lock immediately pops off the door with a loud clank and falls to the floor, almost crushing your toes. The massive door creaks and opens into the dark room.
+	[storage_room] (Go in)
+||>>Steel reinforcement
+{inspect_reinforcement | pic reinforcement} Taking a closer look at the reinforcing iron ribs, you notice that the six bolts holding the padlock anchor on the frame are leaking water and rust from their fittings. You shake the anchor piece, and it moves noticeably. The bolts are seemingly coming loose from the wood they've been attached to.
+	[ | check_stat strength 10 pull_0-pull_1] (Pull the anchor off the frame)
+	[ | check_stat strength 6 crowbar_0-crowbar_1] (Crowbar the anchor off the frame) //showif.has_item.crowbar
+	[storage_door_return] (Return)
+||
+{pull_0} You pull on the frame as hard as you can, but you cannot get it to budge. It might be attached to the wall better than you thought, or you are weaker than you thought.
+{crowbar_0} You wedge the crowbar under the frame and pull with all your strength. You grit your teeth as your spindly arms shake from exertion. A few excruciating seconds pass, and you give up. Even with the leverage from the crowbar, you're unable to pry the anchor off the frame.
+	[storage_door_return] (Return)
+||
+{pull_1} You get a firm hold on the frame anchor and brace yourself against the wall. You pull with all your might, but the anchor doesn't budge. You breathe in and pull again. You feel the bolts slowly sliding out of the wood. You give it one last yank, and the anchor pops off the wall, and you fall on your ass. The anchor dangles from the padlock as the door opens into a dark room.
+{crowbar_1} You slide the crowbar behind the anchor and yank. The anchor pops off the frame and swings by the padlock to hit the iron ribs with a deafening clank. The anchor dangles from the padlock as the door opens into a dark room.
+	[storage_room | add_flag taodal_storage_door_broken] (Go in)
+||
+
+
+||>>STORAGE ROOM
+{storage_room | remove_pic, change_environment taodal_storage} You step into the musty and cold room. Dust-covered boxes line the walls.
+{find_tablet | play_sound generic/objects/drawer_open 70, add_flag tornoth_tablet_stolen, give_item sejan_cave_map, pic stone_tablet} As you look through the various containers, you note that most of them are completely empty. The storage room doesn't seem to be in use. Finally, you peek into a dilapidated wooden box and find a stone tablet with a map carved into it. 
+	[find_tablet] (Find the stone tablet) //hideif.clicked
+	[ | check_flag taodal_storage_door_broken leave_storage leave_storage_broken] (Leave the room)
+||
+
+
+
+
+
+
+
+||>>Stuff edited out (Will be reimplemented) // NOT PROOFREAD!
+{search_boxes_1} You step into the musty and cold room. Dust covered boxes line the walls.<br><br>As you look through the various containers you note that most of them are completely empty. The storage doesn't seem to be in use. You find a gigantic axe in a leather covered box. Finally you peek into a dilapidated wooden box and find a stone tablet with a map carved into it. 
+{search_boxes_2} You step into the musty and cold room. Dust covered boxes line the walls.<br><br>As you look through the various containers you note that most of them are completely empty. The storage doesn't seem to be in use. You find a gigantic axe in a leather covered box. Finally, you peek into a dilapidated wooden box and find a stone tablet with a map carved into it.<br><br>You glance around the room one more time and notice something odd. One of the floor tiles has something carved into it.
+{take_statuette | remove_pic} You pocket the strange statuette and stand back up.
+{take_tornoth_axe | remove_pic} You take the giant axe.
+{take_tablet_2 | remove_pic} You take the cave map.
+{search_return | remove_pic}
+	[take_tablet] (Take the stone tablet) //hideif.clicked
+	[take_giant_axe] (Take the giant axe) //hideif.has_flag.tornoth_axe_stolen //hideif.note.TBA
+	[storage_floortile] (Look at the strange floor tile) //hideif.has_flag.taodal_mysterious_statuette_found //hideif.note.TBA
+	[ | check_flag taodal_storage_door_broken leave_storage leave_storage_broken] (leave the room)
+||
+
+
+	
+	
+||>>Tornoth's axe
+{take_giant_axe} You lift the heavy axe from the box with both hands and look it over. You notice a carving along its handle. It simply reads 'Tornoth'.
+	[take_tornoth_axe | add_flag tornoth_axe_stolen, give_item tornoth's_axe] (Take Tornoth's axe)
+	[search_return] (Leave the axe alone)
+||>>Stone tablet
+{take_tablet | pic stone_tablet} You lift the stone tablet from the box. The map on the tablet details a path through a cave in the Sejan peninsula.
+	[take_tablet_2 | add_flag tornoth_tablet_stolen, give_item sejan_cave_map] (Take the Sejan cave map)
+||>>Floor tile mystery (statuette)
+{storage_floortile} You crouch down on the dusty floor to take a better look at the tile. The symbol is a triangle with odd symbols packed inside it.
+{touch_symbol} You carefully slide your hand over the symbol. You feel a slight tingle race down your fingers and up your arm. The symbol doesn't have any sharp edges to it. In fact, it almost feels as if the lines were melted into the stone.
+	[touch_symbol] (Touch the symbol) //hideif.clicked
+	[take_floortile] (Take the floor tile) 
+	[search_return] (Return)
+||
+{take_floortile | give_item carved_floor_tile, add_flag taodal_mysterious_statuette_found} You try the edges of the tile, there's no mortar around it. You easily lift the stone off the floor and stash it.<br><br>The hole left behind is filled with soft and dark soil. Strangely, the hole seems to go through the foundations of the building. There's something under the soil.
+	[dig_soil] (Dig the soil)
+||
+{dig_soil} You dig into the soil. A few handfuls of dirt reveal a statuette. It's soft with a reddish tint, you think it might be carved from bone of some kind. You cannot decipher what the statue represents. It seems very abstract.
+	[take_statuette | give_item strange_bone_statuette] (Take the statuette)
+||

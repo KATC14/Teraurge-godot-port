@@ -1,0 +1,287 @@
+[gd_scene load_steps=41 format=3 uid="uid://bc1h5hiwimgip"]
+
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_6252v"]
+[ext_resource type="Texture2D" uid="uid://bctev5st1e7v" path="res://database/maps/default.jpg" id="2_7g4cl"]
+[ext_resource type="Script" path="res://scripts/test.gd" id="3_qa5ux"]
+[ext_resource type="Script" path="res://scripts/move_camera.gd" id="4_rxae7"]
+[ext_resource type="Script" path="res://scripts/move_character.gd" id="5_3ftm6"]
+[ext_resource type="Texture2D" uid="uid://ch6agf8q3cmqx" path="res://assets/images/map/location_prompt.png" id="5_fvbs5"]
+[ext_resource type="Texture2D" uid="uid://ynhhnglr75h4" path="res://assets/images/map/sun_dial.png" id="7_uecd1"]
+[ext_resource type="Texture2D" uid="uid://bit4vvwtmvc4c" path="res://assets/images/map/button_chr.png" id="8_s1s3d"]
+[ext_resource type="Texture2D" uid="uid://el6jqsyul73m" path="res://assets/images/map/sun_dial_point.png" id="9_1fuh7"]
+[ext_resource type="Texture2D" uid="uid://b1xxa0qpi68dq" path="res://assets/images/map/button_dck.png" id="9_e8477"]
+[ext_resource type="Texture2D" uid="uid://cgqvh7jyboeic" path="res://assets/images/map/button_inv.png" id="10_j7g6d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1mffo"]
+radius = 5.0
+
+[sub_resource type="SystemFont" id="SystemFont_2w5ym"]
+font_names = PackedStringArray("Verdana")
+font_weight = 999
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_43wy4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_65hag"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emua3"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wmgxu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuo7p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3grp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gjvw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c70d2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xalov"]
+bg_color = Color(0, 0, 0, 0.501961)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ylibh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5k4md"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3hlm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x6ccc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_83xty"]
+texture = ExtResource("8_s1s3d")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vney4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c0a4p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l871p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bh7vt"]
+texture = ExtResource("9_e8477")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xdkc"]
+texture = ExtResource("9_e8477")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_05hw5"]
+texture = ExtResource("9_e8477")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvaug"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ya1eo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uy0y0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wv5xv"]
+texture = ExtResource("10_j7g6d")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4r41"]
+texture = ExtResource("10_j7g6d")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ilt62"]
+texture = ExtResource("10_j7g6d")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipssi"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6252v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+texture_filter = 1
+offset_right = 8192.0
+offset_bottom = 8192.0
+texture = ExtResource("2_7g4cl")
+script = ExtResource("3_qa5ux")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
+position = Vector2(2149, 3154)
+script = ExtResource("4_rxae7")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="CanvasLayer"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("5_3ftm6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/CharacterBody2D"]
+shape = SubResource("CircleShape2D_1mffo")
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/CharacterBody2D"]
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(3, -4, 1, -5, -1, -5, -3, -4, -4, -3, -5, -1, -5, 1, -4, 3, -3, 4, -1, 5, 1, 5, 3, 4, 4, 3, 5, 1, 5, -1, 4, -3)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(2200, 3031)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+position = Vector2(95, -21)
+build_mode = 1
+polygon = PackedVector2Array(-69, 252, -74, 255, -84, 251, -92, 243, -95, 232, -97, 215, -103, 208, -110, 206, -134, 195, -167, 173, -198, 150, -214, 127, -224, 107, -224, 101, -227, 94, -227, 90, -220, 87, -201, 95, -192, 95, -191, 85, -197, 75, -201, 62, -202, 47, -199, 43, -197, 42, -197, 37, -200, 33, -204, 31, -208, 31, -210, 33, -213, 34, -217, 34, -221, 40, -219, 58, -220, 78, -225, 83, -232, 83, -248, 73, -258, 59, -280, 6, -280, -13, -285, -45, -279, -68, -273, -68, -247, -50, -240, -39, -229, -28, -222, -28, -216, -32, -206, -37, -190, -53, -177, -73, -168, -91, -150, -115, -131, -133, -94, -170, -66, -187, -39, -198, 10, -232, 79, -289, 93, -294, 111, -294, 124, -299, 129, -304, 132, -311, 131, -320, 134, -333, 123, -351, 101, -378, 79, -379, 62, -381, 40, -378, 23, -381, 6, -384, -9, -390, -11, -408, -7, -418, -1, -423, 7, -434, 42, -451, 132, -473, 170, -478, 187, -481, 195, -488, 201, -486, 215, -484, 231, -486, 234, -491, 221, -494, 209, -501, 209, -505, 214, -507, 233, -506, 240, -500, 302, -471, 317, -462, 298, -463, 277, -471, 250, -481, 237, -482, 231, -481, 216, -479, 171, -465, 163, -465, 140, -458, 136, -454, 121, -452, 119, -448, 134, -433, 211, -429, 219, -429, 206, -418, 185, -407, 185, -403, 189, -403, 189, -399, 186, -397, 194, -394, 202, -392, 216, -376, 219, -378, 224, -376, 232, -380, 234, -378, 205, -349, 205, -344, 214, -338, 223, -338, 251, -349, 242, -334, 200, -295, 199, -288, 200, -283, 204, -284, 205, -289, 210, -288, 223, -290, 304, -329, 310, -331, 318, -333, 319, -317, 324, -317, 325, -321, 329, -321, 334, -323, 339, -323, 339, -320, 343, -320, 347, -321, 349, -327, 356, -327, 359, -327, 359, -330, 363, -330, 363, -326, 367, -326, 368, -328, 373, -328, 377, -319, 381, -318, 386, -316, 388, -321, 396, -323, 408, -329, 413, -329, 416, -337, 415, -341, 422, -356, 422, -360, 425, -361, 427, -366, 434, -365, 439, -363, 442, -368, 443, -373, 447, -372, 448, -375, 451, -376, 454, -374, 456, -380, 463, -380, 464, -385, 468, -386, 472, -384, 472, -373, 466, -350, 475, -345, 484, -349, 490, -357, 489, -346, 487, -343, 499, -346, 502, -350, 508, -356, 511, -355, 513, -353, 510, -348, 505, -348, 491, -318, 491, -311, 487, -311, 486, -304, 457, -250, 459, -248, 463, -239, 460, -225, 456, -203, 449, -186, 457, -165, 453, -130, 455, -117, 468, -111, 468, -101, 457, -104, 439, -95, 441, -90, 429, -69, 425, -70, 418, -63, 426, -60, 433, -53, 441, -54, 442, -50, 451, -44, 452, -37, 458, -35, 464, -23, 463, -15, 458, -13, 444, -25, 414, -38, 389, -22, 385, -3, 381, -2, 372, 3, 366, 13, 354, 18, 346, 26, 343, 36, 323, 33, 312, 38, 310, 46, 298, 48, 285, 58, 276, 59, 276, 64, 270, 64, 270, 67, 263, 73, 264, 82, 253, 100, 233, 125, 222, 131, 216, 131, 216, 127, 210, 127, 192, 134, 188, 133, 199, 105, 210, 64, 236, 32, 263, 10, 276, -23, 317, -68, 345, -91, 357, -111, 357, -125, 345, -135, 343, -154, 356, -176, 352, -210, 330, -240, 308, -250, 281, -251, 242, -247, 206, -236, 178, -212, 156, -184, 99, -150, 81, -101, 73, -69, 72, -33, 72, 37, 69, 63, 60, 87, 55, 106, 37, 153, 8, 200, -6, 192, -11, 181, -22, 170, -33, 154, -43, 143, -54, 138, -65, 147, -76, 164, -80, 177, -87, 185, -95, 192, -97, 204, -88, 216, -84, 236, -73, 244, -67, 248)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+position = Vector2(58.7896, -163.749)
+polygon = PackedVector2Array(160.21, -101.251, 153.21, -98.2515, 150.21, -93.2515, 150.21, -84.2515, 153.21, -80.2515, 160.21, -75.2515, 171.21, -75.2515, 178.21, -78.2515, 186.21, -79.2515, 187.21, -88.2515, 183.21, -95.2515, 176.21, -100.251, 168.21, -101.251)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+position = Vector2(100.758, -185.603)
+polygon = PackedVector2Array(75.2417, -43.3975, 77.2417, -35.3975, 79.2417, -35.3975, 79.2417, -32.3975, 75.2417, -32.3975, 75.2417, -24.3975, 67.2417, -22.3975, 60.2417, -15.3975, 60.2417, -11.3975, 63.2417, -10.3975, 62.2417, -7.39746, 50.2417, 2.60254, 46.2417, 7.60254, 40.2417, 7.60254, 35.2417, 4.60254, 34.2417, 0.602539, 30.2417, 0.602539, 32.2417, 5.60254, 31.2417, 8.60254, 34.2417, 15.6025, 27.2417, 17.6025, 27.2417, 23.6025, 33.2417, 27.6025, 33.2417, 32.6025, 31.2417, 40.6025, 33.2417, 46.6025, 29.2417, 53.6025, 33.2417, 56.6025, 22.2417, 56.6025, 18.2417, 58.6025, 21.2417, 64.6025, 25.2417, 67.6025, 25.2417, 91.6025, 18.2417, 93.6025, 14.2417, 115.603, 3.2417, 113.603, 0.241699, 109.603, -3.7583, 115.603, -5.7583, 112.603, -9.7583, 112.603, -9.7583, 116.603, -19.7583, 110.603, -23.7583, 111.603, -25.7583, 115.603, -20.7583, 116.603, -23.7583, 122.603, -30.7583, 122.603, -35.7583, 127.603, -36.7583, 146.603, -39.7583, 167.603, -44.7583, 172.603, -55.7583, 171.603, -44.7583, 184.603, -37.7583, 197.603, -34.7583, 205.603, -35.7583, 213.603, -42.7583, 220.603, -44.7583, 230.603, -48.7583, 244.603, -49.7583, 259.603, -59.7583, 268.603, -67.7583, 269.603, -72.7583, 264.603, -76.7583, 259.603, -76.7583, 241.603, -81.7583, 238.603, -78.7583, 228.603, -78.7583, 219.603, -82.7583, 215.603, -80.7583, 210.603, -79.7583, 201.603, -76.7583, 199.603, -76.7583, 194.603, -81.7583, 195.603, -81.7583, 200.603, -91.7583, 205.603, -91.7583, 194.603, -88.7583, 190.603, -88.7583, 185.603, -91.7583, 177.603, -92.7583, 168.603, -85.7583, 159.603, -81.7583, 156.603, -80.7583, 151.603, -83.7583, 147.603, -89.7583, 147.603, -84.7583, 142.603, -75.7583, 132.603, -71.7583, 129.603, -71.7583, 119.603, -69.7583, 113.603, -69.7583, 107.603, -72.7583, 107.603, -73.7583, 112.603, -78.7583, 112.603, -85.7583, 109.603, -87.7583, 103.603, -92.7583, 100.603, -89.7583, 89.6025, -89.7583, 80.6025, -84.7583, 77.6025, -74.7583, 60.6025, -73.7583, 53.6025, -66.7583, 48.6025, -61.7583, 42.6025, -61.7583, 33.6025, -39.7583, 13.6025, -12.7583, -5.39746, 0.241699, -20.3975, 15.2417, -23.3975, 38.2417, -33.3975, 52.2417, -40.3975)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+polygon = PackedVector2Array(92, 62, 89, 64, 87, 79, 88, 84, 103, 84, 105, 77, 105, 73, 101, 73, 102, 65, 101, 61, 96, 61)
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="CanvasLayer/StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(-220, -250, -211, -250, -202, -256, -189, -272, -179, -278, -164, -278, -135, -304, -117, -328, -98, -348, -73, -365, -77, -369, -88, -362, -86, -370, -79, -379, -76, -384, -72, -391, -69, -397, -64, -400, -57, -410, -58, -413, -68, -403, -71, -403, -71, -412, -92, -394, -103, -385, -120, -375, -126, -375, -137, -378, -149, -376, -168, -358, -174, -355, -181, -357, -179, -367, -172, -382, -165, -390, -160, -393, -163, -399, -155, -408, -150, -404, -147, -409, -134, -419, -130, -421, -127, -424, -119, -428, -112, -428, -105, -432, -97, -432, -60, -438, -49, -440, -36, -448, -29, -450, -35, -454, -29, -462, -21, -460, -20, -454, -13, -462, 8, -471, 29, -485, 36, -493, 37, -503, 34, -508, 25, -511, 16, -514, 9, -511, -70, -509, -74, -506, -74, -501, -68, -498, -71, -492, -73, -489, -90, -487, -94, -488, -108, -482, -125, -480, -124, -483, -125, -484, -129, -483, -134, -478, -164, -486, -178, -470, -205, -448, -205, -453, -184, -482, -180, -488, -181, -502, -186, -510, -197, -513, -200, -510, -193, -507, -190, -502, -197, -499, -196, -486, -200, -478, -204, -467, -214, -455, -232, -443, -222, -438, -221, -426, -218, -414, -228, -401, -233, -405, -247, -409, -258, -424, -258, -428, -256, -433, -259, -439, -260, -458, -263, -457, -263, -448, -264, -444, -264, -437, -262, -435, -262, -432, -266, -426, -266, -420, -263, -406, -253, -398, -246, -393, -240, -387, -238, -380, -240, -354, -242, -324, -242, -301, -240, -289, -236, -284, -235, -272, -232, -256)
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("5_fvbs5")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 248.0
+offset_right = 823.0
+offset_bottom = 427.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_2w5ym")
+text = "sdasdas"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 460.0
+offset_right = 570.0
+offset_bottom = 491.0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_43wy4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_65hag")
+theme_override_styles/hover = SubResource("StyleBoxFlat_emua3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wmgxu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tuo7p")
+text = "pass"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 719.0
+offset_top = 460.0
+offset_right = 823.0
+offset_bottom = 491.0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i3grp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8gjvw")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c70d2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xalov")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ylibh")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5k4md")
+text = "enter"
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1509.0
+offset_top = 2794.0
+offset_right = 1509.0
+offset_bottom = 2794.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_top = 180.0
+offset_right = 76.0
+offset_bottom = 554.0
+texture = ExtResource("7_uecd1")
+
+[node name="Button" type="Button" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 305.0
+offset_right = 62.0
+offset_bottom = 356.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u3hlm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_x6ccc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_83xty")
+theme_override_styles/hover = SubResource("StyleBoxTexture_83xty")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_83xty")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vney4")
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 379.0
+offset_right = 62.0
+offset_bottom = 430.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c0a4p")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_l871p")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_bh7vt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8xdkc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_05hw5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dvaug")
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 454.0
+offset_right = 62.0
+offset_bottom = 505.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ya1eo")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uy0y0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_wv5xv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_p4r41")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ilt62")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ipssi")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 256.0
+offset_right = 58.0
+offset_bottom = 279.0
+text = "9999"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control2"]
+position = Vector2(37, 218)
+texture = ExtResource("9_1fuh7")
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_discovery_popup_pass"]
+[connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_discovery_popup_enter"]
+[connection signal="mouse_entered" from="CanvasLayer/Control2/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/Control2/Button2" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/Control2/Button3" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Control2/Button3" to="." method="_on_button_mouse_exited"]

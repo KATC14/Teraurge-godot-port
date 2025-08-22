@@ -1,0 +1,107 @@
+
+
+
+||
+{start | check_flag witch_house_burnt normal burnt}
+{normal | day_night_gate day night} 
+||
+{day} You emerge from the forest and see the Witch's house on the hill.
+	[meet_day] (Go meet the Witch)
+	[ | end_encounter] (Leave)
+||
+{night} You emerge from the forest and barely see the Witch's house against the dark sky.
+	[meet_night] (Go meet the Witch)
+	[ | end_encounter] (Leave)
+||
+{meet_day | play_sound generic/objects/door_creaky_unlock 50, auto_continue go_in, pic house_door} You climb the hill and knock on the door.<br><br>You hear the lock click, and the door opens. The Witch motions you to come in.
+{go_in | start_encounter sejan_witch_house_interior witch}
+||
+
+
+
+
+||>>She doesn't need sleep, she's magical.
+{meet_night | check_flag witch_woken_up wakeup_1 next_check}
+||
+{wakeup_1 | play_sound generic/objects/door_creaky_unlock 50, auto_continue im_sleeping_you_retard_1, pic house_door} You climb the hill and knock on the door.<br><br>There's a pause, and then you hear the lock click.
+{next_check | check_flag witch_woken_up_furious wakeup_2 wakeup_3}
+{wakeup_2 | play_sound generic/objects/door_creaky_unlock 50, auto_continue im_sleeping_you_retard_2, pic house_door} You climb the hill and knock on the door.<br><br>There's a long pause, and then you hear the lock click.
+||
+{im_sleeping_you_retard_1 | pic angry_witch, add_flag witch_woken_up} The Witch opens the door and looks at you with tired annoyance. "What are you doing here!?"
+	[can_talk] Can we talk?
+	[just_hello] I just thought I'd say hello.
+||
+{can_talk | auto_continue door_slam_1, pic angry_witch} She responds with an annoyed sigh. "We can talk tomorrow. I'm going to sleep now. Go away."
+{just_hello | auto_continue door_slam_1, pic angry_witch} She screams a frustrated squeal. "<b>What</b>? <b>To say hello</b>?!" She inhales, then exhales and continues her tirade. "It's night! I sleep at night! Go away!"
+||
+
+||
+{im_sleeping_you_retard_2 | pic angry_witch, add_flag witch_woken_up_furious} The Witch opens the door with a slam and yells at you. "<b>What</b>!?"
+	[time_talk] Do you have time to talk?
+	[time_talk] Uh... Nevermind.
+||
+{time_talk | auto_continue door_slam_2} She screams. "<b>I sleep at night</b>!!! <b>Do you not understand that</b>?!" She flails her arms angrily and lets out a high-pitched snarl. She shakes with anger. "<b>GO AWAY</b>!!!"
+||
+
+||
+{wakeup_3 | auto_continue thrown_down, pic house_door} You climb the hill and are about to knock on the door when you feel something grip your foot. You instinctively try to kick at it, but... there's nothing.
+||
+{thrown_down | pic outside_abode} You're suddenly yanked off your feet and then tossed down the hill. You roll on the patches of mud and wet grass until you come to a stop at the base of the hill.
+	[getup] (Get up)
+||
+{getup | remove_pic} You get up and pat some of the mud and grass off you.
+	[ | end_encounter] (Leave)
+||
+
+
+||>>Door slams
+{door_slam_1 | play_sound generic/objects/door_slam 90, pic house_door} She slams the door. You hear her mutter in annoyance.
+{door_slam_2 | play_sound generic/objects/door_slam 90, play_contsound sejan/witch_break 50 1 0 1, pic house_door} She slams the door. You hear muffled screaming and then things breaking against the walls.
+	[ | stop_contsound 1 1, end_encounter] (Leave)
+||
+
+
+
+
+
+
+
+||>>BURNT HUT
+{waited_fire | save_index burnt, stop_contsound 1 6, change_environment sejan_witch_house_burnt, advance_time_to morning} You watch the fire dance on the wood beams of the house and devour it slowly. After some time, the roaring fire is reduced to glowing embers, and only the blackened skeleton of the house remains.
+{burnt | change_environment sejan_witch_house_burnt} You see the Witch's blackened and collapsed hut on the hill.
+	[look_rubble] (Go look at the ruins)
+	[ | end_encounter] (Leave)
+||
+{look_rubble | pic hut_ruin} You reach the top of the small hill and see charred beams and collapsed brickwork. Ash covers everything.
+{search_rubble | add_flag witch_house_rubble_searched} You carefully step through the burnt wood and blackened bricks. After some searching among the wreckage, the only salvageable-looking things you find are an odd broken machine and a half-burnt book.
+{take_cylinder | pic hut_ruin} You reach into the machine and tug the cylinder free. The light keeps blinking even when the cable attached to the cylinder detaches. You stash the cylinder.
+{bury_witch | advance_time_to evening, pic burial} You bury the Witch behind the ruins of her house. You mark her grave with a large stone block taken from the rubble. The trees rustle in the wind as you watch the silent scene.
+{look_for_body_0} You spend considerable time turning over the rubble but can't find the Witch's body or anything resembling one.
+{leave_body} You step away from the body.
+{look_ruin | pic hut_ruin} You look at the ruins.
+	[search_rubble] (Search the rubble) //hideif.clicked
+	[look_for_body_1] (Look for the Witch's body) //showif.has_flag.witch_killed_by_nkaan //hideif.clicked
+	[look_for_body_0] (Look for the Witch's body) //showif.has_flag.witch_maybe_dead //hideif.clicked
+	[broken_machine] (Examine the broken machine) //hideif.clicked //showif.has_flag.witch_house_rubble_searched
+	[burnt_book] (Look at the burnt book) //hideif.clicked //showif.has_flag.witch_house_rubble_searched
+	[ | end_encounter] (Leave)
+||
+{broken_machine | pic broken_machine} You crouch to take a better look at the machine. The metal shell has cracked, and you can see into it. Most of the machinery inside the box has been melted and distorted by the fire. You spot a metallic cylinder with a slowly blinking light on it.
+	[take_cylinder | give_item blinking_cylinder] (Take the cylinder)
+||
+{burnt_book | pic burnt_book} You pick up the half-burnt book and carefully flip through it. It seems to be a story book.
+	[take_book] (Take the book)
+	[throw_book_away] (Throw the book away)
+||
+{take_book | pic book_pages, auto_continue look_ruin} You try to stash the burnt book, but it crumbles in your hands. The wind picks up the stray pages, and they fly in graceful spins and arcs as they make their way over the trees below.
+{throw_book_away | pic book_pages, auto_continue look_ruin} You throw the book into the rubble. It breaks apart against a charred beam, and the burnt pages scatter about.
+||
+{look_for_body_1 | pic charred_corpse} You spend considerable time turning over the rubble, and then suddenly stumble on a black, hardened shape that resembles the Witch. You lift the rubble off it and notice it's missing its head.
+{exam_body} You carefully look over the body. The bones partially poke out from under the thick charred surface. You can't see any items on the corpse.
+	[exam_body] (Examine the body) //showif.index_is.look_for_body_1
+	[bury_witch] (Bury her)
+	[leave_body] (Leave it)
+||
+
+
+

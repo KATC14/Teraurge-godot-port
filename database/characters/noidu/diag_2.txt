@@ -1,0 +1,334 @@
+
+{start | stop_music 8, check_flag noidu_mindless_sex hello_after rem_something}
+
+||>>Noidu remembers something odd
+{rem_something | save_index hi_again} "You called yourself, -name-? I remember something odd, -name-."
+	[ | sex_gate m_bang f_bang] Hey! What do you remember?	
+||
+
+||>>femPC "yeah, we had weird mindless sex"
+{f_bang} "You see, I remember you. I remember you in my room, splayed on my bed, nude, and I remember fucking you."
+	[f_bang_22] Uh, that's weird. (Lie)
+	[f_bang_2] Oh... yeah, we did that.
+	[f_bang_2] Sorry about that, I didn't realize your faculties were impaired. You seemed eager. //showif.charisma.8
+||
+{f_bang_22} "Don't be coy. I have a poor memory of the event, so, would you be interested in recreating it... for my memory's sake?" He stares at you unflinchingly.
+{f_bang_2} "I have a poor memory of the event. Would you be interested in recreating it... for my memory's sake?" He stares at you unflinchingly.
+	[we_should_bang] Oh... of course we can do that. A perfect therapy for your battered mind. //showif.charisma.8
+	[we_should_bang] Uh, like a fake recreation, or do you mean the real thing?
+	[we_should_bang] That doesn't seem right.
+||
+{we_should_bang} "I would like to have sex with you while not mentally impaired."
+	[sex_right_nao] Sure, definitely!
+	[now_sex] You mean... right now?
+	[no_sex] I would rather not.
+||
+
+||>>malePC "yeah, we had weird mindless sex"
+{m_bang} "You see, I remember you. I remember you in my room, splayed on my bed, nude, and I remember fucking you."
+	[m_bang_2] Uh, that's weird. (Lie)
+	[m_bang_2] Oh... yeah, we did that.
+	[m_bang_3] Sorry about that, I didn't realize your faculties were impaired. You seemed eager. //showif.charisma.8
+||
+{m_bang_2} "Don't be coy. How about you splay yourself on my bed again and I fuck you harder?" He stares at you unflinchingly.
+{m_bang_3} "Understandable, but how about we do it again?" He stares at you unflinchingly.
+{what_mbang} "Do you want to fuck again?"
+	[what_mbang] ...What? //hideif.index_is.what_mbang
+	[sex_right_nao] Sure, definitely!
+	[now_sex] You mean... right now?
+	[no_sex] I would rather not.
+||
+
+||
+{now_sex} "If you want."
+	[sex_right_nao] Sure, definitely!
+	[sex_butter] You could butter me up a bit before trying to bed me.
+	[no_sex_2] Not right now.
+||
+{sex_butter} "-name-... I want to mount you and claim you as my own."
+	[sex_right_nao] Nice, okay, I'm good to go!
+	[butter_1] That's a good start.
+	[butter_1] Are you always this blunt?
+||
+{butter_1} "I would only hurt you in the way you want or secretly desire."
+	[sex_right_nao] Let's go fuck, big guy.
+	[butter_2] Yeah?
+	[no_sex_2] Maybe later?
+||
+{butter_2} He snorts, annoyed. "I will fuck you into the bed."
+	[sex_right_nao] Nice. Let's go fuck, big guy.
+	[no_sex_2] Maybe later.
+||
+
+
+
+||>>CONVO HUB 2 (Woke Noidu)
+{awkward_m} "We should talk about something else."
+{no_sex} He shrugs. "If you change your mind, let me know."
+{no_sex_2} He shrugs. "Of course."
+{hello_after | stop_music 8, save_index hi_again} "Hello, -name-. Thank you for untangling my head, I owe you. I am feeling better now."
+{hi_again | stop_music 8} "Hello again."
+{why_tamper} "I do not know." He takes a sip.
+{innocent} He takes a sip.
+{wat_nao} "Sit here, drink, and sleep until my head sorts itself out. I'm in no hurry."
+{hey_pc} "Hello, -name-."
+{sex_possible | add_flag noidu_sex_open} "Well, if you ever do decide, I'm open for... that is, if I'm not currently fucking someone else.<br><br>Except if you're into that, then sure, I'll fuck two people at the same time."
+{just_platonic} He shrugs. "Okay."
+{later_sex | add_flag noidu_sex_open} "Alright, later then."
+{silent_return} 
+{f_banged | save_index hey_pc} This index is used after Noidu banged femPC.
+{m_banged | save_index hey_pc} This index is used after Noidu banged malePC.
+	[umember_1] Do you remember what happened? //hideif.clicked
+	[wat_nao] What's your plan? //hideif.clicked
+	[handsome] This might sound silly, considering the circumstances, but you're very handsome. //hideif.has_flag.noidu_sexed_multiple //hideif.clicked
+	[want_bang_0] Is the offer for sex still open? //showif.has_flag.noidu_sex_open
+	[want_bang] Wanna go fuck? //showif.has_flag.noidu_sexed_multiple
+	[ | change_diag_file diag_questions start] (Questions)
+	[ | start_encounter taodal_tavern taodal_tavern] I'll be going now. (Leave)
+||
+
+
+||>>Do you remember what happened?
+{umember_1} "I do not remember what happened, but I do not think this was a malfunction."
+	[umember_2] What do you mean?
+||
+{umember_2} "I went through the component logs, there's nothing recorded before you opened the case."
+	[uh_reset] Well, I think I did reset the system several times.
+	[intent_tamper] Are you saying someone tampered with it intentionally? //showif.intelligence.8
+||
+{uh_reset} "The log is not affected by system resets. The log is protected from power outage and from the elements, and as far as I can tell, it's not broken."
+	[happen_logs] What happened to the logs then?
+||
+{happen_logs} "Someone removed them."
+	[why_clean_logs] Why would they do that?
+||
+{why_clean_logs} "To incapacitate me, and I'm not sure if it wasn't you."
+{intent_tamper} "Yes, and I'm not sure if it wasn't you."
+	[innocent] I didn't do it.
+	[why_tamper] Why would I do that and then return you to normal?
+	[why_tamper] Why would someone want to do that to you?
+||
+
+
+
+||>>Flirt
+{handsome} He pauses for a moment and looks you over. "Is this an indirect way of saying you want to fuck?"
+	[just_compl] It's a compliment...
+	[sex_possible] That's a possibility.
+	[yes_sex] Uh, I... Yes. //hideif.will.8
+	[yes_sex] Yes. //showif.will.8
+	[just_platonic] No.
+||
+{just_compl} "Thank you. You're nice-looking as well.<br><br>Do you want to fuck?"
+{are_u_thot} "Yes. I like sex.<br><br>So, do you want to have sex or not?"
+{very_blunt} "And that's not an answer, but okay."
+	[are_u_thot] Are you like this normally? Just asking people if they want to fuck? //hideif.clicked
+	[just_platonic] I just said I was just complimenting you. //showif.index_is.just_compl
+	[very_blunt] That's very blunt. //hideif.clicked
+	[just_platonic] Thank you, but no thanks.
+	[yes_sex] Sure, we can fuck.
+||
+
+
+
+
+||>>Lets go bang
+{yes_sex} "Of course I would. Let's go, then."
+{sex_now} "Yes."
+	[sex_now] Uh, right now? //showif.index_is.yes_sex
+	[later_sex] Maybe later?
+	[sex_start] (Go with him)
+||
+
+
+||>>Lets go bang
+{handhold_sex} "Of course I would. Let's go, then."
+{sex_right_nao} "Let's go, then."
+{want_bang_0} "Sure. Let's go."
+{want_bang} "Sure. Let's go."
+	[just_platonic] I was just checking! //showif.index_is.want_bang_0
+	[sex_start | remove_flag noidu_sex_open] (Go with him)
+||
+{sex_start | pic hallway_walk} Noidu walks with you to his room
+	[ | check_flag noidu_sexed_multiple first_time other_times] (Go in)
+||>>scene start 1
+{first_time | change_environment taodal_tavern_room_2, change_sprite standing, remove_pic} Noidu turns to you with an amused grimace. "Welcome to my room."
+{basic_ren} He laughs. "Yes, it does. The boards do creak a lot when I fuck someone against them."
+{cosy_room} He laughs. "Yes, if you consider damp and dark places cozy."
+	[cosy_room] Very cozy. //showif.index_is.first_time
+	[basic_ren] It needs some basic renovation. //showif.index_is.first_time
+	[undress] (Undress)
+||
+{undress | change_sprite nude} Noidu stares at you as you undress. He throws off his clothing on the floor and turns to you. "You're very attractive, -name-." He gently pokes your bare chest.
+	[hop_bed] (Hop on the bed) Come here.
+	[im_top] How do you want me to take you? //showif.player_sex.male
+||
+{hop_bed | pic close_encounter} You hop on the bed and tap on the mattress. Noidu walks closer and undoes his garments, revealing more muscle and a slit in his lower half.
+	[subby] How do you want me? (Lie on the bed)
+	[im_top] How do you want me to take you? //showif.player_sex.male
+||
+{subby | pic organ} He looks you over and the slit in his abdomen opens. It spills out a purplish-red mess of flesh that stiffens into a pointed organ that hangs in front of him.
+	[ | sex_gate mfuck ffuck] I- I haven't seen one those before. Be gentle.	//hideif.has_flag.noidu_pc_has_seen_his_dick
+	[ | sex_gate mfuck ffuck] That thing looks like a whole lotta fun.	//hideif.has_flag.noidu_pc_has_seen_his_dick
+	[weird_dick] Woah! That's way too exotic for me! (Get off the bed)	//hideif.has_flag.noidu_pc_has_seen_his_dick
+	[ | sex_gate mfuck ffuck] I'll never get tired of seeing that cock.	//showif.has_flag.noidu_pc_has_seen_his_dick
+	[ | sex_gate mfuck ffuck] Okay, I think I can deal with that now.	//showif.has_flag.noidu_pc_has_seen_his_dick
+	[weird_dick] ...I'm sorry but that thing is too weird to me still. (Get off the bed)	//showif.has_flag.noidu_pc_has_seen_his_dick
+||
+
+
+||>>No bottom
+{im_top | pic organ} "How about I take you instead?" The triangular slit in his abdomen opens. It spills out a purplish-red mess of flesh that stiffens into a pointed organ that hangs in front of him.
+	[mtop] I'm not going to bottom here.
+	[mfuck] Okay, that's pretty convincing. Do your thing, then. (Lie on the bed)
+	[weird_dick] Okay, that's way too exotic for me! (Get off the bed)	//hideif.has_flag.noidu_pc_has_seen_his_dick
+	[weird_dick] ...I'm sorry but that thing is too weird to me still. (Get off the bed)	//showif.has_flag.noidu_pc_has_seen_his_dick
+||
+
+
+||>>Weird dick
+{weird_dick} Noidu snorts. "Really? I promise it won't bite."
+{too_different} "We do have a large size difference, but I don't think it'd be a problem. I can be gentle."
+	[too_different] Sorry, I think we're just too different. //showif.charisma.6 //hideif.clicked
+	[ | sex_gate nevermind_fuckme_m nevermind_fuckme_f] Actually nevermind, just fuck me.
+	[leave_sex] I don't think I'm up for this. (Get dressed)
+||
+{leave_sex | remove_pic} You pick up your clothes and Noidu watches you get dressed. "That's okay. I know it's not for everyone, but if you change your mind, let me know."
+{sorry_weird_dicc} "I'm fine with this, but you're missing out."
+	[sorry_weird_dicc] Sorry about this. //showif.index_is.leave_sex //showif.charisma.6
+	[ | start_encounter taodal_tavern taodal_tavern] I'll be going now. (Leave) 
+||
+
+
+||>>scene start 2
+{other_times | change_environment taodal_tavern_room_2, change_sprite standing, remove_pic} Noidu turns to you. "Let's get to it, then."
+	[ | start_music generic/romance_quick 70 3, sex_gate undress_m2 undress_f2] (Undress)
+||
+{undress_m2 | pic organ} Noidu rips off his clothing and helps you undress. The last pieces of clothing are yanked off you hastily by Noidu and you stand face to face.
+	[hard_mfuck] (Get on the bed)
+	[get_on_bed_2] Get on the bed.
+||>>Ich bin nicht Dein Sex Objekt
+{undress_f2 | pic organ} Noidu rips off his clothing and helps you undress. The last pieces of clothing are yanked off you hastily by Noidu, and he then throws you on the bed. You feel his member throb between your legs as he looms over you.
+{so_eager} "Shut up. I'm here to fuck, and you're the object I'm going to use." He pulls you closer to him and his cock prods deeper into you.
+	[so_eager] So eager! //hideif.clicked
+	[leg_spread] (Spread your legs)
+||
+
+
+>>SEX START
+||>>Sex scene (femPC) {
+{ffuck} Noidu moves closer to you and grabs your legs. The organ brushes against your inner thigh and then against your warm nethers. It's slimy and pulsing. He lines it up against your pussy and slightly prods in you as he settles himself closer to you. His hands slightly tighten around your legs.
+	[ffuck_2] (Massage the organ)
+||
+{ffuck_2 | pic vag_fug} You bend over and run your hand along the length of the complex penis. You feel it pulse hotly in your palm. You squeeze it gently but get no reaction from him. You pump it slowly with both hands as he watches silently. You feel the shaft twitch against your labia, the pointed head prodding a little deeper.
+	[ffuck_3] (Lean back)
+||
+{leg_spread | pic vag_fug} Noidu pulls on your legs and prods the head of his cock against your labia. He lifts your legs higher and pushes into you. You bite your lip as the large, slimy member slides into you, stretching you as it pulses hotly. He moves his hands to your hips and pulls himself deeper. You gasp and grip the sheets as the tip of his cock bumps against your insides. You inhale and smile at the sensation.
+{nevermind_fuckme_f | pic vag_fug} "As you want." Noidu throws you on the bed. You feel his member throb between your legs as he looms over you.<br><br>He pulls on your legs and prods the head of his cock against your labia. He lifts your legs higher and pushes into you. You bite your lip as the large, slimy member slides into you, stretching you as it pulses hotly. He moves his hands to your hips and pulls himself deeper. You gasp and grip the sheets as the tip of his cock bumps against your insides. You inhale and smile at the sensation.
+{ffuck_3 | pic vag_fug} You lean back and align yourself with him. Noidu lifts your legs higher and pushes deeper into you. You bite your lip as the large, slimy member slides into you, stretching you as it pulses hotly. He moves his hands to your hips and pulls himself deeper. You gasp and grip the sheets as the tip of his cock bumps against your insides. You inhale and smile at the sensation.
+	[ffuck_4] (Brace yourself)
+||
+{ffuck_4 | auto_continue ffuck_5} The cock slowly pulls out of you. You feel the pattern of the shaft slide along your insides, and your back arches from the pleasure. Noidu exhales and thrusts into you once again, slightly faster and more strongly. You grunt and hold in a whine. He carefully picks ups his pace and grips you tighter. The massive organ slides in and out of you with almost no resistance. You feel yourself bump against the bulbous base of the shaft as he bucks deeper into you. Your mind starts to blur from the sensation, and you find yourself whining and moaning as he keeps up his pace. 
+||
+{ffuck_5} He keeps up his relentless assault as your mind slips into a more mixed and delirious state. The one thrust among many sends you over the edge. You tense up and scream, but Noidu doesn't stop or slow down. The thrusting becomes a mess of pleasure and uncomfortable sensitivity as he rams himself relentlessly into you. You grimace and hold the sheets harder as you try to ride your orgasm as he pounds into you, but you feel another one coming on you already.
+	[ffuck_6] S- Slow down! //hideif.has_flag.noidu_sexed_multiple
+	[ffuck_7] (Take it)
+||
+{ffuck_6 | auto_continue ffuck_8} You pat Noidu on his hand and yell raggedly for him to slow down. He nods and slows down and gives you a few gentle thrusts and then slowly ramps up the speed.<br><br>A few more overly excited thrusts and your body is ravaged by another orgasm, you try to turn your head into the sheets, but Noidu's grip on your hips won't let you. You let out a frustrated snarl and grimace. The constant pounding is driving your mind delirious, but Noidu just keeps fucking you, your thighs slapping against his body over and over again as he drives himself into you.
+{ffuck_7 | auto_continue ffuck_8} A few more overly excited thrusts and your body is ravaged by another orgasm, you try to turn your head into the sheets, but Noidu's grip on your hips won't let you. You let out a frustrated snarl and grimace. The constant pounding is driving your mind delirious, but Noidu just keeps fucking you, your thighs slapping against his body over and over again as he drives himself into you.
+||
+{ffuck_8} Suddenly, he lets out an anguished roar, and his large hands yank you closer as he thrusts deeply into you. The organ throbs powerfully, releasing hot cum into you, the maddening feeling driving you closer to a third, excruciatingly powerful orgasm. You gasp as he throbs a second time, stretching you wider and spilling the seed out of you with a squirt. You arch from the pleasure as the third throb knocks your legs numb. You tremble as he pushes deeper to fill you. You gasp and breathe raggedly as the throbbing slowly dies down, your hands still gripping the sheets.
+	[fuck_end | pic vag_nut] (Catch your breath)
+||>>}
+
+
+||>>Sex scene (malePC) PC on top {
+{get_on_bed_2 | pic presenting} He chuckles before stepping up to the bed and lying on it. You step between his splayed legs and find his large organ standing upright and a small orifice further down his tail.
+{mtop | pic presenting} He stares at you and then bursts into laughter. "I like you. Sure, you do the work then." He steps up to the bed and lies on it. You step between his splayed legs and find his large organ standing upright and a small orifice further down his tail.
+{mtop_rub} You grab the purplish red organ with both hands and give it a gentle squeeze. Noidu makes a pleased hum and moves his hips to offer you a better reach. You run your hands up and down the complex cock. The large veiny ridges throb under your hands as you give the shaft slow pumps. You trace your fingers along the features and hear an appreciative sigh from Noidu.
+	[mtop_rub] (Massage his cock) //hideif.index_is.mtop_rub
+	[mtop_pen] (Penetrate him)
+||
+{mtop_pen | pic noidu_fug} You place your hands on the sides of his tail and bring your dick against the small hole. The edges of the orifice purse when your glans presses against it. You push, and the hole slides over your cock like a slimy rubber band. You press harder, and the tight ring slides all the way to the base of your cock. Your dick twitches, and Noidu's insides answer with a forceful squeeze. Noidu gasps and tenses up, causing the large organ swaying next to your head to tense for a moment. You inhale and tighten your grip on him.
+	[mtop_1] (Fuck him)
+||
+{mtop_1 | auto_continue mtop_check1} You do the first few pumps slowly and then pick up your pace. Your cock is squeezed along its whole length by Noidu's tight hole. He lets out small gasps as you increase your pace and pushes back to get you deeper. His cock sways back and forth and drips clear streaks down his tail and on your dick. Your testicles slap pleasurably against him as you make your strokes deeper and faster. His insides wring your cock in a way that makes your shiver with each thrust.
+{mtop_check1 | check_stat endurance 6 mtop_nut-mtop_2} 
+||
+{mtop_2 | auto_continue check_2} You keep up your pace. Noidu growls from the pleasure as you drive yourself into him. You change into deep, short thrusts, and he growls even harder.
+{check_2 | check_stat endurance 8 mtop_nut-mtop_3} 
+||
+{mtop_3 | auto_continue check_3} Noidu grunts and his body arcs as you keep pounding him. His legs tense up and his cock stands painfully erect in front of you. You pant and keep forcefully fucking him. His insides only seem to tighten and never relent as you keep going. The sweat is making your grip on him slip.
+{check_3 | check_stat endurance 10 mtop_nut_3-mtop_4} 
+||
+{mtop_4 | auto_continue mtop_nut_4, pic noidu_nutted} Sweat runs down your face as you keep fucking Noidu. He suddenly lets out a low growl and completely tenses up. His cock throbs forcefully and he ejaculates. The first rope of cum almost touches the ceiling and then lands across Noidu's torso. He growls and thrashes against the sheets as he covers himself with his cum. You don't stop and keep desperately fucking him even as he tightens around your cock like a vise.
+||
+{mtop_nut_4 | pic nutted_in_noidu} You can't take it anymore. You grimace, pull Noidu's tail against you, and plunge your cock as deep into him as you can. Noidu lets out an exhausted gasp as he feels you throb in him. You hear him draw ragged breaths as you empty your balls into him. Your hands shake as you keep yourself lodged. Your body collapses, and you lean against him, almost sliding off his cum-covered body. You catch your breath and buck yourself a little deeper in him.<br><br>After a short but intense moment, you're both gasping for air and shivering. You feel yourself throb softly a few more times into him as you try to steady yourself.
+{mtop_nut_3 | pic nutted_in_noidu} Sweat runs down your face as you desperately keep fucking Noidu. He suddenly tightens around your cock and lets out a low growl and completely tenses up. It pushes you over the edge. You pull Noidu's tail against you and plunge your cock as deep into him as you can. You gasp as you release yourself into the hot hole. Noidu's cock sympathetically throbs forcefully and squirts a thick rope of cum that almost touches the ceiling but lands across his torso. He growls and thrashes against the sheets as he covers himself with his cum while you hold on to him and empty yourself into him.<br><br>After a short but intense moment, you're both gasping for air and shivering. You feel yourself throb softly a few more times into him as you try to steady yourself.
+{mtop_nut | pic nutted_in_noidu} You quickly feel your own orgasm ambush you. You hasten your thrusts and then pull Noidu's tail against you and plunge your cock as deep into him as you can. You gasp as you release yourself into the hot hole. Noidu twitches with each throb you release. He leans upright, grabs his cock, and starts pumping it. He gently holds your head while stroking himself as you empty yourself into him. His pumping quickens and he snarls. He stops his hand and ejaculates. A thick rope spreads over his crotch and hits you in the face. A viscous coating of cum engulfs your cock and the orifice you're buried in. As Noidu recovers, he ruffles your hair and chuckles. 
+	[mtop_end] (Catch your breath)
+||>>}
+
+
+||>>Sex scene (malePC) Noidu on top {
+{mfuck} You lie on the bed. Noidu moves closer to you and grabs your legs. The organ brushes against your inner thigh and then against your buttocks. It's slimy and pulsing. He lines it up against your anus and slightly prods into you as he settles himself closer to you. His hands tighten around your legs.
+{mfuck_2} You bend over and run your hand along the length of the complex penis. You feel it pulse hotly in your palm. You squeeze it gently but get no reaction from him. You pump it slowly with your hands as Noidu watches silently. You feel the shaft twitch against your ass, the pointed head prodding little deeper.
+	[mfuck_2] (Massage the organ) //showif.index_is.mfuck
+	[mfuck_3] (Lean back)
+||
+{hard_mfuck | pic anal_fug} Before you reach the bed, Noidu throws you on it and spreads your legs apart. You feel his member throb between your legs as he looms over you. He lifts your legs higher and pushes deeper into you. You bite your lip as the large, slimy member slides into you, stretching you as it pulses hotly. He moves his hands to your hips and pulls himself deeper. You gasp and grip the sheets as the tip of his cock bumps against your insides. You inhale and smile at the sensation.
+{nevermind_fuckme_m | pic anal_fug} "As you want." Noidu throws you on the bed. You feel his member throb between your legs as he looms over you. He lifts your legs higher and pushes deeper into you. You bite your lip as the large, slimy member slides into you, stretching you as it pulses hotly. He moves his hands to your hips and pulls himself deeper. You gasp and grip the sheets as the tip of his cock bumps against your insides. You inhale and smile at the sensation.
+{mfuck_3 | pic anal_fug} You lean back and align yourself with him. Noidu lifts your legs higher and pushes deeper into you. You bite your lip as the large, slimy member slides into you, stretching you as it pulses hotly. He moves his hands to your hips and pulls himself deeper. You gasp and grip the sheets as the tip of his cock bumps against your insides. You inhale and smile at the sensation.
+	[mfuck_4] (Brace yourself)
+||
+{mfuck_4 | auto_continue mfuck_5} The cock slowly pulls out of you. You feel the pattern of the shaft slide along your insides, and your back arches from the pleasure. Noidu exhales and thrusts into you once again, slightly faster and more strongly. You grunt and hold in a whine. He picks up his pace and grips you more tightly. The massive organ slides in and out of you with almost no resistance. You feel your rear bump against the bulbous base of the shaft as he bucks deeper into you. Your mind starts to blur from the sensation, and you find yourself whining and moaning as he keeps up his pace. 
+||
+{mfuck_5} He keeps up his relentless assault as your mind slips into a more mixed and delirious state. Then, one thrust of many sends you over the edge. You tense up and scream, but Noidu doesn't stop or slow down. You spray thick ropes of semen over yourself and on Noidu's large cock. The mindless thrusting becomes a mess of pleasure and uncomfortable sensitivity as he rams himself relentlessly into you. You grimace and hold the sheets harder as you try to ride your orgasm as he pounds into you, but you feel another one coming over you already, 
+	[mfuck_6] S- Slow down! //hideif.has_flag.noidu_sexed_multiple
+	[mfuck_7] (Take it)
+||
+{mfuck_6 | auto_continue mfuck_8} You pat Noidu on his hand and yell raggedly for him to slow down. He nods and slows down and gives you a few gentle thrusts and then slowly ramps up the speed.<br><br>A few more overly excited thrusts, and your body is ravaged by another orgasm. You try to turn your head into the sheets, but Noidu's grip on your hips won't let you. You let out a frustrated snarl and grimace. The relentless pounding is driving your mind delirious, but Noidu just keeps fucking you. Your thighs slap against his body over and over again as he drives himself into you.
+{mfuck_7 | auto_continue mfuck_8} A few more overly excited thrusts, and your body is ravaged by another orgasm. You try to turn your head into the sheets, but Noidu's grip on your hips won't let you. You let out a frustrated snarl and grimace. The relentless pounding is driving your mind delirious, but Noidu just keeps fucking you. Your thighs slap against his body over and over again as he drives himself into you.
+||
+{mfuck_8} Suddenly, his large hands yank you closer, and he thrusts deeply into you. The organ throbs powerfully, releasing hot cum into you, the maddening feeling driving you closer to a third, excruciatingly powerful orgasm. You gasp as he throbs a second time, stretching you wider and spilling the seed out of you with a squirt. You arch from the pleasure as the third throb knocks your legs numb. You tremble as he pushes deeper to fill you. You gasp and breathe raggedly as the throbbing slowly dies down, your hands still gripping the sheets.
+	[fuck_end | pic anal_nut] (Catch your breath)
+||>>}
+
+
+
+
+||>>fuck end (Noidu top)
+{fuck_end | stop_music 8} Noidu holds you against the bed and breathes heavily. You both take a moment to steady yourselves.<br><br>Noidu inhales deeply and then gets off of you. His cock slips out of you, and you leak his ejaculate on the bed. He leans on the bed and steadies his breathing. The large organ slowly retreats into the triangular slit in his abdomen.
+{amazo_fug} Noidu pokes you in the chest. "You're quite a fuck toy yourself."
+{noidu_kiss} You lean up and give him a kiss. He ruffles your hair.
+	[amazo_fug] T- That was amazing. //hideif.clicked
+	[noidu_kiss] (Give him a kiss) //showif.index_is.fuck_end
+	[ffuck_getup] (Get up)
+||
+{mtop_end | stop_music 8, pic bed_sit} You straighten yourself and stand upright. You legs shake as you sit on the edge of the bed. Noidu gets up and steadies himself.
+{ffuck_getup | pic bed_sit} You sit up on the bed, your legs still shaking from the experience.
+	[legs_tingly] My legs are tingling. //hideif.clicked
+	[love_bigcock] I love how big your cock is. //hideif.clicked
+	[again_bang] Damn, I want to do this again. //hideif.clicked
+	[bed_getup] (Clean up)
+||
+
+
+
+||>>Sex outro
+{legs_tingly} Noidu laughs. "So are mine!" He leans in and kisses your neck.
+{love_bigcock} Noidu laughs. "Thank you very much, I'm very proud of it."
+{again_bang} Noidu laughs. "Fine with me. I won't get tired of this but maybe later."
+{slep_together} He rolls his eyes. "I'm not that kind of guy. I love to fuck you, but we should leave the cuddly wuddly out of this."
+	[slep_together] Do you want to sleep together? //hideif.clicked
+	[bed_getup] (Get up and take a clean up)
+||
+{bed_getup | auto_continue get_dressed} You get off the bed and step into the shower. Noidu lazily slides off the bed. You step out and start drying yourself as Noidu steps past you and into the shower.
+||
+{get_dressed | add_flag noidu_sexed_multiple, change_sprite nude, remove_pic} You start picking up your clothes off the floor. Noidu comes out of the shower just as you finish getting dressed. He caresses the side of your head and smiles. "I hope you enjoyed that. I did."
+	[sex_fun] It was very fun.
+	[sex_fun] I bet you did. //showif.will.6
+||
+{sex_fun} He smiles. "You go.<br><br>I'll tidy my room a bit and lock the door. Bye for now."
+	[ | start_encounter taodal_tavern taodal_tavern, remove_flag noidu_pc_has_seen_his_dick] Bye. (Leave)
+||

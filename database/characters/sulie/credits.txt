@@ -1,0 +1,13 @@
+
+
+Writer:
+	Snekguy
+	
+Edited by:
+	Meandraco
+		Scripting fixed, modified character dialogue and added additional player responses.
+		
+		
+Extended by:
+	Meandraco
+		Sex scene modification and the after sex scene.

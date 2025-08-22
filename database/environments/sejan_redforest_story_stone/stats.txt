@@ -1,0 +1,15 @@
+interior:	no
+
+discoverable:		yes
+dicovery_message:	You have found a large stone with an odd symbol.
+default_message:	Do you want to stop by the story stone?
+
+<SOUNDS
+sejan/forest_birds.45
+sejan/forest_wind.30
+SOUNDS>
+
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_redforest_story_stone sejan_redforest_story_stone} Boat encounter
+||

@@ -1,0 +1,42 @@
+default_env:	not_defined
+text_color:		7480c9
+bubble_color:	000000
+
+
+
+<STATS
+charisma:		10
+will:			10
+intelligence	10
+perception: 	10
+agility:		10
+strength:		10
+endurance:		10
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	0
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+mighty_smash
+CARDS>
+
+
+<SHOP
+roll_of_rope
+roll_of_rope
+felling_axe
+crowbar
+torch
+torch
+torch
+box_of_nails
+box_of_nails
+box_of_nails
+SHOP>

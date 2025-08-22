@@ -1,0 +1,76 @@
+>>Start
+{start | auto_continue knowledgeable, pic pit_fall} As you make your way through the forest, you hear the distinct sound cuoxurs make and follow the noise. As you get closer to it, the earth under your feet gives away and you fall into a pit.
+{not_looking | auto_continue start_2, pic pit_fall} You're walking along as the earth under your feet suddenly gives away and you fall into a pit.
+||
+{start_2 | check_flag pc_knowledge_cuoxur normal knowledgeable} 
+||
+{normal | pic the_pit} Your fall is cut short as you fall on an oddly soft surface. You shake your head and see you're resting on top of several strange creatures. As you raise your eyes, you see the whole underground pit is filled with them. The room is covered with leaves, sticks and loose earth seemingly glued with some sort of dried fluid into the vaulted ceiling. As you adjust yourself, the creatures writhe drowsily against each other and you. They seem to be sleeping. The one under you pushes its head against your torso and settles against you.
+	[climb_out] (Climb out of the pit)
+||
+{knowledgeable | pic the_pit} Your fall is cut short as you fall on an oddly soft surface. You shake your head and see you're resting on top of several cuoxurs. As you raise your eyes, you see the whole underground pit is filled with them. The room is covered with leaves, sticks and loose earth seemingly glued with some sort of a dried fluid into a vaulted ceiling. As you adjust yourself, the cuoxurs writhe drowsily against each other and you. They seem to be sleeping. The one under you pushes its head against your torso and settles against you.
+	[climb_out] (Climb out of the pit)
+	[excite_female] (Check the cuoxur's sex) 
+||
+{excite_female} You carefully pet the cuoxur leaning against you, it gently pushes against your hand until the pores on top of its head start leaking and forming a ball of slime. It enlarges into a firm round blob: The cuoxur seems to be a female.
+{tag_female | counter miggpli_f_cuoxur_tags + 1} You take one of the yellow-painted amouls and plant it on the cuoxur's back.
+	[tag_female] (Tag the cuoxur) //hideif.counter.miggpli_f_cuoxur_tags.2 //showif.index_is.excite_female //showif.has_flag.miggpli_quest_cuoxur_tag
+	[excite_male] (Excite another cuoxur)
+	[blob_fingering] (Stick your finger into the blob)
+	[climb_out] (Climb out of the pit)
+||
+{excite_male} You turn to your side and rub the next cuoxur's head. The slime forms a long, firm slime shaft.
+{tag_male | counter miggpli_m_cuoxur_tags + 1} You take one of the red-painted amouls and plant it on the cuoxur's back. The male doesn't seem to mind.
+	[tag_male] (Tag the cuoxur) //hideif.counter.miggpli_m_cuoxur_tags.2 //showif.index_is.excite_male //showif.has_flag.miggpli_quest_cuoxur_tag
+	[shaft_rub] (Rub the shaft)
+	[excite_third] (Excite another cuoxur)
+	[climb_out] (Climb out of the pit)
+||
+
+||>>Leaving
+{climb_out_afterorgy | remove_pic} You carefully get up, make a hole into the ceiling and crawl out. You pick up your clothes and stuff as you make your way to more solid ground. As you're getting dressed, the droning becomes louder and you see a cuoxur climb out of the bed and make its way into the forest.
+{climb_out_beforeorgy | remove_pic} As the cuoxurs start writhing more strongly and secreting slime from their pores, you hastily get up, make a hole in the ceiling and crawl out. You hear the quiet droning grow into a loud hum as you make your way to more solid ground.
+{climb_out | remove_pic} You carefully get up, make a hole into the ceiling and crawl out. You hear quiet droning from the pit as you make your way to more solid ground.
+	[ | end_encounter] (Leave)
+||
+
+||>>Cuoxur orgy
+{excite_third | auto_continue orgy_tiem} You pet a third cuoxur. It drones softly as it stirs and forms a firm blob of slime on top of its neck.
+{shaft_rub | auto_continue orgy_tiem} You wrap your hand around the slime penis and slide your hand along it. The male cuoxur raises its head and drones more loudly as you play with the slime organ.
+{blob_fingering | auto_continue orgy_tiem} You rub the slime blob and then gently push your middle finger against the surface, your finger meets some resistance and then sinks in slowly. The female cuoxur raises its head and drones more loudly as you play with the slime organ. 
+||
+{orgy_tiem} As you play with the cuoxur, others start moving and writhing in response to its sound and soon all of the ferals in the pit are secreting slime from their pores. They drowsily start climbing over each other and rubbing the ones next to them. The pit is quickly becoming a writhing soup of excited cuoxurs.
+{tag_all | counter miggpli_m_cuoxur_tags + 2, counter miggpli_f_cuoxur_tags + 2} You quickly plant the remaining tags on the cuoxurs as they reveal their sex. Some of the cuoxurs seem to be mating as the droning becomes louder.
+	[tag_all] (Tag cuoxurs) //hideif.counter.miggpli_m_cuoxur_tags.2 //hideif.counter.miggpli_f_cuoxur_tags.2 //showif.has_flag.miggpli_quest_cuoxur_tag //hideif.index_is.tag_all
+	[ | add_flag pc_sexed_cuoxur, start_music sejan/feral 70 2, sex_gate undress_orgy_m undress_orgy_f] (Undress) //showif.feral_filter_off
+	[climb_out_beforeorgy] (Climb out of the pit)
+||
+
+||>>Female PC sex scene
+{undress_orgy_f | auto_continue fsex_0, pic orgy_start} You start taking your clothes off and heaving them topside. As you undress, more cuoxurs are attracted to you. You quickly find several beasts rubbing their heads against your bare skin, spreading strings of slick slime on you. You're soon half-buried in horny cuoxurs and you feel a slippery tail writhe between your nethers somewhere below.
+{fsex_0 | auto_continue fsex_1} You're pushed around as cuoxurs start rubbing and mounting each other furiously. Several males rub themselves against your legs, arms and head. You feel their slime organs form and harden against you, leaving streaks of clear liquid across your body. You quickly feel multiple shafts prod against your nethers and then slip in. You feel one prod against your asshole.
+	[fsex_1] (Let him in)
+	[no_likey] (Stop him)
+||
+{fsex_1 | auto_continue fsex_2, pic orgy_1} You gasp as he thrusts into your ass with a single buck. The whole pit is filled with mind-numbing droning as the creatures start thrusting into you. The overwhelming mass of flesh and the constant droning paralyze your mind as the cuoxurs hump, buck and shove into you. All nearby males are trying to couple with you in any way possible. You feel three different shafts thrust randomly into your depths as you're stretched by the bulbous shafts. You lose track of time as the party of flesh continues. Your body is wrecked with orgasm but the creatures only stop at their own volition.
+{no_likey | auto_continue fsex_2, pic orgy_1_protecc} You quickly put a hand between you defenseless ass and the slimy dick, the cuoxur rubs against your hand ineffectually. The whole pit is filled with mind-numbing droning as the creatures start thrusting into you. The overwhelming mass of flesh and the constant droning paralyze your mind as the cuoxurs hump, buck and shove into you. All nearby males are trying to couple with you in any way possible. You feel three different shafts thrust randomly into your depths as you're stretched by the bulbous shafts. You lose track of time as the party of flesh continues. Your body is wrecked with orgasm but the creatures only stop at their own volition.
+{fsex_2 | auto_continue sex_end, pic orgy_2, start_music sejan/feral_end 70 0 0 no_loop} Eventually, the orchestra of droning and ejaculations dies down and you're buried under drowsy but warm cuoxurs. You try to move but your body just trembles. The exhaustion and relaxation makes your mind drift off, and you're soon smothered by comfortable darkness.
+||
+
+||>>Male PC sex scene
+{undress_orgy_m | auto_continue msex_0, pic orgy_start} You start taking your clothes off and heaving them topside. As you undress, more cuoxurs are attracted to you. You quickly find several beasts rubbing their heads against your bare skin, spreading strings of slick slime on you. You're soon half buried in horny cuoxurs, your cock mushed between slippery bodies somewhere below.
+{msex_0 | } You're pushed around as the cuoxurs start rubbing and mounting each other furiously. Two females immediately rub against your crotch with their engorged, round blobs, trapping your cock between them and then competing over which one gets to be penetrated by you.<br><br>You feel a shaft prod along your buttocks.
+	[msex_1] (Let him enter you)
+	[protec_ass] (Stop the horny male cuoxur)
+||
+{msex_1 | auto_continue msex_2, pic orgy_1} You grimace as it's shoved into your ass with a single buck. Your mind gets numbed as the male behind you starts thrusting into you along with the smothering cacophony of the droning. The overwhelming mass of flesh and the constant droning paralyze your mind as you thrust into the eager cuoxur females. You feel the male thrusting into you from behind, stretching you with its bulbous shaft. Your mind drifts off and you lose track of time as the party of flesh continues. Your body is wrecked with orgasm but the creatures only stop at their own volition.
+{protec_ass | auto_continue slime_boob, pic cuoxur_boobjob} You use one hand to cover your ass and use the other to push the overexcited feral away. Keeping one hand over your butt for protection, you turn back to the females fighting over your shaft, making sure that neither can gain the upper hand as you start to thrust between the slimy spheres, almost feeling like fucking a pair of breasts. It isn't long before the angry females' droning gets to a fevered pitch and you decide to stop teasing them before they get violent.
+{slime_boob | auto_continue msex_2} You push both of them off you before aiming your cock at the closest and shoving it into the slime ball. The other nearly goes mad with lust as you make several hard thrusts into your chosen hole before you remove yourself from her and line up your length with the other female and thrust in her as well. Your mind drifts off and you lose track of time as you randomly penetrate any female cuoxur near you. Your body is wrecked with orgasm but the creatures only stop at their own volition.
+{msex_2 | auto_continue sex_end, pic orgy_2, start_music sejan/feral_end 70 0 0 no_loop} Eventually, the orchestra of droning and ejaculations dies down and you're buried under drowsy but warm cuoxurs. You try to move but your body just trembles. The exhaustion and relaxation makes your mind drift off and you're soon smothered by comfortable darkness.
+||
+
+
+||>>orgy end
+{sex_end | advance_time_to evening, pic orgy_wakeup} You slowly wake up in the warm pile of cuoxurs as those around you begin to stir. You see red evening light shine through the hole in the ceiling. The cuoxurs seem to be waking up slowly and the ones around you are moving.
+	[climb_out_afterorgy] (Climb out)
+||
+

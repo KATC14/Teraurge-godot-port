@@ -1,0 +1,11 @@
+||
+{start | day_night_gate day night}
+{day | check_flag taulsol_has_robotarm day1 day2} check if taul has roboarm
+{day1 | check_flag taulsol_has_robotarm, change_sprite taulsol_pier} You hear water slosh under the wooden deck. You can see ships sail on the horizon.
+{day2 | check_flag taulsol_has_robotarm, change_sprite taulsol_pier_roboarm} You hear water slosh under the wooden deck. You can see ships sail on the horizon.
+{night | hide_sprite} The warm pier lights fill the lonely walkway with a low hum. The wooden deck creaks as you step on it.
+{silent}
+	[ | start_encounter taodal taodal]				(Leave)
+	[ | start_encounter taodal_pier taulsol]			(Talk to the one-armed guard)	//hideif.clicked  //showif.time_filter.25.75
+	[ | start_encounter taodal_pier taulsol]			(Talk to Taulsol)				//showif.has_flag.taulsol_met_at_pier  //showif.time_filter.25.75
+||

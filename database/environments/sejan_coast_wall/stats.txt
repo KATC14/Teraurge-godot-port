@@ -1,0 +1,17 @@
+interior:	no
+
+blocking:			yes
+discoverable:		yes
+dicovery_message:	The narrow cliff path is blocked by a stone wall.
+default_message:	Do you want to stop by the cliff stone wall?
+
+
+<SOUNDS
+generic_exterior/coast.30
+generic_exterior/wind_plain.40
+SOUNDS>
+
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_coast_wall sejan_coast_wall} Coast wall encounter
+||

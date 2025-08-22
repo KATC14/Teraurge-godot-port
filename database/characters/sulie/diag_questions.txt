@@ -1,0 +1,75 @@
+
+||>>QUESTIONS HUB
+{where_village} "You won't find it, I came to this peninsula by a canoe. I'd advise you not to go looking. My tribe doesn't take kindly to uninvited guests. I'm going to assume that you've never had all of your bones crushed, and then been swallowed whole. It isn't a very pleasant experience... or so I assume."
+{plenty_venom} "I suppose I could do the same with a bow or a javelin, but the slingshot is by far the most compact and easiest to travel with. I can even use it as a makeshift jewelry." She chuckles and flicks the leather straps around her neck.
+{grueffect} "The venom will always be with me, so why not use it? The slingshot is just a compact tool for delivering it without risking chipping a tooth while grabbling a prey."
+{confusing_species} "You're very confusing -name-."
+{start} 
+	[sun_bathing] So, what do you do? You can't be sunbathing all the time.	//hideif.clicked
+	[where_from] Where are you from?										//hideif.clicked
+	[what_are] What are you?												//hideif.clicked
+	[ | change_diag_file diag silent_return] (Return)
+||
+
+
+||>>Where are you from?
+{where_from} "I am from from my village. I am officially on a hunting trip but I am not in a hurry to go back."
+	[dislike_vill] You don't like the village?
+||
+{dislike_vill} "Boring. I see the same faces every day, I have the same conversations."
+	[meet_people] So you're here to meet new people?
+||
+{meet_people} "That and... other things. My kin aren't very fond of outsiders. They don't like me straying so close to the more travelled paths and roads, but I love it here."
+{trust_out} "I don't know, it's always been that way. We don't trade with outsiders, we don't interact with them. It's been like that since I was born."
+	[trust_out] They don't trust outsiders? //showif.index_is.meet_people
+	[where_village] So where is this village you keep talking about?
+||
+
+
+||>>What are you?
+{what_are} "I'm Sulie the hunter, a cold blooder."
+	[u_coldbluder] Is your species called 'cold blooder'?
+	[wat_species] No, I meant what species are you?
+||
+{u_coldbluder} "What? no! My blood is just cold, and I'm a person not an animal."
+{wat_species} "I'm a person not an animal."
+	[human_person] My species is called 'human', but I'm also a person. //showif.charisma.6
+	[shape_body] I meant the body, the shape you inhabit.
+||
+{human_person} "I am of my kind."
+{shape_body} "Only I inhabit this body. Sulie."
+	[name_them] Does your kind have a name they call themselves?
+	[look_like_u] So you don't have a name for your species?
+||
+{name_them} "My kind are cold blooders."
+{look_like_u} "I am Sulie, a cold blooder."
+	[not_name] But 'cold blooder' isn't your species name, right?
+||
+{not_name} "It's not a name! We have cold blood. My name is Sulie."
+	[confusing_species] Right...
+||
+
+
+||>>sun bathing
+{sun_bathing} She cocks her head momentarily. "Sunbath...?<br><br>I hunt, that's what I'm usually tasked with when I leave the village. Gives me an excuse to wander, even very far"
+	[how_hunt] How do you hunt?
+||
+{how_hunt | add_flag sulie_is_hunter} "I'm pretty handy with a slingshot. If you want, I can give you tips about the animals on this peninsula if you come across some."
+	[sling_shot] A slingshot? That doesn't sound like a very powerful weapon.
+	[sling_shot] Really? How do you hunt using a slingshot?
+||
+{sling_shot | change_sprite mouth_open} "It might not look like much to the uninitiated, but I could crack your skull from twenty yards with the right stone. I also have these..." She opens her jaws wide, almost unhinging them. From the pink flesh in the roof of her otherwise toothless mouth descend two massive, hypodermic fangs. They're transparent, and as long as your finger. 
+	[closemouth] You have venomous fangs, I get it, you can close your mouth now.
+	[mouth_impressive] Impressive.
+	[closemouth] Please close your mouth.
+||
+{closemouth | change_sprite character} She closes her maw and chuckles to herself before continuing. "Take a good sized prickleberry seed, the ones that look like spiky balls, and coat the thorns in venom. If you throw hard enough it'll dig in deep. It'll paralyze an animal three times my weight. Then it's just a matter of slitting its throat."
+{mouth_impressive | change_sprite character} She closes her maw. "Thank you. You need a good sized prickleberry seed, the ones that look like spiky balls, and coat the thorns in venom. If you throw hard enough it'll dig in deep. It'll paralyze an animal three times my weight. Then it's just a matter of slitting its throat."
+{para_venom} "Yes, but administered in large enough quantity, the venom will paralyze the muscles in your internal organs too, stopping your heart... if you have one, that is."
+	[para_venom] So your venom is paralyzing? //hideif.index_is.para_venom
+	[plenty_venom] I guess the slingshot is more effective if you have a ready source of venom.
+	[grueffect] Sounds pretty effective.
+||
+
+
+

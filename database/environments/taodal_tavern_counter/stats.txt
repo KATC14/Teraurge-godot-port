@@ -1,0 +1,7 @@
+interior:	yes
+ambient:	0.2
+
+<SOUNDS
+sejan_taodal/market.10
+sejan_taodal/tavern.15
+SOUNDS>

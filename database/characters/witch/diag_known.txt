@@ -1,0 +1,221 @@
+
+||
+>>CONVO HUB 1
+{start | start_music sejan/witch 70} The Witch sees you arrive through the door and comes up to meet you. "Hey! It's you! How are you?"
+{odd_impression} "Ah! Then you understand my dilemma!"
+{underwear_work} "It is!"
+{anything_import} "We can talk if you want?"
+{silent_return} 
+	[u_almost_dead] There was an attempt on your life. //showif.has_flag.nkaanmykiunsuns_hitjob
+	[ | check_flag witch_portal_quest_active want_help nothing] I was just passing by and thought I should see you. //showif.index_is.start
+	[help_portal_quest] I want to help you with the portal research so I can go home. //hideif.has_flag.witch_portal_quest_active
+	[ | change_diag_file diag_questions start] (Questions)
+	[changed_getup] I see you've changed your getup. I kinda liked the other one. //hideif.clicked
+	[ | end_encounter] I'll be going now. (Leave)
+||
+{nothing} Her tongue snaps out. "That's nice, sweetheart, but I'm working hard on our project, and you should do the same. Keep in mind that both the return to your world and my career are at stake here. Now go outside and explore some more!" She returns to her work, and you're sure she'll just ignore you if you insist on making small talk.
+{get_back} "I'll wait eagerly to see what you manage to dig up."
+{nah_hi} "Ah well, it's nice to see you too, from time to time."
+	[ | end_encounter] Okay, I'll be going then (Leave)
+||
+
+
+
+||>>Portal quest reheat (if player hasn't accepted to help her)
+{want_help} "You aren't here to help me with the portal research, are you? Because that job's still open if you want it."
+	[help_portal_quest] I want to help you with the portal research so I can go home.
+	[nah_hi] Just here to say hi.
+||
+{help_portal_quest} She claps her hands. "You will? Excellent! I will need you to travel around and get in contact with other organizations or species who use portals or research them. I don't care if they use magic or technology. <br><br>I can't really help you with directions since portal research is almost always top secret work, but it's no secret that accidents like this have happened often throughout time, so if you investigate a bit, you shouldn't have that much trouble getting some clues as to where to direct your efforts."
+	[29 | add_flag witch_portal_quest_active] All right, I'll try.
+||
+{29} "Also, in the future I'll need to collect some hard data on human anatomy. Since you have volunteered to help, and you've already gone through a portal, you should be an excellent test subject. <br><br>Don't worry, it will just involve a couple of simple and painless tests and collecting some metrics about your anatomy. After using that data, I should easily be able to adapt our findings to other species. You don't have a problem with it, right?" She points at you with her staff, the jawbone loosely tied to its end rattling.
+	[uh_okay] Uh, right, okay.
+	[measure_anatomy] Hey, you can measure anything about my anatomy anytime. //showif.has_stat.charisma.6
+||
+{uh_okay} "There's really nothing else to it really. Just let me know if you find anything."
+{measure_anatomy} She taps her fingers together, and you could swear she winked. "There's really nothing else to it really. Just let me know if you find anything."
+	[get_back] Alright then, I'll get back to you if I find anything.
+||
+	
+||>>Changed getup
+{changed_getup} "Thanks... But I don't usually answer my door in my undergarments."
+	[research_garment] But will you do your research in them?
+	[flirt_garment_1] Ah well, I guess I was just lucky then.
+	[odd_impression] That would definitely give an odd impression.
+||
+{research_garment} "Yes... but I don't usually have surprise visitors! Doing research in my undergarments is more comfortable."
+	[flirt_garment_1] You looked nice in them. //showif.charisma.6
+	[flirt_garment_0] They really accentuated your assets.
+	[underwear_work] Yes! Working in underwear is more comfortable.
+||
+{flirt_garment_0} She stops for a second and then continues. "Right... Shouldn't you be somewhere? Anywhere? Doing something? Anything?"
+	[ | end_encounter] Sorry, I'll see myself out. (Leave)
+||>>Good flirt
+{flirt_garment_1} "You- You stop that! I'm sure you have other things to do than snipe me with... flirt!"
+	[anything_import] To be honest, I really don't have anything more important to do.
+	[nice_seeing_1] You're right, I should go. Sorry for bothering you. It was nice seeing you.
+||
+{nice_seeing_1} She pokes you with her staff. "Off you go, then. No more pleasantries or compliments." She chortles.
+{nice_seeing_2} She pokes you even more rigorously. "No no no no! The human leaves now." She gives you a stern but gentle shove.
+	[nice_seeing_2] Then again... //hideif.index_is.nice_seeing_2
+	[ | end_encounter] I'm going! (Leave)
+||
+
+
+||>>Witch learns about the assassination attempt and fucks off.
+{u_almost_dead | stop_music 2} She shakes her head. "Sorry, what did you just say?"
+	[ass_attempt | start_music generic/tense 70 1] An assassin was trying to kill you.
+||
+{ass_attempt} She glances to her sides nervously. "I- What did the assassin look like? Did you kill him?"
+{kill_ornot} "Did you kill the assassin or not?!"
+{you_no_danger} "How can you even say that? There might be a fucking assassin in my yard right now! And I wouldn't know! Did you kill the assassin or not?!"
+	[kill_ornot] The assassin won't be bothering you again. //showif.index_is.ass_attempt
+	[you_no_danger] Why are you so concerned about that? You're not in danger anymore. //showif.index_is.kill_ornot
+	[letgo_nkaan | add_flag witch_let_nkaan_go] I let her go.			//hideif.has_flag.nkaanmykiunsuns_killed_by_pc
+	[killed_nkaan] I killed her.										//showif.has_flag.nkaanmykiunsuns_killed_by_pc
+	[killed_nkaan | add_flag witch_lied_nkaan_death] I killed her. (Lie) //showif.charisma.6 //hideif.has_flag.nkaanmykiunsuns_killed_by_pc
+||
+{letgo_nkaan} She gasps and looks out of her windows, panicked. "<b>Gods</b>! Why would you do that! Oh my gods.... I can't stay here!" 
+	[was_friend] I'm not going to randomly kill people if I can help it! 
+	[was_friend] She deserved to live. She was just doing her job.
+||
+{was_friend} She screeches. "You knew she was trying to murder me! <b>I was a friend to you</b>!"
+	[panic_no_danger] Maybe I should have killed her! But I cannot do it now!
+	[panic_no_danger] I stopped her, and now I'm telling you about it! But you're only satisfied if she's dead?!
+	[panic_no_danger] Calm down. You're safe now. //showif.charisma.6
+||
+{killed_nkaan} She sighs. "Good, good. I- I need to leave, now." She scans over her house as if looking for something.
+	[no_danger] What? You're not in danger anymore, you don't have to leave!
+	[u_right] You're right, someone clearly knows you're here. //showif.intelligence.8
+	[calm_down] Calm down! I'm sure you have some time before another one shows up.
+	[why_after] Why was she after you?
+||
+{panic_no_danger | start_music generic/tense 70 2} She covers her eyes and shakes her head. "I- I can't stay here... <br><br> Someone told her where I was. There will be more." Her eyes dart around her belongings. She starts hastily grabbing things and shoving them into a bag.  
+{no_danger} She starts hastily grabbing things and shoving them into a bag. "Someone told her where I was. There will be more." Her eyes dart around her belongings.
+{u_right} She starts hastily grabbing things and shoving them into a bag.
+{calm_down} "I'm not spending another night here!" She starts hastily grabbing things and shoving them into a bag.
+{why_after} She starts hastily grabbing things and shoving them into a bag. "I don't know! Maybe- maybe they fear witches!" Her eyes dart around her belongings.
+	[where_will_go] Can I help? Where will you go?
+	[you_murder] She said you murdered someone.
+||
+{where_will_go} She keeps putting things into her bag hastily and stomping around her house anxiously and angry. "Don't worry, I'll be okay. You should leave." 
+	[help_pack] Let me help you.
+	[you_murder] She said you killed someone, but that's not true, is it?
+||
+{you_murder} She snarls at you with frustration. "Of course she would come up with an excuse for my murder!"
+	[help_pack] Okay! I just wanted your side of the story. Do you need help?
+	[murder_truthy] I only want to know if it's true. I'm sure you had a reason for it.
+	[murder_truthy] But she was telling the truth, wasn't she? //showif.charisma.6
+||>>Guard duty
+{help_pack} She stops and turns to you. "Actually, if you could keep watch outside the house, I'd be greatly relieved. I'll pick up my things, and you can escort me to the pier."
+	[me_guard] I'll do that. //showif.index_is.help_pack
+||
+{me_guard} She stops, drops her bag and hugs you. She squeezes you tightly. "Thank you. I hope everything turns out alright for you." 
+	[is_nuthin] It's nothing, but thank you. I just want to help you.
+||
+{is_nuthin} She lets you go. "Thank you... I'll pick up my things so we can go. I might have to smash a few things, so don't worry if you hear things break."
+	[guard_1] I'll keep watch. (Go outside)
+||
+{guard_1 | play_contsound sejan/witch_break 70 1, pic outside_abode} You step outside and look around. The calm wind rustling the trees and grass gently waving back and forth suddenly seem more threatening. You pace around the house and keep watch. You hear sound of a vase shattering inside the house.
+{u_okay_bae} You hear the Witch's muffled voice yell back. "Just breaking things!" You hear clangs and other noise as she continues.
+	[u_okay_bae] YOU OKAY? //showif.index_is.guard_1
+	[guard_2] (Keep guarding)
+||
+{guard_2 | stop_contsound 1 3, stop_music 3} You keep patrolling around the house. You don't see anything out of normal, and then you realize you can't hear anything from the house.
+	[are_u_done] ARE YOU DONE?
+	[go_inside_burn] (Go inside)
+||
+{are_u_done} You get no answer. You see something orange flicker in the windows.
+	[go_inside_burn] (Go inside)
+||
+
+
+||>>Did you kill someone?
+{murder_truthy | play_sound sejan/witch_throw 70} She throws a heavy book across the room, it smashes against the wall with a bang. She snarls angrily at you, "<b>Leave</b> or I will throw you out!"
+	[why_murder] It's true, then, you murdered someone. Why!?
+	[okay_leave] Alright! (Leave)
+||
+{why_murder} Her voice crackles as she screams at you. "You would believe a killer's word over mine!?"
+	[nyargh_1] Why did you do it?
+	[nyargh_1] At the moment it's not clear if you're not one yourself.
+||>>behold the only time ''trash'' was used correctly 
+{nyargh_1 | pic angry_vase} Enraged, she yanks a dark pottery vase off her shelf and lifts it over her head. "<b>I am done explaining myself</b>!"
+	[nyargh_2] Woah! Put that down!
+	[nyargh_2] Stop yelling and trashing your home! Can't we just talk?
+	[nyargh_2] This isn't convincing me of your innocence.
+||
+{nyargh_2 | play_sound sejan/witch_pot_portal 70, pic vase_portal} She breaks the vase against the floor, the moment the shards scatter around the room, a bright blue light grows from the point it hit. A blinding blue circle forms suspended in the air over the shards of the vase. The Witch heaves the statue behind her into the portal. Small items around the room start flying into the blue swirl.
+	[rude_donk_1] What are you doing?!
+	[rude_donk_1] Where does that portal lead to?!
+	[ | check_stat agility 8 portal_fail-portal_succ] (Jump into the portal)
+||
+{portal_fail | pic angry_witch, auto_continue rude_donk_2} You lunge at the portal, but a swift crack from the Witch's staff knocks you down on your ass. She looks at you with anger blazing in her eyes. She opens her palm towards you.
+||
+
+>>BACK TO THE PORTAL 1>> 
+>>"Doc! What's on the other side doc!"
+>>"-name-! We gotta get back to the portal! You gotta jump! Jump -name-!"
+||
+{portal_succ | stop_music 3, play_sound intro/intro_4 70, pic inside_portal, auto_continue portal_1} You lunge at the portal. The witch swings her staff to stop you, but you dodge her strike and dive into the blue, swirling light. You hear her scream at you somewhere in the distance as the blue light envelops your senses once more.
+||
+{portal_1 | play_sound intro/intro_5 70, pic portal_hall} You begin to settle for the trip, but you're jarringly suddenly spat out of the blue tunnel. You flatten against a stone floor, just barely saving your forehead from cracking against the unyielding surface. The environment seems oddly quiet and dark. You can hear the portal behind you subtly hum, but nothing else.
+	[portal_2] (Get up)
+||
+{portal_2} You groan and heave yourself upright. You see the Witch's things scattered about the stone floor. You seem to be inside some kind of a hall, you can see pillars in the dark around you.
+	[interrupt_1] (Look around)
+||
+{interrupt_1 | remove_pic, change_environment portal_hall, change_sprite esonogos} You turn your head and realize there's something right next to you, watching you.
+	[silence] My name is -name-, a pleasure to meet you. //showif.charisma.8
+	[silence] ...Hello?
+||
+{silence} The creature doesn't react. You can hear it breathe calmly with long, labored breaths.
+	[waste_flesh] You're not much of talker? I hope you're not the guard dog.
+	[waste_flesh] I'm terribly sorry about this, just show me the door, and I'll get out of your hair.
+||
+{waste_flesh | pic angry_witch} You hear the portal spit out something, and two soft pats hit the stone. It's the Witch. She strikes her staff against the floor and rumbles with murder in her voice. "<b>You disgusting waste of flesh</b>." 
+	[witch_scared] Wait! Stop!
+	[witch_scared] Calm down!
+	[witch_scared] (Put your hands up)
+||
+{witch_scared | pic pleading_witch, sex_gate witch_scared_m witch_scared_f}
+{witch_scared_m} Her eyes focus behind you. She lets out a desperate gasp, and her staff falls out of her hands. She covers her mouth with a trembling hand and starts pleading, "I- I did not mean to bring him here. Please, let me correct myself." You hear the creature behind you shift its weight.
+{witch_scared_f} Her eyes focus behind you. She lets out a desperate gasp, and her staff falls out of her hands. She covers her mouth with a trembling hand and starts pleading, "I- I did not mean to bring her here. Please, let me correct myself." You hear the creature behind you shift its weight.
+	[wat_going_on_1] Who are you?
+	[wat_going_on_1] What is this place?
+	[wat_going_on_1] (Listen)
+||
+{wat_going_on_1 | sex_gate wat_going_on_1_m wat_going_on_1_f}
+{wat_going_on_1_m} The Witch continues her pleading, "He's just another byproduct- He ran into the portal- I tried to stop him!" She covers her face. "...I don't want to kill him!"
+{wat_going_on_1_f} The Witch continues her pleading, "She's just another byproduct- She ran into the portal- I tried to stop her!" She covers her face. "...I don't want to kill her!"
+	[wat_going_on_2] What?!
+	[wat_going_on_2] Another 'byproduct'?
+	[wat_going_on_2] Look, I'll just leave, okay?
+	[wat_going_on_2] (Listen)
+||
+{wat_going_on_2} The creature behind you rumbles with a low irritated voice, "Just get rid of it."
+	[dumped_out] I'll leave.
+	[dumped_out] I'd rather stay.
+	[dumped_out] Did you just call me an 'it'? //showif.will.8
+||>>Thrown out
+{dumped_out | pic two_way_portal, auto_continue dumped_out_2} You feel an invisible force coil around you and yank you forcefully back into the portal. 
+||
+{rude_donk_1 | play_sound intro/intro_5, pic thrown_out} She opens her palm, and you fly through the hovel door and roll to a stop on the grass. You grunt as a wave of pain travels through your body. Your back feels numb.
+{rude_donk_2 | play_sound intro/intro_5, pic thrown_out} You feel as if a giant fist punched you in the gut. You fly through the hovel door and roll to a stop on the grass. You grunt as a wave of pain travels through your body. Your back feels numb.
+{dumped_out_2 | play_sound intro/intro_5, pic thrown_out} In a blink of an eye you're enveloped by the blue light and then, and just as suddenly, not. You fly through the hovel door and roll to a stop on the grass.
+	[dumped_burning_house] (Get up)
+||
+
+||>>Just leaving (what?)
+{okay_leave | add_flag witch_maybe_dead, add_flag witch_house_burnt} You push the hut door open and walk down the hill. Just before you enter the forest, you notice smoke rising from the hovel's windows.
+	[run_to_hut] (Run to the hut)
+	[ | end_encounter] (Leave)
+||>>House is burning
+{run_to_hut | play_contsound generic/loops/fire 40 1 0 1, pic burning_hut} You run towards the hut as fast as you can, but the small house is quickly swallowed up by the intense fire. You stand back as the roof crackles alight, and the fire becomes terrifyingly intense. You stand watching as the hut burns.
+{go_inside_burn | play_contsound generic/loops/fire 40 1 0 1, add_flag witch_maybe_dead, add_flag witch_house_burnt, pic burning_hut} You take hurried steps and push the door open. An intense fire blasts out of the doorway, and you recoil from the flames. The house is swallowed by fire. You stand back as the roof crackles alight and the fire becomes terrifyingly intense. You stand watching as the hut burns.
+{dumped_burning_house | play_contsound generic/loops/fire 40 1 0 1, add_flag witch_maybe_dead, add_flag witch_house_burnt, pic burning_hut} You push against the dry grass and sit up.<br><br>The Witch's house is ablaze.<br><br>The fire crackles as it engulfs the straw roof in an instant. The orange glow of the fire warms you pleasantly.
+{portal_rant} You yell angrily at the crackling fire and get no answer.
+	[portal_rant] You heartless bitch! You specifically said the portals only worked in one direction! //showif.intelligence.8 //showif.index_is.dumped_burning_house
+	[ | start_encounter sejan_witch_house_burnt sejan_witch_house waited_fire] (Wait for the fire to die down)
+	[ | stop_contsound 1 3, end_encounter] (Leave)
+||

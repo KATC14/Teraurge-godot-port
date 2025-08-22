@@ -1,0 +1,36 @@
+default_env:	not_defined
+
+
+<STATS
+charisma:		10
+will:			10
+intelligence	10
+perception: 	10
+agility:		10
+strength:		10
+endurance:		10
+
+hitpoints:		40
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	0
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+bite
+bite
+bite
+bite
+massive_tackle
+massive_tackle
+headbutt
+headbutt
+headbutt
+headbutt
+CARDS>

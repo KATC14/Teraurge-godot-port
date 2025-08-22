@@ -1,0 +1,18 @@
+interior:	no
+
+
+<SOUNDS
+generic_exterior/coast.60
+SOUNDS>
+
+
+||>>ENCOUNTERS
+{encounters | curated_list random}
+	[ | start_encounter sejan_beach_driftwood sejan_beach_driftwood] Driftwood for the caveman PC //hideif.has_flag.pc_sejan_driftwood
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+	[0] 0
+||

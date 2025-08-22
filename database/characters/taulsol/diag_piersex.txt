@@ -1,0 +1,307 @@
+
+NOTES
+	-Taulsol will have sex with female pc normally
+	-Taulsol will have sex with male pc if pc wins in an elaborate dare (Taulsol doesn't consider himself sexually attracted to males but can be made to change his mind).
+NOTES
+
+||
+{male_reject | change_sprite no_armor, change_environment taodal_beach, remove_pic} Taulsol jumps upright and takes a step backwards. You stand up. "Look, you're nice and all, but I am a ladies guy." He swings his arm apologetically.
+{you_sure_m} "You're handsome, but men are just not my type."
+	[you_sure_m] You're sure? //showif.index_is.male_reject
+	[blame_trying] Ah well, you can't blame me for trying.
+	[blame_trying] I get you. No harm.
+||
+{blame_trying} "Hey, I don't see people trying to have sex with me as a bad thing. But I'd be a disappointment to you when I can't get it up."
+	[bet_on_dick_1] Do you want to... experiment? Just between the two of us.
+	[youd_hard] Oh, you'd be hard, you can bet on that.
+	[thanks_anyway] I get it, no need to continue this.
+||
+
+	
+||>>Dare continue
+{youd_hard} "Nah! Sorry, but I wouldn't be."
+	[bet_on_dick_2] You wanna bet on that?
+||
+{bet_on_dick_1} "I'm very attached to my females."
+{bet_on_dick_2} "Look, there's not a man that could do that to me. I'm very attached to my females."
+	[gay_dare] So... you're game then?
+	[thanks_anyway] I get it, just forget I said anything.
+||
+{gay_dare | change_sprite nude} He snaps his speedo off and throws it aside. "If you somehow coax an erection from me without touching, sure, I'll fuck you with it."
+{dare_comfortable} "What's the worst thing that can happen? I get to have sex?" He laughs.
+	[dare_comfortable] You're... comfortable with this? //showif.index_is.gay_dare
+	[clothes_back] This is too much. Just put your clothes back on, Taulsol.
+	[m_undress] (Undress)
+||
+
+
+
+||>>Put yer clothes back on you crazy fruit.
+{no_bottom_end | change_sprite no_armor, remove_pic} He pauses and then sheepishly picks up his speedo and puts it on. He laughs nervously. "I guess we got a little excited there." You start getting dressed.
+{clothes_back | change_sprite no_armor} He pauses and then sheepishly picks up his speedo and puts it on. He laughs nervously. "Hah, sorry, I got a little excited there."
+{yeah_nofuck | change_sprite no_armor} He picks up his speedo and quickly steps into it. "Sorry about leading you on like this, but you asked about it.<br><br>I guess we got a little excited there." You start getting dressed.
+{thanks_anyway} "No problem. I should probably head back to my house. It's getting pretty dark."
+	[thanks_anyway] Thanks for the lesson anyway. //hideif.index_is.thanks_anyway
+	[see_around] Of course. See you around.
+||
+{see_around | character_leave} "Have a nice evening, -name-. Bye."
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+	
+||>>Male pc seduction dare (agility of 6 required for gay dickings, you klutz)
+{m_undress | check_stat fitness 2-3-4 fit0-fit1-fit2-fit3}
+{fit0} You undress and throw your clothes on the beach. Taulsol looks you over from head to toe, and then raises his eyes to yours. "So, what's your strategy here?"
+{fit1} You undress and throw your clothes on the beach. Taulsol looks you over from head to toe, and then raises his eyes to yours. "So, what's your strategy here?"
+{fit2} You undress and throw your clothes on the beach. Taulsol looks you over from head to toe. "You get a lot of ladies fawning over you? You're very fit."
+{fit3} You undress and throw your clothes on the beach. Taulsol looks you over from head to toe. "Y- You get a lot of ladies fawning over you? You have an incredible body."
+	[coax_3] (Get closer to Taulsol) 
+||
+{coax_3 | pic taulsol_very_close} You walk right up to him and stop at a distance where you feel the heat radiating from his skin. He turns his head slightly. You feel his breath as he asks you. "You're really going to do it?"
+{okay_dare} He smiles faintly and nods. "I'm okay with it."
+	[okay_dare] Only if you're okay with it. //showif.index_is.coax_3
+	[coax_4] (Hover your hands slowly around his waist)
+||
+{coax_4} You run your hands just hair's width off his warm skin. Taulsol turns his head to look at what you're doing.
+	[coax_5] (Kneel down in front of him)
+||
+{coax_5 | pic flaccid_penis} You kneel on the sand. Taulsol's flaccid penis and testicles gently sway in front of your face. He hastily reminds you. "No touching."
+	[ | check_stat agility 6 dare_0-dare_1] (Emulate a blowjob)
+||
+{dare_1 | pic erect_penis} You mime as best as you can taking his cock and slowly bobbing your head, making subtle noises and carefully breathing hot air on him. You see his eyes widen as he stares downwards at you. "That's awfully clever but it's not going to work." You look upwards at him and mime licking the length of his cock. You hear him gasp and squirm. His cock slowly hardens right in front of your face as he watches your show. Taulsol glances at his erection, embarrassed.
+	[an_awkward_victory] It seems I've won.
+||
+||>>Seduction fail
+{dare_0} You mime as best as you can taking his cock and bob your head in front of him. He stares downwards at you with no reaction. A tinge of frustration makes you try harder and more elaborate movements but he doesn't react.<br><br>He taps on your shoulder. "Okay, I think you've done your best now."
+	[dare_fail] (Get up)
+||
+{dare_fail | remove_pic} Tausol takes a step away from you. You get back up. Taulsol shrugs. "See, this is what I meant. I just don't get worked up about males."
+	[yeah_nofuck] Yeah, you did say so.
+||
+
+||>>FemPc want sex?
+{female_accept} He blinks his eyes twice. "You want to fuck?"
+	[yeah_fuck] Yeah.
+||
+{yeah_fuck} He nods hesitantly. "Sure... We can fuck."
+	[lets_bang] Let's do it, then!
+||
+{lets_bang | change_sprite nude, remove_pic} Taulsol gets off you. He gives you a hand and helps you off the ground. He snaps his speedo off and throws it aside.
+{even_better} He chortles. "I'm sure you're better looking without your clothing."
+	[even_better] Oh my, you look even better without that tiny strip of cloth on you. //showif.charisma.6 //hideif.index_is.even_better
+	[fempc_sex] (Undress)
+||
+
+||>>SEXHUB (malePC & femPC)
+{fempc_sex | pic taulsol_very_close} You slowly start taking off your clothes and smile at Taulsol as his cock engorges at the sight of you. You drop the last piece of clothing on the sand and step closer to him.
+{an_awkward_victory | pic taulsol_very_close} You get up. Taulsol stutters. "Huh, I- I guess you did." He shakes his head a bit, looks around the pier, and turns to you again. "Say, how about you do that for real?"
+{fem_sex_start | pic taulsol_very_close} "You're quite gorgeous, -name-." Taulsol touches your arm gently. "What do you want do?"
+{kiss_end | pic taulsol_very_close} You slowly detach and lean away. Taulsol glances down and then raises his eyes back to yours.
+{cockstuff_up | pic taulsol_very_close} You get up. Taulsol looks you in the eyes and wipes the saliva dripping from the corner of his mouth.
+{kissm_okay | pic taulsol_very_close} You lean away, Taulsol looks away and then quickly back.
+	[ | start_music generic/romance_quick 70 3, sex_gate kiss_m kiss_f] (Kiss him)					//hideif.clicked
+	[cockstuff | start_music generic/romance_quick 70 3] (Grab his cock)								//hideif.clicked
+	[ | start_music generic/romance_quick 70 3, sex_gate rear_m rear_f] (Present your rear for him)
+	[m_behind] (Step behind him)								//showif.player_sex.male
+||	
+
+
+||>>penis touching (bj/handjob)
+{cockstuff | pic erect_penis} You gently but firmly grab his engorged cock and give it a slow pump. Taulsol gasps at the sudden attention and then peers down at you.
+{cock_massage} You grab the hot shaft with both hands and start massaging it, rolling your thumbs over the features and sliding your grip along the length. Tausol raises his gaze and breathes heavily. You feel the cock throb gently and produce clear fluid, you coat the cock with the slick fluid and rub the bulbous head appreciatively.
+{suckle_cock | pic beach_bj} You lean towards the head of the cock and press your lips against it. You spread your mouth over the glans and lick the underside with slow and deliberate licks. You look up at Taulsol, he looks down and places his hand on your head, gently stroking your hair. You feel the cock twitch as your tongue travels over it. You slide your open mouth downwards and lick the base of the cock. Taulsol whimpers as you travel back up sliding your tongue flat against the underside. You nurse the bulbous head with your mouth and spread his precum with your tongue.
+	[cock_massage] (Massage his cock)		//showif.index_is.cockstuff
+	[suckle_cock] (Suckle on his cock)		//hideif.index_is.suckle_cock
+	[jerk_off] (Give him a handjob)		//hideif.index_is.cockstuff
+	[give_bj] (Give him a blowjob)		//showif.index_is.suckle_cock
+	[cockstuff_up] (Get up)				//hideif.index_is.cockstuff
+||
+{jerk_off | pic beach_handjob} You extend your digits around the cock and start pumping the whole length. Taulsol gasps and looks down at you. You gently cup his balls and roll them in the palm of your hand. You increase the intensity of the pumping and feel Taulsol's perineum tense up. He huffs and places his hand on your head, gently stroking your hair but then suddenly tensing up and stopping you. You slow your work and look up at him. "Y-You're going make me... are you sure?"
+	[jerk_blow] (Continue) //showif.index_is.jerk_off
+	[cockstuff_up] (Stop and get up)
+||
+{jerk_blow} You quicken your pumps and gently squeeze his testicles in your hand. After a few rapid jerks, Taulsol whines and you feel his cock tense up.
+	[jerk_blow_on] (Make him cum on you)
+	[jerk_blow_sand] (Aim him away from you)
+||
+{give_bj | pic beach_bj} You engulf the cock with your mouth and roll your tongue against his bulbous glans. Taulsol places his hand on your head. You feel him gently buck into your mouth. Taulsol huffs and places his hand on your head, gently stroking your hair but then suddenly tensing up and stopping you. You slow your work and look up at him. "Y-You're going to make me... Are you sure?"
+	[bj_blow_1] (Continue) //showif.index_is.give_bj
+	[cockstuff_up] (Stop and get up)
+||
+{bj_blow_1} You take him deeper and pump the shaft. You glance upwards and see Tausol with his eyes closed and his head raised back. You cup his balls and rub their underside. You keep working on him until you can feel his abdomen tremble and his perineum tighten.
+{bj_blow_2} You kneel and press your lips against Taulsol's cock. You engulf the cock with your mouth and roll your tongue against the shape of the bulbous head. Taulsol places his hand on your head. You feel him gently buck against into your mouth. You take him deeper and pump the shaft. You glance upwards and see Tausol with his eyes closed and his head raised back. You cup his balls and rub their underside. You keep working on him until you can feel his abdomen tremble and his perineum tighten.
+	[bj_blow_in] (Make him come in your mouth)
+	[bj_blow_on] (Make him come on you)
+	[bj_blow_sand] (Aim him away from you)
+||
+{bj_blow_in | pic beach_freestyle_nut} You push him deeper into your mouth and give encouraging slow pumps. You feel his cock throb and fill your mouth, a torrent of hot sperm gushes into your mouth. You close your lips on the shaft and swallow. Taulsol lets out a high pitched squeak and bucks against you as he throbs again, filling your mouth. You swallow again. He slumps and tries to pull out but you keep yourself attached as he pumps the last of his cum into your mouth. You swallow and lick the the cock to clean it up. Taulsol draws breath and shakes.
+{bj_blow_sand | pic beach_freestyle_nut} You quickly get the cock out of your mouth and give it quick pumps while aiming it away from you. You feel it throb in your hand and then spray thick cum past you. Taulsol lets out a high pitched squeak and thrusts into your hand. You keep stroking it slowly as Taulsol empties himself onto the sand.<br><br>You caress the pulsing cock in your hands as it slowly calms down. You affectionately thumb over the head of the cock, spreading the remnants of cum all over it. Taulsol shivers at your touch, his legs shaking as he draws breath.
+{jerk_blow_sand | pic beach_freestyle_nut} You give his cock a few more quick pumps while aiming away from you. You feel it throb in your hand and then spray thick cum past you. Taulsol lets out a high pitched squeak and thrusts into your hand. You keep stroking it slowly as Taulsol empties himself onto the sand.<br><br>You caress the pulsing cock in your hands as it slowly calms down. You affectionately thumb over the head of the cock, spreading the remnants of cum all over it. Taulsol shivers at your touch, his legs shaking as he draws breath.
+	[like_cockstuff] Did you like that?
+	[cock_lick] (Give his cock a lick)
+||>>Nutted on face 
+{bj_blow_on | pic beach_freestyle_nut} You quickly get the cock out of your mouth and give it a few more quick pumps. You feel it throb in your hand and then spray thick cum on your face, with a viscous rope landing across your eyelid. Taulsol lets out a high-pitched squeak and thrusts into your hand. With each throb of his cock, he covers your face more.<br><br>You caress the pulsing cock in your hands as it spurts the last of its strength on you. You affectionately thumb over the head of the cock against your cheek. Taulsol shivers at your touch, his legs shaking as he draws breath.
+{jerk_blow_on | pic beach_freestyle_nut} You give his cock a few more quick pumps. You feel it throb in your hand and then spray thick cum on your face, with a viscous rope landing across your eyelid. Taulsol lets out a high-pitched squeak and thrusts into your hand. With each throb of his cock, he covers your face more.<br><br>You caress the pulsing cock in your hands as it spurts the last of its strength on you. You affectionately thumb over the head of the cock against your cheek. Taulsol shivers at your touch, his legs shaking as he draws breath.
+{really_nutted} Taulsol just glances down at you and draws ragged breath. You can see his legs visibly shake.
+	[really_nutted] I see you really liked that. //hideif.index_is.really_nutted
+	[nut_face_wipe] (Clean your face)
+||
+
+
+||>>Kiss
+{kiss_m} You lean into a kiss, and Taulsol raises his hand to stop you. "-name-..."
+	[kissm_char] Don't be afraid, It won't feel any different than a kiss from a woman. //showif.charisma.6
+	[kissm_okay] It's okay.
+||
+{kissm_char} He awkwardly shakes his head. "Look, I- I'll fuck you, but this feels too... intimate."
+	[kissm_neck] (Kiss his neck) //showif.charisma.8 //showif.will.6
+	[kissm_okay] Alright, got you.
+||
+{kissm_neck | auto_continue kiss_romance_m} You lean in and give him a soft kiss on the neck. You feel Taulsol shiver and then gently grip the side of your head. He pulls you away and stares you in the eyes.
+{kiss_romance_m | auto_continue kiss_end, add_flag taulsol_romantic_malepc_kiss, pic beach_kiss} Taulsol pulls you into a kiss and presses his snout against your lips, his jaws spread over the sides of your mouth as he sticks his tongue deeper. You feel his long teeth poke against the sides of your head as he slowly rolls his tongue over yours.
+||
+{kiss_f | auto_continue kiss_end, pic beach_kiss} You lean into a kiss, and Taulsol presses his snout against your mouth, his jaws spread over the sides of your mouth as he sticks his tongue deeper. You feel his long teeth poke against the sides of your head as he slowly rolls his tongue over yours.
+||
+
+
+
+||>>Female pc sex scene
+{rear_f} You spin around and mush your buttocks against his shaft. Taulsol's arm gently closes you into a half embrace. His snout nuzzles into the nape of your neck. His long digits slide along your side, downwards. "You're beautiful, -name-." His cock throbs hotly against your rear and his hand grips your hip.
+	[femfug_1] (Bend over)
+||
+{femfug_1 | auto_continue femfug_2, pic beach_fempc_fug} You lean forwards a bit and Taulsol's cock slides down and then stops against your anus. You feel the slick, bulbous head press against your labia. Taulsol pulls you towards him and thrusts. The head of his cock slowly spreads you open and slides in. You gasp as the head bumps against your insides. Taulsol pauses, plants his feet closer to yours and then continues his thrusts. You feel him sink deep into you and then come to a stop when his warm testicles rest against your thighs. Taulsol takes in a deep breath. You feel his cock throb inside you as his hand trembles on your hip. Your legs shake and your draw ragged breaths.
+||
+{femfug_2 | auto_continue femfug_3} He slowly pulls and then forcefully thrusts into you; you buckle under the thrust and catch your fall with your hands, you on fours on the sand, your ass high, presenting to Taulsol. You instinctively try to right yourself but Taulsol places his hand gently on your back and stops you. He slowly slides his cock all the way into you; you gasp. He grips your hip and begins a determined pounding. Your whole body shakes with his pulls and pushes, you try to stay upright but you feel the strength from your limbs wane as he continues. The head of his cock rubbing against your insides makes you want to fold into a ball, and the sensation is quickly becoming too much, you can't take it any more.
+||
+{femfug_3 | auto_continue femfug_4} One more thrust from Taulsol and your cram up, your legs arms and legs shaking, you try keep yourself upright as the orgasm burns in waves over you. Taulsol hilts himself into you and pauses. You contract around Taulsol's engorged shaft as you ride out the shock and numbness. You take a deep breath and steady yourself. Taulsol waits.<br><br>When you stop shaking, you wince as Taulsol begins a slow pump into you. "Let me just..." He grabs your hip hard and, again, thrusts deep into you. 
+||
+{femfug_4 | add_flag pc_sexed_taulsol} Taulsol picks up his pace quickly and soon the wet slapping noise of him pounding you drowns out your ragged whimpers. Your fingers dig into the sand and you brace against his forceful thrusts. Taulsol grabs you by the shoulder and starts a desperate, animalistic hump until, suddenly, you feel him tense up and try to pull out.
+	[femfug_4_in] D- Don't pull out.
+	[femfug_4_out] (Say nothing)
+||
+{femfug_4_out} Taulsol pulls out of you with a wet pop. You feel his cock throb against your buttocks and spray a heavy rope of hot cum over your back. Taulsol whimpers and snarls as he holds you desperately, unloading himself over your back.<br><br>You feel weak and a wave of relief and pleasure washes over you. Trembling, Taulsol sweats and pants, trying to keep himself upright.
+{femfug_4_in | add_flag taulsol_beach_came_inside} Taulsol quickly grips your hip and sinks himself deep into you and stops. He yanks you closer and then, you feel his cock throb in you. An engulfing warm feeling fills your gut with each pulse. Taulsol whimpers and snarls against your back. You feel weak and a wave of relief and pleasure washes over you. Taulsol sweats and pants on you as you support his shivering body.
+	[after_sex_fempc_out] (Catch your breath) //showif.index_is.femfug_4_out
+	[after_sex_fempc] (Catch your breath) //hideif.index_is.femfug_4_out
+||
+
+
+||>>malePC behind taulsol
+{m_behind | pic beach_back} You run your hand over his exposed midsection and brush against his soft, warm skin as you sneakily step behind him. Taulsol turns his head in shock and stammers. "W- Wait, you're not going to..."
+{neck_massage} Taulsol stops talking as you gently squeeze his stiff neck muscles. He murmurs with pleasure as you continue. Glancing over his shoulder, he gives you a sly smile. "That's very nice of you, but... Do you want me to do something?"
+	[neck_massage] Just relax. (Give him a neck massage) //showif.index_is.m_behind
+	[rear_m] (Present your rear for him) //showif.index_is.neck_massage
+	[ass_assassin] (Press your cock against his ass)
+||
+{ass_assassin} Taulsol stops you. "Look... I'm not that... excited about this, but if you want, I'll do it to you."
+{no_bottom} Taulsol scratches his head. "I... Uh- maybe we shouldn't... do this?"
+	[gayrisma_1] You've had girls from behind, right? //showif.charisma.8
+	[no_bottom] I'm not really into bottoming. //hideif.index.no_bottom
+	[no_bottom_end] I'm okay with that. //showif.index.ass_assassin
+	[bj_blow_2] What about if... (Give him a blowjob) //showif.index.ass_assassin
+	[rear_m] (Present your rear for him) You do me instead.
+||
+{gayrisma_1} He nods, hesitantly.
+	[gayrisma_2] You've heard their pleasure, then. Ever wonder where those gasps stem from?
+||
+{gayrisma_2} He stares intensely at you.
+	[gayrisma_3] It makes you feel vulnerable, dominated.
+||>>I thought it's because it's close enough to sensitive parts and even more so with men who have a prostate, but sure, let's go with domination
+||>>malePC fucks Taulsol
+{gayrisma_3} Taulsol's eyes dart around hesitantly. He licks his hand and pools thick saliva on it. He then awkwardly but carefully rubs his slick palm on your painfully erect cock. He gives you a shy smile.
+	[taulass_1] (Penetrate Taulsol's ass)
+||
+{taulass_1 | pic taulsol_butt_pen} You grab his hips and pull his ass up. Taulsol gasps and props himself against the sand. You place your saliva-slick cock against the base of his tail where it meets his buttocks. You feel a muscular ring lightly stretch over the head of your cock. You hear Taulsol breathe in anticipation. You push against him. Taulsol lets out a soft yelp as you sink into him. Tensed rings of muscle slide over the length of your cock as you hilt yourself. Taulsol grasps at clumps of dry grass amongst the sand. 
+	[taulass_2] (Fuck him)
+||
+{taulass_2 | pic beach_butt_pound, auto_continue outlast_1} You pump the first three thrusts slowly, Taulsol gasping at the sensation. The slick cock slides in and out with surprising ease as you increase your pace. Taulsol pants and pushes back in sync with your pulls. His cock bobs between his thighs, dripping clear streaks on the sand. You feel his warm testicles rhythmically slap against yours as you fuck him.
+||>>oh no the balls are touching, that's ultra gay
+{outlast_1} You start pounding Taulsol harder. He whines as you up the pace. His hands sink into the sand as he tries to steady himself against you. "Aah! Fuck!" He arches his back and you feel him constrict around your cock. His muscles twitch as he orgasms and sprays his load on the sand under him with fading pulses of pleasure. Taulsol shakes as the waves die down. "Fuck..." He glances back at you with an exhausted smile. "You... You didn't finish, did you?"
+{no_nut_yet} "N- No just... keep going!" He turns away and braces himself against the sand.
+	[no_nut_yet] N- Not yet... Do you want me to stop? //showif.index_is.outlast_1
+	[autlast_2] (Keep fucking him)
+||
+{autlast_2} Taulsol gasps as you shove yourself back into him again. "Okay! Okay..." You push him against the ground and just pound him. His slick buttocks slap loudly against you as you keep up your assault. Taulsol can't do anything but whine and moan. You can feel him tense up again but you feel your orgasm draw near. 
+	[taulass_finish] (Finish)
+||
+{taulass_finish | pic beach_drool} You keep up the pace for a few more desperate seconds until the need for release overtakes you. You hilt yourself into his ass and push as deep as you can go. Taulsol claws at the beach and bares his teeth. You feel his muscles tense again as you blow your load into him. The pleasure forces him to cum again. He supports his ass for only as long as the peak lasts and then crashes on the sand. You, still hilted, crash on top of him. Taulsol breathes loudly, his mouth dripping with saliva. Feeling your orgasm empty into Taulsol and slowly die down, you try and catch your breath.
+	[taulass_breath] (Catch your breath)
+||
+{taulass_breath | pic beach_butt_nut} You catch your breath and carefully pull out of him. Taulsol's legs shake as he slowly lowers himself on the beach. 
+	[like_datfug] Did- you like that?
+	[like_datfug] You're- very cute.
+||
+{like_datfug | pic beach_drool} Taulsol tries to steady his breath and turns to look at you. He doesn't say anything. He keeps smiling through the exhaustion.
+	[after_sex_malepc | add_flag pc_sexed_taulsol] (Lie down)
+||
+
+||>>Taulsol fucks malePC
+{rear_m | pic beach_malepc_pen} You spin around and mush your buttocks against his shaft. Taulsol's arm gently closes you into a half-embrace. His snout nuzzles into the nape of your neck. His long digits slide down along your side.<br><br>His cock throbs hotly against your rear and his hand grips your hip.
+	[pcass_1] (Bend over)
+||
+{pcass_1} You lean forwards a bit and Taulsol's cock slides down and then stops against your anus. You feel the slick, bulbous glans press against your ring. Taulsol pulls you towards him and thrusts. The head of his cock slowly spreads you open and slides in. You exhale as it bumps against your prostate. Taulsol pauses, plants his feet closer to yours, and continues his thrust. You feel him sink deep into you and then come to stop once his warm testicles rest against yours. Taulsol takes in a deep breath. You feel his cock throb inside you as his hand trembles on your hip. Your legs shake and you draw ragged breaths.
+	[pcass_2] (Brace yourself)
+||
+{pcass_2 | auto_continue pcass_3, pic beach_malepc_fug} He slowly pulls and then forcefully thrusts into you. You buckle under the thrust and catch your fall with your hands. You find yourself on all fours with your ass high, presenting to Taulsol. You instinctively try to right yourself but Taulsol places his hand gently on your back and stops you. He slowly slides his cock all the way into you; you gasp. He grips your hip and begins a determined pounding. Your whole body shakes with his pulls and pushes, you try to stay upright but you feel the strength from your limbs wane as he continues. The head of his cock rubbing against your insides makes you want to fold into a ball and the sensation is quickly becoming too much. You can't take it anymore.
+||
+{pcass_3 | auto_continue pcass_4} One more thrust from Taulsol and you cramp up, your arms and legs shaking. You try keep yourself upright as the orgasm burns over you in waves. Your cock throbs and paints the sand under you. Taulsol hilts himself into you and pauses. Your ass contracts around Taulsol's engorged shaft as you ride out the shock and numbness. You take a deep breath and steady yourself. Taulsol waits.<br><br>When you stop shaking, you wince as Taulsol begins a slow pump into you. "Let me just..." He grabs your hips hard and thrusts deep into you. 
+||
+{pcass_4} Taulsol picks up his pace quickly and soon, the wet, slapping noise of him pounding your ass drowns out your ragged whimpers. Your fingers dig into the sand and you brace against his forceful thrusts. Taulsol grabs you by the shoulder and starts a desperate, animalistic hump. You quickly feel him tense up and stop.<br><br>Taulsol sinks himself deep into you. He yanks you closer, and then, you feel his cock throb. An engulfing, warm feeling fills your gut with each pulse. Taulsol whimpers and snarls against your back. You feel weak and a wave of relief and pleasure washes over you. Taulsol sweats and pants on you as you support his shivering body.
+	[after_pcass | add_flag pc_sexed_taulsol] (Catch your breath)
+||
+
+||>>Post sex convo
+{like_cockstuff | pic beach_rest} Taulsol slumps down on to the sand with a thud and you lie next to him. Taulsol stammers hoarsely and stares into the sky. "T- That was something. You're p- pretty good at that."
+{cock_lick | pic beach_rest} You give a long lick on the head of the cock and Taulsol gasps in shock, his hand taps nervously on your head and he hops away from you before lying next to you on the sand.
+{nut_face_wipe | pic beach_rest} You wipe your face and a large clump of cum comes off, but your eyes start to sting. You get up half blind and rinse your face in the sea.<br><br>Taulsol slumps down on to the sand with a thud and you lie next to him. Taulsol stammers hoarsely and stares into the sky. "T- That was something. You're p- pretty good at that."
+{after_sex_malepc | pic beach_rest} You collapse next to Taulsol on the beach. Taulsol huffs and relaxes flat on the sand. You settle next to Taulsol and he turns on his back with weak effort. He explains hoarsely. "I didn't expect to like it that much."
+{not_hurting} He lets out a short chortle. "No, no, I'm okay."
+{cock_in_hands} Taulsol lets out an exhausted laugh. "I- I noticed."
+	[not_hurting] You're not hurting, right? //showif.index_is.after_sex_malepc
+	[cock_in_hands] I love feeling your cock in my hands. //showif.index_is.nut_face_wipe
+	[end_relax] I'm glad you liked it. 
+||
+{after_pcass | pic beach_rest} After a few moments, his grip on your shoulder relents and he slides off you, hitting the sand next to you with a thud. He pants and lies flat on the ground. You settle next to him. You feel your ass leak warm ejaculate. Taulsol turns his head to you. "I wasn't too rough, was I? I got a little excited."
+	[maybe_little] Maybe a little.
+	[end_relax] I liked it.
+||
+{maybe_little} He makes a worried glance at you. "Sorry, I... got a little carried away." He looks you in the eyes. "You... You're not hurting, right?" He brushes his hand against your forearm.
+	[end_relax] Nah, I'm okay.
+||
+
+
+||>>Post sex convo (femPC)
+{after_sex_fempc | pic beach_rest} After a few moments, his grip on your shoulder relents and he slides off you, hitting the sand next to you with a thud. He pants and lies flat on the ground. You settle next to him. You feel yourself leak warm ejaculate. Taulsol turns his head to you. "I wasn't too rough, was I? I got a little excited."
+{after_sex_fempc_out | pic beach_rest} After a few moments, his grip on your shoulder relents and he slides off you, hitting the sand next to you with a thud. He pants and lies flat on the ground. You settle next to him, warm ejaculate running down your spine. Taulsol turns his head to you. "I wasn't too rough, was I? I got a little excited."
+	[maybe_little_f] Maybe a little.
+	[ | check_flag taulsol_beach_came_inside end_relax fafter_1] I liked it.
+||
+{maybe_little_f} He makes a worried glance at you. "Sorry, I... got a little carried away." He looks you in the eyes. "You... You're not hurting, right?" He brushes his hand against your forearm.
+	[ | check_flag taulsol_beach_came_inside end_relax fafter_1] I'm okay.
+||
+{fafter_1 | add_flag bykaas_bitter_water_seller} Taulsol inhales loudly and then talks with a concerned voice. "There's probably no danger of, uh, of a motherhood, but if you notice something, you should ask the tavern keeper Bykaas for bitter water."
+	[end_relax] I'll keep that in mind.
+||
+
+
+||>>Beach sex scene end
+{end_relax | stop_music 6} Taulsol sighs and settles on the sand, putting his arm behind his head, and stares into the dark sky. You settle and look up as well. You lie next to each other silently for a while.
+	[u_like_mm] Did you like it? //showif.player_sex.male
+	[sex_relax] (Relax for a while)
+	[ | sex_gate cuddle_m cuddle_f] (Cuddle with him)
+||
+{u_like_mm | auto_continue scene_end} He chuckles softly and makes a playful glance at you. "Yeah, I liked it." He returns to gazing into the sky. You spend a still moment listening to the waves gently crashing against the beach. You can hear Taulsol's calm breathing next to you and you become drowsy.
+{sex_relax | auto_continue scene_end} You gaze into the sky together and spend a still moment listening to the waves gently crashing against the beach. You can hear Taulsol's calm breathing next to you and you become drowsy.
+{cuddle_m | auto_continue scene_end} You roll on your side and cuddle against Taulsol. Taulsol opens his mouth as if to say something, but just hesitantly sets his arm on you. You nuzzle into his neck and relax.<br><br>You spend a still moment listening to the waves gently crashing against the beach. You can hear Taulsol's calm breathing next to you and you become drowsy.
+{cuddle_f | auto_continue scene_end} You roll on your side and cuddle against Taulsol. Taulsol pulls you closer and sighs contently. You nuzzle into his neck and relax.<br><br>You spend a still moment listening to the waves gently crashing against the beach. You can hear Taulsol's calm breathing next to you and you become drowsy.
+||
+{scene_end | change_sprite no_armor, remove_pic} You stir from your comfy drowsiness when Taulsol gets up and pulls his swimming trunks back on. You get up and pat the sand off yourself. Taulsol makes a quick glance at you and chuckles. "I'll be off now. Have a pleasant night."
+{sexwas_fun} He smiles. "It was very fun."
+	[sexwas_fun] That was fun. //showif.index_is.scene_end
+	[end_end] See you around.
+||
+{end_end | change_default_diag_file taulsol diag_2, save_index after_sex, character_leave} He nods and walks off. You quickly wash up, gather your clothing, and get dressed.
+	[ | start_encounter taodal taodal] (Leave)
+||
+
+

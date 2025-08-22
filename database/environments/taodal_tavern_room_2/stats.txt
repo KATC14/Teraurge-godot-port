@@ -1,0 +1,7 @@
+interior:	yes
+ambient:	0.6
+
+<SOUNDS
+generic_interior/wood_creaking.12
+generic_interior/tavern_voices_muffled.9
+SOUNDS>

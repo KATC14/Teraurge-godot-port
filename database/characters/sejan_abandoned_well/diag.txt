@@ -1,0 +1,92 @@
+
+
+>>Prov did an ok job with this
+>>This encounter needs the change_env_background function to change the well appearance
+
+||>>HUB
+{start | save_index back_again} You come across a clearing with what seems to be a dilapidated well covered by a thorny bush.
+{cut0} You grab the branches and try to move them but you're stopped by a stinging pain in your hand. You're cut by the thorns in the bush.<br><br>The branches of the bush are covered in thousands of thorns. The wood is so tough and thick that it can seemingly only be cut with an axe.
+{back_again} You return to the dilapidated well covered by a thorny bush.
+	[cut0] (Move the branches off the well) //hideif.has_item.felling_axe //hideif.clicked
+	[cut1] (Clear the branches with a felling axe) //showif.has_item.felling_axe
+	[ | end_encounter] (Leave) 
+||>>Cleared
+{cut1 | save_index back_after_cut, change_default_env_background sejan_abandoned_well trimmed} After a long while of hacking away at the branches, you are met with an old well.<br>It's in an obvious state of disrepair. Several rocks are missing from around the rim.
+{back_after_cut} You return to the well.
+{climb_fail} You only get one leg into the well before you almost trip on a rock that has fallen off its rim. You nearly roll your ankle and almost fall in. You back away from the well.
+{look_well} You can't see the bottom. Although abandoned and decrepit, the walls of the well seem sturdy enough.
+{drop_rock} You drop a rock into the well.<br>You hear nothing for about three seconds before a wet thud hits your ears. The well seems very deep.
+{get_out} You climb out of the well, heave yourself on the sand and stand up.
+{untie_rope | give_item roll_of_rope} You untie the rope and take it back.
+	[drop_rock] (Drop a rock into the well) //hideif.clicked
+	[look_well] (Inspect the well) 
+	[rope_climb] (Climb down with a rope) //showif.has_item.roll_of_rope
+	[ | check_stat agility 8 climb_fail-climb_pass] (Climb down into the well) 
+ 	[ | end_encounter] (Leave)
+||
+
+
+||>>Agi climb
+{climb_pass | pic into_well, day_night_gate climb_day climb_night} 
+||
+{climb_day} You are able to climb down the inside of the well due to the large rocks that make for good handholds.<br><br>The interior of the well gets dark surprisingly quickly but just enough light shines down for you to see after your eyes adjust. 
+	[ | check_stat endurance 6 fatigue-climb_bottom] (Continue you decent)
+||
+
+||>>Rope climb
+{rope_climb | remove_item roll_of_rope} The rocks of the well are too loose and too small to carry your weight. The only strong enough anchor you can find is a sturdy tree on the edge of the clearing, but the rope is now too short to reach the bottom.
+	[tie_rope] (Extend the rope with another rope) //showif.has_item.roll_of_rope
+	[untie_rope] (Take the rope back) 
+||
+{tie_rope | remove_item roll_of_rope} You tie another rope to the existing one and throw it into the well. You hear the extra rope hit the bottom.
+	[ | day_night_gate rope_day rope_night] (Climb down)
+||
+
+||>>climb down fail
+{fatigue} The well is deeper than you though and your arms begin to shake. Your grip will fail before you reach the bottom.
+{climb_night} You are able to climb down the inside of the well due to the large rocks that make for good handholds.<br><br>The interior gets dark quickly. You give yourself a moment to adjust to the darkness but it makes no difference. The night sky doesn't provide enough light to illuminate the deeper parts of the well and you have no free arm to hold a torch or light.
+{rope_night | pic into_well} You quickly lower yourself into the well.<br><br>The interior gets dark quickly. You give yourself a moment to adjust to the darkness but it makes no difference. The night sky doesn't provide enough light to illuminate the deeper parts of the well and you have no free arm to hold a torch or light.
+	[get_out | remove_pic] (Climb out)
+||
+
+||>>THE BOTTOM
+{rope_day | pic well_bottom} You climb down the interior of the well with little trouble.<br>You land with a wet slap in the muddy bottom of the well. 
+{climb_bottom | pic well_bottom} You climb down the interior of the well with little trouble.<br>You land with a wet slap in the muddy bottom of the well. 
+	[ | check_stat intelligence 8 look_bottom-false_wall] (Look around)
+||>>bottom HUB
+{helmet_take | give_item ancient_sejan_helmet, pic well_bottom} You take the helmet.
+{look_bottom | pic well_bottom} You find nothing of note.<br>The base of the well is just mud with a few fallen rocks.
+{uhoh_danger | pic well_bottom} You carefully step away from the buckled wall.
+{examine_rust_2 | pic well_bottom} You carefully try to find more features but the object practically crumbles to dust when you turn it in your hand, clumps of chalky rust falling off it until it disintegrates completely.
+{examine_rust | pic well_bottom} The corroded object practically crumbles to dust when you turn it in your hand, clumps of chalky rust falling off it until it disintegrates completely.
+	[dig_bottom] (Dig the dirt) //hideif.clicked
+	[exit_well] (Climb out)
+||
+
+||>>Digging the mud
+{dig_bottom | auto_continue dig_bottom_2} You crouch on the muddy sand and rake your fingers through the dirt. You pull on it and reveal a darkened bone. As you push more dirt aside you reveal more and more bones from under the dirt. The whole bottom of the well seems to be filled with bones.<br><br>You see something glint under the bones.
+{dig_bottom_2 | pic ancient_helmet} You move the bones off the shining object and pull the item into the light, it's a worn, wide brimmed metal helmet. There seems to have been some symbols on the side of the helmet but they have worn away. The helmet doesn't have any rust on it and is made of green metal with bright streaks in it. 
+	[helmet_take] (Take the helmet)
+||
+
+||>>False wall cache 
+{false_wall} The walls of the well are made of smooth rocks. Everything is dry besides the very bottom.<br>Near the bottom, a section of the wall looks much more haphazard and is composed of various different rocks.
+	[move_rocks] (Move the rocks)
+||
+{move_rocks | pic wall_cavity} You push on the rocks.<br><br>A pang of panic shoots through you when the the whole section of the wall suddenly bulges inwards and loose sand seeps through the cracks as a brick falls with a wet thud on the mud.<br><br>The wall movement stops and the rocks you pushed fall in and reveal a hollow space behind the wall. There seems to be a rusted box inside the space with something in it.
+	[reach_space] (Reach for the box)
+	[uhoh_danger] (Leave the wall alone)
+||
+{reach_space | give_money adats 4, give_money krats 37} You carefully reach past the loose bricks into the rusted container and find a handful of krats mixed in with adats. You also find a small rusted object inside the box as well. You don't find anything else of note in the cavity.<br><br>You take the adats and the krats.
+	[ | check_stat agility 6 examine_rust-careful_look] (Inspect the metal object)
+||
+{careful_look | auto_continue examine_rust_2, pic rusted_device} The metal object seems fragile so you opt to look at it carefully.<br><br>It is a metallic device, one side has what looks like a row of buttons. The object could have been a sophisticated device once but it is only a clump of fragile rust now.
+||
+
+||>>END (the well caves in)
+{exit_well | save_index collapsed, auto_continue well_over, pic collapse, play_sound sejan/abandoned_well_collapse 70} Climbing out of the well is a little more difficult as the rocks are less stable than you remember.<br>As you step out, you hear several rocks moving and the ground shifts below your feet, almost tripping you. You hear the stones come loose in the well and tumble against it. You jump away from the well as it caves in on itself.
+||
+{collapsed} You return to the collapsed well.
+{well_over | change_default_env_background sejan_abandoned_well collapsed, remove_pic} The collapse stops as suddenly as it had started, the mouth of the well sends one last puff of fine powder as it slams shut with the mass of the sand.
+	[ | end_encounter] (Leave) 
+||

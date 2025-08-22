@@ -1,0 +1,16 @@
+interior:	no
+
+blocking:			yes
+discoverable:		yes
+dicovery_message:	Your path is blocked by a large iron gate.
+default_message:	Do you want to stop by the iron gate?
+
+
+<SOUNDS
+generic_exterior/wind_howling.40
+SOUNDS>
+
+
+||>>ENCOUNTERS
+{encounters | start_encounter sejan_iron_gate sejan_iron_gate} Oran gate encounter
+||

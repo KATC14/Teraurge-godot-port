@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx611hgcm07d4"]
+
+[ext_resource type="Script" path="res://scripts/scene_layer.gd" id="1_kfvin"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_kfvin")
+
+[node name="sky_layer" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="weather_layer" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="env_Node" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+expand_mode = 1
+
+[node name="env_mask_Node" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+expand_mode = 1
+
+[node name="atmosphere_layer" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="sprite" type="TextureRect" parent="."]
+
+[node name="scene_picture" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+expand_mode = 1

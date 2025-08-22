@@ -1,0 +1,52 @@
+
+||>>Sejan beach
+{start | save_index visited, remove_encounter sejan_hidden_boat 0} You find a hidden boat on the beach.
+{visited} You return to the hidden boat.
+{sailed_to} You sail back to the Sejan peninsula.
+{back_beach | remove_pic} You jump out of the boat and drag it back on the beach. You cover it again with the protective tarp.
+	[push_out] (Push the boat out to sea)
+	[ | end_encounter] (Leave)
+||
+
+
+
+||>>BOAT HUB
+{push_out | play_sound generic/objects/boat_onwater 70, auto_continue sail_map, pic walking_boat} You pull the cloth off the boat and push it out into the water.
+||
+{sail_map | pic map} You hop into it as you reach deeper water and settle on the simple wooden bench.<br><br>You see a large island with red trees on the horizon.
+	[redforest] (Sail to to the island)
+	[go_fish] (Go fish) //hideif.note.TBA
+	[island_1] (Sail to) //hideif.note.TBA
+	[island_2] (Sail to) //hideif.note.TBA
+	[island_3] (Sail to) //hideif.note.TBA
+	[island_4] (Sail to) //hideif.note.TBA
+	[back_beach] (Return to the beach)
+||
+
+
+||>>Redforest
+{redforest_landing | play_sound generic/objects/boat_land 70, start_encounter sejan_redforest_landing sejan_redforest_landing sailed_to, set_map_location sejan_redforest_landing, discover_location sejan_redforest_landing} 
+{redforest | play_sound generic/objects/boat_sail 70, pic boating, auto_continue redforest_landing} You start rowing towards the large island in the distance. After some uneventful sailing, you reach the beaches lined with the strange, red trees.
+||
+
+||>>Island 1 (TBA)
+{island_1_landing} 
+{island_1 | pic boating} 
+	[island_1_landing] 
+||>>Island 2 (TBA)
+{island_2_landing} 
+{island_2 | pic boating} 
+	[island_2_landing] 
+||>>Island 3 (TBA)
+{island_3_landing} 
+{island_3 | pic boating} 
+	[island_3_landing] 
+||>>Island 4 (TBA)
+{island_4_landing} 
+{island_4 | pic boating} 
+	[island_4_landing] 
+||
+
+||>>Go fish  (TBA)
+{go_fish} 
+||

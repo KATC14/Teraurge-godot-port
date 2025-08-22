@@ -1,0 +1,38 @@
+
+
+>>This is a example (Questions) diag file.
+
+>>The questions hub starts with no npc reply, so there's no repeated line when transitioning to questions.
+
+||>>QUESTIONS HUB
+{start} 
+{question_1_end} "Question 1 end remark."
+{question_2_end} "Question 2 end remark."
+{question_3_end} "Question 3 end remark."
+{question_4} "Question 4 single line answer."
+	[question_1] Ask question 1. //hideif.clicked
+	[question_2] Ask question 2. //hideif.clicked
+	[question_3] Ask question 3. //hideif.clicked
+	[question_4] Ask single line question 4. //hideif.clicked
+	[ | change_diag_file diag silent_return] (Return)
+||>>QUESTIONS HUB
+	
+
+
+
+	
+||>>Question 1
+{question_1} "Question 1 answer."
+	[question_1_end] Ok.
+||
+
+||>>Question 2 
+{question_2} "Question 2 answer."
+	[question_2_end] Ok.
+||
+
+||>>Question 3
+{question_3} "Question 3 answer."
+	[question_3_end] Ok.
+||
+

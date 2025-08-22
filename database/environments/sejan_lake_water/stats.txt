@@ -1,0 +1,5 @@
+interior:	no
+
+<SOUNDS
+generic_exterior/lake.30
+SOUNDS>

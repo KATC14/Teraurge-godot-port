@@ -1,0 +1,492 @@
+
+=============================================================
+!!VIEW THIS FILE WITH NOTEPAD++ OR THE FORMATTING IS BROKEN!!
+
+		#This file contains all cards for the game.
+		#Loaded when the game starts.
+		#Feature is still under construction.
+	
+=============================================================
+REQUIRED FIELDS:
+	syntax: (required field):(parameter)
+
+TYPE
+	syntax: type:(type)
+		debug
+		escape
+		damage_reduction
+		buff
+		debuff
+		counter_move
+		unarmed_attack
+		weapon_attack
+			
+DAMAGE:
+	syntax: (damage type)_dmg:(number)
+		charisma_cost
+		knowledge_cost
+		intelligence_cost
+		perception_cost
+		agility_cost
+		strength_cost
+		endurance_cost
+		hitpoints_cost
+	(*special type of damage that isn't reduced by resistances)
+
+COSTS:
+	syntax: (damage type)_cost:(number)
+		heat_dmg
+		cold_dmg
+		impact_dmg
+		slash_dmg
+		pierce_dmg
+		magic_dmg
+		hitpoints_dmg
+		
+		charisma_dmg
+		knowledge_dmg
+		intelligence_dmg
+		perception_dmg
+		agility_dmg
+		strength_dmg
+		endurance_dmg
+		hitpoints_dmg
+	(*special type of cost that can kill the player before the target receives damage)
+
+SPECIAL:
+	syntax: (special type):(percentage number)
+		escape
+		evasion
+		reflect
+		damage_reduction
+		interrupt_card
+
+============================================================= DEBUG_ATTACK
+<debug_card
+	type:				debug
+	
+	heat_dmg:			0
+	cold_dmg:			0
+	impact_dmg:			0
+	slash_dmg:			0
+	pierce_dmg:			0
+	magic_dmg:			0
+	hitpoints_dmg:		0
+	
+	charisma_dmg:		0
+	knowledge_dmg:		0
+	intelligence_dmg:	0
+	perception_dmg:		0
+	agility_dmg:		0
+	strength_dmg:		0
+	endurance_dmg:		0
+	
+	charisma_cost:		0
+	knowledge_cost:		0
+	intelligence_cost:	0
+	perception_cost:	0
+	agility_cost:		0
+	strength_cost:		0
+	endurance_cost:		0
+	hitpoints_cost:		0
+	text:				This is the debug card.
+debug_card>
+<strike_of_the_debug
+	type:				debug
+
+	hitpoints_dmg:		9999
+	text:				The strike of the debug brings ruin to all things of this world.
+strike_of_the_debug>
+<debug_win
+	type:				debug
+
+	hitpoints_dmg:		9999
+	text:				This kills your enemy.
+debug_win>
+<debug_lose
+	type:				debug
+	
+	hitpoints_cost:		9999
+	text: 				This kills you.
+debug_lose>
+============================================================= MIGHTY_SMASH
+<mighty_smash
+	type:				unarmed_attack
+	
+	impact_dmg:			10
+	
+	strength_cost:		2
+	endurance_cost:		2
+	text:				10 points of impact damage to the target
+mighty_smash>
+============================================================= AGILE_DODGE
+<agile_dodge
+	type:				counter_move
+	
+	evasion:			90
+	endurance_cost:		2
+	agility_cost:		3
+	text:				Will raise dodge chance to 90% for one attack when triggered.
+agile_dodge>
+<destroy_spell	
+	type:				counter_spell
+	
+	intelligence_cost:	2
+	knowledge_cost:		3
+	destroy_spell:		1
+	text: 				Will destroy any spell when triggered
+destroy_spell>
+
+<shield_block
+	type:				counter_move
+	
+	damage_reduction:	10
+	text: 				Reduces 10 points of hitpoint damage from an attack.
+shield_block>
+<interrupt_attack
+	type:				counter_move
+	
+	interrupt_attack:	1
+	text: 				Interrupts any "attack" type attack.
+interrupt_attack>
+<escape
+	type:				escape
+	
+	escape:				1
+	agility_cost:		4
+	endurance_cost:		4
+	text: 				If triggered, the character who played this card will dodge the attack and escape from the encounter.
+escape>
+
+================================MELEE ATTACK CARDS================================
+<panicked_slap
+	type:				unarmed_attack
+	
+	impact_dmg:			1
+	
+	agility_cost:		2
+	text:				An uncoordinated and ineffectual attack.
+panicked_slap>
+<pimp_slap
+	type:				unarmed_attack
+	
+	hitpoints_dmg:		9999
+	
+	agility_cost:		1
+	text:				The back of your hand is set on fire by the speed of this devastating attack.
+pimp_slap>
+<wrestle
+	type:				unarmed_attack
+	
+	impact_dmg:			4
+	strength_dmg:		4
+	endurance_dmg:		4
+	
+	endurance_cost:		5
+	strength_cost:		5
+	text:				Grab your opponent and try to throw them down.
+wrestle>
+<right_hook
+	type:				unarmed_attack
+	
+	impact_dmg:			6
+	
+	strength_cost:		4
+	agility_cost:		3
+	text:				A solid right hook.
+right_hook>
+<left_hook
+	type:				unarmed_attack
+	
+	impact_dmg:			5
+	
+	strength_cost:		4
+	agility_cost:		4
+	text:				Less effective than right hook, but good enough.
+left_hook>
+<clumsy_kick
+	type:				unarmed_attack
+	
+	impact_dmg:			3
+	
+	strength_cost:		4
+	agility_cost:		6
+	text:				Imitating kung-fu movies results in an embarrassing show of martial prowess.
+clumsy_kick>
+<kick
+	type:				unarmed_attack
+	
+	impact_dmg:			4
+	
+	strength_cost:		2
+	agility_cost:		4
+	text:				A solid kick.
+kick>
+<debilitating_kick
+	type:				unarmed_attack
+	
+	impact_dmg:			3
+	agility_dmg:		3
+	intelligence_dmg:	2
+	agility_dmg:		2
+	perception_dmg:		2
+
+	agility_cost:		4
+	text:				Kicking vulnerable spots on your opponent can disorient and cause pain.
+debilitating_kick>
+<body_tackle
+	type:				unarmed_attack
+	
+	impact_dmg:			8
+	
+	agility_cost:		5
+	strength_cost:		5
+	endurance_cost:		5
+	hitpoints_cost:		1
+	
+	text:				Slamming your body against your opponent will hurt you too.
+body_tackle>
+<leg_sweep
+	type:				unarmed_attack
+	
+	impact_dmg:			3
+	agility_dmg:		3 //this fucking thing doesn't work
+	
+	agility_cost:		3
+	
+	text:				
+leg_sweep>
+
+
+================================ANIMAL ATTACK CARDS================================
+<hooked_slash
+	type:				unarmed_attack
+	
+	slash_dmg:			3
+	pierce_dmg:			2
+	
+	agility_cost:		4
+	text:				-
+hooked_slash>
+<slash
+	type:				unarmed_attack
+	
+	slash_dmg:			3
+	
+	agility_cost:		2
+	text:				-
+slash>
+<bite
+	type:				unarmed_attack
+
+	pierce_dmg:			2
+	slash_dmg:			1
+	
+	strength_cost:		2
+	agility_cost:		2
+	text:				-
+bite>
+<snap_bite
+	type:				unarmed_attack
+
+	pierce_dmg:			2
+	
+	agility_cost:		2
+	text:				-
+snap_bite>
+<tail_whip
+	type:				unarmed_attack
+	
+	impact_dmg:			2
+	
+	agility_cost:		3
+	strength_cost:		1
+	text:				-
+tail_whip>
+<massive_tackle
+	type:				unarmed_attack
+	
+	impact_dmg:			8
+	
+	agility_cost:		3
+	endurance_cost:		4
+	strength_cost:		10
+	text:				-
+massive_tackle>
+<stomp
+	type:				unarmed_attack
+
+	impact_dmg:			2
+	
+	strength_cost:		4
+	endurance_cost:		2
+	agility_cost:		2
+	text:				-
+stomp>
+<headbutt
+	type:				unarmed_attack
+
+	impact_dmg:			3
+	
+	strength_cost:		1
+	agility_cost:		3
+	text:				-
+headbutt>
+<resonant_droning
+	type:				unarmed_attack
+
+	hitpoints_dmg:		2
+	
+	intelligence_cost:	2
+	endurance_cost:		2
+	text:				-
+resonant_droning>
+<kinetic_droning
+	type:				unarmed_attack
+
+	slash_dmg:			2
+	pierce_dmg:			2
+	
+	endurance_cost:		4
+	text:				-
+kinetic_droning>
+
+
+================================AXE CARDS================================
+<axe_chop
+	type:				weapon_attack
+	
+	slash_dmg:			2
+	pierce_dmg:			2
+	impact_dmg:			3
+	
+	strength_cost:		4
+	text:				If it cuts wood, it will cut flesh.
+axe_chop>
+<crushing_axe_swing
+	type:				weapon_attack
+	
+	slash_dmg:			2
+	pierce_dmg:			6
+	impact_dmg:			6
+	
+	agility_cost:		4
+	strength_cost:		8
+	text:				
+crushing_axe_swing>
+<crowbar_smash
+	type:				weapon_attack
+	
+	impact_dmg:			6
+	
+	strength_cost:		4
+	text:				
+crowbar_smash>
+<pickaxe_strike
+	type:				weapon_attack
+	
+	pierce_dmg:			7
+	
+	strength_cost:		4
+	text:				
+pickaxe_strike>
+<rusty_cleave
+	type:				weapon_attack
+	
+	impact_dmg:			4
+	slash_dmg:			2
+	pierce_dmg:			2
+	
+	strength_cost:		4
+	text:				The serrated and rusted blade of the heavy cleaver still causes damage.
+rusty_cleave>
+
+================================CLUB CARDS================================
+<spear_stab
+	type:				weapon_attack
+	
+	pierce_dmg:			4
+	
+	agility_cost:		2
+	text:				
+spear_stab>
+<club_smash
+	type:				weapon_attack
+	
+	impact_dmg:			3
+	
+	agility_cost:		2
+	strength_cost:		2
+	text:				
+club_smash>
+<big_club_smash
+	type:				weapon_attack
+
+	impact_dmg:			6
+	
+	strength_cost:		4
+	text:				
+big_club_smash>
+<giant_club_smash
+	type:				weapon_attack
+	
+	impact_dmg:			14
+	
+	strength_cost:		8
+	text:				
+giant_club_smash>
+
+================================KNIFE AND DAGGER CARDS================================
+<penetrating_stab
+	type:				weapon_attack
+	
+	pierce_dmg:			6
+	
+	agility_cost:		4
+	text:				An attack with a specialized anti-armor dagger.
+penetrating_stab>
+<knife_stab
+	type:				weapon_attack
+	
+	pierce_dmg:			3
+	
+	agility_cost:		3
+	strength_cost:		2
+	text:				A stabbing attack with a small, bladed weapon.
+knife_stab>
+<knife_slash
+	type:				weapon_attack
+	
+	slash_dmg:			2
+	
+	agility_cost:		2
+	text:				A slashing attack with a small, bladed weapon.
+knife_slash>
+<rusty_stab
+	type:				weapon_attack
+	
+	pierce_dmg:			2
+	
+	strength_cost:		3
+	agility_cost:		3
+	text:				
+rusty_stab>
+<serrated_slash
+	type:				weapon_attack
+	
+	slash_dmg:			2
+	pierce_dmg:			2
+	
+	agility_cost:		3
+	text:				A slashing attack with a serrated knife.
+serrated_slash>
+================================SHIELD CARDS================================
+<heavy_shield_bash
+	type:				weapon_attack
+	
+	impact_dmg:			2
+	strength_dmg:		2
+	
+	strength_cost:		4
+	text:				
+heavy_shield_bash>

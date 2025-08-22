@@ -1,0 +1,42 @@
+default_env:	sejan_beach_cave
+
+
+<STATS
+charisma:		4
+will:			6
+intelligence	6
+perception: 	4
+agility:		6
+strength:		10
+endurance:		8
+
+hitpoints:		50
+
+heat_res:	0
+cold_res:	0
+impact_res:	0
+slash_res:	1
+pierce_res:	0
+magic_res:	0
+bio_res:	0
+STATS>
+
+
+<CARDS
+bite
+bite
+bite
+bite
+bite
+bite
+bite
+bite
+bite
+bite
+bite
+massive_tackle
+headbutt
+headbutt
+headbutt
+headbutt
+CARDS>

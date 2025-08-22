@@ -1,0 +1,306 @@
+
+
+||>>INTRO
+{start | stop_music 5, change_sprite curled, change_default_sprite sulie curled} A shimmering pool of crystal-clear water lies before you, fed by a small waterfall that is cascading from the rocks above. The pool is so clear that you can see the smooth pebbles at the bottom.<br><br>You notice an odd shape on a nearby boulder. It's a creature, motionless save for the gentle rise and fall of its chest. It's covered in grey scales, patterned to match the stone. Its body is long and sinewy, it looks like some kind of a snake. It's very large. You can see a tapered tail, but no head.
+{sneak_return | stop_music 5} You return to the pond and see the same creature coiled on the same rock you saw it last on.
+	[throw_pebble] (Throw a pebble at the creature)
+	[hello_snek] Hello!
+	[sneak_away] (Sneak away)
+||
+{sneak_away | save_index sneak_return, end_encounter}
+||
+{throw_pebble | change_sprite head_up} You pick up a stone from the pond and throw it at the grey snake. The snake creature slowly stirs and uncoils. "Why do you disturb me, stranger?"
+{hello_snek | change_sprite head_up} You yell over the water. The snake creature slowly stirs and uncoils. "Why do you disturb me, stranger?"
+	[my_home] Sorry, I just wanted to know what you were. //showif.charisma.6
+	[my_home] What are you?
+||
+{my_home} "This is my home, I should ask you what 'you' are doing here, and what 'you' are.<br><br>A weary traveller perhaps, attracted by the sounds of flowing water? What makes you think that it is yours to take?" Her tone is playful, almost flirtatious, but there is a hint of menace.
+	[snake_you] I'm not really interested in the water.
+	[snake_you] I don't see any fences or signs, what's it to you?
+	[snake_you] Sorry, I didn't realize this was your property.
+||
+{snake_you | pic snake_on_you} She slowly slides into the water. She's stealthy, quiet, there isn't so much as a splash despite her immense size. She swims to you and surfaces between your legs. "This is my pool. It belongs to me. You intrude on my home, take what does not belong to you. Have you nothing to offer me in return?" She emerges further from the sparkling pool, the clear water sloughing off her scales. "There should be recompense for this offence." She comes uncomfortably close, and you shuffle backwards on the grass. She presses ever closer, part of her winding tail flopping onto the shore as it holds her humanoid torso aloft, like a giant finger puppet. "I can sense the heat between your legs."
+	[heat_cause] ...And you're definitely the cause of that heat. //showif.charisma.6
+	[not_type] Sorry, you're not my type lady.
+	[stand_back] Can you stand back?
+||
+
+
+||
+{heat_cause | change_sprite character, change_default_sprite sulie character, remove_pic} She slithers back and gives you space. She snickers. "Really now? You warm blooders."
+{stand_back | change_sprite character, change_default_sprite sulie character, remove_pic} She slithers back and gives you space.
+{not_type | change_sprite character, change_default_sprite sulie character, remove_pic} She slithers back and gives you space. "That's just as well, I'm not in the habit of jumping into the laps of passing strangers."
+	[my_name_1] Who are you? I'm a human and my name is -name-.
+	[my_name_2] I'm -name-. What's a warm blooder?
+||
+{my_name_1} "Well, pleased to meet you -name- the human. I'm Sulie."
+{my_name_2} "Well, pleased to meet you -name-. I'm Sulie."
+	[private_land] I'm sorry, I didn't realize that this was private land.
+||
+{private_land} "It's not private as such...but I do come here to be undisturbed."
+{me_leave | change_sprite mouth_open} "No, I didn't say that. You can stay a while if you'd like. I promise I won't bite... unless you want me to." She opens her pink, fleshy mouth and flashes a pair of hypodermic fangs that are sheathed like those of a cobra.
+	[me_leave] I can leave if you want. //showif.index_is.private_land
+	[lovely_teeth] Beautiful teeth you have there. What if I 'do' want you to bite me? //showif.index_is.me_leave //showif.charisma.8
+	[plz_no_bite] Please don't bite me. //showif.index_is.me_leave
+	[why_here] So, what are you doing here?
+||
+{lovely_teeth | change_sprite character} She closes her mouth and flicks her tongue playfully. "Foolish warm blooder, interrupting the cold blooder's basking and then asking to be bitten, tsk, tsk."
+{plz_no_bite | change_sprite character} She closes her mouth and flicks her tongue playfully. "Only if you want warm blooder. I might be a cold blooder but I'm not a biter."
+{why_here | change_sprite character} She flicks her tongue, her eyes playing across your body. "I come here to bask.<br><br>You're a warm blooder? We cold blooders have to bask in the daylight to warm ourselves. This is a good spot."
+	[warm_blooder_1] Warm blooder? You mean a mammal? //showif.intelligence.6
+	[warm_blooder_2] What's a warm blooder?
+||
+{warm_blooder_1} "If that's what your people call it, yes. Your blood is warm, mine is cold."
+{warm_blooder_2} "Very simple, your blood is warm, mine is cold."
+	[look_snake] Makes sense, you do look like a snake.
+	[reptile] So you're a reptile? //showif.intelligence.8
+||
+
+{look_snake} "I don't know what a snake is, but I'll take that as a compliment. Now, tell me what you are."
+{reptile} "I don't know what a reptile is, but I'll assume it's something flattering. Now, tell me what you are."
+	[why_alone] I'm a human, a warn blooder I guess. Why are you out here all alone?
+||
+{why_alone | save_index return} "I like to get away from the bustle of the village from time to time. It's quiet out here, there's no canopy to block the daylight, and there's a choice rock for basking. I can also go for a swim if I feel like it."
+	[appreciate_nature] Yeah, it's pretty serene out here. I wouldn't have guessed that there was a waterfall in this forest if I hadn't heard it.
+	[i_guess_nature] I guess.
+||>>INTRO END
+
+
+
+
+||>>CONVO HUB 
+{appreciate_nature} "So you like the peace and quiet too? Most outsiders that I come across live in the towns, they have no appreciation for nature. They prefer the noise of the markets and docks, a hundred conversations happening all at the same time."
+{i_guess_nature} "It's a nice place to bask too."
+{start_leaf} "Sure. It's not like I get much company out here. What do you want to talk about?"
+{sour_bite} She snaps her tongue and glances at you behind slitted eyes.
+{return} Sulie unwinds and swims across the water to meet you.  "You're back!  How are you?"
+{nevermind_banganimals | change_sprite character} She sucks in her tongue audibly and stares silently at you.
+{contr_okey} "Yes, it's sordid, but who cares about in here, in the wild."
+{no_really} "In any case, thank you so much. I owe you."
+{do_for_1} "Perfect! Let me know when you have it. You can find me here."
+{do_for_2} "Of course! Let me know when you have it. You can find me here."
+{nono_fetch} She sighs. "Well, if you change your mind, I'll be here."
+{sex_curious} She glances suspiciously at you. "Just curious? Uh huh."
+{awkward_sex | save_index return} Sulie unwinds and swims across the water to meet you. "Hi. Look, sorry about the last time, I know I'm sometimes little... aggressive."
+{after_sex | save_index return} Sulie unwinds and swims across the water to meet you. "You're back!  How are you? You seem to have recovered from the last time." She chuckles.
+{aggressive_okay} She nods. "Good to know. Thank you."
+{silent_return}
+	[aggressive_okay] It's okay. I'm not holding a grudge over it.							//showif.index_is.awkward_sex
+	[have_mate] So... do you have a mate, or a husband? Anything along those lines?		//hideif.clicked
+	[banganimals] Sulie? Do you... do something, with the animals?						//hideif.clicked //showif.counter.sulie_dirty_secrets.3 //showif.feral_filter_off
+	[have_contr]  I have the solution to your contraceptive problems. It's called bitter water.	//showif.has_flag.sulie_needs_contraceptive //showif.has_item.bottle_of_bitter_water
+	[brought_bitter] I have the bitter water.											//showif.has_flag.sulie_fetch_bitter //showif.has_item.bottle_of_bitter_water
+	[ | change_diag_file diag_questions start] (Questions)
+	[identify_animal] (Animal sightings) 												//showif.has_flag.sulie_is_hunter
+	[ | end_encounter] I'll be going now. (Leave)
+||>>CONVO HUB 
+
+||>>Do you... do something, with the animals? 
+{banganimals | change_sprite flustered} Her head perks up and she blurts out a flustered squeak. "W-What do you mean?"
+	[animal_sex] You just talk about the animals in a very odd tone. Like you know... like you have sex with them.
+	[nevermind_banganimals] Nevermind, forget I ever said anything.
+||
+
+||>>Flirt (Do you have a mate?)
+{have_mate} "No, I'm not spoken for. Why do you ask? Aside from the obvious."
+	[sex_rejected_1] You don't happen to be looking for one?
+	[sex_rejected_2] I'm just saying you're very pretty, Sulie. //showif.charisma.8
+	[sex_curious] Just curious.
+||
+{sex_rejected_1} "I might be starved for conversation but that doesn't mean I'll jump into the lap of any passing stranger."
+{sex_rejected_2} She laughs. "Nice try, but you're not as smooth as you think you are. I might be starved for conversation but that doesn't mean I'll jump into the lap of any passing stranger."
+	[offend_you] Of course, I understand.
+	[offend_you] Sorry, I didn't mean to offend you. //showif.charisma.6
+||
+{offend_you} "Well at least you have some manners. I guess I'll refrain from eating you... for now."
+	[sour_bite] You'd find me a very sour bite. //showif.will.8
+	[start_leaf] Can we forget this and just start over?
+||
+
+
+
+||>>HUNT BANTER (This dialogue is not accessible. I (MD) edited this section away since there was a lot of overlap with animal identification and not much content. I've saved most the dialogue for possible future reintegration)
+{hunt_share} 
+	[niird_encounter] I fought a niird on the beach. //hideif.clicked //showif.has_flag.niird_encountered
+	[pohack_encounter] I hunted down a poh-ack recently. //hideif.clicked //showif.has_flag.pohack_encountered
+	[cuoxur_encounter] I defeated a cuoxur. //hideif.clicked //showif.has_flag.cuoxur_encountered
+	[braq_encounter] I managed to down a braq. //hideif.clicked //showif.has_flag.braq_encountered
+||
+{braq_encounter} She chuckles at you. "That's hardly a feat worthy of a hunter. You can get right up close to them and they scarcely react. You can bait them with their pink milk, too."
+||>>Niird hunt
+{niird_encounter} "Really? I'm actually quite impressed that a creature as cumbersome as you managed to chase down a niird. What did you do with it when you caught it?"
+	[niird_info] Killed it of course, what else would I have done with it?
+	[niird_info] It submitted to me, so I let it go.
+||
+{niird_info | counter sulie_dirty_secrets + 1} "Oh, of course." She looks away, seeming embarrassed.
+	[animal_sex] And what exactly do you do with them when you catch them? //showif.counter.sulie_dirty_secrets.3 
+||
+{pohack_encounter} "Oh really? Let me guess, it was a pretty small one? They get much larger further inland. Don't expect such an easy fight if you come across a bigger one."
+{cuoxur_encounter} "You defeated a cuoxur? They're slippery little things. Did you happen to see it mating? They secrete some kind of ooze from their pores that makes them very unappetizing"
+
+
+||>>ANIMAL IDENTIFICATION
+{cuoxur_mate | counter sulie_dirty_secrets + 1} She stammers, looking embarrassed. "I-I didn't mean it like that.<br><br>You see all kinds of things when stalking prey. Getting to know their habits is important." 
+{why_lick | counter sulie_dirty_secrets + 1} She seems embarrassed, averting her gaze. "Nothing in particular, it's just useful for trapping them is all..." 
+{cuoxur_okay} She snaps out of it. "But, uh- yes, they're pretty odd species."
+{bait_braq} "Uh huh, yes, definitely. They love it."
+{shore_serpent_q} "I've never heard of anything like that. You say you encountered it in a cave? I like to keep my distance, I don't fancy the idea of being stuck in a tight space with something so large."
+{shyni_monster_q} "That's pretty vague, your description could apply to any number of creatures. The thing about flying animals is that they tend to roam far, they're not held back by mountains or rivers. It might have come from anywhere on the landmass. I'd advise keeping your distance until you can get a proper identification."
+{all_know} "Well let me know if you find out more, if there's an animal on this peninsula that I've not seen yet, I'd like to know about it."
+{groom_you} She pauses and then asks with a formal voice. "Are there any other animals you'd like to know about?"
+{identify_animal}
+{pohack_sex | counter sulie_dirty_secrets + 1} "Never mind. Let's talk about something else, okay?" Her eyes dart nervously.
+	[braq_q | add_flag pc_knowledge_braq] I met a large, eyeless and grey, six-legged animal in the forest. Any idea what it was?		//hideif.clicked //showif.has_flag.braq_encountered
+	[cuoxur_q | add_flag pc_knowledge_cuoxur] I ran into a strange, pale droning serpent with odd stumpy legs.						//hideif.clicked //showif.has_flag.cuoxur_encountered
+	[pohack_q | add_flag pc_knowledge_pohack] A shiny, blueish serpent thing with scythe arms stopped me in the peninsula.			//hideif.clicked //showif.has_flag.pohack_encountered
+	[niird_q  | add_flag pc_knowledge_niird] I saw a white, two-legged animal with a segmented, worm like body, digging on a beach.	//hideif.clicked //showif.has_flag.niird_encountered
+	[lukumpplar_q] The town guard told me about a beast called Lukumpplar. Can you tell me anything about it?						//hideif.clicked //showif.has_flag.taulsol_lukumpplar_story
+	[shyni_monster_q] A friend mentioned a large flying beast attacking her at the shore cliffs.											//hideif.clicked //showif.has_flag.shyni_monster_story
+	[shore_serpent_q] I encountered a giant, green-blue, aquatic serpent in a cave near the shore.										//hideif.clicked //showif.has_flag.breirb_rival_encountered
+	[silent_return] (Return)
+||>>Braq
+{braq_q} "Oh, that sounds like a braq. They're not very impressive animals, the people in town keep them for their meat and milk. They make for good eating, but they're not much of a challenge to hunt. You can generally find them wandering the forest."
+	[braq_knowledge] Anything unusual that I should know about them?
+||
+{braq_knowledge} "Have you seen those pink cones that they leave on the ground? That's their milk, it's how they mark their territory. It hardens to form stalagmites, and it's pretty much all the males eat. They'll lick anything that smells of it."
+	[bait_braq] Good to know, that could come in handy for baiting them.
+	[why_lick] Just what kind of things are you getting them to lick? //showif.charisma.6
+||
+||>>Pohack
+{pohack_q} "That's easy, it's not hard to find poh-acks round these parts. The ones on the peninsula are pretty small, they get much larger further inland. Don't expect such an easy fight if you come across a big one. You can tell the males apart from the females because the males have a big horn on their heads."
+	[fight_pohack] That sounds dangerous, is there anything I should know before fighting one?
+||
+{fight_pohack} "Their behavior is unusual in that they tend to freeze up when you overpower them. They go all limp and just wait to die, it's weird. You can do whatever you want with them and they'll scarcely react."
+	[play_dead] That's strange, do they play dead as a last resort?
+||
+{play_dead} "No, it's like they submit to you completely." She seems to hesitate for a moment, as if remembering an embarrassing thought.
+	[pohack_sex] Is something wrong?
+||
+||>>Cuoxur
+{cuoxur_q} "That sounds like a cuoxur, those are strange beasts. They're not especially dangerous, but I wouldn't fancy eating one. They secrete some kind of ooze from their pores that makes them very unappetizing, it's used for mating."
+	[cuoxur_mating] Mating? How does that work?
+	[cuoxur_mating] Gross, what do you mean by that?
+||
+{cuoxur_mating} "It seems that they use the gel that they secrete to form genitals, and then they use them for breeding. I'm not sure if there are males and females, you can't tell until their reproductive organs start forming on their backs, then they rub them together. I've seen them doing it."
+	[method_reproduction] That's pretty weird.
+	[cuoxur_mate] Is there a reason you spend your time watching animals mating? //showif.charisma.6
+||
+{method_reproduction} "Isn't it? It's pretty amazing to watch, the way that the gel just kind of shifts and morphs to fill any crevice..." She has a dazed look about her, as if she's lost in some memory.
+	[cuoxur_okay] Um, okay.
+	[cuoxur_mate] You seem pretty into it for a passive observer. //showif.charisma.6
+||>>Niird
+{niird_q} "That's a niird for sure. They're everywhere on the peninsula, they mostly seem to hang around on the beaches and search the sand for small crabs and worms."
+	[hard_catch] They're really hard to catch, do you have any advice?
+||
+{hard_catch} "They're pretty dumb. You can fool them into thinking that you're another niird by copying the calls they make. Just kick up some sand and make similar noises and they'll walk right up to you. They will try to groom you, so be prepared."
+	[groom_you] What do you mean by that?
+||>>Lukumpplar
+{lukumpplar_q} "A lukumpplar? Sorry, I'm not familar with that name. Can you tell me anything more about it?"	
+	[all_know] That's all I know.
+||
+
+
+
+
+
+
+||>>ANIMAL SEX ADMISSION (when counter "sulie_dirty_secrets" >= 3 )
+{animal_sex | change_sprite flustered} "Okay, I admit it. I may have taken some...liberties with a couple of animals. I'm not the only one who does it!"
+	[beast_serious] Are you seriously saying... you fuck animals?
+	[beast_disgust] That's disgusting.
+	[done_too] Oh.
+	[not_only] Uh, yeah, I've done that too.
+	[done_too] After everything I've seen up to this point, I can't judge.
+||
+{not_only} She seems relieved. "R-Really? You've done it too?"
+	[done_too] Yeah..
+	[done_too] How could I not? The creatures here have some... exotic qualities. //showif.charisma.8
+||
+{beast_serious}  She laughs nervously. "I just get really lonely out here.<br><br>I like to hunt, I like to be in control of my own destiny. I don't want village elders telling me what I can and can't do and where I can and can't go. I don't want to become nothing more than a broodmother for one of the males, spending the rest of my days raising hatchlings."
+{done_too}  She laughs nervously. "I just get really lonely out here.<br><br>I like to hunt, I like to be in control of my own destiny. I don't want village elders telling me what I can and can't do and where I can and can't go. I don't want to become nothing more than a broodmother for one of the males, spending the rest of my days raising hatchlings."
+	[beast_disgust] So... you fuck animals instead? How deranged are you?
+	[bitter_water] Why don't you just use bitter water? //showif.has_flag.pc_knowledge_bitter_water
+	[somesort_contr] Couldn't you just use some sort of contraceptive? //hideif.has_flag.pc_knowledge_bitter_water
+||
+{somesort_contr | add_flag sulie_needs_contraceptive} "Con- contraceptive? You mean like a stretched animal intestinals over someone's cock? Eurgh."
+	[contr_okey] I guess you're right.
+	[poison_contr] Aren't there some sort of a mild poison or a berry that could help with it? //showif.intelligence.8
+||
+{poison_contr} She stares at you condescendingly. "Not that I know of, and besides, I'm not going to poison myself every time I have sex with someone."
+	[contr_okey] Okay.
+||
+
+
+||>>Sulie disappears after confronted about the animal business
+{beast_disgust | character_leave, save_index sulie_is_gone} She stares shocked at you. "I- I um..." She hisses and bolts into the underbrush.
+{wait_escape} You yell after her, but get no answer.
+	[wait_escape] Wait! //showif.index_is.beast_disgust
+	[ | end_encounter] (Leave)
+||
+{sulie_is_gone | hide_character} You return to the pond where Sulie used to hang around, but she's not here.
+	[ | end_encounter] (Leave)
+||
+	
+||>>Why not use bitter water?
+{bitter_water | add_flag sulie_fetch_bitter, change_sprite character} "Bitter water? I've never heard of it."
+	[no_preggo] It prevents pregnancies if you drink it after the act. 
+||
+{no_preggo | change_sprite flustered} She looks at you with a shocked expression. "You're not joking? That really exists? Will it work for me?"
+	[where_get] I don't see why it wouldn't, it seems to work on everyone.
+||
+{where_get} "How can I get it?"
+	[buy_town] You can buy some in the town. The townspeople were kind to me. You might be able to trade meat or hides for it. //showif.has_discovered.taodal
+	[fetch_quest] I could get some for you and bring it back. //hideif.has_item.bottle_of_bitter_water
+	[is_contr] I happen to have a bottle on me right now, you can have it. //showif.has_item.bottle_of_bitter_water
+||
+{buy_town} "But the elders wouldn't approve of me interacting with outsiders..."
+	[interact_outsiders] I'm an outsider, and they don't know you're here, how would they know that you've been to the town?
+	[is_contr] I happen to have a bottle on me right now, you can have it. //showif.has_item.bottle_of_bitter_water
+||
+{interact_outsiders} "I don't know..." She seems conflicted, her long tail flicking back and forth.
+	[fetch_quest] How about this, you stay here, and I'll get fetch some for you. //hideif.has_item.bottle_of_bitter_water
+	[is_contr] I happen to have a bottle on me right now, you can have it. //showif.has_item.bottle_of_bitter_water
+	[no_fetch] I'm not going to fetch you a bottle.
+||
+{no_fetch} Her voice becomes childishly pleading. "Please! I can make it worth your time."
+	[fetch_quest] Okay... I'll go get you some. //hideif.has_item.bottle_of_bitter_water
+	[is_contr] I have one on me. Here. //showif.has_item.bottle_of_bitter_water
+	[nono_fetch] No.
+||
+{fetch_quest} "You'd really do that for me?" She perks up, her reptilian eyes wide.
+	[do_for_1] Of course, it's no trouble. I was headed that way anyway.
+	[do_for_2] I'll do it, but you owe me one. 
+||
+
+
+||>>PC has the bitter water
+{have_contr} "Bitter water? What is that? It will help me how?"
+	[is_contr] It's a contraceptive. It prevents pregnancies.
+||
+{is_contr} Her eyes light up with excitement. "You have the potion with you?"
+{brought_bitter} Her eyes light up with excitement. "You brought the potion?"
+	[give_bitter] Yup, here you go. (Give the bitter water)
+||
+{give_bitter | remove_flag sulie_needs_contraceptive, remove_flag sulie_fetch_bitter, remove_item bottle_of_bitter_water} You hand her the bottle. She turns it over in her hands, examining it. "I just drink it afterwards?"
+	[just_mouthful] Yes, just drink a mouthful after sex, it will stop you from having children.
+||>>Yes, she just ignores the femPC. I'm sorry.
+{just_mouthful} "Thank you! I don't know what to say. How can I repay you?"
+	[dont_repay] There's no need to repay me, I'm happy to help.
+	[ | sex_gate do_repay no_really] I can think of a few things...
+||
+{dont_repay} "Are you sure? I can't offer you much in the way of compensation, unless you like fur or meat that is. But...maybe there's something else that I can do for you." She flashes you a salacious look.
+	[no_really] No really, it's fine. I'm just happy that I was able to help out.
+	[ | sex_gate do_repay no_really] Well if you're offering, maybe you and I could...
+||
+{do_repay} Her scaly lips curl into a smile, and she shuffles a little closer to you on her long tail, appraising you with her eyes. "There's another problem that I'd like your help with, and I think you're better suited to my needs than a niird or a braq."
+	[fug_me] How could I refuse an invitation from you, Sulie?
+	[no_really] Actually, now that you mention the animals, let's not.
+||
+{fug_me} She giggles into her hand, batting her eyes at you. "I should warn you, I can be a little...aggressive, so just relax and let me take the lead."
+	[ | change_diag_file diag_pondsex start] Come and get me then. //showif.will.8
+	[ | change_diag_file diag_pondsex start] What do you mean?
+	[ | change_diag_file diag_pondsex start] Uh... be gentle.
+||
+
+
+
