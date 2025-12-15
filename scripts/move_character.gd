@@ -11,11 +11,6 @@ var click_position = Vector2()
 	set(value):
 		position = value
 
-func _ready() -> void:
-	position = Vector2(2155.25, 3164.6)#2147.25, 3147.6
-	click_position = position
-	move_to_front.call_deferred()
-
 func get_distance(point1, point2):
 	var x = point1.x - point2.x
 	var y = point1.y - point2.y
@@ -50,15 +45,24 @@ func map_collision_check(relative_x, relative_y):
 			#print(closest_index)
 		index += 1
 	for i in adjacent_blips:
-		var temp:Sprite2D = i.get_node("Sprite2D")
-		temp.modulate = Color.TRANSPARENT
+		color_blips(i)
 
 	var new_loc = adjacent_blips[closest_index]
 	#print(new_loc)
-	var sprite:Sprite2D = new_loc.get_node("Sprite2D")
-	sprite.modulate = Color.ORANGE_RED
 	VarTests.map_target = new_loc
 	blips_ready()
+
+func color_blips(blip):
+	var temp:Sprite2D = blip.get_node("Sprite2D")
+	if blip in VarTests.named_loc.values():
+		var index = VarTests.named_loc.values().find(blip)
+		var found = VarTests.named_loc.keys()[index]
+		if found in VarTests.DISCOVERED_LOCATIONS:
+			temp.modulate = Color.BLUE
+		else:
+			temp.modulate = Color.TRANSPARENT
+	else:
+		temp.modulate = Color.TRANSPARENT
 
 var adjacent_blips = []
 func blips_ready():
@@ -99,11 +103,14 @@ func blips_ready():
 			# this is fucking stupid
 			await get_tree().process_frame
 			if i.overlaps_area(collision_dummy):
-				var sprite:Sprite2D = i.get_node("Sprite2D")
-				sprite.modulate = Color.GREEN
+				color_blips(i)
+				var local_blips:Sprite2D = i.get_node("Sprite2D")
+				var cur_loc:Sprite2D     = VarTests.map_target.get_node("Sprite2D")
+				local_blips.modulate     = Color.GREEN
+				cur_loc.modulate         = Color.ORANGE_RED
 				adjacent_blips.append(i)
 	can_move = true
-	#collision_dummy.queue_free()
+	collision_dummy.queue_free()
 
 func _process(_delta: float) -> void:
 	if is_active:
@@ -120,6 +127,14 @@ func _process(_delta: float) -> void:
 		var left   = Input.is_action_pressed("ui_left")
 		var down   = Input.is_action_pressed("ui_down")
 		var right  = Input.is_action_pressed("ui_right")
+		if Input.is_action_pressed("mouse_left"):
+			click_position = get_global_mouse_position()
+			#print(click_position)
+			click_position -= VarTests.map_target.position + Vector2(10, 8)
+			#print(click_position)
+			#print()
+			if can_move:
+				map_collision_check(click_position.x, click_position.y)
 		if up or left or down or right:
 			var input_dir = Input.get_vector("key_a", "key_d", "key_w", "key_s")
 			if can_move:

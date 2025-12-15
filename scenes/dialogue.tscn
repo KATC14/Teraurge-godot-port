@@ -1,13 +1,13 @@
 [gd_scene load_steps=52 format=3 uid="uid://cghm8dwjeyts5"]
 
-[ext_resource type="Script" path="res://scripts/dialogue.gd" id="1_abwjo"]
-[ext_resource type="Script" path="res://scripts/ChoicesDialog.gd" id="1_khq2m"]
-[ext_resource type="Script" path="res://scripts/diag_func.gd" id="2_nm0kn"]
-[ext_resource type="Script" path="res://scripts/autocont_dots.gd" id="3_xwsq1"]
+[ext_resource type="Script" uid="uid://mjerosrqpc0i" path="res://scripts/dialogue.gd" id="1_abwjo"]
+[ext_resource type="Script" uid="uid://dp6cmyn7ilaiq" path="res://scripts/ChoicesDialog.gd" id="1_khq2m"]
+[ext_resource type="Script" uid="uid://dk3dmvcg4hxio" path="res://scripts/diag_func.gd" id="2_nm0kn"]
+[ext_resource type="Script" uid="uid://bk3wsu4cegr1l" path="res://scripts/autocont_dots.gd" id="3_xwsq1"]
 [ext_resource type="Texture2D" uid="uid://3stvrt6a2g6y" path="res://assets/images/sky/sky_day.jpg" id="5_8cypa"]
 [ext_resource type="Texture2D" uid="uid://dqbfpjgh7wnoq" path="res://assets/images/sky/sky_sundown.jpg" id="6_1dr0a"]
 [ext_resource type="Texture2D" uid="uid://pc77vjflsl7d" path="res://assets/images/menu_background.png" id="6_2utvh"]
-[ext_resource type="Script" path="res://scripts/index_error.gd" id="6_3q6qr"]
+[ext_resource type="Script" uid="uid://cp8heanw4kli2" path="res://scripts/index_error.gd" id="6_3q6qr"]
 [ext_resource type="Texture2D" uid="uid://cibtkyq7x8vrp" path="res://assets/images/combat/res_stat.png" id="7_yi57s"]
 [ext_resource type="Texture2D" uid="uid://fio0fdwvhm73" path="res://assets/images/combat/res_heat.png" id="8_hwqu2"]
 [ext_resource type="Texture2D" uid="uid://d1owus3qh5xua" path="res://assets/images/combat/res_cold.png" id="9_3p4eb"]
@@ -26,6 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://nestgdg4ap0d" path="res://assets/images/combat/card_holder.png" id="22_u72p4"]
 [ext_resource type="Texture2D" uid="uid://bhkr8ioafcj8e" path="res://assets/images/combat/card.png" id="23_b3775"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxlgp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6g81"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my7jp"]
 bg_color = Color(0.6, 0.6, 1, 0.196078)
 corner_radius_top_left = 5
@@ -36,10 +40,6 @@ expand_margin_left = 5.0
 expand_margin_right = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ujm42"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6g81"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxlgp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxdpf"]
 bg_color = Color(0, 0, 0, 1)
@@ -63,28 +63,6 @@ font_names = PackedStringArray("Times New Roman")
 [sub_resource type="SystemFont" id="SystemFont_se7ww"]
 font_names = PackedStringArray("Times New Roman")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwtsa"]
-border_width_left = 12
-border_width_right = 6
-border_color = Color(0.6, 0.6, 0.6, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_top = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlnpo"]
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2myq"]
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hmg0"]
 border_width_left = 5
 border_width_top = 5
@@ -96,6 +74,28 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2myq"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlnpo"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwtsa"]
+border_width_left = 12
+border_width_right = 6
+border_color = Color(0.6, 0.6, 0.6, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 5.0
+
 [sub_resource type="SystemFont" id="SystemFont_qysv5"]
 font_names = PackedStringArray("Times New Roman")
 
@@ -106,18 +106,7 @@ border_width_right = 6
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vw33"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjgnq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a7w87"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdlev"]
-bg_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jx2q0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p44m5"]
 bg_color = Color(0, 0, 0, 0.501961)
@@ -126,20 +115,31 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jx2q0"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdlev"]
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ieeq"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a7w87"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k2rxm"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjgnq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b2ygw"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vw33"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nd3sy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbqsc"]
 bg_color = Color(0, 0, 0, 0.501961)
 corner_radius_top_right = 13
 corner_radius_bottom_right = 13
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nd3sy"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b2ygw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k2rxm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ieeq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0y71"]
 
@@ -237,11 +237,11 @@ size_flags_horizontal = 6
 [node name="Button" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_my7jp")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ujm42")
-theme_override_styles/hover = SubResource("StyleBoxFlat_my7jp")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_h6g81")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qxlgp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h6g81")
+theme_override_styles/hover = SubResource("StyleBoxFlat_my7jp")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ujm42")
+theme_override_styles/focus = SubResource("StyleBoxFlat_my7jp")
 text = "Choice"
 alignment = 0
 
@@ -308,12 +308,12 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_btgui")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_btgui")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_btgui")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btgui")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_btgui")
 theme_override_styles/normal = SubResource("StyleBoxFlat_btgui")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btgui")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btgui")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_btgui")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btgui")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btgui")
 text = "OK"
 
 [node name="Control2" type="Control" parent="CanvasLayer"]
@@ -348,10 +348,10 @@ offset_bottom = 13.0
 focus_mode = 2
 theme_override_fonts/normal_font = SubResource("SystemFont_se7ww")
 theme_override_font_sizes/normal_font_size = 18
-theme_override_styles/fill = SubResource("StyleBoxFlat_gwtsa")
-theme_override_styles/background = SubResource("StyleBoxFlat_xlnpo")
-theme_override_styles/focus = SubResource("StyleBoxFlat_e2myq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_8hmg0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e2myq")
+theme_override_styles/background = SubResource("StyleBoxFlat_xlnpo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gwtsa")
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
@@ -364,10 +364,10 @@ offset_right = 1.0
 focus_mode = 2
 theme_override_fonts/normal_font = SubResource("SystemFont_qysv5")
 theme_override_font_sizes/normal_font_size = 18
-theme_override_styles/fill = SubResource("StyleBoxFlat_a23kr")
-theme_override_styles/background = SubResource("StyleBoxFlat_a23kr")
-theme_override_styles/focus = SubResource("StyleBoxFlat_a23kr")
 theme_override_styles/normal = SubResource("StyleBoxFlat_a23kr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_a23kr")
+theme_override_styles/background = SubResource("StyleBoxFlat_a23kr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a23kr")
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
@@ -593,12 +593,12 @@ texture = ExtResource("21_16vlh")
 layout_mode = 0
 offset_right = 63.0
 offset_bottom = 64.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7vw33")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjgnq")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_a7w87")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hdlev")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_p44m5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_jx2q0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p44m5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hdlev")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_a7w87")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjgnq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vw33")
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/Control/Control2"]
 light_mask = 0
@@ -629,12 +629,12 @@ layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
 offset_bottom = 24.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nd3sy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
 [node name="btn_card_1" type="Label" parent="CanvasLayer/Control3/Control/Control2/Control/TextureRect/Button"]
 unique_name_in_owner = true
@@ -659,12 +659,12 @@ layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
 offset_bottom = 24.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o0y71")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
 [node name="btn_card_2" type="Label" parent="CanvasLayer/Control3/Control/Control2/Control/TextureRect2/Button"]
 unique_name_in_owner = true
@@ -689,12 +689,12 @@ layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
 offset_bottom = 24.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o0y71")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
 [node name="btn_card_3" type="Label" parent="CanvasLayer/Control3/Control/Control2/Control/TextureRect3/Button"]
 unique_name_in_owner = true
@@ -719,12 +719,12 @@ layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
 offset_bottom = 24.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o0y71")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
 [node name="btn_card_4" type="Label" parent="CanvasLayer/Control3/Control/Control2/Control/TextureRect4/Button"]
 unique_name_in_owner = true
@@ -749,12 +749,12 @@ layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
 offset_bottom = 24.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o0y71")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
 [node name="btn_card_5" type="Label" parent="CanvasLayer/Control3/Control/Control2/Control/TextureRect5/Button"]
 unique_name_in_owner = true
@@ -779,12 +779,12 @@ layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
 offset_bottom = 24.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o0y71")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
 [node name="btn_card_6" type="Label" parent="CanvasLayer/Control3/Control/Control2/Control/TextureRect6/Button"]
 unique_name_in_owner = true
@@ -809,12 +809,12 @@ layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
 offset_bottom = 24.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_o0y71")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cbqsc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
 [node name="btn_card_7" type="Label" parent="CanvasLayer/Control3/Control/Control2/Control/TextureRect7/Button"]
 unique_name_in_owner = true
