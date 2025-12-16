@@ -330,6 +330,7 @@ color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(3, -4, 1, -5, -1, -5, -3, -4, -4, -3, -5, -1, -5, 1, -4, 3, -3, 4, -1, 5, 1, 5, 3, 4, 4, 3, 5, 1, 5, -1, 4, -3)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer"]
+visible = false
 position = Vector2(2200, 3031)
 metadata/_edit_lock_ = true
 

@@ -29,20 +29,16 @@ func map_collision_check(relative_x, relative_y):
 
 	# OFFSET TARGET LIST
 	origin += Vector2(relative_x, relative_y)
-	#print(origin)
 
-	#print(adjacent_blips)
 	for mc in adjacent_blips:
 		point_list.append(mc.position)
 
 	# CREATE DISTANCE LIST
 	var index: int = 0
 	for point in point_list:
-		#print(get_distance(origin, point))
 		if get_distance(origin, point) < min_dist:
 			min_dist = get_distance(origin, point)
 			closest_index = index
-			#print(closest_index)
 		index += 1
 	for i in adjacent_blips:
 		color_blips(i)
@@ -75,19 +71,8 @@ func blips_ready():
 	var deltaX
 	var deltaY
 	var dist
-	var rangee = 60
+	var rangee = 30
 	adjacent_blips = []
-
-
-
-	var collision_dummy:Area2D = area.duplicate()
-	#collision_dummy.visible = false
-	$'..'.add_child(collision_dummy)
-
-	collision_dummy.scale = area.scale + Vector2(1.2, 1.2)
-	var ggg:Sprite2D = collision_dummy.get_node("Sprite2D")
-	ggg.modulate = Color.TRANSPARENT
-	collision_dummy.position = area.position - Vector2(5, 5)
 
 	for i:Area2D in VarTests.all_loc:
 		var c = i.position
@@ -101,16 +86,14 @@ func blips_ready():
 
 		if dist <= rangee:
 			# this is fucking stupid
-			await get_tree().process_frame
-			if i.overlaps_area(collision_dummy):
-				color_blips(i)
-				var local_blips:Sprite2D = i.get_node("Sprite2D")
-				var cur_loc:Sprite2D     = VarTests.map_target.get_node("Sprite2D")
-				local_blips.modulate     = Color.GREEN
-				cur_loc.modulate         = Color.ORANGE_RED
-				adjacent_blips.append(i)
+			#await get_tree().process_frame
+			color_blips(i)
+			var local_blips:Sprite2D = i.get_node("Sprite2D")
+			var cur_loc:Sprite2D     = VarTests.map_target.get_node("Sprite2D")
+			local_blips.modulate     = Color.GREEN
+			cur_loc.modulate         = Color.ORANGE_RED
+			adjacent_blips.append(i)
 	can_move = true
-	collision_dummy.queue_free()
 
 func _process(_delta: float) -> void:
 	if is_active:
