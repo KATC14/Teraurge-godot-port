@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 
-var speed = 150
 #var target = Vector2()
 var click_position = Vector2()
 @export var is_active = true
@@ -123,10 +122,7 @@ func _process(_delta: float) -> void:
 		if up or left or down or right:
 			var input_dir = Input.get_vector("key_a", "key_d", "key_w", "key_s")
 			if can_move and player_speed.is_stopped():
-				map_collision_check((input_dir * speed).x, (input_dir * speed).y)
-			#print(input_dir * speed)
-		#	velocity = input_dir * speed
-		#	move_to_front()
-		#	move_and_slide()
+				map_collision_check(input_dir.x * 150, input_dir.y * 150)
+
 	if call_locations:
 		blips_ready.call_deferred()
