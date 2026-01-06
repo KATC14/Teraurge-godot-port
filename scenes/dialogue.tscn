@@ -1280,7 +1280,6 @@ horizontal_alignment = 1
 [connection signal="create_picture" from="CanvasLayer/Panel" to="." method="_on_create_picture"]
 [connection signal="curated_list" from="CanvasLayer/Panel" to="." method="_on_curated_list"]
 [connection signal="leave_encounter" from="CanvasLayer/Panel" to="." method="_on_leave_encounter"]
-[connection signal="player_death" from="CanvasLayer/Panel" to="." method="_on_player_death"]
 [connection signal="start_combat" from="CanvasLayer/Panel" to="." method="_on_start_combat"]
 [connection signal="start_encounter" from="CanvasLayer/Panel" to="." method="_on_start_encounter"]
 [connection signal="SELECTED" from="CanvasLayer/PanelContainer" to="." method="_on_panel_container_selected"]

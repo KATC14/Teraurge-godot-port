@@ -27,8 +27,6 @@ extends Node2D
 
 var bubble_tween
 var stats_file
-var env_ambient
-var ambient_strength
 var opt_parsed
 
 var can_continue_dialogue = true
@@ -38,69 +36,10 @@ var hurry_dialogue        = false
 var dont_hurry            = false
 
 var text_index = 0
-var scene_character = ""
 var last_character  = ""
 var diag_file       = ""
 var def_text_color = 'FFFFFF'
 var def_bubble_color = '000000'
-
-
-# combat vars
-@onready var card_empty        = load("res://assets/images/combat/card_empty.png")
-@onready var CanLay            = $CanvasLayer
-@onready var player_combat_ui  = $CanvasLayer/Control3/Control
-@onready var enemy_combat_ui   = $CanvasLayer/Control3/Control2
-@onready var attacks_timer     = $CanvasLayer/Control3/Timer
-
-
-@onready var turn_dail         = $CanvasLayer/Control3/Control/Control2/TextureRect/Button
-@onready var player_health_lbl = $CanvasLayer/Control3/Control/Label
-@onready var enemy_health_lbl  = $CanvasLayer/Control3/Control2/Label
-
-@onready var btn_card_1 = %btn_card_1
-@onready var btn_card_2 = %btn_card_2
-@onready var btn_card_3 = %btn_card_3
-@onready var btn_card_4 = %btn_card_4
-@onready var btn_card_5 = %btn_card_5
-@onready var btn_card_6 = %btn_card_6
-@onready var btn_card_7 = %btn_card_7
-
-
-@onready var player_res_heat   = %player_res_heat
-@onready var player_res_cold   = %player_res_cold
-@onready var player_res_impact = %player_res_impact
-@onready var player_res_slash  = %player_res_slash
-@onready var player_res_pierce = %player_res_pierce
-@onready var player_res_magic  = %player_res_magic
-@onready var player_res_bio    = %player_res_bio
-
-
-@onready var player_stat_cha_control  = %player_stat_cha_control
-@onready var player_stat_will_control = %player_stat_will_control
-@onready var player_stat_int_control  = %player_stat_int_control
-
-@onready var player_stat_agi_control  = %player_stat_agi_control
-@onready var player_stat_str_control  = %player_stat_str_control
-@onready var player_stat_end_control  = %player_stat_end_control
-
-
-
-@onready var enemy_res_heat_lbl   = %enemy_res_heat
-@onready var enemy_res_cold_lbl   = %enemy_res_cold
-@onready var enemy_res_impact_lbl = %enemy_res_impact
-@onready var enemy_res_slash_lbl  = %enemy_res_slash
-@onready var enemy_res_pierce_lbl = %enemy_res_pierce
-@onready var enemy_res_magic_lbl  = %enemy_res_magic
-@onready var enemy_res_bio_lbl    = %enemy_res_bio
-
-
-@onready var enemy_stat_cha_lbl   = %enemy_stat_cha
-@onready var enemy_stat_will_lbl  = %enemy_stat_will
-@onready var enemy_stat_int_lbl   = %enemy_stat_int
-
-@onready var enemy_stat_agi_lbl   = %enemy_stat_agi
-@onready var enemy_stat_str_lbl   = %enemy_stat_str
-@onready var enemy_stat_end_lbl   = %enemy_stat_end
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -116,17 +55,7 @@ func _ready() -> void:
 	else:
 		fade_in.visible = false
 	dialogue_complete = true
-	# TEMP
-	#VarTests.character_name = 'braq_m'# witch braq_m
-	#VarTests.ALL_CARDS = Utils.load_file("res://database/cards/cards.txt")
-	#stats_file = Utils.load_file("res://database/characters/braq_m/stats.txt")
-	#VarTests.CARD_INVENTORY = [
-	#	"kick", "kick", "body_tackle", "panicked_slap", "panicked_slap",
-	#	"panicked_slap", "panicked_slap", "wrestle", "wrestle", "right_hook",
-	#	"left_hook", "left_hook", "panicked_slap", "panicked_slap", "panicked_slap",
-	#	"clumsy_kick", "clumsy_kick"
-	#]
-	# TEMP
+	VarTests.sprite = sprite
 	_on_start_encounter(VarTests.character_name)
 
 var active_choice = 0
@@ -339,34 +268,7 @@ func _on_change_index(index):
 		#tween.finished.connect(auto_cont_ellipses)
 
 func _on_change_sprite() -> void:
-	make_character()
-func rescale_bitmapdata(obj):
-	var objscale = 1
-
-	if VarTests.stage_height == 1080: objscale = 0.75
-	if VarTests.stage_height == 720:  objscale = 0.50
-
-	obj.scale = Vector2(objscale, objscale)
-	# TextureRect 1280 - ( 894 * 0.5)
-	# Sprite2D    1280 - ((894 * 0.5) / 2)
-	var math_x = VarTests.stage_width  - (obj.size.x  * objscale)
-	#var math_y = VarTests.stage_height - (obj.size.y * objscale)
-	# texture width * by the offset lowering the value because its .5 or .75
-	obj.position = Vector2(math_x, 0)
-	
-func make_character() -> void:
-	print('a ', VarTests.character_sprite)
-	print('b ', scene_character)
-	scene_character = VarTests.character_name
-	var path = "res://database/characters/%s/%s.png" % [VarTests.character_name, VarTests.character_sprite]
-	if FileAccess.file_exists(path):
-		#var picture_image = Image.load_from_file(path)
-		#sprite.texture = ImageTexture.create_from_image(picture_image)
-		sprite.texture = load(path)
-		MiscFunc.super_tint(sprite, env_ambient, ambient_strength)
-		#sprite.modulate = Color.html('#a23f08')
-		rescale_bitmapdata.call_deferred(sprite)
-		sprite.move_to_front()
+	MiscFunc.make_character()
 
 func _on_start_encounter(character_name):
 	print('started ', character_name)
@@ -410,8 +312,8 @@ func _on_start_encounter(character_name):
 		index = VarTests.override_index
 		VarTests.override_index = ""
 	_on_change_environment()
-	if scene_character != VarTests.character_name:
-		make_character()
+	if VarTests.scene_character != VarTests.character_name:
+		MiscFunc.make_character()
 	_on_change_index(index)
 
 func _on_create_picture(picture=false) -> void:
@@ -449,15 +351,15 @@ func _on_change_environment(new_env=null) -> void:
 
 	var found = MiscFunc.parse_stat('ambient', env_stats)
 	if found != null:
-		ambient_strength = float(found)
+		VarTests.ambient_strength = float(found)
 	else:
-		ambient_strength = 0.2
+		VarTests.ambient_strength = 0.2
 
 	found = MiscFunc.parse_stat('ambient_color', env_stats)
 	if found != null:
-		env_ambient = Color.html(found)
+		VarTests.env_ambient = Color.html(found)
 	else:
-		env_ambient = Color.WHITE
+		VarTests.env_ambient = Color.WHITE
 
 	#DAY/NIGHT ENV
 	var extension_block = ""
@@ -832,73 +734,7 @@ func realign_dialogue():
 	bubble_tween.tween_property(dialogue_bubble, "position", Vector2(x_pos, y_pos - 2), 0.6)
 
 func _on_start_combat():
-	caption_top.visible      = false
-	dialogue_bubble.visible  = false
-	caption_bot.visible      = false
-	choicesDialog.visible    = false
-	scene_picture.visible    = false
-
-	player_combat_ui.visible = true
-	enemy_combat_ui.visible  = true
-	player_combat_ui.position.x = -player_combat_ui.size.x
-	enemy_combat_ui.position.x  = VarTests.stage_width + enemy_combat_ui.size.x
-
-	# sets every thing inside the other file
-	CombatScript.set_env(sprite, stats_file, env_ambient, caption_top, dialogue_bubble, caption_bot, choicesDialog, scene_picture,
-		CanLay, player_combat_ui, enemy_combat_ui, attacks_timer, turn_dail, player_health_lbl, enemy_health_lbl, 
-		btn_card_1, btn_card_2, btn_card_3, btn_card_4, btn_card_5, btn_card_6, btn_card_7, 
-		player_res_heat, player_res_cold, player_res_impact, player_res_slash, player_res_pierce, player_res_magic, player_res_bio, 
-		player_stat_cha_control, player_stat_will_control, player_stat_int_control, player_stat_agi_control, player_stat_str_control, player_stat_end_control, 
-		enemy_res_heat_lbl, enemy_res_cold_lbl, enemy_res_impact_lbl, enemy_res_slash_lbl, enemy_res_pierce_lbl, enemy_res_magic_lbl, enemy_res_bio_lbl, 
-		enemy_stat_cha_lbl, enemy_stat_will_lbl, enemy_stat_int_lbl, enemy_stat_agi_lbl, enemy_stat_str_lbl, enemy_stat_end_lbl
-	)
-	CombatScript.randomize_hand('player')
-	CombatScript.set_enemy_stats()
-	CombatScript.reset_stats('player')
-	CombatScript.reset_stats('enemy')
-	CombatScript.refresh_combat_ui('start')
-	CombatScript.combat_ui_in()
-
-func _on_btn_turn_dial_pressed() -> void:
-	if CombatScript.player_turn:
-		CombatScript.player_turn = false
-		turn_dail.disabled = true
-		turn_dail.get_parent().texture = CombatScript.turn_dial_enemy
-		CombatScript.change_turn_to("enemy")
-
-func card_clicked(attacker, used_card, target):
-	#used_card.visible = false
-	var the_card = used_card.text.replace(' ', '_').to_lower()
-	if CombatScript.play_card(attacker, the_card, target):
-		used_card.get_parent().visible = false
-		used_card.get_parent().get_parent().texture = card_empty
-
-func _on_btn_card_1_pressed() -> void:
-	card_clicked('player', btn_card_1, 'enemy')
-
-func _on_btn_card_2_pressed() -> void:
-	card_clicked('player', btn_card_2, 'enemy')
-
-func _on_btn_card_3_pressed() -> void:
-	card_clicked('player', btn_card_3, 'enemy')
-
-func _on_btn_card_4_pressed() -> void:
-	card_clicked('player', btn_card_4, 'enemy')
-
-func _on_btn_card_5_pressed() -> void:
-	card_clicked('player', btn_card_5, 'enemy')
-
-func _on_btn_card_6_pressed() -> void:
-	card_clicked('player', btn_card_6, 'enemy')
-
-func _on_btn_card_7_pressed() -> void:
-	card_clicked('player', btn_card_7, 'enemy')
-
-# PLAYER DEATH
-func _on_player_death():
-	#start_music("misc/player_death", 100, 0, 0, "no_loop")
-	VarTests.menu_state = 'death'
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/combat.tscn")
 
 # IS BETWEEN FUNCTION
 func is_between(minn: int, value_int: int, maxx: int):

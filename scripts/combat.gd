@@ -1,14 +1,4 @@
-extends Node
-
-
-var sprite
-var env_ambient
-var stats_file
-var caption_top
-var dialogue_bubble
-var caption_bot
-var choicesDialog
-var scene_picture
+extends Node2D
 
 # combat
 var random_tries = 40
@@ -74,69 +64,152 @@ var enemy_res_pierce  = 0
 var enemy_res_magic   = 0
 var enemy_res_bio     = 0
 
+@onready var sprite = $CanvasLayer/Control/sprite          # character_layer
+var stats_file
 @onready var card             = load("res://assets/images/combat/card.png")
 @onready var turn_dial_enemy  = load("res://assets/images/combat/turn_dial_enemy.png")
 @onready var turn_dial_player = load("res://assets/images/combat/turn_dial_player.png")
-@onready var CanLay
-@onready var player_combat_ui
-@onready var enemy_combat_ui
-@onready var attacks_timer
-
-
-@onready var turn_dail
-@onready var player_health_lbl
-@onready var enemy_health_lbl
-
-@onready var btn_card_1
-@onready var btn_card_2
-@onready var btn_card_3
-@onready var btn_card_4
-@onready var btn_card_5
-@onready var btn_card_6
-@onready var btn_card_7
-
-
-@onready var player_res_heat
-@onready var player_res_cold
-@onready var player_res_impact
-@onready var player_res_slash
-@onready var player_res_pierce
-@onready var player_res_magic
-@onready var player_res_bio
-
-
-@onready var player_stat_cha_lbl
-@onready var player_stat_cha_tex
-@onready var player_stat_will_lbl
-@onready var player_stat_will_tex
-@onready var player_stat_int_lbl
-@onready var player_stat_int_tex
-
-@onready var player_stat_agi_lbl
-@onready var player_stat_agi_tex
-@onready var player_stat_str_lbl
-@onready var player_stat_str_tex
-@onready var player_stat_end_lbl
-@onready var player_stat_end_tex
 
 
 
-@onready var enemy_res_heat_lbl
-@onready var enemy_res_cold_lbl
-@onready var enemy_res_impact_lbl
-@onready var enemy_res_slash_lbl
-@onready var enemy_res_pierce_lbl
-@onready var enemy_res_magic_lbl
-@onready var enemy_res_bio_lbl
+# combat vars
+@onready var card_empty        = load("res://assets/images/combat/card_empty.png")
+@onready var CanLay            = $CanvasLayer
+@onready var player_combat_ui  = %player_combat_ui
+@onready var enemy_combat_ui   = %enemy_combat_ui
+@onready var attacks_timer     = %attacks_timer
 
 
-@onready var enemy_stat_cha_lbl
-@onready var enemy_stat_will_lbl
-@onready var enemy_stat_int_lbl
+@onready var turn_dail         = %turn_dail
+@onready var player_health_lbl = %player_health_lbl
+@onready var enemy_health_lbl  = %enemy_health_lbl
 
-@onready var enemy_stat_agi_lbl
-@onready var enemy_stat_str_lbl
-@onready var enemy_stat_end_lbl
+@onready var btn_card_1 = %btn_card_1
+@onready var btn_card_2 = %btn_card_2
+@onready var btn_card_3 = %btn_card_3
+@onready var btn_card_4 = %btn_card_4
+@onready var btn_card_5 = %btn_card_5
+@onready var btn_card_6 = %btn_card_6
+@onready var btn_card_7 = %btn_card_7
+
+
+@onready var player_res_heat   = %player_res_heat
+@onready var player_res_cold   = %player_res_cold
+@onready var player_res_impact = %player_res_impact
+@onready var player_res_slash  = %player_res_slash
+@onready var player_res_pierce = %player_res_pierce
+@onready var player_res_magic  = %player_res_magic
+@onready var player_res_bio    = %player_res_bio
+
+
+@onready var player_stat_cha_control  = %player_stat_cha_control
+@onready var player_stat_will_control = %player_stat_will_control
+@onready var player_stat_int_control  = %player_stat_int_control
+
+@onready var player_stat_agi_control  = %player_stat_agi_control
+@onready var player_stat_str_control  = %player_stat_str_control
+@onready var player_stat_end_control  = %player_stat_end_control
+
+var player_stat_cha_lbl
+var player_stat_cha_tex
+var player_stat_will_lbl
+var player_stat_will_tex
+var player_stat_int_lbl
+var player_stat_int_tex
+
+var player_stat_agi_lbl
+var player_stat_agi_tex
+var player_stat_str_lbl
+var player_stat_str_tex
+var player_stat_end_lbl
+var player_stat_end_tex
+
+
+@onready var enemy_res_heat_lbl   = %enemy_res_heat
+@onready var enemy_res_cold_lbl   = %enemy_res_cold
+@onready var enemy_res_impact_lbl = %enemy_res_impact
+@onready var enemy_res_slash_lbl  = %enemy_res_slash
+@onready var enemy_res_pierce_lbl = %enemy_res_pierce
+@onready var enemy_res_magic_lbl  = %enemy_res_magic
+@onready var enemy_res_bio_lbl    = %enemy_res_bio
+
+
+@onready var enemy_stat_cha_lbl   = %enemy_stat_cha
+@onready var enemy_stat_will_lbl  = %enemy_stat_will
+@onready var enemy_stat_int_lbl   = %enemy_stat_int
+
+@onready var enemy_stat_agi_lbl   = %enemy_stat_agi
+@onready var enemy_stat_str_lbl   = %enemy_stat_str
+@onready var enemy_stat_end_lbl   = %enemy_stat_end
+
+func _ready() -> void:
+	# TEMP
+	VarTests.sprite = sprite
+	VarTests.character_sprite = "character"
+	VarTests.character_name = 'braq_m'# witch braq_m
+	VarTests.ALL_CARDS = Utils.load_file("res://database/cards/cards.txt")
+	stats_file = Utils.load_file("res://database/characters/braq_m/stats.txt")
+	VarTests.CARD_INVENTORY = [
+		"kick", "kick", "body_tackle", "panicked_slap", "panicked_slap",
+		"panicked_slap", "panicked_slap", "wrestle", "wrestle", "right_hook",
+		"left_hook", "left_hook", "panicked_slap", "panicked_slap", "panicked_slap",
+		"clumsy_kick", "clumsy_kick"
+	]
+	var default_env = MiscFunc.parse_stat('default_env', stats_file.split('\n'))
+	if default_env == null:
+		default_env = 'not_defined'
+	VarTests.environment_name = default_env
+	var env_stats = Utils.load_file('res://database/environments/%s/stats.txt' % VarTests.environment_name).split('\n')
+	print(env_stats)
+
+	var found = MiscFunc.parse_stat('ambient', env_stats)
+	if found != "0":
+		VarTests.ambient_strength = float(found)
+	else:
+		VarTests.ambient_strength = 0.2
+
+	found = MiscFunc.parse_stat('ambient_color', env_stats)
+	if found != "0":
+		VarTests.env_ambient = Color.html(found)
+	else:
+		VarTests.env_ambient = Color.WHITE
+	# TEMP
+	stats_file = LoadStats.read_char_stats(VarTests.character_name)
+
+	player_combat_ui.visible = true
+	enemy_combat_ui.visible  = true
+	player_combat_ui.position.x = -player_combat_ui.size.x
+	enemy_combat_ui.position.x  = VarTests.stage_width + enemy_combat_ui.size.x
+
+	player_stat_cha_lbl   = player_stat_cha_control.get_child(1)
+	player_stat_cha_tex   = player_stat_cha_control.get_child(0)
+	player_stat_will_lbl  = player_stat_will_control.get_child(1)
+	player_stat_will_tex  = player_stat_will_control.get_child(0)
+	player_stat_int_lbl   = player_stat_int_control.get_child(1)
+	player_stat_int_tex   = player_stat_int_control.get_child(0)
+
+	player_stat_agi_lbl   = player_stat_agi_control.get_child(1)
+	player_stat_agi_tex   = player_stat_agi_control.get_child(0)
+	player_stat_str_lbl   = player_stat_str_control.get_child(1)
+	player_stat_str_tex   = player_stat_str_control.get_child(0)
+	player_stat_end_lbl   = player_stat_end_control.get_child(1)
+	player_stat_end_tex   = player_stat_end_control.get_child(0)
+
+	if VarTests.scene_character != VarTests.character_name:
+		MiscFunc.make_character()
+	randomize_hand('player')
+	set_enemy_stats()
+	reset_stats('player')
+	reset_stats('enemy')
+	refresh_combat_ui('start')
+	combat_ui_in()
+
+func _on_btn_turn_dial_pressed() -> void:
+	if player_turn:
+		player_turn = false
+		turn_dail.disabled = true
+		turn_dail.get_parent().texture = turn_dial_enemy
+		change_turn_to("enemy")
 
 func set_enemy_stats():
 	var stat_spit    = stats_file.split('\n')
@@ -302,82 +375,6 @@ func refresh_combat_ui(where):
 		#_on_change_index(VarTests.win_index)
 		return
 
-func set_env(temp_sprite, temp_stat, env_ambt, temp_ct, temp_db, temp_cb, temp_cd, temp_sp,
-	CL, pcu, ecu, at, td, phl, ehl,
-	btn1, btn2, btn3, btn4, btn5, btn6, btn7,
-	prh, prc, pri, prs, prp, prm, prb,
-	player_sc_control:Node, player_sw_control, player_si_control, player_sa_control, player_ss_control, player_se_control,
-	erh, erc, eri, ers, erp, erm, erb,
-	enemy_sc, enemy_sw, enemy_si, enemy_sa, enemy_ss, enemy_se,
-	):
-	env_ambient       = env_ambt
-	CanLay            = CL
-	player_combat_ui  = pcu
-	enemy_combat_ui   = ecu
-	attacks_timer     = at
-	turn_dail         = td
-	player_health_lbl = phl
-	enemy_health_lbl  = ehl
-
-	btn_card_1      = btn1
-	btn_card_2      = btn2
-	btn_card_3      = btn3
-	btn_card_4      = btn4
-	btn_card_5      = btn5
-	btn_card_6      = btn6
-	btn_card_7      = btn7
-
-
-	player_res_heat   = prh
-	player_res_cold   = prc
-	player_res_impact = pri
-	player_res_slash  = prs
-	player_res_pierce = prp
-	player_res_magic  = prm
-	player_res_bio    = prb
-
-
-	player_stat_cha_lbl   = player_sc_control.get_child(1)
-	player_stat_cha_tex   = player_sc_control.get_child(0)
-	player_stat_will_lbl  = player_sw_control.get_child(1)
-	player_stat_will_tex  = player_sw_control.get_child(0)
-	player_stat_int_lbl   = player_si_control.get_child(1)
-	player_stat_int_tex   = player_si_control.get_child(0)
-
-	player_stat_agi_lbl   = player_sa_control.get_child(1)
-	player_stat_agi_tex   = player_sa_control.get_child(0)
-	player_stat_str_lbl   = player_ss_control.get_child(1)
-	player_stat_str_tex   = player_ss_control.get_child(0)
-	player_stat_end_lbl   = player_se_control.get_child(1)
-	player_stat_end_tex   = player_se_control.get_child(0)
-
-
-
-	enemy_res_heat_lbl    = erh
-	enemy_res_cold_lbl    = erc
-	enemy_res_impact_lbl  = eri
-	enemy_res_slash_lbl   = ers
-	enemy_res_pierce_lbl  = erp
-	enemy_res_magic_lbl   = erm
-	enemy_res_bio_lbl     = erb
-
-
-	enemy_stat_cha_lbl    = enemy_sc
-	enemy_stat_will_lbl   = enemy_sw
-	enemy_stat_int_lbl    = enemy_si
-
-	enemy_stat_agi_lbl    = enemy_sa
-	enemy_stat_str_lbl    = enemy_ss
-	enemy_stat_end_lbl    = enemy_se
-
-	sprite          = temp_sprite
-	stats_file      = temp_stat
-	caption_top     = temp_ct
-	dialogue_bubble = temp_db
-	caption_bot     = temp_cb
-	choicesDialog   = temp_cd
-	scene_picture   = temp_sp
-
 # COMBAT UI IN
 func combat_ui_in():
 	var tween = create_tween()
@@ -394,11 +391,6 @@ func combat_ui_in():
 #COMBAT UI OUT
 func combat_ui_out():
 	var change_vis = func():
-		caption_top.visible      = true
-		dialogue_bubble.visible  = true
-		caption_bot.visible      = true
-		choicesDialog.visible    = true
-		scene_picture.visible    = true
 		player_combat_ui.visible = false
 		enemy_combat_ui.visible = false
 
@@ -471,7 +463,7 @@ func blink_red(object, time):
 		timer.stop()
 
 		if object == sprite:
-			MiscFunc.super_tint(sprite, env_ambient, 0.4)
+			MiscFunc.super_tint(sprite, VarTests.env_ambient, 0.4)
 	if timer        not in get_children(): add_child(timer)
 	if timer_red    not in get_children(): add_child(timer_red)
 	if timer_normal not in get_children(): add_child(timer_normal)
@@ -742,3 +734,38 @@ func resolve_damage(damage, resistance_name, target):
 		#If 0 then different color
 
 	return actual_damage
+
+
+func card_clicked(attacker, used_card, target):
+	#used_card.visible = false
+	var the_card = used_card.text.replace(' ', '_').to_lower()
+	if play_card(attacker, the_card, target):
+		used_card.get_parent().visible = false
+		used_card.get_parent().get_parent().texture = card_empty
+
+func _on_btn_card_1_pressed() -> void:
+	card_clicked('player', btn_card_1, 'enemy')
+
+func _on_btn_card_2_pressed() -> void:
+	card_clicked('player', btn_card_2, 'enemy')
+
+func _on_btn_card_3_pressed() -> void:
+	card_clicked('player', btn_card_3, 'enemy')
+
+func _on_btn_card_4_pressed() -> void:
+	card_clicked('player', btn_card_4, 'enemy')
+
+func _on_btn_card_5_pressed() -> void:
+	card_clicked('player', btn_card_5, 'enemy')
+
+func _on_btn_card_6_pressed() -> void:
+	card_clicked('player', btn_card_6, 'enemy')
+
+func _on_btn_card_7_pressed() -> void:
+	card_clicked('player', btn_card_7, 'enemy')
+
+# PLAYER DEATH
+func _on_player_death():
+	#start_music("misc/player_death", 100, 0, 0, "no_loop")
+	VarTests.menu_state = 'death'
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

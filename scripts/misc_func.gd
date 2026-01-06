@@ -39,8 +39,38 @@ func super_tint(object, e_color:Color, e_val):
 	# this is correct?
 	object.modulate = Color(redMultiplier, greenMultiplier, blueMultiplier)
 
+
+func make_character() -> void:
+	print('a ', VarTests.character_sprite)
+	print('b ', VarTests.scene_character)
+	VarTests.scene_character = VarTests.character_name
+	var path = "res://database/characters/%s/%s.png" % [VarTests.character_name, VarTests.character_sprite]
+	print(path)
+	if FileAccess.file_exists(path):
+		#var picture_image = Image.load_from_file(path)
+		#sprite.texture = ImageTexture.create_from_image(picture_image)
+		VarTests.sprite.texture = load(path)
+		MiscFunc.super_tint(VarTests.sprite, VarTests.env_ambient, VarTests.ambient_strength)
+		#sprite.modulate = Color.html('#a23f08')
+		rescale_bitmapdata.call_deferred(VarTests.sprite)
+		VarTests.sprite.move_to_front()
+
+func rescale_bitmapdata(obj):
+	var objscale = 1
+
+	if VarTests.stage_height == 1080: objscale = 0.75
+	if VarTests.stage_height == 720:  objscale = 0.50
+
+	obj.scale = Vector2(objscale, objscale)
+	# TextureRect 1280 - ( 894 * 0.5)
+	# Sprite2D    1280 - ((894 * 0.5) / 2)
+	var math_x = VarTests.stage_width  - (obj.size.x  * objscale)
+	#var math_y = VarTests.stage_height - (obj.size.y * objscale)
+	# texture width * by the offset lowering the value because its .5 or .75
+	obj.position = Vector2(math_x, 0)
+
 # PARSE STAT
-func parse_stat(stat_name, stats, _case_sensitive=false):
+func parse_stat(stat_name, stats, _case_sensitive=false)-> String:
 	#if case_sensitive == false:
 	#	stats = stats.toLowerCase
 
@@ -54,14 +84,12 @@ func parse_stat(stat_name, stats, _case_sensitive=false):
 	#	searched_stat = Utils.get_substring("%s:" % stat_name, "", stats[statar_index])
 	#if stat_name == null:
 	#	searched_stat = "0"
-	if statar_index == -1:
-		return null
-	else:
+
+	if statar_index != -1:
 		var found = stats[statar_index]
 		if ':' in found:
 			return found.split(':')[1].strip_edges()
-		elif found:
-			return found.split(stat_name)[1].strip_edges()
+	return "0"
 
 # EQUIP ITEM
 func equip_item(item):

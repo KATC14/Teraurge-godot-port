@@ -26,6 +26,11 @@ var environment_name = ''
 var ENVIROMENT_STATS = ''
 var player_hand_size = 4
 
+var ambient_strength = null
+var env_ambient = null
+var scene_character = ""
+var sprite = null
+
 var ALL_CARDS = ''
 var ALL_ITEMS = ''
 var ITEM_SLOTS = [

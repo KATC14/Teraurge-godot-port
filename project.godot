@@ -21,10 +21,9 @@ Utils="*res://scripts/utils.gd"
 DiagParse="*res://scripts/diag_parse.gd"
 LoadStats="*res://scripts/load_stats.gd"
 VarTests="*res://scripts/var_tests.gd"
-DiagFunc="res://scripts/diag_func.gd"
+DiagFunc="*res://scripts/diag_func.gd"
 MiscFunc="*res://scripts/misc_func.gd"
 Showif="*res://scripts/showif.gd"
-CombatScript="*res://scripts/combat.gd"
 
 [display]
 

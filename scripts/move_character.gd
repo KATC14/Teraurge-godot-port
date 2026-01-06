@@ -16,7 +16,13 @@ func get_distance(point1, point2):
 	var y = point1.y - point2.y
 	return sqrt(x * x + y * y)
 
+@onready var player_speed = %player_speed
+
 func map_collision_check(relative_x, relative_y):
+	#TIMER
+	player_speed.one_shot = true
+	player_speed.wait_time = 0.05
+	player_speed.start()
 	#print('temp ', relative_x, ' ', relative_y)
 
 	# CHECK COLLISION AROUND THE "target" moviclip (current location)
@@ -85,8 +91,6 @@ func blips_ready():
 		#print(dist <= rangee, ' ', i.overlaps_area(collision_dummy), ' ', collision_dummy.get_overlapping_areas())
 
 		if dist <= rangee:
-			# this is fucking stupid
-			#await get_tree().process_frame
 			color_blips(i)
 			var local_blips:Sprite2D = i.get_node("Sprite2D")
 			var cur_loc:Sprite2D     = VarTests.map_target.get_node("Sprite2D")
@@ -112,15 +116,13 @@ func _process(_delta: float) -> void:
 		var right  = Input.is_action_pressed("ui_right")
 		if Input.is_action_pressed("mouse_left"):
 			click_position = get_global_mouse_position()
-			#print(click_position)
 			click_position -= VarTests.map_target.position + Vector2(10, 8)
-			#print(click_position)
-			#print()
-			if can_move:
+
+			if can_move and player_speed.is_stopped():
 				map_collision_check(click_position.x, click_position.y)
 		if up or left or down or right:
 			var input_dir = Input.get_vector("key_a", "key_d", "key_w", "key_s")
-			if can_move:
+			if can_move and player_speed.is_stopped():
 				map_collision_check((input_dir * speed).x, (input_dir * speed).y)
 			#print(input_dir * speed)
 		#	velocity = input_dir * speed
