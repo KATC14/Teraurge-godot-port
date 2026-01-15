@@ -1,5 +1,7 @@
 extends Node
 
+signal loc_start
+signal loc_move
 
 @onready var CanLay      = $CanvasLayer
 #@onready var map        = $CanvasLayer/TextureRect
@@ -8,7 +10,8 @@ extends Node
 @onready var camera     = $CanvasLayer/Camera2D
 @onready var character  = $CanvasLayer/CharacterBody2D
 
-@onready var sun_dial_lbl = $CanvasLayer/Camera2D/Control2/Label
+@onready var sun_dial_lbl = $CanvasLayer/Camera2D/Control/Label
+@onready var cam_con      = $CanvasLayer/Camera2D/Control
 @onready var new_game     = load("res://scenes/new_game.tscn")
 
 
@@ -65,7 +68,6 @@ var deck_minimum_size  = 16
 var map_data = "res://database/maps/default_data.txt"
 var ATMOSPHERIC_MULTIPLIER = 1
 var advance_time_to = 0
-var area_exited = false
 var location
 
 var tooltip
@@ -111,7 +113,7 @@ func _input(_event: InputEvent) -> void:
 func _on_tooltip_hover(array, index):
 	tooltip_hovered = true
 	tooltip = load("res://scenes/tool_tip.tscn").instantiate()
-	print(array)
+	print('tooltip_hover ', array)
 	tooltip.get_node("Label").text = str(index)
 	tooltip.visible = true
 	CanLay.add_child(tooltip)
@@ -217,9 +219,10 @@ func create_locations() -> void:
 		#	"blip_place":     color = "#f0000071"
 		#	"blip_special":   color = "#0000f071"
 
-		var area = make_collision(x, y, r)#, loc_name
-		area.body_entered.connect(load_blip.bind(loc_name))#, area
-		area.body_exited.connect(func(_body): area_exited = true)
+		var area:Area2D = make_collision(x, y, r)#, loc_name
+		area.input_event.connect(loc_move.emit.bind(area))
+		#area.body_entered.connect(load_blip.bind(loc_name))#, area
+		#area.body_exited.connect(func(_body): area_exited = true)
 		# pass on blips that are not used to keep same map format
 		VarTests.all_loc.append(area)
 		match data_out[3]:
@@ -232,7 +235,7 @@ func create_locations() -> void:
 				VarTests.named_loc[loc_name] = area
 		if i == maxx-1:
 			VarTests.map_target = VarTests.named_loc['sejan_witch_house']
-			character.call_locations = true
+			loc_start.emit(VarTests.all_loc, VarTests.map_target)
 			character.can_move = true
 
 func create_dicovered_locations():
@@ -247,7 +250,7 @@ func discover_location(loc_name):
 			VarTests.DISCOVERED_LOCATIONS.append(loc_name)
 			create_dicovered_locations()
 
-func  parse_env_vars(stats_file):
+func parse_env_vars(stats_file):
 	#opt_array = re.sub('>>.*', '', opt_array)
 	var re = RegEx.new()
 	re.compile('[\r\t]')
@@ -267,33 +270,35 @@ func  parse_env_vars(stats_file):
 
 	return thing
 
-func load_blip(_body, loc_name):
-	#print('loc_name ', area_exited, ' ', loc_name)
-	if area_exited:
-		var stats_file = LoadStats.read_env_stats(loc_name)
+func _on_load_blip(loc_name):
+	print('loc_name ', loc_name)
+	var stats_file = LoadStats.read_env_stats(loc_name)
+	#print('stats_file ', stats_file)
 
-		# catch for 'instance1037'??? location
-		if not stats_file:
-			return
+	# catch for 'instance1037'??? location
+	if not stats_file:
+		return
 
-		var result    = parse_env_vars(stats_file)
-		print(result)
-		var disco     = Utils.array_find(result, 'discoverable')
-		if disco != -1:
-			# location revisit
-			if VarTests.DISCOVERED_LOCATIONS.has(loc_name):
-				var def_msg = Utils.array_find(result, 'default_message')
-				if def_msg != -1:
-					var text = result[def_msg].split(':')[-1]
-					discovery_popup(text, loc_name)
-			else:
-				# location first time visit
-				var dic_msg = Utils.array_find(result, 'dicovery_message')
-				if dic_msg != -1:
-					var text = result[dic_msg].split(':')[-1]
-					discovery_popup(text, loc_name)
+	var result    = parse_env_vars(stats_file)
+	#print(result)
+	var disco     = Utils.array_find(result, 'discoverable')
+	print(disco)
+	if disco != -1:
+		# location revisit
+		if VarTests.DISCOVERED_LOCATIONS.has(loc_name):
+			var def_msg = Utils.array_find(result, 'default_message')
+			print(def_msg)
+			if def_msg != -1:
+				var text = result[def_msg].split(':')[-1]
+				discovery_popup(text, loc_name)
 		else:
-			env_encounter(stats_file)
+			# location first time visit
+			var dic_msg = Utils.array_find(result, 'dicovery_message')
+			if dic_msg != -1:
+				var text = result[dic_msg].split(':')[-1]
+				discovery_popup(text, loc_name)
+	else:
+		env_encounter(stats_file)
 
 func env_encounter(stats_file):
 	var stats_parsed = DiagParse.begin_parsing(stats_file, 'encounters')

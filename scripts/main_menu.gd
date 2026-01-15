@@ -25,23 +25,23 @@ func _ready() -> void:
 		death_back.modulate = Color.TRANSPARENT
 		death_back.visible  = true
 
-		var death = func():
-			var tween = create_tween()
-			tween.set_ease(Tween.EASE_IN)
-			tween.set_trans(Tween.TRANS_QUART)
-			tween.tween_property(death_back, "modulate:a", 0, 5)
-			tween.finished.connect(warning_end)
+		var death_fade_out = func():
+			var tween_DI = create_tween()
+			tween_DI.set_ease(Tween.EASE_IN)
+			tween_DI.set_trans(Tween.TRANS_QUART)
+			tween_DI.tween_property(death_back, "modulate:a", 0, 5)
+			tween_DI.finished.connect(warning_end)
 
 			var tween1 = create_tween()
 			tween1.set_ease(Tween.EASE_IN)
 			tween1.set_trans(Tween.TRANS_QUART)
 			tween1.tween_property(fade_in, "modulate:a", 1, 4)
 
-		var tween = create_tween()
-		tween.set_ease(Tween.EASE_IN_OUT)
-		tween.set_trans(Tween.TRANS_BOUNCE)
-		tween.tween_property(death_back, "modulate:a", 1, 0.6)
-		tween.finished.connect(death)
+		var tween_DO = create_tween()
+		tween_DO.set_ease(Tween.EASE_IN_OUT)
+		tween_DO.set_trans(Tween.TRANS_BOUNCE)
+		tween_DO.tween_property(death_back, "modulate:a", 1, 0.6)
+		tween_DO.finished.connect(death_fade_out)
 	else:
 		warn.visible = false
 		menu.visible = true

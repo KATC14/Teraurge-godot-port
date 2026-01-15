@@ -229,16 +229,17 @@ metadata/_edit_lock_ = true
 position = Vector2(2149, 3154)
 script = ExtResource("4_rxae7")
 
-[node name="Control2" type="Control" parent="CanvasLayer/Camera2D"]
+[node name="Control" type="Control" parent="CanvasLayer/Camera2D"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -640.0
 offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
+mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Camera2D/Control2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Camera2D/Control"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -249,7 +250,7 @@ offset_bottom = 194.0
 grow_vertical = 2
 texture = ExtResource("7_uecd1")
 
-[node name="Button" type="Button" parent="CanvasLayer/Camera2D/Control2"]
+[node name="Button" type="Button" parent="CanvasLayer/Camera2D/Control"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 305.0
@@ -262,7 +263,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_83xty")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_x6ccc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_u3hlm")
 
-[node name="Button2" type="Button" parent="CanvasLayer/Camera2D/Control2"]
+[node name="Button2" type="Button" parent="CanvasLayer/Camera2D/Control"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 379.0
@@ -275,7 +276,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_bh7vt")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_l871p")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_c0a4p")
 
-[node name="Button3" type="Button" parent="CanvasLayer/Camera2D/Control2"]
+[node name="Button3" type="Button" parent="CanvasLayer/Camera2D/Control"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 454.0
@@ -288,7 +289,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_wv5xv")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_uy0y0")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ya1eo")
 
-[node name="Button4" type="Button" parent="CanvasLayer/Camera2D/Control2"]
+[node name="Button4" type="Button" parent="CanvasLayer/Camera2D/Control"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 516.0
@@ -301,7 +302,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_qvxug")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_77ho7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_4cw1v")
 
-[node name="Label" type="Label" parent="CanvasLayer/Camera2D/Control2"]
+[node name="Label" type="Label" parent="CanvasLayer/Camera2D/Control"]
 layout_mode = 0
 offset_left = 18.0
 offset_top = 256.0
@@ -310,7 +311,7 @@ offset_bottom = 279.0
 text = "9999"
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Camera2D/Control2"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Camera2D/Control"]
 texture_filter = 1
 position = Vector2(37, 218)
 texture = ExtResource("9_1fuh7")
@@ -1083,18 +1084,21 @@ alignment = 0
 [node name="player_speed" type="Timer" parent="."]
 unique_name_in_owner = true
 
-[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control2/Button" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control2/Button" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/Camera2D/Control2/Button" to="." method="_on_button_chr_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control2/Button2" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control2/Button2" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/Camera2D/Control2/Button2" to="." method="_on_button_dck_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control2/Button3" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control2/Button3" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/Camera2D/Control2/Button3" to="." method="_on_button_inv_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control2/Button4" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control2/Button4" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/Camera2D/Control2/Button4" to="." method="_on_button_stn_pressed"]
+[connection signal="loc_move" from="." to="CanvasLayer/CharacterBody2D" method="_on_blip_move"]
+[connection signal="loc_start" from="." to="CanvasLayer/CharacterBody2D" method="_on_blips_ready"]
+[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Camera2D/Control/Button" to="." method="_on_button_chr_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control/Button2" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control/Button2" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Camera2D/Control/Button2" to="." method="_on_button_dck_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control/Button3" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control/Button3" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Camera2D/Control/Button3" to="." method="_on_button_inv_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control/Button4" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control/Button4" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Camera2D/Control/Button4" to="." method="_on_button_stn_pressed"]
+[connection signal="load_blip" from="CanvasLayer/CharacterBody2D" to="." method="_on_load_blip"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_discovery_popup_pass"]
 [connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_discovery_popup_enter"]
 [connection signal="ENTER" from="CanvasLayer/Control4/PanelContainer" to="." method="_on_tooltip_hover"]

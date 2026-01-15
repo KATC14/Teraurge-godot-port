@@ -41,11 +41,11 @@ func super_tint(object, e_color:Color, e_val):
 
 
 func make_character() -> void:
-	print('a ', VarTests.character_sprite)
-	print('b ', VarTests.scene_character)
+	#print('a ', VarTests.character_sprite)
+	#print('b ', VarTests.scene_character)
 	VarTests.scene_character = VarTests.character_name
 	var path = "res://database/characters/%s/%s.png" % [VarTests.character_name, VarTests.character_sprite]
-	print(path)
+	#print("this is the sprite path ", path)
 	if FileAccess.file_exists(path):
 		#var picture_image = Image.load_from_file(path)
 		#sprite.texture = ImageTexture.create_from_image(picture_image)

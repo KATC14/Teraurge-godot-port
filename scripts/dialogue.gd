@@ -1,40 +1,41 @@
 extends Node2D
 
 
+@onready var CanLay           = $CanvasLayer
 @onready var fade_in          = $CanvasLayer/TextureRect
 
-@onready var sky_layer        = $CanvasLayer/Control/sky_layer       # sky_layer 
-@onready var sky_layer_blend  = $CanvasLayer/Control/sky_layer_blend # sky_layer 
-@onready var weather_layer    = $CanvasLayer/Control/weather_layer   # weather_layer 
-@onready var env_Node         = $CanvasLayer/Control/env_Node        # background_layer 
-@onready var env_mask_Node    = $CanvasLayer/Control/env_mask_Node   # background_mask_layer
-@onready var atmosphere_layer = $CanvasLayer/Control/atmosphere_layer# atmosphere_layer
+@onready var sky              = $CanvasLayer/Control/sky_layer/sky       # sky
+@onready var sky_blend        = $CanvasLayer/Control/sky_layer/sky_blend # sky_blend
+@onready var clouds_a         = $CanvasLayer/Control/weather_layer/clouds_a
+@onready var clouds_b         = $CanvasLayer/Control/weather_layer/clouds_b
+@onready var env_Node         = $CanvasLayer/Control/env_Node        # background
+@onready var env_mask_Node    = $CanvasLayer/Control/env_mask_Node   # background_mask
+@onready var overlay          = $CanvasLayer/Control/atmosphere_layer/overlay# overlay
+@onready var overlay_blend    = $CanvasLayer/Control/atmosphere_layer/overlay_blend# overlay_blend
 @onready var sprite           = $CanvasLayer/Control/sprite          # character_layer
 @onready var scene_picture    = $CanvasLayer/Control/scene_picture   # picture_layer
 
 @onready var choicesDialog    = $CanvasLayer/PanelContainer
 @onready var shakeTimer       = $CanvasLayer/Control3/Timer2
 
-@onready var caption_top      = $CanvasLayer/Control2/RichTextLabel
-@onready var dialogue_bubble  = $CanvasLayer/Control2/RichTextLabel2
-@onready var caption_bot      = $CanvasLayer/Control2/RichTextLabel3
+@onready var top_box = $CanvasLayer/dialogue_boxes/top_box
+@onready var mid_box = $CanvasLayer/dialogue_boxes/mid_box
+@onready var bot_box = $CanvasLayer/dialogue_boxes/bot_box
 
 @onready var error            = $CanvasLayer/Panel2
 @onready var error_label      = $CanvasLayer/Panel2/Label
 @onready var error_button     = $CanvasLayer/Panel2/Button
 
-@onready var autocont_dots    = $CanvasLayer/Sprite2D
+# I wanted to use the draw feature to programmatically draw the dots :)
+@onready var autocont_dots    = $CanvasLayer/autocont_dots
 
 var bubble_tween
 var stats_file
 var opt_parsed
 
-var can_continue_dialogue = true
-var character_leaves      = false
-var dialogue_complete     = false
-var hurry_dialogue        = false
-var dont_hurry            = false
+var dialogue_complete = true
 
+var active_choice = 0
 var text_index = 0
 var last_character  = ""
 var diag_file       = ""
@@ -48,21 +49,26 @@ func _ready() -> void:
 	#_on_start_combat()
 	#$CanvasLayer/Camera2D.make_current()
 	fade_in.texture = load("res://assets/images/menu_background.png")
+
+	# TEMP
+	VarTests.character_name = 'intro'
+	VarTests.player_stats['will'] = 10
+	# TEMP
+	# intro fade in
 	if VarTests.character_name == 'intro':
 		var tween = create_tween()
 		tween.tween_property(fade_in, "modulate:a", 0, 5)
 		tween.finished.connect(func(): fade_in.visible = false)
 	else:
 		fade_in.visible = false
-	dialogue_complete = true
+
 	VarTests.sprite = sprite
 	_on_start_encounter(VarTests.character_name)
 
-var active_choice = 0
 func _input(_event: InputEvent) -> void:
 	# auto continue
 	if Input.is_action_pressed("mouse_left") or Input.is_action_pressed("ui_accept"):
-		hurry_dialogue = true
+		#hurry_dialogue = true
 		if dialogue_complete and VarTests.auto_continue_pointer != '':
 			var index = VarTests.auto_continue_pointer
 			VarTests.auto_continue_pointer = ''
@@ -82,34 +88,14 @@ func _input(_event: InputEvent) -> void:
 		var btn:Button = choicesDialog.choices_list.get_children()[active_choice]
 		btn.grab_focus()
 
-#func resize():
-#	var camera_size = get_viewport().get_visible_rect().size
-#	VarTests.stage_width  = camera_size.x
-#	VarTests.stage_height = camera_size.y
-#	autocont_dots.position = Vector2(VarTests.stage_width/2, VarTests.stage_height*0.87)
-#	var size = Vector2(VarTests.stage_width, VarTests.stage_height)
-#	env_Node.size = size
-#	env_mask_Node.size = size
-#	scene_picture.size = size
-
-#func set_defaults():
-#	var camera_size = get_viewport().get_visible_rect().size
-#	VarTests.stage_width  = camera_size.x
-#	VarTests.stage_height = camera_size.y
-#	var size = Vector2(VarTests.stage_width, VarTests.stage_height)
-#	env_Node.size = size
-#	env_mask_Node.size = size
-#	scene_picture.size = size
-
-# DIALOGUE CHOICE SELECTION CLICK
 # options clicks
 func _on_panel_container_selected(index: Variant) -> void:
 	choicesDialog.visible = false
-	dont_hurry = true
+	#dont_hurry = true
 	choicesDialog.choices_list.get_children()[0].grab_focus()
 
-	print('sele choicesDialog.choices ', choicesDialog.choices)
-	print('sele index ', index)
+	#print('sele choicesDialog.choices ', choicesDialog.choices)
+	#print('sele index ', index)
 	# real index search
 	var found = choicesDialog.choices[index]
 	var text  = found.substr(1)
@@ -117,28 +103,28 @@ func _on_panel_container_selected(index: Variant) -> void:
 
 	var picked   = opt_parsed[0][index]
 	var function = opt_parsed[1][index]
-	print('sele picked ', picked)
-	print('sele function ', function)
+	#print('sele picked ', picked)
+	#print('sele function ', function)
 
 	if opt_parsed[2][index]:
 		found = Utils.array_find(opt_parsed[2][index], 'hideif.clicked')
-		print('hide if ', opt_parsed[2][index])
-		print('found ', found)
+		#print('hide if ', opt_parsed[2][index])
+		#print('found ', found)
 		if found != -1:
 			# indexs
 			var idx = opt_parsed[0].filter(func(item): return item)
-			print('idx ', idx)
+			#print('idx ', idx)
 			# last index
 			var multi_index = '%s#%s' % [VarTests.current_index, '#'.join(idx)]
-			print('idx multi_index ', multi_index)
+			#print('idx multi_index ', multi_index)
 			# picked option extra
 			var opt_fmt = ' //'.join(opt_parsed[2][index])
 			# picked option
 			var opt = '%s //%s' % [opt_parsed[-1][index], opt_fmt]
 			var formatted_string = '%s-%s-%s' % [multi_index, picked, opt]
-			print('fs_hash ', formatted_string)
+			#print('fs_hash ', formatted_string)
 			var fs_hash = formatted_string.md5_text()
-			print('fs_hash ', fs_hash)
+			#print('fs_hash ', fs_hash)
 			var clicked_hash_list = []
 
 			if VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
@@ -151,31 +137,15 @@ func _on_panel_container_selected(index: Variant) -> void:
 	if picked  : _on_change_index(picked)
 	if function: $CanvasLayer/Panel.Logigier(function)
 
-func _on_change_diag(diag, index) -> void:
-	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, diag])
-	var daig_parsed = DiagParse.begin_parsing(data, index)
-	make_dialogue(daig_parsed[1])
-
-#leave encounter
-func _on_leave_encounter() -> void:
-	get_tree().change_scene_to_file("res://scenes/map.tscn")
-
-func _on_curated_list(index):
-	print('curated_list index ', index)
-	print('curated_list current_index ', VarTests.current_index)
-	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, diag_file])
-	var daig_parsed = DiagParse.begin_parsing(data, VarTests.current_index)
-	make_options(daig_parsed[2], index)
-
 func make_options(packed_options, curated_list=false):
 	opt_parsed = DiagParse.parse_options(packed_options)
 
-	print('opt_parsed ', opt_parsed)
+	#print('opt_parsed ', opt_parsed)
 	var allowed = []
 	# TODO finish fixing md5 hash on hideif.clicked it needs the full string
 	var value = MiscFunc.get_allowed(opt_parsed)
 	for i in range(len(value)):
-		print(opt_parsed[2][i])
+		#print(opt_parsed[2][i])
 		#print('value ', value)
 		# TODO I think this was testing related to reversing hideif.clicked so I could click it unsure
 		if opt_parsed[2][i]:
@@ -200,9 +170,9 @@ func make_options(packed_options, curated_list=false):
 		if curated_list == "weighted":
 			pass
 		if curated_list == "prioritized": index = 0
-		print('-a ', index)
-		print('cc ', index)
-		print('allowd substr ', allowed[index].substr(1))
+		#print('-a ', index)
+		#print('cc ', index)
+		#print('allowd substr ', allowed[index].substr(1))
 		# make sure ish that the correct index is picked
 		if index <= len(allowed) and opt_parsed[-1][index] == allowed[index].substr(1):
 			_on_change_index(allowed[index].substr(1))
@@ -215,6 +185,75 @@ func make_options(packed_options, curated_list=false):
 	#		return
 	choicesDialog.choices = allowed
 
+# leave encounter
+func _on_leave_encounter() -> void:
+	get_tree().change_scene_to_file("res://scenes/map.tscn")
+
+func _on_start_encounter(character_name):
+	print('started ', character_name)
+
+	# check for alt character sprite
+	VarTests.character_sprite = "character"
+	if VarTests.CHANGED_CHARACTERS.has(character_name):
+		VarTests.character_sprite = VarTests.CHANGED_CHARACTERS[character_name]
+
+	# check for alt diag file
+	diag_file = "diag"
+	if VarTests.CHANGED_DIAGS.has(character_name):
+		diag_file = VarTests.CHANGED_DIAGS[character_name]
+	stats_file = LoadStats.read_char_stats(character_name)
+
+	var default_env = MiscFunc.parse_stat('default_env', stats_file.split('\n'))
+	if default_env == null:
+		default_env = 'not_defined'
+
+	# check for alt start index
+	var index = "start"
+	if VarTests.DINDEX.has(character_name):
+		index = VarTests.DINDEX[character_name].strip_edges()
+
+	VarTests.environment_name = default_env
+	create_sky()
+	create_weather()
+
+	# index override
+	if VarTests.override_index != "":
+		index = VarTests.override_index
+		VarTests.override_index = ""
+
+	_on_change_environment()
+	if VarTests.scene_character != VarTests.character_name:
+		MiscFunc.make_character()
+	_on_change_index(index)
+
+func _on_create_picture(picture=false) -> void:
+	#var picture_color = StyleBoxFlat.new()
+	if not picture:
+		scene_picture.visible = false
+		#picture_color.bg_color = '000000FF'
+		#top_box.add_theme_stylebox_override("fill", picture_color)
+		#top_box.add_theme_stylebox_override("background", picture_color)
+		#top_box.add_theme_stylebox_override("focus", picture_color)
+		#top_box.add_theme_stylebox_override("normal", picture_color)
+	else:
+		var path = "res://database/characters/%s/pictures/%s.jpg" % [VarTests.character_name, picture]
+		var path_f = "res://database/characters/%s/pictures/%s_f.jpg" % [VarTests.character_name, picture]
+		if FileAccess.file_exists(path):
+			var path_gate
+			path_gate = path_f if VarTests.player_gender == 'female' else path
+
+			#var picture_image = Image.load_from_file(path_gate)
+			#scene_picture.texture = ImageTexture.create_from_image(picture_image)
+			scene_picture.texture = load(path_gate)
+			#scene_picture.move_to_front()
+			scene_picture.visible = true
+		#	picture_color.bg_color = '000000c8'
+			#top_box.add_theme_stylebox_override("fill", picture_color)
+			#top_box.add_theme_stylebox_override("background", picture_color)
+			#top_box.add_theme_stylebox_override("focus", picture_color)
+			#top_box.add_theme_stylebox_override("normal", picture_color)
+
+# index error
 func index_error(daig_parsed):
 	if daig_parsed == null:
 		error.visible = true
@@ -235,8 +274,10 @@ func _on_change_index(index):
 		$CanvasLayer/Panel.Logigier(daig_parsed[0])
 
 	# dialogue
-	# top bubble bottom
 	if daig_parsed[1]:
+		#TEMP
+		#daig_parsed = ['before', 'You dash towards the nearest door. You reach for the door handle, but before you manage to touch it, an invisible force stops you. You\'re dragged back to the spot you started. "Look, I\'m sorry about all this, but please calm down. I\'m not going to hurt you." She taps the floor with her staff, and the force holding you disappears. ']
+		#TEMP
 		make_dialogue(daig_parsed[1].split('"'))
 
 	# options
@@ -251,12 +292,10 @@ func _on_change_index(index):
 		tween.tween_property(choicesDialog, "modulate:a", 1, 0.8)
 		#tween.finished.connect(auto_cont_ellipses)
 		make_options(daig_parsed[2])
+
 	# AUTO CONTINUE SELECTION
 	elif VarTests.auto_continue_pointer != '':
 		autocont_dots.visible = true
-		#var auto_cont_ellipses = func():
-		#	can_continue_dialogue = true
-		#	dialogue_complete = true
 
 		autocont_dots.position = Vector2(float(VarTests.stage_width) / 2, VarTests.stage_height * 0.87)
 		autocont_dots.modulate = Color.TRANSPARENT
@@ -267,87 +306,11 @@ func _on_change_index(index):
 		tween.parallel().tween_property(autocont_dots, "modulate:a", 0.8, 0.5)
 		#tween.finished.connect(auto_cont_ellipses)
 
-func _on_change_sprite() -> void:
-	MiscFunc.make_character()
-
-func _on_start_encounter(character_name):
-	print('started ', character_name)
-	choicesDialog.visible    = false
-	sky_layer.visible        = false
-	sky_layer_blend.visible  = false
-	weather_layer.visible    = false
-	#env_Node.visible         = false
-	#env_mask_Node.visible    = false
-	#atmosphere_layer.visible = false
-	#sprite.visible           = false
-	scene_picture.visible    = false
-
-	#Set character sprite
-	VarTests.character_sprite = "character"
-	if VarTests.CHANGED_CHARACTERS.has(character_name):
-		VarTests.character_sprite = VarTests.CHANGED_CHARACTERS[character_name]
-
-	#check diag file
-	diag_file = "diag"
-	if VarTests.CHANGED_DIAGS.has(character_name):
-		diag_file = VarTests.CHANGED_DIAGS[character_name]
-	stats_file = LoadStats.read_char_stats(character_name)
-	#stats_file = LoadStats.read_env_stats(character_name)
-	var default_env = MiscFunc.parse_stat('default_env', stats_file.split('\n'))
-	if default_env == null:
-		default_env = 'not_defined'
-
-	#check start index
-	var index = "start"
-	if VarTests.DINDEX.has(character_name):
-		index = VarTests.DINDEX[character_name].strip_edges()
-
-	VarTests.environment_name = default_env
-	#text_color = stats_file[1]
-	#var bubble_color = stats_file[2]
-
-	create_sky()
-	# index override
-	if VarTests.override_index != "":
-		index = VarTests.override_index
-		VarTests.override_index = ""
-	_on_change_environment()
-	if VarTests.scene_character != VarTests.character_name:
-		MiscFunc.make_character()
-	_on_change_index(index)
-
-func _on_create_picture(picture=false) -> void:
-	var picture_color = StyleBoxFlat.new()
-	if not picture:
-		scene_picture.visible = false
-		picture_color.bg_color = '000000FF'
-		caption_top.add_theme_stylebox_override("fill", picture_color)
-		caption_top.add_theme_stylebox_override("background", picture_color)
-		caption_top.add_theme_stylebox_override("focus", picture_color)
-		caption_top.add_theme_stylebox_override("normal", picture_color)
-	else:
-		var path = "res://database/characters/%s/pictures/%s.jpg" % [VarTests.character_name, picture]
-		var path_f = "res://database/characters/%s/pictures/%s_f.jpg" % [VarTests.character_name, picture]
-		if FileAccess.file_exists(path):
-			var path_gate
-			path_gate = path_f if VarTests.player_gender == 'female' else path
-
-			#var picture_image = Image.load_from_file(path_gate)
-			#scene_picture.texture = ImageTexture.create_from_image(picture_image)
-			scene_picture.texture = load(path_gate)
-			scene_picture.move_to_front()
-			scene_picture.visible = true
-			picture_color.bg_color = '000000c8'
-			caption_top.add_theme_stylebox_override("fill", picture_color)
-			caption_top.add_theme_stylebox_override("background", picture_color)
-			caption_top.add_theme_stylebox_override("focus", picture_color)
-			caption_top.add_theme_stylebox_override("normal", picture_color)
-
 func _on_change_environment(new_env=null) -> void:
+	scene_picture.visible = false
 	if not new_env: new_env = 'env'
 	var path = "res://database/environments/%s/%s" % [VarTests.environment_name, new_env]
 	var env_stats = Utils.load_file('res://database/environments/%s/stats.txt' % VarTests.environment_name).split('\n')
-	print(env_stats)
 
 	var found = MiscFunc.parse_stat('ambient', env_stats)
 	if found != null:
@@ -356,7 +319,7 @@ func _on_change_environment(new_env=null) -> void:
 		VarTests.ambient_strength = 0.2
 
 	found = MiscFunc.parse_stat('ambient_color', env_stats)
-	if found != null:
+	if found != '0':
 		VarTests.env_ambient = Color.html(found)
 	else:
 		VarTests.env_ambient = Color.WHITE
@@ -374,99 +337,82 @@ func _on_change_environment(new_env=null) -> void:
 	#var env_image = Image.load_from_file("res://database/environments/%s/%s.png" % [VarTests.environment_name, new_env])
 	#env_Node.texture = ImageTexture.create_from_image(env_image)
 	env_Node.texture = load("%s%s.png" % [path, extension_block])
-	env_Node.move_to_front()
+	#env_Node.move_to_front()
 
 	if FileAccess.file_exists("%s%s_mask.png" % [path, extension_block]):
 		#var env_mask_image = Image.load_from_file(path)
 		#env_mask_Node.texture = ImageTexture.create_from_image(env_mask_image)
 		env_mask_Node.texture = load("%s%s_mask.png" % [path, extension_block])
-		env_mask_Node.move_to_front()
+		#env_mask_Node.move_to_front()
 	#var camera_size = get_viewport().get_visible_rect().size
 	#var width = round(camera_size.y / 9 * 16) # 16:9
 
 func make_dialogue(speech:Array):
-	var top    = ''
-	var bubble = ''
-	var bot    = ''
-	print('speech len ', len(speech))
+	var top = ''
+	var mid = ''
+	var bot = ''
+	# clear active text
+	top_box.text = ''
+	mid_box.text = ''
+	bot_box.text = ''
 
-	can_continue_dialogue = false
-	hurry_dialogue        = false
-	dialogue_complete     = false
+	# hides visable boxes
+	top_box.visible = false
+	mid_box.visible = false
+	bot_box.visible = false
+	# prep bbcode
+	speech = speech.map(func(item): return item.replace('<br>', '[br]').replace('<b>', '[b]').replace('</b>', '[/b]').replace('-name-', VarTests.player_name).strip_edges())
 
-	caption_top.visible      = false
-	dialogue_bubble.visible  = false
-	caption_bot.visible      = false
+	if len(speech) >= 1: top = speech[0]
+	if len(speech) >= 2: mid = speech[1]
+	if len(speech) >= 3: bot = speech[2]
+	add_top_box(top, mid, bot)
 
-	caption_top.text     = ''
-	dialogue_bubble.text = ''
-	caption_bot.text     = ''
+# Add top text box.
+func add_top_box(diag_top, diag_mid, diag_bot):
+	#animate_text(top_box, diag_top)
 
-	#caption_top.fit_content     = true
-	dialogue_bubble.fit_content = true
-	#caption_bot.fit_content     = true
-	speech = speech.map(func(item): return item.replace('<br>', '\n').replace('<b>', '[b]').replace('</b>', '[/b]').replace('-name-', VarTests.player_name).strip_edges())
+	top_box.text = diag_top
+	#top_box.add_theme_color_override('default_color', Color.html('#9a8e9e'))
+	top_box.size = top_box.get_theme_font("normal_font").get_string_size(diag_top)
 
-	if len(speech) >= 1:
-		top    = speech[0]
-
-	if len(speech) >= 2:
-		bubble = speech[1]
-
-	if len(speech) >= 3:
-		bot    = speech[2]
-	add_top_box(top, bubble, bot)
-
-	#if len(speech) >= 1:
-	#	add_top_box(top, bubble, bot)
-	#if len(speech) >= 2:
-	#	add_dialogue_bubble(bubble, bot)
-	#if len(speech) >= 3:
-	#	add_bot_box(bot)
-
-#Add top text box.
-func add_top_box(top, bubble, bot):
-	caption_top.text = top
-	#caption_top.add_theme_color_override('default_color', Color.html('#9a8e9e'))
-	caption_top.size = caption_top.get_theme_font("normal_font").get_string_size(top)
-
-	if top != '':
-		caption_top.visible = true
+	if diag_top != '':
+		top_box.visible = true
 	#await get_tree().process_frame
-	#caption_top.position = Vector2(70, 100)
+	#top_box.position = Vector2(70, 100)
 
-	#Story exception
-	if (VarTests.has_story or bubble == "empty" and bot):
+	# Story exception
+	if (VarTests.has_story or diag_mid == "empty" and diag_bot):
 		#SIZE
 		print('spawn_top_box A')
-		if (caption_top.size.x > 600):
-			await get_tree().process_frame
-			caption_top.size.x = 600
-		await get_tree().process_frame
-		caption_top.size.y = 0
-		caption_top.position.x = 60
-		caption_top.position.y = (VarTests.stage_height / 2.5) - (caption_top.size.y / 2) + 20
+		if (top_box.size.x > 600):
+			#await get_tree().process_frame
+			top_box.size.x = 600
+		#await get_tree().process_frame
+		top_box.size.y = 0
+		top_box.position.x = 60
+		top_box.position.y = (VarTests.stage_height / 2.5) - (top_box.size.y / 2)# + 20
 
-	#only top exception
-	elif (bubble == "empty" and bot == ""):
+	# only top exception
+	elif (diag_mid == "empty" and diag_bot == ""):
 		#SIZE
 		print('spawn_top_box B')
-		if (caption_top.size.x > 600):
-			caption_top.size.x = 600
-		await get_tree().process_frame
-		caption_top.size.y = 0
-		caption_top.position.x = 60
-		caption_top.position.y = (VarTests.stage_height / 2.5) - (caption_top.size.y / 2) + 20
+		if (top_box.size.x > 600):
+			top_box.size.x = 600
+		#await get_tree().process_frame
+		top_box.size.y = 0
+		top_box.position.x = 60
+		top_box.position.y = (VarTests.stage_height / 2.5) - (top_box.size.y / 2) + 20
 
 	else:
 		#SIZE
 		print('spawn_top_box C')
-		if caption_top.size.x > 400:
-			caption_top.size.x = 400
-		await get_tree().process_frame
-		caption_top.size.y = 0
-		caption_top.position.x = 200 + 600 - caption_top.size.x
-		caption_top.position.y = 60 + 20
+		if top_box.size.x > 400:
+			top_box.size.x = 400
+		#await get_tree().process_frame
+		top_box.size.y = 0
+		top_box.position.x = 200 + 600 - top_box.size.x
+		top_box.position.y = 60 + 20
 
 	var spawn_top_box = func():
 		dialogue_complete = false
@@ -475,28 +421,29 @@ func add_top_box(top, bubble, bot):
 			print('spawn_top_box e')
 			tween1.set_ease(Tween.EASE_OUT)
 			tween1.set_trans(Tween.TRANS_BACK)
-			tween1.tween_property(caption_top, "position", Vector2(caption_top.position.x - 40, caption_top.position.y - 20), 0.8)
+			tween1.tween_property(top_box, "position", Vector2(top_box.position.x - 40, top_box.position.y - 20), 0.8)
 			#tween1.tween_callback()
 			tween1.finished.connect(func(): dialogue_complete = true)
-		elif bubble == "empty" and bot == "":
+		elif diag_mid == "empty" and diag_bot == "":
 			print('spawn_top_box ee')
 			tween1.set_ease(Tween.EASE_OUT)
 			tween1.set_trans(Tween.TRANS_BACK)
-			tween1.tween_property(caption_top, "position", Vector2(caption_top.position.x - 40, caption_top.position.y - 20), 0.8)
+			tween1.tween_property(top_box, "position", Vector2(top_box.position.x - 40, top_box.position.y - 20), 0.8)
 			tween1.finished.connect(func(): dialogue_complete = true)
 		else:
 			print('spawn_top_box eee')
 			tween1.set_ease(Tween.EASE_OUT)
 			tween1.set_trans(Tween.TRANS_BACK)
-			tween1.tween_property(caption_top, "position", Vector2(caption_top.position.x - 200, caption_top.position.y - 60), 0.8)
+			tween1.tween_property(           top_box, "position:x", top_box.position.x - 200, 0.8)
+			tween1.parallel().tween_property(top_box, "position:y", top_box.position.y - 60, 0.8)
 			tween1.finished.connect(func(): dialogue_complete = true)
 
-		#caption_top.modulate = Color.TRANSPARENT
+		#top_box.modulate = Color.TRANSPARENT
 		var tween = create_tween()
 		tween.set_trans(Tween.TRANS_EXPO)
-		tween.tween_property(caption_top, "modulate:a", 0.92, 0.2)
+		tween.tween_property(top_box, "modulate:a", 0.92, 0.2)
 
-	if (top != ""):
+	if (diag_top != ""):
 		spawn_top_box.call()
 
 
@@ -505,128 +452,111 @@ func add_top_box(top, bubble, bot):
 	temp_timer.one_shot = true
 	add_child(temp_timer)
 
-	var top_len = len(top)
+	var top_len = len(diag_top)
 	if top_len == 0: top_len = 1
 	var delay = float(top_len) / 100.0
-	print('delay ', delay)
-	print('delay ', (delay * 2950) / 1000)
 
 	delay = delay * 2950
 	# minimum timer
 	if delay < 1000 and delay != 0: delay = 1000
-	if bubble == "":                delay = 200
+	if diag_mid == "":                delay = 200
 	temp_timer.wait_time = delay / 1000.0
 	temp_timer.start()
-	temp_timer.timeout.connect(add_dialogue_bubble.bind(bubble, bot))
-
-#Add dialogue speech bubble.
-func add_dialogue_bubble(bubble, bot):
-	var bg_color   = MiscFunc.parse_stat('bubble_color', stats_file.split('\n'))
-	var font_color = MiscFunc.parse_stat('text_color', stats_file.split('\n'))
-	if bg_color   == null: bg_color   = def_bubble_color
-	if font_color == null: font_color = def_text_color
-
-	bg_color   = Color.html(bg_color)
-	font_color = Color.html(font_color)
-	dialogue_bubble.add_theme_color_override("default_color", font_color)
-
-	var diag_b_color = StyleBoxFlat.new()
-	diag_b_color.bg_color = bg_color
-	diag_b_color.border_color = bg_color
-	diag_b_color.border_width_left   = 5
-	diag_b_color.border_width_right  = 5
-	diag_b_color.border_width_top    = 8
-	diag_b_color.border_width_bottom = 8
-	diag_b_color.set_corner_radius_all(5)
-
-	dialogue_bubble.add_theme_stylebox_override("fill",       diag_b_color)
-	dialogue_bubble.add_theme_stylebox_override("background", diag_b_color)
-	dialogue_bubble.add_theme_stylebox_override("focus",      diag_b_color)
-	dialogue_bubble.add_theme_stylebox_override("normal",     diag_b_color)
-
-	#dialogue_bubble.x = over_sprite.x + over_sprite.width * 0.2 - dialogue_bubble.width - 20
-	var sprite_pos = sprite.position.x
-	var sprite_img = sprite.size.x#texture.get_width()
-
-	await get_tree().process_frame
-	dialogue_bubble.position.x = sprite_pos + sprite_img * 0.2 - dialogue_bubble.size.x - 20
-	dialogue_bubble.position.y = VarTests.stage_height * 0.25
-	#dialogue_bubble.size.y = 0
-	#dialogue_bubble.size.x = VarTests.stage_width / 6.5
-
-	if bubble != "":
-		dialogue_bubble.visible = true
-		slow_text(bubble, bot)
-	else:
-		print('add bot box a')
-		add_bot_box(bot)
-
-# Add bottom text box.
-func add_bot_box(bot):
-	print('AAAAAAAAAAAAAAAAAAAAAAAAAA')
-	#print(bot)
-	# Character hide function
-	if character_leaves == true:
-		#character_leave_anim(VarTests.character_sprite)
-		#attack_effect(VarTests.character_sprite)
-		character_leaves = false
-
-	caption_bot.text = bot
-	caption_bot.size = caption_bot.get_theme_font("normal_font").get_string_size(bot)
-	#await get_tree().process_frame
-	#caption_bot.add_theme_color_override('default_color', Color.html('#9a8e9e'))
-
-	# size
-	print('caption_bot size ', caption_bot.size)
-	if caption_bot.size.x > 300:
-		await get_tree().process_frame
-		caption_bot.size.x = 300
-
-	# FORCED CRASH
-	if VarTests.ex_magic == true:
-		while(444 == 444):
-			# crash here
-			get_tree().quit()
+	temp_timer.timeout.connect(add_mid_box.bind(diag_mid, diag_bot))
 
 
-	var spawn_bot_box = func():
-		caption_bot.visible = true
-		print('dialogue_bubble.position ', dialogue_bubble.position.x)
-		var x_pos = dialogue_bubble.position.x + ((dialogue_bubble.size.x/2) * randf())
+# Add dialogue speech bubble.
+func add_mid_box(diag_mid, diag_bot):
+	if diag_mid != "":
+		var bg_color   = MiscFunc.parse_stat('bubble_color', stats_file.split('\n'))
+		var font_color = MiscFunc.parse_stat('text_color', stats_file.split('\n'))
+		if bg_color   == "0": bg_color   = def_bubble_color
+		if font_color == "0": font_color = def_text_color
 
-		if x_pos < sprite.position.x + caption_bot.size.x*0.6:
-			x_pos = sprite.position.x - (caption_bot.size.x*0.8)
-		#x_pos = x_pos / 1.3
-		print('x_pos ', x_pos)
-		print('size ', caption_bot.size)
+		bg_color   = Color.html(bg_color)
+		font_color = Color.html(font_color)
+		mid_box.add_theme_color_override("default_color", font_color)
 
-		var y_pos = dialogue_bubble.position.y + dialogue_bubble.size.y
+		var diag_b_color = StyleBoxFlat.new()
+		diag_b_color.bg_color = bg_color
+		diag_b_color.border_color = bg_color
+		diag_b_color.border_width_left   = 5
+		diag_b_color.border_width_right  = 5
+		diag_b_color.border_width_top    = 8
+		diag_b_color.border_width_bottom = 8
+		diag_b_color.set_corner_radius_all(5)
 
-		await get_tree().process_frame
-		caption_bot.position.x = x_pos
-		caption_bot.position.y = y_pos
+		mid_box.add_theme_stylebox_override("fill",       diag_b_color)
+		mid_box.add_theme_stylebox_override("background", diag_b_color)
+		mid_box.add_theme_stylebox_override("focus",      diag_b_color)
+		mid_box.add_theme_stylebox_override("normal",     diag_b_color)
+
+		#dialogue_bubble.x = over_sprite.x + over_sprite.width * 0.2 - dialogue_bubble.width - 20
+		var sprite_pos = sprite.position.x
+		#var sprite_img = sprite.size.x#texture.get_width()
 
 		#await get_tree().process_frame
-		caption_bot.size.y = 0
-		caption_bot.modulate = Color.TRANSPARENT
+		mid_box.position.x = sprite_pos - mid_box.size.x - 20
+		mid_box.position.y = VarTests.stage_height * 0.25
+		#dialogue_bubble.size.y = 0
+		#dialogue_bubble.size.x = VarTests.stage_width / 6.5
+
+		mid_box.visible = true
+		animate_text_prep(diag_mid, diag_bot)
+	else:
+		print('add bot box a')
+		add_bot_box(diag_bot)
+
+# Add bottom text box.
+func add_bot_box(diag_bot):
+	if diag_bot != '':
+		#bot_box.visible = true
+		bot_box.text = diag_bot
+		bot_box.size = bot_box.get_theme_font("normal_font").get_string_size(diag_bot)
+		# bottom box (is ther not a better name for this?)
+		#var bot_box = new_diag(diag_bot)
+
+		if bot_box.size.x > 300:
+			bot_box.autowrap_mode = 3
+			bot_box.size.x = 300
+		bot_box.visible = true
+
+		#print('mid_box.position ', mid_box.position.x)
+		var x_pos = mid_box.position.x + ((mid_box.size.x/2) * randf())
+
+		if x_pos < sprite.position.x + bot_box.size.x * 0.6:
+			x_pos = sprite.position.x - (bot_box.size.x * 0.8)
+		#x_pos = x_pos / 1.3
+		#print('size ', bot_box.size)
+
+		var y_pos = mid_box.position.y + mid_box.size.y
+		#print('x_pos ', x_pos)
+		#print('y_pos ', y_pos)
+
+		#await get_tree().process_frame
+		bot_box.position = Vector2(x_pos, y_pos)
+		#bot_box.position.x = x_pos
+		#bot_box.position.y = y_pos
+
+		#await get_tree().process_frame
+		bot_box.size.y = 0
+		bot_box.modulate = Color.TRANSPARENT
 
 		var align_bot_box_a_bit = func():
-			print('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB')
+			#print('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB')
 			@warning_ignore("confusable_capture_reassignment")
-			y_pos = dialogue_bubble.position.y + dialogue_bubble.size.y + 10
+			y_pos = mid_box.position.y + mid_box.size.y + 10
 			var tween1 = create_tween()
 			tween1.set_trans(Tween.TRANS_LINEAR)
-			tween1.tween_property(caption_bot, "position", Vector2(x_pos, y_pos), 1)
+			tween1.tween_property(bot_box, "position", Vector2(x_pos, y_pos), 1)
 
 		var tween = create_tween()
 		tween.set_ease(Tween.EASE_OUT)
 		tween.set_trans(Tween.TRANS_BACK)
-		tween.tween_property(caption_bot, "position", Vector2(x_pos, y_pos + 10), 0.8)
-		tween.parallel().tween_property(caption_bot, "modulate:a", 0.92, 0.2)
+		tween.tween_property(bot_box, "position", Vector2(x_pos, y_pos + 10), 0.8)
+		tween.parallel().tween_property(bot_box, "modulate:a", 0.92, 0.2)
 		tween.finished.connect(align_bot_box_a_bit)
 
-	if bot != "":
-		spawn_bot_box.call()
 
 # Speech delay library.
 func speech_delay(character):
@@ -641,55 +571,33 @@ func speech_delay(character):
 		_:   d = 40
 	return d
 
-func slow_text(bubble, bot):
-	print('bubble ', bubble)
-	var dialogue_length = len(bubble)
-	text_index = 0
-
+func animate_text_prep(diag_mid, diag_bot):
 	var dialogue_timer = Timer.new()
-	dialogue_iteration(dialogue_timer, dialogue_length, bubble, bot)
+	text_index = 0
+	dialogue_iteration(dialogue_timer, diag_mid, diag_bot, len(diag_mid))
 
-#var fuck = false
-func dialogue_iteration(dialogue_timer, dialogue_length, bubble, bot):
-	#print('fuck ', text_index, ' ', bubble, ' ', bubble[text_index])
-	if dialogue_length <= text_index:
-		print('amount of time!')
+func _mid_box_size_clamp():
+	if mid_box.size.x > 400:
+		mid_box.autowrap_mode = 3
+		mid_box.size.x = 400
+
+func dialogue_iteration(dialogue_timer, diag_mid, diag_bot, diag_length):
+	if diag_length <= text_index:
+		print('dialogue iteration time out!')
 		dialogue_timer.queue_free()
-		#if fuck:
-		#	fuck = false
-		#	return
-		print('add bot box b')
-		add_bot_box(bot)
+		add_bot_box(diag_bot)
 		return
 
-	dialogue_bubble.text += bubble[text_index]
-	#dialogue_bubble.size = dialogue_bubble.get_theme_font("normal_font").get_string_size(dialogue_bubble.text) + Vector2(25, 0)
-	if dialogue_bubble.size.x > 400:
-		dialogue_bubble.size.x = 400
+	mid_box.text += diag_mid[text_index]
 
 	realign_dialogue()
 
-	print('hurry_dialogue ', hurry_dialogue)
-	if hurry_dialogue:
-		dialogue_bubble.text = bubble
-		text_index = dialogue_length
-		#dialogue_timer.stop()
+	mid_box.size = mid_box.get_theme_font("normal_font").get_string_size(mid_box.text) - Vector2(100, 0)
 	#await get_tree().process_frame
-	dialogue_bubble.size = dialogue_bubble.get_theme_font("normal_font").get_string_size(dialogue_bubble.text) - Vector2(100, 0)
-	await get_tree().process_frame
-	dialogue_bubble.size.y = 0
-	#dialogue_bubble.size = dialogue_bubble.get_theme_font("normal_font").get_string_size(dialogue_bubble.text) + Vector2(25, 0)
-
-	# HURRY EXIT
-	if hurry_dialogue:
-		#fuck = true
-		print('add bot box c')
-		realign_dialogue()
-		add_bot_box(bot)
-		return
+	mid_box.size.y = 0
 
 	# CHARACTER DELAY
-	var delay = speech_delay(bubble[text_index])
+	var delay = speech_delay(diag_mid[text_index])
 	if last_character == "." or last_character == "!":
 		delay = 400
 	if last_character == "?":
@@ -700,38 +608,30 @@ func dialogue_iteration(dialogue_timer, dialogue_length, bubble, bot):
 		add_child(dialogue_timer)
 	dialogue_timer.wait_time = float(delay) / 1000
 	dialogue_timer.start()
-	#Add to character counter
 
-	#dialogue_timer.disconnect("timeout", f.bind(f).call)
-	last_character = bubble[text_index]
+	last_character = diag_mid[text_index]
 	text_index += 1
 	if not dialogue_timer.is_connected("timeout", dialogue_iteration):
-		dialogue_timer.timeout.connect(dialogue_iteration.bind(dialogue_timer, dialogue_length, bubble, bot))
+		dialogue_timer.timeout.connect(dialogue_iteration.bind(dialogue_timer, diag_mid, diag_bot, len(diag_mid)))
 
-
-#Realign dialogue speech bubble.
+# Realign dialogue speech bubble.
 func realign_dialogue():
-	print('add bot box realign_dialogue')
+	#print('add bot box realign_dialogue')
 
-	var x_pos = sprite.position.x - dialogue_bubble.size.x
-	var y_pos = (float(VarTests.stage_height) / 4 * 1) - dialogue_bubble.size.y - caption_top.size.y
+	var x_pos = sprite.position.x - mid_box.size.x
+	var y_pos = (float(VarTests.stage_height) / 4 * 1) - mid_box.size.y - top_box.size.y
 
 	if x_pos < 400: x_pos = 400
 	if y_pos < 20:  y_pos = 20
 
-	if caption_top.visible:
-		y_pos = caption_top.size.y + 30
+	if top_box.visible:
+		y_pos = top_box.size.y + 30
 
-	if bubble_tween:
-		if not bubble_tween.is_valid():
-			print('QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ')
-			await get_tree().process_frame
-			dialogue_bubble.position.x = x_pos
-			await get_tree().process_frame
-			dialogue_bubble.position.y = y_pos
+	if bubble_tween and not bubble_tween.is_valid():
+		mid_box.position = Vector2(x_pos, y_pos)
 	bubble_tween = create_tween()
 	bubble_tween.set_trans(Tween.TRANS_LINEAR)
-	bubble_tween.tween_property(dialogue_bubble, "position", Vector2(x_pos, y_pos - 2), 0.6)
+	bubble_tween.tween_property(mid_box, "position", Vector2(x_pos, y_pos), 0.6)
 
 func _on_start_combat():
 	get_tree().change_scene_to_file("res://scenes/combat.tscn")
@@ -750,8 +650,6 @@ func get_blend(n:int):
 
 	#var sky              = sky_layer
 	#var sky_blend        = sky_layer_blend
-	var overlay          = TextureRect.new()
-	var overlay_blend    = TextureRect.new()
 
 	#var sky_shader          = ShaderMaterial.new()
 	#var sky_blend_shader    = ShaderMaterial.new()
@@ -773,32 +671,32 @@ func get_blend(n:int):
 	var max_TIME = 0
 
 	if is_between(76, VarTests.TIME, 100):# EVENING
-		sky_layer.texture              = sky_s
-		sky_layer_blend.texture        = sky_n # into evening
+		sky.texture              = sky_s
+		sky_blend.texture        = sky_n # into evening
 		overlay.texture = overlay_s
 		overlay_blend.texture = overlay_n
 		min_TIME = 76
 		max_TIME = 100
 
 	if is_between(51, VarTests.TIME, 75):# DAY
-		sky_layer.texture              = sky_d
-		sky_layer_blend.texture        = sky_s # into sunset
+		sky.texture              = sky_d
+		sky_blend.texture        = sky_s # into sunset
 		overlay.texture = overlay_d
 		overlay_blend.texture = overlay_s
 		min_TIME = 51
 		max_TIME = 75
 
 	if is_between(26, VarTests.TIME, 50): # MORNING
-		sky_layer.texture              = sky_d
-		sky_layer_blend.texture        = sky_d # into day
+		sky.texture              = sky_d
+		sky_blend.texture        = sky_d # into day
 		overlay.texture = overlay_m
 		overlay_blend.texture = overlay_d
 		min_TIME = 26
 		max_TIME = 50
 
 	if is_between(0, VarTests.TIME, 25): # NIGHT
-		sky_layer.texture              = sky_n
-		sky_layer_blend.texture        = sky_d # into morning
+		sky.texture              = sky_n
+		sky_blend.texture        = sky_d # into morning
 		overlay.texture = overlay_n
 		overlay_blend.texture = overlay_m
 		min_TIME = 0
@@ -807,49 +705,43 @@ func get_blend(n:int):
 
 
 	# SKY BLENDING
-	sky_layer_blend.modulate.a = (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME)
-	overlay_blend.modulate.a   = (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME)
-	overlay.modulate.a         = 1 - overlay_blend.modulate.a
+	sky_blend.modulate.a     = (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME)
+	overlay_blend.modulate.a = (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME)
+	overlay.modulate.a       = 1 - overlay_blend.modulate.a
 
 
 	if n == 0: return min_TIME
-	if n == 1: return sky_layer
-	if n == 2: return sky_layer_blend
+	if n == 1: return sky
+	if n == 2: return sky_blend
 	if n == 3: return overlay
 	if n == 4: return overlay_blend
 	if n == 5: return max_TIME
 
 func create_sky():
-	sky_layer.visible        = true
-	sky_layer_blend.visible  = true
+	sky.visible        = true
+	sky_blend.visible  = true
 
 	var min_TIME      = get_blend(0)
 	var max_TIME      = get_blend(5)
 
-	get_blend(1)#var sky           = 
-	var sky_blend     = get_blend(2)
-	var overlay       = get_blend(3)
-	var overlay_blend = get_blend(4)
-
-	#overlay.blendMode       = "multiply"
-	#overlay_blend.blendMode = "multiply"
+	#var sky           = get_blend(1)
+	var sky_blend_cs     = get_blend(2)
+	var overlay_cs       = get_blend(3)
+	var overlay_blend_cs = get_blend(4)
 
 	# NEW BLEND SYSTEM
 	var alpha = (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME)
-	sky_blend.modulate.a     = alpha
-	overlay_blend.modulate.a = alpha
-	overlay.modulate.a       = 1 - overlay_blend.modulate.a
+	sky_blend_cs.modulate.a     = alpha
+	overlay_blend_cs.modulate.a = alpha
+	overlay_cs.modulate.a       = 1 - overlay_blend.modulate.a
 
-	# remove old
-	#while(sky_layer.numChildren > 0):
-	#	sky_layer.removeChildAt(0)
+func create_weather():
+	# RANDOMIZE CLOUDS
+	var rnumb:int
+	rnumb = floor(randf()*(1+3))+1
+	clouds_a.texture = load("res://assets/images/sky/clouds%s.png" % [rnumb])
+	clouds_a.modulate.a = randf()
 
-	#while(atmosphere_layer.numChildren > 0):
-	#	atmosphere_layer.removeChildAt(0)
-
-	# Add to scene
-	#sky_layer.addChild(sky)      # SKY
-	#sky_layer.addChild(sky_blend)# SKY BLENDING
-
-	#atmosphere_layer.addChild(overlay)      # OVERLAY
-	#atmosphere_layer.addChild(overlay_blend)# OVERLAY BLEND
+	rnumb = floor(randf()*(1+3))+1
+	clouds_b.texture = load("res://assets/images/sky/clouds%s.png" % [rnumb])
+	clouds_b.modulate.a = randf()

@@ -46,9 +46,11 @@ func _on_button_start_game_pressed() -> void:
 	VarTests.player_stats['endurance']    = int(label_endu.text)
 	starting_cards()
 	# load cards
-	VarTests.ALL_CARDS = load("res://database/cards/cards.txt")
+	var file = FileAccess.open("res://database/cards/cards.txt", FileAccess.READ)
+	VarTests.ALL_CARDS = file.get_as_text()
 	# load items
-	VarTests.ALL_ITEMS = load("res://database/items/items.txt")
+	file = FileAccess.open("res://database/items/items.txt", FileAccess.READ)
+	VarTests.ALL_ITEMS = file.get_as_text()
 
 	VarTests.ITEM_INVENTORY.append("tshirt")
 	VarTests.ITEM_INVENTORY.append("jeans")

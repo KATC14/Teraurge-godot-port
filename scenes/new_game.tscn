@@ -1,6 +1,6 @@
 [gd_scene load_steps=67 format=3 uid="uid://m31rdyypcffy"]
 
-[ext_resource type="Script" path="res://scripts/new_game.gd" id="1_fko0m"]
+[ext_resource type="Script" uid="uid://b6hakt5jaeqyo" path="res://scripts/new_game.gd" id="1_fko0m"]
 [ext_resource type="Texture2D" uid="uid://dor4ioqn0t4r1" path="res://assets/images/new_game/new_game.png" id="1_leeag"]
 [ext_resource type="Texture2D" uid="uid://cuy53v5qcqju5" path="res://database/items/graphics/default_m/default_m.png" id="2_pw8id"]
 [ext_resource type="Texture2D" uid="uid://0wic44xvowx1" path="res://assets/images/new_game/button_male.png" id="3_v6j22"]
@@ -13,60 +13,60 @@
 [ext_resource type="Texture2D" uid="uid://bawntxteaalp6" path="res://assets/images/new_game/hover_right_t.png" id="10_6drrb"]
 [ext_resource type="Texture2D" uid="uid://brqg2p7tyud7n" path="res://assets/images/new_game/down_right_t.png" id="11_nok1t"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iie7v"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lq834"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5umiu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wiswg"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0sp0j"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nwucc"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0sp0j"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wiswg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5umiu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lq834"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iie7v"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lopjk"]
 texture = ExtResource("3_v6j22")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkvrx"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xshs"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxv21"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rp3eg"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvsvr"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7w5v"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j3rin"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkvrx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrr37"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lwuw4"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j3rin"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kr5jv"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7w5v"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ilofj"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qvsvr"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aiq16"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rp3eg"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tp5n6"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxv21"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05alf"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dc6ol"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tp5n6"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kud3n"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aiq16"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wegrj"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ilofj"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_707mc"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kr5jv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lwuw4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wlxmx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25ub0"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wlxmx"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_707mc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wegrj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kud3n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dc6ol"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8mtf6"]
 texture = ExtResource("4_3ggie")
@@ -83,18 +83,18 @@ texture = ExtResource("6_jiffx")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jcla7"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2100h"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yl0j0"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n2crf"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_esbb2"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_krs2x"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_edyel"]
 texture = ExtResource("7_2bohy")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_krs2x"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_esbb2"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yl0j0"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n2crf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2100h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpn18"]
 
@@ -102,33 +102,33 @@ texture = ExtResource("7_2bohy")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_odnj0"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m5ac8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6bnh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c3jhj"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1olq8"]
-texture = ExtResource("8_vbdux")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgays"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7tnni"]
 texture = ExtResource("9_6vkio")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgays"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1olq8"]
+texture = ExtResource("8_vbdux")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2etx"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c3jhj"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1tsdo"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6bnh"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wigu"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m5ac8"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bsywa"]
-texture = ExtResource("10_6drrb")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uleoq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k5ib5"]
 texture = ExtResource("11_nok1t")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uleoq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bsywa"]
+texture = ExtResource("10_6drrb")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wigu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1tsdo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2etx"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -164,12 +164,12 @@ offset_left = 499.0
 offset_top = 562.0
 offset_right = 533.0
 offset_bottom = 596.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_iie7v")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_lq834")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5umiu")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_wiswg")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_nwucc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0sp0j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nwucc")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wiswg")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5umiu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lq834")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iie7v")
 
 [node name="Button2" type="Button" parent="Control"]
 layout_mode = 0
@@ -177,12 +177,12 @@ offset_left = 733.0
 offset_top = 562.0
 offset_right = 767.0
 offset_bottom = 596.0
-theme_override_styles/focus = SubResource("StyleBoxTexture_lopjk")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_gkvrx")
-theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_lopjk")
-theme_override_styles/hover = SubResource("StyleBoxTexture_lopjk")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_6xshs")
 theme_override_styles/normal = SubResource("StyleBoxTexture_lopjk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6xshs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lopjk")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_lopjk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gkvrx")
+theme_override_styles/focus = SubResource("StyleBoxTexture_lopjk")
 
 [node name="Control2" type="Control" parent="."]
 anchors_preset = 0
@@ -196,12 +196,12 @@ offset_left = 1123.0
 offset_top = 422.0
 offset_right = 1160.0
 offset_bottom = 451.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_uxv21")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_rp3eg")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qvsvr")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_f7w5v")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_j3rin")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_mrr37")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j3rin")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_f7w5v")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qvsvr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rp3eg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uxv21")
 
 [node name="Button2" type="Button" parent="Control2"]
 texture_filter = 1
@@ -210,12 +210,12 @@ offset_left = 1122.0
 offset_top = 464.0
 offset_right = 1159.0
 offset_bottom = 493.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_lwuw4")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kr5jv")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ilofj")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_aiq16")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_tp5n6")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_05alf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tp5n6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_aiq16")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ilofj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kr5jv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lwuw4")
 
 [node name="Button3" type="Button" parent="Control2"]
 texture_filter = 1
@@ -224,12 +224,12 @@ offset_left = 1122.0
 offset_top = 509.0
 offset_right = 1159.0
 offset_bottom = 538.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dc6ol")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_kud3n")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_wegrj")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_707mc")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_25ub0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wlxmx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_25ub0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_707mc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_wegrj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kud3n")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dc6ol")
 
 [node name="Button4" type="Button" parent="Control2"]
 texture_filter = 1
@@ -238,12 +238,12 @@ offset_left = 1160.0
 offset_top = 422.0
 offset_right = 1195.0
 offset_bottom = 451.0
-theme_override_styles/focus = SubResource("StyleBoxTexture_8mtf6")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_y5oaa")
-theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_8mtf6")
-theme_override_styles/hover = SubResource("StyleBoxTexture_8mtf6")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_8mtf6")
 theme_override_styles/normal = SubResource("StyleBoxTexture_8mtf6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8mtf6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8mtf6")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_8mtf6")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y5oaa")
+theme_override_styles/focus = SubResource("StyleBoxTexture_8mtf6")
 
 [node name="Button5" type="Button" parent="Control2"]
 texture_filter = 1
@@ -252,12 +252,12 @@ offset_left = 1160.0
 offset_top = 464.0
 offset_right = 1195.0
 offset_bottom = 493.0
-theme_override_styles/focus = SubResource("StyleBoxTexture_vnxnp")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_ai5fs")
-theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_vnxnp")
-theme_override_styles/hover = SubResource("StyleBoxTexture_vnxnp")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_vnxnp")
 theme_override_styles/normal = SubResource("StyleBoxTexture_vnxnp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vnxnp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vnxnp")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_vnxnp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ai5fs")
+theme_override_styles/focus = SubResource("StyleBoxTexture_vnxnp")
 
 [node name="Button6" type="Button" parent="Control2"]
 texture_filter = 1
@@ -266,12 +266,12 @@ offset_left = 1160.0
 offset_top = 508.0
 offset_right = 1195.0
 offset_bottom = 537.0
-theme_override_styles/focus = SubResource("StyleBoxTexture_bqeh4")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_jcla7")
-theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_bqeh4")
-theme_override_styles/hover = SubResource("StyleBoxTexture_bqeh4")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_bqeh4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_bqeh4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bqeh4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bqeh4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_bqeh4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jcla7")
+theme_override_styles/focus = SubResource("StyleBoxTexture_bqeh4")
 
 [node name="Button7" type="Button" parent="Control2"]
 layout_mode = 0
@@ -279,12 +279,12 @@ offset_left = 858.0
 offset_top = 569.0
 offset_right = 1065.0
 offset_bottom = 605.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2100h")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_n2crf")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_esbb2")
-theme_override_styles/hover = SubResource("StyleBoxTexture_edyel")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_krs2x")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_yl0j0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_krs2x")
+theme_override_styles/hover = SubResource("StyleBoxTexture_edyel")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_esbb2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n2crf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2100h")
 
 [node name="Control3" type="Control" parent="."]
 anchors_preset = 0
@@ -338,12 +338,12 @@ offset_left = 218.0
 offset_top = 240.0
 offset_right = 242.0
 offset_bottom = 270.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wgays")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 
 [node name="Label" type="Label" parent="Control3/Control"]
 texture_filter = 1
@@ -364,12 +364,12 @@ offset_left = 304.0
 offset_top = 240.0
 offset_right = 328.0
 offset_bottom = 270.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
-theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uleoq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 
 [node name="Control2" type="Control" parent="Control3"]
 anchors_preset = 0
@@ -384,12 +384,12 @@ offset_left = 218.0
 offset_top = 240.0
 offset_right = 242.0
 offset_bottom = 270.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wgays")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 
 [node name="Label" type="Label" parent="Control3/Control2"]
 texture_filter = 1
@@ -410,12 +410,12 @@ offset_left = 304.0
 offset_top = 240.0
 offset_right = 328.0
 offset_bottom = 270.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
-theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uleoq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 
 [node name="Control3" type="Control" parent="Control3"]
 anchors_preset = 0
@@ -430,12 +430,12 @@ offset_left = 218.0
 offset_top = 240.0
 offset_right = 242.0
 offset_bottom = 270.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wgays")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 
 [node name="Label" type="Label" parent="Control3/Control3"]
 texture_filter = 1
@@ -456,12 +456,12 @@ offset_left = 304.0
 offset_top = 240.0
 offset_right = 328.0
 offset_bottom = 270.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
-theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uleoq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 
 [node name="Control4" type="Control" parent="Control3"]
 anchors_preset = 0
@@ -476,12 +476,12 @@ offset_left = 218.0
 offset_top = 239.0
 offset_right = 242.0
 offset_bottom = 269.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wgays")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 
 [node name="Label" type="Label" parent="Control3/Control4"]
 texture_filter = 1
@@ -502,12 +502,12 @@ offset_left = 304.0
 offset_top = 239.0
 offset_right = 328.0
 offset_bottom = 269.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
-theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uleoq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 
 [node name="Control5" type="Control" parent="Control3"]
 anchors_preset = 0
@@ -522,12 +522,12 @@ offset_left = 218.0
 offset_top = 240.0
 offset_right = 242.0
 offset_bottom = 270.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wgays")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 
 [node name="Label" type="Label" parent="Control3/Control5"]
 texture_filter = 1
@@ -548,12 +548,12 @@ offset_left = 304.0
 offset_top = 240.0
 offset_right = 328.0
 offset_bottom = 270.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
-theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uleoq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 
 [node name="Control6" type="Control" parent="Control3"]
 anchors_preset = 0
@@ -568,12 +568,12 @@ offset_left = 218.0
 offset_top = 240.0
 offset_right = 242.0
 offset_bottom = 270.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
-theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wgays")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7tnni")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1olq8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_c3jhj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 
 [node name="Label" type="Label" parent="Control3/Control6"]
 texture_filter = 1
@@ -594,12 +594,12 @@ offset_left = 304.0
 offset_top = 240.0
 offset_right = 328.0
 offset_bottom = 270.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
-theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uleoq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k5ib5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bsywa")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8wigu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1tsdo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_female_pressed"]
 [connection signal="pressed" from="Control/Button2" to="." method="_on_button_male_pressed"]

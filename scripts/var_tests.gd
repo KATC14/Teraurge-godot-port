@@ -26,6 +26,7 @@ var environment_name = ''
 var ENVIROMENT_STATS = ''
 var player_hand_size = 4
 
+# script cross compatibility
 var ambient_strength = null
 var env_ambient = null
 var scene_character = ""

@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
+signal load_blip
 
 #var target = Vector2()
 var click_position = Vector2()
 @export var is_active = true
-@export var call_locations = false
 @export var can_move = false
 @export var exposition:Vector2 = position:
 	set(value):
@@ -15,15 +15,7 @@ func get_distance(point1, point2):
 	var y = point1.y - point2.y
 	return sqrt(x * x + y * y)
 
-@onready var player_speed = %player_speed
-
 func map_collision_check(relative_x, relative_y):
-	#TIMER
-	player_speed.one_shot = true
-	player_speed.wait_time = 0.05
-	player_speed.start()
-	#print('temp ', relative_x, ' ', relative_y)
-
 	# CHECK COLLISION AROUND THE "target" moviclip (current location)
 	# Return collision if a blip
 
@@ -35,7 +27,7 @@ func map_collision_check(relative_x, relative_y):
 	# OFFSET TARGET LIST
 	origin += Vector2(relative_x, relative_y)
 
-	for mc in adjacent_blips:
+	for mc:Area2D in adjacent_blips:
 		point_list.append(mc.position)
 
 	# CREATE DISTANCE LIST
@@ -45,13 +37,17 @@ func map_collision_check(relative_x, relative_y):
 			min_dist = get_distance(origin, point)
 			closest_index = index
 		index += 1
-	for i in adjacent_blips:
+	for i:Area2D in adjacent_blips:
 		color_blips(i)
 
 	var new_loc = adjacent_blips[closest_index]
-	#print(new_loc)
 	VarTests.map_target = new_loc
-	blips_ready()
+	var rev_serch_idx = VarTests.named_loc.values().find(new_loc)
+	# catch for unnamed location
+	if rev_serch_idx != -1:
+		var found = VarTests.named_loc.keys()[rev_serch_idx]
+		load_blip.emit(found)
+	_on_blips_ready(VarTests.all_loc, new_loc)
 
 func color_blips(blip):
 	var temp:Sprite2D = blip.get_node("Sprite2D")
@@ -66,26 +62,21 @@ func color_blips(blip):
 		temp.modulate = Color.TRANSPARENT
 
 var adjacent_blips = []
-func blips_ready():
-	call_locations = false
+func _on_blips_ready(container, target):
 	can_move = false
-	#var all_locations = VarTests.all_loc
-	#print(all_locations)
-	var area = VarTests.map_target
-	#print('temp s ', area.position)
 	var deltaX
 	var deltaY
 	var dist
 	var rangee = 30
 	adjacent_blips = []
 
-	for i:Area2D in VarTests.all_loc:
+	for i:Area2D in container:
 		var c = i.position
-		var s = area.position
+		var s = target.position
 		#var c1 = i
 		#var s1 = area
-		deltaX = (c.x + i.scale.x / 2.0) - (s.x + area.scale.x / 2.0)
-		deltaY = (c.y + i.scale.y / 2.0) - (s.y + area.scale.y / 2.0) # rounded distance
+		deltaX = (c.x + i.scale.x / 2.0) - (s.x + target.scale.x / 2.0)
+		deltaY = (c.y + i.scale.y / 2.0) - (s.y + target.scale.y / 2.0) # rounded distance
 		dist = sqrt((deltaX * deltaX) + (deltaY * deltaY)) # DISTANCE CHECKING
 		#print(dist <= rangee, ' ', i.overlaps_area(collision_dummy), ' ', collision_dummy.get_overlapping_areas())
 
@@ -98,31 +89,49 @@ func blips_ready():
 			adjacent_blips.append(i)
 	can_move = true
 
-func _process(_delta: float) -> void:
+# mouse movement
+func _on_blip_move(_viewport: Node, _event: InputEvent, _shape_idx: int, node:Area2D) -> void:
+	# check for if discover pop up is open
 	if is_active:
-		#if Input.is_action_pressed("mouse_left"):
-		#	click_position = get_global_mouse_position()
-		#if Input.is_action_just_released('mouse_left'):
-		#	velocity = Vector2.ZERO
-		#if position.distance_to(click_position) > 3:
-		#	target = (click_position - position).normalized()
-		#	velocity = target * speed
-		#	move_and_slide()
-
-		var up     = Input.is_action_pressed("ui_up")
-		var left   = Input.is_action_pressed("ui_left")
-		var down   = Input.is_action_pressed("ui_down")
-		var right  = Input.is_action_pressed("ui_right")
 		if Input.is_action_pressed("mouse_left"):
-			click_position = get_global_mouse_position()
-			click_position -= VarTests.map_target.position + Vector2(10, 8)
+			var moved_loc = node.get_node("Sprite2D")
+			# only allow adjacent blips
+			if moved_loc.modulate == Color.GREEN:
+				click_position = node.position
+				click_position -= VarTests.map_target.position# + Vector2(10, 8)
 
-			if can_move and player_speed.is_stopped():
-				map_collision_check(click_position.x, click_position.y)
-		if up or left or down or right:
-			var input_dir = Input.get_vector("key_a", "key_d", "key_w", "key_s")
-			if can_move and player_speed.is_stopped():
+				if can_move:
+					map_collision_check(click_position.x, click_position.y)
+
+# wasd/keyboard movment
+func _input(_event: InputEvent) -> void:
+	# check for if discover pop up is open
+	if is_active:
+		# strange numpad keys
+		var center = Input.is_action_pressed("numpad_center")
+
+		var up_left    = Input.is_action_pressed("numpad_diagonal_up_left")
+		var down_left  = Input.is_action_pressed("numpad_diagonal_down_left")
+		var up_right   = Input.is_action_pressed("numpad_diagonal_up_right")
+		var down_right = Input.is_action_pressed("numpad_diagonal_down_right")
+
+		if center:
+			map_collision_check(0, 0)
+		var input_dir
+		if up_left:    input_dir = Vector2(-1.0, -1.0)
+		if up_right:   input_dir = Vector2(1.0, -1.0)
+		if down_left:  input_dir = Vector2(-1.0, 1.0)
+		if down_right: input_dir = Vector2(1.0, 1.0)
+		if down_left or down_right or up_left or up_right:
+			if can_move:
 				map_collision_check(input_dir.x * 150, input_dir.y * 150)
 
-	if call_locations:
-		blips_ready.call_deferred()
+		# wasd/arrow keys
+		var up    = Input.is_action_pressed("ui_up")
+		var left  = Input.is_action_pressed("ui_left")
+		var down  = Input.is_action_pressed("ui_down")
+		var right = Input.is_action_pressed("ui_right")
+		if up or left or down or right:
+			input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+			if can_move:
+				map_collision_check(input_dir.x * 150, input_dir.y * 150)

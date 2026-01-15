@@ -1,14 +1,16 @@
-[gd_scene load_steps=52 format=3 uid="uid://cghm8dwjeyts5"]
+[gd_scene load_steps=53 format=3 uid="uid://cghm8dwjeyts5"]
 
 [ext_resource type="Script" uid="uid://mjerosrqpc0i" path="res://scripts/dialogue.gd" id="1_abwjo"]
 [ext_resource type="Script" uid="uid://dp6cmyn7ilaiq" path="res://scripts/ChoicesDialog.gd" id="1_khq2m"]
 [ext_resource type="Script" uid="uid://dk3dmvcg4hxio" path="res://scripts/diag_func.gd" id="2_nm0kn"]
 [ext_resource type="Script" uid="uid://bk3wsu4cegr1l" path="res://scripts/autocont_dots.gd" id="3_xwsq1"]
 [ext_resource type="Texture2D" uid="uid://3stvrt6a2g6y" path="res://assets/images/sky/sky_day.jpg" id="5_8cypa"]
+[ext_resource type="Shader" uid="uid://dykrqe5wj5mbb" path="res://shaders/screen.gdshader" id="5_ccnnw"]
 [ext_resource type="Texture2D" uid="uid://dqbfpjgh7wnoq" path="res://assets/images/sky/sky_sundown.jpg" id="6_1dr0a"]
 [ext_resource type="Texture2D" uid="uid://pc77vjflsl7d" path="res://assets/images/menu_background.png" id="6_2utvh"]
 [ext_resource type="Script" uid="uid://cp8heanw4kli2" path="res://scripts/index_error.gd" id="6_3q6qr"]
 [ext_resource type="Texture2D" uid="uid://cibtkyq7x8vrp" path="res://assets/images/combat/res_stat.png" id="7_yi57s"]
+[ext_resource type="FontFile" uid="uid://dp7u6vys3hyhq" path="res://assets/fonts/201_Verdana.ttf" id="8_aawo6"]
 [ext_resource type="Texture2D" uid="uid://fio0fdwvhm73" path="res://assets/images/combat/res_heat.png" id="8_hwqu2"]
 [ext_resource type="Texture2D" uid="uid://d1owus3qh5xua" path="res://assets/images/combat/res_cold.png" id="9_3p4eb"]
 [ext_resource type="Texture2D" uid="uid://cjreu4htvpred" path="res://assets/images/combat/res_impact.png" id="10_0gab2"]
@@ -25,6 +27,20 @@
 [ext_resource type="Texture2D" uid="uid://crmlvptx4xqa5" path="res://assets/images/combat/turn_dial_player.png" id="21_16vlh"]
 [ext_resource type="Texture2D" uid="uid://nestgdg4ap0d" path="res://assets/images/combat/card_holder.png" id="22_u72p4"]
 [ext_resource type="Texture2D" uid="uid://bhkr8ioafcj8e" path="res://assets/images/combat/card.png" id="23_b3775"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ccnnw"]
+shader = ExtResource("5_ccnnw")
+shader_parameter/intensity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_161w7"]
+shader = ExtResource("5_ccnnw")
+shader_parameter/intensity = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ccnnw"]
+blend_mode = 3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_161w7"]
+blend_mode = 3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxlgp"]
 
@@ -57,54 +73,18 @@ corner_radius_bottom_left = 20
 expand_margin_left = 5.0
 expand_margin_right = 5.0
 
-[sub_resource type="SystemFont" id="SystemFont_wey83"]
+[sub_resource type="SystemFont" id="SystemFont_aawo6"]
 font_names = PackedStringArray("Times New Roman")
 
-[sub_resource type="SystemFont" id="SystemFont_se7ww"]
-font_names = PackedStringArray("Times New Roman")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hmg0"]
-border_width_left = 5
-border_width_top = 5
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.6, 0.6, 0.6, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2myq"]
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlnpo"]
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwtsa"]
-border_width_left = 12
-border_width_right = 6
-border_color = Color(0.6, 0.6, 0.6, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_top = 5.0
-
-[sub_resource type="SystemFont" id="SystemFont_qysv5"]
-font_names = PackedStringArray("Times New Roman")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a23kr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccnnw"]
+content_margin_left = 12.0
+content_margin_right = 6.0
 bg_color = Color(0, 0, 0, 1)
-border_width_left = 12
-border_width_right = 6
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aawo6"]
+content_margin_left = 12.0
+content_margin_right = 6.0
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jx2q0"]
 
@@ -164,45 +144,71 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="sky_layer" type="TextureRect" parent="CanvasLayer/Control"]
-layout_mode = 0
+[node name="sky_layer" type="Control" parent="CanvasLayer/Control"]
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="sky" type="TextureRect" parent="CanvasLayer/Control/sky_layer"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
 texture = ExtResource("5_8cypa")
 
-[node name="sky_layer_blend" type="TextureRect" parent="CanvasLayer/Control"]
-visible = false
+[node name="sky_blend" type="TextureRect" parent="CanvasLayer/Control/sky_layer"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1280.0
+offset_bottom = 720.0
 texture = ExtResource("6_1dr0a")
 
-[node name="weather_layer" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="weather_layer" type="Control" parent="CanvasLayer/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="clouds_a" type="TextureRect" parent="CanvasLayer/Control/weather_layer"]
+material = SubResource("ShaderMaterial_ccnnw")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="env_Node" type="TextureRect" parent="CanvasLayer/Control"]
-visible = false
+[node name="clouds_b" type="TextureRect" parent="CanvasLayer/Control/weather_layer"]
+material = SubResource("ShaderMaterial_161w7")
 layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-expand_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="env_mask_Node" type="TextureRect" parent="CanvasLayer/Control"]
-visible = false
+[node name="atmosphere_layer" type="Control" parent="CanvasLayer/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="overlay" type="TextureRect" parent="CanvasLayer/Control/atmosphere_layer"]
+material = SubResource("CanvasItemMaterial_ccnnw")
 layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-expand_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="atmosphere_layer" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="overlay_blend" type="TextureRect" parent="CanvasLayer/Control/atmosphere_layer"]
+material = SubResource("CanvasItemMaterial_161w7")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="sprite" type="TextureRect" parent="CanvasLayer/Control"]
 layout_mode = 0
+
+[node name="env_Node" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+expand_mode = 1
+
+[node name="env_mask_Node" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+expand_mode = 1
 
 [node name="scene_picture" type="TextureRect" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -245,7 +251,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_my7jp")
 text = "Choice"
 alignment = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+[node name="autocont_dots" type="Sprite2D" parent="CanvasLayer"]
 visible = false
 modulate = Color(1, 1, 1, 0)
 script = ExtResource("3_xwsq1")
@@ -316,7 +322,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_btgui")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btgui")
 text = "OK"
 
-[node name="Control2" type="Control" parent="CanvasLayer"]
+[node name="dialogue_boxes" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -328,46 +334,37 @@ size_flags_vertical = 3
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control2"]
+[node name="top_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes"]
 visible = false
-layout_mode = 1
-offset_right = 1.0
+layout_mode = 0
+offset_right = 19.0
 focus_mode = 2
-theme_override_fonts/normal_font = SubResource("SystemFont_wey83")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_fonts/normal_font = SubResource("SystemFont_aawo6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ccnnw")
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
 selection_enabled = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control2"]
+[node name="mid_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes"]
 visible = false
-layout_mode = 1
-offset_right = 14.0
-offset_bottom = 13.0
+layout_mode = 0
+offset_right = 1.0
 focus_mode = 2
-theme_override_fonts/normal_font = SubResource("SystemFont_se7ww")
-theme_override_font_sizes/normal_font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_8hmg0")
-theme_override_styles/focus = SubResource("StyleBoxFlat_e2myq")
-theme_override_styles/background = SubResource("StyleBoxFlat_xlnpo")
-theme_override_styles/fill = SubResource("StyleBoxFlat_gwtsa")
+theme_override_fonts/normal_font = ExtResource("8_aawo6")
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
+autowrap_mode = 0
 selection_enabled = true
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Control2"]
+[node name="bot_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes"]
 visible = false
 layout_mode = 1
 offset_right = 1.0
 focus_mode = 2
-theme_override_fonts/normal_font = SubResource("SystemFont_qysv5")
-theme_override_font_sizes/normal_font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_a23kr")
-theme_override_styles/focus = SubResource("StyleBoxFlat_a23kr")
-theme_override_styles/background = SubResource("StyleBoxFlat_a23kr")
-theme_override_styles/fill = SubResource("StyleBoxFlat_a23kr")
+theme_override_fonts/normal_font = SubResource("SystemFont_aawo6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_aawo6")
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
@@ -387,6 +384,7 @@ text = "Hey guys, did you know that in terms of male human and female Pokémon b
 autowrap_mode = 3
 
 [node name="Control3" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1283,6 +1281,7 @@ horizontal_alignment = 1
 [connection signal="start_combat" from="CanvasLayer/Panel" to="." method="_on_start_combat"]
 [connection signal="start_encounter" from="CanvasLayer/Panel" to="." method="_on_start_encounter"]
 [connection signal="SELECTED" from="CanvasLayer/PanelContainer" to="." method="_on_panel_container_selected"]
+[connection signal="resized" from="CanvasLayer/dialogue_boxes/mid_box" to="." method="_mid_box_size_clamp"]
 [connection signal="pressed" from="CanvasLayer/Control3/Control/Control2/TextureRect/Button" to="." method="_on_btn_turn_dial_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control3/Control/Control2/Control/TextureRect/Button" to="." method="_on_btn_card_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control3/Control/Control2/Control/TextureRect2/Button" to="." method="_on_btn_card_2_pressed"]
