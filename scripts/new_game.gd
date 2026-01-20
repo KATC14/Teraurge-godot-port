@@ -37,6 +37,7 @@ func _on_button_male_pressed() -> void:
 func _on_button_start_game_pressed() -> void:
 	print('new game')
 	VarTests.player_name = char_name.text
+
 	VarTests.player_stats['charisma']     = int(label_char.text)
 	VarTests.player_stats['will']         = int(label_will.text)
 	VarTests.player_stats['intelligence'] = int(label_inte.text)
@@ -44,94 +45,9 @@ func _on_button_start_game_pressed() -> void:
 	VarTests.player_stats['agility']      = int(label_agil.text)
 	VarTests.player_stats['strength']     = int(label_stre.text)
 	VarTests.player_stats['endurance']    = int(label_endu.text)
-	starting_cards()
-	# load cards
-	var file = FileAccess.open("res://database/cards/cards.txt", FileAccess.READ)
-	VarTests.ALL_CARDS = file.get_as_text()
-	# load items
-	file = FileAccess.open("res://database/items/items.txt", FileAccess.READ)
-	VarTests.ALL_ITEMS = file.get_as_text()
 
-	VarTests.ITEM_INVENTORY.append("tshirt")
-	VarTests.ITEM_INVENTORY.append("jeans")
-	VarTests.ITEM_INVENTORY.append("shoes")
-	VarTests.ITEM_INVENTORY.append("white_socks")
-	VarTests.ITEM_INVENTORY.append("underwear")
-	for i in VarTests.ITEM_INVENTORY:
-		MiscFunc.equip_item(i)
-
-	VarTests.character_name = 'intro'
+	MiscFunc.game_start()
 	get_tree().change_scene_to_file("res://scenes/dialogue.tscn")
-
-func starting_cards():
-	VarTests.CARD_INVENTORY = ["kick", "kick", "body_tackle", "panicked_slap", "panicked_slap", "panicked_slap", "panicked_slap", "wrestle", "wrestle", "right_hook", "left_hook", "left_hook", "panicked_slap", "panicked_slap", "panicked_slap", "clumsy_kick", "clumsy_kick"]
-	return
-
-	# deprecated system? ignore unreachable code
-	@warning_ignore("unreachable_code")
-	var player_charisma     = VarTests.player_stats['charisma']
-	var player_will         = VarTests.player_stats['will']
-	var player_intelligence = VarTests.player_stats['intelligence']
-
-	var player_agility      = VarTests.player_stats['agility']
-	var player_strength     = VarTests.player_stats['strength']
-	var player_endurance    = VarTests.player_stats['endurance']
-	#CHARISMA CARDS
-	match player_charisma:
-		1: pass
-		#2: pass
-		#3: pass
-		#4: pass
-
-	#WILL CARDS
-	match player_will:
-		1: VarTests.CARD_INVENTORY.append_array(["panicked_slap", "panicked_slap", "panicked_slap", "panicked_slap", "panicked_slap", "panicked_slap"])
-		#2: VarTests.CARD_INVENTORY.append_array(["panicked_slap", "panicked_slap", "panicked_slap"])
-		#3: VarTests.CARD_INVENTORY.append_array(["panicked_slap", "headbutt"])
-		#4: VarTests.CARD_INVENTORY.append_array(["bite", "headbutt"])
-
-	#INTELLIGENCE CARDS
-	match player_intelligence:
-		1: VarTests.player_hand_size = 4
-		#2: VarTests.player_hand_size = 5
-		#3: VarTests.player_hand_size = 6
-		#4: VarTests.player_hand_size = 8
-
-	#AGILITY CARDS
-	match player_agility:
-		1: VarTests.CARD_INVENTORY.append_array(["quick_punch"])
-		#2: VarTests.CARD_INVENTORY.append_array(["quick_punch", "quick_punch", "quick_punch"])
-		#3: VarTests.CARD_INVENTORY.append_array(["quick_punch", "quick_punch", "quick_punch", "quick_punch", "quick_punch"])
-		#4: VarTests.CARD_INVENTORY.append_array(["quick_punch", "quick_punch", "quick_punch", "quick_punch", "quick_punch", "quick_punch", "quick_punch", "quick_punch", "quick_punch"])
-
-	if player_agility == 2 and player_strength == 2:
-		VarTests.CARD_INVENTORY.append_array(["kick", "kick"])
-
-	#STRENGTH CARDS
-	match player_strength:
-		1: VarTests.CARD_INVENTORY.append_array(["punch"])
-		#2: VarTests.CARD_INVENTORY.append_array(["punch", "punch"])
-		#3:
-		#	VarTests.CARD_INVENTORY.append_array(["punch", "punch", "punch"])
-		#	if player_agility >= 2: VarTests.CARD_INVENTORY.append_array(["shove", "shove"])
-		#4:
-		#	VarTests.CARD_INVENTORY.append_array(["punch", "punch", "punch", "punch", "heavy_punch"])
-		#	if player_agility >= 2: VarTests.CARD_INVENTORY.append_array(["shove", "shove", "shove"])
-
-	#ENDURANCE CARDS
-	match player_endurance:
-		1: VarTests.player_base_hitpoints = 32
-		#2:
-		#	VarTests.player_base_hitpoints = 40
-		#	VarTests.CARD_INVENTORY.append_array(["recovery"])
-		#3:
-		#	VarTests.player_base_hitpoints = 44
-		#	VarTests.CARD_INVENTORY.append_array(["recovery", "recovery"])
-		#4:
-		#	VarTests.player_base_hitpoints = 46
-		#	VarTests.CARD_INVENTORY.append_array(["recovery", "recovery", "recovery"])
-	#recovery at 3 and 4 endurance
-	VarTests.player_DECK = ["punch"]
 
 # filters
 @onready var filter_rape_off  = $Control2/Button

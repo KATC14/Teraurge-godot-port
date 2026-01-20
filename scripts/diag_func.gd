@@ -14,13 +14,17 @@ signal start_combat
 signal player_death
 
 
-#DIALOGUE LOGIC HANDLER#================================================================================
-func Logigier(logic: String):
+# DIALOGUE LOGIC HANDLER#================================================================================
+func Logigier(index, logic: String):
+	print('VarTests.last_index logic ', index)
 	if logic.contains(','):
 		for funk in logic.split(","):
+			VarTests.last_index = index
 			script_library(funk.strip_edges())
 	else:
+		print('logic 1 ', logic)
 		script_library(logic.strip_edges())
+
 func script_library(logic: String):
 	var diag_file
 	var s_index
@@ -30,10 +34,10 @@ func script_library(logic: String):
 	#var statement: String
 	var slogic: Array
 
-	print('logic ', logic)
+	#print('logic ', logic)
 	#SPLIT STRING TO VARIABLES
 	slogic = logic.split(" ")
-	print('slogic ', slogic)
+	#print('slogic ', slogic)
 
 	#EXTRA VARIABLES
 	#var counter_match: int
@@ -63,7 +67,7 @@ func script_library(logic: String):
 		"magic":
 			#change_default_sprite (character) (sprite)
 			VarTests.ex_magic = true
-#TODO add in sound
+# TODO add in sound
 #		"play_sound":
 			#play_sound (sound) (volume)
 #			play_sound(slogic[1], Number(slogic[2]))
@@ -173,11 +177,11 @@ func script_library(logic: String):
 		"save_index":
 			#save_index (saved_index)
 			#saves a conversation index
-			VarTests.DINDEX[VarTests.character_name] = slogic[1]
+			VarTests.saved_indexs[VarTests.character_name] = slogic[1]
 		"save_index_by_character":
 			#save_index_by_character (character) (saved_index)
 			#saves a conversation index for a specific character
-			VarTests.DINDEX[slogic[1]] = slogic[2]
+			VarTests.saved_indexs[slogic[1]] = slogic[2]
 		"start_encounter":
 			#start_encounter (place) (character) (optional index)
 			VarTests.has_story = false #important to set if exiting from a story section
@@ -554,6 +558,7 @@ func script_library(logic: String):
 		"test_func":
 			leave_encounter.emit()
 		_:
+			# TODO add in error_message
 			print("ERROR: Dialogue function: \"" + logic + "\" is not a valid scripting function.")
 #			error_message("ERROR: Dialogue function: \"" + logic + "\" is not a valid scripting function.")
 	return next_index

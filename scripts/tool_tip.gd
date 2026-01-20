@@ -11,12 +11,8 @@ func _input(_event: InputEvent) -> void:
 	# PLACEMENT
 	tooltip.position.y = mouse_pos.y  - 10 - tooltip.size.y
 	tooltip.position.x = mouse_pos.x + 20
-	#print('width ', width)
-	#print()
-	#print((tooltip.position.x + tooltip.size.x))
 
 	if (tooltip.position.x + tooltip.size.x) > width:
-		#print(tooltip.position.x)
 		tooltip.position.x -= (tooltip.size.x + 20)
 	# hack for making it stay on the left of the visable area
 	## will not work if area changes
@@ -25,5 +21,3 @@ func _input(_event: InputEvent) -> void:
 	# stay below top of screen
 	if tooltip.position.y < height:
 		tooltip.position.y = height
-	#print(tooltip.position.y)
-	#print(tooltip.position.x)

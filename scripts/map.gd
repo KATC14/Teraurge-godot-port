@@ -93,6 +93,7 @@ func _ready() -> void:
 	#	MiscFunc.equip_item(i)
 
 	#parse_equiped_cards()
+	VarTests.map_active = true
 	create_locations()
 	create_dicovered_locations()
 
@@ -202,8 +203,6 @@ func create_locations() -> void:
 	var maxx = map_file.split('\n').size()
 	for i in map_file.split('\n').size():
 		var data_out = map_file.split('\n')[i].replace('[', '').replace(']', '').split('|')
-		#print('a ', data_out[0])
-		#print('b ', int(data_out[0]))
 		var x = float(data_out[0])
 		var y = float(data_out[1])
 		var r = float(data_out[2])
@@ -282,12 +281,12 @@ func _on_load_blip(loc_name):
 	var result    = parse_env_vars(stats_file)
 	#print(result)
 	var disco     = Utils.array_find(result, 'discoverable')
-	print(disco)
+	print('disco ', disco)
 	if disco != -1:
 		# location revisit
 		if VarTests.DISCOVERED_LOCATIONS.has(loc_name):
 			var def_msg = Utils.array_find(result, 'default_message')
-			print(def_msg)
+			print('def_msg ', def_msg)
 			if def_msg != -1:
 				var text = result[def_msg].split(':')[-1]
 				discovery_popup(text, loc_name)
@@ -313,7 +312,7 @@ func env_encounter(stats_file):
 			var second  = []
 			var third   = []
 			var forth   = []
-			var value = MiscFunc.get_allowed(options_parsed)
+			var value = Showif.get_allowed(options_parsed)
 			for i in range(len(value)):
 				if not value[i]:
 					first.append(options_parsed[0][i])
@@ -509,11 +508,9 @@ func count_items(deck):
 	for i in deck:
 		if i not in unique_items:
 			unique_items.append(i)
-	#print(unique_items)
 	var many = []
 	for i in unique_items:
 		many.append([i, deck.count(i)])
-	#print(many)
 	var formatted = []
 	var count = 0
 	for i in many:
@@ -521,8 +518,6 @@ func count_items(deck):
 		var amount = int(i[1])
 		count += amount
 		formatted.append('%sx %s' % [amount, card])
-	#print(count)
-	#print(formatted)
 	return [count, formatted]
 
 func is_clicked(event):

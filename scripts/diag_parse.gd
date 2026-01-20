@@ -41,6 +41,8 @@ func parse_options(opt_array):
 	var options = []
 	var clicfunc = []
 	for i in opt_array:
+		if i.substr(1).find(']') == -1:
+			i = '[%s] %s' % [i, i]
 		var temp = i.substr(1).split(']')
 		options.append(temp[1].split('//')[0].strip_edges())
 		if '|' in temp[0]:
@@ -62,9 +64,6 @@ func parse_options(opt_array):
 			clicfunc.append(optfunc)
 		else:
 			clicfunc.append(false)
-	#print(index)
-	#print(function)
-	#print(options)
 	return [index, function, clicfunc, options]
 
 func parse_chunk(chunk):
@@ -77,9 +76,6 @@ func parse_chunk(chunk):
 			var temp = i.split('}')
 			indfunc.append(temp[0].strip_edges())
 			diagopt.append(temp[1].strip_edges())
-	#print('if', indfunc)
-	#print('do', diagopt)
-	#print()
 	var index    = []
 	var function = []
 	for i in indfunc:
@@ -90,9 +86,6 @@ func parse_chunk(chunk):
 		else:
 			index.append(i.strip_edges())
 			function.append(null)
-	#print('i', index)
-	#print('f', function)
-	#print()
 	var dialogue = []
 	var options  = []
 	for i in diagopt:
@@ -108,9 +101,6 @@ func parse_chunk(chunk):
 				dialogue.append(temp[0])
 			for x in range(Utils.array_find(temp, '['), len(temp)):
 				options.append(temp[x].strip_edges())
-	#print('dialogue', dialogue)
-	#print('options', options)
-	#print()
 	return [function, dialogue, options]#index, 
 
 func begin_parsing(data, start_index):

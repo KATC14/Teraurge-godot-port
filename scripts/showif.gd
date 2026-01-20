@@ -1,7 +1,13 @@
 extends Node
 
+func get_allowed(the_array):#, full_str='empty'
+	var ret_array = []
+	for i in range(len(the_array[0])):
+		var value = check_for_showif(the_array[2][i])#, full_str
+		ret_array.append(value)
+	return ret_array
 
-func check_for_showif(opt_parsed, full_string='empty'):
+func check_for_showif(opt_parsed):#, full_string='empty'
 	# catch for option slash functions
 	if not opt_parsed:
 		return false
@@ -12,10 +18,13 @@ func check_for_showif(opt_parsed, full_string='empty'):
 		if (i.find("showif") != -1):
 			value = showif(i)
 
-		#Unique to HIDEIF!! (REVERSED BOOLEAN)
+		# Unique to HIDEIF!! (REVERSED BOOLEAN)
 		if (i.find("hideif") != -1):
-			value = showif(i, full_string)
-			value = not value
+			value = showif(i)#, full_string
+			#print('value 0 ', value)
+			if value:
+				value = not value
+			#print('value 1 ', value)
 
 		allowed.append(value)
 	# IF TRUE IN ARRAY -> HIDE (true)
@@ -27,7 +36,7 @@ func check_for_showif(opt_parsed, full_string='empty'):
 	#IF NO TRUE IN ARRAY -> UNHIDE (false)
 	return false
 
-func showif(logic, full_string='empty'):
+func showif(logic):#, full_string='empty'
 	#VARIABLES
 	#var diag_index
 	var statement
@@ -62,24 +71,24 @@ func showif(logic, full_string='empty'):
 
 	match statement:
 		#=====================================================================
-		"clicked":
+		# commemted out because I cant copy someones elses code for shit and I wanted to move on
+		# but I got it to work another way, making the comment under this one even more true - KATC14
+		#"clicked":
 			#Hide if the option has been clicked previously
 			#Hidden options must have a unique pointer in the current options list!
 
 			#THIS MIGHT CAUSE PROBLEMS!! SHIT TESTING AND STRANGE CODE!!
 			#Check showif censor and dialogue_functions for rest of the spaghetti.
 
-			var fs_hash = full_string.md5_text()
+		#	if not full_string: full_string = 'empty'
+		#	var fs_hash = full_string.md5_text()
 
-			print('clicked char ', VarTests.character_name)
-			print('clicked is it? ', VarTests.CLICKED_OPTIONS.has(VarTests.character_name))
-			print('clicked full_string ', full_string)
-			if VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
-				if VarTests.CLICKED_OPTIONS[VarTests.character_name].find(fs_hash) != -1:
-					return false
-				else:
-					return true
-			return false
+		#	if VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
+		#		if VarTests.CLICKED_OPTIONS[VarTests.character_name].find(fs_hash) != -1:
+		#			return true
+		#		else:
+		#			return false
+		#	return false
 
 			#TESTED: 2.12.2015
 			#Works so far I guess. There might be rare problems with hash collision
@@ -175,10 +184,10 @@ func showif(logic, full_string='empty'):
 			#=====================================================================
 		"charisma", "will", "intelligence", "perception", "agility", "strength", "endurance":
 			#(stat name).(required amount)
-			print('has_stat stat ', VarTests.player_stats[statement])
-			print('has_stat req ', int(split1))
+			print('has_stat stat ', statement, ' ', VarTests.player_stats[statement])
+			print('has_stat req ', statement, ' ', int(split1))
 
-			if VarTests.player_stats[statement] < int(split1):
+			if int(VarTests.player_stats[statement]) < int(split1):
 				return true
 			else:
 				return false

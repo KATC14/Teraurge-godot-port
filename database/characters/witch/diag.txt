@@ -7,7 +7,7 @@
     [uh_hello] Uh, hello.   //showif.has_stat.will.8
     [ | gore_filter attack_monster_c attack_monster] (Attack the monster) //showif.has_stat.will.6
     [quick_start] QUICK START //showif.has_a_save
-    [reading3] debug skip
+    [reading3] debug skip //showif.debug
 	[silent_return] (Return)
 	[ded] (Death)
 	[ | start_encounter sejan_beach_cave caenemung] (Get ready)

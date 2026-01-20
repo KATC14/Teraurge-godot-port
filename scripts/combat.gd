@@ -110,19 +110,19 @@ var stats_file
 @onready var player_stat_str_control  = %player_stat_str_control
 @onready var player_stat_end_control  = %player_stat_end_control
 
-var player_stat_cha_lbl
-var player_stat_cha_tex
-var player_stat_will_lbl
-var player_stat_will_tex
-var player_stat_int_lbl
-var player_stat_int_tex
+@onready var player_stat_cha_lbl  = $CanvasLayer/Control3/player_combat_ui/player_stat_cha_control/Label
+@onready var player_stat_cha_tex  = $CanvasLayer/Control3/player_combat_ui/player_stat_cha_control/TextureRect
+@onready var player_stat_will_lbl = $CanvasLayer/Control3/player_combat_ui/player_stat_will_control/Label
+@onready var player_stat_will_tex = $CanvasLayer/Control3/player_combat_ui/player_stat_will_control/TextureRect
+@onready var player_stat_int_lbl  = $CanvasLayer/Control3/player_combat_ui/player_stat_int_control/Label
+@onready var player_stat_int_tex  = $CanvasLayer/Control3/player_combat_ui/player_stat_int_control/TextureRect
 
-var player_stat_agi_lbl
-var player_stat_agi_tex
-var player_stat_str_lbl
-var player_stat_str_tex
-var player_stat_end_lbl
-var player_stat_end_tex
+@onready var player_stat_agi_lbl = $CanvasLayer/Control3/player_combat_ui/player_stat_agi_control/Label
+@onready var player_stat_agi_tex = $CanvasLayer/Control3/player_combat_ui/player_stat_agi_control/TextureRect
+@onready var player_stat_str_lbl = $CanvasLayer/Control3/player_combat_ui/player_stat_str_control/Label
+@onready var player_stat_str_tex = $CanvasLayer/Control3/player_combat_ui/player_stat_str_control/TextureRect
+@onready var player_stat_end_lbl = $CanvasLayer/Control3/player_combat_ui/player_stat_end_control/Label
+@onready var player_stat_end_tex = $CanvasLayer/Control3/player_combat_ui/player_stat_end_control/TextureRect
 
 
 @onready var enemy_res_heat_lbl   = %enemy_res_heat
@@ -143,57 +143,13 @@ var player_stat_end_tex
 @onready var enemy_stat_end_lbl   = %enemy_stat_end
 
 func _ready() -> void:
-	# TEMP
-	VarTests.sprite = sprite
-	VarTests.character_sprite = "character"
-	VarTests.character_name = 'braq_m'# witch braq_m
-	VarTests.ALL_CARDS = Utils.load_file("res://database/cards/cards.txt")
-	stats_file = Utils.load_file("res://database/characters/braq_m/stats.txt")
-	VarTests.CARD_INVENTORY = [
-		"kick", "kick", "body_tackle", "panicked_slap", "panicked_slap",
-		"panicked_slap", "panicked_slap", "wrestle", "wrestle", "right_hook",
-		"left_hook", "left_hook", "panicked_slap", "panicked_slap", "panicked_slap",
-		"clumsy_kick", "clumsy_kick"
-	]
-	var default_env = MiscFunc.parse_stat('default_env', stats_file.split('\n'))
-	if default_env == null:
-		default_env = 'not_defined'
-	VarTests.environment_name = default_env
-	var env_stats = Utils.load_file('res://database/environments/%s/stats.txt' % VarTests.environment_name).split('\n')
-	print(env_stats)
-
-	var found = MiscFunc.parse_stat('ambient', env_stats)
-	if found != "0":
-		VarTests.ambient_strength = float(found)
-	else:
-		VarTests.ambient_strength = 0.2
-
-	found = MiscFunc.parse_stat('ambient_color', env_stats)
-	if found != "0":
-		VarTests.env_ambient = Color.html(found)
-	else:
-		VarTests.env_ambient = Color.WHITE
-	# TEMP
+	VarTests.map_active = false
 	stats_file = LoadStats.read_char_stats(VarTests.character_name)
 
 	player_combat_ui.visible = true
 	enemy_combat_ui.visible  = true
 	player_combat_ui.position.x = -player_combat_ui.size.x
 	enemy_combat_ui.position.x  = VarTests.stage_width + enemy_combat_ui.size.x
-
-	player_stat_cha_lbl   = player_stat_cha_control.get_child(1)
-	player_stat_cha_tex   = player_stat_cha_control.get_child(0)
-	player_stat_will_lbl  = player_stat_will_control.get_child(1)
-	player_stat_will_tex  = player_stat_will_control.get_child(0)
-	player_stat_int_lbl   = player_stat_int_control.get_child(1)
-	player_stat_int_tex   = player_stat_int_control.get_child(0)
-
-	player_stat_agi_lbl   = player_stat_agi_control.get_child(1)
-	player_stat_agi_tex   = player_stat_agi_control.get_child(0)
-	player_stat_str_lbl   = player_stat_str_control.get_child(1)
-	player_stat_str_tex   = player_stat_str_control.get_child(0)
-	player_stat_end_lbl   = player_stat_end_control.get_child(1)
-	player_stat_end_tex   = player_stat_end_control.get_child(0)
 
 	if VarTests.scene_character != VarTests.character_name:
 		MiscFunc.make_character()
@@ -233,11 +189,11 @@ func set_enemy_stats():
 
 func randomize_hand(who):
 	var deck
-	if who == 'player':
-		deck = VarTests.CARD_INVENTORY
-	else:
-		deck = enemy_deck
 	var hand = []
+
+	if who == 'player': deck = VarTests.CARD_INVENTORY
+	else:               deck = enemy_deck
+
 	for i in range(7): hand.append(deck.pick_random())
 	if who == 'player':
 		hand = hand.map(func(item): return item.replace('_', ' '))
@@ -264,7 +220,6 @@ func combat_ai():
 		attacks_timer.wait_time = 900.0 / 1000.0
 
 		var play_this_card = enemy_hand.pick_random()
-		#print('random_tries ', random_tries <= 0)
 
 		if random_tries <= 0 or player_health <= 0: # END TURN IF ALL TRIES GONE
 			attacks_timer.stop()
@@ -283,7 +238,6 @@ func combat_ai():
 
 # RESET STATS
 func reset_stats(player):
-	print('stats rest')
 	combat_stats["%s_charisma_used"     % player] = 0
 	combat_stats["%s_will_used"         % player] = 0
 	combat_stats["%s_intelligence_used" % player] = 0
@@ -299,15 +253,16 @@ func change_turn_to(player):
 	# CHARACTER TURN
 	if player == "enemy":
 		turn_dail.get_parent().texture = turn_dial_enemy
-		print('turn changed ', player)
 		reset_stats("enemy")
 		player_turn = false
+		VarTests.whos_turn = 'enemy'
 		turn_dail.disabled = true
 		combat_ai()
 	# PLAYER TURN
 	if player == "player":
 		turn_dail.get_parent().texture = turn_dial_player
 		player_turn = true
+		VarTests.whos_turn = 'player'
 		turn_dail.disabled = false
 		reset_stats("player")
 
@@ -318,7 +273,6 @@ func change_turn_to(player):
 		randomize_hand("player")
 
 func damage(damage_to_hitpoints, target):
-	print('target ', target)
 	if damage_to_hitpoints > 0:
 		combat_stats["%s_hitpoints_damage" % target] = damage_to_hitpoints
 
@@ -345,7 +299,6 @@ func damage(damage_to_hitpoints, target):
 
 @warning_ignore("unused_parameter")
 func refresh_combat_ui(where):
-	#print('dth where ', where)
 	player_stat_cha_lbl.text  = str(VarTests.player_stats["charisma"]     - combat_stats["player_charisma_used"])
 	player_stat_will_lbl.text = str(VarTests.player_stats["will"]         - combat_stats["player_will_used"])
 	player_stat_int_lbl.text  = str(VarTests.player_stats["intelligence"] - combat_stats["player_intelligence_used"])
@@ -513,8 +466,6 @@ func play_card(attacker, the_card, target):
 	var s_left = combat_stats["%s_strength"     % attacker] - combat_stats["%s_strength_used"     % attacker]
 	var e_left = combat_stats["%s_endurance"    % attacker] - combat_stats["%s_endurance_used"    % attacker]
 
-	#print('c_left ', c_left)
-	#print('a_cost > a_left ', a_cost > a_left)
 	if c_cost > c_left:
 		not_enough_stat("charisma")
 		cannot_afford = true
@@ -565,8 +516,6 @@ func play_card(attacker, the_card, target):
 	damage_to_hitpoints += resolve_damage(m_dmg,      "magic",  target)
 	damage_to_hitpoints += resolve_damage(b_dmg,      "bio",    target)
 	damage_to_hitpoints += h_dmg
-	#print('dth ', damage_to_hitpoints)
-	print('attacker ', attacker)
 
 	if attacker == "enemy":
 		floating_text(sprite, the_card, '#FF9933', 25)

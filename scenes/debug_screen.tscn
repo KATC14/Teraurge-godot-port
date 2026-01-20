@@ -1,0 +1,802 @@
+[gd_scene load_steps=17 format=3 uid="uid://csvl4qvh4o7go"]
+
+[ext_resource type="Script" uid="uid://b6ognp6ltwsh6" path="res://scripts/debug_screen.gd" id="1_nxn64"]
+[ext_resource type="Script" uid="uid://dp6cmyn7ilaiq" path="res://scripts/ChoicesDialog.gd" id="2_eos6k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5r3a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2kiia"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ebj6l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jstqi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wftvn"]
+bg_color = Color(0.6, 0.6, 1, 0.196078)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w7qnu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eos6k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xklg5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ggwjm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nxn64"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxn64"]
+bg_color = Color(0.6392157, 0.6392157, 0.6392157, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eos6k"]
+bg_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xklg5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggwjm"]
+bg_color = Color(0, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_nxn64")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="flags_control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BoxContainer" type="BoxContainer" parent="CanvasLayer/flags_control"]
+layout_mode = 0
+offset_left = 27.0
+offset_right = 288.0
+offset_bottom = 27.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/flags_control/BoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Flags"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/flags_control"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 27.0
+offset_right = 288.0
+offset_bottom = 55.0
+color = Color(0.2, 0.4, 0.4, 1)
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/flags_control/ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 263.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g5r3a")
+autowrap_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/flags_control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 15.0
+offset_right = 248.0
+offset_bottom = 670.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2kiia")
+script = ExtResource("2_eos6k")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/flags_control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/flags_control/PanelContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/flags_control/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Button" type="Button" parent="CanvasLayer/flags_control/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ebj6l")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jstqi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wftvn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w7qnu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wftvn")
+text = "Choice"
+alignment = 0
+
+[node name="inventory_control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 285.0
+offset_right = 325.0
+offset_bottom = 40.0
+
+[node name="BoxContainer" type="BoxContainer" parent="CanvasLayer/inventory_control"]
+layout_mode = 0
+offset_left = 27.0
+offset_right = 288.0
+offset_bottom = 27.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/inventory_control/BoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Player inventory"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/inventory_control"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 27.0
+offset_right = 288.0
+offset_bottom = 55.0
+color = Color(0.2, 0.4, 0.4, 1)
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/inventory_control/ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 263.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g5r3a")
+autowrap_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/inventory_control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 15.0
+offset_right = 248.0
+offset_bottom = 670.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2kiia")
+script = ExtResource("2_eos6k")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/inventory_control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/inventory_control/PanelContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/inventory_control/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Button" type="Button" parent="CanvasLayer/inventory_control/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ebj6l")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jstqi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wftvn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w7qnu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wftvn")
+text = "Choice"
+alignment = 0
+
+[node name="characters_control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 982.0
+offset_top = 5.0
+offset_right = 1022.0
+offset_bottom = 45.0
+
+[node name="BoxContainer" type="BoxContainer" parent="CanvasLayer/characters_control"]
+layout_mode = 0
+offset_left = 27.0
+offset_right = 288.0
+offset_bottom = 27.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/characters_control/BoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Characters"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/characters_control"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 27.0
+offset_right = 288.0
+offset_bottom = 55.0
+color = Color(0.2, 0.4, 0.4, 1)
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/characters_control/ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 263.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g5r3a")
+autowrap_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/characters_control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 15.0
+offset_right = 248.0
+offset_bottom = 670.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2kiia")
+script = ExtResource("2_eos6k")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/characters_control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/characters_control/PanelContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/characters_control/PanelContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Button" type="Button" parent="CanvasLayer/characters_control/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ebj6l")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jstqi")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_eos6k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w7qnu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xklg5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ggwjm")
+text = "Choice"
+alignment = 0
+
+[node name="stats_control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control"]
+layout_mode = 0
+offset_left = 312.0
+offset_top = 368.0
+offset_right = 919.0
+offset_bottom = 710.0
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control"]
+anchors_preset = 0
+offset_left = 312.0
+offset_top = 368.0
+offset_right = 352.0
+offset_bottom = 408.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/stats_control/Control"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 44.0
+offset_bottom = 35.0
+
+[node name="Label" type="Label" parent="CanvasLayer/stats_control/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "CHA"
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control/Control/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer/Control"]
+layout_mode = 0
+offset_left = -1.0302429
+offset_top = -0.5858154
+offset_right = 33.969757
+offset_bottom = 26.414185
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer/Control"]
+clip_contents = true
+layout_mode = 0
+offset_right = 33.0
+offset_bottom = 25.0
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/stats_control/Control/VBoxContainer/Control/ColorRect"]
+layout_mode = 0
+offset_left = -17.030243
+offset_top = -2.5858154
+offset_right = 51.532257
+offset_bottom = 28.414185
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxn64")
+text = "4"
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/stats_control/Control"]
+layout_mode = 0
+offset_left = 55.969757
+offset_top = 8.414185
+offset_right = 88.96976
+offset_bottom = 35.414185
+
+[node name="Label" type="Label" parent="CanvasLayer/stats_control/Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "WLL"
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control/Control/VBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer2/Control"]
+layout_mode = 0
+offset_left = -1.0302429
+offset_top = -0.5858154
+offset_right = 33.969757
+offset_bottom = 26.414185
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer2/Control"]
+clip_contents = true
+layout_mode = 0
+offset_right = 33.0
+offset_bottom = 25.0
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/stats_control/Control/VBoxContainer2/Control/ColorRect"]
+layout_mode = 0
+offset_left = -17.030243
+offset_top = -2.5858154
+offset_right = 51.532257
+offset_bottom = 28.414185
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxn64")
+text = "4"
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/stats_control/Control"]
+layout_mode = 0
+offset_left = 100.96976
+offset_top = 8.414185
+offset_right = 127.96976
+offset_bottom = 35.414185
+
+[node name="Label" type="Label" parent="CanvasLayer/stats_control/Control/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "INT"
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control/Control/VBoxContainer3"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer3/Control"]
+layout_mode = 0
+offset_left = -1.0302429
+offset_top = -0.5858154
+offset_right = 33.969757
+offset_bottom = 26.414185
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer3/Control"]
+clip_contents = true
+layout_mode = 0
+offset_right = 33.0
+offset_bottom = 25.0
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/stats_control/Control/VBoxContainer3/Control/ColorRect"]
+layout_mode = 0
+offset_left = -17.030243
+offset_top = -2.5858154
+offset_right = 51.532257
+offset_bottom = 28.414185
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxn64")
+text = "4"
+alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/stats_control/Control"]
+layout_mode = 0
+offset_left = 145.96976
+offset_top = 8.414185
+offset_right = 175.96976
+offset_bottom = 35.414185
+
+[node name="Label" type="Label" parent="CanvasLayer/stats_control/Control/VBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "PER"
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control/Control/VBoxContainer4"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer4/Control"]
+layout_mode = 0
+offset_left = -1.0302429
+offset_top = -0.5858154
+offset_right = 33.969757
+offset_bottom = 26.414185
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer4/Control"]
+clip_contents = true
+layout_mode = 0
+offset_right = 33.0
+offset_bottom = 25.0
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/stats_control/Control/VBoxContainer4/Control/ColorRect"]
+layout_mode = 0
+offset_left = -17.030243
+offset_top = -2.5858154
+offset_right = 51.532257
+offset_bottom = 28.414185
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxn64")
+alignment = 1
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="CanvasLayer/stats_control/Control"]
+layout_mode = 0
+offset_left = 190.96976
+offset_top = 8.414185
+offset_right = 218.96976
+offset_bottom = 35.414185
+
+[node name="Label" type="Label" parent="CanvasLayer/stats_control/Control/VBoxContainer5"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "AGI"
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control/Control/VBoxContainer5"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer5/Control"]
+layout_mode = 0
+offset_left = -1.0302429
+offset_top = -0.5858154
+offset_right = 33.969757
+offset_bottom = 26.414185
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer5/Control"]
+clip_contents = true
+layout_mode = 0
+offset_right = 33.0
+offset_bottom = 25.0
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/stats_control/Control/VBoxContainer5/Control/ColorRect"]
+layout_mode = 0
+offset_left = -17.030243
+offset_top = -2.5858154
+offset_right = 51.532257
+offset_bottom = 28.414185
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxn64")
+text = "4"
+alignment = 1
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="CanvasLayer/stats_control/Control"]
+layout_mode = 0
+offset_left = 235.96976
+offset_top = 8.414185
+offset_right = 264.96976
+offset_bottom = 35.414185
+
+[node name="Label" type="Label" parent="CanvasLayer/stats_control/Control/VBoxContainer6"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "STR"
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control/Control/VBoxContainer6"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer6/Control"]
+layout_mode = 0
+offset_left = -1.0302429
+offset_top = -0.5858154
+offset_right = 33.969757
+offset_bottom = 26.414185
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer6/Control"]
+clip_contents = true
+layout_mode = 0
+offset_right = 33.0
+offset_bottom = 25.0
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/stats_control/Control/VBoxContainer6/Control/ColorRect"]
+layout_mode = 0
+offset_left = -17.969696
+offset_top = -2.4141846
+offset_right = 50.592804
+offset_bottom = 28.585815
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxn64")
+text = "4"
+alignment = 1
+
+[node name="VBoxContainer7" type="VBoxContainer" parent="CanvasLayer/stats_control/Control"]
+layout_mode = 0
+offset_left = 280.96976
+offset_top = 8.414185
+offset_right = 314.96976
+offset_bottom = 35.414185
+
+[node name="Label" type="Label" parent="CanvasLayer/stats_control/Control/VBoxContainer7"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "END"
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control/Control/VBoxContainer7"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer7/Control"]
+layout_mode = 0
+offset_left = -1.0302429
+offset_top = -0.5858154
+offset_right = 33.969757
+offset_bottom = 26.414185
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats_control/Control/VBoxContainer7/Control"]
+clip_contents = true
+layout_mode = 0
+offset_right = 33.0
+offset_bottom = 25.0
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/stats_control/Control/VBoxContainer7/Control/ColorRect"]
+layout_mode = 0
+offset_left = -17.030243
+offset_top = -2.5858154
+offset_right = 51.532257
+offset_bottom = 28.414185
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxn64")
+text = "4"
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/stats_control/Control"]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 16.0
+offset_right = 522.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_nxn64")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nxn64")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nxn64")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nxn64")
+text = "male"
+
+[node name="Control2" type="Control" parent="CanvasLayer/stats_control"]
+anchors_preset = 0
+offset_left = 312.0
+offset_top = 368.0
+offset_right = 352.0
+offset_bottom = 408.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/stats_control/Control2"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 57.0
+offset_bottom = 99.0
+
+[node name="Label" type="Label" parent="CanvasLayer/stats_control/Control2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Krats"
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control/Control2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control/Control2/VBoxContainer/Control"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 48.0
+offset_bottom = 21.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats_control/Control2/VBoxContainer/Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = -4.969757
+offset_top = -5.4141846
+offset_right = 47.030243
+offset_bottom = 19.585815
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/stats_control/Control2/VBoxContainer/Control/ColorRect"]
+layout_mode = 0
+offset_left = -8.030243
+offset_top = -3.5858154
+offset_right = 60.532257
+offset_bottom = 27.414185
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxn64")
+text = "80"
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/stats_control/Control2"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 72.0
+offset_right = 124.0
+offset_bottom = 99.0
+
+[node name="Label" type="Label" parent="CanvasLayer/stats_control/Control2/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Adats"
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control/Control2/VBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control/Control2/VBoxContainer2/Control"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 48.0
+offset_bottom = 21.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats_control/Control2/VBoxContainer2/Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = -4.969757
+offset_top = -5.4141846
+offset_right = 47.030243
+offset_bottom = 19.585815
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/stats_control/Control2/VBoxContainer2/Control/ColorRect"]
+layout_mode = 0
+offset_left = -8.030243
+offset_top = -3.5858154
+offset_right = 60.532257
+offset_bottom = 27.414185
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxn64")
+text = "6"
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/stats_control/Control2"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 72.0
+offset_right = 194.0
+offset_bottom = 99.0
+
+[node name="Label" type="Label" parent="CanvasLayer/stats_control/Control2/VBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "  Name"
+
+[node name="Control" type="Control" parent="CanvasLayer/stats_control/Control2/VBoxContainer3"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control/Control2/VBoxContainer3/Control"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 226.0
+offset_bottom = 21.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/stats_control/Control2/VBoxContainer3/Control"]
+clip_contents = true
+layout_mode = 0
+offset_left = -4.969757
+offset_top = -5.4141846
+offset_right = 225.03024
+offset_bottom = 19.585815
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/stats_control/Control2/VBoxContainer3/Control/ColorRect"]
+layout_mode = 0
+offset_left = -0.03024292
+offset_top = -2.5858154
+offset_right = 229.96976
+offset_bottom = 28.414185
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nxn64")
+text = "John"
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/stats_control/Control2"]
+layout_mode = 0
+offset_left = 322.0
+offset_top = 40.0
+offset_right = 375.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_eos6k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xklg5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ggwjm")
+text = "Save"
+
+[connection signal="ENTER" from="CanvasLayer/characters_control/PanelContainer" to="." method="_on_tooltip_hover"]
+[connection signal="EXIT" from="CanvasLayer/characters_control/PanelContainer" to="." method="_on_tooltip_exit"]
+[connection signal="SELECTED" from="CanvasLayer/characters_control/PanelContainer" to="." method="_on_character_selected"]
+[connection signal="pressed" from="CanvasLayer/stats_control/Control/Button" to="." method="_on_gender_pressed"]
+[connection signal="pressed" from="CanvasLayer/stats_control/Control2/Button" to="." method="_on_stats_save_pressed"]

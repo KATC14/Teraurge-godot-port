@@ -256,7 +256,7 @@ visible = false
 modulate = Color(1, 1, 1, 0)
 script = ExtResource("3_xwsq1")
 
-[node name="Panel2" type="Panel" parent="CanvasLayer"]
+[node name="error_label" type="Panel" parent="CanvasLayer"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -271,7 +271,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gxdpf")
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Panel2"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/error_label"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -288,7 +288,7 @@ script = ExtResource("6_3q6qr")
 end = 800
 width = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel2"]
+[node name="Label" type="Label" parent="CanvasLayer/error_label"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -299,7 +299,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/Panel2"]
+[node name="Button" type="Button" parent="CanvasLayer/error_label"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

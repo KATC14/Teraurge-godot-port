@@ -22,9 +22,9 @@ extends Node2D
 @onready var mid_box = $CanvasLayer/dialogue_boxes/mid_box
 @onready var bot_box = $CanvasLayer/dialogue_boxes/bot_box
 
-@onready var error            = $CanvasLayer/Panel2
-@onready var error_label      = $CanvasLayer/Panel2/Label
-@onready var error_button     = $CanvasLayer/Panel2/Button
+@onready var error            = $CanvasLayer/error_label
+@onready var error_label      = $CanvasLayer/error_label/Label
+@onready var error_button     = $CanvasLayer/error_label/Button
 
 # I wanted to use the draw feature to programmatically draw the dots :)
 @onready var autocont_dots    = $CanvasLayer/autocont_dots
@@ -50,10 +50,6 @@ func _ready() -> void:
 	#$CanvasLayer/Camera2D.make_current()
 	fade_in.texture = load("res://assets/images/menu_background.png")
 
-	# TEMP
-	VarTests.character_name = 'intro'
-	VarTests.player_stats['will'] = 10
-	# TEMP
 	# intro fade in
 	if VarTests.character_name == 'intro':
 		var tween = create_tween()
@@ -62,6 +58,7 @@ func _ready() -> void:
 	else:
 		fade_in.visible = false
 
+	VarTests.map_active = false
 	VarTests.sprite = sprite
 	_on_start_encounter(VarTests.character_name)
 
@@ -88,6 +85,27 @@ func _input(_event: InputEvent) -> void:
 		var btn:Button = choicesDialog.choices_list.get_children()[active_choice]
 		btn.grab_focus()
 
+func hash_diag(picked, index):
+	#print('picked, index ', picked, ' ', index)
+	# indexs
+	var idx:Array = opt_parsed[0].filter(func(item): return item)
+	#print('idx ', idx)
+	#print('pounds ', '#'.join(idx))
+	idx.remove_at(0)
+	#print('idx1 ', idx)
+	# last index
+	#print('VarTests.last_index ', VarTests.last_index)
+	var multi_index = '%s#%s' % [VarTests.last_index, '#'.join(idx)]
+	#print('idx multi_index ', multi_index)
+	# picked option extra
+	var opt_fmt = ' //'.join(opt_parsed[2][index])
+	# picked option
+	var opt = '%s //%s' % [opt_parsed[-1][index], opt_fmt]
+	var formatted_string = '%s-%s-%s' % [multi_index, picked, opt]
+	#print('formatted_string ', formatted_string)
+	return formatted_string
+	
+
 # options clicks
 func _on_panel_container_selected(index: Variant) -> void:
 	choicesDialog.visible = false
@@ -111,47 +129,45 @@ func _on_panel_container_selected(index: Variant) -> void:
 		#print('hide if ', opt_parsed[2][index])
 		#print('found ', found)
 		if found != -1:
-			# indexs
-			var idx = opt_parsed[0].filter(func(item): return item)
-			#print('idx ', idx)
-			# last index
-			var multi_index = '%s#%s' % [VarTests.current_index, '#'.join(idx)]
-			#print('idx multi_index ', multi_index)
-			# picked option extra
-			var opt_fmt = ' //'.join(opt_parsed[2][index])
-			# picked option
-			var opt = '%s //%s' % [opt_parsed[-1][index], opt_fmt]
-			var formatted_string = '%s-%s-%s' % [multi_index, picked, opt]
-			#print('fs_hash ', formatted_string)
+			var formatted_string = hash_diag(picked, index)
+			print('formatted_string good ', formatted_string)
 			var fs_hash = formatted_string.md5_text()
 			#print('fs_hash ', fs_hash)
-			var clicked_hash_list = []
 
-			if VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
-				clicked_hash_list.append(fs_hash)
-			else:
-				clicked_hash_list = VarTests.CLICKED_OPTIONS[VarTests.character_name]
-				clicked_hash_list.append(fs_hash)
-			VarTests.CLICKED_OPTIONS[VarTests.character_name] = clicked_hash_list
+			#print('clicked options ', VarTests.CLICKED_OPTIONS)
+			# check of character is in hash list already
+			if not VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
+				VarTests.CLICKED_OPTIONS[VarTests.character_name] = []
 
-	if picked  : _on_change_index(picked)
-	if function: $CanvasLayer/Panel.Logigier(function)
+			VarTests.CLICKED_OPTIONS[VarTests.character_name].append(fs_hash)
+			#print('clicked options ', VarTests.CLICKED_OPTIONS)
+
+	
+	if picked  :
+		print('picked ', picked)
+		_on_change_index(picked)
+	if function: $CanvasLayer/Panel.Logigier(picked, function)
 
 func make_options(packed_options, curated_list=false):
 	opt_parsed = DiagParse.parse_options(packed_options)
 
 	#print('opt_parsed ', opt_parsed)
 	var allowed = []
-	# TODO finish fixing md5 hash on hideif.clicked it needs the full string
-	var value = MiscFunc.get_allowed(opt_parsed)
+	# TODO finish fixing md5 hash on hideif.clicked
+	var value = Showif.get_allowed(opt_parsed)
 	for i in range(len(value)):
-		#print(opt_parsed[2][i])
 		#print('value ', value)
-		# TODO I think this was testing related to reversing hideif.clicked so I could click it unsure
-		if opt_parsed[2][i]:
-			var fuck = Utils.array_find(opt_parsed[2][i], 'hideif.clicked')
-			if fuck != -1:
-				value[i] = not value[i]
+		#print('VarTests.CLICKED_OPTIONS', VarTests.CLICKED_OPTIONS)
+		if VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
+			if opt_parsed[2][i]:
+				#print('opt_parsed[0][i] ', opt_parsed[0][i])
+				var formatted_string = hash_diag(opt_parsed[0][i], i)
+				#print('formatted_string      ', formatted_string)
+				var fs_hash = formatted_string.md5_text()
+				#print('fs_hash ', fs_hash)
+				if fs_hash in VarTests.CLICKED_OPTIONS[VarTests.character_name]:
+					value[i] = not value[i]
+		#print('value1 ', value)
 		if not value[i]:
 			var item = opt_parsed[-1][i]
 			if item.to_lower() == '(return)' or item.to_lower() == '(back)':
@@ -167,6 +183,7 @@ func make_options(packed_options, curated_list=false):
 		var index
 		if curated_list == "random":
 			index = randi_range(0, len(allowed)-1)
+		# TODO weighted curated_list
 		if curated_list == "weighted":
 			pass
 		if curated_list == "prioritized": index = 0
@@ -209,8 +226,9 @@ func _on_start_encounter(character_name):
 
 	# check for alt start index
 	var index = "start"
-	if VarTests.DINDEX.has(character_name):
-		index = VarTests.DINDEX[character_name].strip_edges()
+	VarTests.last_index = "start"
+	if VarTests.saved_indexs.has(character_name):
+		index = VarTests.saved_indexs[character_name].strip_edges()
 
 	VarTests.environment_name = default_env
 	create_sky()
@@ -266,18 +284,19 @@ func index_error(daig_parsed):
 func _on_change_index(index):
 	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, diag_file])
 	var daig_parsed = DiagParse.begin_parsing(data, index)
-	if index_error(daig_parsed): return null
+	if index_error(daig_parsed):
+		index = VarTests.last_index
+		return null
 	VarTests.current_index = index
+	#VarTests.last_index = index
 
+	#print('opt_parsed index', index)
 	# functions
 	if daig_parsed[0]:
-		$CanvasLayer/Panel.Logigier(daig_parsed[0])
+		$CanvasLayer/Panel.Logigier(index, daig_parsed[0])
 
 	# dialogue
 	if daig_parsed[1]:
-		#TEMP
-		#daig_parsed = ['before', 'You dash towards the nearest door. You reach for the door handle, but before you manage to touch it, an invisible force stops you. You\'re dragged back to the spot you started. "Look, I\'m sorry about all this, but please calm down. I\'m not going to hurt you." She taps the floor with her staff, and the force holding you disappears. ']
-		#TEMP
 		make_dialogue(daig_parsed[1].split('"'))
 
 	# options
@@ -305,6 +324,11 @@ func _on_change_index(index):
 		tween.tween_property(autocont_dots, "position:y", VarTests.stage_height * 0.85, 0.5)
 		tween.parallel().tween_property(autocont_dots, "modulate:a", 0.8, 0.5)
 		#tween.finished.connect(auto_cont_ellipses)
+
+func _on_change_diag(diag, index) -> void:
+	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, diag])
+	var daig_parsed = DiagParse.begin_parsing(data, index)
+	make_dialogue(daig_parsed[1])
 
 func _on_change_environment(new_env=null) -> void:
 	scene_picture.visible = false

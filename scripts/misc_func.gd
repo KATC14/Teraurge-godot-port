@@ -18,12 +18,29 @@ var player_strength     = VarTests.player_stats['strength']
 var player_endurance    = VarTests.player_stats['endurance']
 
 
-func get_allowed(the_array, full_str='empty'):
-	var ret_array = []
-	for i in range(len(the_array[0])):
-		var value = Showif.check_for_showif(the_array[2][i], full_str)
-		ret_array.append(value)
-	return ret_array
+func game_start() -> void: 
+	# START THE GAME INTO THE INTRO
+	# load items
+	var file = FileAccess.open("res://database/items/items.txt", FileAccess.READ)
+	VarTests.ALL_ITEMS = file.get_as_text()
+	starting_inventory()
+	starting_cards()
+	VarTests.environment_name = "intro"
+	VarTests.character_name = "intro"
+	#advance_time(0)
+	#new_encounter()
+
+func starting_inventory():
+	var clothes_torso = ["tshirt", "jeans", "shoes", "white_socks", "underwear"]
+	VarTests.ITEM_INVENTORY.append_array(clothes_torso)
+	for i in VarTests.ITEM_INVENTORY:
+		equip_item(i)
+func starting_cards():
+	# load cards
+	var file = FileAccess.open("res://database/cards/cards.txt", FileAccess.READ)
+	VarTests.ALL_CARDS = file.get_as_text()
+
+	VarTests.CARD_INVENTORY = ["kick", "kick", "body_tackle", "panicked_slap", "panicked_slap", "panicked_slap", "panicked_slap", "wrestle", "wrestle", "right_hook", "left_hook", "left_hook", "panicked_slap", "panicked_slap", "panicked_slap", "clumsy_kick", "clumsy_kick"]
 
 func super_tint(object, e_color:Color, e_val):
 	e_val = 1 - e_val
@@ -41,11 +58,8 @@ func super_tint(object, e_color:Color, e_val):
 
 
 func make_character() -> void:
-	#print('a ', VarTests.character_sprite)
-	#print('b ', VarTests.scene_character)
 	VarTests.scene_character = VarTests.character_name
 	var path = "res://database/characters/%s/%s.png" % [VarTests.character_name, VarTests.character_sprite]
-	#print("this is the sprite path ", path)
 	if FileAccess.file_exists(path):
 		#var picture_image = Image.load_from_file(path)
 		#sprite.texture = ImageTexture.create_from_image(picture_image)

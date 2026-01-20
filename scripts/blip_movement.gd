@@ -9,6 +9,5 @@ func _ready() -> void:
 	for i in all_locations:
 		if i != area:
 			var temp = area.position.distance_to(i.position)
-			print(temp)
 			distance.append(temp)
 	#min()

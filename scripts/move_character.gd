@@ -9,6 +9,7 @@ var click_position = Vector2()
 @export var exposition:Vector2 = position:
 	set(value):
 		position = value
+var adjacent_blips = []
 
 func get_distance(point1, point2):
 	var x = point1.x - point2.x
@@ -61,7 +62,6 @@ func color_blips(blip):
 	else:
 		temp.modulate = Color.TRANSPARENT
 
-var adjacent_blips = []
 func _on_blips_ready(container, target):
 	can_move = false
 	var deltaX
@@ -78,7 +78,6 @@ func _on_blips_ready(container, target):
 		deltaX = (c.x + i.scale.x / 2.0) - (s.x + target.scale.x / 2.0)
 		deltaY = (c.y + i.scale.y / 2.0) - (s.y + target.scale.y / 2.0) # rounded distance
 		dist = sqrt((deltaX * deltaX) + (deltaY * deltaY)) # DISTANCE CHECKING
-		#print(dist <= rangee, ' ', i.overlaps_area(collision_dummy), ' ', collision_dummy.get_overlapping_areas())
 
 		if dist <= rangee:
 			color_blips(i)

@@ -31,6 +31,9 @@ var ambient_strength = null
 var env_ambient = null
 var scene_character = ""
 var sprite = null
+var map_active = false
+var debug_screen_visable = false
+var whos_turn = 'player'
 
 var ALL_CARDS = ''
 var ALL_ITEMS = ''
@@ -117,7 +120,7 @@ var player_stats = {
 }
 var FLAGS           = []
 var CLICKED_OPTIONS = {}
-var DINDEX          = {}
+var saved_indexs    = {}
 var COUNTERS        = {}
 var TIMERS          = {}
 var DISCOVERED_LOCATIONS = ["sejan_witch_house"]

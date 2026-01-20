@@ -19,9 +19,7 @@ func read_char_stats(character_name):
 	#return [default_env, text_color, bubble_color]
 
 func read_env_stats(environment_name):
-	print('environment_name ', environment_name)
 	var path = 'res://database/environments/%s/stats.txt' % environment_name
-	print('file path ', FileAccess.file_exists(path))
 	if not FileAccess.file_exists(path):
 		return
 

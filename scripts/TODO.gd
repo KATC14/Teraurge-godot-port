@@ -2,14 +2,6 @@ extends Node
 
 
 # maybe change the map movement to the same way as flash v2
-# TODO add layers
-## sky_layer             sky
-## weather_layer         clouds
-## background_layer      env
-## background_mask_layer env_mask
-## atmosphere_layer      overlay
-## character_layer       character
-## picture_layer         pic
 # TODO finish fixing md5 hash on hideif.clicked
 # TODO fix dialogue boxes 'top_box' - 'dialogue_bubble' - 'bot_box'
 ## position/tweening/size
@@ -30,7 +22,8 @@ extends Node
 # TODO time display turn_overmap_dial game.gd
 # TODO fix combat
 ## add combat tooltips to cards
-## add blink_red
 # TODO add in sound
 # TODO add ability to save/load
+
+# TODO clean up DEBUG printing
 # TODO QA testing
