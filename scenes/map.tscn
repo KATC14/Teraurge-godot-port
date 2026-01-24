@@ -1,10 +1,8 @@
-[gd_scene load_steps=97 format=3 uid="uid://bc1h5hiwimgip"]
+[gd_scene load_steps=95 format=3 uid="uid://bc1h5hiwimgip"]
 
 [ext_resource type="Script" uid="uid://c0h5h13lafhyc" path="res://scripts/map.gd" id="1_6252v"]
 [ext_resource type="Texture2D" uid="uid://bctev5st1e7v" path="res://database/maps/default.jpg" id="2_7g4cl"]
-[ext_resource type="Script" uid="uid://dujv1etbue1a3" path="res://scripts/test.gd" id="3_qa5ux"]
 [ext_resource type="Script" uid="uid://dbrdvh2vc44pi" path="res://scripts/move_camera.gd" id="4_rxae7"]
-[ext_resource type="Script" uid="uid://hurukq2llwri" path="res://scripts/move_character.gd" id="5_3ftm6"]
 [ext_resource type="Texture2D" uid="uid://ch6agf8q3cmqx" path="res://assets/images/map/location_prompt.png" id="5_fvbs5"]
 [ext_resource type="Texture2D" uid="uid://ynhhnglr75h4" path="res://assets/images/map/sun_dial.png" id="7_uecd1"]
 [ext_resource type="Texture2D" uid="uid://bit4vvwtmvc4c" path="res://assets/images/map/button_chr.png" id="8_s1s3d"]
@@ -24,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://b6jk2ikb8coek" path="res://assets/images/save_load/save_button.png" id="22_af7ke"]
 [ext_resource type="Texture2D" uid="uid://c7oiev5ursisd" path="res://assets/images/save_load/load_button.png" id="23_irgrq"]
 [ext_resource type="Texture2D" uid="uid://es2b8qbbgk6a" path="res://assets/images/save_load/delete_button.png" id="24_836js"]
+[ext_resource type="PackedScene" uid="uid://bnownsp50c218" path="res://scenes/tool_tip.tscn" id="24_y2ir2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vney4"]
 
@@ -78,9 +77,6 @@ texture = ExtResource("11_wx6m0")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_77ho7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cw1v"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1mffo"]
-radius = 5.0
 
 [sub_resource type="SystemFont" id="SystemFont_2w5ym"]
 font_names = PackedStringArray("Verdana")
@@ -222,7 +218,6 @@ texture_filter = 1
 offset_right = 8192.0
 offset_bottom = 8192.0
 texture = ExtResource("2_7g4cl")
-script = ExtResource("3_qa5ux")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer"]
@@ -315,20 +310,6 @@ horizontal_alignment = 1
 texture_filter = 1
 position = Vector2(37, 218)
 texture = ExtResource("9_1fuh7")
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="CanvasLayer"]
-visible = false
-position = Vector2(2155.25, 3164.6)
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("5_3ftm6")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/CharacterBody2D"]
-shape = SubResource("CircleShape2D_1mffo")
-
-[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/CharacterBody2D"]
-color = Color(0, 0, 1, 1)
-polygon = PackedVector2Array(3, -4, 1, -5, -1, -5, -3, -4, -4, -3, -5, -1, -5, 1, -4, 3, -3, 4, -1, 5, 1, 5, 3, 4, 4, 3, 5, 1, 5, -1, 4, -3)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer"]
 visible = false
@@ -1081,11 +1062,20 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_mmbij")
 text = "Choice"
 alignment = 0
 
+[node name="blips" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="tooltip" parent="CanvasLayer" instance=ExtResource("24_y2ir2")]
+
 [node name="player_speed" type="Timer" parent="."]
 unique_name_in_owner = true
 
-[connection signal="loc_move" from="." to="CanvasLayer/CharacterBody2D" method="_on_blip_move"]
-[connection signal="loc_start" from="." to="CanvasLayer/CharacterBody2D" method="_on_blips_ready"]
+[connection signal="loc_move" from="." to="." method="_on_blip_move"]
+[connection signal="loc_start" from="." to="." method="_on_blips_ready"]
 [connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control/Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Camera2D/Control/Button" to="." method="_on_button_chr_pressed"]
@@ -1098,7 +1088,6 @@ unique_name_in_owner = true
 [connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control/Button4" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control/Button4" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Camera2D/Control/Button4" to="." method="_on_button_stn_pressed"]
-[connection signal="load_blip" from="CanvasLayer/CharacterBody2D" to="." method="_on_load_blip"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_discovery_popup_pass"]
 [connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_discovery_popup_enter"]
 [connection signal="ENTER" from="CanvasLayer/Control4/PanelContainer" to="." method="_on_tooltip_hover"]

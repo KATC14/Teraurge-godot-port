@@ -8,7 +8,6 @@ signal loc_move
 @onready var disco_cont = $CanvasLayer/Control
 @onready var disco_msg  = $CanvasLayer/Control/Label
 @onready var camera     = $CanvasLayer/Camera2D
-@onready var character  = $CanvasLayer/CharacterBody2D
 
 @onready var sun_dial_lbl = $CanvasLayer/Camera2D/Control/Label
 @onready var cam_con      = $CanvasLayer/Camera2D/Control
@@ -63,15 +62,17 @@ var deck_minimum_size  = 16
 @onready var save_load   = $CanvasLayer/Control6
 
 # thank you Mige, I would have not figured this out myself
-@onready var blip = load("res://scenes/blip.tscn")
+@onready var blip = load("res://scenes/blip_draw.tscn")
+@onready var tooltip = $CanvasLayer/tooltip
 
 var map_data = "res://database/maps/default_data.txt"
 var ATMOSPHERIC_MULTIPLIER = 1
 var advance_time_to = 0
 var location
-
-var tooltip
-var tooltip_hovered = false
+var discovery_popup_active = false
+var can_move = false
+var adjacent_blips = []
+var all_loc:Array
 
 func _ready() -> void:
 	sun_dial_lbl.text = str(VarTests.DAYS)
@@ -95,46 +96,95 @@ func _ready() -> void:
 	#parse_equiped_cards()
 	VarTests.map_active = true
 	create_locations()
-	create_dicovered_locations()
+	create_discovered_locations()
 
 func _input(_event: InputEvent) -> void:
-	if tooltip_hovered:
+	if tooltip.visible:
 		# camera.position.x half the screen
 		# camera.position.x + (VarTests.stage_width * 2)
 		@warning_ignore("integer_division")
-		var vec_x = camera.position.x + (VarTests.stage_width / 2)
-		@warning_ignore("integer_division")
-		var vec_y = camera.position.y - (VarTests.stage_height / 2)
-		tooltip.width  = vec_x
-		tooltip.height = vec_y
+		tooltip.pos_xy  = Vector2(camera.position.x + (VarTests.stage_width / 2), camera.position.y - (VarTests.stage_height / 2))
 	if Input.is_action_pressed("mouse_left"):
 		if inv_menu.visible:
 			shape_test.call_deferred()
+	# wasd/keyboard movment
+	# check for if discover pop up is open
+	if not discovery_popup_active:
+		# strange numpad keys
+		var center = Input.is_action_pressed("numpad_center")
 
-func _on_tooltip_hover(array, index):
-	tooltip_hovered = true
-	tooltip = load("res://scenes/tool_tip.tscn").instantiate()
-	print('tooltip_hover ', array)
-	tooltip.get_node("Label").text = str(index)
+		var up_left    = Input.is_action_pressed("numpad_diagonal_up_left")
+		var down_left  = Input.is_action_pressed("numpad_diagonal_down_left")
+		var up_right   = Input.is_action_pressed("numpad_diagonal_up_right")
+		var down_right = Input.is_action_pressed("numpad_diagonal_down_right")
+
+		if center:
+			map_collision_check(0, 0)
+		var input_dir
+		if up_left:    input_dir = Vector2(-1.0, -1.0)
+		if up_right:   input_dir = Vector2(1.0, -1.0)
+		if down_left:  input_dir = Vector2(-1.0, 1.0)
+		if down_right: input_dir = Vector2(1.0, 1.0)
+		if can_move and (down_left or down_right or up_left or up_right):
+				map_collision_check(input_dir.x * 150, input_dir.y * 150)
+
+		# wasd/arrow keys
+		var up    = Input.is_action_pressed("ui_up")
+		var left  = Input.is_action_pressed("ui_left")
+		var down  = Input.is_action_pressed("ui_down")
+		var right = Input.is_action_pressed("ui_right")
+		# (not ctrl) catch for debug funcions being off to stop player from moving
+		if not Input.is_action_pressed("Ctrl") and can_move and (up or left or down or right):
+			input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+			map_collision_check(input_dir.x * 150, input_dir.y * 150)
+
+# this is why you mused monospaced fonts
+#func custom_join(sep, values:Array) -> String:
+#	if not values[1][0] or not values[1][-1]:
+#		sep = ''
+#	return '%s%s%*s' % [values[1][0], sep, len(values[1][-1])+values[0], values[1][-1]]
+
+func create_item_description(item:String):
+	var item_string0 = Utils.get_substring("<%s" % item, "%s>" % item, VarTests.ALL_ITEMS.to_lower())
+
+	# this took entrirely to long to figure out
+	#var item_string:Array = Utils.get_substring("<%s" % item, "%s>" % item, VarTests.ALL_ITEMS.to_lower()).replace('\t', '').split('\n')
+	#var item_string2 = item_string.map(func(item_split): return len(item_split.strip_edges().split(':')[0]))
+
+	#var item_string4 = item_string2.map(func(item_split): 
+	#	if item_string2.max() - item_split == item_string2.max():
+	#		return 0
+	#	return item_string2.max() - item_split +1
+	#)
+
+	#var item_string5 = item_string.map(func(item_split): return item_split.strip_edges().split(':'))
+
+	#var newarray = Utils.array_zip([item_string4, item_string5]).map(func(item_split): return custom_join(':', item_split))
+	return Utils.mass_repalce(item_string0, {'\t':'', '\r':'', ':':': '})
+
+func _on_tooltip_hover(array, index, item=false):
+	if not item:
+		item = create_item_description(unformat(array[index])[1])
+	tooltip.get_node("Label").text = str(item)
+	# catch for resetting size of tooltip
+	tooltip.get_child(0).size = Vector2.ZERO
 	tooltip.visible = true
-	CanLay.add_child(tooltip)
 	tooltip.move_to_front()
 
 func _on_tooltip_exit(_array, _index):
-	tooltip_hovered = false
 	tooltip.visible = false
-	tooltip.queue_free()
+	#tooltip.queue_free()
 
 var menulist = []
 func movement(source_object, time=0.25):
 	if source_object.visible:
 		menu_slide_out(source_object, time)
-		character.is_active = true
+		discovery_popup_active = false
 		camera.is_active    = true
 	else:
 		menu_slide_in(source_object, time)
 		source_object.visible = true
-		character.is_active = false
+		discovery_popup_active = true
 		camera.is_active    = false
 	menulist.erase(source_object)
 	for i in menulist:
@@ -143,7 +193,7 @@ func movement(source_object, time=0.25):
 #MENU SLIDE IN
 func menu_slide_in(source_object, time=0.25):
 	#DISABLE MAP CLICKING
-	character.is_active = false
+	discovery_popup_active = true
 	camera.is_active    = false
 
 	var vec_x = camera.position.x - (float(VarTests.stage_width) / 2)
@@ -172,11 +222,11 @@ func _on_advance_time(forward):
 	while forward > 100:
 		VarTests.DAYS += 1
 		forward -= 100
-	VarTests.TIME = VarTests.TIME + forward;
+	VarTests.TIME = VarTests.TIME + forward
 	if VarTests.TIME > 100:
-		VarTests.TIME = VarTests.TIME - 100;
+		VarTests.TIME = VarTests.TIME - 100
 		VarTests.DAYS += 1
-	#trace("day: "+DAYS+" time: "+TIME); #DEBUG
+	#trace("day: "+DAYS+" time: "+TIME) #DEBUG
 #	check_timers()#TODO check_timers game.gd
 
 	# ATMOSPHERIC PERCENTAGE
@@ -191,7 +241,7 @@ func make_collision(x, y, r) -> Node2D:#, loc_name
 	var instance: Node2D = blip.instantiate()
 	instance.position = Vector2(x, y)
 	instance.scale = Vector2(r, r) / 10 * 1.1
-	CanLay.add_child(instance)
+	CanLay.get_node("blips").add_child(instance)
 
 	return instance
 
@@ -200,8 +250,8 @@ func create_locations() -> void:
 	#[2147.25|3157.6|15|blip_place|sejan_witch_house]
 	#    0     1      2     3             4
 	#    x     y      r     ?          loc_name
-	var maxx = map_file.split('\n').size()
-	for i in map_file.split('\n').size():
+	var map_size = len(map_file.split('\n'))
+	for i in map_size:
 		var data_out = map_file.split('\n')[i].replace('[', '').replace(']', '').split('|')
 		var x = float(data_out[0])
 		var y = float(data_out[1])
@@ -223,54 +273,40 @@ func create_locations() -> void:
 		#area.body_entered.connect(load_blip.bind(loc_name))#, area
 		#area.body_exited.connect(func(_body): area_exited = true)
 		# pass on blips that are not used to keep same map format
-		VarTests.all_loc.append(area)
+		all_loc.append(area)
 		match data_out[3]:
 			"blip":           pass
 			"blip_named":     pass
 			"blip_encounter": pass
 			#"blip_place":     pass
 			"no_name":        pass
-			_:
-				VarTests.named_loc[loc_name] = area
-		if i == maxx-1:
-			VarTests.map_target = VarTests.named_loc['sejan_witch_house']
-			loc_start.emit(VarTests.all_loc, VarTests.map_target)
-			character.can_move = true
+			_:                VarTests.named_loc[loc_name] = area
+		# for loop ended (why is there no else on a fo rloop like python or a finally)
+		if i == map_size-1:
+			if not VarTests.loc_name:
+				VarTests.loc_name = 'sejan_witch_house'
+			VarTests.map_target = VarTests.named_loc[VarTests.loc_name]
+			loc_start.emit(VarTests.map_target)
+			can_move = true
 
-func create_dicovered_locations():
+func create_discovered_locations():
 	for i in VarTests.DISCOVERED_LOCATIONS:
-		var instance = VarTests.named_loc[i]
-		var sprite: Sprite2D = instance.get_node("Sprite2D")
-		sprite.modulate = Color.html('#00FFFF')
+		var loc_area:Node2D = VarTests.named_loc[i]
+		var con:Control = loc_area.get_child(-1)
+		if not con.is_connected('mouse_entered', _on_tooltip_hover):
+			con.mouse_entered.connect(_on_tooltip_hover.bind(null, null, VarTests.loc_name))
+			con.mouse_exited.connect(_on_tooltip_exit.bind(null, null))
+		color_blips(loc_area)
 
 func discover_location(loc_name):
 	if VarTests.named_loc.has(loc_name):
 		if not VarTests.DISCOVERED_LOCATIONS.has(loc_name):
 			VarTests.DISCOVERED_LOCATIONS.append(loc_name)
-			create_dicovered_locations()
-
-func parse_env_vars(stats_file):
-	#opt_array = re.sub('>>.*', '', opt_array)
-	var re = RegEx.new()
-	re.compile('[\r\t]')
-	stats_file = re.sub(stats_file, '', true)
-	var thespt:Array = stats_file.split('\n')
-
-	var wanted = [
-		'interior', 'ambient_color', 'ambient', 
-		'discoverable', 'dicovery_message', 'default_message'
-	]
-
-	var result = []
-	for i in wanted:
-		for x in thespt.filter(func(item): if i in item: return item):
-			result.append(x)
-	var thing = result.map(func (item): return item)
-
-	return thing
+			create_discovered_locations()
 
 func _on_load_blip(loc_name):
 	print('loc_name ', loc_name)
+	VarTests.environment_name = loc_name
 	var stats_file = LoadStats.read_env_stats(loc_name)
 	#print('stats_file ', stats_file)
 
@@ -278,7 +314,7 @@ func _on_load_blip(loc_name):
 	if not stats_file:
 		return
 
-	var result    = parse_env_vars(stats_file)
+	var result    = LoadStats.parse_env_vars(stats_file)
 	#print(result)
 	var disco     = Utils.array_find(result, 'discoverable')
 	print('disco ', disco)
@@ -342,11 +378,111 @@ func env_encounter(stats_file):
 			print()
 		#get_tree().change_scene_to_file("res://scenes/dialogue.tscn")
 
+func get_distance(point1, point2):
+	var x = point1.x - point2.x
+	var y = point1.y - point2.y
+	return sqrt(x * x + y * y)
+
+func map_collision_check(relative_x, relative_y):
+	# CHECK COLLISION AROUND THE "target" moviclip (current location)
+	# Return collision if a blip
+
+	var origin = VarTests.map_target.position
+	var point_list = []
+	var min_dist = 9999
+	var closest_index: int = 0
+
+	# OFFSET TARGET LIST
+	origin += Vector2(relative_x, relative_y)
+
+	for mc:Area2D in adjacent_blips:
+		point_list.append(mc.position)
+
+	# CREATE DISTANCE LIST
+	var index: int = 0
+	for point in point_list:
+		if get_distance(origin, point) < min_dist:
+			min_dist = get_distance(origin, point)
+			closest_index = index
+		index += 1
+
+	var new_loc = adjacent_blips[closest_index]
+	VarTests.map_target = new_loc
+	var rev_serch_idx = VarTests.named_loc.values().find(new_loc)
+	# catch for unnamed location
+	if rev_serch_idx != -1:
+		var found = VarTests.named_loc.keys()[rev_serch_idx]
+		print('found ', found)
+		_on_load_blip(found)
+	_on_blips_ready(new_loc)
+
+func color_blips(blip_loc:Area2D):
+	var temp:Sprite2D = blip_loc.get_node("Sprite2D")
+	var index = VarTests.named_loc.values().find(blip_loc)
+	var child = temp.get_parent().get_child(0)
+
+	# the child.modulate.a is a invisible Sprite2D used to determine movment
+	# hide blips
+	temp.redraw = null
+	child.modulate.a = 0
+	# adjacent blips
+	if blip_loc in adjacent_blips:
+		temp.redraw = 'adjacent_blips'
+		child.modulate.a = 1
+	# discovered locations
+	if index != -1 and VarTests.named_loc.keys()[index] in VarTests.DISCOVERED_LOCATIONS:
+		temp.redraw = 'discovered'
+		child.modulate.a = 1
+	# at blip
+	if blip_loc == VarTests.map_target:
+		temp.redraw = 'on_top'
+		# at discovered location
+		if VarTests.named_loc.keys()[index] in VarTests.DISCOVERED_LOCATIONS:
+			temp.redraw = 'on_discovered'
+		child.modulate.a = 1
+
+func _on_blips_ready(target):
+	can_move = false
+	var deltaX
+	var deltaY
+	var dist
+	var rangee = 30
+	adjacent_blips = []
+
+	for i in all_loc:
+		var c = i.position
+		var s = target.position
+		#var c1 = i
+		#var s1 = area
+		deltaX = (c.x + i.scale.x / 2.0) - (s.x + target.scale.x / 2.0)
+		deltaY = (c.y + i.scale.y / 2.0) - (s.y + target.scale.y / 2.0) # rounded distance
+		dist = sqrt((deltaX * deltaX) + (deltaY * deltaY)) # DISTANCE CHECKING
+
+		if dist <= rangee:
+			adjacent_blips.append(i)
+		color_blips(i)
+	can_move = true
+
+# mouse movement
+func _on_blip_move(_viewport: Node, _event: InputEvent, _shape_idx: int, node:Area2D) -> void:
+	# check for if discover pop up is not open
+	if not discovery_popup_active:
+		if Input.is_action_pressed("mouse_left"):
+			var moved_loc = node.get_node("Sprite2D")
+			# only allow adjacent blips
+			var click_position = Vector2()
+			if moved_loc.get_parent().get_child(0).modulate.a == 1:
+				click_position = node.position
+				click_position -= VarTests.map_target.position# + Vector2(10, 8)
+
+				if can_move:
+					map_collision_check(click_position.x, click_position.y)
+
 func discovery_popup(text, loc_name):
 	disco_cont.move_to_front()
-	disco_cont.visible  = true
-	character.is_active = false
-	camera.is_active    = false
+	disco_cont.visible     = true
+	discovery_popup_active = true
+	camera.is_active       = false
 
 	var vec_x = camera.position.x - (float(VarTests.stage_width) / 2)
 	var vec_y = camera.position.y - (float(VarTests.stage_height) / 2)
@@ -357,9 +493,9 @@ func discovery_popup(text, loc_name):
 	discover_location(loc_name)
 
 func _on_discovery_popup_pass():
-	disco_cont.visible  = false
-	character.is_active = true
-	camera.is_active    = true
+	disco_cont.visible     = false
+	discovery_popup_active = false
+	camera.is_active       = true
 
 func _on_discovery_popup_enter():
 	disco_cont.visible = false
@@ -368,12 +504,12 @@ func _on_discovery_popup_enter():
 
 func _on_button_mouse_entered() -> void:
 	if not (chr_menu.visible or dck_menu.visible or inv_menu.visible or stn_menu.visible):
-		character.is_active = false
+		discovery_popup_active = true
 		camera.is_active    = false
 
 func _on_button_mouse_exited() -> void:
 	if not (chr_menu.visible or dck_menu.visible or inv_menu.visible or stn_menu.visible):
-		character.is_active = true
+		discovery_popup_active = false
 		camera.is_active    = true
 
 func _on_button_chr_pressed() -> void:
@@ -408,7 +544,7 @@ func _on_button_inv_pressed() -> void:
 	menulist.append(inv_menu)
 	var items = count_items(VarTests.ITEM_INVENTORY)
 
-	inventory.choices = items[1]
+	inventory.choices = items[1].map(func(item): return item.replace('_', ' '))
 	refresh_equipped_items()
 	inv_menu.move_to_front()
 
@@ -420,9 +556,10 @@ func inv_change(item):
 		MiscFunc.equip_item(item)
 	refresh_equipped_items()
 
-# 1x tshirt -> ["1x", "tshirt"]
+# 1x white socks -> ["1x", "white_socks"]
 func unformat(formatted):
-	return formatted.split(' ')
+	var rawmatted:Array = formatted.split(' ', true, 1)
+	return rawmatted.map(func(item): return item.replace(' ', '_'))
 
 func _on_button_inv_item_pressed(index) -> void:
 	inv_change(unformat(inventory.choices[index])[1])

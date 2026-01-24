@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bwev2vrykwnj1"]
+
+[node name="GridContainer" type="GridContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "FILE"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "INDEX"

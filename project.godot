@@ -13,7 +13,7 @@ config_version=5
 config/name="Teraurge"
 run/main_scene="res://scenes/dialogue.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://dw5gg2etbjo8p"
 
 [autoload]
 

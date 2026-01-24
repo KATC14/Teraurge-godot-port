@@ -16,10 +16,10 @@ var choices:
 		initButtons()
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	choices_list.get_child(0).pressed.connect(onChoice.bind(0))
-	choices_list.get_child(0).mouse_entered.connect(onEntered.bind(choices, 0))
-	choices_list.get_child(0).mouse_exited.connect(onExited.bind(choices, 0))
+#func _ready():
+#	choices_list.get_child(0).pressed.connect(onChoice.bind(0))
+#	choices_list.get_child(0).mouse_entered.connect(onEntered.bind(choices, 0))
+#	choices_list.get_child(0).mouse_exited.connect(onExited.bind(choices, 0))
 #func _process(delta: float) -> void:
 
 func initButtons():
@@ -33,6 +33,10 @@ func initButtons():
 	for choice_index in range(choices.size()):
 		if (choice_index == 0):
 			choices_list.get_child(0).text = choices[choice_index]
+			if not choices_list.get_child(choice_index).is_connected('pressed', onChoice):
+				choices_list.get_child(choice_index).pressed.connect(onChoice.bind(choice_index))
+				choices_list.get_child(choice_index).mouse_entered.connect(onEntered.bind(choices, choice_index))
+				choices_list.get_child(choice_index).mouse_exited.connect(onExited.bind(choices, choice_index))
 		else:
 			choices_list.add_child(choice_prefab.duplicate())
 			choices_list.get_child(choice_index).text = choices[choice_index]

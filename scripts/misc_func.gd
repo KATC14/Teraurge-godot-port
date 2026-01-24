@@ -17,6 +17,8 @@ var player_agility      = VarTests.player_stats['agility']
 var player_strength     = VarTests.player_stats['strength']
 var player_endurance    = VarTests.player_stats['endurance']
 
+func _ready() -> void:
+	game_start()
 
 func game_start() -> void: 
 	# START THE GAME INTO THE INTRO
@@ -26,7 +28,7 @@ func game_start() -> void:
 	starting_inventory()
 	starting_cards()
 	VarTests.environment_name = "intro"
-	VarTests.character_name = "intro"
+	#VarTests.character_name = "intro"
 	#advance_time(0)
 	#new_encounter()
 
@@ -35,6 +37,7 @@ func starting_inventory():
 	VarTests.ITEM_INVENTORY.append_array(clothes_torso)
 	for i in VarTests.ITEM_INVENTORY:
 		equip_item(i)
+
 func starting_cards():
 	# load cards
 	var file = FileAccess.open("res://database/cards/cards.txt", FileAccess.READ)
@@ -54,34 +57,13 @@ func super_tint(object, e_color:Color, e_val):
 	var greenMultiplier = g + ((1 - g) * e_val)
 	var blueMultiplier  = b + ((1 - b) * e_val)
 	# this is correct?
-	object.modulate = Color(redMultiplier, greenMultiplier, blueMultiplier)
 
-
-func make_character() -> void:
-	VarTests.scene_character = VarTests.character_name
-	var path = "res://database/characters/%s/%s.png" % [VarTests.character_name, VarTests.character_sprite]
-	if FileAccess.file_exists(path):
-		#var picture_image = Image.load_from_file(path)
-		#sprite.texture = ImageTexture.create_from_image(picture_image)
-		VarTests.sprite.texture = load(path)
-		MiscFunc.super_tint(VarTests.sprite, VarTests.env_ambient, VarTests.ambient_strength)
-		#sprite.modulate = Color.html('#a23f08')
-		rescale_bitmapdata.call_deferred(VarTests.sprite)
-		VarTests.sprite.move_to_front()
-
-func rescale_bitmapdata(obj):
-	var objscale = 1
-
-	if VarTests.stage_height == 1080: objscale = 0.75
-	if VarTests.stage_height == 720:  objscale = 0.50
-
-	obj.scale = Vector2(objscale, objscale)
-	# TextureRect 1280 - ( 894 * 0.5)
-	# Sprite2D    1280 - ((894 * 0.5) / 2)
-	var math_x = VarTests.stage_width  - (obj.size.x  * objscale)
-	#var math_y = VarTests.stage_height - (obj.size.y * objscale)
-	# texture width * by the offset lowering the value because its .5 or .75
-	obj.position = Vector2(math_x, 0)
+	var env_vars = LoadStats.parse_env_vars(LoadStats.read_env_stats(VarTests.environment_name))
+	var index = Utils.array_find(env_vars, 'interior')
+	if env_vars[index].split(':')[-1] != 'yes':
+		pass
+	else:
+		object.modulate = Color(redMultiplier, greenMultiplier, blueMultiplier)
 
 # PARSE STAT
 func parse_stat(stat_name, stats, _case_sensitive=false)-> String:
@@ -155,23 +137,23 @@ func equip_item(item):
 		#	VarTests.CARD_INVENTORY.push(card)
 		#	i += 1
 
-	player_heat_res		+= int(parse_stat("heat_res", item_stats))
-	player_cold_res		+= int(parse_stat("cold_res", item_stats))
-	player_impact_res	+= int(parse_stat("impact_res", item_stats))
-	player_slash_res	+= int(parse_stat("slash_res", item_stats))
-	player_pierce_res	+= int(parse_stat("pierce_res", item_stats))
-	player_magic_res	+= int(parse_stat("magic_res", item_stats))
-	player_bio_res		+= int(parse_stat("bio_res", item_stats))
+	player_heat_res     += int(parse_stat("heat_res", item_stats))
+	player_cold_res     += int(parse_stat("cold_res", item_stats))
+	player_impact_res   += int(parse_stat("impact_res", item_stats))
+	player_slash_res    += int(parse_stat("slash_res", item_stats))
+	player_pierce_res   += int(parse_stat("pierce_res", item_stats))
+	player_magic_res    += int(parse_stat("magic_res", item_stats))
+	player_bio_res      += int(parse_stat("bio_res", item_stats))
 
-	player_charisma		+= int(parse_stat("charisma", item_stats))
-	player_will			+= int(parse_stat("will", item_stats))
-	player_intelligence	+= int(parse_stat("intelligence", item_stats))
-	#player_perception	+= int(parse_stat("perception", item_stats))
-	player_agility		+= int(parse_stat("agility", item_stats))
-	player_strength		+= int(parse_stat("strength", item_stats))
-	player_endurance	+= int(parse_stat("endurance", item_stats))
+	player_charisma     += int(parse_stat("charisma", item_stats))
+	player_will         += int(parse_stat("will", item_stats))
+	player_intelligence += int(parse_stat("intelligence", item_stats))
+	#player_perception   += int(parse_stat("perception", item_stats))
+	player_agility      += int(parse_stat("agility", item_stats))
+	player_strength     += int(parse_stat("strength", item_stats))
+	player_endurance    += int(parse_stat("endurance", item_stats))
 
-#UNEQUIP ITEM
+# UNEQUIP ITEM
 func unequip_item(item):
 	item = item.to_lower()
 	if item == "empty" or item == "" or item == null:
@@ -179,6 +161,9 @@ func unequip_item(item):
 
 	# get item stats
 	var item_string = Utils.get_substring("<%s" % item, "%s>" % item, VarTests.ALL_ITEMS.to_lower())
+	# catch for nonexistent items
+	if not item_string:
+		return
 
 	var item_stats = item_string.split("\n")
 
@@ -188,7 +173,7 @@ func unequip_item(item):
 	# remove item card from the start deck
 	#VarTests.player_DECK.splice(VarTests.player_DECK.indexOf(card), 1)
 
-	#remove card(s) from the inventory and the deck
+	# remove card(s) from the inventory and the deck
 	if card != "":
 		for i in range(card_n):
 			VarTests.player_DECK.erase(card)
@@ -208,18 +193,23 @@ func unequip_item(item):
 	var slot = parse_stat("slot", item_stats)
 	VarTests.ITEM_SLOTS[VarTests.SLOT_KEYS[slot]] = "empty"
 
-	player_heat_res		-= int(parse_stat("heat_res", item_stats))
-	player_cold_res		-= int(parse_stat("cold_res", item_stats))
-	player_impact_res	-= int(parse_stat("impact_res", item_stats))
-	player_slash_res	-= int(parse_stat("slash_res", item_stats))
-	player_pierce_res	-= int(parse_stat("pierce_res", item_stats))
-	player_magic_res	-= int(parse_stat("magic_res", item_stats))
-	player_bio_res		-= int(parse_stat("bio_res", item_stats))
+	player_heat_res     -= int(parse_stat("heat_res", item_stats))
+	player_cold_res     -= int(parse_stat("cold_res", item_stats))
+	player_impact_res   -= int(parse_stat("impact_res", item_stats))
+	player_slash_res    -= int(parse_stat("slash_res", item_stats))
+	player_pierce_res   -= int(parse_stat("pierce_res", item_stats))
+	player_magic_res    -= int(parse_stat("magic_res", item_stats))
+	player_bio_res      -= int(parse_stat("bio_res", item_stats))
 
-	player_charisma		-= int(parse_stat("charisma", item_stats))
-	player_will			-= int(parse_stat("will", item_stats))
-	player_intelligence	-= int(parse_stat("intelligence", item_stats))
-	#player_perception	-= int(parse_stat("perception", item_stats))
-	player_agility		-= int(parse_stat("agility", item_stats))
-	player_strength		-= int(parse_stat("strength", item_stats))
-	player_endurance	-= int(parse_stat("endurance", item_stats))
+	player_charisma     -= int(parse_stat("charisma", item_stats))
+	player_will         -= int(parse_stat("will", item_stats))
+	player_intelligence -= int(parse_stat("intelligence", item_stats))
+	#player_perception   -= int(parse_stat("perception", item_stats))
+	player_agility      -= int(parse_stat("agility", item_stats))
+	player_strength     -= int(parse_stat("strength", item_stats))
+	player_endurance    -= int(parse_stat("endurance", item_stats))
+
+# UNEQUIP ITEM
+func remove_item(item):
+	unequip_item(item)
+	VarTests.ITEM_INVENTORY.erase(item)

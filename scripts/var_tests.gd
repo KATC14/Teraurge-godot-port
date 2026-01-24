@@ -3,10 +3,11 @@ extends Node
 
 var stage_height = 720
 var stage_width  = 1280
-var player_location = Vector2(2147.25, 3147.6)
+#var player_location = Vector2(2147.25, 3147.6)
 var all_loc = []
-var named_loc = {}#name:Vector3(x, y, r)
-var map_target:Node2D
+var named_loc:Dictionary = {}#name:Vector3(x, y, r)
+var map_target
+var loc_name:String
 
 var version = 2.13
 var menu_state = 'warning'
@@ -21,7 +22,7 @@ var character_sprite = ''
 var last_index       = ''
 var override_index   = ''
 var current_index    = ''
-var character_name   = 'intro'
+var character_name   = ''
 var environment_name = ''
 var ENVIROMENT_STATS = ''
 var player_hand_size = 4
@@ -30,10 +31,12 @@ var player_hand_size = 4
 var ambient_strength = null
 var env_ambient = null
 var scene_character = ""
-var sprite = null
 var map_active = false
 var debug_screen_visable = false
 var whos_turn = 'player'
+var in_combat = false
+var diag_file = 'diag'
+var main_menu_active = false
 
 var ALL_CARDS = ''
 var ALL_ITEMS = ''
@@ -56,7 +59,7 @@ var ITEM_SLOTS = [
 	"empty",# 15 with 0 16 else
 ]
 
-#SETTING OBJECT KEYS
+# SETTING OBJECT KEYS
 var SLOT_KEYS = { # Equipped items saved as strings
 	#Highest layer
 	"twohanded": 12,# twohanded
@@ -72,7 +75,7 @@ var SLOT_KEYS = { # Equipped items saved as strings
 	"shoes": 3,     # shoes # Will go under legs slot
 	"socks": 2,     # socks
 	"underwear": 1, # underwear
-	#"mannequin": 0  # mannequin
+	"mannequin": 0  # mannequin
 	#Lowest layer
 }
 

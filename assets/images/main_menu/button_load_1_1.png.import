@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqy5kkx27xdwn"
-path="res://.godot/imported/blip.png-703f826ac816214e917d9e925573c5d6.ctex"
+uid="uid://c5qp7ir8pq2bo"
+path="res://.godot/imported/button_load_1_1.png-cfa68e9cb359f41ceeb7f464db22871e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/blip.png"
-dest_files=["res://.godot/imported/blip.png-703f826ac816214e917d9e925573c5d6.ctex"]
+source_file="res://assets/images/main_menu/button_load_1_1.png"
+dest_files=["res://.godot/imported/button_load_1_1.png-cfa68e9cb359f41ceeb7f464db22871e.ctex"]
 
 [params]
 

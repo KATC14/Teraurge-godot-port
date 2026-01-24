@@ -1,7 +1,6 @@
 extends Node
 
 
-# maybe change the map movement to the same way as flash v2
 # TODO finish fixing md5 hash on hideif.clicked
 # TODO fix dialogue boxes 'top_box' - 'dialogue_bubble' - 'bot_box'
 ## position/tweening/size

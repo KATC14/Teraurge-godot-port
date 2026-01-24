@@ -1,9 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://csvl4qvh4o7go"]
+[gd_scene load_steps=20 format=3 uid="uid://csvl4qvh4o7go"]
 
 [ext_resource type="Script" uid="uid://b6ognp6ltwsh6" path="res://scripts/debug_screen.gd" id="1_nxn64"]
 [ext_resource type="Script" uid="uid://dp6cmyn7ilaiq" path="res://scripts/ChoicesDialog.gd" id="2_eos6k"]
+[ext_resource type="Script" uid="uid://6a12vdkitxck" path="res://scripts/TextEdit_Signal.gd" id="2_xklg5"]
+[ext_resource type="PackedScene" uid="uid://bnownsp50c218" path="res://scenes/tool_tip.tscn" id="3_eos6k"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5r3a"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i7woc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7esgu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2kiia"]
 
@@ -11,22 +15,15 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jstqi"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wftvn"]
-bg_color = Color(0.6, 0.6, 1, 0.196078)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 5.0
-expand_margin_right = 5.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1qudl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w7qnu"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eos6k"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hr6bl"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xklg5"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ppc0y"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ggwjm"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01fv5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nxn64"]
 
@@ -75,6 +72,7 @@ script = ExtResource("1_nxn64")
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 color = Color(0.8, 0.8, 0.8, 1)
 
 [node name="flags_control" type="Control" parent="CanvasLayer"]
@@ -103,15 +101,14 @@ offset_right = 288.0
 offset_bottom = 55.0
 color = Color(0.2, 0.4, 0.4, 1)
 
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer/flags_control/ColorRect"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/flags_control/ColorRect"]
 layout_mode = 0
-offset_left = 2.0
 offset_top = -3.0
-offset_right = 263.0
-offset_bottom = 25.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_g5r3a")
-autowrap_mode = 1
+offset_right = 259.0
+offset_bottom = 28.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_i7woc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7esgu")
+script = ExtResource("2_xklg5")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/flags_control"]
 layout_mode = 1
@@ -135,7 +132,7 @@ theme_override_constants/margin_top = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/flags_control/PanelContainer/MarginContainer"]
 layout_mode = 2
-horizontal_scroll_mode = 0
+horizontal_scroll_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/flags_control/PanelContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
@@ -147,9 +144,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ebj6l")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_jstqi")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wftvn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1qudl")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w7qnu")
-theme_override_styles/focus = SubResource("StyleBoxFlat_wftvn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hr6bl")
 text = "Choice"
 alignment = 0
 
@@ -180,15 +177,14 @@ offset_right = 288.0
 offset_bottom = 55.0
 color = Color(0.2, 0.4, 0.4, 1)
 
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer/inventory_control/ColorRect"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/inventory_control/ColorRect"]
 layout_mode = 0
-offset_left = 2.0
 offset_top = -3.0
-offset_right = 263.0
-offset_bottom = 25.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_g5r3a")
-autowrap_mode = 1
+offset_right = 259.0
+offset_bottom = 28.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_i7woc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7esgu")
+script = ExtResource("2_xklg5")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/inventory_control"]
 layout_mode = 1
@@ -199,7 +195,7 @@ anchor_bottom = 1.0
 offset_left = 27.0
 offset_top = 15.0
 offset_right = 248.0
-offset_bottom = 670.0
+offset_bottom = 328.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2kiia")
@@ -212,11 +208,11 @@ theme_override_constants/margin_top = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/inventory_control/PanelContainer/MarginContainer"]
 layout_mode = 2
-horizontal_scroll_mode = 0
+horizontal_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/inventory_control/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="BoxContainer" parent="CanvasLayer/inventory_control/PanelContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
+vertical = true
 
 [node name="Button" type="Button" parent="CanvasLayer/inventory_control/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 texture_filter = 1
@@ -224,9 +220,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ebj6l")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_jstqi")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wftvn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ppc0y")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w7qnu")
-theme_override_styles/focus = SubResource("StyleBoxFlat_wftvn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_01fv5")
 text = "Choice"
 alignment = 0
 
@@ -243,6 +239,7 @@ layout_mode = 0
 offset_left = 27.0
 offset_right = 288.0
 offset_bottom = 27.0
+mouse_filter = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/characters_control/BoxContainer"]
@@ -258,15 +255,14 @@ offset_right = 288.0
 offset_bottom = 55.0
 color = Color(0.2, 0.4, 0.4, 1)
 
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer/characters_control/ColorRect"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/characters_control/ColorRect"]
 layout_mode = 0
-offset_left = 2.0
 offset_top = -3.0
-offset_right = 263.0
-offset_bottom = 25.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_g5r3a")
-autowrap_mode = 1
+offset_right = 259.0
+offset_bottom = 28.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_i7woc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7esgu")
+script = ExtResource("2_xklg5")
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/characters_control"]
 layout_mode = 1
@@ -280,6 +276,7 @@ offset_right = 248.0
 offset_bottom = 670.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2kiia")
 script = ExtResource("2_eos6k")
 
@@ -290,11 +287,11 @@ theme_override_constants/margin_top = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/characters_control/PanelContainer/MarginContainer"]
 layout_mode = 2
-horizontal_scroll_mode = 0
+horizontal_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/characters_control/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="BoxContainer" parent="CanvasLayer/characters_control/PanelContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
+vertical = true
 
 [node name="Button" type="Button" parent="CanvasLayer/characters_control/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 texture_filter = 1
@@ -302,10 +299,9 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ebj6l")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_jstqi")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_eos6k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ppc0y")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w7qnu")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_xklg5")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ggwjm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_01fv5")
 text = "Choice"
 alignment = 0
 
@@ -314,7 +310,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-mouse_filter = 1
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasLayer/stats_control"]
 layout_mode = 0
@@ -795,6 +790,14 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_xklg5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ggwjm")
 text = "Save"
 
+[node name="Control" parent="CanvasLayer" instance=ExtResource("3_eos6k")]
+
+[connection signal="text_submit" from="CanvasLayer/flags_control/ColorRect/LineEdit" to="." method="_on_flags_submit"]
+[connection signal="SELECTED" from="CanvasLayer/flags_control/PanelContainer" to="." method="_on_flags_selected"]
+[connection signal="text_submit" from="CanvasLayer/inventory_control/ColorRect/LineEdit" to="." method="_on_inventory_submit"]
+[connection signal="SELECTED" from="CanvasLayer/inventory_control/PanelContainer" to="." method="_on_inventory_selected"]
+[connection signal="text_changed" from="CanvasLayer/characters_control/ColorRect/LineEdit" to="CanvasLayer/characters_control/ColorRect/LineEdit" method="_on_text_changed"]
+[connection signal="text_changed_sub" from="CanvasLayer/characters_control/ColorRect/LineEdit" to="." method="_on_character_search"]
 [connection signal="ENTER" from="CanvasLayer/characters_control/PanelContainer" to="." method="_on_tooltip_hover"]
 [connection signal="EXIT" from="CanvasLayer/characters_control/PanelContainer" to="." method="_on_tooltip_exit"]
 [connection signal="SELECTED" from="CanvasLayer/characters_control/PanelContainer" to="." method="_on_character_selected"]

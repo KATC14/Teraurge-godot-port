@@ -16,7 +16,6 @@ signal player_death
 
 # DIALOGUE LOGIC HANDLER#================================================================================
 func Logigier(index, logic: String):
-	print('VarTests.last_index logic ', index)
 	if logic.contains(','):
 		for funk in logic.split(","):
 			VarTests.last_index = index
@@ -381,29 +380,29 @@ func script_library(logic: String):
 		"add_encounter":
 			#add_encounter (location) (character)
 			#REMOVE REMOVING
-			if VarTests.CHANGED_ENCOUNTERS.has(slogic[1] + ".removed"):
-				var the_array: Array = VarTests.CHANGED_ENCOUNTERS[slogic[1] + ".removed"]
+			if VarTests.CHANGED_ENCOUNTERS.has("%s.removed" % [slogic[1]]):
+				var the_array: Array = VarTests.CHANGED_ENCOUNTERS["%s.removed" % [slogic[1]]]
 				var found = the_array.find(slogic[2])
 				if found != -1:
 					the_array.remove_at(found + 1)
 			#ADD ADDING
-			if VarTests.CHANGED_ENCOUNTERS.has(slogic[1] + ".added"):
-				VarTests.CHANGED_ENCOUNTERS[slogic[1] + ".added"] = [slogic[2]]
+			if VarTests.CHANGED_ENCOUNTERS.has("%s.added" % [slogic[1]]):
+				VarTests.CHANGED_ENCOUNTERS["%s.added" % [slogic[1]]] = [slogic[2]]
 			else:
-				VarTests.CHANGED_ENCOUNTERS[slogic[1] + ".added"].append(slogic[2])
+				VarTests.CHANGED_ENCOUNTERS["%s.added" % [slogic[1]]].append(slogic[2])
 		"remove_encounter":
 			#remove_encounter (location) (character)
-			#REMOVE ADDING
-			if VarTests.CHANGED_ENCOUNTERS.has(slogic[1] + ".added"):
-				var the_array: Array = VarTests.CHANGED_ENCOUNTERS[slogic[1] + ".added"]
+			# REMOVE ADDING
+			if VarTests.CHANGED_ENCOUNTERS.has("%s.added" % [slogic[1]]):
+				var the_array: Array = VarTests.CHANGED_ENCOUNTERS["%s.added" % [slogic[1]]]
 				var found = the_array.find(slogic[2])
 				if found != -1:
 					the_array.remove_at(found + 1)
-			#ADD REMOVING
-			if VarTests.CHANGED_ENCOUNTERS.has(slogic[1] + ".removed"):
-				VarTests.CHANGED_ENCOUNTERS[slogic[1] + ".removed"] = [slogic[2]]
+			# ADD REMOVING
+			if not VarTests.CHANGED_ENCOUNTERS.has("%s.removed" % [slogic[1]]):
+				VarTests.CHANGED_ENCOUNTERS["%s.removed" % [slogic[1]]] = [slogic[2]]
 			else:
-				VarTests.CHANGED_ENCOUNTERS[slogic[1] + ".removed"].append(slogic[2])
+				VarTests.CHANGED_ENCOUNTERS["%s.removed" % [slogic[1]]].append(slogic[2])
 		"counter":
 			#counter (counter name) (+/-) (number)
 			#Adds or subtracts the counter

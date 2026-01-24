@@ -1,20 +1,20 @@
-extends CanvasLayer
+extends Node2D
 
 
-@onready var fade_in    = $TextureRect
-@onready var death_back = $TextureRect2
-@onready var warn       = $Control
-@onready var menu       = $Control2
-@onready var load_menu  = $Control3
-@onready var vrsn_label = $Control2/Label
-@onready var save_label = $Control3/Label
-@onready var new_game   = load("res://scenes/new_game.tscn")
+@onready var fade_in    = $CanvasLayer/TextureRect
+@onready var death_back = $CanvasLayer/TextureRect2
+@onready var warn       = $CanvasLayer/Control
+@onready var menu       = $CanvasLayer/Control2
+@onready var load_menu  = $CanvasLayer/Control3
+@onready var vrsn_label = $CanvasLayer/Control2/Label
+@onready var save_label = $CanvasLayer/Control3/Label
 
-@onready var choicesDialog = $Control3/PanelContainer
+@onready var choicesDialog = $CanvasLayer/Control3/PanelContainer
 
 var saves
 
 func _ready() -> void:
+	VarTests.main_menu_active = true
 	vrsn_label.text = str(VarTests.version)
 	if VarTests.menu_state == 'warning':
 		warn.visible = true
@@ -48,7 +48,7 @@ func _ready() -> void:
 
 # TWEENS
 func menu_tween_up(node):
-	node.position.y = 720
+	node.position.y = VarTests.stage_height
 	node.modulate = Color.TRANSPARENT
 	node.visible = true
 	var tween = create_tween()
@@ -59,7 +59,7 @@ func menu_tween_up(node):
 func menu_tween_down(node):
 	node.position.y = 0
 	var tween = create_tween()
-	tween.tween_property(node, "position", Vector2(0, 720), 0.5)
+	tween.tween_property(node, "position", Vector2(0, VarTests.stage_height), 0.5)
 	tween.parallel().tween_property(node, "modulate:a", 0, 0.7)
 	return tween
 
@@ -76,20 +76,23 @@ func _on_button_warning_pressed() -> void:
 	tween.finished.connect(warning_end)
 
 func _on_button_new_game_pressed() -> void:
-	var tween = menu_tween_down(menu)
-	var ng_menu = new_game.instantiate()
+	var tween = menu_tween_down(menu) 
+	var ng_menu = $CanvasLayer/Control4
+
 	ng_menu.visible = false
-	add_child(ng_menu)
 	var temp = func():
 		menu.visible = false
 		ng_menu.position.y = 720
 		ng_menu.visible = true
+		#menu_tween_up(control)
 		var tween1 = create_tween()
 		tween1.tween_property(ng_menu, "position", Vector2(0, 0), 0.7)
 	tween.finished.connect(temp.call)
 
 func _on_button_load_pressed() -> void:
+	# TEMP
 	saves = ['save 1', 'save 2']
+	# TEMP
 	choicesDialog.visible = true
 	choicesDialog.choices = saves
 	var tween = menu_tween_down(menu)
@@ -113,9 +116,11 @@ func _on_panel_container_selected(index: Variant) -> void:
 	save_label.text = save
 
 func _on_button_mm_load_pressed() -> void:
+	print('_on_button_mm_load_pressed')
 	pass # Replace with function body.
 
 func _on_button_mm_delete_pressed() -> void:
+	print('_on_button_mm_delete_pressed')
 	pass # Replace with function body.
 
 func _on_button_mm_back_pressed() -> void:

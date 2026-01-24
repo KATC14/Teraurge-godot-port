@@ -1,38 +1,74 @@
 extends Node
 
-var debug
+var debug_menu
+var debug_index:GridContainer
+var debug_index_activated = false
 
 func _ready() -> void:
 	debug_validator_loaded(load_file("res://database/debug_functions_plz.txt"))
 	# TEMP forced debug
-	VarTests.debug_mode = false
+	#VarTests.debug_mode = false
+
+func _process(_delta: float) -> void:
+	if debug_index_activated:
+		# catch for scene change
+		if not debug_index:
+			readd_debug_index()
+		debug_index.move_to_front()
+
+		var character_text = "characters/%s/%s.txt" % [VarTests.character_name, VarTests.diag_file]
+		var index_text     = VarTests.current_index
+		if not VarTests.character_name: character_text = 'FILE'
+		if not VarTests.current_index:  index_text     = 'INDEX'
+
+		debug_index.get_child(0).text = character_text
+		debug_index.get_child(1).text = index_text
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_pressed("Ctrl"):
+	# debug functions
+	if VarTests.debug_mode and not VarTests.main_menu_active and Input.is_action_pressed("Ctrl"):
 		# debug menu
 		if Input.is_action_just_pressed("key_d"):
 			if not VarTests.debug_screen_visable:
 				VarTests.debug_screen_visable = true
-				debug = load("res://scenes/debug_screen.tscn").instantiate()
-				get_tree().current_scene.add_child(debug)
+				debug_menu = load("res://scenes/debug_screen.tscn").instantiate()
+				debug_menu.move_to_front()
+				get_tree().current_scene.add_child(debug_menu)
 			else:
 				VarTests.debug_screen_visable = false
-				debug.queue_free()
+				debug_menu.queue_free()
 		# debug index
 		if Input.is_action_just_pressed("key_c"):
-			pass
+			if not debug_index_activated:
+				debug_index_activated = true
+				readd_debug_index()
+			else:
+				debug_index_activated = false
+				debug_index.queue_free()
 		# debug leave
 		if Input.is_action_just_pressed("key_q"):
 			if not VarTests.map_active:
 				get_tree().change_scene_to_file("res://scenes/map.tscn")
 		# debug win
 		if Input.is_action_just_pressed("key_w"):
-			# if in_combat:
-			pass
+			if VarTests.in_combat:
+				get_tree().current_scene.play_card("player", "debug_win", "enemy")
+				#get_tree().current_scene.refresh_combat_ui()
 		# debug lose
 		if Input.is_action_just_pressed("key_l"):
-			# if in_combat:
-			pass
+			if VarTests.in_combat:
+				get_tree().current_scene.play_card("player", "debug_lose", "enemy")
+				#get_tree().current_scene.refresh_combat_ui()
+
+func readd_debug_index():
+	debug_index = load("res://scenes/debug_index.tscn").instantiate()
+	debug_index.move_to_front()
+
+	var node = get_tree().current_scene.get_child(0)
+	# catch for mad being active 
+	# moves node to child of camera for postioning and movement with carmera
+	if VarTests.map_active: node = node.get_child(1).get_child(0)
+	node.add_child(debug_index)
 
 func load_file(file):
 	var f = FileAccess.open(file, FileAccess.READ)
@@ -73,14 +109,18 @@ func array_find(clean_chunk:Array, item) -> int:
 			return i
 	return -1
 
-func items(dict:Dictionary):
+func items(dict:Dictionary) -> Array:
 	var data = []
 	for i in range(len(dict.keys())):
 		data.append([dict.keys()[i], dict.values()[i]])
 	return data
 
+func mass_repalce(text, reps):
+	for i in items(reps):
+		text = text.replace(i[0], i[1])
+	return text
 
-func array_zip(ary):
+func array_zip(ary) -> Array:
 	var ary_lens = []
 	for i in ary:
 		ary_lens.append(len(i))

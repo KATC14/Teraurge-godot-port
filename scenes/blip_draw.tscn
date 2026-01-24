@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1ab0mu77grty"]
+
+[ext_resource type="Script" uid="uid://2gux3g34qdss" path="res://scripts/blip_draw.gd" id="1_28uch"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y0end"]
+radius = 4.0
+
+[node name="Area2D" type="Area2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.7058824)
+position = Vector2(3.968, 3.968)
+scale = Vector2(0.031, 0.031)
+script = ExtResource("1_28uch")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(4, 4)
+shape = SubResource("CircleShape2D_y0end")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_filter = 1

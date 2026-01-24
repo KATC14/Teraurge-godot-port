@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bi0ips52pne77"]
+[gd_scene load_steps=47 format=3 uid="uid://bi0ips52pne77"]
 
 [ext_resource type="Script" uid="uid://cb26vfqqt682f" path="res://scripts/main_menu.gd" id="1_l6bqr"]
 [ext_resource type="Texture2D" uid="uid://pc77vjflsl7d" path="res://assets/images/menu_background.png" id="2_yveur"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c0odqau6ymjl7" path="res://assets/images/mm_load/save_menu_button_load.png" id="9_nvx11"]
 [ext_resource type="Texture2D" uid="uid://ddxfkmgdfkg4u" path="res://assets/images/mm_load/save_menu_button_delete.png" id="10_as1lp"]
 [ext_resource type="Script" uid="uid://dp6cmyn7ilaiq" path="res://scripts/ChoicesDialog.gd" id="12_gydw4"]
+[ext_resource type="PackedScene" uid="uid://m31rdyypcffy" path="res://scenes/new_game.tscn" id="14_1ajci"]
 
 [sub_resource type="SystemFont" id="SystemFont_sj7uo"]
 font_names = PackedStringArray("Verdana")
@@ -99,33 +100,36 @@ texture = ExtResource("9_1qb6e")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_18fv0"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6qhaq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcqid"]
+bg_color = Color(0, 0, 0, 0.18039216)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pwhl"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="Node2D" type="Node2D"]
 script = ExtResource("1_l6bqr")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 texture_filter = 1
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("2_yveur")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
 visible = false
 texture_filter = 1
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("3_mqh8r")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -146,7 +150,7 @@ label_settings = SubResource("LabelSettings_x2swp")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -159,7 +163,12 @@ offset_right = 794.0
 offset_bottom = 469.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 0.00392157, 0.00392157, 1)
+theme_override_colors/font_focus_color = Color(1, 0.003921569, 0.003921569, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.003921569, 0.003921569, 1)
+theme_override_colors/font_hover_color = Color(1, 0.003921569, 0.003921569, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.003921569, 0.003921569, 1)
 theme_override_fonts/font = SubResource("SystemFont_o8nyb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_rgclj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rgclj")
@@ -169,21 +178,21 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_rgclj")
 theme_override_styles/focus = SubResource("StyleBoxFlat_rgclj")
 text = "I am of legal age and wish to proceed"
 
-[node name="Control2" type="Control" parent="."]
+[node name="Control2" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="Control2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control2"]
 texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("3_0vlpf")
 
-[node name="Label" type="Label" parent="Control2"]
+[node name="Label" type="Label" parent="CanvasLayer/Control2"]
 layout_mode = 0
 offset_left = 822.0
 offset_top = 25.0
@@ -191,13 +200,14 @@ offset_right = 854.0
 offset_bottom = 48.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 
-[node name="Button" type="Button" parent="Control2"]
+[node name="Button" type="Button" parent="CanvasLayer/Control2"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 580.0
 offset_top = 286.0
 offset_right = 700.0
 offset_bottom = 316.0
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ecq6s")
@@ -206,13 +216,14 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vv75k")
 icon_alignment = 1
 
-[node name="Button2" type="Button" parent="Control2"]
+[node name="Button2" type="Button" parent="CanvasLayer/Control2"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 609.0
 offset_top = 372.0
 offset_right = 671.0
 offset_bottom = 402.0
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/hover = SubResource("StyleBoxTexture_vp3wg")
@@ -221,13 +232,14 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vv75k")
 icon_alignment = 1
 
-[node name="Button3" type="Button" parent="Control2"]
+[node name="Button3" type="Button" parent="CanvasLayer/Control2"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 591.0
 offset_top = 538.0
 offset_right = 689.0
 offset_bottom = 568.0
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/hover = SubResource("StyleBoxTexture_0k2ar")
@@ -236,13 +248,14 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vv75k")
 icon_alignment = 1
 
-[node name="Button4" type="Button" parent="Control2"]
+[node name="Button4" type="Button" parent="CanvasLayer/Control2"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 591.0
 offset_top = 580.0
 offset_right = 689.0
 offset_bottom = 610.0
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/hover = SubResource("StyleBoxTexture_d4v3c")
@@ -251,26 +264,27 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_vv75k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vv75k")
 icon_alignment = 1
 
-[node name="Control3" type="Control" parent="."]
+[node name="Control3" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="Control3"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3"]
 texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("8_8ui5f")
 
-[node name="Button" type="Button" parent="Control3"]
+[node name="Button" type="Button" parent="CanvasLayer/Control3"]
 layout_mode = 0
 offset_left = 485.0
 offset_top = 119.0
 offset_right = 580.0
 offset_bottom = 148.0
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_eqaw2")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_6t2wy")
 theme_override_styles/hover = SubResource("StyleBoxTexture_yn4gx")
@@ -278,12 +292,13 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ue6s2")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_l6ggv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_eiwp0")
 
-[node name="Button2" type="Button" parent="Control3"]
+[node name="Button2" type="Button" parent="CanvasLayer/Control3"]
 layout_mode = 0
 offset_left = 826.0
 offset_top = 123.0
 offset_right = 897.0
 offset_bottom = 144.0
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vt8bh")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5eiij")
 theme_override_styles/hover = SubResource("StyleBoxTexture_5genb")
@@ -291,12 +306,13 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_j43s5")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ubtbi")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mohq8")
 
-[node name="Button3" type="Button" parent="Control3"]
+[node name="Button3" type="Button" parent="CanvasLayer/Control3"]
 layout_mode = 0
 offset_left = 485.0
 offset_top = 383.0
 offset_right = 580.0
 offset_bottom = 412.0
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cn56t")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vv6wq")
 theme_override_styles/hover = SubResource("StyleBoxTexture_f1ejh")
@@ -304,16 +320,16 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_glqid")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_aed6d")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_u1xvs")
 
-[node name="Label" type="Label" parent="Control3"]
+[node name="Label" type="Label" parent="CanvasLayer/Control3"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 637.0
 offset_top = 121.0
 offset_right = 803.0
 offset_bottom = 144.0
+horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Control3"]
-visible = false
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control3"]
 visibility_layer = 2
 layout_mode = 0
 offset_left = 621.0
@@ -323,32 +339,38 @@ offset_bottom = 605.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_nyvu0")
 script = ExtResource("12_gydw4")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control3/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control3/PanelContainer"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control3/PanelContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control3/PanelContainer/MarginContainer"]
 layout_mode = 2
+horizontal_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control3/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="BoxContainer" parent="CanvasLayer/Control3/PanelContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
+vertical = true
 
-[node name="Button" type="Button" parent="Control3/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/Control3/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_0apf6")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_18fv0")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_6qhaq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rcqid")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5pwhl")
 text = "Choice"
 alignment = 0
 
-[connection signal="pressed" from="Control/Button" to="." method="_on_button_warning_pressed"]
-[connection signal="pressed" from="Control2/Button" to="." method="_on_button_new_game_pressed"]
-[connection signal="pressed" from="Control2/Button2" to="." method="_on_button_load_pressed"]
-[connection signal="pressed" from="Control2/Button3" to="." method="_on_button_devblog_pressed"]
-[connection signal="pressed" from="Control2/Button4" to="." method="_on_button_patreon_pressed"]
-[connection signal="pressed" from="Control3/Button" to="." method="_on_button_mm_load_pressed"]
-[connection signal="pressed" from="Control3/Button2" to="." method="_on_button_mm_delete_pressed"]
-[connection signal="pressed" from="Control3/Button3" to="." method="_on_button_mm_back_pressed"]
-[connection signal="SELECTED" from="Control3/PanelContainer" to="." method="_on_panel_container_selected"]
+[node name="Control4" parent="CanvasLayer" instance=ExtResource("14_1ajci")]
+visible = false
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_warning_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control2/Button" to="." method="_on_button_new_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control2/Button2" to="." method="_on_button_load_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control2/Button3" to="." method="_on_button_devblog_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control2/Button4" to="." method="_on_button_patreon_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control3/Button" to="." method="_on_button_mm_load_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control3/Button2" to="." method="_on_button_mm_delete_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control3/Button3" to="." method="_on_button_mm_back_pressed"]
+[connection signal="SELECTED" from="CanvasLayer/Control3/PanelContainer" to="." method="_on_panel_container_selected"]
