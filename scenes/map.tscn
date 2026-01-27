@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://bc1h5hiwimgip"]
+[gd_scene load_steps=94 format=3 uid="uid://bc1h5hiwimgip"]
 
 [ext_resource type="Script" uid="uid://c0h5h13lafhyc" path="res://scripts/map.gd" id="1_6252v"]
 [ext_resource type="Texture2D" uid="uid://bctev5st1e7v" path="res://database/maps/default.jpg" id="2_7g4cl"]
@@ -22,7 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://b6jk2ikb8coek" path="res://assets/images/save_load/save_button.png" id="22_af7ke"]
 [ext_resource type="Texture2D" uid="uid://c7oiev5ursisd" path="res://assets/images/save_load/load_button.png" id="23_irgrq"]
 [ext_resource type="Texture2D" uid="uid://es2b8qbbgk6a" path="res://assets/images/save_load/delete_button.png" id="24_836js"]
-[ext_resource type="PackedScene" uid="uid://bnownsp50c218" path="res://scenes/tool_tip.tscn" id="24_y2ir2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vney4"]
 
@@ -1069,13 +1068,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="tooltip" parent="CanvasLayer" instance=ExtResource("24_y2ir2")]
-
 [node name="player_speed" type="Timer" parent="."]
 unique_name_in_owner = true
 
 [connection signal="loc_move" from="." to="." method="_on_blip_move"]
-[connection signal="loc_start" from="." to="." method="_on_blips_ready"]
 [connection signal="mouse_entered" from="CanvasLayer/Camera2D/Control/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Camera2D/Control/Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Camera2D/Control/Button" to="." method="_on_button_chr_pressed"]

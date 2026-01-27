@@ -1,8 +1,7 @@
-[gd_scene load_steps=53 format=3 uid="uid://cghm8dwjeyts5"]
+[gd_scene load_steps=52 format=3 uid="uid://cghm8dwjeyts5"]
 
 [ext_resource type="Script" uid="uid://mjerosrqpc0i" path="res://scripts/dialogue.gd" id="1_abwjo"]
 [ext_resource type="Script" uid="uid://dp6cmyn7ilaiq" path="res://scripts/ChoicesDialog.gd" id="1_khq2m"]
-[ext_resource type="Script" uid="uid://dk3dmvcg4hxio" path="res://scripts/diag_func.gd" id="2_nm0kn"]
 [ext_resource type="Script" uid="uid://bk3wsu4cegr1l" path="res://scripts/autocont_dots.gd" id="3_xwsq1"]
 [ext_resource type="Texture2D" uid="uid://3stvrt6a2g6y" path="res://assets/images/sky/sky_day.jpg" id="5_8cypa"]
 [ext_resource type="Shader" uid="uid://dykrqe5wj5mbb" path="res://shaders/screen.gdshader" id="5_ccnnw"]
@@ -128,12 +127,6 @@ script = ExtResource("1_abwjo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
-
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_nm0kn")
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -389,6 +382,10 @@ fit_content = true
 scroll_active = false
 selection_enabled = true
 
+[node name="dialogue_timer" type="Timer" parent="CanvasLayer/dialogue_boxes"]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 visible = false
 offset_right = 40.0
@@ -414,9 +411,6 @@ metadata/_edit_lock_ = true
 
 [node name="attacks_timer" type="Timer" parent="CanvasLayer/Control3"]
 unique_name_in_owner = true
-autostart = true
-
-[node name="Timer2" type="Timer" parent="CanvasLayer/Control3"]
 autostart = true
 
 [node name="player_combat_ui" type="Control" parent="CanvasLayer/Control3"]
@@ -1295,15 +1289,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[connection signal="change_diag" from="CanvasLayer/Panel" to="." method="_on_change_diag"]
-[connection signal="change_environment" from="CanvasLayer/Panel" to="." method="_on_change_environment"]
-[connection signal="change_index" from="CanvasLayer/Panel" to="." method="_on_change_index"]
-[connection signal="change_sprite" from="CanvasLayer/Panel" to="." method="_on_change_sprite"]
-[connection signal="create_picture" from="CanvasLayer/Panel" to="." method="_on_create_picture"]
-[connection signal="leave_encounter" from="CanvasLayer/Panel" to="." method="_on_leave_encounter"]
-[connection signal="player_death" from="CanvasLayer/Panel" to="." method="_on_player_death"]
-[connection signal="start_combat" from="CanvasLayer/Panel" to="." method="_on_start_combat"]
-[connection signal="start_encounter" from="CanvasLayer/Panel" to="." method="_on_start_encounter"]
 [connection signal="SELECTED" from="CanvasLayer/PanelContainer" to="." method="_on_panel_container_selected"]
 [connection signal="resized" from="CanvasLayer/dialogue_boxes/mid_box" to="." method="_mid_box_size_clamp"]
 [connection signal="pressed" from="CanvasLayer/Control3/player_combat_ui/Control2/TextureRect/turn_dail" to="." method="_on_btn_turn_dial_pressed"]

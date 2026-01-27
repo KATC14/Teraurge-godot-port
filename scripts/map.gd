@@ -1,6 +1,5 @@
 extends Node
 
-signal loc_start
 signal loc_move
 
 @onready var CanLay      = $CanvasLayer
@@ -63,7 +62,7 @@ var deck_minimum_size  = 16
 
 # thank you Mige, I would have not figured this out myself
 @onready var blip = load("res://scenes/blip_draw.tscn")
-@onready var tooltip = $CanvasLayer/tooltip
+var tooltip:Control
 
 var map_data = "res://database/maps/default_data.txt"
 var ATMOSPHERIC_MULTIPLIER = 1
@@ -72,7 +71,7 @@ var location
 var discovery_popup_active = false
 var can_move = false
 var adjacent_blips = []
-var all_loc:Array
+var all_loc:Dictionary
 
 func _ready() -> void:
 	sun_dial_lbl.text = str(VarTests.DAYS)
@@ -99,7 +98,7 @@ func _ready() -> void:
 	create_discovered_locations()
 
 func _input(_event: InputEvent) -> void:
-	if tooltip.visible:
+	if tooltip and tooltip.visible:
 		# camera.position.x half the screen
 		# camera.position.x + (VarTests.stage_width * 2)
 		@warning_ignore("integer_division")
@@ -165,15 +164,15 @@ func create_item_description(item:String):
 func _on_tooltip_hover(array, index, item=false):
 	if not item:
 		item = create_item_description(unformat(array[index])[1])
+	tooltip = load("res://scenes/tool_tip.tscn").instantiate()
 	tooltip.get_node("Label").text = str(item)
 	# catch for resetting size of tooltip
 	tooltip.get_child(0).size = Vector2.ZERO
-	tooltip.visible = true
+	CanLay.add_child(tooltip)
 	tooltip.move_to_front()
 
 func _on_tooltip_exit(_array, _index):
-	tooltip.visible = false
-	#tooltip.queue_free()
+	if tooltip: tooltip.queue_free()
 
 var menulist = []
 func movement(source_object, time=0.25):
@@ -273,38 +272,55 @@ func create_locations() -> void:
 		#area.body_entered.connect(load_blip.bind(loc_name))#, area
 		#area.body_exited.connect(func(_body): area_exited = true)
 		# pass on blips that are not used to keep same map format
-		all_loc.append(area)
 		match data_out[3]:
-			"blip":           pass
-			"blip_named":     pass
-			"blip_encounter": pass
-			#"blip_place":     pass
-			"no_name":        pass
-			_:                VarTests.named_loc[loc_name] = area
+			# normal blip
+			"blip":           all_loc[area] = loc_name
+			# named blip (no idea why this is any more special then blip_encounter)
+			"blip_named":     all_loc[area] = loc_name
+			# random encounter
+			"blip_encounter": all_loc[area] = loc_name
+			# named location
+			"blip_place":     all_loc[area] = loc_name
 		# for loop ended (why is there no else on a fo rloop like python or a finally)
 		if i == map_size-1:
-			if not VarTests.loc_name:
+			# catch for leaving a location gotten to by debug or somehow missing a location name
+			
+			if not VarTests.loc_name or not all_loc.values().has(VarTests.loc_name):
 				VarTests.loc_name = 'sejan_witch_house'
-			VarTests.map_target = VarTests.named_loc[VarTests.loc_name]
-			loc_start.emit(VarTests.map_target)
+			# why godot you are so much python but are mussing some amazing stuff
+			# like            for i, x in Dictionary.items()
+			# or              for i (x, y) in [('a', ('1', '2')), ('b', ('3', '4'))]
+			# and cant forget for i, x in zip(list, list):
+			# move player to loaction
+			VarTests.map_target = reverse_loc_lookup(VarTests.loc_name)
+			# move camera to node left
+			camera.position = VarTests.map_target.position
+			blips_ready(VarTests.map_target)
 			can_move = true
+
+func reverse_loc_lookup(loc_name):
+	for items in Utils.items(all_loc):
+		# items[0] key
+		# items[1] value
+		if items[1] == loc_name:
+			return items[0]
 
 func create_discovered_locations():
 	for i in VarTests.DISCOVERED_LOCATIONS:
-		var loc_area:Node2D = VarTests.named_loc[i]
+		var loc_area:Node2D = reverse_loc_lookup(i)
 		var con:Control = loc_area.get_child(-1)
-		if not con.is_connected('mouse_entered', _on_tooltip_hover):
+		if not con.mouse_entered.is_connected(_on_tooltip_hover):
 			con.mouse_entered.connect(_on_tooltip_hover.bind(null, null, VarTests.loc_name))
 			con.mouse_exited.connect(_on_tooltip_exit.bind(null, null))
 		color_blips(loc_area)
 
 func discover_location(loc_name):
-	if VarTests.named_loc.has(loc_name):
+	if all_loc.values().has(loc_name):
 		if not VarTests.DISCOVERED_LOCATIONS.has(loc_name):
 			VarTests.DISCOVERED_LOCATIONS.append(loc_name)
 			create_discovered_locations()
 
-func _on_load_blip(loc_name):
+func evaluate_blip(loc_name):
 	print('loc_name ', loc_name)
 	VarTests.environment_name = loc_name
 	var stats_file = LoadStats.read_env_stats(loc_name)
@@ -315,68 +331,42 @@ func _on_load_blip(loc_name):
 		return
 
 	var result    = LoadStats.parse_env_vars(stats_file)
-	#print(result)
-	var disco     = Utils.array_find(result, 'discoverable')
-	print('disco ', disco)
-	if disco != -1:
-		# location revisit
-		if VarTests.DISCOVERED_LOCATIONS.has(loc_name):
-			var def_msg = Utils.array_find(result, 'default_message')
-			print('def_msg ', def_msg)
-			if def_msg != -1:
-				var text = result[def_msg].split(':')[-1]
-				discovery_popup(text, loc_name)
+	if Utils.array_find(result, '{encounters') != -1:
+		if Utils.array_find(result, 'discoverable') != -1:
+			# location revisit
+			if VarTests.DISCOVERED_LOCATIONS.has(loc_name):
+				var def_msg = Utils.array_find(result, 'default_message')
+				if def_msg != -1:
+					var text = result[def_msg].split(':')[-1]
+					discovery_popup(text, loc_name)
+			else:
+				# location first time visit
+				var dic_msg = Utils.array_find(result, 'dicovery_message')
+				if dic_msg != -1:
+					var text = result[dic_msg].split(':')[-1]
+					discovery_popup(text, loc_name)
 		else:
-			# location first time visit
-			var dic_msg = Utils.array_find(result, 'dicovery_message')
-			if dic_msg != -1:
-				var text = result[dic_msg].split(':')[-1]
-				discovery_popup(text, loc_name)
-	else:
-		env_encounter(stats_file)
+			get_encounter(stats_file)
 
-func env_encounter(stats_file):
+# EValuatE Encounter
+func get_encounter(stats_file):
+	print('eevee')
 	var stats_parsed = DiagParse.begin_parsing(stats_file, 'encounters')
-	print('stats_parsed ', stats_parsed)
+	#print('stats_parsed ', stats_parsed)
 	if stats_parsed:
 		var options_parsed = DiagParse.parse_options(stats_parsed[2])
-		var found = stats_parsed[0].find('curated_list')
-		if found != -1:
-			# parses out same structure tree but with only allowed values
-			var allowed = []
-			var first   = []
-			var second  = []
-			var third   = []
-			var forth   = []
-			var value = Showif.get_allowed(options_parsed)
-			for i in range(len(value)):
-				if not value[i]:
-					first.append(options_parsed[0][i])
-					second.append(options_parsed[1][i])
-					third.append(options_parsed[2][i])
-					forth.append(options_parsed[3][i])
-			allowed.append(first)
-			allowed.append(second)
-			allowed.append(third)
-			allowed.append(forth)
-			print('random allowed ', allowed)
+		print('options_parsed ', options_parsed)
+		if stats_parsed[0].find('curated_list') != -1:
+			var index = Utils.curated_list(stats_parsed, stats_parsed[0].split(' ')[1])
+			print('index?? ', index)
+			if index:
+				var logic_func = DiagFunc.Logigier('', index)
+				match logic_func[0]:
+					"start_encounter":    start_encounter(logic_func[1])
 
-			var index
-			var curated_list = stats_parsed[0].split(' ')[1]
-			if curated_list == "random":
-				index = randi_range(0, len(allowed[0])-1)
-				print('random len ', len(allowed[0])-1)
-			if curated_list == "weighted":
-				pass
-			if curated_list == "prioritized": index = 0
-			print('random index ', index)
-			print('random 1 ', allowed[0][index]) # option index
-			print('random 2 ', allowed[1][index]) # index func
-			print('random 3 ', allowed[2][index]) # option func
-			print('random 4 ', allowed[3][index]) # diag text
-			#print('random value ', value)
-			print()
-		#get_tree().change_scene_to_file("res://scenes/dialogue.tscn")
+func start_encounter(loc):
+	VarTests.character_name = loc
+	get_tree().change_scene_to_file("res://scenes/dialogue.tscn")
 
 func get_distance(point1, point2):
 	var x = point1.x - point2.x
@@ -408,17 +398,11 @@ func map_collision_check(relative_x, relative_y):
 
 	var new_loc = adjacent_blips[closest_index]
 	VarTests.map_target = new_loc
-	var rev_serch_idx = VarTests.named_loc.values().find(new_loc)
-	# catch for unnamed location
-	if rev_serch_idx != -1:
-		var found = VarTests.named_loc.keys()[rev_serch_idx]
-		print('found ', found)
-		_on_load_blip(found)
-	_on_blips_ready(new_loc)
+	evaluate_blip(all_loc[new_loc])
+	blips_ready(new_loc)
 
 func color_blips(blip_loc:Area2D):
 	var temp:Sprite2D = blip_loc.get_node("Sprite2D")
-	var index = VarTests.named_loc.values().find(blip_loc)
 	var child = temp.get_parent().get_child(0)
 
 	# the child.modulate.a is a invisible Sprite2D used to determine movment
@@ -430,18 +414,18 @@ func color_blips(blip_loc:Area2D):
 		temp.redraw = 'adjacent_blips'
 		child.modulate.a = 1
 	# discovered locations
-	if index != -1 and VarTests.named_loc.keys()[index] in VarTests.DISCOVERED_LOCATIONS:
+	if all_loc[blip_loc] in VarTests.DISCOVERED_LOCATIONS:
 		temp.redraw = 'discovered'
 		child.modulate.a = 1
 	# at blip
 	if blip_loc == VarTests.map_target:
 		temp.redraw = 'on_top'
 		# at discovered location
-		if VarTests.named_loc.keys()[index] in VarTests.DISCOVERED_LOCATIONS:
+		if all_loc[blip_loc] in VarTests.DISCOVERED_LOCATIONS:
 			temp.redraw = 'on_discovered'
 		child.modulate.a = 1
 
-func _on_blips_ready(target):
+func blips_ready(target):
 	can_move = false
 	var deltaX
 	var deltaY
@@ -449,7 +433,7 @@ func _on_blips_ready(target):
 	var rangee = 30
 	adjacent_blips = []
 
-	for i in all_loc:
+	for i in all_loc.keys():
 		var c = i.position
 		var s = target.position
 		#var c1 = i
@@ -499,8 +483,7 @@ func _on_discovery_popup_pass():
 
 func _on_discovery_popup_enter():
 	disco_cont.visible = false
-	VarTests.character_name = location
-	get_tree().change_scene_to_file("res://scenes/dialogue.tscn")
+	start_encounter(location)
 
 func _on_button_mouse_entered() -> void:
 	if not (chr_menu.visible or dck_menu.visible or inv_menu.visible or stn_menu.visible):

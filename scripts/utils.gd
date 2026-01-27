@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
 	if debug_index_activated:
 		# catch for scene change
 		if not debug_index:
-			readd_debug_index()
+			read_debug_index()
 		debug_index.move_to_front()
 
 		var character_text = "characters/%s/%s.txt" % [VarTests.character_name, VarTests.diag_file]
@@ -29,19 +29,19 @@ func _input(_event: InputEvent) -> void:
 	if VarTests.debug_mode and not VarTests.main_menu_active and Input.is_action_pressed("Ctrl"):
 		# debug menu
 		if Input.is_action_just_pressed("key_d"):
-			if not VarTests.debug_screen_visable:
-				VarTests.debug_screen_visable = true
+			if not VarTests.debug_screen_visible:
+				VarTests.debug_screen_visible = true
 				debug_menu = load("res://scenes/debug_screen.tscn").instantiate()
 				debug_menu.move_to_front()
 				get_tree().current_scene.add_child(debug_menu)
 			else:
-				VarTests.debug_screen_visable = false
+				VarTests.debug_screen_visible = false
 				debug_menu.queue_free()
 		# debug index
 		if Input.is_action_just_pressed("key_c"):
 			if not debug_index_activated:
 				debug_index_activated = true
-				readd_debug_index()
+				read_debug_index()
 			else:
 				debug_index_activated = false
 				debug_index.queue_free()
@@ -60,7 +60,53 @@ func _input(_event: InputEvent) -> void:
 				get_tree().current_scene.play_card("player", "debug_lose", "enemy")
 				#get_tree().current_scene.refresh_combat_ui()
 
-func readd_debug_index():
+func curated_list(data_parsed, cure):
+	var options_parsed = DiagParse.parse_options(data_parsed[2])
+
+	var index:int
+	# CURATED LIST MODIFIER
+	if cure == "random":
+		index = randi_range(0, len(options_parsed[0])-1)
+		#print('random len ', len(options_parsed[0])-1)
+	if cure == "weighted":
+		#var weight = range(len(options_parsed[0]))
+		#ran.reverse()
+		#var rng = RandomNumberGenerator.new()
+		#rng.randfn()
+		#index =  rng.rand_weighted(weight)
+		var list_weights = []
+		var weight_limit = 0
+		var list_i = 0
+		while list_i < options_parsed[0].size():
+			var ium = (list_i+1) * 10
+			weight_limit += ium
+			list_weights.append(ium)
+			list_i += 1
+
+		list_weights.reverse()
+		var random_weight = round(randf() * (weight_limit-1))
+		var weight_i = 0
+		var weight_iter = list_weights[0]
+
+		while weight_iter < random_weight:
+			weight_i += 1
+			weight_iter += list_weights[weight_i]
+
+		index = weight_i
+	if cure == "prioritized":
+		index = 0
+
+	#print(options_parsed)
+	print('options_parsed[1][index] ', options_parsed[1][index])
+	if options_parsed[1][index]:
+		var values = Showif.get_allowed(options_parsed[2][index])
+		# only return index if option is visible
+		if values.find(true) == -1:
+			return options_parsed[1][index]
+	return null
+
+
+func read_debug_index():
 	debug_index = load("res://scenes/debug_index.tscn").instantiate()
 	debug_index.move_to_front()
 

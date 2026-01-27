@@ -35,13 +35,12 @@ func parse_env_vars(stats_file):
 
 	var wanted = [
 		'interior', 'ambient_color', 'ambient', 
-		'discoverable', 'dicovery_message', 'default_message'
+		'discoverable', 'dicovery_message', 'default_message', '{encounters'
 	]
 
 	var result = []
 	for i in wanted:
 		for x in thespt.filter(func(item): if i in item: return item):
 			result.append(x)
-	var thing = result.map(func (item): return item)
 
-	return thing
+	return result#.map(func (item): return item)

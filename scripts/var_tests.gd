@@ -4,8 +4,6 @@ extends Node
 var stage_height = 720
 var stage_width  = 1280
 #var player_location = Vector2(2147.25, 3147.6)
-var all_loc = []
-var named_loc:Dictionary = {}#name:Vector3(x, y, r)
 var map_target
 var loc_name:String
 
@@ -32,11 +30,13 @@ var ambient_strength = null
 var env_ambient = null
 var scene_character = ""
 var map_active = false
-var debug_screen_visable = false
+var debug_screen_visible = false
 var whos_turn = 'player'
 var in_combat = false
 var diag_file = 'diag'
 var main_menu_active = false
+var character_leaves = false
+var character_returns = false
 
 var ALL_CARDS = ''
 var ALL_ITEMS = ''

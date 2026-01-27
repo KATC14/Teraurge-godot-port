@@ -420,7 +420,7 @@ func blink_red(object, time):
 	if timer        not in get_children(): add_child(timer)
 	if timer_red    not in get_children(): add_child(timer_red)
 	if timer_normal not in get_children(): add_child(timer_normal)
-	if not timer_red.is_connected("timeout", blk_red):       timer_red.timeout.connect(blk_red.call)
+	if not timer_red.is_connected("timeout", blk_red):         timer_red.timeout.connect(blk_red.call)
 	if not timer_normal.is_connected("timeout", blink_normal): timer_normal.timeout.connect(blink_normal.call)
 	if not timer.is_connected("timeout", end):                 timer.timeout.connect(end)
 

@@ -1,9 +1,10 @@
 extends Node
 
-func get_allowed(the_array):#, full_str='empty'
+func get_allowed(the_array:Array):#, full_str='empty'
+	#print('a ', the_array)
 	var ret_array = []
-	for i in range(len(the_array[0])):
-		var value = check_for_showif(the_array[2][i])#, full_str
+	for i in range(len(the_array)):
+		var value = check_for_showif(the_array[i])#, full_str
 		ret_array.append(value)
 	return ret_array
 
@@ -14,12 +15,14 @@ func check_for_showif(opt_parsed):#, full_string='empty'
 
 	var allowed = []
 	for i in opt_parsed:
-		var value
-		if (i.find("showif") != -1):
+		#if not i: return false
+
+		var value = false
+		if i and (i.find("showif") != -1):
 			value = showif(i)
 
 		# Unique to HIDEIF!! (REVERSED BOOLEAN)
-		if (i.find("hideif") != -1):
+		if i and (i.find("hideif") != -1):
 			value = showif(i)#, full_string
 			#print('value 0 ', value)
 			if value:
@@ -219,7 +222,7 @@ func showif(logic):#, full_string='empty'
 				return false
 			#=====================================================================
 		"time_filter":
-			#time_filter.(more than time).(less than time)
+			# time_filter.(more than time).(less than time)
 
 			if int(split1) > int(split2):
 				if VarTests.TIME > int(split1):

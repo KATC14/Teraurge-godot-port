@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://csvl4qvh4o7go"]
+[gd_scene load_steps=19 format=3 uid="uid://csvl4qvh4o7go"]
 
 [ext_resource type="Script" uid="uid://b6ognp6ltwsh6" path="res://scripts/debug_screen.gd" id="1_nxn64"]
 [ext_resource type="Script" uid="uid://dp6cmyn7ilaiq" path="res://scripts/ChoicesDialog.gd" id="2_eos6k"]
 [ext_resource type="Script" uid="uid://6a12vdkitxck" path="res://scripts/TextEdit_Signal.gd" id="2_xklg5"]
-[ext_resource type="PackedScene" uid="uid://bnownsp50c218" path="res://scenes/tool_tip.tscn" id="3_eos6k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i7woc"]
 
@@ -789,8 +788,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_eos6k")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xklg5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ggwjm")
 text = "Save"
-
-[node name="Control" parent="CanvasLayer" instance=ExtResource("3_eos6k")]
 
 [connection signal="text_submit" from="CanvasLayer/flags_control/ColorRect/LineEdit" to="." method="_on_flags_submit"]
 [connection signal="SELECTED" from="CanvasLayer/flags_control/PanelContainer" to="." method="_on_flags_selected"]

@@ -4,8 +4,8 @@ extends PanelContainer
 # https://www.youtube.com/watch?v=AkrkcFhJcYs
 
 signal SELECTED(index)
-signal ENTER(index)
-signal EXIT(index)
+signal ENTER(choices, index)
+signal EXIT(choices, index)
 
 @onready var choices_list = $MarginContainer/ScrollContainer/VBoxContainer
 @onready var choice_prefab = $MarginContainer/ScrollContainer/VBoxContainer/Button
@@ -33,7 +33,7 @@ func initButtons():
 	for choice_index in range(choices.size()):
 		if (choice_index == 0):
 			choices_list.get_child(0).text = choices[choice_index]
-			if not choices_list.get_child(choice_index).is_connected('pressed', onChoice):
+			if not choices_list.get_child(choice_index).pressed.is_connected(onChoice):
 				choices_list.get_child(choice_index).pressed.connect(onChoice.bind(choice_index))
 				choices_list.get_child(choice_index).mouse_entered.connect(onEntered.bind(choices, choice_index))
 				choices_list.get_child(choice_index).mouse_exited.connect(onExited.bind(choices, choice_index))

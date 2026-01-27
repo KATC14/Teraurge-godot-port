@@ -18,13 +18,12 @@ var sprite#@onready            = $CanvasLayer/Control/character_layer/sprite    
 @onready var scene_picture    = $CanvasLayer/Control/scene_picture   # picture_layer
 
 @onready var choicesDialog    = $CanvasLayer/PanelContainer
-@onready var shakeTimer       = $CanvasLayer/Control3/Timer2
 
-@onready var dialogue_boxes = $CanvasLayer/dialogue_boxes
-@onready var top_box = $CanvasLayer/dialogue_boxes/top_box
-@onready var mid_box = $CanvasLayer/dialogue_boxes/mid_box
-@onready var bot_box = $CanvasLayer/dialogue_boxes/bot_box
+@onready var top_box          = $CanvasLayer/dialogue_boxes/top_box
+@onready var mid_box          = $CanvasLayer/dialogue_boxes/mid_box
+@onready var bot_box          = $CanvasLayer/dialogue_boxes/bot_box
 
+# index error 
 @onready var error            = $CanvasLayer/error_label
 @onready var error_label      = $CanvasLayer/error_label/Label
 @onready var error_button     = $CanvasLayer/error_label/Button
@@ -36,7 +35,9 @@ var bubble_tween
 var stats_file
 var opt_parsed
 
-var dialogue_complete = true
+@onready var dialogue_timer = %dialogue_timer
+var dialogue_complete = false
+var hurry_dialogue = false
 
 var active_choice = 0
 var text_index = 0
@@ -46,14 +47,14 @@ var def_bubble_color = '000000'
 
 
 # combat
-var random_tries = 40
-var player_turn = true
+var random_tries           = 40
+var player_turn           = true
 var player_base_hitpoints = VarTests.player_hitpoints
-var player_health = player_base_hitpoints
-var enemy_health = 0
-var enemy_hand  = []
-var enemy_deck:Array = []
-var tooltip
+var player_health         = player_base_hitpoints
+var enemy_health          = 0
+var enemy_hand            = []
+var enemy_deck:Array      = []
+var tooltip:Control
 
 var combat_stats = {
 	"player_heat_res":   VarTests.player_stats["heat_res"],
@@ -102,19 +103,9 @@ var combat_stats = {
 	"enemy_hitpoints_damage":   0,
 }
 
-var enemy_res_heat    = 0
-var enemy_res_cold    = 0
-var enemy_res_impact  = 0
-var enemy_res_slash   = 0
-var enemy_res_pierce  = 0
-var enemy_res_magic   = 0
-var enemy_res_bio     = 0
-
 @onready var card             = load("res://assets/images/combat/card.png")
 @onready var turn_dial_enemy  = load("res://assets/images/combat/turn_dial_enemy.png")
 @onready var turn_dial_player = load("res://assets/images/combat/turn_dial_player.png")
-
-
 
 # combat vars
 @onready var card_empty        = load("res://assets/images/combat/card_empty.png")
@@ -136,6 +127,13 @@ var enemy_res_bio     = 0
 @onready var btn_card_7 = %btn_card_7
 
 
+@onready var player_stat_cha_control  = %player_stat_cha_control
+@onready var player_stat_will_control = %player_stat_will_control
+@onready var player_stat_int_control  = %player_stat_int_control
+@onready var player_stat_agi_control  = %player_stat_agi_control
+@onready var player_stat_str_control  = %player_stat_str_control
+@onready var player_stat_end_control  = %player_stat_end_control
+
 @onready var player_res_heat   = %player_res_heat
 @onready var player_res_cold   = %player_res_cold
 @onready var player_res_impact = %player_res_impact
@@ -145,49 +143,28 @@ var enemy_res_bio     = 0
 @onready var player_res_bio    = %player_res_bio
 
 
-@onready var player_stat_cha_control  = %player_stat_cha_control
-@onready var player_stat_will_control = %player_stat_will_control
-@onready var player_stat_int_control  = %player_stat_int_control
-
-@onready var player_stat_agi_control  = %player_stat_agi_control
-@onready var player_stat_str_control  = %player_stat_str_control
-@onready var player_stat_end_control  = %player_stat_end_control
-
-@onready var player_stat_cha_lbl  = $CanvasLayer/Control3/player_combat_ui/player_stat_cha_control/Label
-@onready var player_stat_cha_tex  = $CanvasLayer/Control3/player_combat_ui/player_stat_cha_control/TextureRect
-@onready var player_stat_will_lbl = $CanvasLayer/Control3/player_combat_ui/player_stat_will_control/Label
-@onready var player_stat_will_tex = $CanvasLayer/Control3/player_combat_ui/player_stat_will_control/TextureRect
-@onready var player_stat_int_lbl  = $CanvasLayer/Control3/player_combat_ui/player_stat_int_control/Label
-@onready var player_stat_int_tex  = $CanvasLayer/Control3/player_combat_ui/player_stat_int_control/TextureRect
-
-@onready var player_stat_agi_lbl = $CanvasLayer/Control3/player_combat_ui/player_stat_agi_control/Label
-@onready var player_stat_agi_tex = $CanvasLayer/Control3/player_combat_ui/player_stat_agi_control/TextureRect
-@onready var player_stat_str_lbl = $CanvasLayer/Control3/player_combat_ui/player_stat_str_control/Label
-@onready var player_stat_str_tex = $CanvasLayer/Control3/player_combat_ui/player_stat_str_control/TextureRect
-@onready var player_stat_end_lbl = $CanvasLayer/Control3/player_combat_ui/player_stat_end_control/Label
-@onready var player_stat_end_tex = $CanvasLayer/Control3/player_combat_ui/player_stat_end_control/TextureRect
-
-
-@onready var enemy_res_heat_lbl   = %enemy_res_heat
-@onready var enemy_res_cold_lbl   = %enemy_res_cold
-@onready var enemy_res_impact_lbl = %enemy_res_impact
-@onready var enemy_res_slash_lbl  = %enemy_res_slash
-@onready var enemy_res_pierce_lbl = %enemy_res_pierce
-@onready var enemy_res_magic_lbl  = %enemy_res_magic
-@onready var enemy_res_bio_lbl    = %enemy_res_bio
-
-
 @onready var enemy_stat_cha_lbl   = %enemy_stat_cha
 @onready var enemy_stat_will_lbl  = %enemy_stat_will
 @onready var enemy_stat_int_lbl   = %enemy_stat_int
-
 @onready var enemy_stat_agi_lbl   = %enemy_stat_agi
 @onready var enemy_stat_str_lbl   = %enemy_stat_str
 @onready var enemy_stat_end_lbl   = %enemy_stat_end
 
+@onready var enemy_res_heat    = %enemy_res_heat
+@onready var enemy_res_cold    = %enemy_res_cold
+@onready var enemy_res_impact  = %enemy_res_impact
+@onready var enemy_res_slash   = %enemy_res_slash
+@onready var enemy_res_pierce  = %enemy_res_pierce
+@onready var enemy_res_magic   = %enemy_res_magic
+@onready var enemy_res_bio     = %enemy_res_bio
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fade_in.texture = load("res://assets/images/menu_background.png")
+
+	# TEMP
+	#VarTests.character_name = 'intro'
+	# TEMP
 
 	# intro fade in
 	if VarTests.character_name == 'intro':
@@ -198,16 +175,16 @@ func _ready() -> void:
 		fade_in.visible = false
 
 	VarTests.map_active = false
-	_on_start_encounter(VarTests.character_name)
+	start_encounter(VarTests.character_name)
 
 func _input(_event: InputEvent) -> void:
+	if VarTests.debug_screen_visible:
+		return
 	# auto continue
 	if Input.is_action_pressed("mouse_left") or Input.is_action_pressed("ui_accept"):
-		#hurry_dialogue = true
+		reveal_dialogue_click()
 		if dialogue_complete and VarTests.auto_continue_pointer != '':
-			var index = VarTests.auto_continue_pointer
-			VarTests.auto_continue_pointer = ''
-			_on_change_index(index)
+			change_index(VarTests.auto_continue_pointer)
 
 	# button focus using arrow keys and wasd
 	if Input.is_action_pressed("ui_up"):
@@ -247,7 +224,6 @@ func hash_diag(picked, index):
 # options clicks
 func _on_panel_container_selected(index: Variant) -> void:
 	choicesDialog.visible = false
-	#dont_hurry = true
 	choicesDialog.choices_list.get_child(0).grab_focus()
 
 	#print('sele choicesDialog.choices ', choicesDialog.choices)
@@ -283,19 +259,21 @@ func _on_panel_container_selected(index: Variant) -> void:
 	
 	if picked  :
 		#print('picked ', picked)
-		_on_change_index(picked)
-	if function: $CanvasLayer/Panel.Logigier(picked, function)
+		change_index(picked)
+	if function:
+		logic_logic(picked, function)
 
-func make_options(packed_options, curated_list=false):
+func make_options(packed_options):
 	opt_parsed = DiagParse.parse_options(packed_options)
 
 	#print('opt_parsed ', opt_parsed)
 	var allowed = []
 	# TODO finish fixing md5 hash on hideif.clicked
-	var value = Showif.get_allowed(opt_parsed)
+	var value = Showif.get_allowed(opt_parsed[2])
 	for i in range(len(value)):
 		#print('value ', value)
 		#print('VarTests.CLICKED_OPTIONS', VarTests.CLICKED_OPTIONS)
+		# diag hashing
 		if VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
 			if opt_parsed[2][i]:
 				#print('opt_parsed[0][i] ', opt_parsed[0][i])
@@ -316,43 +294,21 @@ func make_options(packed_options, curated_list=false):
 		#var options = opt_parsed[-1]
 	#print('allowed', allowed)
 	#print('is curated_list true? ', curated_list)
-	# catch for curated list
-	if curated_list:
-		var index
-		if curated_list == "random":
-			index = randi_range(0, len(allowed)-1)
-		# TODO weighted curated_list
-		if curated_list == "weighted":
-			pass
-		if curated_list == "prioritized": index = 0
-		#print('-a ', index)
-		#print('cc ', index)
-		#print('allowd substr ', allowed[index].substr(1))
-		# make sure ish that the correct index is picked
-		if index <= len(allowed) and opt_parsed[-1][index] == allowed[index].substr(1):
-			_on_change_index(allowed[index].substr(1))
-	# catch for random pointer
-	#if opt_parsed[1]:
-	#	var index = Utils.array_find(opt_parsed[1], 'random_pointer')
-	#	if index != -1:
-	#		print('opt_parsed[1] index ', opt_parsed[1][index])
-	#		$CanvasLayer/Panel.Logigier(opt_parsed[1][index])
-	#		return
 	choicesDialog.choices = allowed
 
 # leave encounter
-func _on_leave_encounter() -> void:
+func leave_encounter() -> void:
 	# catch for moving player to location when leaving to map
 	VarTests.loc_name = VarTests.character_name
 	get_tree().change_scene_to_file("res://scenes/map.tscn")
 
-func _on_start_encounter(character_name):
+func start_encounter(character_name):
 	print('started ', character_name)
 
 	# check for alt character sprite
-	VarTests.character_sprite = "character"
+	var character_sprite = "character"
 	if VarTests.CHANGED_CHARACTERS.has(character_name):
-		VarTests.character_sprite = VarTests.CHANGED_CHARACTERS[character_name]
+		character_sprite = VarTests.CHANGED_CHARACTERS[character_name]
 
 	# check for alt diag file
 	VarTests.diag_file = "diag"
@@ -379,16 +335,19 @@ func _on_start_encounter(character_name):
 		index = VarTests.override_index
 		VarTests.override_index = ""
 
-	_on_change_environment()
+	change_environment()
 	print('scene_character "', VarTests.scene_character, '"')
 	print('character_name "', VarTests.character_name, '"')
 	if VarTests.scene_character != VarTests.character_name:
-		_on_change_sprite()
-	_on_change_index(index)
+		change_sprite(character_sprite)
+	change_index(index)
 
-func _on_change_sprite() -> void:
+func change_sprite(sprite_name=null) -> void:
+	if not sprite_name:
+		sprite_name = VarTests.character_sprite
+	VarTests.character_sprite = sprite_name
 	VarTests.scene_character = VarTests.character_name
-	var path = "res://database/characters/%s/%s.png" % [VarTests.character_name, VarTests.character_sprite]
+	var path = "res://database/characters/%s/%s.png" % [VarTests.character_name, sprite_name]
 	if FileAccess.file_exists(path):
 		var over_sprite  = TextureRect.new()
 		sprite           = TextureRect.new()
@@ -400,6 +359,8 @@ func _on_change_sprite() -> void:
 		over_sprite.add_child(sprite)
 		character_layer.add_child(over_sprite)
 		character_layer.move_to_front()
+		if VarTests.character_returns:
+			character_return_anim(sprite)
 
 		# character overlays
 		var min_TIME         = get_blend(0)
@@ -447,7 +408,7 @@ func rescale_bitmapdata(obj):
 	# texture width * by the offset lowering the value because its .5 or .75
 	obj.position = Vector2(math_x, 0)
 
-func _on_create_picture(picture=false) -> void:
+func create_picture(picture=false) -> void:
 	#var picture_color = StyleBoxFlat.new()
 	if not picture:
 		scene_picture.visible = false
@@ -484,7 +445,9 @@ func index_error(daig_parsed):
 		return true
 	return false
 
-func _on_change_index(index):
+func change_index(index):
+	if VarTests.auto_continue_pointer:
+		VarTests.auto_continue_pointer = ''
 	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, VarTests.diag_file])
 	var daig_parsed = DiagParse.begin_parsing(data, index)
 	if index_error(daig_parsed):
@@ -495,8 +458,7 @@ func _on_change_index(index):
 
 	#print('opt_parsed index', index)
 	# functions
-	if daig_parsed[0]:
-		$CanvasLayer/Panel.Logigier(index, daig_parsed[0])
+	if daig_parsed[0]: logic_logic(index, daig_parsed[0])
 
 	# dialogue
 	if daig_parsed[1]:
@@ -505,16 +467,7 @@ func _on_change_index(index):
 	# options
 	if daig_parsed[2]:
 		autocont_dots.visible = false
-		choicesDialog.modulate = Color.TRANSPARENT
-		choicesDialog.visible = true
-
-		var tween = create_tween()
-		tween.set_ease(Tween.EASE_OUT)
-		tween.set_trans(Tween.TRANS_EXPO)
-		tween.tween_property(choicesDialog, "modulate:a", 1, 0.8)
-		#tween.finished.connect(auto_cont_ellipses)
 		make_options(daig_parsed[2])
-
 	# AUTO CONTINUE SELECTION
 	elif VarTests.auto_continue_pointer != '':
 		autocont_dots.visible = true
@@ -528,53 +481,117 @@ func _on_change_index(index):
 		tween.parallel().tween_property(autocont_dots, "modulate:a", 0.8, 0.5)
 		#tween.finished.connect(auto_cont_ellipses)
 
-func _on_change_diag(diag, index) -> void:
+func logic_logic(picked, function):# ?
+		var logic_func = DiagFunc.Logigier(picked, function)
+		match logic_func[0]:
+			"leave_encounter":    leave_encounter()
+			"start_encounter":    start_encounter(logic_func[1])
+			"change_sprite":      change_sprite(logic_func[1])
+			"create_picture":     create_picture(logic_func[1])
+			"remove_pic":         create_picture()
+			"change_environment": change_environment(logic_func[1])
+#TODO advance_time function
+			"advance_time":       pass
+			"change_diag":        change_diag(logic_func[1][0], logic_func[1][1])
+			"change_index":       change_index(logic_func[1])
+			"curated_list":       change_index(Utils.curated_list(function, logic_func[1]))
+			"start_combat":       start_combat()
+			"player_death":       player_death()
+
+#func change_character():
+#	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, VarTests.diag])
+#	var daig_parsed = DiagParse.begin_parsing(data, 'start')
+#	make_dialogue(daig_parsed[1])
+
+func change_diag(diag, index) -> void:
 	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, diag])
 	var daig_parsed = DiagParse.begin_parsing(data, index)
 	make_dialogue(daig_parsed[1])
 
-func _on_change_environment(new_env=null) -> void:
+func change_environment(new_env=null) -> void:
 	scene_picture.visible = false
-	if not new_env: new_env = 'env'
-	var path = "res://database/environments/%s/%s" % [VarTests.environment_name, new_env]
-	var env_stats = Utils.load_file('res://database/environments/%s/stats.txt' % VarTests.environment_name).split('\n')
+	if not new_env: new_env = VarTests.environment_name
+	var path = ""
+	var env_stats = Utils.load_file('res://database/environments/%s/stats.txt' % new_env).split('\n')
 
 	var found = MiscFunc.parse_stat('ambient', env_stats)
-	if found != null:
-		VarTests.ambient_strength = float(found)
-	else:
-		VarTests.ambient_strength = 0.2
+	if found != "0": VarTests.ambient_strength = float(found)
+	else:            VarTests.ambient_strength = 0.2
 
 	found = MiscFunc.parse_stat('ambient_color', env_stats)
-	if found != '0':
-		VarTests.env_ambient = Color.html(found)
-	else:
-		VarTests.env_ambient = Color.WHITE
+	if found != '0': VarTests.env_ambient = Color.html(found)
+	else:            VarTests.env_ambient = Color.WHITE
 
-	#DAY/NIGHT ENV
-	var extension_block = ""
-	if VarTests.TIME >=  25 && VarTests.TIME < 75:
-		# day
-		extension_block = ""
-	else:
-		# night
-		if FileAccess.file_exists('%s%s_night.png' % [path, extension_block]):
-			extension_block = "_night"
 
-	#var env_image = Image.load_from_file("res://database/environments/%s/%s.png" % [VarTests.environment_name, new_env])
-	#env_Node.texture = ImageTexture.create_from_image(env_image)
+	# MULTIPLE ENV LAYERS
+	var layer_array: Array = []
+	if VarTests.CHANGED_ENVIRONMENTS.has(VarTests.environment_name):
+		var env_name = VarTests.CHANGED_ENVIRONMENTS[VarTests.environment_name]
+		if env_name.find("-") != -1:
+			layer_array = env_name.split("-")
+		else:
+			layer_array.append(env_name)
+	else:
+		layer_array.append("env")
+
+	for i in layer_array.size():
+		var layer_name:String = layer_array[i]
+
+		# LOAD BACKGROUND PLATE
+		if layer_name != "":
+			# check if the file exists
+			var switchout
+			if FileAccess.file_exists('database/environments/%s/%s.png' % [VarTests.environment_name, layer_name]):
+				switchout = layer_name
+			else:
+				switchout = 'env'
+			path = 'database/environments/%s/%s' % [VarTests.environment_name, switchout]
+		else:
+			path = 'database/environments/%s/env' % [VarTests.environment_name]
+
+	var extension_block = day_night(path)
+
 	env_Node.texture = load("%s%s.png" % [path, extension_block])
 	#env_Node.move_to_front()
 
+
+	if VarTests.CHANGED_ENVIRONMENTS.has(VarTests.environment_name):
+		# check if the file exists
+		if FileAccess.file_exists("database/environments/%s/%s_mask.png" % [VarTests.environment_name, VarTests.CHANGED_ENVIRONMENTS[VarTests.environment_name]]):
+			path = "database/environments/%s/%s" % [VarTests.environment_name, VarTests.CHANGED_ENVIRONMENTS[VarTests.environment_name]]
+		else:
+			path = "database/environments/%s/env" % [VarTests.environment_name]
+	else:
+		# DEFAULT env.png LOADING
+		path = "database/environments/%s/env" % [VarTests.environment_name]
+
+	extension_block = day_night(path)
 	if FileAccess.file_exists("%s%s_mask.png" % [path, extension_block]):
-		#var env_mask_image = Image.load_from_file(path)
-		#env_mask_Node.texture = ImageTexture.create_from_image(env_mask_image)
 		env_mask_Node.texture = load("%s%s_mask.png" % [path, extension_block])
 		#env_mask_Node.move_to_front()
 	#var camera_size = get_viewport().get_visible_rect().size
 	#var width = round(camera_size.y / 9 * 16) # 16:9
 
+func day_night(path):
+	# DAY/NIGHT ENV
+	var extension_block = ""
+	# day
+	if VarTests.TIME >=  25 && VarTests.TIME < 75:
+		extension_block = ""
+	# night
+	else:
+		if FileAccess.file_exists('%s%s_night.png' % [path, extension_block]):
+			extension_block = "_night"
+	return extension_block
+
+func hide_dialogue_boxes(): ## My func.
+	# hides visible boxes
+	top_box.visible = false
+	mid_box.visible = false
+	bot_box.visible = false
+
 func make_dialogue(speech:Array):
+	hurry_dialogue = false
 	var top = ''
 	var mid = ''
 	var bot = ''
@@ -582,18 +599,36 @@ func make_dialogue(speech:Array):
 	top_box.text = ''
 	mid_box.text = ''
 	bot_box.text = ''
+	bot_box.autowrap_mode = 0
 
-	# hides visable boxes
-	top_box.visible = false
-	mid_box.visible = false
-	bot_box.visible = false
+	hide_dialogue_boxes()
 	# prep bbcode
-	speech = speech.map(func(item): return item.replace('<br>', '[br]').replace('<b>', '[b]').replace('</b>', '[/b]').replace('-name-', VarTests.player_name).strip_edges())
+	speech = speech.map(func(item): return Utils.mass_repalce(item, {'<br>':'[br]', '<b>':'[b]', '</b>':'[/b]', '-name-':VarTests.player_name}).strip_edges())
 
 	if len(speech) >= 1: top = speech[0]
 	if len(speech) >= 2: mid = speech[1]
 	if len(speech) >= 3: bot = speech[2]
 	add_top_box(top, mid, bot)
+
+func enable_dialogue_options(wh):
+	print('ADSAD ', wh)
+	choicesDialog.modulate.a = 0
+	choicesDialog.visible = true
+	dialogue_complete = true
+
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(choicesDialog, "modulate:a", 1, 0.8)
+	#tween.finished.connect(auto_cont_ellipses)
+
+func reveal_dialogue_click():
+	if choicesDialog.visible:
+		return
+	print('faster!')
+	hurry_dialogue = true
+	dialogue_timer.stop()
+	dialogue_timer.timeout.emit()
 
 # Add top text box.
 func add_top_box(diag_top, diag_mid, diag_bot):
@@ -609,19 +644,17 @@ func add_top_box(diag_top, diag_mid, diag_bot):
 	#top_box.position = Vector2(70, 100)
 
 	# Story exception
-	if (VarTests.has_story or diag_mid == "empty" and diag_bot):
+	if VarTests.has_story or diag_mid == "" and diag_bot:
 		#SIZE
 		print('spawn_top_box A')
 		if (top_box.size.x > 600):
 			#await get_tree().process_frame
 			top_box.size.x = 600
-		#await get_tree().process_frame
 		top_box.size.y = 0
 		top_box.position.x = 60
 		top_box.position.y = (VarTests.stage_height / 2.5) - (top_box.size.y / 2)# + 20
-
 	# only top exception
-	elif (diag_mid == "empty" and diag_bot == ""):
+	elif diag_mid == "" and diag_bot == "":
 		#SIZE
 		print('spawn_top_box B')
 		if (top_box.size.x > 600):
@@ -630,7 +663,6 @@ func add_top_box(diag_top, diag_mid, diag_bot):
 		top_box.size.y = 0
 		top_box.position.x = 60
 		top_box.position.y = (VarTests.stage_height / 2.5) - (top_box.size.y / 2) + 20
-
 	else:
 		#SIZE
 		print('spawn_top_box C')
@@ -641,29 +673,35 @@ func add_top_box(diag_top, diag_mid, diag_bot):
 		top_box.position.x = 200 + 600 - top_box.size.x
 		top_box.position.y = 60 + 20
 
+	var temp = func():
+		if diag_mid == "":
+			dialogue_complete = true
+		if dialogue_complete and VarTests.auto_continue_pointer == '':
+			enable_dialogue_options('B')
+
 	var spawn_top_box = func():
 		dialogue_complete = false
 		var tween1 = create_tween()
 		if VarTests.has_story == true:
-			print('spawn_top_box e')
+			print('spawn_top_box D')
 			tween1.set_ease(Tween.EASE_OUT)
 			tween1.set_trans(Tween.TRANS_BACK)
 			tween1.tween_property(top_box, "position", Vector2(top_box.position.x - 40, top_box.position.y - 20), 0.8)
 			#tween1.tween_callback()
-			tween1.finished.connect(func(): dialogue_complete = true)
-		elif diag_mid == "empty" and diag_bot == "":
-			print('spawn_top_box ee')
+			tween1.finished.connect(temp)
+		elif diag_mid == "" and diag_bot == "":
+			print('spawn_top_box E')
 			tween1.set_ease(Tween.EASE_OUT)
 			tween1.set_trans(Tween.TRANS_BACK)
 			tween1.tween_property(top_box, "position", Vector2(top_box.position.x - 40, top_box.position.y - 20), 0.8)
-			tween1.finished.connect(func(): dialogue_complete = true)
+			tween1.finished.connect(temp)
 		else:
-			print('spawn_top_box eee')
+			print('spawn_top_box F')
 			tween1.set_ease(Tween.EASE_OUT)
 			tween1.set_trans(Tween.TRANS_BACK)
 			tween1.tween_property(           top_box, "position:x", top_box.position.x - 200, 0.8)
 			tween1.parallel().tween_property(top_box, "position:y", top_box.position.y - 60, 0.8)
-			tween1.finished.connect(func(): dialogue_complete = true)
+			tween1.finished.connect(temp)
 
 		#top_box.modulate = Color.TRANSPARENT
 		var tween = create_tween()
@@ -674,68 +712,87 @@ func add_top_box(diag_top, diag_mid, diag_bot):
 		spawn_top_box.call()
 
 
-	#TIMER
-	var temp_timer = Timer.new()
-	temp_timer.one_shot = true
-	add_child(temp_timer)
-
+	# TIMER
 	var top_len = len(diag_top)
+	# catch for no top box
 	if top_len == 0: top_len = 1
 	var delay = float(top_len) / 100.0
 
-	delay = delay * 2950
+	delay *= 2950
 	# minimum timer
 	if delay < 1000 and delay != 0: delay = 1000
-	if diag_mid == "":                delay = 200
-	temp_timer.wait_time = delay / 1000.0
-	temp_timer.start()
-	temp_timer.timeout.connect(add_mid_box.bind(diag_mid, diag_bot))
-
+	if diag_mid == "":              delay = 200
+	# convert from milliseconds to seconds for code convertion from ActionScript to GDScript
+	delay /=  1000.0
+	dialogue_timer.wait_time = delay
+	dialogue_timer.start()
+	if diag_mid != "":
+		#fade_in.visible = true
+		#fade_in.modulate.a = 1
+		if not dialogue_timer.timeout.is_connected(add_mid_box): dialogue_timer.timeout.connect(add_mid_box.bind(diag_mid, diag_bot))
 
 # Add dialogue speech bubble.
 func add_mid_box(diag_mid, diag_bot):
-	if diag_mid != "":
-		var bg_color   = MiscFunc.parse_stat('bubble_color', stats_file.split('\n'))
-		var font_color = MiscFunc.parse_stat('text_color', stats_file.split('\n'))
-		if bg_color   == "0": bg_color   = def_bubble_color
-		if font_color == "0": font_color = def_text_color
+	# i dont think I can add this because I dont serperate create a new scene from changing dialogue file (change_diag)
+	# create scene fade in
+	#var tween = create_tween()
+	#tween.set_ease(Tween.EASE_IN)
+	#tween.set_trans(Tween.TRANS_CUBIC)
+	#tween.tween_property(fade_in, "modulate:a", 0, 2)
+	#tween.finished.connect(func(): fade_in.visible = false)
 
-		bg_color   = Color.html(bg_color)
-		font_color = Color.html(font_color)
-		mid_box.add_theme_color_override("default_color", font_color)
+	var bg_color   = MiscFunc.parse_stat('bubble_color', stats_file.split('\n'))
+	var font_color = MiscFunc.parse_stat('text_color', stats_file.split('\n'))
+	if bg_color   == "0": bg_color   = def_bubble_color
+	if font_color == "0": font_color = def_text_color
 
-		var diag_b_color = StyleBoxFlat.new()
-		diag_b_color.bg_color = bg_color
-		diag_b_color.border_color = bg_color
-		diag_b_color.border_width_left   = 5
-		diag_b_color.border_width_right  = 5
-		diag_b_color.border_width_top    = 8
-		diag_b_color.border_width_bottom = 8
-		diag_b_color.set_corner_radius_all(5)
+	bg_color   = Color.html(bg_color)
+	font_color = Color.html(font_color)
+	mid_box.add_theme_color_override("default_color", font_color)
 
-		mid_box.add_theme_stylebox_override("fill",       diag_b_color)
-		mid_box.add_theme_stylebox_override("background", diag_b_color)
-		mid_box.add_theme_stylebox_override("focus",      diag_b_color)
-		mid_box.add_theme_stylebox_override("normal",     diag_b_color)
+	var diag_b_color = StyleBoxFlat.new()
+	diag_b_color.bg_color = bg_color
+	diag_b_color.border_color = bg_color
+	diag_b_color.border_width_left   = 5
+	diag_b_color.border_width_right  = 5
+	diag_b_color.border_width_top    = 8
+	diag_b_color.border_width_bottom = 8
+	diag_b_color.set_corner_radius_all(5)
 
-		#dialogue_bubble.x = over_sprite.x + over_sprite.width * 0.2 - dialogue_bubble.width - 20
-		var sprite_pos = sprite.position.x
-		#var sprite_img = sprite.size.x#texture.get_width()
+	mid_box.add_theme_stylebox_override("fill",       diag_b_color)
+	mid_box.add_theme_stylebox_override("background", diag_b_color)
+	mid_box.add_theme_stylebox_override("focus",      diag_b_color)
+	mid_box.add_theme_stylebox_override("normal",     diag_b_color)
 
-		#await get_tree().process_frame
-		mid_box.position.x = sprite_pos - mid_box.size.x - 20
-		mid_box.position.y = VarTests.stage_height * 0.25
-		#dialogue_bubble.size.y = 0
-		#dialogue_bubble.size.x = VarTests.stage_width / 6.5
+	#dialogue_bubble.x = over_sprite.x + over_sprite.width * 0.2 - dialogue_bubble.width - 20
+	var sprite_pos = sprite.position.x
+	#var sprite_img = sprite.size.x#texture.get_width()
 
-		mid_box.visible = true
-		animate_text_prep(diag_mid, diag_bot)
-	else:
-		print('add bot box a')
-		add_bot_box(diag_bot)
+	#await get_tree().process_frame
+	mid_box.position.x = sprite_pos - mid_box.size.x - 20
+	mid_box.position.y = VarTests.stage_height * 0.25
+	#dialogue_bubble.size.y = 0
+	#dialogue_bubble.size.x = VarTests.stage_width / 6.5
+
+	mid_box.visible = true
+	#var temp_timer = Timer.new()
+	#temp_timer.one_shot = true
+	#if temp_timer not in get_children():
+	#	add_child(temp_timer)
+	#dialogue_iteration(temp_timer, diag_mid, diag_bot, len(diag_mid))
+	animate_text_prep(diag_mid, diag_bot)
 
 # Add bottom text box.
 func add_bot_box(diag_bot):
+	print('diag com      ', dialogue_complete)
+	print('auto          ', VarTests.auto_continue_pointer)
+	print('diag com auto ', dialogue_complete and VarTests.auto_continue_pointer == '')
+	if VarTests.auto_continue_pointer == '':
+		enable_dialogue_options('A')
+	# Character hide function
+	if VarTests.character_leaves:
+		character_leave_anim(sprite)
+		VarTests.character_leaves = false
 	if diag_bot != '':
 		#bot_box.visible = true
 		bot_box.text = diag_bot
@@ -798,20 +855,24 @@ func speech_delay(character):
 		_:   d = 40
 	return d
 
-func animate_text_prep(diag_mid, diag_bot):
-	var dialogue_timer = Timer.new()
-	text_index = 0
-	dialogue_iteration(dialogue_timer, diag_mid, diag_bot, len(diag_mid))
-
 func _mid_box_size_clamp():
 	if mid_box.size.x > 400:
 		mid_box.autowrap_mode = 3
 		mid_box.size.x = 400
 
-func dialogue_iteration(dialogue_timer, diag_mid, diag_bot, diag_length):
+func animate_text_prep(diag_mid, diag_bot):
+	text_index = 0
+	bot_box.visible = false
+	# I wish I could just use visible_ratio...
+	if     dialogue_timer.timeout.is_connected(add_mid_box): dialogue_timer.timeout.disconnect(add_mid_box)
+	dialogue_iteration(diag_mid, diag_bot, len(diag_mid))
+
+func dialogue_iteration(diag_mid, diag_bot, diag_length):
 	if diag_length <= text_index:
 		print('dialogue iteration time out!')
-		dialogue_timer.queue_free()
+		dialogue_timer.stop()
+		if diag_mid != "":
+			dialogue_complete = true
 		add_bot_box(diag_bot)
 		return
 
@@ -823,6 +884,15 @@ func dialogue_iteration(dialogue_timer, diag_mid, diag_bot, diag_length):
 	#await get_tree().process_frame
 	mid_box.size.y = 0
 
+	# HURRY EXIT
+	if hurry_dialogue:
+		dialogue_timer.stop()
+		mid_box.text = diag_mid
+		mid_box.size = mid_box.get_theme_font("normal_font").get_string_size(mid_box.text) - Vector2(100, 0)
+		realign_dialogue()
+		add_bot_box(diag_bot)
+		return
+
 	# CHARACTER DELAY
 	var delay = speech_delay(diag_mid[text_index])
 	if last_character == "." or last_character == "!":
@@ -831,15 +901,21 @@ func dialogue_iteration(dialogue_timer, diag_mid, diag_bot, diag_length):
 		delay = 800
 
 	# TIMER
-	if dialogue_timer not in get_children():
-		add_child(dialogue_timer)
-	dialogue_timer.wait_time = float(delay) / 1000
+	delay = float(delay) / 1000
+	#print('delay ', delay)
+	dialogue_timer.wait_time = delay
+	#print('dialogue_timer.dialogue_timer ', dialogue_timer.wait_time)
 	dialogue_timer.start()
 
 	last_character = diag_mid[text_index]
 	text_index += 1
-	if not dialogue_timer.is_connected("timeout", dialogue_iteration):
-		dialogue_timer.timeout.connect(dialogue_iteration.bind(dialogue_timer, diag_mid, diag_bot, len(diag_mid)))
+
+	# start function loop
+	if     dialogue_timer.timeout.is_connected(dialogue_iteration): dialogue_timer.timeout.disconnect(dialogue_iteration)
+	if not dialogue_timer.timeout.is_connected(dialogue_iteration):
+	#	print('aaaa')
+	#	dialogue_timer.one_shot = false
+		dialogue_timer.timeout.connect(dialogue_iteration.bind(diag_mid, diag_bot, len(diag_mid)))
 
 # Realign dialogue speech bubble.
 func realign_dialogue():
@@ -860,8 +936,8 @@ func realign_dialogue():
 	bubble_tween.set_trans(Tween.TRANS_LINEAR)
 	bubble_tween.tween_property(mid_box, "position", Vector2(x_pos, y_pos), 0.6)
 
-func _on_start_combat():
-	dialogue_boxes.visible = false
+func start_combat():
+	hide_dialogue_boxes()
 	player_combat_ui.visible = true
 	enemy_combat_ui.visible  = true
 	player_combat_ui.position.x = -player_combat_ui.size.x
@@ -875,13 +951,37 @@ func _on_start_combat():
 		i.get_parent().mouse_exited.connect(_on_card_button_hover.bind(i, true))
 
 	if VarTests.scene_character != VarTests.character_name:
-		_on_change_sprite()
+		change_sprite()
 	randomize_hand('player')
 	set_enemy_stats()
 	reset_stats('player')
 	reset_stats('enemy')
 	refresh_combat_ui()#'start'
 	combat_ui_in()
+
+# HIDE CHARACTER
+func character_leave_anim(object:TextureRect) -> void:
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_QUART)
+	tween.tween_property(object, "position:x", object.position.x + 120, 0.6)
+	tween.parallel().tween_property(object, "modulate:a", 0, 0.6)
+	tween.finished.connect(func():VarTests.character_leaves = false)
+
+# SHOW CHARACTER
+func character_return_anim(object:TextureRect) -> void:
+	object.modulate.a = 0
+	# return to original position
+	object.position.x = object.position.x - 120
+	# move off screen
+	object.position.x = object.position.x + VarTests.stage_width
+
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_QUART)
+	tween.tween_property(object, "position:x", object.position.x - VarTests.stage_width, 0.6)
+	tween.parallel().tween_property(object, "modulate:a", 1, 0.6)
+	tween.finished.connect(func():VarTests.character_returns = false)
 
 # IS BETWEEN FUNCTION
 func is_between(minn: int, value_int: int, maxx: int):
@@ -1078,7 +1178,7 @@ func combat_ai():
 			return
 
 		random_tries -= 1
-	if not attacks_timer.is_connected("ready", attack.call):
+	if not attacks_timer.ready.is_connected(attack.call):
 		print('is_connected?')
 		attacks_timer.timeout.connect(attack.call)
 	attacks_timer.start()
@@ -1148,14 +1248,22 @@ func damage(damage_to_hitpoints, target):
 
 #@warning_ignore("unused_parameter")
 func refresh_combat_ui():#where
-	player_stat_cha_lbl.text  = str(VarTests.player_stats["charisma"]     - combat_stats["player_charisma_used"])
-	player_stat_will_lbl.text = str(VarTests.player_stats["will"]         - combat_stats["player_will_used"])
-	player_stat_int_lbl.text  = str(VarTests.player_stats["intelligence"] - combat_stats["player_intelligence_used"])
+	player_stat_cha_control.get_child(1).text  = str(VarTests.player_stats["charisma"]     - combat_stats["player_charisma_used"])
+	player_stat_will_control.get_child(1).text = str(VarTests.player_stats["will"]         - combat_stats["player_will_used"])
+	player_stat_int_control.get_child(1).text  = str(VarTests.player_stats["intelligence"] - combat_stats["player_intelligence_used"])
 
-	player_stat_agi_lbl.text  = str(VarTests.player_stats["agility"]      - combat_stats["player_agility_used"])
-	player_stat_str_lbl.text  = str(VarTests.player_stats["strength"]     - combat_stats["player_strength_used"])
-	player_stat_end_lbl.text  = str(VarTests.player_stats["endurance"]    - combat_stats["player_endurance_used"])
+	player_stat_agi_control.get_child(1).text  = str(VarTests.player_stats["agility"]      - combat_stats["player_agility_used"])
+	player_stat_str_control.get_child(1).text  = str(VarTests.player_stats["strength"]     - combat_stats["player_strength_used"])
+	player_stat_end_control.get_child(1).text  = str(VarTests.player_stats["endurance"]    - combat_stats["player_endurance_used"])
 	player_health_lbl.text    = str(player_health)
+	
+	player_res_heat.text   = VarTests.player_stats["heat_res"]
+	player_res_cold.text   = VarTests.player_stats["cold_res"]
+	player_res_impact.text = VarTests.player_stats["impact_res"]
+	player_res_slash.text  = VarTests.player_stats["slash_res"]
+	player_res_pierce.text = VarTests.player_stats["pierce_res"]
+	player_res_magic.text  = VarTests.player_stats["magic_res"]
+	player_res_bio.text    = VarTests.player_stats["bio_res"]
 
 	var stat_spit = stats_file.split('\n')
 	enemy_stat_cha_lbl.text   = str(int(MiscFunc.parse_stat('charisma', stat_spit))     - combat_stats["enemy_charisma_used"])
@@ -1166,6 +1274,14 @@ func refresh_combat_ui():#where
 	enemy_stat_str_lbl.text   = str(int(MiscFunc.parse_stat('strength', stat_spit))     - combat_stats["enemy_strength_used"])
 	enemy_stat_end_lbl.text   = str(int(MiscFunc.parse_stat('endurance', stat_spit))    - combat_stats["enemy_endurance_used"])
 	enemy_health_lbl.text     = str(enemy_health)
+	
+	enemy_res_heat.text   = combat_stats["enemy_heat_res"]
+	enemy_res_cold.text   = combat_stats["enemy_cold_res"]
+	enemy_res_impact.text = combat_stats["enemy_impact_res"]
+	enemy_res_slash.text  = combat_stats["enemy_slash_res"]
+	enemy_res_pierce.text = combat_stats["enemy_pierce_res"]
+	enemy_res_magic.text  = combat_stats["enemy_magic_res"]
+	enemy_res_bio.text    = combat_stats["enemy_bio_res"]
 
 
 # COMBAT UI IN
@@ -1207,26 +1323,32 @@ func not_enough_stat(stat):
 	match stat:
 		"charisma":
 			#shake(player_stat_cha)
+			var player_stat_cha_tex = player_stat_cha_control.get_child(0)
 			blink_red(player_stat_cha_tex, 0.6)
 			red_pointer(player_stat_cha_tex)
 		"knowledge":
 			#shake(player_stat_will)
+			var player_stat_will_tex = player_stat_will_control.get_child(0)
 			blink_red(player_stat_will_tex, 0.6)
 			red_pointer(player_stat_will_tex)
 		"intelligence":
 			#shake(player_stat_int)
+			var player_stat_int_tex = player_stat_int_control.get_child(0)
 			blink_red(player_stat_int_tex, 0.6)
 			red_pointer(player_stat_int_tex)
 		"agility":
 			#shake(player_stat_agi)
+			var player_stat_agi_tex = player_stat_agi_control.get_child(0)
 			blink_red(player_stat_agi_tex, 0.6)
 			red_pointer(player_stat_agi_tex)
 		"strength":
 			#shake(player_stat_str)
+			var player_stat_str_tex = player_stat_str_control.get_child(0)
 			blink_red(player_stat_str_tex, 0.6)
 			red_pointer(player_stat_str_tex)
 		"endurance":
 			#shake(player_stat_end)
+			var player_stat_end_tex = player_stat_end_control.get_child(0)
 			blink_red(player_stat_end_tex, 0.6)
 			red_pointer(player_stat_end_tex)
 
@@ -1260,9 +1382,9 @@ func blink_red(object, time):
 	if timer        not in get_children(): add_child(timer)
 	if timer_red    not in get_children(): add_child(timer_red)
 	if timer_normal not in get_children(): add_child(timer_normal)
-	if not timer_red.is_connected("timeout", blk_red):       timer_red.timeout.connect(blk_red.call)
-	if not timer_normal.is_connected("timeout", blink_normal): timer_normal.timeout.connect(blink_normal.call)
-	if not timer.is_connected("timeout", end):                 timer.timeout.connect(end)
+	if not timer_red.timeout.is_connected(blk_red):          timer_red.timeout.connect(blk_red.call)
+	if not timer_normal.timeout.is_connected(blink_normal):  timer_normal.timeout.connect(blink_normal.call)
+	if not timer.timeout.is_connected(end):                  timer.timeout.connect(end)
 
 	timer.start()
 	timer_normal.start()
@@ -1391,12 +1513,12 @@ func refresh_hitpoints():
 	if player_health <= 0:
 		VarTests.in_combat = false
 		combat_ui_out()
-		_on_change_index(VarTests.lose_index)# HERE GOES PLAYER DEATH
+		change_index(VarTests.lose_index)# HERE GOES PLAYER DEATH
 		return
 	if enemy_health  <= 0:
 		VarTests.in_combat = false
 		combat_ui_out()
-		_on_change_index(VarTests.win_index)
+		change_index(VarTests.win_index)
 		return
 
 # ATTACK EFFECT
@@ -1497,37 +1619,34 @@ func apply_attribute_cost(payer, attribute_cost, attribute_stat):
 
 	var effect_number
 	var effect_color
-	var fc #front character
 
 	if attribute_cost > 0:
 		effect_number = abs(attribute_cost)
 		effect_color = Color.RED
-		fc = 0
 	if attribute_cost < 0:
 		effect_number = abs(attribute_cost)
 		effect_color = Color.GREEN
-		fc = 0
 
 	if attribute_cost != 0:
 		if payer == "player":
 			match attribute_stat:
-				"charisma":     stat_float(player_stat_cha_lbl, str(fc + effect_number), effect_color, 24, payer)
-				"will":         stat_float(player_stat_will_lbl, str(fc + effect_number), effect_color, 24, payer)
-				"intelligence": stat_float(player_stat_int_lbl, str(fc + effect_number), effect_color, 24, payer)
+				"charisma":     stat_float(player_stat_cha_control.get_child(1), str(effect_number), effect_color, 24, payer)
+				"will":         stat_float(player_stat_will_control.get_child(1), str(effect_number), effect_color, 24, payer)
+				"intelligence": stat_float(player_stat_int_control.get_child(1), str(effect_number), effect_color, 24, payer)
 
-				"agility":      stat_float(player_stat_agi_lbl, str(fc + effect_number), effect_color, 24, payer)
-				"strength":     stat_float(player_stat_str_lbl, str(fc + effect_number), effect_color, 24, payer)
-				"endurance":    stat_float(player_stat_end_lbl, str(fc + effect_number), effect_color, 24, payer)
+				"agility":      stat_float(player_stat_agi_control.get_child(1), str(effect_number), effect_color, 24, payer)
+				"strength":     stat_float(player_stat_str_control.get_child(1), str(effect_number), effect_color, 24, payer)
+				"endurance":    stat_float(player_stat_end_control.get_child(1), str(effect_number), effect_color, 24, payer)
 
 		if payer == "enemy":
 			match attribute_stat:
-				"charisma":     stat_float(enemy_stat_cha_lbl, str(fc + effect_number), effect_color, 24, payer)
-				"will":         stat_float(enemy_stat_will_lbl, str(fc + effect_number), effect_color, 24, payer)
-				"intelligence": stat_float(enemy_stat_int_lbl, str(fc + effect_number), effect_color, 24, payer)
+				"charisma":     stat_float(enemy_stat_cha_lbl, str(effect_number), effect_color, 24, payer)
+				"will":         stat_float(enemy_stat_will_lbl, str(effect_number), effect_color, 24, payer)
+				"intelligence": stat_float(enemy_stat_int_lbl, str(effect_number), effect_color, 24, payer)
 
-				"agility":      stat_float(enemy_stat_agi_lbl, str(fc + effect_number), effect_color, 24, payer)
-				"strength":     stat_float(enemy_stat_str_lbl, str(fc + effect_number), effect_color, 24, payer)
-				"endurance":    stat_float(enemy_stat_end_lbl, str(fc + effect_number), effect_color, 24, payer)
+				"agility":      stat_float(enemy_stat_agi_lbl, str(effect_number), effect_color, 24, payer)
+				"strength":     stat_float(enemy_stat_str_lbl, str(effect_number), effect_color, 24, payer)
+				"endurance":    stat_float(enemy_stat_end_lbl, str(effect_number), effect_color, 24, payer)
 
 	return attribute_cost
 
@@ -1542,40 +1661,38 @@ func resolve_damage(damage, resistance_name, target):
 		# negative resistance amplified damage
 		actual_damage = damage + (~(resistance)+1)
 	else:
-		#normal damage
+		# normal damage
 		actual_damage =  damage - resistance
 
 	if actual_damage < 0:
 		actual_damage = 0
 
-	#ADD RESISTANCE EFFECT
-		#Damage number floating from resistance
-		#If 0 then different color
-
 	return actual_damage
 
 
 func card_clicked(attacker, used_card, target):
-	#used_card.visible = false
 	var the_card = used_card.text.replace(' ', '_').to_lower()
 	if play_card(attacker, the_card, target):
 		used_card.get_parent().visible = false
 		used_card.get_parent().get_parent().texture = card_empty
 
 func _on_card_button_hover(button, leave:bool=false):
-	if leave: tooltip.queue_free()
+	if leave:
+		tooltip.queue_free()
+	else:
+		tooltip = load("res://scenes/tool_tip.tscn").instantiate()
+		var the_card = button.text.replace(' ', '_')
+		var card_stats = Utils.get_substring('<%s' % the_card, '%s>' % the_card, VarTests.ALL_CARDS)#.strip_edges()
 
-	tooltip = load("res://scenes/tool_tip.tscn").instantiate()
-	var the_card = button.text
-	var card_stats = Utils.get_substring('<%s' % the_card, '%s>' % the_card, VarTests.ALL_CARDS).strip_edges()
-
-	tooltip.get_node("Label").text = 'Saved index: %s' % [card_stats]
+		tooltip.get_node("Label").text = Utils.mass_repalce(card_stats, {'\t':'', '\r':'', ':':': '})
+		CanLay.add_child(tooltip)
+		tooltip.move_to_front()
 
 func _on_combat_button_pressed(button) -> void:
 	card_clicked('player', button, 'enemy')
 
 # PLAYER DEATH
-func _on_player_death():
+func player_death():
 	#start_music("misc/player_death", 100, 0, 0, "no_loop")
 	VarTests.menu_state = 'death'
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

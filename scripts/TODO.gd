@@ -1,28 +1,48 @@
 extends Node
 
+# ALERT
+# ATTENTION
+# CAUTION
+# CRITICAL
+# DANGER
+# SECURITY
+# BUG
+# DEPRECATED
+# FIXME
+# HACK
+# TASK
+# TBD
+# TODO
+# WARNING
+# INFO
+# NOTE
+# NOTICE
+# TEST
+# TESTING
 
-# TODO finish fixing md5 hash on hideif.clicked
+###
 # TODO fix dialogue boxes 'top_box' - 'dialogue_bubble' - 'bot_box'
-## position/tweening/size
-## fix hurry dialogue when clicking option before character is done speaking
-# TODO finnish curated_list weighted in game.gd and in dialogue.gd
+# fix hurry dialogue when clicking option before character is done speaking
+###
+
 # TODO map functions
-## random encounters ugh...
+## TODO location blocking
 ## move player to loactions "Moves the player on the map to the specified location." https://teraurge.shoutwiki.com/wiki/Dialogue_scripting#Miscellaneous_functions
-## ability for script to mark locations
+# TODO add in error_message
 # TODO menus
 ## add saves to load and save screen
 ## shop menu
-## menu tool tips for invetory and deck
-##exit - to menu/save - load/options -> volume (maybe just volume)
-# TODO add character leave/return
 # TODO add advance time function
-# TODO check_timers game.gd
-# TODO time display turn_overmap_dial game.gd
-# TODO fix combat
-## add combat tooltips to cards
+# TODO check_timers
+# TODO time display turn_overmap_dial
 # TODO add in sound
 # TODO add ability to save/load
 
 # TODO clean up DEBUG printing
 # TODO QA testing
+# TODO qualty of life change not in original game
+## seting menu for volume (in game and on main menu)
+## exit to menu
+## more debug menu items (changing saved index, adding cards to inventory)
+## credits?
+## add insane documentation using double hash https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_documentation_comments.html

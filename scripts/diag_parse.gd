@@ -35,7 +35,7 @@ func index_position(chunk, index):
 		return null
 
 
-func parse_options(opt_array):
+func parse_options(opt_array) -> Array[Array]:
 	var index = []
 	var function = []
 	var options = []
@@ -50,10 +50,10 @@ func parse_options(opt_array):
 			if temp1[0].strip_edges():
 				index.append(temp1[0].strip_edges())
 			else:
-				index.append(null)
+				index.append(false)
 			function.append(temp1[1].strip_edges())
 		else:
-			function.append(null)
+			function.append(false)
 			index.append(temp[0].strip_edges())
 		var temp2:Array = temp[1].strip_edges().split('//')
 		if len(temp2) > 1:
@@ -85,7 +85,7 @@ func parse_chunk(chunk):
 			function.append(temp[1].strip_edges())
 		else:
 			index.append(i.strip_edges())
-			function.append(null)
+			function.append(false)
 	var dialogue = []
 	var options  = []
 	for i in diagopt:
@@ -96,7 +96,7 @@ func parse_chunk(chunk):
 		else:
 			# fix for environment file
 			if temp[0].begins_with('['):
-				dialogue.append(null)
+				dialogue.append(false)
 			else:
 				dialogue.append(temp[0])
 			for x in range(Utils.array_find(temp, '['), len(temp)):

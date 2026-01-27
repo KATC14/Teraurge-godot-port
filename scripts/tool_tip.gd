@@ -15,7 +15,7 @@ func _input(_event: InputEvent) -> void:
 
 	if (tooltip.position.x + tooltip.size.x) > pos_xy.x:
 		tooltip.position.x -= (tooltip.size.x + 20)
-	# hack for making it stay on the left of the visable area
+	# hack for making it stay on the left of the visible area
 	## will not work if area changes
 	#if (tooltip.position.x + tooltip.size.x) > width:
 	#	tooltip.position.x = width

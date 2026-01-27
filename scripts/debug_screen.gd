@@ -1,6 +1,6 @@
 extends Node
 
-@onready var tooltip = $CanvasLayer/Control
+var tooltip:Control
 var saved_index = 'start'
 var characters
 
@@ -74,13 +74,13 @@ func _on_tooltip_hover(array, index):
 		saved_index = character_indexes[array[index]]
 	else:
 		saved_index = 'start'
+	tooltip = load("res://scenes/tool_tip.tscn").instantiate()
 	tooltip.get_node("Label").text = 'Saved index: %s' % [saved_index]
-	tooltip.visible = true
-	#tooltip.move_to_front()
+	$CanvasLayer.add_child(tooltip)
+	tooltip.move_to_front()
 
 func _on_tooltip_exit(_array, _index):
-	tooltip.visible = false
-	#tooltip.queue_free()
+	tooltip.queue_free()
 
 func _on_flags_selected(index: Variant) -> void:
 	var item = flags_box.choices[index]

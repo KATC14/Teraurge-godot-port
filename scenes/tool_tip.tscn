@@ -6,7 +6,6 @@
 bg_color = Color(1, 0.819608, 0.639216, 1)
 
 [node name="Control" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rtoo2")
