@@ -34,6 +34,7 @@ var sprite#@onready            = $CanvasLayer/Control/character_layer/sprite    
 var bubble_tween
 var stats_file
 var opt_parsed
+var daig_parsed
 
 @onready var dialogue_timer = %dialogue_timer
 var dialogue_complete = false
@@ -200,27 +201,6 @@ func _input(_event: InputEvent) -> void:
 		var btn:Button = choicesDialog.choices_list.get_children()[active_choice]
 		btn.grab_focus()
 
-func hash_diag(picked, index):
-	#print('picked, index ', picked, ' ', index)
-	# indexs
-	var idx:Array = opt_parsed[0].filter(func(item): return item)
-	#print('idx ', idx)
-	#print('pounds ', '#'.join(idx))
-	idx.remove_at(0)
-	#print('idx1 ', idx)
-	# last index
-	#print('VarTests.last_index ', VarTests.last_index)
-	var multi_index = '%s#%s' % [VarTests.last_index, '#'.join(idx)]
-	#print('idx multi_index ', multi_index)
-	# picked option extra
-	var opt_fmt = ' //'.join(opt_parsed[2][index])
-	# picked option
-	var opt = '%s //%s' % [opt_parsed[-1][index], opt_fmt]
-	var formatted_string = '%s-%s-%s' % [multi_index, picked, opt]
-	#print('formatted_string ', formatted_string)
-	return formatted_string
-	
-
 # options clicks
 func _on_panel_container_selected(index: Variant) -> void:
 	choicesDialog.visible = false
@@ -235,55 +215,33 @@ func _on_panel_container_selected(index: Variant) -> void:
 
 	var picked   = opt_parsed[0][index]
 	var function = opt_parsed[1][index]
-	#print('sele picked ', picked)
-	#print('sele function ', function)
 
-	if opt_parsed[2][index]:
-		found = Utils.array_find(opt_parsed[2][index], 'hideif.clicked')
-		#print('hide if ', opt_parsed[2][index])
-		#print('found ', found)
-		if found != -1:
-			var formatted_string = hash_diag(picked, index)
-			#print('formatted_string good ', formatted_string)
-			var fs_hash = formatted_string.md5_text()
-			#print('fs_hash ', fs_hash)
+	var formatted_string = Utils.hash_diag(opt_parsed, daig_parsed, index)
+	var fs_hash = formatted_string.md5_text()
 
-			#print('clicked options ', VarTests.CLICKED_OPTIONS)
-			# check of character is in hash list already
-			if not VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
-				VarTests.CLICKED_OPTIONS[VarTests.character_name] = []
+	# check of character is in hash list already
+	if not VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
+		VarTests.CLICKED_OPTIONS[VarTests.character_name] = []
 
-			VarTests.CLICKED_OPTIONS[VarTests.character_name].append(fs_hash)
-			#print('clicked options ', VarTests.CLICKED_OPTIONS)
+	VarTests.CLICKED_OPTIONS[VarTests.character_name].append(fs_hash)
 
 	
 	if picked  :
 		#print('picked ', picked)
 		change_index(picked)
 	if function:
-		logic_logic(picked, function)
+		var logic_func = DiagFunc.Logigier(index, function)
+		logic_logic(logic_func, function)
 
 func make_options(packed_options):
 	opt_parsed = DiagParse.parse_options(packed_options)
 
 	#print('opt_parsed ', opt_parsed)
 	var allowed = []
-	# TODO finish fixing md5 hash on hideif.clicked
-	var value = Showif.get_allowed(opt_parsed[2])
+	var value = Showif.get_allowed(opt_parsed[2], [opt_parsed, daig_parsed])
+	#print('values ', value)
+	#print('range 2 ', range(len(value)))
 	for i in range(len(value)):
-		#print('value ', value)
-		#print('VarTests.CLICKED_OPTIONS', VarTests.CLICKED_OPTIONS)
-		# diag hashing
-		if VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
-			if opt_parsed[2][i]:
-				#print('opt_parsed[0][i] ', opt_parsed[0][i])
-				var formatted_string = hash_diag(opt_parsed[0][i], i)
-				#print('formatted_string      ', formatted_string)
-				var fs_hash = formatted_string.md5_text()
-				#print('fs_hash ', fs_hash)
-				if fs_hash in VarTests.CLICKED_OPTIONS[VarTests.character_name]:
-					value[i] = not value[i]
-		#print('value1 ', value)
 		if not value[i]:
 			var item = opt_parsed[-1][i]
 			if item.to_lower() == '(return)' or item.to_lower() == '(back)':
@@ -293,7 +251,6 @@ func make_options(packed_options):
 			allowed.append(item)
 		#var options = opt_parsed[-1]
 	#print('allowed', allowed)
-	#print('is curated_list true? ', curated_list)
 	choicesDialog.choices = allowed
 
 # leave encounter
@@ -340,6 +297,7 @@ func start_encounter(character_name):
 	print('character_name "', VarTests.character_name, '"')
 	if VarTests.scene_character != VarTests.character_name:
 		change_sprite(character_sprite)
+		VarTests.scene_character = ''
 	change_index(index)
 
 func change_sprite(sprite_name=null) -> void:
@@ -359,8 +317,6 @@ func change_sprite(sprite_name=null) -> void:
 		over_sprite.add_child(sprite)
 		character_layer.add_child(over_sprite)
 		character_layer.move_to_front()
-		if VarTests.character_returns:
-			character_return_anim(sprite)
 
 		# character overlays
 		var min_TIME         = get_blend(0)
@@ -436,8 +392,8 @@ func create_picture(picture=false) -> void:
 			#top_box.add_theme_stylebox_override("normal", picture_color)
 
 # index error
-func index_error(daig_parsed):
-	if daig_parsed == null:
+func index_error(daig_error):
+	if daig_error == null:
 		error.visible = true
 		error_label.text = 'ERROR: pointer: "%s" has no corresponding index.' % VarTests.current_index
 		error_button.pressed.connect(func(): error.visible = false)
@@ -448,26 +404,40 @@ func index_error(daig_parsed):
 func change_index(index):
 	if VarTests.auto_continue_pointer:
 		VarTests.auto_continue_pointer = ''
+
 	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, VarTests.diag_file])
-	var daig_parsed = DiagParse.begin_parsing(data, index)
+	daig_parsed = DiagParse.begin_parsing(data, index)
+	print('daig_parsed ', daig_parsed)
+
 	if index_error(daig_parsed):
 		index = VarTests.last_index
 		return null
 	VarTests.current_index = index
-	#VarTests.last_index = index
 
-	#print('opt_parsed index', index)
-	# functions
-	if daig_parsed[0]: logic_logic(index, daig_parsed[0])
+	# CHECK IF INDEX HAS FUNCTIONS
+	#print('daig_parsed[1] ', daig_parsed[1])
+	if daig_parsed[1]:
+		var infinite_block = Array(VarTests.last_dialogue_func.split(' '))
+		var logic_func = DiagFunc.Logigier(index, daig_parsed[1])
+		infinite_block.remove_at(0)
+		# CHECK FOR INFINITE FUNCTION LOOP #1
+		if len(infinite_block) >= 1 and infinite_block[1] == logic_func[1]:
+			pass # fuckin pass ass hole
+		else:
+			logic_logic(logic_func, daig_parsed[1])
+
+		# STOP INFINITE FUNCTION LOOP #2
+		if len(infinite_block) >= 1 and infinite_block[1] == logic_func[1]:
+			VarTests.last_dialogue_func = ''
 
 	# dialogue
-	if daig_parsed[1]:
-		make_dialogue(daig_parsed[1].split('"'))
+	if daig_parsed[2]:
+		make_dialogue(daig_parsed[2].split('"'))
 
 	# options
-	if daig_parsed[2]:
+	if daig_parsed[3]:
 		autocont_dots.visible = false
-		make_options(daig_parsed[2])
+		make_options(daig_parsed[3])
 	# AUTO CONTINUE SELECTION
 	elif VarTests.auto_continue_pointer != '':
 		autocont_dots.visible = true
@@ -481,32 +451,32 @@ func change_index(index):
 		tween.parallel().tween_property(autocont_dots, "modulate:a", 0.8, 0.5)
 		#tween.finished.connect(auto_cont_ellipses)
 
-func logic_logic(picked, function):# ?
-		var logic_func = DiagFunc.Logigier(picked, function)
+func logic_logic(logic_func, edge_case):# ?
 		match logic_func[0]:
 			"leave_encounter":    leave_encounter()
 			"start_encounter":    start_encounter(logic_func[1])
 			"change_sprite":      change_sprite(logic_func[1])
 			"create_picture":     create_picture(logic_func[1])
 			"remove_pic":         create_picture()
+			"character_leave":    character_leave_anim(sprite)
+			"character_return":   character_return_anim(sprite)
 			"change_environment": change_environment(logic_func[1])
 #TODO advance_time function
 			"advance_time":       pass
 			"change_diag":        change_diag(logic_func[1][0], logic_func[1][1])
 			"change_index":       change_index(logic_func[1])
-			"curated_list":       change_index(Utils.curated_list(function, logic_func[1]))
+			"curated_list":
+				print('dialogue curated_list!')
+				change_index(Utils.curated_list(edge_case, logic_func[1]))
 			"start_combat":       start_combat()
 			"player_death":       player_death()
-
-#func change_character():
-#	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, VarTests.diag])
-#	var daig_parsed = DiagParse.begin_parsing(data, 'start')
-#	make_dialogue(daig_parsed[1])
+		if logic_func[2] != null:
+			logic_logic(logic_func[2], edge_case)
 
 func change_diag(diag, index) -> void:
 	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, diag])
-	var daig_parsed = DiagParse.begin_parsing(data, index)
-	make_dialogue(daig_parsed[1])
+	var new_daig = DiagParse.begin_parsing(data, index)
+	make_dialogue(new_daig[2])
 
 func change_environment(new_env=null) -> void:
 	scene_picture.visible = false
@@ -605,13 +575,14 @@ func make_dialogue(speech:Array):
 	# prep bbcode
 	speech = speech.map(func(item): return Utils.mass_repalce(item, {'<br>':'[br]', '<b>':'[b]', '</b>':'[/b]', '-name-':VarTests.player_name}).strip_edges())
 
+	print('len(speech) ', len(speech))
 	if len(speech) >= 1: top = speech[0]
 	if len(speech) >= 2: mid = speech[1]
 	if len(speech) >= 3: bot = speech[2]
 	add_top_box(top, mid, bot)
 
 func enable_dialogue_options(wh):
-	print('ADSAD ', wh)
+	print('enable_dialogue_options location ', wh)
 	choicesDialog.modulate.a = 0
 	choicesDialog.visible = true
 	dialogue_complete = true
@@ -789,10 +760,6 @@ func add_bot_box(diag_bot):
 	print('diag com auto ', dialogue_complete and VarTests.auto_continue_pointer == '')
 	if VarTests.auto_continue_pointer == '':
 		enable_dialogue_options('A')
-	# Character hide function
-	if VarTests.character_leaves:
-		character_leave_anim(sprite)
-		VarTests.character_leaves = false
 	if diag_bot != '':
 		#bot_box.visible = true
 		bot_box.text = diag_bot
@@ -966,7 +933,6 @@ func character_leave_anim(object:TextureRect) -> void:
 	tween.set_trans(Tween.TRANS_QUART)
 	tween.tween_property(object, "position:x", object.position.x + 120, 0.6)
 	tween.parallel().tween_property(object, "modulate:a", 0, 0.6)
-	tween.finished.connect(func():VarTests.character_leaves = false)
 
 # SHOW CHARACTER
 func character_return_anim(object:TextureRect) -> void:
@@ -981,7 +947,6 @@ func character_return_anim(object:TextureRect) -> void:
 	tween.set_trans(Tween.TRANS_QUART)
 	tween.tween_property(object, "position:x", object.position.x - VarTests.stage_width, 0.6)
 	tween.parallel().tween_property(object, "modulate:a", 1, 0.6)
-	tween.finished.connect(func():VarTests.character_returns = false)
 
 # IS BETWEEN FUNCTION
 func is_between(minn: int, value_int: int, maxx: int):
@@ -1257,13 +1222,13 @@ func refresh_combat_ui():#where
 	player_stat_end_control.get_child(1).text  = str(VarTests.player_stats["endurance"]    - combat_stats["player_endurance_used"])
 	player_health_lbl.text    = str(player_health)
 	
-	player_res_heat.text   = VarTests.player_stats["heat_res"]
-	player_res_cold.text   = VarTests.player_stats["cold_res"]
-	player_res_impact.text = VarTests.player_stats["impact_res"]
-	player_res_slash.text  = VarTests.player_stats["slash_res"]
-	player_res_pierce.text = VarTests.player_stats["pierce_res"]
-	player_res_magic.text  = VarTests.player_stats["magic_res"]
-	player_res_bio.text    = VarTests.player_stats["bio_res"]
+	player_res_heat.text   = str(VarTests.player_stats["heat_res"])
+	player_res_cold.text   = str(VarTests.player_stats["cold_res"])
+	player_res_impact.text = str(VarTests.player_stats["impact_res"])
+	player_res_slash.text  = str(VarTests.player_stats["slash_res"])
+	player_res_pierce.text = str(VarTests.player_stats["pierce_res"])
+	player_res_magic.text  = str(VarTests.player_stats["magic_res"])
+	player_res_bio.text    = str(VarTests.player_stats["bio_res"])
 
 	var stat_spit = stats_file.split('\n')
 	enemy_stat_cha_lbl.text   = str(int(MiscFunc.parse_stat('charisma', stat_spit))     - combat_stats["enemy_charisma_used"])
@@ -1275,13 +1240,13 @@ func refresh_combat_ui():#where
 	enemy_stat_end_lbl.text   = str(int(MiscFunc.parse_stat('endurance', stat_spit))    - combat_stats["enemy_endurance_used"])
 	enemy_health_lbl.text     = str(enemy_health)
 	
-	enemy_res_heat.text   = combat_stats["enemy_heat_res"]
-	enemy_res_cold.text   = combat_stats["enemy_cold_res"]
-	enemy_res_impact.text = combat_stats["enemy_impact_res"]
-	enemy_res_slash.text  = combat_stats["enemy_slash_res"]
-	enemy_res_pierce.text = combat_stats["enemy_pierce_res"]
-	enemy_res_magic.text  = combat_stats["enemy_magic_res"]
-	enemy_res_bio.text    = combat_stats["enemy_bio_res"]
+	enemy_res_heat.text   = str(combat_stats["enemy_heat_res"])
+	enemy_res_cold.text   = str(combat_stats["enemy_cold_res"])
+	enemy_res_impact.text = str(combat_stats["enemy_impact_res"])
+	enemy_res_slash.text  = str(combat_stats["enemy_slash_res"])
+	enemy_res_pierce.text = str(combat_stats["enemy_pierce_res"])
+	enemy_res_magic.text  = str(combat_stats["enemy_magic_res"])
+	enemy_res_bio.text    = str(combat_stats["enemy_bio_res"])
 
 
 # COMBAT UI IN

@@ -30,8 +30,8 @@ func _ready() -> void:
 	inventory_box.choices  = VarTests.ITEM_INVENTORY
 	characters_box.choices = characters
 	#TEMP
-	VarTests.player_stats['charisma'] = 8
-	VarTests.player_stats['will']     = 8
+	#VarTests.player_stats['charisma'] = 10
+	#VarTests.player_stats['will']     = 10
 	#TEMP
 	# set stats
 	player_name.text = VarTests.player_name
@@ -69,7 +69,11 @@ func _on_stats_save_pressed() -> void:
 	VarTests.player_stats['endurance']    = int(endurance.text)
 
 func _on_tooltip_hover(array, index):
+	#VarTests.saved_indexs['tornoth'] = 'stop_pull'
+	#VarTests.CHANGED_DIAGS['tornoth'] = 'diag_bedsex'
 	var character_indexes:Dictionary = VarTests.saved_indexs
+	#print(array[index])
+	#print(character_indexes)
 	if character_indexes.has(array[index]):
 		saved_index = character_indexes[array[index]]
 	else:
@@ -104,6 +108,8 @@ func _on_character_selected(index: Variant) -> void:
 
 	VarTests.environment_name = default_env
 	VarTests.character_name = character_name
+	# catch for freeing the debug menu and trying to free it again
+	VarTests.debug_screen_visible = false
 	get_tree().change_scene_to_file("res://scenes/dialogue.tscn")
 
 func _on_box_refresh(box):

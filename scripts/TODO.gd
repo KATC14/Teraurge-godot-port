@@ -37,8 +37,10 @@ extends Node
 # TODO time display turn_overmap_dial
 # TODO add in sound
 # TODO add ability to save/load
+# TODO fix tinting in outside dialogue
 
-# TODO clean up DEBUG printing
+# TODO clean up DEBUG printing/code clean up/documentation
+# TODO optimizing bit time...
 # TODO QA testing
 # TODO qualty of life change not in original game
 ## seting menu for volume (in game and on main menu)

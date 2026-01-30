@@ -101,7 +101,7 @@ func parse_chunk(chunk):
 				dialogue.append(temp[0])
 			for x in range(Utils.array_find(temp, '['), len(temp)):
 				options.append(temp[x].strip_edges())
-	return [function, dialogue, options]#index, 
+	return [index, function, dialogue, options]
 
 func begin_parsing(data, start_index):
 	var diag_file:Array = clean_diag(data)
@@ -109,6 +109,6 @@ func begin_parsing(data, start_index):
 	var pos = index_position(chunk, '{%s' % start_index)
 	if pos != null:
 		var parsed = parse_chunk(chunk)
-		return [parsed[0][pos], parsed[1][pos], parsed[2]]
+		return [parsed[0], parsed[1][pos], parsed[2][pos], parsed[3]]
 	else:
 		return null

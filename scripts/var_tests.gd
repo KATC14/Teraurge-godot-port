@@ -6,6 +6,8 @@ var stage_width  = 1280
 #var player_location = Vector2(2147.25, 3147.6)
 var map_target
 var loc_name:String
+var loc_coords
+var last_dialogue_func = ''
 
 var version = 2.13
 var menu_state = 'warning'

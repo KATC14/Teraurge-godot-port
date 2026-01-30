@@ -261,48 +261,47 @@ func create_locations() -> void:
 		# debug colors
 		#var color
 		#match data_out[3]:
-		#	"blip":           color = "#f0f00071"
-		#	"blip_named":     color = "#f000f071"
-		#	"blip_encounter": color = "#00f0f071"
-		#	"blip_place":     color = "#f0000071"
-		#	"blip_special":   color = "#0000f071"
+		#	"blip":           color = Color("#f0f00071")
+		#	"blip_named":     color = Color("#f000f071")
+		#	"blip_encounter": color = Color("#00f0f071")
+		#	"blip_place":     color = Color("#f0000071")
+		#	"blip_special":   color = Color("#0000f071")
 
 		var area:Area2D = make_collision(x, y, r)#, loc_name
 		area.input_event.connect(loc_move.emit.bind(area))
-		#area.body_entered.connect(load_blip.bind(loc_name))#, area
-		#area.body_exited.connect(func(_body): area_exited = true)
-		# pass on blips that are not used to keep same map format
-		match data_out[3]:
-			# normal blip
-			"blip":           all_loc[area] = loc_name
-			# named blip (no idea why this is any more special then blip_encounter)
-			"blip_named":     all_loc[area] = loc_name
-			# random encounter
-			"blip_encounter": all_loc[area] = loc_name
-			# named location
-			"blip_place":     all_loc[area] = loc_name
-		# for loop ended (why is there no else on a fo rloop like python or a finally)
+		# blip           normal blip
+		# blip_named     named blip (no idea why this is any more special then blip_encounter)
+		# blip_encounter random encounter
+		# blip_place     named location
+		# blip_special   special blip (why is this one any more special?)
+		all_loc[area] = [loc_name, area.position]
+		# for loop ended (why is there no else on a for loop like python or a finally)
 		if i == map_size-1:
 			# catch for leaving a location gotten to by debug or somehow missing a location name
-			
-			if not VarTests.loc_name or not all_loc.values().has(VarTests.loc_name):
+			if not VarTests.loc_name or not all_loc.values()[0].has(VarTests.loc_name):
 				VarTests.loc_name = 'sejan_witch_house'
-			# why godot you are so much python but are mussing some amazing stuff
+			# why godot you are so much like python but are missing some amazing stuff
 			# like            for i, x in Dictionary.items()
 			# or              for i (x, y) in [('a', ('1', '2')), ('b', ('3', '4'))]
 			# and cant forget for i, x in zip(list, list):
 			# move player to loaction
+			#print('E ', VarTests.loc_name, ' ', VarTests.map_target)
 			VarTests.map_target = reverse_loc_lookup(VarTests.loc_name)
+			if VarTests.loc_coords != null:
+				VarTests.map_target = reverse_loc_lookup(VarTests.loc_coords, 1)
+				#print('G ', VarTests.map_target)
 			# move camera to node left
 			camera.position = VarTests.map_target.position
+			VarTests.loc_coords = VarTests.map_target.position
 			blips_ready(VarTests.map_target)
 			can_move = true
 
-func reverse_loc_lookup(loc_name):
+func reverse_loc_lookup(loc_name, xy=0):
 	for items in Utils.items(all_loc):
 		# items[0] key
 		# items[1] value
-		if items[1] == loc_name:
+		#print('items[1] ', items[1])
+		if items[1][xy] == loc_name:
 			return items[0]
 
 func create_discovered_locations():
@@ -315,13 +314,14 @@ func create_discovered_locations():
 		color_blips(loc_area)
 
 func discover_location(loc_name):
-	if all_loc.values().has(loc_name):
-		if not VarTests.DISCOVERED_LOCATIONS.has(loc_name):
-			VarTests.DISCOVERED_LOCATIONS.append(loc_name)
-			create_discovered_locations()
+	#print(reverse_loc_lookup(loc_name))
+	#if all_loc.values()[0].has(loc_name):
+	if not VarTests.DISCOVERED_LOCATIONS.has(loc_name):
+		VarTests.DISCOVERED_LOCATIONS.append(loc_name)
+		create_discovered_locations()
 
 func evaluate_blip(loc_name):
-	print('loc_name ', loc_name)
+	#print('loc_name ', loc_name)
 	VarTests.environment_name = loc_name
 	var stats_file = LoadStats.read_env_stats(loc_name)
 	#print('stats_file ', stats_file)
@@ -354,11 +354,9 @@ func get_encounter(stats_file):
 	var stats_parsed = DiagParse.begin_parsing(stats_file, 'encounters')
 	#print('stats_parsed ', stats_parsed)
 	if stats_parsed:
-		var options_parsed = DiagParse.parse_options(stats_parsed[2])
-		print('options_parsed ', options_parsed)
-		if stats_parsed[0].find('curated_list') != -1:
-			var index = Utils.curated_list(stats_parsed, stats_parsed[0].split(' ')[1])
-			print('index?? ', index)
+		var options_parsed = DiagParse.parse_options(stats_parsed[3])
+		if stats_parsed[1].find('curated_list') != -1:
+			var index = Utils.curated_list(options_parsed, stats_parsed[1].split(' ')[1])
 			if index:
 				var logic_func = DiagFunc.Logigier('', index)
 				match logic_func[0]:
@@ -398,7 +396,8 @@ func map_collision_check(relative_x, relative_y):
 
 	var new_loc = adjacent_blips[closest_index]
 	VarTests.map_target = new_loc
-	evaluate_blip(all_loc[new_loc])
+	VarTests.loc_coords = new_loc.position
+	evaluate_blip(all_loc[new_loc][0])
 	blips_ready(new_loc)
 
 func color_blips(blip_loc:Area2D):
@@ -414,14 +413,14 @@ func color_blips(blip_loc:Area2D):
 		temp.redraw = 'adjacent_blips'
 		child.modulate.a = 1
 	# discovered locations
-	if all_loc[blip_loc] in VarTests.DISCOVERED_LOCATIONS:
+	if all_loc[blip_loc][0] in VarTests.DISCOVERED_LOCATIONS:
 		temp.redraw = 'discovered'
 		child.modulate.a = 1
 	# at blip
 	if blip_loc == VarTests.map_target:
 		temp.redraw = 'on_top'
 		# at discovered location
-		if all_loc[blip_loc] in VarTests.DISCOVERED_LOCATIONS:
+		if all_loc[blip_loc][0] in VarTests.DISCOVERED_LOCATIONS:
 			temp.redraw = 'on_discovered'
 		child.modulate.a = 1
 
@@ -451,7 +450,7 @@ func blips_ready(target):
 func _on_blip_move(_viewport: Node, _event: InputEvent, _shape_idx: int, node:Area2D) -> void:
 	# check for if discover pop up is not open
 	if not discovery_popup_active:
-		if Input.is_action_pressed("mouse_left"):
+		if Input.is_action_just_released("mouse_left"):
 			var moved_loc = node.get_node("Sprite2D")
 			# only allow adjacent blips
 			var click_position = Vector2()
@@ -474,15 +473,16 @@ func discovery_popup(text, loc_name):
 	location            = loc_name
 	disco_msg.text      = text
 	disco_cont.position = Vector2(vec_x, vec_y)
-	discover_location(loc_name)
 
 func _on_discovery_popup_pass():
 	disco_cont.visible     = false
 	discovery_popup_active = false
 	camera.is_active       = true
+	discover_location(location)
 
 func _on_discovery_popup_enter():
 	disco_cont.visible = false
+	discover_location(location)
 	start_encounter(location)
 
 func _on_button_mouse_entered() -> void:

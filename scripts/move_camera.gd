@@ -5,8 +5,8 @@ extends Camera2D
 var dragging
 @export  var is_active = true
 
-func _input(event):
-	# zoom ability maight or might be disabled
+func _input(event:InputEvent):
+	# zoom ability might or might be disabled
 	if event is InputEventMouseButton:
 		if Input.is_action_just_released('mouse_wheel_up'):
 			zoom.x += 0.25
@@ -16,11 +16,11 @@ func _input(event):
 			zoom.y -= 0.25
 	if is_active:
 		if event is InputEventMouseButton:
-			if event.button_mask == 2 and event.is_pressed():
+			if Input.is_action_pressed("mouse_left"):
 				dragging = true
 			else:
 				dragging = false
-		elif dragging:
+		elif event is InputEventMouseMotion and dragging:
 			position -= event.relative
 			if position.x <= 640:  position.x = 640
 			if position.y <= 360:  position.y = 360

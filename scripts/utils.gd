@@ -60,9 +60,7 @@ func _input(_event: InputEvent) -> void:
 				get_tree().current_scene.play_card("player", "debug_lose", "enemy")
 				#get_tree().current_scene.refresh_combat_ui()
 
-func curated_list(data_parsed, cure):
-	var options_parsed = DiagParse.parse_options(data_parsed[2])
-
+func curated_list(options_parsed, cure):
 	var index:int
 	# CURATED LIST MODIFIER
 	if cure == "random":
@@ -96,13 +94,10 @@ func curated_list(data_parsed, cure):
 	if cure == "prioritized":
 		index = 0
 
-	#print(options_parsed)
-	print('options_parsed[1][index] ', options_parsed[1][index])
-	if options_parsed[1][index]:
-		var values = Showif.get_allowed(options_parsed[2][index])
-		# only return index if option is visible
-		if values.find(true) == -1:
-			return options_parsed[1][index]
+	var values = Showif.get_allowed(options_parsed[2])
+	# only return index if option is visible
+	if not values[index]:
+		return options_parsed[1][index]
 	return null
 
 
@@ -165,6 +160,37 @@ func mass_repalce(text, reps):
 	for i in items(reps):
 		text = text.replace(i[0], i[1])
 	return text
+
+func hash_diag(opt_parsed, daig_parsed, index):
+	var text     = daig_parsed[3][index]
+	var picked   = opt_parsed[0][index]
+	var function = opt_parsed[1][index]
+
+	# fucking hashing prep.
+	text = text.split(']')[-1]
+
+	#var opt_func = ''
+	#if opt_parsed[2][index]:
+	#	var temp = ['']
+	#	temp.append_array(opt_parsed[2][index])
+	#	opt_func = ' //'.join(temp)
+
+	var formated_picked = "%s | %s" % [picked if picked else '', function if function else '']
+	# ATTENTION might cause problems
+	formated_picked = formated_picked.rstrip('| ')
+
+	var diag_reparse:Array = daig_parsed[0]
+	# ATTENTION might cause problems
+	diag_reparse.erase(VarTests.last_index)
+	var multi_index = ''
+	if opt_parsed[2][index]:
+		var temp = ['']
+		temp.append_array(diag_reparse)
+		multi_index = '#'.join(temp)
+
+	#text.replace(opt_func, '').strip_edges(), opt_func
+	var formatted_string = '%s%s-%s-%s%s' % [VarTests.last_index, multi_index, formated_picked.strip_edges(), text.strip_edges()]
+	return formatted_string
 
 func array_zip(ary) -> Array:
 	var ary_lens = []

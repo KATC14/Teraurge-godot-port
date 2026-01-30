@@ -1,14 +1,14 @@
 extends Node
 
-func get_allowed(the_array:Array):#, full_str='empty'
+func get_allowed(the_array:Array, full_str=[]):#
 	#print('a ', the_array)
 	var ret_array = []
 	for i in range(len(the_array)):
-		var value = check_for_showif(the_array[i])#, full_str
+		var value = check_for_showif(the_array[i], full_str, i)#
 		ret_array.append(value)
 	return ret_array
 
-func check_for_showif(opt_parsed):#, full_string='empty'
+func check_for_showif(opt_parsed, full_string, index):#
 	# catch for option slash functions
 	if not opt_parsed:
 		return false
@@ -19,15 +19,18 @@ func check_for_showif(opt_parsed):#, full_string='empty'
 
 		var value = false
 		if i and (i.find("showif") != -1):
-			value = showif(i)
+			value = showif(i, full_string, index)
 
 		# Unique to HIDEIF!! (REVERSED BOOLEAN)
 		if i and (i.find("hideif") != -1):
-			value = showif(i)#, full_string
-			#print('value 0 ', value)
-			if value:
-				value = not value
-			#print('value 1 ', value)
+			value = showif(i, full_string, index)#
+			print('value 0 ', value)
+			if value == true:
+				value = false
+			else:
+				value = true
+			
+			print('value 1 ', value)
 
 		allowed.append(value)
 	# IF TRUE IN ARRAY -> HIDE (true)
@@ -36,27 +39,28 @@ func check_for_showif(opt_parsed):#, full_string='empty'
 	else:
 		return true
 
-	#IF NO TRUE IN ARRAY -> UNHIDE (false)
+	# IF NO TRUE IN ARRAY -> UNHIDE (false)
 	return false
 
-func showif(logic):#, full_string='empty'
-	#VARIABLES
+func showif(logic, full_string, index):#
+	# VARIABLES
 	#var diag_index
 	var statement
 
 
-	#SPLIT STRING TO VARIABLES
+	# SPLIT STRING TO VARIABLES
 	#var loc = logic.find('//')
 	#logic = logic.substr(loc+2)
 	if not logic and logic == false:
 		return false
 
-	#LOGIC TO LOWERCASE
+	# LOGIC TO LOWERCASE
 	logic = logic.to_lower()
 
 
 	var s_logic = logic.split(".")
 	statement = s_logic[1]
+	print('statement ', statement)
 	var split1
 	var split2
 	#var split3
@@ -66,35 +70,34 @@ func showif(logic):#, full_string='empty'
 	#if len(s_logic) >= 5: split3 = s_logic[4]
 	#if len(s_logic) >= 6: split4 = s_logic[5]
 
-	#!
-	#TRUE IS HIDDEN
-	#FALSE IS UNHIDDEN
-	#(for showif, reverse for hideif)
-	#!
+	# !
+	# TRUE IS HIDDEN
+	# FALSE IS UNHIDDEN
+	# (for showif, reverse for hideif)
+	# !
 
 	match statement:
 		#=====================================================================
-		# commemted out because I cant copy someones elses code for shit and I wanted to move on
-		# but I got it to work another way, making the comment under this one even more true - KATC14
-		#"clicked":
-			#Hide if the option has been clicked previously
-			#Hidden options must have a unique pointer in the current options list!
+		"clicked":
+			# Hide if the option has been clicked previously
+			# Hidden options must have a unique pointer in the current options list!
 
-			#THIS MIGHT CAUSE PROBLEMS!! SHIT TESTING AND STRANGE CODE!!
-			#Check showif censor and dialogue_functions for rest of the spaghetti.
+			# THIS MIGHT CAUSE PROBLEMS!! SHIT TESTING AND STRANGE CODE!!
+			# Check showif censor and dialogue_functions for rest of the spaghetti.
 
-		#	if not full_string: full_string = 'empty'
-		#	var fs_hash = full_string.md5_text()
+			if VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
+				# holy shit I got it to work...
+				var formatted_string = Utils.hash_diag(full_string[0], full_string[1], index)
+				#print('show_me ', formatted_string)
+				var fs_hash = formatted_string.md5_text()
+				if VarTests.CLICKED_OPTIONS[VarTests.character_name].has(fs_hash):
+					return false
+				else:
+					return true
+			return true
 
-		#	if VarTests.CLICKED_OPTIONS.has(VarTests.character_name):
-		#		if VarTests.CLICKED_OPTIONS[VarTests.character_name].find(fs_hash) != -1:
-		#			return true
-		#		else:
-		#			return false
-		#	return false
-
-			#TESTED: 2.12.2015
-			#Works so far I guess. There might be rare problems with hash collision
+			# TESTED: 2.12.2015
+			# Works so far I guess. There might be rare problems with hash collision
 
 		"debug":
 			#Hide if debug mode is off
@@ -164,7 +167,7 @@ func showif(logic):#, full_string='empty'
 
 			#trace("counter: " + COUNTERS[split1] +" "+split2)
 
-			print('counter is it working? ', VarTests.COUNTERS.has(split1))
+			#print('counter is it working? ', VarTests.COUNTERS.has(split1))
 			if VarTests.COUNTERS.has(split1):
 				if VarTests.COUNTERS[split1] >= int(split2):
 					return false
@@ -189,6 +192,7 @@ func showif(logic):#, full_string='empty'
 			#(stat name).(required amount)
 			print('has_stat stat ', statement, ' ', VarTests.player_stats[statement])
 			print('has_stat req ', statement, ' ', int(split1))
+			print()
 
 			if int(VarTests.player_stats[statement]) < int(split1):
 				return true

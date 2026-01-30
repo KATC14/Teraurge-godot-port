@@ -3,13 +3,13 @@ extends Node
 
 # DIALOGUE LOGIC HANDLER#================================================================================
 func Logigier(index, logic: String) -> Array:
+	VarTests.last_dialogue_func = logic
 	var book
 	if logic.contains(','):
 		for funk in logic.split(","):
 			VarTests.last_index = index
 			book = script_library(funk.strip_edges())
 	else:
-		print('logic 1 ', logic)
 		book = script_library(logic.strip_edges())
 	return book
 
@@ -207,8 +207,8 @@ func script_library(logic: String) -> Array:
 				index = slogic[3]
 			else:
 				index = slogic[2]
-			print('cf next_index ', index)
 			print('cf next_index ', slogic)
+			print('cf next_index ', index)
 			#change_index.emit(next_index)
 			next_index = ['change_index', index, null]
 		"check_item":
@@ -220,12 +220,18 @@ func script_library(logic: String) -> Array:
 			next_index = ['change_index', index, null]
 		"check_stat":
 			# check_stat (stat name) (number-number-number) (pointer1-pointer2-pointer2-pointer2)
-			var stat_fences: Array = slogic[2].split("-")
+			var stat_fences:   Array = slogic[2].split("-")
 			var pointer_goals: Array = slogic[3].split("-")
 			var pointer_i: int = 0
-			while VarTests.player_stats[slogic[1]] >= stat_fences[pointer_i]:
+			#print('stat       ', slogic[1])
+			#print('stat value ', VarTests.player_stats[slogic[1]])
+			#print('goal stat  ', stat_fences)
+			while VarTests.player_stats[slogic[1]] >= int(stat_fences[pointer_i]):
 				pointer_i += 1
-			next_index = pointer_goals[pointer_i]
+				if pointer_i >= len(stat_fences):
+					break
+			#print('check_stat ', pointer_goals[pointer_i])
+			next_index = ['change_index', pointer_goals[pointer_i], null]
 		"give_card":
 			# give_card (card name)
 			VarTests.CARD_INVENTORY.append(slogic[1])
@@ -498,12 +504,11 @@ func script_library(logic: String) -> Array:
 			next_index = ['player_death', null, null]
 		"character_leave":
 			# The present character will use a "leave_effect" tween and hide after dialouge bubble is completed.
-			VarTests.character_leaves = true
+			next_index = ['character_leave', null, null]
 		"character_return":
 			# character_return (sprite name)
 			# The present character will change to the specified sprite and use a "return_effect" tween when the scene is created.
-			VarTests.character_sprite = slogic[1]
-			VarTests.character_returns = true
+			next_index = ['character_return', null, ['change_sprite', slogic[1]]]
 #			scene_character = ""
 		"add_timer":
 			# add_timer (timer name) (days) trigger: (function & function)

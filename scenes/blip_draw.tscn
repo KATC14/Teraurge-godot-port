@@ -6,13 +6,16 @@
 radius = 4.0
 
 [node name="Area2D" type="Area2D"]
+position = Vector2(10, 0)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+editor_description = "DONT DELETE
+
+this is how the code knows what blips can be moved to its so jank lol"
 modulate = Color(1, 1, 1, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.7058824)
-position = Vector2(3.968, 3.968)
+position = Vector2(4.484, 4.284)
 scale = Vector2(0.031, 0.031)
 script = ExtResource("1_28uch")
 
@@ -24,6 +27,8 @@ shape = SubResource("CircleShape2D_y0end")
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 0.5
+offset_top = 0.3
+offset_right = 8.5
+offset_bottom = 8.299997
 mouse_filter = 1
