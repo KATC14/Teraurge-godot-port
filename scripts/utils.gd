@@ -142,7 +142,11 @@ func get_substring(start, end, data:String):
 	#if end_index < start_index:
 	#	end_index = len(data)
 
-	return data.substr(start_index, end_index).strip_edges()
+	var data1 = data.substr(start_index, end_index).strip_edges()
+	data1 = ', '.join(data1.split('\n'))
+	#print('show_me a "', data1, '"')
+	#print('show_me b "', data1, '"')
+	return data1.strip_escapes()
 
 func array_find(clean_chunk:Array, item) -> int:
 	for i:int in range(len(clean_chunk)):
@@ -156,7 +160,7 @@ func items(dict:Dictionary) -> Array:
 		data.append([dict.keys()[i], dict.values()[i]])
 	return data
 
-func mass_repalce(text, reps):
+func mass_replace(text, reps):
 	for i in items(reps):
 		text = text.replace(i[0], i[1])
 	return text
@@ -189,8 +193,31 @@ func hash_diag(opt_parsed, daig_parsed, index):
 		multi_index = '#'.join(temp)
 
 	#text.replace(opt_func, '').strip_edges(), opt_func
-	var formatted_string = '%s%s-%s-%s%s' % [VarTests.last_index, multi_index, formated_picked.strip_edges(), text.strip_edges()]
+	var formatted_string = '%s%s-%s-%s' % [VarTests.last_index, multi_index, formated_picked.strip_edges(), text.strip_edges()]
 	return formatted_string
+
+# 2x white socks -> ["2x", "white_socks"]
+func unformat(formatted):
+	var rawmatted:Array = formatted.split(' ', true, 1)
+	return rawmatted.map(func(item): return item.replace(' ', '_'))
+
+# ["white_socks", "white_socks"] -> [2, "2x white_socks"]
+func count_items(item):
+	var unique_items = []
+	for i in item:
+		if i not in unique_items:
+			unique_items.append(i)
+	var many = []
+	for i in unique_items:
+		many.append([i, item.count(i)])
+	var formatted = []
+	var count = 0
+	for i in many:
+		var card = i[0]
+		var amount = int(i[1])
+		count += amount
+		formatted.append('%sx %s' % [amount, card])
+	return [count, formatted]
 
 func array_zip(ary) -> Array:
 	var ary_lens = []

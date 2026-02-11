@@ -674,7 +674,7 @@ layout_mode = 0
 offset_left = 656.0
 offset_top = 106.0
 offset_right = 947.0
-offset_bottom = 637.0
+offset_bottom = 615.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_bai5e")
 script = ExtResource("15_05exi")
 
@@ -1086,10 +1086,10 @@ unique_name_in_owner = true
 [connection signal="pressed" from="CanvasLayer/Camera2D/Control/Button4" to="." method="_on_button_stn_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_discovery_popup_pass"]
 [connection signal="pressed" from="CanvasLayer/Control/Button2" to="." method="_on_discovery_popup_enter"]
-[connection signal="ENTER" from="CanvasLayer/Control4/PanelContainer" to="." method="_on_tooltip_hover"]
+[connection signal="ENTER" from="CanvasLayer/Control4/PanelContainer" to="." method="deck_hover"]
 [connection signal="EXIT" from="CanvasLayer/Control4/PanelContainer" to="." method="_on_tooltip_exit"]
 [connection signal="SELECTED" from="CanvasLayer/Control4/PanelContainer" to="." method="_on_dck_cards_available"]
-[connection signal="ENTER" from="CanvasLayer/Control4/PanelContainer2" to="." method="_on_tooltip_hover"]
+[connection signal="ENTER" from="CanvasLayer/Control4/PanelContainer2" to="." method="deck_hover"]
 [connection signal="EXIT" from="CanvasLayer/Control4/PanelContainer2" to="." method="_on_tooltip_exit"]
 [connection signal="SELECTED" from="CanvasLayer/Control4/PanelContainer2" to="." method="_on_dck_cards_equiped"]
 [connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect1/Area2D" to="." method="_on_underwear_input_event"]
@@ -1103,7 +1103,7 @@ unique_name_in_owner = true
 [connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect10/Area2D" to="." method="_on_offhand_input_event"]
 [connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect11/Area2D" to="." method="_on_sidearm_input_event"]
 [connection signal="input_event" from="CanvasLayer/Control2/Control/TextureRect/TextureRect12/Area2D" to="." method="_on_twohand_input_event"]
-[connection signal="ENTER" from="CanvasLayer/Control2/PanelContainer" to="." method="_on_tooltip_hover"]
+[connection signal="ENTER" from="CanvasLayer/Control2/PanelContainer" to="." method="inventory_hover"]
 [connection signal="EXIT" from="CanvasLayer/Control2/PanelContainer" to="." method="_on_tooltip_exit"]
 [connection signal="SELECTED" from="CanvasLayer/Control2/PanelContainer" to="." method="_on_button_inv_item_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control5/Button" to="." method="_on_button_pause_save_load_pressed"]

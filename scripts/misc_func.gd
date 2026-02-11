@@ -23,8 +23,6 @@ func _ready() -> void:
 func game_start() -> void: 
 	# START THE GAME INTO THE INTRO
 	# load items
-	var file = FileAccess.open("res://database/items/items.txt", FileAccess.READ)
-	VarTests.ALL_ITEMS = file.get_as_text()
 	starting_inventory()
 	starting_cards()
 	VarTests.environment_name = "intro"
@@ -33,8 +31,10 @@ func game_start() -> void:
 	#new_encounter()
 
 func starting_inventory():
-	var clothes_torso = ["tshirt", "jeans", "shoes", "white_socks", "underwear"]
-	VarTests.ITEM_INVENTORY.append_array(clothes_torso)
+	var file = FileAccess.open("res://database/items/items.txt", FileAccess.READ)
+	VarTests.ALL_ITEMS = file.get_as_text()
+
+	VarTests.ITEM_INVENTORY = ["tshirt", "jeans", "shoes", "white_socks", "underwear"]
 	for i in VarTests.ITEM_INVENTORY:
 		equip_item(i)
 
@@ -45,9 +45,25 @@ func starting_cards():
 
 	VarTests.CARD_INVENTORY = ["kick", "kick", "body_tackle", "panicked_slap", "panicked_slap", "panicked_slap", "panicked_slap", "wrestle", "wrestle", "right_hook", "left_hook", "left_hook", "panicked_slap", "panicked_slap", "panicked_slap", "clumsy_kick", "clumsy_kick"]
 
-func super_tint(object, e_color:Color, e_val):
+# COLOR TRASNFORM BY TIME
+func tint(mc):
+
+	var val = VarTests.ATMOSPHERIC_MULTIPLIER;
+	var a_tint: Color = Color()
+
+	a_tint.r = -40 * val
+	a_tint.g = -25 * val
+	a_tint.b = -18 * val
+
+	a_tint.r = 1 - (0.65 * val)
+	a_tint.g = 1 - (0.55 * val)
+	a_tint.b = 1 - (0.40 * val)
+
+	mc.modulate = a_tint
+
+func super_tint(object, e_color, e_val):
 	e_val = 1 - e_val
-	
+
 	var r = e_color.r
 	var g = e_color.g
 	var b = e_color.b
@@ -56,13 +72,9 @@ func super_tint(object, e_color:Color, e_val):
 	var redMultiplier   = r + ((1 - r) * e_val)
 	var greenMultiplier = g + ((1 - g) * e_val)
 	var blueMultiplier  = b + ((1 - b) * e_val)
-	# this is correct?
 
-	var env_vars = LoadStats.parse_env_vars(LoadStats.read_env_stats(VarTests.environment_name))
-	var index = Utils.array_find(env_vars, 'interior')
-	if env_vars[index].split(':')[-1] != 'yes':
-		pass
-	else:
+	var env_stats = LoadStats.parse_env_vars(LoadStats.read_env_stats(VarTests.environment_name))
+	if MiscFunc.parse_stat('interior', env_stats) == 'yes':
 		object.modulate = Color(redMultiplier, greenMultiplier, blueMultiplier)
 
 # PARSE STAT
@@ -92,12 +104,12 @@ func equip_item(item):
 	item = item.to_lower()
 	# get item stats
 	var item_string = Utils.get_substring("<%s" % item, "%s>" % item, VarTests.ALL_ITEMS.to_lower())
-	var item_stats:Array = item_string.split("\n")
+	var item_stats:Array = item_string.split(", ")
 
 	var slot = parse_stat("slot", item_stats)
 
-	var card = parse_stat("card", item_stats)
-	var card_n= int(parse_stat("card_n", item_stats))
+	var card   = parse_stat("card", item_stats)
+	var card_n = int(parse_stat("card_n", item_stats))
 
 	# if the item is same as equipped => remove
 	if VarTests.ITEM_SLOTS[VarTests.SLOT_KEYS[slot]] == item:
@@ -133,8 +145,8 @@ func equip_item(item):
 			VarTests.CARD_INVENTORY.append(card)
 		#var i = 0
 		#while i < card_n:
-		#	VarTests.player_DECK.push(card)
-		#	VarTests.CARD_INVENTORY.push(card)
+		#	VarTests.player_DECK.append(card)
+		#	VarTests.CARD_INVENTORY.append(card)
 		#	i += 1
 
 	player_heat_res     += int(parse_stat("heat_res", item_stats))
@@ -165,7 +177,7 @@ func unequip_item(item):
 	if not item_string:
 		return
 
-	var item_stats = item_string.split("\n")
+	var item_stats = item_string.split(", ")
 
 	var card = parse_stat("card", item_stats)
 	var card_n = int(parse_stat("card_n", item_stats))

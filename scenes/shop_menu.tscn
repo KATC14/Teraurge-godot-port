@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://brsv1dev5hay1"]
+
+[ext_resource type="Script" uid="uid://0gff8oqadeo0" path="res://scripts/shop_menu.gd" id="1_5pe57"]
+[ext_resource type="Texture2D" uid="uid://clmcpkndf04tk" path="res://assets/images/shop_menu/shop_menu.png" id="1_uj65v"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_5pe57")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_top = 236.0
+offset_right = 1012.0
+offset_bottom = 579.0
+texture = ExtResource("1_uj65v")

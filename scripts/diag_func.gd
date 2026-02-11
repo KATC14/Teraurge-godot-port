@@ -2,7 +2,7 @@ extends Node
 
 
 # DIALOGUE LOGIC HANDLER#================================================================================
-func Logigier(index, logic: String) -> Array:
+func Logigier(logic: String, index) -> Array:
 	VarTests.last_dialogue_func = logic
 	var book
 	if logic.contains(','):
@@ -96,7 +96,7 @@ func script_library(logic: String) -> Array:
 				s_index = VarTests.last_index
 			#load_dialogue_start()
 			#change_diag.emit(diag_file, s_index)
-			next_index = ['change_diag', [diag_file, s_index], ["advance_time", 0]]
+			next_index = ['change_diag', [diag_file, s_index], ['advance_time', 0, null]]
 			#return "skip_dialogue_breaker"
 # changes to the current default diag file
 		"change_to_default_diag":
@@ -113,7 +113,7 @@ func script_library(logic: String) -> Array:
 			else:
 				s_index = VarTests.last_index
 			#load_dialogue_start()
-			next_index = ['change_diag', [diag_file, s_index], ['advance_time', 0]]
+			next_index = ['change_diag', [diag_file, s_index], ['advance_time', 0, null]]
 			#return "skip_dialogue_breaker"
 # Changes the default diag file for the character
 		"change_default_diag_file":
@@ -185,10 +185,11 @@ func script_library(logic: String) -> Array:
 			VarTests.has_story = false # important to set if exiting from a story section
 			VarTests.environment_name = slogic[1]
 			VarTests.character_name = slogic[2]
+
 			if len(slogic) >= 4:
 				VarTests.override_index = slogic[3]
 			#start_encounter.emit(slogic[2])
-			next_index = ['start_encounter', slogic[2], null]
+			next_index = ['start_encounter', slogic[2], ['advance_time', 0, null]]
 		"set_flag", "add_flag":
 			# add_flag (flag name)
 			var flaggys1: Array = slogic[1].split("-")
@@ -468,36 +469,33 @@ func script_library(logic: String) -> Array:
 
 			#TESTED 2.6.2015
 # TODO add shop
-#		"start_shop":
+		"start_shop":
 			# start_shop (shop pointer) (pointer when exiting shop)
 
 			#next_pointer = slogic[1]
-#			s_index = slogic[1]
-#			shop_exit_pointer = slogic[2]
+			s_index = slogic[1]
+			VarTests.shop_exit_pointer = slogic[2]
 
 			# START SHOP
-#			start_shop()
-#		"close_shop":
+			next_index = ['start_shop', null, null]
+		"close_shop":
 			# close_shop.(shop exit index)
 			# Can be used to exit the shop to an alternative exit index
-#			shop_exit_pointer = slogic[1]
-#			close_shop_menu()
-#		"disable_shop":
+			VarTests.shop_exit_pointer = slogic[1]
+			next_index = ['close_shop_menu', null, null]
+		"disable_shop":
 			# disable_shop.(next index)
 			# Disables the shop screen and darkens it
-#			disable_shop()
-#			next_index = slogic[1]
-#		"enable_shop":
+			next_index = ['disable_shop', slogic[1], null]
+		"enable_shop":
 			# enable_shop.(next index)
 			# Enables the shop screen and removes darkening
-#			enable_shop()
-#			next_index = slogic[1]
-#		"revert_last_shop_item":
+			next_index = ['enable_shop', slogic[1], null]
+		"revert_last_shop_item":
 			# revert_last_shop_item.(next index)
 			# Reverts last handled shop item
 
-#			revert_last_shop_item()
-#			next_index = slogic[1]
+			next_index = ['revert_last_shop_item', slogic[1], null]
 		"player_death":
 			# Player is killed and game opens the death screen
 			#player_death.emit()
@@ -508,7 +506,7 @@ func script_library(logic: String) -> Array:
 		"character_return":
 			# character_return (sprite name)
 			# The present character will change to the specified sprite and use a "return_effect" tween when the scene is created.
-			next_index = ['character_return', null, ['change_sprite', slogic[1]]]
+			next_index = ['character_return', null, ['change_sprite', slogic[1], null] ]
 #			scene_character = ""
 		"add_timer":
 			# add_timer (timer name) (days) trigger: (function & function)

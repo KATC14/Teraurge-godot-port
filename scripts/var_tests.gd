@@ -8,6 +8,7 @@ var map_target
 var loc_name:String
 var loc_coords
 var last_dialogue_func = ''
+var last_loc = ''
 
 var version = 2.13
 var menu_state = 'warning'
@@ -25,6 +26,7 @@ var current_index    = ''
 var character_name   = ''
 var environment_name = ''
 var ENVIROMENT_STATS = ''
+var ATMOSPHERIC_MULTIPLIER = 1
 var player_hand_size = 4
 
 # script cross compatibility
@@ -40,6 +42,9 @@ var main_menu_active = false
 var character_leaves = false
 var character_returns = false
 
+var shop_exit_pointer
+var RESTOCK_TIMESTAMPS = {}
+var CHANGED_SHOPS = {}
 var ALL_CARDS = ''
 var ALL_ITEMS = ''
 var ITEM_SLOTS = [

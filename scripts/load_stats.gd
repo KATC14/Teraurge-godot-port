@@ -34,7 +34,7 @@ func parse_env_vars(stats_file):
 	var thespt:Array = stats_file.split('\n')
 
 	var wanted = [
-		'interior', 'ambient_color', 'ambient', 
+		'interior', 'ambient_color', 'ambient', 'blocking', 
 		'discoverable', 'dicovery_message', 'default_message', '{encounters'
 	]
 
