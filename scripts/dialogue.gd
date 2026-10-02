@@ -16,6 +16,8 @@ extends Node2D
 @onready var scene_picture    = $CanvasLayer/Control/scene_picture# picture_layer
 
 @onready var choicesDialog    = $CanvasLayer/PanelContainer
+@onready var scrollbtn        = $CanvasLayer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/Button
+@onready var scrollcon        = $CanvasLayer/PanelContainer/MarginContainer/ScrollContainer
 
 @onready var top_box          = $CanvasLayer/dialogue_boxes/top_box
 @onready var mid_box          = $CanvasLayer/dialogue_boxes/mid_box
@@ -214,18 +216,38 @@ func _input(_event: InputEvent) -> void:
 			change_index(VarTests.auto_continue_pointer)
 
 	# button focus using arrow keys and wasd
-	if Input.is_action_pressed("ui_up"):
-		if active_choice > 0:
-			active_choice -= 1
+	var a = get_viewport().gui_get_focus_owner()
+	if a != null:
+		var nodelist:Array = a.get_parent().get_children()
+		var where:int = nodelist.find(a)
+		if Input.is_action_pressed("ui_up"):
+			if where > 0:
+				a = nodelist[where-1]
+		if Input.is_action_pressed("ui_down"):
+			if where < len(nodelist)-1:
+				a = nodelist[where+1]
 
-		var btn:Button = choicesDialog.choices_list.get_children()[active_choice]
-		btn.grab_focus()
-	if Input.is_action_pressed("ui_down"):
-		if active_choice < len(choicesDialog.choices_list.get_children())-1:
-			active_choice += 1
-
-		var btn:Button = choicesDialog.choices_list.get_children()[active_choice]
-		btn.grab_focus()
+	if a is not Button:
+		a = scrollbtn
+		a.grab_focus()
+	# hacky way of making mouse wheel scroll still work...
+	if _event is not InputEventMouseButton:
+		scrollcon.ensure_control_visible(a)
+	#if Input.is_action_pressed("ui_up"):
+		#if active_choice > 0:
+			#active_choice -= 1
+		#print('active_choice up ', active_choice)
+		#print('children ', choicesDialog.choices_list.get_children())
+#
+		#var btn:Button = choicesDialog.choices_list.get_children()[active_choice]
+		#btn.grab_focus()
+	#if Input.is_action_pressed("ui_down"):
+		#if active_choice < len(choicesDialog.choices_list.get_children())-1:
+			#active_choice += 1
+		#print('active_choice down ', active_choice)
+#
+		#var btn:Button = choicesDialog.choices_list.get_children()[active_choice]
+		#btn.grab_focus()
 
 # options clicks
 func _on_panel_container_selected(index: Variant) -> void:
@@ -279,6 +301,31 @@ func make_options(packed_options):
 		#var options = opt_parsed[-1]
 	#print('allowed', allowed)
 	choicesDialog.choices = allowed
+
+	# dynamicly set focus_neighbor
+	choicesDialog.choices_list.get_children()[0].grab_focus()
+
+	# top
+	for i in range(len(choicesDialog.choices_list.get_children())-1, 0, -1):
+		var btn = choicesDialog.choices_list.get_children()
+		var where = i
+		if i < len(choicesDialog.choices_list.get_children())-1:
+			where = i-1
+		elif i == len(choicesDialog.choices_list.get_children())-1:
+			where = len(choicesDialog.choices_list.get_children())-2
+		var a:Button = btn[i]
+		var b:Button = btn[where]
+		a.set_focus_neighbor(1, b.get_path())
+
+	# bottom
+	for i in range(len(choicesDialog.choices_list.get_children())-1):
+		var btn = choicesDialog.choices_list.get_children()
+		var where = i
+		if i < len(choicesDialog.choices_list.get_children())-1:
+			where = i+1
+		var a:Button = btn[i]
+		var b:Button = btn[where]
+		a.set_focus_neighbor(3, b.get_path())
 
 
 # ADVANCE TIME
@@ -636,20 +683,38 @@ func hide_dialogue_boxes(): ## My func.
 	mid_box.visible = false
 	bot_box.visible = false
 
+func size_hack():
+	# hacky ass way or forcing the stupid box to the right size
+	var tempp = func():
+		for i in [top_box, mid_box, bot_box]:
+			i.size.y = 0
+	var a = Timer.new()
+	add_child(a)
+	a.one_shot = true
+	a.wait_time = 0.001
+	a.timeout.connect(tempp)
+	a.start()
+	#a.timeout.emit()
+
 func make_dialogue(speech:Array):
 	hurry_dialogue = false
 	var top = ''
 	var mid = ''
 	var bot = ''
 	# clear active text
+	top_box.size.x = 17
+	mid_box.size.x = 17
+	bot_box.size.x = 17
 	top_box.text = ''
 	mid_box.text = ''
 	bot_box.text = ''
 	bot_box.autowrap_mode = 0
 
+	size_hack()
+
 	hide_dialogue_boxes()
 	# prep bbcode
-	speech = speech.map(func(item): return Utils.mass_replace(item, {'<br>':'[br]', '<b>':'[b]', '</b>':'[/b]', '-name-':VarTests.player_name}).strip_edges())
+	speech = speech.map(func(item): return Utils.mass_replace(item, {'<br>':'\n', '<b>':'[b]', '</b>':'[/b]', '-name-':VarTests.player_name}).strip_edges())
 
 	print('len(speech) ', len(speech))
 	if len(speech) >= 1: top = speech[0]
@@ -676,6 +741,7 @@ func reveal_dialogue_click():
 	hurry_dialogue = true
 	dialogue_timer.stop()
 	dialogue_timer.timeout.emit()
+	size_hack()
 
 # Add top text box.
 func add_top_box(diag_top, diag_mid, diag_bot):
@@ -773,6 +839,7 @@ func add_top_box(diag_top, diag_mid, diag_bot):
 	delay /=  1000.0
 	dialogue_timer.wait_time = delay
 	dialogue_timer.start()
+
 	if diag_mid != "":
 		#fade_in.visible = true
 		#fade_in.modulate.a = 1
@@ -809,7 +876,7 @@ func add_mid_box(diag_mid, diag_bot):
 	#var sprite_img = sprite.size.x#texture.get_width()
 
 	#await get_tree().process_frame
-	mid_box.position.x = sprite_pos - mid_box.size.x - 20
+	mid_box.position.x = sprite_pos * 0.2 - mid_box.size.x - 20
 	mid_box.position.y = VarTests.stage_height * 0.25
 	#dialogue_bubble.size.y = 0
 	#dialogue_bubble.size.x = VarTests.stage_width / 6.5
@@ -900,13 +967,19 @@ func animate_text_prep(diag_mid, diag_bot):
 	text_index = 0
 	bot_box.visible = false
 	# I wish I could just use visible_ratio...
+	var dialogue_timer_new = Timer.new()
+	dialogue_timer_new.autostart = true
+	dialogue_timer_new.one_shot = true
+	add_child(dialogue_timer_new)
 	if     dialogue_timer.timeout.is_connected(add_mid_box): dialogue_timer.timeout.disconnect(add_mid_box)
-	dialogue_iteration(diag_mid, diag_bot, len(diag_mid))
+	bot_box.text = ''
+	dialogue_iteration(diag_mid, diag_bot, len(diag_mid), dialogue_timer_new)
 
-func dialogue_iteration(diag_mid, diag_bot, diag_length):
+func dialogue_iteration(diag_mid, diag_bot, diag_length, dialogue_timer_new):
 	if diag_length <= text_index:
 		print('dialogue iteration time out!')
-		dialogue_timer.stop()
+		dialogue_timer_new.stop()
+		dialogue_timer_new.queue_free()
 		if diag_mid != "":
 			dialogue_complete = true
 		add_bot_box(diag_bot)
@@ -922,7 +995,9 @@ func dialogue_iteration(diag_mid, diag_bot, diag_length):
 
 	# HURRY EXIT
 	if hurry_dialogue:
-		dialogue_timer.stop()
+		text_index = 0
+		dialogue_timer_new.stop()
+		dialogue_timer_new.queue_free()
 		mid_box.text = diag_mid
 		mid_box.size = mid_box.get_theme_font("normal_font").get_string_size(mid_box.text) - Vector2(100, 0)
 		realign_dialogue()
@@ -939,19 +1014,16 @@ func dialogue_iteration(diag_mid, diag_bot, diag_length):
 	# TIMER
 	delay = float(delay) / 1000
 	#print('delay ', delay)
-	dialogue_timer.wait_time = delay
+	dialogue_timer_new.wait_time = delay
 	#print('dialogue_timer.dialogue_timer ', dialogue_timer.wait_time)
-	dialogue_timer.start()
+	dialogue_timer_new.start()
 
 	last_character = diag_mid[text_index]
 	text_index += 1
 
 	# start function loop
-	if     dialogue_timer.timeout.is_connected(dialogue_iteration): dialogue_timer.timeout.disconnect(dialogue_iteration)
-	if not dialogue_timer.timeout.is_connected(dialogue_iteration):
-	#	print('aaaa')
-	#	dialogue_timer.one_shot = false
-		dialogue_timer.timeout.connect(dialogue_iteration.bind(diag_mid, diag_bot, len(diag_mid)))
+	if not dialogue_timer_new.timeout.is_connected(dialogue_iteration):
+		dialogue_timer_new.timeout.connect(dialogue_iteration.bind(diag_mid, diag_bot, len(diag_mid), dialogue_timer_new))
 
 # Realign dialogue speech bubble.
 func realign_dialogue():
@@ -1900,7 +1972,7 @@ func inventory_sell_item_select(index):
 	var moved_item:String = Utils.unformat(player_shop_list.choices[index])[1]
 	print('moved_item "', moved_item, '"')
 	var item_i:int = VarTests.ITEM_INVENTORY.find(moved_item)
-	print(item_i)
+	print('item_i ', item_i)
 
 	last_item_moved = "sell:%s" % moved_item
 

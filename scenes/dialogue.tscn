@@ -70,6 +70,7 @@ expand_margin_right = 5.0
 
 [sub_resource type="SystemFont" id="SystemFont_aawo6"]
 font_names = PackedStringArray("Times New Roman")
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccnnw"]
 content_margin_left = 12.0
