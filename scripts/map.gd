@@ -92,7 +92,6 @@ func _ready() -> void:
 	#for i in VarTests.ITEM_INVENTORY:
 	#	MiscFunc.equip_item(i)
 
-	#parse_equiped_cards()
 	VarTests.map_active = true
 	create_locations()
 	create_discovered_locations()
@@ -143,8 +142,8 @@ func _input(_event: InputEvent) -> void:
 #		sep = ''
 #	return '%s%s%*s' % [values[1][0], sep, len(values[1][-1])+values[0], values[1][-1]]
 
-func create_item_description(item:String):
-	var item_string0 = Utils.get_substring("<%s" % item, "%s>" % item, VarTests.ALL_ITEMS.to_lower())
+func create_item_description(item:String, all):
+	var item_string0 = Utils.get_substring("<%s" % item, "%s>" % item, all.to_lower())
 
 	# this took entrirely to long to figure out
 	#var item_string:Array = Utils.get_substring("<%s" % item, "%s>" % item, VarTests.ALL_ITEMS.to_lower()).replace('\t', '').split('\n')
@@ -159,11 +158,19 @@ func create_item_description(item:String):
 	#var item_string5 = item_string.map(func(item_split): return item_split.strip_edges().split(':'))
 
 	#var newarray = Utils.array_zip([item_string4, item_string5]).map(func(item_split): return custom_join(':', item_split))
-	return Utils.mass_repalce(item_string0, {'\t':'', '\r':'', ':':': '})
+	return item_string0.replace(', ', '\n')
+
+func inventory_hover(array, index):
+	var item = create_item_description(Utils.unformat(array[index])[1], VarTests.ALL_ITEMS)
+	_on_tooltip_hover(array, index, item)
+func deck_hover(array, index):
+	var item = create_item_description(Utils.unformat(array[index])[1], VarTests.ALL_CARDS)
+	_on_tooltip_hover(array, index, item)
 
 func _on_tooltip_hover(array, index, item=false):
-	if not item:
-		item = create_item_description(unformat(array[index])[1])
+	print('ar ', array)
+	print('in ', index)
+	print('it ', item)
 	tooltip = load("res://scenes/tool_tip.tscn").instantiate()
 	tooltip.get_node("Label").text = str(item)
 	# catch for resetting size of tooltip
@@ -225,8 +232,7 @@ func _on_advance_time(forward):
 	if VarTests.TIME > 100:
 		VarTests.TIME = VarTests.TIME - 100
 		VarTests.DAYS += 1
-	#trace("day: "+DAYS+" time: "+TIME) #DEBUG
-#	check_timers()#TODO check_timers game.gd
+#	check_timers()# TODO check_timers
 
 	# ATMOSPHERIC PERCENTAGE
 	if (VarTests.TIME - 50) < 0:
@@ -335,9 +341,9 @@ func evaluate_blip(loc_name):
 		if Utils.array_find(result, 'discoverable') != -1:
 			# location revisit
 			if VarTests.DISCOVERED_LOCATIONS.has(loc_name):
-				var def_msg = Utils.array_find(result, 'default_message')
-				if def_msg != -1:
-					var text = result[def_msg].split(':')[-1]
+				var dic_msg = Utils.array_find(result, 'default_message')
+				if dic_msg != -1:
+					var text = result[dic_msg].split(':')[-1]
 					discovery_popup(text, loc_name)
 			else:
 				# location first time visit
@@ -395,6 +401,7 @@ func map_collision_check(relative_x, relative_y):
 		index += 1
 
 	var new_loc = adjacent_blips[closest_index]
+	VarTests.last_loc   = VarTests.map_target
 	VarTests.map_target = new_loc
 	VarTests.loc_coords = new_loc.position
 	evaluate_blip(all_loc[new_loc][0])
@@ -449,17 +456,15 @@ func blips_ready(target):
 # mouse movement
 func _on_blip_move(_viewport: Node, _event: InputEvent, _shape_idx: int, node:Area2D) -> void:
 	# check for if discover pop up is not open
-	if not discovery_popup_active:
-		if Input.is_action_just_released("mouse_left"):
-			var moved_loc = node.get_node("Sprite2D")
-			# only allow adjacent blips
-			var click_position = Vector2()
-			if moved_loc.get_parent().get_child(0).modulate.a == 1:
-				click_position = node.position
-				click_position -= VarTests.map_target.position# + Vector2(10, 8)
+	if not discovery_popup_active and Input.is_action_just_released("mouse_left"):
+		var moved_loc = node.get_node("Sprite2D")
+		# only allow adjacent blips
+		if moved_loc.get_parent().get_child(0).modulate.a == 1 and node in adjacent_blips:
+			var click_position = node.position
+			click_position -= VarTests.map_target.position# + Vector2(10, 8)
 
-				if can_move:
-					map_collision_check(click_position.x, click_position.y)
+			if can_move:
+				map_collision_check(click_position.x, click_position.y)
 
 func discovery_popup(text, loc_name):
 	disco_cont.move_to_front()
@@ -475,6 +480,13 @@ func discovery_popup(text, loc_name):
 	disco_cont.position = Vector2(vec_x, vec_y)
 
 func _on_discovery_popup_pass():
+	# kick player backwards if the blip is blocking
+	var stats_file = LoadStats.read_env_stats(location)
+	var result    = LoadStats.parse_env_vars(stats_file)
+	var blocking = Utils.array_find(result, 'blocking')
+	if blocking != -1 and result[blocking].split(':')[1] == "yes":
+		VarTests.map_target = VarTests.last_loc
+		blips_ready(VarTests.last_loc)
 	disco_cont.visible     = false
 	discovery_popup_active = false
 	camera.is_active       = true
@@ -517,6 +529,23 @@ func _on_button_chr_pressed() -> void:
 	resist_b.text   = str(VarTests.player_stats["bio_res"])
 
 func _on_button_dck_pressed() -> void:
+	var card_count = Utils.count_items(VarTests.player_DECK)
+	dck_label.text = "%s/%s" % [card_count[0], deck_minimum_size]
+	dck_menu_equiped_cards.choices = card_count[-1]
+
+	card_count = Utils.count_items(VarTests.CARD_INVENTORY)
+	dck_menu_available_cards.choices = card_count[-1]
+
+	if len(dck_menu_available_cards.choices) == 0:
+		dck_menu_available_cards.visible = false
+	else:
+		dck_menu_available_cards.visible = true
+
+	if len(dck_menu_equiped_cards.choices) == 0:
+		dck_menu_equiped_cards.visible = false
+	else:
+		dck_menu_equiped_cards.visible = true
+
 	movement(dck_menu)
 	menulist.append(dck_menu)
 
@@ -525,7 +554,7 @@ func _on_button_dck_pressed() -> void:
 func _on_button_inv_pressed() -> void:
 	movement(inv_menu)
 	menulist.append(inv_menu)
-	var items = count_items(VarTests.ITEM_INVENTORY)
+	var items = Utils.count_items(VarTests.ITEM_INVENTORY)
 
 	inventory.choices = items[1].map(func(item): return item.replace('_', ' '))
 	refresh_equipped_items()
@@ -539,13 +568,9 @@ func inv_change(item):
 		MiscFunc.equip_item(item)
 	refresh_equipped_items()
 
-# 1x white socks -> ["1x", "white_socks"]
-func unformat(formatted):
-	var rawmatted:Array = formatted.split(' ', true, 1)
-	return rawmatted.map(func(item): return item.replace(' ', '_'))
 
 func _on_button_inv_item_pressed(index) -> void:
-	inv_change(unformat(inventory.choices[index])[1])
+	inv_change(Utils.unformat(inventory.choices[index])[1])
 
 func refresh_equipped_items():
 	#GENDER SPECIFIER
@@ -584,17 +609,9 @@ func _on_button_stn_pressed() -> void:
 
 	stn_menu.move_to_front()
 
-func parse_equiped_cards():
-	var card_count = count_items(VarTests.player_DECK)
-	dck_label.text = "%s/%s" % [card_count[0], deck_minimum_size]
-	dck_menu_equiped_cards.choices = card_count[-1]
-
-	card_count = count_items(VarTests.CARD_INVENTORY)
-	dck_menu_available_cards.choices = card_count[-1]
-
 func _on_dck_cards_available(index):
-	var card = unformat(dck_menu_available_cards.choices[index])[1]
-	var player_card_count = count_items(VarTests.player_DECK)
+	var card = Utils.unformat(dck_menu_available_cards.choices[index])[1]
+	var player_card_count = Utils.count_items(VarTests.player_DECK)
 	var player_what_cards = VarTests.player_DECK.count(card)
 	var house_what_cards  = VarTests.CARD_INVENTORY.count(card)
 
@@ -603,7 +620,7 @@ func _on_dck_cards_available(index):
 	if player_card_count[0] <= deck_minimum_size and player_what_cards < house_what_cards:
 			VarTests.player_DECK.append(card)
 
-			player_card_count = count_items(VarTests.player_DECK)
+			player_card_count = Utils.count_items(VarTests.player_DECK)
 			dck_menu_equiped_cards.choices = player_card_count[-1]
 			dck_label.text = "%s/%s" % [player_card_count[0], deck_minimum_size]
 	# catch for not being able to remove the last card
@@ -614,31 +631,14 @@ func _on_dck_cards_equiped(index):
 	if index < len(dck_menu_equiped_cards.choices):
 		var card = dck_menu_equiped_cards.choices[index]
 
-		VarTests.player_DECK.erase(unformat(card)[1])
+		VarTests.player_DECK.erase(Utils.unformat(card)[1])
 	# catch for not being able to remove the last card
 	if len(VarTests.player_DECK) == 0:
 		dck_menu_equiped_cards.visible = false
 
-	var card_count = count_items(VarTests.player_DECK)
+	var card_count = Utils.count_items(VarTests.player_DECK)
 	dck_label.text = "%s/%s" % [card_count[0], deck_minimum_size]
 	dck_menu_equiped_cards.choices = card_count[-1]
-
-func count_items(deck):
-	var unique_items = []
-	for i in deck:
-		if i not in unique_items:
-			unique_items.append(i)
-	var many = []
-	for i in unique_items:
-		many.append([i, deck.count(i)])
-	var formatted = []
-	var count = 0
-	for i in many:
-		var card = i[0]
-		var amount = int(i[1])
-		count += amount
-		formatted.append('%sx %s' % [amount, card])
-	return [count, formatted]
 
 func is_clicked(event):
 	if event is InputEventMouseButton:

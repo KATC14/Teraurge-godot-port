@@ -185,7 +185,7 @@ func set_enemy_stats():
 	combat_stats["enemy_endurance"]    = int(MiscFunc.parse_stat('endurance', stat_spit))
 	enemy_health                    = int(MiscFunc.parse_stat('hitpoints', stat_spit))
 
-	enemy_deck = Utils.get_substring('<cards', 'cards>', stats_file).strip_edges().split('\n')
+	enemy_deck = Utils.get_substring('<cards', 'cards>', stats_file).strip_edges().split(', ')
 
 func randomize_hand(who):
 	var deck
@@ -448,15 +448,15 @@ func red_pointer(source_object):
 	tween.finished.connect(txt_box.queue_free)
 
 func play_card(attacker, the_card, target):
-	var card_stats = Utils.get_substring('<%s' % the_card, '%s>' % the_card, VarTests.ALL_CARDS).strip_edges()
+	var card_stats = Utils.get_substring('<%s' % the_card, '%s>' % the_card, VarTests.ALL_CARDS).split(', ')
 
-	var c_cost = int(MiscFunc.parse_stat('charisma_cost',     card_stats.split('\n')))
-	var i_cost = int(MiscFunc.parse_stat('intelligence_cost', card_stats.split('\n')))
-	var w_cost = int(MiscFunc.parse_stat('knowledge_cost',    card_stats.split('\n')))
-	var a_cost = int(MiscFunc.parse_stat('agility_cost',     card_stats.split('\n')))
-	var s_cost = int(MiscFunc.parse_stat('strength_cost',    card_stats.split('\n')))
-	var e_cost = int(MiscFunc.parse_stat('endurance_cost',   card_stats.split('\n')))
-	var h_cost = int(MiscFunc.parse_stat('hitpoints_cost',   card_stats.split('\n')))
+	var c_cost = int(MiscFunc.parse_stat('charisma_cost',     card_stats))
+	var i_cost = int(MiscFunc.parse_stat('intelligence_cost', card_stats))
+	var w_cost = int(MiscFunc.parse_stat('knowledge_cost',    card_stats))
+	var a_cost = int(MiscFunc.parse_stat('agility_cost',     card_stats))
+	var s_cost = int(MiscFunc.parse_stat('strength_cost',    card_stats))
+	var e_cost = int(MiscFunc.parse_stat('endurance_cost',   card_stats))
+	var h_cost = int(MiscFunc.parse_stat('hitpoints_cost',   card_stats))
 
 	var cannot_afford = false
 	var c_left = combat_stats["%s_charisma"     % attacker] - combat_stats["%s_charisma_used"     % attacker]
@@ -497,15 +497,15 @@ func play_card(attacker, the_card, target):
 	combat_stats["%s_endurance_used"    % attacker] += apply_attribute_cost(attacker, e_cost, "endurance")
 	combat_stats["%s_hitpoints_damage"  % attacker] += apply_attribute_cost(attacker, h_cost, "hitpoints")
 
-	var h_dmg = int(MiscFunc.parse_stat('hitpoints_dmg', card_stats.split('\n')))
+	var h_dmg = int(MiscFunc.parse_stat('hitpoints_dmg', card_stats))
 
-	var heat_dmg   = int(MiscFunc.parse_stat('heat_dmg', card_stats.split('\n')))
-	var cold_dmg   = int(MiscFunc.parse_stat('cold_dmg', card_stats.split('\n')))
-	var impact_dmg = int(MiscFunc.parse_stat('impact_dmg', card_stats.split('\n')))
-	var slash_dmg  = int(MiscFunc.parse_stat('slash_dmg', card_stats.split('\n')))
-	var p_dmg      = int(MiscFunc.parse_stat('pierce_dmg', card_stats.split('\n')))
-	var m_dmg      = int(MiscFunc.parse_stat('magic_dmg', card_stats.split('\n')))
-	var b_dmg      = int(MiscFunc.parse_stat('bio_dmg', card_stats.split('\n')))
+	var heat_dmg   = int(MiscFunc.parse_stat('heat_dmg', card_stats))
+	var cold_dmg   = int(MiscFunc.parse_stat('cold_dmg', card_stats))
+	var impact_dmg = int(MiscFunc.parse_stat('impact_dmg', card_stats))
+	var slash_dmg  = int(MiscFunc.parse_stat('slash_dmg', card_stats))
+	var p_dmg      = int(MiscFunc.parse_stat('pierce_dmg', card_stats))
+	var m_dmg      = int(MiscFunc.parse_stat('magic_dmg', card_stats))
+	var b_dmg      = int(MiscFunc.parse_stat('bio_dmg', card_stats))
 
 	var damage_to_hitpoints = 0
 	damage_to_hitpoints += resolve_damage(heat_dmg,   "heat",   target)

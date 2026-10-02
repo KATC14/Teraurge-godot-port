@@ -16,6 +16,7 @@ func check_for_showif(opt_parsed, full_string, index):#
 	var allowed = []
 	for i in opt_parsed:
 		#if not i: return false
+		#print('i, ', i)
 
 		var value = false
 		if i and (i.find("showif") != -1):
@@ -24,13 +25,12 @@ func check_for_showif(opt_parsed, full_string, index):#
 		# Unique to HIDEIF!! (REVERSED BOOLEAN)
 		if i and (i.find("hideif") != -1):
 			value = showif(i, full_string, index)#
-			print('value 0 ', value)
+			#print('value 0 ', value)
 			if value == true:
 				value = false
 			else:
 				value = true
-			
-			print('value 1 ', value)
+			#print('value 1 ', value)
 
 		allowed.append(value)
 	# IF TRUE IN ARRAY -> HIDE (true)
@@ -60,7 +60,7 @@ func showif(logic, full_string, index):#
 
 	var s_logic = logic.split(".")
 	statement = s_logic[1]
-	print('statement ', statement)
+	#print('statement ', statement)
 	var split1
 	var split2
 	#var split3

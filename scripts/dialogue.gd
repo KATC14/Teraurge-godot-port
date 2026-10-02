@@ -11,11 +11,9 @@ extends Node2D
 @onready var env_Node         = $CanvasLayer/Control/env_Node        # background
 @onready var env_mask_Node    = $CanvasLayer/Control/env_mask_Node   # background_mask
 @onready var atmosphere_layer = $CanvasLayer/Control/atmosphere_layer
-#@onready var overlay          = $CanvasLayer/Control/atmosphere_layer/overlay# overlay
-#@onready var overlay_blend    = $CanvasLayer/Control/atmosphere_layer/overlay_blend# overlay_blend
 @onready var character_layer  = $CanvasLayer/Control/character_layer# character_layer
-var sprite#@onready            = $CanvasLayer/Control/character_layer/sprite          # character_layer
-@onready var scene_picture    = $CanvasLayer/Control/scene_picture   # picture_layer
+@onready var sprite           = $CanvasLayer/Control/character_layer/sprite# sprite
+@onready var scene_picture    = $CanvasLayer/Control/scene_picture# picture_layer
 
 @onready var choicesDialog    = $CanvasLayer/PanelContainer
 
@@ -32,9 +30,10 @@ var sprite#@onready            = $CanvasLayer/Control/character_layer/sprite    
 @onready var autocont_dots    = $CanvasLayer/autocont_dots
 
 var bubble_tween
-var stats_file
+#var stats_file
 var opt_parsed
 var daig_parsed
+var env_stats
 
 @onready var dialogue_timer = %dialogue_timer
 var dialogue_complete = false
@@ -43,9 +42,8 @@ var hurry_dialogue = false
 var active_choice = 0
 var text_index = 0
 var last_character  = ""
-var def_text_color = 'FFFFFF'
-var def_bubble_color = '000000'
-
+var character_bg_color
+var character_font_color
 
 # combat
 var random_tries           = 40
@@ -95,6 +93,7 @@ var combat_stats = {
 	"enemy_agility":       0,
 	"enemy_strength":      0,
 	"enemy_endurance":     0,
+
 	"enemy_charisma_used":      0,
 	"enemy_will_used":          0,
 	"enemy_intelligence_used":  0,
@@ -159,12 +158,34 @@ var combat_stats = {
 @onready var enemy_res_magic   = %enemy_res_magic
 @onready var enemy_res_bio     = %enemy_res_bio
 
+
+# shop Vars
+var last_item_moved = ""
+var transaction_A_money = 0
+var transaction_B_money = 0
+var character_shop_items
+var sell_inventory = []
+var buy_inventory  = []
+@onready var trans_A_money       = $CanvasLayer/Control2/TextureRect/Control2/Label2
+@onready var trans_B_money       = $CanvasLayer/Control2/TextureRect/Control2/Label
+@onready var shop_player_A_money = $CanvasLayer/Control2/TextureRect/Control/Label2
+@onready var shop_player_B_money = $CanvasLayer/Control2/TextureRect/Control/Label
+@onready var shop_menu           = $CanvasLayer/Control2/TextureRect
+
+
+@onready var player_shop_list    = $CanvasLayer/Control2/TextureRect/PanelContainer
+@onready var character_shop_list = $CanvasLayer/Control2/TextureRect/PanelContainer2
+
+@onready var sell_list           = $CanvasLayer/Control2/TextureRect/PanelContainer3
+@onready var buy_list            = $CanvasLayer/Control2/TextureRect/PanelContainer4
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fade_in.texture = load("res://assets/images/menu_background.png")
 
 	# TEMP
-	#VarTests.character_name = 'intro'
+	VarTests.character_name = 'witch'
+	VarTests.environment_name = 'sejan_witch_house_interior'
 	# TEMP
 
 	# intro fade in
@@ -176,6 +197,11 @@ func _ready() -> void:
 		fade_in.visible = false
 
 	VarTests.map_active = false
+	# TEMP
+	#VarTests.ITEM_INVENTORY.append('underwear')
+	#VarTests.character_name = 'tornoth'
+	#start_shop()
+	# TEMP
 	start_encounter(VarTests.character_name)
 
 func _input(_event: InputEvent) -> void:
@@ -230,7 +256,8 @@ func _on_panel_container_selected(index: Variant) -> void:
 		#print('picked ', picked)
 		change_index(picked)
 	if function:
-		var logic_func = DiagFunc.Logigier(index, function)
+		var logic_func = DiagFunc.Logigier(function, index)
+		#print('show me logic_func ', logic_func)
 		logic_logic(logic_func, function)
 
 func make_options(packed_options):
@@ -253,6 +280,27 @@ func make_options(packed_options):
 	#print('allowed', allowed)
 	choicesDialog.choices = allowed
 
+
+# ADVANCE TIME
+func advance_time(forward: int):
+	while forward > 100:
+		VarTests.DAYS += 1
+		forward -= 100
+
+	VarTests.TIME += forward
+	if VarTests.TIME > 100:
+		VarTests.TIME -= 100
+		VarTests.DAYS += 1
+	#check_timers()
+
+	# ATMOSPHERIC PERCENTAGE
+	if VarTests.TIME - 50 < 0:
+		VarTests.ATMOSPHERIC_MULTIPLIER = ((VarTests.TIME - 50) * -1) * 2.0 / 100
+	else:
+		VarTests.ATMOSPHERIC_MULTIPLIER = (VarTests.TIME - 50) * 2.0 / 100
+	#advance_time_to = 0;
+	#turn_overmap_dial()
+
 # leave encounter
 func leave_encounter() -> void:
 	# catch for moving player to location when leaving to map
@@ -271,7 +319,8 @@ func start_encounter(character_name):
 	VarTests.diag_file = "diag"
 	if VarTests.CHANGED_DIAGS.has(character_name):
 		VarTests.diag_file = VarTests.CHANGED_DIAGS[character_name]
-	stats_file = LoadStats.read_char_stats(character_name)
+	var stats_file = LoadStats.read_char_stats(character_name)
+	character_stats_setting(stats_file)
 
 	#var default_env = MiscFunc.parse_stat('default_env', stats_file.split('\n'))
 	#if default_env == null:
@@ -300,37 +349,52 @@ func start_encounter(character_name):
 		VarTests.scene_character = ''
 	change_index(index)
 
+func float_to_byte(value):
+	return floor((value - 1) * (0 - 255)/(0 - 1) + 255)
+
 func change_sprite(sprite_name=null) -> void:
-	if not sprite_name:
-		sprite_name = VarTests.character_sprite
-	VarTests.character_sprite = sprite_name
 	VarTests.scene_character = VarTests.character_name
 	var path = "res://database/characters/%s/%s.png" % [VarTests.character_name, sprite_name]
 	if FileAccess.file_exists(path):
-		var over_sprite  = TextureRect.new()
-		sprite           = TextureRect.new()
+		#var over_sprite  = TextureRect.new()
+		#sprite           = TextureRect.new()
 		#var picture_image = Image.load_from_file(path)
 		#sprite.texture = ImageTexture.create_from_image(picture_image)
 		sprite.texture = load(path)
 		#sprite.modulate = Color.html('#a23f08')
 		rescale_bitmapdata.call_deferred(sprite)
-		over_sprite.add_child(sprite)
-		character_layer.add_child(over_sprite)
+		#over_sprite.add_child(sprite)
+		#character_layer.add_child(sprite)
 		character_layer.move_to_front()
 
 		# character overlays
+		print('show me TIME ', VarTests.TIME)
+		#VarTests.TIME = 51
+		if is_between(76, VarTests.TIME, 100):# EVENING
+			print('show me in between - EVENING')
+		if is_between(51, VarTests.TIME, 75):# DAY
+			print('show me in between - DAY')
+		if is_between(26, VarTests.TIME, 50): # MORNING
+			print('show me in between - MORNING')
+		if is_between(0, VarTests.TIME, 25): # NIGHT
+			print('show me in between - NIGHT')
 		var min_TIME         = get_blend(0)
 		var max_TIME         = get_blend(5)
 
 		var os_overlay       = get_blend(3)
 		var os_overlay_blend = get_blend(4)
 
-		os_overlay_blend.modulate.a = (1/ (max_TIME - min_TIME))*(VarTests.TIME - min_TIME)
-		os_overlay.modulate.a       = 1-os_overlay_blend.modulate.a
+		print('show me max  ', max_TIME)
+		print('show me min  ', min_TIME)
+		print('show me time ', VarTests.TIME)
+		print('show me math ', (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME))
+		os_overlay_blend.modulate.a = (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME)
+		print('show me math 1 ', 1.0 - os_overlay_blend.modulate.a)
+		os_overlay.modulate.a       = 1.0 - os_overlay_blend.modulate.a
 		#os_overlay.scale       = Vector2(0.50, 0.50)
 		#os_overlay_blend.scale = Vector2(0.50, 0.50)
-		os_overlay.position       = sprite.position
-		os_overlay_blend.position = sprite.position
+		#os_overlay.position       = sprite.position
+		#os_overlay_blend.position = sprite.position
 
 		# Glowfilter to compensate bad alpha multiplication
 		#var oso  = TextureRect.new()
@@ -342,13 +406,18 @@ func change_sprite(sprite_name=null) -> void:
 		#var os_overlay_blend_mask = TextureRect.new()
 
 		# TINT
-		MiscFunc.super_tint(over_sprite, VarTests.env_ambient, VarTests.ambient_strength)
+		MiscFunc.super_tint(sprite, VarTests.env_ambient, VarTests.ambient_strength)
+		# RESIZE SPRITE OVERLAY
+		var ahhh = func():
+			os_overlay.size       = sprite.size
+			os_overlay_blend.size = sprite.size
+			#os_overlay.position       = sprite.position
+			#os_overlay_blend.position = sprite.position
+		ahhh.call_deferred()
 
-		var env_vars = LoadStats.parse_env_vars(LoadStats.read_env_stats(VarTests.environment_name))
-		var index = Utils.array_find(env_vars, 'interior')
-		if env_vars[index].split(':')[-1] != 'yes':
-			over_sprite.add_child(os_overlay)
-			over_sprite.add_child(os_overlay_blend)
+		if MiscFunc.parse_stat('interior', env_stats) == 'yes':
+			sprite.add_child(os_overlay)
+			sprite.add_child(os_overlay_blend)
 
 func rescale_bitmapdata(obj):
 	var objscale = 1
@@ -407,7 +476,7 @@ func change_index(index):
 
 	var data = Utils.load_file('res://database/characters/%s/%s.txt' % [VarTests.character_name, VarTests.diag_file])
 	daig_parsed = DiagParse.begin_parsing(data, index)
-	print('daig_parsed ', daig_parsed)
+	#print('daig_parsed ', daig_parsed)
 
 	if index_error(daig_parsed):
 		index = VarTests.last_index
@@ -418,7 +487,7 @@ func change_index(index):
 	#print('daig_parsed[1] ', daig_parsed[1])
 	if daig_parsed[1]:
 		var infinite_block = Array(VarTests.last_dialogue_func.split(' '))
-		var logic_func = DiagFunc.Logigier(index, daig_parsed[1])
+		var logic_func = DiagFunc.Logigier(daig_parsed[1], index)
 		infinite_block.remove_at(0)
 		# CHECK FOR INFINITE FUNCTION LOOP #1
 		if len(infinite_block) >= 1 and infinite_block[1] == logic_func[1]:
@@ -453,23 +522,29 @@ func change_index(index):
 
 func logic_logic(logic_func, edge_case):# ?
 		match logic_func[0]:
-			"leave_encounter":    leave_encounter()
-			"start_encounter":    start_encounter(logic_func[1])
-			"change_sprite":      change_sprite(logic_func[1])
-			"create_picture":     create_picture(logic_func[1])
-			"remove_pic":         create_picture()
-			"character_leave":    character_leave_anim(sprite)
-			"character_return":   character_return_anim(sprite)
-			"change_environment": change_environment(logic_func[1])
-#TODO advance_time function
-			"advance_time":       pass
-			"change_diag":        change_diag(logic_func[1][0], logic_func[1][1])
-			"change_index":       change_index(logic_func[1])
+			"leave_encounter":       leave_encounter()
+			"start_encounter":       start_encounter(logic_func[1])
+			"change_sprite":         change_sprite(logic_func[1])
+			"create_picture":        create_picture(logic_func[1])
+			"remove_pic":            create_picture()
+			"character_leave":       character_leave_anim(sprite)
+			"character_return":      character_return_anim(sprite)
+			"change_environment":    change_environment(logic_func[1])
+# TODO advance_time function
+			"advance_time":          advance_time(logic_func[1])
+			"change_diag":           change_diag(logic_func[1][0], logic_func[1][1])
+			"change_index":          change_index(logic_func[1])
 			"curated_list":
 				print('dialogue curated_list!')
 				change_index(Utils.curated_list(edge_case, logic_func[1]))
-			"start_combat":       start_combat()
-			"player_death":       player_death()
+			"start_combat":          start_combat()
+			"player_death":          player_death()
+			"start_shop":            start_shop()
+			"close_shop_menu":       close_shop_menu()
+			"disable_shop":          disable_shop()
+			"enable_shop":           enable_shop()
+			"revert_last_shop_item": revert_last_shop_item()
+		#print('show me ', logic_func)
 		if logic_func[2] != null:
 			logic_logic(logic_func[2], edge_case)
 
@@ -482,14 +557,15 @@ func change_environment(new_env=null) -> void:
 	scene_picture.visible = false
 	if not new_env: new_env = VarTests.environment_name
 	var path = ""
-	var env_stats = Utils.load_file('res://database/environments/%s/stats.txt' % new_env).split('\n')
+	env_stats = LoadStats.parse_env_vars(LoadStats.read_env_stats(VarTests.environment_name))
 
-	var found = MiscFunc.parse_stat('ambient', env_stats)
-	if found != "0": VarTests.ambient_strength = float(found)
+	var ambient_strength = MiscFunc.parse_stat('ambient:', env_stats)
+	print('ambient_strength ', ambient_strength)
+	if ambient_strength != "0": VarTests.ambient_strength = float(ambient_strength)
 	else:            VarTests.ambient_strength = 0.2
 
-	found = MiscFunc.parse_stat('ambient_color', env_stats)
-	if found != '0': VarTests.env_ambient = Color.html(found)
+	var env_ambient = MiscFunc.parse_stat('ambient_color', env_stats)
+	if env_ambient != '0': VarTests.env_ambient = Color.html(env_ambient)
 	else:            VarTests.env_ambient = Color.WHITE
 
 
@@ -573,7 +649,7 @@ func make_dialogue(speech:Array):
 
 	hide_dialogue_boxes()
 	# prep bbcode
-	speech = speech.map(func(item): return Utils.mass_repalce(item, {'<br>':'[br]', '<b>':'[b]', '</b>':'[/b]', '-name-':VarTests.player_name}).strip_edges())
+	speech = speech.map(func(item): return Utils.mass_replace(item, {'<br>':'[br]', '<b>':'[b]', '</b>':'[/b]', '-name-':VarTests.player_name}).strip_edges())
 
 	print('len(speech) ', len(speech))
 	if len(speech) >= 1: top = speech[0]
@@ -704,7 +780,7 @@ func add_top_box(diag_top, diag_mid, diag_bot):
 
 # Add dialogue speech bubble.
 func add_mid_box(diag_mid, diag_bot):
-	# i dont think I can add this because I dont serperate create a new scene from changing dialogue file (change_diag)
+	# I dont think I can add this because I dont serperate create a new scene from changing dialogue file (change_diag)
 	# create scene fade in
 	#var tween = create_tween()
 	#tween.set_ease(Tween.EASE_IN)
@@ -712,18 +788,11 @@ func add_mid_box(diag_mid, diag_bot):
 	#tween.tween_property(fade_in, "modulate:a", 0, 2)
 	#tween.finished.connect(func(): fade_in.visible = false)
 
-	var bg_color   = MiscFunc.parse_stat('bubble_color', stats_file.split('\n'))
-	var font_color = MiscFunc.parse_stat('text_color', stats_file.split('\n'))
-	if bg_color   == "0": bg_color   = def_bubble_color
-	if font_color == "0": font_color = def_text_color
-
-	bg_color   = Color.html(bg_color)
-	font_color = Color.html(font_color)
-	mid_box.add_theme_color_override("default_color", font_color)
+	mid_box.add_theme_color_override("default_color", character_font_color)
 
 	var diag_b_color = StyleBoxFlat.new()
-	diag_b_color.bg_color = bg_color
-	diag_b_color.border_color = bg_color
+	diag_b_color.bg_color = character_bg_color
+	diag_b_color.border_color = character_bg_color
 	diag_b_color.border_width_left   = 5
 	diag_b_color.border_width_right  = 5
 	diag_b_color.border_width_top    = 8
@@ -917,10 +986,9 @@ func start_combat():
 		i.get_parent().mouse_entered.connect(_on_card_button_hover.bind(i))
 		i.get_parent().mouse_exited.connect(_on_card_button_hover.bind(i, true))
 
-	if VarTests.scene_character != VarTests.character_name:
-		change_sprite()
+	#if VarTests.scene_character != VarTests.character_name:
+	#	change_sprite()
 	randomize_hand('player')
-	set_enemy_stats()
 	reset_stats('player')
 	reset_stats('enemy')
 	refresh_combat_ui()#'start'
@@ -959,26 +1027,24 @@ func get_blend(n:int):
 	var sky_d = load("res://assets/images/sky/sky_day.jpg")
 	var sky_n = load("res://assets/images/sky/sky_night.jpg")
 	var sky_s = load("res://assets/images/sky/sky_sundown.jpg")
+
 	var overlay       = TextureRect.new()
 	var overlay_blend = TextureRect.new()
+	overlay.expand_mode       = 1
+	overlay_blend.expand_mode = 1
+
+	#var os_overlay       = TextureRect.new()
+	#var os_overlay_blend = TextureRect.new()
+
+
 	var shader = CanvasItemMaterial.new()
 	shader.blend_mode = 3
-	#print('overlay.material ', overlay.material)
-	overlay.material = shader
-	overlay_blend.material = shader
 
-	#var sky              = sky_layer
-	#var sky_blend        = sky_layer_blend
+	overlay.material          = shader
+	overlay_blend.material    = shader
 
-	#var sky_shader          = ShaderMaterial.new()
-	#var sky_blend_shader    = ShaderMaterial.new()
-	#sky_shader.shader       = load("res://shaders/multiply.gdshader")
-	#sky_blend_shader.shader = load("res://shaders/multiply.gdshader")
-	#overlay.material        = sky_shader
-	#overlay_blend.material  = sky_blend_shader
-
-	#overlay.blendMode = "multiply"
-	#overlay_blend.blendMode = "multiply"
+	#os_overlay.material       = shader
+	#os_overlay_blend.material = shader
 
 	# OVERLAYS
 	var overlay_d = load("res://assets/images/sky/overlay_day.jpg")
@@ -990,33 +1056,37 @@ func get_blend(n:int):
 	var max_TIME = 0
 
 	if is_between(76, VarTests.TIME, 100):# EVENING
-		sky.texture              = sky_s
-		sky_blend.texture        = sky_n # into evening
-		overlay.texture = overlay_s
+		print('in between - EVENING')
+		sky.texture           = sky_s
+		sky_blend.texture     = sky_n # into evening
+		overlay.texture       = overlay_s
 		overlay_blend.texture = overlay_n
 		min_TIME = 76
 		max_TIME = 100
 
 	if is_between(51, VarTests.TIME, 75):# DAY
-		sky.texture              = sky_d
-		sky_blend.texture        = sky_s # into sunset
-		overlay.texture = overlay_d
+		print('in between - DAY')
+		sky.texture           = sky_d
+		sky_blend.texture     = sky_s # into sunset
+		overlay.texture       = overlay_d
 		overlay_blend.texture = overlay_s
 		min_TIME = 51
 		max_TIME = 75
 
 	if is_between(26, VarTests.TIME, 50): # MORNING
-		sky.texture              = sky_d
-		sky_blend.texture        = sky_d # into day
-		overlay.texture = overlay_m
+		print('in between - MORNING')
+		sky.texture           = sky_d
+		sky_blend.texture     = sky_d # into day
+		overlay.texture       = overlay_m
 		overlay_blend.texture = overlay_d
 		min_TIME = 26
 		max_TIME = 50
 
 	if is_between(0, VarTests.TIME, 25): # NIGHT
-		sky.texture              = sky_n
-		sky_blend.texture        = sky_d # into morning
-		overlay.texture = overlay_n
+		print('in between - NIGHT')
+		sky.texture           = sky_n
+		sky_blend.texture     = sky_d # into morning
+		overlay.texture       = overlay_n
 		overlay_blend.texture = overlay_m
 		min_TIME = 0
 		max_TIME = 25
@@ -1026,8 +1096,11 @@ func get_blend(n:int):
 	# SKY BLENDING
 	sky_blend.modulate.a     = (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME)
 	overlay_blend.modulate.a = (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME)
-	overlay.modulate.a       = 1 - overlay_blend.modulate.a
+	overlay.modulate.a       = 1.0 - overlay_blend.modulate.a
 
+	# over_sprite OVERLAYS
+	#os_overlay_blend.modulate.a = (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME)
+	#os_overlay.modulate.a       = 1 - os_overlay_blend.modulate.a
 
 	if n == 0: return min_TIME
 	if n == 1: return sky
@@ -1050,10 +1123,10 @@ func create_sky():
 
 	# NEW BLEND SYSTEM
 	var alpha = (1.0 / (max_TIME - min_TIME)) * (VarTests.TIME - min_TIME)
-	sky_blend_cs.modulate.a     = alpha
+	sky_blend_cs.modulate.a  = alpha
 	overlay_blend.modulate.a = alpha
 	overlay.modulate.a       = 1 - overlay_blend.modulate.a
-	print('overlay ', overlay)
+
 	atmosphere_layer.add_child(overlay)
 	atmosphere_layer.add_child(overlay_blend)
 
@@ -1068,6 +1141,24 @@ func create_weather():
 	clouds_b.texture = load("res://assets/images/sky/clouds%s.png" % [rnumb])
 	clouds_b.modulate.a = randf()
 
+func store_hover(array, index):
+	var item = Utils.unformat(array[index])[1]
+	var item_string = Utils.get_substring("<%s" % item, "%s>" % item, VarTests.ALL_ITEMS.to_lower())
+	_on_tooltip_hover(item_string.replace(', ', '\n'))
+
+func _on_tooltip_hover(item):
+	if not tooltip:
+		tooltip = load("res://scenes/tool_tip.tscn").instantiate()
+	tooltip.get_node("Label").text = str(item)
+	if tooltip not in CanLay.get_children():
+		CanLay.add_child(tooltip)
+	else:
+		tooltip.visible = true
+	tooltip.move_to_front()
+
+func _on_tooltip_exit(_array, _index):
+	tooltip.visible = false
+
 # combat
 func _on_btn_turn_dial_pressed() -> void:
 	if player_turn:
@@ -1075,28 +1166,6 @@ func _on_btn_turn_dial_pressed() -> void:
 		turn_dail.disabled = true
 		turn_dail.get_parent().texture = turn_dial_enemy
 		change_turn_to("enemy")
-
-func set_enemy_stats():
-	var stat_spit    = stats_file.split('\n')
-	combat_stats["enemy_heat_res"]     = int(MiscFunc.parse_stat('heat_res', stat_spit))
-	combat_stats["enemy_cold_res"]     = int(MiscFunc.parse_stat('cold_res', stat_spit))
-	combat_stats["enemy_impact_res"]   = int(MiscFunc.parse_stat('impact_res', stat_spit))
-	combat_stats["enemy_slash_res"]    = int(MiscFunc.parse_stat('slash_res', stat_spit))
-	combat_stats["enemy_pierce_res"]   = int(MiscFunc.parse_stat('pierce_res', stat_spit))
-	combat_stats["enemy_magic_res"]    = int(MiscFunc.parse_stat('magic_res', stat_spit))
-	combat_stats["enemy_bio_res"]      = int(MiscFunc.parse_stat('bio_res', stat_spit))
-
-	combat_stats["enemy_charisma"]     = int(MiscFunc.parse_stat('charisma', stat_spit))
-	combat_stats["enemy_will"]         = int(MiscFunc.parse_stat('will', stat_spit))
-	combat_stats["enemy_intelligence"] = int(MiscFunc.parse_stat('intelligence', stat_spit))
-	combat_stats["enemy_agility"]      = int(MiscFunc.parse_stat('agility', stat_spit))
-	combat_stats["enemy_strength"]     = int(MiscFunc.parse_stat('strength', stat_spit))
-	combat_stats["enemy_endurance"]    = int(MiscFunc.parse_stat('endurance', stat_spit))
-	
-	enemy_health                       = int(MiscFunc.parse_stat('hitpoints', stat_spit))
-	enemy_deck                         = Utils.get_substring('<cards', 'cards>', stats_file).split('\n')
-	# remove \r\n
-	enemy_deck                         = enemy_deck.map(func(item): return item.strip_edges())
 
 func randomize_hand(who):
 	var deck
@@ -1230,14 +1299,13 @@ func refresh_combat_ui():#where
 	player_res_magic.text  = str(VarTests.player_stats["magic_res"])
 	player_res_bio.text    = str(VarTests.player_stats["bio_res"])
 
-	var stat_spit = stats_file.split('\n')
-	enemy_stat_cha_lbl.text   = str(int(MiscFunc.parse_stat('charisma', stat_spit))     - combat_stats["enemy_charisma_used"])
-	enemy_stat_will_lbl.text  = str(int(MiscFunc.parse_stat('will', stat_spit))         - combat_stats["enemy_will_used"])
-	enemy_stat_int_lbl.text   = str(int(MiscFunc.parse_stat('intelligence', stat_spit)) - combat_stats["enemy_intelligence_used"])
+	enemy_stat_cha_lbl.text   = str(combat_stats['enemy_charisma'] - combat_stats["enemy_charisma_used"])
+	enemy_stat_will_lbl.text  = str(combat_stats['enemy_will'] - combat_stats["enemy_will_used"])
+	enemy_stat_int_lbl.text   = str(combat_stats['enemy_intelligence'] - combat_stats["enemy_intelligence_used"])
 
-	enemy_stat_agi_lbl.text   = str(int(MiscFunc.parse_stat('agility', stat_spit))      - combat_stats["enemy_agility_used"])
-	enemy_stat_str_lbl.text   = str(int(MiscFunc.parse_stat('strength', stat_spit))     - combat_stats["enemy_strength_used"])
-	enemy_stat_end_lbl.text   = str(int(MiscFunc.parse_stat('endurance', stat_spit))    - combat_stats["enemy_endurance_used"])
+	enemy_stat_agi_lbl.text   = str(combat_stats['enemy_agility'] - combat_stats["enemy_agility_used"])
+	enemy_stat_str_lbl.text   = str(combat_stats['enemy_strength'] - combat_stats["enemy_strength_used"])
+	enemy_stat_end_lbl.text   = str(combat_stats['enemy_endurance'] - combat_stats["enemy_endurance_used"])
 	enemy_health_lbl.text     = str(enemy_health)
 	
 	enemy_res_heat.text   = str(combat_stats["enemy_heat_res"])
@@ -1375,16 +1443,16 @@ func red_pointer(source_object):
 	tween.finished.connect(txt_box.queue_free)
 
 func play_card(attacker, the_card, target):
-	var card_stats = Utils.get_substring('<%s' % the_card, '%s>' % the_card, VarTests.ALL_CARDS).strip_edges()
+	var card_stats = Utils.get_substring('<%s' % the_card, '%s>' % the_card, VarTests.ALL_CARDS).split(', ')
 
 	# COST
-	var c_cost = int(MiscFunc.parse_stat('charisma_cost',     card_stats.split('\n')))
-	var i_cost = int(MiscFunc.parse_stat('intelligence_cost', card_stats.split('\n')))
-	var w_cost = int(MiscFunc.parse_stat('knowledge_cost',    card_stats.split('\n')))
-	var a_cost = int(MiscFunc.parse_stat('agility_cost',     card_stats.split('\n')))
-	var s_cost = int(MiscFunc.parse_stat('strength_cost',    card_stats.split('\n')))
-	var e_cost = int(MiscFunc.parse_stat('endurance_cost',   card_stats.split('\n')))
-	var h_cost = int(MiscFunc.parse_stat('hitpoints_cost',   card_stats.split('\n')))
+	var c_cost = int(MiscFunc.parse_stat('charisma_cost',     card_stats))
+	var i_cost = int(MiscFunc.parse_stat('intelligence_cost', card_stats))
+	var w_cost = int(MiscFunc.parse_stat('knowledge_cost',    card_stats))
+	var a_cost = int(MiscFunc.parse_stat('agility_cost',     card_stats))
+	var s_cost = int(MiscFunc.parse_stat('strength_cost',    card_stats))
+	var e_cost = int(MiscFunc.parse_stat('endurance_cost',   card_stats))
+	var h_cost = int(MiscFunc.parse_stat('hitpoints_cost',   card_stats))
 	#refresh_combat_ui() # Check if player dies from the hitpoints cost
 	# COST
 
@@ -1430,15 +1498,15 @@ func play_card(attacker, the_card, target):
 	combat_stats["%s_endurance_used"    % attacker] += apply_attribute_cost(attacker, e_cost, "endurance")
 	combat_stats["%s_hitpoints_damage"  % attacker] += apply_attribute_cost(attacker, h_cost, "hitpoints")
 
-	var h_dmg = int(MiscFunc.parse_stat('hitpoints_dmg', card_stats.split('\n')))
+	var h_dmg = int(MiscFunc.parse_stat('hitpoints_dmg', card_stats))
 
-	var heat_dmg   = int(MiscFunc.parse_stat('heat_dmg', card_stats.split('\n')))
-	var cold_dmg   = int(MiscFunc.parse_stat('cold_dmg', card_stats.split('\n')))
-	var impact_dmg = int(MiscFunc.parse_stat('impact_dmg', card_stats.split('\n')))
-	var slash_dmg  = int(MiscFunc.parse_stat('slash_dmg', card_stats.split('\n')))
-	var p_dmg      = int(MiscFunc.parse_stat('pierce_dmg', card_stats.split('\n')))
-	var m_dmg      = int(MiscFunc.parse_stat('magic_dmg', card_stats.split('\n')))
-	var b_dmg      = int(MiscFunc.parse_stat('bio_dmg', card_stats.split('\n')))
+	var heat_dmg   = int(MiscFunc.parse_stat('heat_dmg', card_stats))
+	var cold_dmg   = int(MiscFunc.parse_stat('cold_dmg', card_stats))
+	var impact_dmg = int(MiscFunc.parse_stat('impact_dmg', card_stats))
+	var slash_dmg  = int(MiscFunc.parse_stat('slash_dmg', card_stats))
+	var p_dmg      = int(MiscFunc.parse_stat('pierce_dmg', card_stats))
+	var m_dmg      = int(MiscFunc.parse_stat('magic_dmg', card_stats))
+	var b_dmg      = int(MiscFunc.parse_stat('bio_dmg', card_stats))
 	# DAMAGE
 
 	# RESOLVE DAMAGE
@@ -1647,9 +1715,9 @@ func _on_card_button_hover(button, leave:bool=false):
 	else:
 		tooltip = load("res://scenes/tool_tip.tscn").instantiate()
 		var the_card = button.text.replace(' ', '_')
-		var card_stats = Utils.get_substring('<%s' % the_card, '%s>' % the_card, VarTests.ALL_CARDS)#.strip_edges()
+		var card_stats = Utils.get_substring('<%s' % the_card, '%s>' % the_card, VarTests.ALL_CARDS)
 
-		tooltip.get_node("Label").text = Utils.mass_repalce(card_stats, {'\t':'', '\r':'', ':':': '})
+		tooltip.get_node("Label").text = card_stats.replace(', ', '\n')
 		CanLay.add_child(tooltip)
 		tooltip.move_to_front()
 
@@ -1661,3 +1729,320 @@ func player_death():
 	#start_music("misc/player_death", 100, 0, 0, "no_loop")
 	VarTests.menu_state = 'death'
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+
+# ENEMY STATS SETTING
+func character_stats_setting(stats_file:String):
+	var stat_spit    = stats_file.split('\n')
+
+	# text color
+	var text_color       = MiscFunc.parse_stat('text_color', stat_spit)
+	character_font_color = Color('FFFFFF')
+	if text_color != "0":
+		character_font_color = Color(text_color)
+
+	# bubble color
+	var bubble_color     = MiscFunc.parse_stat('bubble_color', stat_spit)
+	character_bg_color   = Color('000000')
+	if bubble_color   != "0":
+		character_bg_color = Color(bubble_color)
+
+	# GET STATS
+	var character_stats                = Utils.get_substring('<stats', 'stats>', stats_file).split(', ')
+
+	# GET CARDS
+	enemy_deck   = Utils.get_substring('<cards', 'cards>', stats_file).split('\n')
+	# remove \r\n
+	enemy_deck   = enemy_deck.map(func(item): return item.strip_edges())
+
+	# GET SHOP ITEMS
+	character_shop_items  = Utils.get_substring('<shop', 'shop>', stats_file).split(', ')
+	print('stats ', character_shop_items)
+
+	# PARSE STATS
+	# stats
+	combat_stats["enemy_charisma"]     = int(MiscFunc.parse_stat('charisma',     character_stats))
+	combat_stats["enemy_will"]         = int(MiscFunc.parse_stat('will',         character_stats))
+	combat_stats["enemy_intelligence"] = int(MiscFunc.parse_stat('intelligence', character_stats))
+	combat_stats["enemy_agility"]      = int(MiscFunc.parse_stat('agility',      character_stats))
+	combat_stats["enemy_strength"]     = int(MiscFunc.parse_stat('strength',     character_stats))
+	combat_stats["enemy_endurance"]    = int(MiscFunc.parse_stat('endurance',    character_stats))
+
+	enemy_health = int(MiscFunc.parse_stat('hitpoints', stat_spit))
+
+	# resistances
+	combat_stats["enemy_heat_res"]     = int(MiscFunc.parse_stat('heat_res',     character_stats))
+	combat_stats["enemy_cold_res"]     = int(MiscFunc.parse_stat('cold_res',     character_stats))
+	combat_stats["enemy_impact_res"]   = int(MiscFunc.parse_stat('impact_res',   character_stats))
+	combat_stats["enemy_slash_res"]    = int(MiscFunc.parse_stat('slash_res',    character_stats))
+	combat_stats["enemy_pierce_res"]   = int(MiscFunc.parse_stat('pierce_res',   character_stats))
+	combat_stats["enemy_magic_res"]    = int(MiscFunc.parse_stat('magic_res',    character_stats))
+	combat_stats["enemy_bio_res"]      = int(MiscFunc.parse_stat('bio_res',      character_stats))
+
+#TODO finnish this
+func start_shop():
+	var data = Utils.load_file('res://database/characters/%s/diag_shop.txt' % [VarTests.character_name])
+	var shop_parsed = DiagParse.begin_parsing(data, 'start')
+	print('shop_parsed ', shop_parsed)
+	# TEMP
+	var stats_file = LoadStats.read_char_stats(VarTests.character_name)
+	character_stats_setting(stats_file)
+	# TEMP
+	open_shop_menu()
+
+func enable_shop():
+	pass
+	#character_shop_list.choices = ['aaaaaaa', 'bbbbbbbbb']
+	#player_shop_list.choices    = VarTests.ITEM_INVENTORY
+
+	#sell_list.choices = sell_inventory
+	#buy_list.choices  = buy_inventory
+func disable_shop():
+	pass
+
+func close_shop_menu():
+	# REMOVE EVENT LISTENERS
+	disable_shop()
+
+	# effect
+	shop_menu_slide_out(shop_menu)
+
+# OPEN SHOP MENU
+func open_shop_menu():
+
+	# ADD EVENT LISTENERS
+	enable_shop()
+
+	refresh_shop_menu()
+
+	# effect
+	shop_menu_slide_in(shop_menu)
+
+# SUBTRACT_ARRAY
+func subtract_array(arrA: Array, arrB: Array):
+	var isElement = func(a: Array, b: Array):
+		for i in a:
+			for x in b:
+				if a[i] == b[x]:
+					b.slice(x, 1)
+		return b
+	var arr: Array = isElement.call(arrB, arrA)
+	return arr
+
+func complete_transaction():
+	# check if player can afford the transaction
+	if VarTests.player_A_money + transaction_A_money >= 0 and VarTests.player_B_money + transaction_B_money >= 0:
+
+		# reduce/add player money
+		VarTests.player_A_money += transaction_A_money
+		VarTests.player_B_money += transaction_B_money
+
+		# add SELL items into shop inventory
+		VarTests.CHANGED_SHOPS[VarTests.character_name].append_array(sell_inventory)
+
+		# add BUY items into player inventory
+		VarTests.ITEM_INVENTORY.append_array(buy_inventory)
+
+		sell_inventory = []
+		buy_inventory = []
+		transaction_A_money = 0
+		transaction_B_money = 0
+
+		refresh_shop_menu()
+
+	else:
+		# player cannot pay for the transaction
+		return
+
+
+# REMOVE SELL ITEM
+func sell_item_select(index):
+	var moved_item:String = Utils.unformat(sell_list.choices[index])[1]
+	sell_item_remove(moved_item)
+
+# REMOVE BUY ITEM
+func buy_item_select(index):
+	var moved_item:String = Utils.unformat(buy_list.choices[index])[1]
+	buy_item_remove(moved_item)
+
+func sell_item_remove(item_data):
+	var item_value_A:int = int(look_into_item(item_data, "adats"))
+	var item_value_B:int = int(look_into_item(item_data, "krats"))
+
+	# MOVE ITEM AROUND
+	sell_inventory.remove_at(sell_inventory.find(item_data))
+	VarTests.ITEM_INVENTORY.append(item_data)
+
+	# Remove value from the transaction money
+	transaction_A_money -= item_value_A
+	transaction_B_money -= item_value_B
+
+	#normalize_list(shop_menu.sell_list)
+	refresh_shop_menu()
+
+func buy_item_remove(item_data):
+	var item_value_A:int = int(look_into_item(item_data, "adats"))
+	var item_value_B:int = int(look_into_item(item_data, "krats"))
+
+	# MOVE ITEM AROUND
+	buy_inventory.remove_at(buy_inventory.find(item_data))
+	VarTests.CHANGED_SHOPS[VarTests.character_name].append(item_data)
+
+	# Remove value from the transaction money
+	transaction_A_money += item_value_A
+	transaction_B_money += item_value_B
+
+	#normalize_list(shop_menu.buy_list)
+	refresh_shop_menu()
+# SELL ITEM
+func inventory_sell_item_select(index):
+	var moved_item:String = Utils.unformat(player_shop_list.choices[index])[1]
+	print('moved_item "', moved_item, '"')
+	var item_i:int = VarTests.ITEM_INVENTORY.find(moved_item)
+	print(item_i)
+
+	last_item_moved = "sell:%s" % moved_item
+
+	VarTests.ITEM_INVENTORY.remove_at(item_i)
+	sell_inventory.append(moved_item)
+
+	# Add value to the transaction money
+	var item_value_A:int = int(look_into_item(moved_item, "adats"))
+	var item_value_B:int = int(look_into_item(moved_item, "krats"))
+
+	transaction_A_money += item_value_A
+	transaction_B_money += item_value_B
+
+	# Check if item has a "sell" dialogue index
+	#dont_hurry = true
+	hurry_dialogue = false
+	#dialogue_breaker("sell_" + moved_item)
+
+	#normalize_list(shop_menu.you_list)
+	refresh_shop_menu()
+
+# BUY ITEM
+func shop_item_select(index):
+	var moved_item:String = Utils.unformat(character_shop_list.choices[index])[1]
+	var item_i:int = VarTests.CHANGED_SHOPS[VarTests.character_name].find(moved_item)
+
+	last_item_moved = "buy:%s" % moved_item
+
+	print('AAAA', VarTests.CHANGED_SHOPS)
+	VarTests.CHANGED_SHOPS[VarTests.character_name].remove_at(item_i)
+	print('BBBB', VarTests.CHANGED_SHOPS)
+	buy_inventory.append(moved_item)
+
+	# Add value to the transaction money
+	var item_value_A:int = int(look_into_item(moved_item, "adats"))
+	var item_value_B:int = int(look_into_item(moved_item, "krats"))
+
+	transaction_A_money -= item_value_A
+	transaction_B_money -= item_value_B
+
+	# Check if item has a "buy" dialogue index
+	#dont_hurry = true
+	hurry_dialogue = false
+	#dialogue_breaker("buy_" + moved_item)
+
+	#normalize_list(shop_menu.shop_list)
+	refresh_shop_menu()
+
+# REVERT LAST SHOP ITEM
+func revert_last_shop_item():
+	var item_name:String = last_item_moved
+
+	#remove_tooltip()
+
+	if item_name.find("sell:") != -1:
+		item_name = item_name.replace("sell:", "").strip_edges()
+		#sell_item_remove(item_name)
+	if item_name.find("buy:") != -1:
+
+		item_name = item_name.replace("buy:", "").strip_edges()
+		#buy_item_remove(item_name)
+
+# LOOK INTO ITEM
+func look_into_item(item:String, stat:String):
+	var item_string = Utils.get_substring("<%s" % item, "%s>" % item, VarTests.ALL_ITEMS.to_lower())
+	var item_stats = item_string.split(', ')
+
+	return MiscFunc.parse_stat(stat, item_stats)
+
+# RESTOCK SHOP
+func restock_shop(character_name:String):
+	#print(character_shop_items)
+	# check if shop is due for restock
+	if VarTests.RESTOCK_TIMESTAMPS[character_name] <= VarTests.DAYS:
+		# keep all unique items
+
+		var shop_items_copy:Array = []
+		shop_items_copy.append_array(character_shop_items)
+		VarTests.CHANGED_SHOPS[character_name] = subtract_array(VarTests.CHANGED_SHOPS[character_name], shop_items_copy)
+		VarTests.CHANGED_SHOPS[character_name] = VarTests.CHANGED_SHOPS[character_name].concat(shop_items_copy)
+
+		# restock generic items
+		# Add new timestamp
+		VarTests.RESTOCK_TIMESTAMPS[character_name] = VarTests.DAYS+1
+	character_shop_items = VarTests.CHANGED_SHOPS[character_name]
+
+func lister(item, array):
+	var counted_item = Utils.count_items(item)
+	array.choices = counted_item[1]
+
+func refresh_shop_menu():
+	# PLAYER INVENTORY
+	lister(VarTests.ITEM_INVENTORY, player_shop_list)
+
+	# SHOP INVENTORY
+	if not VarTests.CHANGED_SHOPS.has(VarTests.character_name):
+		VarTests.CHANGED_SHOPS[VarTests.character_name] = character_shop_items
+		VarTests.RESTOCK_TIMESTAMPS[VarTests.character_name] = 1
+	else:
+		restock_shop(VarTests.character_name)
+	lister(character_shop_items, character_shop_list)
+
+	# TRANSACTION INVENTORY
+	lister(sell_inventory, sell_list)
+	lister(buy_inventory, buy_list)
+
+	# Update money
+	shop_player_A_money.text = str(VarTests.player_A_money)
+	shop_player_B_money.text = str(VarTests.player_B_money)
+
+	trans_A_money.text = str(transaction_A_money)
+	trans_B_money.text = str(transaction_B_money)
+
+	if len(player_shop_list.choices) == 0:     player_shop_list.visible = false
+	else:                                      player_shop_list.visible = true
+	if len(character_shop_list.choices) == 0: character_shop_list.visible = false
+	else:                                      character_shop_list.visible = true
+	if len(sell_list.choices) == 0:            sell_list.visible = false
+	else:                                      sell_list.visible = true
+	if len(buy_list.choices) == 0:             buy_list.visible  = false
+	else:                                      buy_list.visible  = true
+
+# SHOP MENU SLIDE IN
+func shop_menu_slide_in(source_object:TextureRect):
+	print('slide')
+
+	source_object.position.x = -source_object.size.x
+	source_object.visible = true
+
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(source_object, "position:x", 0, 0.25)
+
+# SHOP MENU SLIDE OUT
+func shop_menu_slide_out(source_object:TextureRect):
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(source_object, "position:x", -source_object.size.x, 0.25)
+	tween.finished.connect(func(): 
+		VarTests.override_index = VarTests.shop_exit_pointer
+		source_object.visible = false
+		source_object.queue_free()
+	)

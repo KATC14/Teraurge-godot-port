@@ -14,6 +14,8 @@ var choices:
 	set(value):
 		choices = value
 		initButtons()
+	#get():
+	#	return choices
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
