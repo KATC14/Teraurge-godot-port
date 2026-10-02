@@ -559,12 +559,13 @@ func change_environment(new_env=null) -> void:
 	var path = ""
 	env_stats = LoadStats.parse_env_vars(LoadStats.read_env_stats(VarTests.environment_name))
 
-	var found = MiscFunc.parse_stat('ambient:', env_stats)
-	if found != "0": VarTests.ambient_strength = float(found)
+	var ambient_strength = MiscFunc.parse_stat('ambient:', env_stats)
+	print('ambient_strength ', ambient_strength)
+	if ambient_strength != "0": VarTests.ambient_strength = float(ambient_strength)
 	else:            VarTests.ambient_strength = 0.2
 
-	found = MiscFunc.parse_stat('ambient_color', env_stats)
-	if found != '0': VarTests.env_ambient = Color.html(found)
+	var env_ambient = MiscFunc.parse_stat('ambient_color', env_stats)
+	if env_ambient != '0': VarTests.env_ambient = Color.html(env_ambient)
 	else:            VarTests.env_ambient = Color.WHITE
 
 

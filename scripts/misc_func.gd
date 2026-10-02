@@ -61,21 +61,16 @@ func tint(mc):
 
 	mc.modulate = a_tint
 
-func super_tint(object, e_color, e_val):
-	e_val = 1 - e_val
+func super_tint(object, e_color:Color, e_val):
+	e_val = 1.244 - e_val
 
-	var r = e_color.r
-	var g = e_color.g
-	var b = e_color.b
-	#object.modulate = Color(r, g, b)
-
-	var redMultiplier   = r + ((1 - r) * e_val)
-	var greenMultiplier = g + ((1 - g) * e_val)
-	var blueMultiplier  = b + ((1 - b) * e_val)
+	e_color.r += ((1 - e_color.r) * e_val)
+	e_color.g += ((1 - e_color.g) * e_val)
+	e_color.b += ((1 - e_color.b) * e_val)
 
 	var env_stats = LoadStats.parse_env_vars(LoadStats.read_env_stats(VarTests.environment_name))
 	if MiscFunc.parse_stat('interior', env_stats) == 'yes':
-		object.modulate = Color(redMultiplier, greenMultiplier, blueMultiplier)
+		object.modulate = e_color
 
 # PARSE STAT
 func parse_stat(stat_name, stats, _case_sensitive=false)-> String:

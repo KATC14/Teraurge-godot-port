@@ -1,0 +1,240 @@
+[gd_scene load_steps=11 format=3 uid="uid://bery8tsd7e760"]
+
+[ext_resource type="Script" uid="uid://dp6cmyn7ilaiq" path="res://scripts/ChoicesDialog.gd" id="1_oucmq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k1aq6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2rvgm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05d0c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qhy6t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_djtf0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tv86p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oucmq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mwfoc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ythwj"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer"]
+offset_right = 560.0
+offset_bottom = 720.0
+current_tab = 0
+
+[node name="characters" type="PanelContainer" parent="CanvasLayer/TabContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_k1aq6")
+script = ExtResource("1_oucmq")
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/characters"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/TabContainer/characters/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+
+[node name="VBoxContainer" type="BoxContainer" parent="CanvasLayer/TabContainer/characters/MarginContainer/ScrollContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="Button" type="Button" parent="CanvasLayer/TabContainer/characters/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2rvgm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_05d0c")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qhy6t")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_djtf0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tv86p")
+text = "Choice"
+alignment = 0
+
+[node name="deck" type="PanelContainer" parent="CanvasLayer/TabContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_oucmq")
+script = ExtResource("1_oucmq")
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/deck"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/TabContainer/deck/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+
+[node name="VBoxContainer" type="BoxContainer" parent="CanvasLayer/TabContainer/deck/MarginContainer/ScrollContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="Button" type="Button" parent="CanvasLayer/TabContainer/deck/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2rvgm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_05d0c")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qhy6t")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_djtf0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tv86p")
+text = "Choice"
+alignment = 0
+
+[node name="inventory" type="PanelContainer" parent="CanvasLayer/TabContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mwfoc")
+script = ExtResource("1_oucmq")
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/inventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/TabContainer/inventory/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+
+[node name="VBoxContainer" type="BoxContainer" parent="CanvasLayer/TabContainer/inventory/MarginContainer/ScrollContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="Button" type="Button" parent="CanvasLayer/TabContainer/inventory/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2rvgm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_05d0c")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qhy6t")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_djtf0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tv86p")
+text = "Choice"
+alignment = 0
+
+[node name="Flags" type="PanelContainer" parent="CanvasLayer/TabContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ythwj")
+script = ExtResource("1_oucmq")
+metadata/_tab_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabContainer/Flags"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/TabContainer/Flags/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 3
+
+[node name="VBoxContainer" type="BoxContainer" parent="CanvasLayer/TabContainer/Flags/MarginContainer/ScrollContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="Button" type="Button" parent="CanvasLayer/TabContainer/Flags/MarginContainer/ScrollContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2rvgm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_05d0c")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_qhy6t")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_djtf0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tv86p")
+text = "Choice"
+alignment = 0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 560.0
+offset_right = 940.0
+offset_bottom = 23.0
+text = "loooooooooooooooooooooooooooong"
+clip_text = true
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 560.0
+offset_top = 23.0
+offset_right = 583.0
+offset_bottom = 46.0
+text = "4"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = 583.0
+offset_top = 23.0
+offset_right = 606.0
+offset_bottom = 46.0
+text = "4"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+offset_left = 606.0
+offset_top = 23.0
+offset_right = 629.0
+offset_bottom = 46.0
+text = "4"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label5" type="Label" parent="CanvasLayer"]
+offset_left = 629.0
+offset_top = 23.0
+offset_right = 652.0
+offset_bottom = 46.0
+text = "4"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label6" type="Label" parent="CanvasLayer"]
+offset_left = 652.0
+offset_top = 23.0
+offset_right = 675.0
+offset_bottom = 46.0
+text = "4"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label7" type="Label" parent="CanvasLayer"]
+offset_left = 675.0
+offset_top = 23.0
+offset_right = 698.0
+offset_bottom = 46.0
+text = "4"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label8" type="Label" parent="CanvasLayer"]
+offset_left = 560.0
+offset_top = 46.0
+offset_right = 606.0
+offset_bottom = 69.0
+text = "4"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Label9" type="Label" parent="CanvasLayer"]
+offset_left = 606.0
+offset_top = 46.0
+offset_right = 652.0
+offset_bottom = 69.0
+text = "4"
+horizontal_alignment = 1
+clip_text = true

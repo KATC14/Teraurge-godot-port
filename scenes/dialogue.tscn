@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cghm8dwjeyts5"]
+[gd_scene format=3 uid="uid://cghm8dwjeyts5"]
 
 [ext_resource type="Script" uid="uid://mjerosrqpc0i" path="res://scripts/dialogue.gd" id="1_abwjo"]
 [ext_resource type="Script" uid="uid://dp6cmyn7ilaiq" path="res://scripts/ChoicesDialog.gd" id="1_khq2m"]
@@ -152,13 +152,13 @@ expand_margin_right = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3r6d2"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=1146629208]
 script = ExtResource("1_abwjo")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1679597286]
 follow_viewport_enabled = true
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1282939138]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -167,75 +167,75 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="sky_layer" type="Control" parent="CanvasLayer/Control"]
+[node name="sky_layer" type="Control" parent="CanvasLayer/Control" unique_id=2066990500]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="sky" type="TextureRect" parent="CanvasLayer/Control/sky_layer"]
+[node name="sky" type="TextureRect" parent="CanvasLayer/Control/sky_layer" unique_id=1414001350]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("5_8cypa")
 
-[node name="sky_blend" type="TextureRect" parent="CanvasLayer/Control/sky_layer"]
+[node name="sky_blend" type="TextureRect" parent="CanvasLayer/Control/sky_layer" unique_id=1105067578]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("6_1dr0a")
 
-[node name="weather_layer" type="Control" parent="CanvasLayer/Control"]
+[node name="weather_layer" type="Control" parent="CanvasLayer/Control" unique_id=922722856]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="clouds_a" type="TextureRect" parent="CanvasLayer/Control/weather_layer"]
+[node name="clouds_a" type="TextureRect" parent="CanvasLayer/Control/weather_layer" unique_id=848859681]
 material = SubResource("ShaderMaterial_ccnnw")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="clouds_b" type="TextureRect" parent="CanvasLayer/Control/weather_layer"]
+[node name="clouds_b" type="TextureRect" parent="CanvasLayer/Control/weather_layer" unique_id=1762944838]
 material = SubResource("ShaderMaterial_161w7")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="atmosphere_layer" type="Control" parent="CanvasLayer/Control"]
+[node name="atmosphere_layer" type="Control" parent="CanvasLayer/Control" unique_id=778432317]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="env_Node" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="env_Node" type="TextureRect" parent="CanvasLayer/Control" unique_id=833537002]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 expand_mode = 1
 
-[node name="env_mask_Node" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="env_mask_Node" type="TextureRect" parent="CanvasLayer/Control" unique_id=2034183812]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 expand_mode = 1
 
-[node name="scene_picture" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="scene_picture" type="TextureRect" parent="CanvasLayer/Control" unique_id=1676460655]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 expand_mode = 1
 
-[node name="character_layer" type="Control" parent="CanvasLayer/Control"]
+[node name="character_layer" type="Control" parent="CanvasLayer/Control" unique_id=930198038]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="sprite" type="TextureRect" parent="CanvasLayer/Control/character_layer"]
+[node name="sprite" type="TextureRect" parent="CanvasLayer/Control/character_layer" unique_id=1905151899]
 clip_children = 2
 layout_mode = 0
 offset_right = 894.0
 offset_bottom = 1440.0
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=814463728]
 visible = false
 visibility_layer = 2
 anchors_preset = 12
@@ -247,19 +247,19 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_khq2m")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer" unique_id=1866328072]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/PanelContainer/MarginContainer" unique_id=92812981]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/ScrollContainer" unique_id=1687066041]
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="Button" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=599292824]
 texture_filter = 1
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qxlgp")
@@ -270,12 +270,12 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_my7jp")
 text = "Choice"
 alignment = 0
 
-[node name="autocont_dots" type="Sprite2D" parent="CanvasLayer"]
+[node name="autocont_dots" type="Sprite2D" parent="CanvasLayer" unique_id=998948911]
 visible = false
 modulate = Color(1, 1, 1, 0)
 script = ExtResource("3_xwsq1")
 
-[node name="error_label" type="Panel" parent="CanvasLayer"]
+[node name="error_label" type="Panel" parent="CanvasLayer" unique_id=1904404390]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -290,7 +290,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gxdpf")
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/error_label"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/error_label" unique_id=1538224605]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -307,7 +307,7 @@ script = ExtResource("6_3q6qr")
 end = 800
 width = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/error_label"]
+[node name="Label" type="Label" parent="CanvasLayer/error_label" unique_id=1698963653]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -318,7 +318,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/error_label"]
+[node name="Button" type="Button" parent="CanvasLayer/error_label" unique_id=421398378]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -341,7 +341,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_btgui")
 theme_override_styles/focus = SubResource("StyleBoxFlat_btgui")
 text = "OK"
 
-[node name="dialogue_boxes" type="Control" parent="CanvasLayer"]
+[node name="dialogue_boxes" type="Control" parent="CanvasLayer" unique_id=1666269632]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -353,7 +353,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="top_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes"]
+[node name="top_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes" unique_id=1666705454]
 visible = false
 layout_mode = 0
 offset_right = 19.0
@@ -366,7 +366,7 @@ fit_content = true
 scroll_active = false
 selection_enabled = true
 
-[node name="mid_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes"]
+[node name="mid_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes" unique_id=150102999]
 visible = false
 layout_mode = 0
 offset_right = 1.0
@@ -379,7 +379,7 @@ scroll_active = false
 autowrap_mode = 0
 selection_enabled = true
 
-[node name="bot_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes"]
+[node name="bot_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes" unique_id=319343277]
 visible = false
 layout_mode = 1
 offset_right = 1.0
@@ -392,24 +392,24 @@ fit_content = true
 scroll_active = false
 selection_enabled = true
 
-[node name="dialogue_timer" type="Timer" parent="CanvasLayer/dialogue_boxes"]
+[node name="dialogue_timer" type="Timer" parent="CanvasLayer/dialogue_boxes" unique_id=931991269]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=338651289]
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("6_2utvh")
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=955753786]
 visible = false
 offset_right = 1280.0
 offset_bottom = 231.0
 text = "Hey guys, did you know that in terms of male human and female Pokémon breeding, Vaporeon is the most compatible Pokémon for humans? Not only are they in the field egg group, which is mostly comprised of mammals, Vaporeon are an average of 3”03’ tall and 63.9 pounds, this means they’re large enough to be able handle human dicks, and with their impressive Base Stats for HP and access to Acid Armor, you can be rough with one. Due to their mostly water based biology, there’s no doubt in my mind that an aroused Vaporeon would be incredibly wet, so wet that you could easily have sex with one for hours without getting sore. They can also learn the moves Attract, Baby-Doll Eyes, Captivate, Charm, and Tail Whip, along with not having fur to hide nipples, so it’d be incredibly easy for one to get you in the mood. With their abilities Water Absorb and Hydration, they can easily recover from fatigue with enough water. No other Pokémon comes close to this level of compatibility. Also, fun fact, if you pull out enough, you can make your Vaporeon turn white. Vaporeon is literally built for human dick. Ungodly defense stat+high HP pool+Acid Armor means it can take cock all day, all shapes and sizes and still come for more "
 autowrap_mode = 3
 
-[node name="Control3" type="Control" parent="CanvasLayer"]
+[node name="Control3" type="Control" parent="CanvasLayer" unique_id=118105010]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -419,18 +419,18 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="attacks_timer" type="Timer" parent="CanvasLayer/Control3"]
+[node name="attacks_timer" type="Timer" parent="CanvasLayer/Control3" unique_id=2092491392]
 unique_name_in_owner = true
 autostart = true
 
-[node name="player_combat_ui" type="Control" parent="CanvasLayer/Control3"]
+[node name="player_combat_ui" type="Control" parent="CanvasLayer/Control3" unique_id=245033583]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 0
 offset_right = 617.0
 offset_bottom = 720.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui" unique_id=732255606]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
@@ -442,7 +442,7 @@ offset_bottom = 360.0
 grow_vertical = 2
 texture = ExtResource("7_yi57s")
 
-[node name="player_health_lbl" type="Label" parent="CanvasLayer/Control3/player_combat_ui"]
+[node name="player_health_lbl" type="Label" parent="CanvasLayer/Control3/player_combat_ui" unique_id=1988690917]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 27.0
@@ -453,12 +453,12 @@ theme_override_font_sizes/font_size = 24
 text = "40"
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="CanvasLayer/Control3/player_combat_ui"]
+[node name="Control" type="Control" parent="CanvasLayer/Control3/player_combat_ui" unique_id=1690774189]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control" unique_id=871126602]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -467,7 +467,7 @@ offset_right = 87.0
 offset_bottom = 36.0
 texture = ExtResource("8_hwqu2")
 
-[node name="player_res_heat" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect"]
+[node name="player_res_heat" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect" unique_id=1001670968]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -478,7 +478,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control" unique_id=2083344917]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -487,7 +487,7 @@ offset_right = 87.0
 offset_bottom = 63.0
 texture = ExtResource("9_3p4eb")
 
-[node name="player_res_cold" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect2"]
+[node name="player_res_cold" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect2" unique_id=1298573351]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -498,7 +498,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control"]
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control" unique_id=2093687649]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -507,7 +507,7 @@ offset_right = 87.0
 offset_bottom = 90.0
 texture = ExtResource("10_0gab2")
 
-[node name="player_res_impact" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect3"]
+[node name="player_res_impact" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect3" unique_id=1366301445]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -518,7 +518,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control"]
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control" unique_id=407904369]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -527,7 +527,7 @@ offset_right = 87.0
 offset_bottom = 117.0
 texture = ExtResource("11_7ryx5")
 
-[node name="player_res_slash" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect4"]
+[node name="player_res_slash" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect4" unique_id=722985441]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -538,7 +538,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control"]
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control" unique_id=1864508094]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -547,7 +547,7 @@ offset_right = 87.0
 offset_bottom = 144.0
 texture = ExtResource("12_nkj3m")
 
-[node name="player_res_pierce" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect5"]
+[node name="player_res_pierce" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect5" unique_id=2133850230]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -558,7 +558,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control"]
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control" unique_id=64115090]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -567,7 +567,7 @@ offset_right = 87.0
 offset_bottom = 171.0
 texture = ExtResource("13_brn3r")
 
-[node name="player_res_magic" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect6"]
+[node name="player_res_magic" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect6" unique_id=1736729827]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -578,7 +578,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control"]
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control" unique_id=555275149]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -587,7 +587,7 @@ offset_right = 87.0
 offset_bottom = 198.0
 texture = ExtResource("14_ixstv")
 
-[node name="player_res_bio" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect7"]
+[node name="player_res_bio" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control/TextureRect7" unique_id=1845141210]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -598,12 +598,12 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="Control2" type="Control" parent="CanvasLayer/Control3/player_combat_ui"]
+[node name="Control2" type="Control" parent="CanvasLayer/Control3/player_combat_ui" unique_id=1189131096]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2" unique_id=1524598188]
 texture_filter = 1
 layout_mode = 0
 offset_left = 144.0
@@ -612,7 +612,7 @@ offset_right = 207.0
 offset_bottom = 522.0
 texture = ExtResource("21_16vlh")
 
-[node name="turn_dail" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/TextureRect"]
+[node name="turn_dail" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/TextureRect" unique_id=2001401714]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 63.0
@@ -624,7 +624,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_a7w87")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjgnq")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7vw33")
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2" unique_id=543410553]
 light_mask = 0
 texture_filter = 1
 layout_mode = 0
@@ -634,12 +634,12 @@ offset_right = 617.0
 offset_bottom = 720.0
 texture = ExtResource("22_u72p4")
 
-[node name="Control" type="Control" parent="CanvasLayer/Control3/player_combat_ui/Control2"]
+[node name="Control" type="Control" parent="CanvasLayer/Control3/player_combat_ui/Control2" unique_id=1118355472]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control" unique_id=1918054876]
 texture_filter = 1
 layout_mode = 0
 offset_left = 156.0
@@ -648,7 +648,7 @@ offset_right = 503.0
 offset_bottom = 551.0
 texture = ExtResource("23_b3775")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect"]
+[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect" unique_id=66325744]
 layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
@@ -660,7 +660,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
-[node name="btn_card_1" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect/Button"]
+[node name="btn_card_1" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect/Button" unique_id=1826806033]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 26.0
@@ -669,7 +669,7 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "left hook"
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control" unique_id=1120026651]
 texture_filter = 1
 layout_mode = 0
 offset_left = 156.0
@@ -678,7 +678,7 @@ offset_right = 503.0
 offset_bottom = 578.0
 texture = ExtResource("23_b3775")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect2"]
+[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect2" unique_id=596004113]
 layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
@@ -690,7 +690,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
-[node name="btn_card_2" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect2/Button"]
+[node name="btn_card_2" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect2/Button" unique_id=1533171195]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 26.0
@@ -699,7 +699,7 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Panicked slap"
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control"]
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control" unique_id=723442330]
 texture_filter = 1
 layout_mode = 0
 offset_left = 156.0
@@ -708,7 +708,7 @@ offset_right = 503.0
 offset_bottom = 605.0
 texture = ExtResource("23_b3775")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect3"]
+[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect3" unique_id=2138522259]
 layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
@@ -720,7 +720,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
-[node name="btn_card_3" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect3/Button"]
+[node name="btn_card_3" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect3/Button" unique_id=1574304693]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 26.0
@@ -729,7 +729,7 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Panicked slap"
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control"]
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control" unique_id=858712381]
 texture_filter = 1
 layout_mode = 0
 offset_left = 156.0
@@ -738,7 +738,7 @@ offset_right = 503.0
 offset_bottom = 632.0
 texture = ExtResource("23_b3775")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect4"]
+[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect4" unique_id=326919646]
 layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
@@ -750,7 +750,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
-[node name="btn_card_4" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect4/Button"]
+[node name="btn_card_4" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect4/Button" unique_id=304185535]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 26.0
@@ -759,7 +759,7 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Panicked slap"
 
-[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control"]
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control" unique_id=1027710370]
 texture_filter = 1
 layout_mode = 0
 offset_left = 156.0
@@ -768,7 +768,7 @@ offset_right = 503.0
 offset_bottom = 659.0
 texture = ExtResource("23_b3775")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect5"]
+[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect5" unique_id=2074802009]
 layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
@@ -780,7 +780,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
-[node name="btn_card_5" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect5/Button"]
+[node name="btn_card_5" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect5/Button" unique_id=185650611]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 26.0
@@ -789,7 +789,7 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Panicked slap"
 
-[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control"]
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control" unique_id=1255090557]
 texture_filter = 1
 layout_mode = 0
 offset_left = 156.0
@@ -798,7 +798,7 @@ offset_right = 503.0
 offset_bottom = 686.0
 texture = ExtResource("23_b3775")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect6"]
+[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect6" unique_id=544285467]
 layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
@@ -810,7 +810,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
-[node name="btn_card_6" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect6/Button"]
+[node name="btn_card_6" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect6/Button" unique_id=1982984708]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 26.0
@@ -819,7 +819,7 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Panicked slap"
 
-[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control"]
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control" unique_id=1041210464]
 texture_filter = 1
 layout_mode = 0
 offset_left = 156.0
@@ -828,7 +828,7 @@ offset_right = 503.0
 offset_bottom = 713.0
 texture = ExtResource("23_b3775")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect7"]
+[node name="Button" type="Button" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect7" unique_id=591190959]
 layout_mode = 0
 offset_left = 83.0
 offset_right = 347.0
@@ -840,7 +840,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_b2ygw")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_k2rxm")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3ieeq")
 
-[node name="btn_card_7" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect7/Button"]
+[node name="btn_card_7" type="Label" parent="CanvasLayer/Control3/player_combat_ui/Control2/Control/TextureRect7/Button" unique_id=1345050993]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 26.0
@@ -849,13 +849,13 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Panicked slap"
 
-[node name="player_stat_cha_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui"]
+[node name="player_stat_cha_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui" unique_id=682420363]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_cha_control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_cha_control" unique_id=1085052025]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -864,7 +864,7 @@ offset_right = 87.0
 offset_bottom = 548.0
 texture = ExtResource("15_hoii2")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_cha_control"]
+[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_cha_control" unique_id=1273928368]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 523.0
@@ -874,13 +874,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="player_stat_will_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui"]
+[node name="player_stat_will_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui" unique_id=1650464269]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_will_control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_will_control" unique_id=881024836]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -889,7 +889,7 @@ offset_right = 87.0
 offset_bottom = 575.0
 texture = ExtResource("16_tvgoa")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_will_control"]
+[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_will_control" unique_id=1052765679]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 550.0
@@ -899,13 +899,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="player_stat_int_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui"]
+[node name="player_stat_int_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui" unique_id=318907441]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_int_control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_int_control" unique_id=1127824802]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -914,7 +914,7 @@ offset_right = 87.0
 offset_bottom = 602.0
 texture = ExtResource("17_2r7o4")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_int_control"]
+[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_int_control" unique_id=452766305]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 577.0
@@ -924,13 +924,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="player_stat_agi_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui"]
+[node name="player_stat_agi_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui" unique_id=362321918]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_agi_control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_agi_control" unique_id=578916204]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -939,7 +939,7 @@ offset_right = 87.0
 offset_bottom = 656.0
 texture = ExtResource("18_qlquf")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_agi_control"]
+[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_agi_control" unique_id=154497773]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 631.0
@@ -949,13 +949,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="player_stat_str_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui"]
+[node name="player_stat_str_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui" unique_id=1818645033]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_str_control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_str_control" unique_id=420568237]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -964,7 +964,7 @@ offset_right = 87.0
 offset_bottom = 683.0
 texture = ExtResource("19_byfj6")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_str_control"]
+[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_str_control" unique_id=647574631]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 658.0
@@ -974,13 +974,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="player_stat_end_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui"]
+[node name="player_stat_end_control" type="Control" parent="CanvasLayer/Control3/player_combat_ui" unique_id=73198383]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_end_control"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/player_combat_ui/player_stat_end_control" unique_id=1578217266]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -989,7 +989,7 @@ offset_right = 87.0
 offset_bottom = 710.0
 texture = ExtResource("20_e5ro0")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_end_control"]
+[node name="Label" type="Label" parent="CanvasLayer/Control3/player_combat_ui/player_stat_end_control" unique_id=145285797]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 685.0
@@ -999,7 +999,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="enemy_combat_ui" type="Control" parent="CanvasLayer/Control3"]
+[node name="enemy_combat_ui" type="Control" parent="CanvasLayer/Control3" unique_id=999762319]
 unique_name_in_owner = true
 visible = false
 anchors_preset = 0
@@ -1007,7 +1007,7 @@ offset_left = 1186.0
 offset_right = 1280.0
 offset_bottom = 720.0
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=1857621783]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 6
@@ -1022,7 +1022,7 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("7_yi57s")
 
-[node name="enemy_health_lbl" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="enemy_health_lbl" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=1695083788]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 27.0
@@ -1033,12 +1033,12 @@ theme_override_font_sizes/font_size = 24
 text = "40"
 horizontal_alignment = 1
 
-[node name="Control3" type="Control" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="Control3" type="Control" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=1922645387]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3" unique_id=1082942224]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1047,7 +1047,7 @@ offset_right = 87.0
 offset_bottom = 36.0
 texture = ExtResource("8_hwqu2")
 
-[node name="enemy_res_heat" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect"]
+[node name="enemy_res_heat" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect" unique_id=65184557]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -1058,7 +1058,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3" unique_id=1320499449]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1067,7 +1067,7 @@ offset_right = 87.0
 offset_bottom = 63.0
 texture = ExtResource("9_3p4eb")
 
-[node name="enemy_res_cold" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect2"]
+[node name="enemy_res_cold" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect2" unique_id=486355919]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -1078,7 +1078,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3"]
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3" unique_id=534989127]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1087,7 +1087,7 @@ offset_right = 87.0
 offset_bottom = 90.0
 texture = ExtResource("10_0gab2")
 
-[node name="enemy_res_impact" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect3"]
+[node name="enemy_res_impact" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect3" unique_id=869509356]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -1098,7 +1098,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3"]
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3" unique_id=443412623]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1107,7 +1107,7 @@ offset_right = 87.0
 offset_bottom = 117.0
 texture = ExtResource("11_7ryx5")
 
-[node name="enemy_res_slash" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect4"]
+[node name="enemy_res_slash" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect4" unique_id=945047335]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -1118,7 +1118,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3"]
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3" unique_id=1364433601]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1127,7 +1127,7 @@ offset_right = 87.0
 offset_bottom = 144.0
 texture = ExtResource("12_nkj3m")
 
-[node name="enemy_res_pierce" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect5"]
+[node name="enemy_res_pierce" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect5" unique_id=1695240362]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -1138,7 +1138,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3"]
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3" unique_id=1524560912]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1147,7 +1147,7 @@ offset_right = 87.0
 offset_bottom = 171.0
 texture = ExtResource("13_brn3r")
 
-[node name="enemy_res_magic" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect6"]
+[node name="enemy_res_magic" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect6" unique_id=629205776]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -1158,7 +1158,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3"]
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui/Control3" unique_id=1082188156]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1167,7 +1167,7 @@ offset_right = 87.0
 offset_bottom = 198.0
 texture = ExtResource("14_ixstv")
 
-[node name="enemy_res_bio" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect7"]
+[node name="enemy_res_bio" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui/Control3/TextureRect7" unique_id=1762291450]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0
@@ -1178,7 +1178,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=1011821399]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1187,7 +1187,7 @@ offset_right = 87.0
 offset_bottom = 548.0
 texture = ExtResource("15_hoii2")
 
-[node name="enemy_stat_cha" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="enemy_stat_cha" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=2027080322]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 0
@@ -1199,7 +1199,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=2053539783]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1208,7 +1208,7 @@ offset_right = 87.0
 offset_bottom = 575.0
 texture = ExtResource("16_tvgoa")
 
-[node name="enemy_stat_will" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="enemy_stat_will" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=1030596556]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 11.0
@@ -1219,7 +1219,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=2088858673]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1228,7 +1228,7 @@ offset_right = 87.0
 offset_bottom = 602.0
 texture = ExtResource("17_2r7o4")
 
-[node name="enemy_stat_int" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="enemy_stat_int" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=367828167]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 11.0
@@ -1239,7 +1239,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=885733868]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1248,7 +1248,7 @@ offset_right = 87.0
 offset_bottom = 656.0
 texture = ExtResource("18_qlquf")
 
-[node name="enemy_stat_agi" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="enemy_stat_agi" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=1046873705]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 11.0
@@ -1259,7 +1259,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="TextureRect6" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=794036261]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1268,7 +1268,7 @@ offset_right = 87.0
 offset_bottom = 683.0
 texture = ExtResource("19_byfj6")
 
-[node name="enemy_stat_str" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="enemy_stat_str" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=2009784711]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 11.0
@@ -1279,7 +1279,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="TextureRect7" type="TextureRect" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=507659670]
 texture_filter = 1
 layout_mode = 0
 offset_left = 7.0
@@ -1288,7 +1288,7 @@ offset_right = 87.0
 offset_bottom = 710.0
 texture = ExtResource("20_e5ro0")
 
-[node name="enemy_stat_end" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui"]
+[node name="enemy_stat_end" type="Label" parent="CanvasLayer/Control3/enemy_combat_ui" unique_id=2034990983]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 11.0
@@ -1299,14 +1299,14 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "0"
 horizontal_alignment = 1
 
-[node name="Control2" type="Control" parent="CanvasLayer"]
+[node name="Control2" type="Control" parent="CanvasLayer" unique_id=1969202072]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control2" unique_id=1334531176]
 texture_filter = 1
 layout_mode = 0
 offset_top = 236.0
@@ -1314,13 +1314,13 @@ offset_right = 1012.0
 offset_bottom = 579.0
 texture = ExtResource("27_ccnnw")
 
-[node name="Control" type="Control" parent="CanvasLayer/Control2/TextureRect"]
+[node name="Control" type="Control" parent="CanvasLayer/Control2/TextureRect" unique_id=256934971]
 anchors_preset = 0
 offset_top = -236.0
 offset_right = 40.0
 offset_bottom = -196.0
 
-[node name="Label" type="Label" parent="CanvasLayer/Control2/TextureRect/Control"]
+[node name="Label" type="Label" parent="CanvasLayer/Control2/TextureRect/Control" unique_id=1863336186]
 layout_mode = 0
 offset_left = 25.0
 offset_top = 244.0
@@ -1330,7 +1330,7 @@ text = "500"
 horizontal_alignment = 1
 clip_text = true
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control2/TextureRect/Control"]
+[node name="Label2" type="Label" parent="CanvasLayer/Control2/TextureRect/Control" unique_id=1281777682]
 layout_mode = 0
 offset_left = 179.0
 offset_top = 243.0
@@ -1341,13 +1341,13 @@ text = "500"
 horizontal_alignment = 1
 clip_text = true
 
-[node name="Control2" type="Control" parent="CanvasLayer/Control2/TextureRect"]
+[node name="Control2" type="Control" parent="CanvasLayer/Control2/TextureRect" unique_id=2054774685]
 anchors_preset = 0
 offset_top = -236.0
 offset_right = 40.0
 offset_bottom = -196.0
 
-[node name="Label" type="Label" parent="CanvasLayer/Control2/TextureRect/Control2"]
+[node name="Label" type="Label" parent="CanvasLayer/Control2/TextureRect/Control2" unique_id=1564182746]
 layout_mode = 0
 offset_left = 360.0
 offset_top = 410.0
@@ -1357,7 +1357,7 @@ text = "500"
 horizontal_alignment = 1
 clip_text = true
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control2/TextureRect/Control2"]
+[node name="Label2" type="Label" parent="CanvasLayer/Control2/TextureRect/Control2" unique_id=1102616849]
 layout_mode = 0
 offset_left = 541.0
 offset_top = 410.0
@@ -1368,7 +1368,7 @@ text = "500"
 horizontal_alignment = 1
 clip_text = true
 
-[node name="Button" type="Button" parent="CanvasLayer/Control2/TextureRect"]
+[node name="Button" type="Button" parent="CanvasLayer/Control2/TextureRect" unique_id=1625251103]
 layout_mode = 0
 offset_left = 464.0
 offset_top = 174.0
@@ -1379,7 +1379,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_161w7")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ccnnw")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h83qv")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control2/TextureRect"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control2/TextureRect" unique_id=797555740]
 visibility_layer = 2
 layout_mode = 0
 offset_left = 10.0
@@ -1390,19 +1390,19 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sae4c")
 script = ExtResource("1_khq2m")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer" unique_id=377867289]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer/MarginContainer" unique_id=153280577]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer/MarginContainer/ScrollContainer" unique_id=51867802]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="CanvasLayer/Control2/TextureRect/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/Control2/TextureRect/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=2033663489]
 texture_filter = 1
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_i40sc")
@@ -1413,7 +1413,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_eg0tx")
 text = "Choice"
 alignment = 0
 
-[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/Control2/TextureRect"]
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer/Control2/TextureRect" unique_id=303175571]
 visibility_layer = 2
 layout_mode = 0
 offset_left = 649.0
@@ -1423,19 +1423,19 @@ offset_bottom = 330.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sae4c")
 script = ExtResource("1_khq2m")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer2" unique_id=557624367]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer2/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer2/MarginContainer" unique_id=1268992196]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer2/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer2/MarginContainer/ScrollContainer" unique_id=2072960784]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="CanvasLayer/Control2/TextureRect/PanelContainer2/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/Control2/TextureRect/PanelContainer2/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1716231487]
 texture_filter = 1
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_i40sc")
@@ -1446,7 +1446,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_eg0tx")
 text = "Choice"
 alignment = 0
 
-[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/Control2/TextureRect"]
+[node name="PanelContainer3" type="PanelContainer" parent="CanvasLayer/Control2/TextureRect" unique_id=633103311]
 visible = false
 visibility_layer = 2
 layout_mode = 0
@@ -1458,19 +1458,19 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sae4c")
 script = ExtResource("1_khq2m")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer3"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer3" unique_id=1298871725]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer3/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer3/MarginContainer" unique_id=190401122]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer3/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer3/MarginContainer/ScrollContainer" unique_id=828318168]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="CanvasLayer/Control2/TextureRect/PanelContainer3/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/Control2/TextureRect/PanelContainer3/MarginContainer/ScrollContainer/VBoxContainer" unique_id=343210755]
 texture_filter = 1
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_i40sc")
@@ -1481,7 +1481,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_eg0tx")
 text = "Choice"
 alignment = 0
 
-[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/Control2/TextureRect"]
+[node name="PanelContainer4" type="PanelContainer" parent="CanvasLayer/Control2/TextureRect" unique_id=7300356]
 visible = false
 visibility_layer = 2
 layout_mode = 0
@@ -1493,19 +1493,19 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sae4c")
 script = ExtResource("1_khq2m")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer4"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer4" unique_id=1417319130]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 10
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer4/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer4/MarginContainer" unique_id=1666122043]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer4/MarginContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control2/TextureRect/PanelContainer4/MarginContainer/ScrollContainer" unique_id=581371119]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="CanvasLayer/Control2/TextureRect/PanelContainer4/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/Control2/TextureRect/PanelContainer4/MarginContainer/ScrollContainer/VBoxContainer" unique_id=56055541]
 texture_filter = 1
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_i40sc")
