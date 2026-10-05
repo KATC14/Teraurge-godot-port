@@ -186,8 +186,8 @@ func _ready() -> void:
 	fade_in.texture = load("res://assets/images/menu_background.png")
 
 	# TEMP
-	VarTests.character_name = 'witch'
-	VarTests.environment_name = 'sejan_witch_house_interior'
+	#VarTests.character_name = 'witch'
+	#VarTests.environment_name = 'sejan_witch_house_interior'
 	# TEMP
 
 	# intro fade in
@@ -231,7 +231,7 @@ func _input(_event: InputEvent) -> void:
 		a = scrollbtn
 		a.grab_focus()
 	# hacky way of making mouse wheel scroll still work...
-	if _event is not InputEventMouseButton:
+	if _event is not InputEventMouseButton or _event is InputEventMouseMotion:
 		scrollcon.ensure_control_visible(a)
 	#if Input.is_action_pressed("ui_up"):
 		#if active_choice > 0:
@@ -248,6 +248,10 @@ func _input(_event: InputEvent) -> void:
 #
 		#var btn:Button = choicesDialog.choices_list.get_children()[active_choice]
 		#btn.grab_focus()
+
+# options clicks
+func _on_panel_container_focus(_choices:Array, index: Variant) -> void:
+	choicesDialog.choices_list.get_child(index).grab_focus()
 
 # options clicks
 func _on_panel_container_selected(index: Variant) -> void:
@@ -315,7 +319,7 @@ func make_options(packed_options):
 			where = len(choicesDialog.choices_list.get_children())-2
 		var a:Button = btn[i]
 		var b:Button = btn[where]
-		a.set_focus_neighbor(1, b.get_path())
+		a.set_focus_neighbor(SIDE_TOP, b.get_path())
 
 	# bottom
 	for i in range(len(choicesDialog.choices_list.get_children())-1):
@@ -325,7 +329,7 @@ func make_options(packed_options):
 			where = i+1
 		var a:Button = btn[i]
 		var b:Button = btn[where]
-		a.set_focus_neighbor(3, b.get_path())
+		a.set_focus_neighbor(SIDE_BOTTOM, b.get_path())
 
 
 # ADVANCE TIME
@@ -347,12 +351,6 @@ func advance_time(forward: int):
 		VarTests.ATMOSPHERIC_MULTIPLIER = (VarTests.TIME - 50) * 2.0 / 100
 	#advance_time_to = 0;
 	#turn_overmap_dial()
-
-# leave encounter
-func leave_encounter() -> void:
-	# catch for moving player to location when leaving to map
-	VarTests.loc_name = VarTests.character_name
-	get_tree().change_scene_to_file("res://scenes/map.tscn")
 
 func start_encounter(character_name):
 	print('started ', character_name)
@@ -569,7 +567,6 @@ func change_index(index):
 
 func logic_logic(logic_func, edge_case):# ?
 		match logic_func[0]:
-			"leave_encounter":       leave_encounter()
 			"start_encounter":       start_encounter(logic_func[1])
 			"change_sprite":         change_sprite(logic_func[1])
 			"create_picture":        create_picture(logic_func[1])
@@ -709,6 +706,7 @@ func make_dialogue(speech:Array):
 	mid_box.text = ''
 	bot_box.text = ''
 	bot_box.autowrap_mode = 0
+	mid_box.autowrap_mode = 0
 
 	size_hack()
 
@@ -881,7 +879,6 @@ func add_mid_box(diag_mid, diag_bot):
 	#dialogue_bubble.size.y = 0
 	#dialogue_bubble.size.x = VarTests.stage_width / 6.5
 
-	mid_box.visible = true
 	#var temp_timer = Timer.new()
 	#temp_timer.one_shot = true
 	#if temp_timer not in get_children():
@@ -972,7 +969,6 @@ func animate_text_prep(diag_mid, diag_bot):
 	dialogue_timer_new.one_shot = true
 	add_child(dialogue_timer_new)
 	if     dialogue_timer.timeout.is_connected(add_mid_box): dialogue_timer.timeout.disconnect(add_mid_box)
-	bot_box.text = ''
 	dialogue_iteration(diag_mid, diag_bot, len(diag_mid), dialogue_timer_new)
 
 func dialogue_iteration(diag_mid, diag_bot, diag_length, dialogue_timer_new):
@@ -985,9 +981,9 @@ func dialogue_iteration(diag_mid, diag_bot, diag_length, dialogue_timer_new):
 		add_bot_box(diag_bot)
 		return
 
+	if not mid_box.visible:
+		mid_box.visible = true
 	mid_box.text += diag_mid[text_index]
-
-	realign_dialogue()
 
 	mid_box.size = mid_box.get_theme_font("normal_font").get_string_size(mid_box.text) - Vector2(100, 0)
 	#await get_tree().process_frame
@@ -1020,6 +1016,8 @@ func dialogue_iteration(diag_mid, diag_bot, diag_length, dialogue_timer_new):
 
 	last_character = diag_mid[text_index]
 	text_index += 1
+
+	realign_dialogue()
 
 	# start function loop
 	if not dialogue_timer_new.timeout.is_connected(dialogue_iteration):

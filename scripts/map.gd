@@ -67,7 +67,8 @@ var tooltip:Control
 var map_data = "res://database/maps/default_data.txt"
 var ATMOSPHERIC_MULTIPLIER = 1
 var advance_time_to = 0
-var location
+var location_name
+var env_stats
 var discovery_popup_active = false
 var can_move = false
 var adjacent_blips = []
@@ -167,10 +168,10 @@ func deck_hover(array, index):
 	var item = create_item_description(Utils.unformat(array[index])[1], VarTests.ALL_CARDS)
 	_on_tooltip_hover(array, index, item)
 
-func _on_tooltip_hover(array, index, item=false):
-	print('ar ', array)
-	print('in ', index)
-	print('it ', item)
+func _on_tooltip_hover(_array, _index, item=false):
+	#print('ar ', array)
+	#print('in ', index)
+	#print('it ', item)
 	tooltip = load("res://scenes/tool_tip.tscn").instantiate()
 	tooltip.get_node("Label").text = str(item)
 	# catch for resetting size of tooltip
@@ -282,37 +283,56 @@ func create_locations() -> void:
 		# blip_special   special blip (why is this one any more special?)
 		all_loc[area] = [loc_name, area.position]
 		# for loop ended (why is there no else on a for loop like python or a finally)
-		if i == map_size-1:
-			# catch for leaving a location gotten to by debug or somehow missing a location name
-			if not VarTests.loc_name or not all_loc.values()[0].has(VarTests.loc_name):
-				VarTests.loc_name = 'sejan_witch_house'
-			# why godot you are so much like python but are missing some amazing stuff
-			# like            for i, x in Dictionary.items()
-			# or              for i (x, y) in [('a', ('1', '2')), ('b', ('3', '4'))]
-			# and cant forget for i, x in zip(list, list):
-			# move player to loaction
-			#print('E ', VarTests.loc_name, ' ', VarTests.map_target)
-			VarTests.map_target = reverse_loc_lookup(VarTests.loc_name)
-			if VarTests.loc_coords != null:
-				VarTests.map_target = reverse_loc_lookup(VarTests.loc_coords, 1)
-				#print('G ', VarTests.map_target)
-			# move camera to node left
-			camera.position = VarTests.map_target.position
-			VarTests.loc_coords = VarTests.map_target.position
-			blips_ready(VarTests.map_target)
-			can_move = true
+		#if i == map_size-1:
+		#	break
+	# catch for leaving a location gotten to by debug or somehow missing a location name
+	if not VarTests.loc_name:#  or not all_loc.values()[0].has(VarTests.loc_name) I dont remember what this was for so I'll leave it here for now
+		VarTests.loc_name = 'sejan_witch_house'
+	# why godot you are so much like python but are missing some amazing stuff
+	# like            for i, x in Dictionary.items()
+	# or              for i (x, y) in [('a', ('1', '2')), ('b', ('3', '4'))]
+	# and cant forget for i, x in zip(list, list):
 
-func reverse_loc_lookup(loc_name, xy=0):
+	# move player to loaction
+	#print('E ', VarTests.loc_name, ' ', VarTests.map_target)
+	VarTests.map_target = reverse_loc_lookup(VarTests.loc_name)
+	#print('target ', VarTests.map_target)
+	#if VarTests.loc_coords != null:
+	#	VarTests.map_target = reverse_loc_lookup(VarTests.loc_coords)
+		#print('G ', VarTests.map_target)
+	# move camera to node left
+	camera.position = VarTests.map_target.position
+	VarTests.loc_coords = VarTests.map_target.position
+
+	# loction blocking logic
+	var stats_file = LoadStats.read_env_stats(VarTests.environment_name)
+	env_stats = LoadStats.parse_env_vars(stats_file)
+	var blocking   = Utils.array_find(env_stats, 'blocking')
+	if blocking != -1 and env_stats[blocking].split(':')[1] == "yes":
+		VarTests.map_target = reverse_loc_lookup(VarTests.last_coords)
+	blips_ready(VarTests.map_target)
+
+	can_move = true
+
+## reverse search location
+## [br]takes a [Vector2] or [String]
+## [br]returns an [Area2D]
+func reverse_loc_lookup(location:Variant) -> Area2D:
+	# if location is a String then location is the name of blip
+	# if location is a Vector2 then Location is postion of blip
+	var index = 0 if location is String else 1
+	var new_loc:Area2D
 	for items in Utils.items(all_loc):
 		# items[0] key
 		# items[1] value
 		#print('items[1] ', items[1])
-		if items[1][xy] == loc_name:
-			return items[0]
+		if items[1][index] == location:
+			new_loc = items[0]
+	return new_loc
 
 func create_discovered_locations():
-	for i in VarTests.DISCOVERED_LOCATIONS:
-		var loc_area:Node2D = reverse_loc_lookup(i)
+	for loc_name in VarTests.DISCOVERED_LOCATIONS:
+		var loc_area:Node2D = reverse_loc_lookup(loc_name)
 		var con:Control = loc_area.get_child(-1)
 		if not con.mouse_entered.is_connected(_on_tooltip_hover):
 			con.mouse_entered.connect(_on_tooltip_hover.bind(null, null, VarTests.loc_name))
@@ -336,20 +356,20 @@ func evaluate_blip(loc_name):
 	if not stats_file:
 		return
 
-	var result    = LoadStats.parse_env_vars(stats_file)
-	if Utils.array_find(result, '{encounters') != -1:
-		if Utils.array_find(result, 'discoverable') != -1:
+	env_stats = LoadStats.parse_env_vars(stats_file)
+	if Utils.array_find(env_stats, '{encounters') != -1:
+		if Utils.array_find(env_stats, 'discoverable') != -1:
 			# location revisit
 			if VarTests.DISCOVERED_LOCATIONS.has(loc_name):
-				var dic_msg = Utils.array_find(result, 'default_message')
+				var dic_msg = Utils.array_find(env_stats, 'default_message')
 				if dic_msg != -1:
-					var text = result[dic_msg].split(':')[-1]
+					var text = env_stats[dic_msg].split(':')[-1]
 					discovery_popup(text, loc_name)
 			else:
 				# location first time visit
-				var dic_msg = Utils.array_find(result, 'dicovery_message')
+				var dic_msg = Utils.array_find(env_stats, 'dicovery_message')
 				if dic_msg != -1:
-					var text = result[dic_msg].split(':')[-1]
+					var text = env_stats[dic_msg].split(':')[-1]
 					discovery_popup(text, loc_name)
 		else:
 			get_encounter(stats_file)
@@ -364,7 +384,7 @@ func get_encounter(stats_file):
 		if stats_parsed[1].find('curated_list') != -1:
 			var index = Utils.curated_list(options_parsed, stats_parsed[1].split(' ')[1])
 			if index:
-				var logic_func = DiagFunc.Logigier('', index)
+				var logic_func = DiagFunc.Logigier(index, 'start')
 				match logic_func[0]:
 					"start_encounter":    start_encounter(logic_func[1])
 
@@ -401,9 +421,10 @@ func map_collision_check(relative_x, relative_y):
 		index += 1
 
 	var new_loc = adjacent_blips[closest_index]
-	VarTests.last_loc   = VarTests.map_target
-	VarTests.map_target = new_loc
-	VarTests.loc_coords = new_loc.position
+	VarTests.last_loc    = VarTests.map_target
+	VarTests.last_coords = VarTests.last_loc.position
+	VarTests.map_target  = new_loc
+	VarTests.loc_coords  = new_loc.position
 	evaluate_blip(all_loc[new_loc][0])
 	blips_ready(new_loc)
 
@@ -475,27 +496,25 @@ func discovery_popup(text, loc_name):
 	var vec_x = camera.position.x - (float(VarTests.stage_width) / 2)
 	var vec_y = camera.position.y - (float(VarTests.stage_height) / 2)
 
-	location            = loc_name
+	location_name       = loc_name
 	disco_msg.text      = text
 	disco_cont.position = Vector2(vec_x, vec_y)
 
 func _on_discovery_popup_pass():
 	# kick player backwards if the blip is blocking
-	var stats_file = LoadStats.read_env_stats(location)
-	var result    = LoadStats.parse_env_vars(stats_file)
-	var blocking = Utils.array_find(result, 'blocking')
-	if blocking != -1 and result[blocking].split(':')[1] == "yes":
+	var blocking  = Utils.array_find(env_stats, 'blocking')
+	if blocking != -1 and env_stats[blocking].split(':')[1] == "yes":
 		VarTests.map_target = VarTests.last_loc
 		blips_ready(VarTests.last_loc)
 	disco_cont.visible     = false
 	discovery_popup_active = false
 	camera.is_active       = true
-	discover_location(location)
+	discover_location(location_name)
 
 func _on_discovery_popup_enter():
 	disco_cont.visible = false
-	discover_location(location)
-	start_encounter(location)
+	discover_location(location_name)
+	start_encounter(location_name)
 
 func _on_button_mouse_entered() -> void:
 	if not (chr_menu.visible or dck_menu.visible or inv_menu.visible or stn_menu.visible):

@@ -10,6 +10,7 @@ func Logigier(logic: String, index) -> Array:
 			VarTests.last_index = index
 			book = script_library(funk.strip_edges())
 	else:
+		print('strip ', logic.strip_edges())
 		book = script_library(logic.strip_edges())
 	return book
 
@@ -26,7 +27,7 @@ func script_library(logic: String) -> Array:
 	#print('logic ', logic)
 	# SPLIT STRING TO Array
 	slogic = logic.split(" ")
-	#print('slogic ', slogic)
+	print('slogic ', slogic)
 
 	# EXTRA VARIABLES
 	#var counter_match: int
@@ -132,14 +133,7 @@ func script_library(logic: String) -> Array:
 			next_index = ['change_environment', slogic[1], null]
 		"end_encounter":
 			# end_conversation
-			# if encounter is "blocking" push player to an earlier blip
-# TODO location blocking
-#			if get_substring("blocking:", "\r\n", VarTests.ENVIROMENT_STATS).strip_edges() == "yes":
-#				map_target = previous_map_target as MovieClip
-			#VarTests.has_story = false #important to set if exiting from a story section
-			#stage.focus = this
-			#leave_encounter.emit()
-			next_index = ['leave_encounter', null, null]
+			get_tree().change_scene_to_file("res://scenes/map.tscn")
 		"start_combat":
 			# start_combat (lose_index) (win_index)
 			#VarTests.has_story = false

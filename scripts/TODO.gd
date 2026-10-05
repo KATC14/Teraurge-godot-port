@@ -20,19 +20,14 @@ extends Node
 # TEST
 # TESTING
 
-###
-# TODO fix dialogue boxes 'top_box' - 'dialogue_bubble' - 'bot_box'
-# fix hurry dialogue when clicking option before character is done speaking
-###
+####################################
+# TODO add advance time function
+####################################
 
-# TODO map functions
-## TODO location blocking
-## move player to loactions "Moves the player on the map to the specified location." https://teraurge.shoutwiki.com/wiki/Dialogue_scripting#Miscellaneous_functions
-# TODO add in error_message
+# TODO add in error_message / what does this mean? in what context? and error message where???
 # TODO menus
 ## add saves to load and save screen
 ## shop menu
-# TODO add advance time function
 # TODO check_timers
 # TODO time display turn_overmap_dial
 # TODO add in sound

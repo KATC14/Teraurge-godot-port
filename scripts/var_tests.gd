@@ -9,6 +9,7 @@ var loc_name:String
 var loc_coords
 var last_dialogue_func = ''
 var last_loc = ''
+var last_coords
 
 var version = 2.13
 var menu_state = 'warning'

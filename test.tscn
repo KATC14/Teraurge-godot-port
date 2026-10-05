@@ -1,27 +1,119 @@
-[gd_scene load_steps=3 format=3 uid="uid://dspxlkltp4u8l"]
+[gd_scene format=3 uid="uid://dspxlkltp4u8l"]
 
-[ext_resource type="Script" uid="uid://bbb3p5eafr1yj" path="res://test.gd" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://580vwabdishh" path="res://test.gd" id="1_37kl0"]
+[ext_resource type="Texture2D" uid="uid://c71vuxg4j5x0q" path="res://database/characters/witch/character.png" id="2_6uqi0"]
+[ext_resource type="FontFile" uid="uid://dp7u6vys3hyhq" path="res://assets/fonts/201_Verdana.ttf" id="2_8uh7m"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37kl0"]
-bg_color = Color(0, 1, 0, 1)
+[sub_resource type="SystemFont" id="SystemFont_6uqi0"]
+font_names = PackedStringArray("Times New Roman")
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ppyta"]
+content_margin_left = 12.0
+content_margin_right = 6.0
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykrsh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g14j6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbegm"]
+content_margin_left = 12.0
+content_margin_right = 6.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehkex"]
+
+[node name="Node2D" type="Node2D" unique_id=476865448]
 script = ExtResource("1_37kl0")
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=807009137]
+follow_viewport_enabled = true
+
+[node name="Timer" type="Timer" parent="CanvasLayer" unique_id=384302723]
+wait_time = 15.0
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=2057776594]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=65640264]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="character_layer" type="Control" parent="CanvasLayer/Control" unique_id=421795223]
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Control" type="Control" parent="BoxContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="BoxContainer/Control"]
-custom_minimum_size = Vector2(8, 8)
+[node name="sprite" type="TextureRect" parent="CanvasLayer/Control/character_layer" unique_id=640768472]
+clip_children = 2
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_37kl0")
+offset_left = 833.0
+offset_right = 1727.0
+offset_bottom = 1440.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6uqi0")
 
-[node name="GridContainer" type="GridContainer" parent="BoxContainer"]
-layout_mode = 2
-columns = 5
+[node name="dialogue_boxes" type="Control" parent="CanvasLayer" unique_id=688755781]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="top_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes" unique_id=112257604]
+visible = false
+layout_mode = 0
+offset_right = 19.0
+focus_mode = 2
+theme_override_fonts/normal_font = SubResource("SystemFont_6uqi0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ppyta")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ykrsh")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="mid_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes" unique_id=769619225]
+visible = false
+layout_mode = 0
+offset_right = 1.0
+focus_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_8uh7m")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_g14j6")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+selection_enabled = true
+
+[node name="bot_box" type="RichTextLabel" parent="CanvasLayer/dialogue_boxes" unique_id=363419801]
+visible = false
+layout_mode = 1
+offset_right = 1.0
+focus_mode = 2
+theme_override_fonts/normal_font = SubResource("SystemFont_6uqi0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vbegm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ehkex")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="dialogue_timer" type="Timer" parent="CanvasLayer/dialogue_boxes" unique_id=1194734698]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="resized" from="CanvasLayer/dialogue_boxes/mid_box" to="." method="_mid_box_size_clamp"]
