@@ -137,4 +137,4 @@ var TIMERS          = {}
 var DISCOVERED_LOCATIONS = ["sejan_witch_house"]
 
 var DAYS = 0
-var TIME = 50
+var TIME = 50.0

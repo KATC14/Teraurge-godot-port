@@ -9,6 +9,7 @@ signal loc_move
 @onready var camera     = $CanvasLayer/Camera2D
 
 @onready var sun_dial_lbl = $CanvasLayer/Camera2D/Control/Label
+@onready var overmap_dial = %overmap_ui_dial
 @onready var cam_con      = $CanvasLayer/Camera2D/Control
 @onready var new_game     = load("res://scenes/new_game.tscn")
 
@@ -65,7 +66,6 @@ var deck_minimum_size  = 16
 var tooltip:Control
 
 var map_data = "res://database/maps/default_data.txt"
-var ATMOSPHERIC_MULTIPLIER = 1
 var advance_time_to = 0
 var location_name
 var env_stats
@@ -76,6 +76,7 @@ var all_loc:Dictionary
 
 func _ready() -> void:
 	sun_dial_lbl.text = str(VarTests.DAYS)
+	advance_time(0)
 	#VarTests.CARD_INVENTORY = [
 	#	"kick", "kick", "body_tackle", "panicked_slap", "panicked_slap", 
 	#	"panicked_slap", "panicked_slap", "wrestle", "wrestle", "right_hook", 
@@ -127,7 +128,7 @@ func _input(_event: InputEvent) -> void:
 		if can_move and (down_left or down_right or up_left or up_right):
 				map_collision_check(input_dir.x * 150, input_dir.y * 150)
 
-		# wasd/arrow keys
+		# wasd/arrow keys movement
 		var up    = Input.is_action_pressed("ui_up")
 		var left  = Input.is_action_pressed("ui_left")
 		var down  = Input.is_action_pressed("ui_down")
@@ -225,23 +226,36 @@ func menu_slide_out(source_object, time=0.25):
 	tween.finished.connect(func(): source_object.visible = false)
 	return tween
 
-func _on_advance_time(forward):
+func advance_time(forward):
+	#print('advance time forward ', forward)
 	while forward > 100:
 		VarTests.DAYS += 1
 		forward -= 100
+
 	VarTests.TIME = VarTests.TIME + forward
 	if VarTests.TIME > 100:
 		VarTests.TIME = VarTests.TIME - 100
 		VarTests.DAYS += 1
-#	check_timers()# TODO check_timers
+	check_timers()
 
 	# ATMOSPHERIC PERCENTAGE
 	if (VarTests.TIME - 50) < 0:
-		ATMOSPHERIC_MULTIPLIER = ((VarTests.TIME - 50) * -1) * 2 / 100
+		VarTests.ATMOSPHERIC_MULTIPLIER = ((VarTests.TIME - 50) * -1) * 2 / 100
 	else:
-		ATMOSPHERIC_MULTIPLIER = (VarTests.TIME - 50) * 2 / 100
+		VarTests.ATMOSPHERIC_MULTIPLIER = (VarTests.TIME - 50) * 2 / 100
 	advance_time_to = 0
-#	turn_overmap_dial()#TODO time display turn_overmap_dial game.gd
+	turn_overmap_dial()
+
+func turn_overmap_dial():
+	overmap_dial.rotation_degrees = (-360 / 100.0) * VarTests.TIME
+
+func check_timers():
+	for timer in Utils.items(VarTests.TIMERS):
+		VarTests.TIMERS.erase(timer[0])
+
+		if VarTests.DAYS == timer['timer_days']:
+			for trigger in timer['trigger']:
+				DiagFunc.script_library(trigger)
 
 func make_collision(x, y, r) -> Node2D:#, loc_name
 	var instance: Node2D = blip.instantiate()
@@ -285,6 +299,7 @@ func create_locations() -> void:
 		# for loop ended (why is there no else on a for loop like python or a finally)
 		#if i == map_size-1:
 		#	break
+
 	# catch for leaving a location gotten to by debug or somehow missing a location name
 	if not VarTests.loc_name:#  or not all_loc.values()[0].has(VarTests.loc_name) I dont remember what this was for so I'll leave it here for now
 		VarTests.loc_name = 'sejan_witch_house'
@@ -397,7 +412,10 @@ func get_distance(point1, point2):
 	var y = point1.y - point2.y
 	return sqrt(x * x + y * y)
 
+#@onready var tint_text = $CanvasLayer/TextureRect
 func map_collision_check(relative_x, relative_y):
+	advance_time(3)
+	#MiscFunc.tint(tint_text)
 	# CHECK COLLISION AROUND THE "target" moviclip (current location)
 	# Return collision if a blip
 
@@ -452,15 +470,30 @@ func color_blips(blip_loc:Area2D):
 			temp.redraw = 'on_discovered'
 		child.modulate.a = 1
 
-func blips_ready(target):
+func blips_ready(target:Area2D):
 	can_move = false
 	var deltaX
 	var deltaY
 	var dist
-	var rangee = 30
+	var rangee = 60
 	adjacent_blips = []
 
-	for i in all_loc.keys():
+	# hay it turns out if you just copy the original code give or take
+	# it just works better then whatever I worked on for like 2 days that
+	# wouldnt work no mater how much I tried
+	# I know I read the original code before and I have it open when I work
+	# on this project but I have tried this before why did I stop using it?
+	var collision_dummy:Area2D = blip.instantiate()
+	collision_dummy.monitoring = true
+	collision_dummy.name = 'collision_dummy'
+	CanLay.get_node("blips").add_child(collision_dummy);
+
+	collision_dummy.scale = target.scale + Vector2(2, 2)
+	collision_dummy.position = Vector2((target.position + target.scale * 2) - collision_dummy.scale * 2) - Vector2(5, 5)
+
+	# this took so long to figure out >_<
+	await get_tree().create_timer(0.05).timeout
+	for i:Area2D in all_loc.keys():
 		var c = i.position
 		var s = target.position
 		#var c1 = i
@@ -469,9 +502,10 @@ func blips_ready(target):
 		deltaY = (c.y + i.scale.y / 2.0) - (s.y + target.scale.y / 2.0) # rounded distance
 		dist = sqrt((deltaX * deltaX) + (deltaY * deltaY)) # DISTANCE CHECKING
 
-		if dist <= rangee:
+		if dist <= rangee and collision_dummy.overlaps_area(i):
 			adjacent_blips.append(i)
 		color_blips(i)
+	#print(adjacent_blips)
 	can_move = true
 
 # mouse movement
@@ -482,6 +516,7 @@ func _on_blip_move(_viewport: Node, _event: InputEvent, _shape_idx: int, node:Ar
 		# only allow adjacent blips
 		if moved_loc.get_parent().get_child(0).modulate.a == 1 and node in adjacent_blips:
 			var click_position = node.position
+			print(click_position)
 			click_position -= VarTests.map_target.position# + Vector2(10, 8)
 
 			if can_move:

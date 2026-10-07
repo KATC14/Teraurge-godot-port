@@ -10,6 +10,8 @@ func _draw() -> void:
 	if redraw:
 		draw_circle(Vector2(0, 0), 145, Color(0.0, 1.0, 1.0, 0.588))
 	var color = Color.GREEN
+	if redraw == 'fuckyou':
+		color = Color("00ff00ff")
 	if redraw == 'on_discovered':
 		color = Color("ff3300ff")
 	if redraw == 'discovered' or redraw == 'on_discovered':

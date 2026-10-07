@@ -38,6 +38,7 @@ extends Node
 # TODO optimizing bit time...
 # TODO QA testing
 # TODO qualty of life change not in original game
+## save converter
 ## seting menu for volume (in game and on main menu)
 ## exit to menu
 ## more debug menu items (changing saved index, adding cards to inventory)

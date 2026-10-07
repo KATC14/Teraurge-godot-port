@@ -504,13 +504,15 @@ func script_library(logic: String) -> Array:
 #			scene_character = ""
 		"add_timer":
 			# add_timer (timer name) (days) trigger: (function & function)
-			var timer_split: Array = logic.split("trigger:")
+			var timer_split: String = logic.split("trigger:")[1]
 			#trace("TIMER ADDED: " + slogic[1] + "." + int(VarTests.DAYS+int(slogic[2])) + "." + timer_split[1]).strip_edges()
-			var composite_timer:String = slogic[1] + "." + int(VarTests.DAYS+int(slogic[2])) + "." + timer_split[1].strip_edges()
+			var timer_name: String  = slogic[1]
+			var timer_days: int     = VarTests.DAYS + int(slogic[2])
+			var timer_trigger:Array = timer_split.strip_edges().split('&')
 
 
-			if VarTests.TIMERS.find(composite_timer) == -1:
-				VarTests.TIMERS.append(composite_timer)
+			if VarTests.TIMERS.find(timer_name) == -1:
+				VarTests.TIMERS[timer_name] = {'days': timer_days, 'trigger':timer_trigger}
 # DEPRECATED
 #		"hub_location":
 			# hub_location

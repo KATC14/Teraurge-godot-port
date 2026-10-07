@@ -249,7 +249,6 @@ func _input(_event: InputEvent) -> void:
 		#var btn:Button = choicesDialog.choices_list.get_children()[active_choice]
 		#btn.grab_focus()
 
-# options clicks
 func _on_panel_container_focus(_choices:Array, index: Variant) -> void:
 	choicesDialog.choices_list.get_child(index).grab_focus()
 

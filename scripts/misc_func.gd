@@ -46,20 +46,33 @@ func starting_cards():
 	VarTests.CARD_INVENTORY = ["kick", "kick", "body_tackle", "panicked_slap", "panicked_slap", "panicked_slap", "panicked_slap", "wrestle", "wrestle", "right_hook", "left_hook", "left_hook", "panicked_slap", "panicked_slap", "panicked_slap", "clumsy_kick", "clumsy_kick"]
 
 # COLOR TRASNFORM BY TIME
-func tint(mc):
+func tint(mc:TextureRect):
+	var val = VarTests.ATMOSPHERIC_MULTIPLIER
+	#var a_tint: Color = Color.WHITE
+	var r = 1
+	var g = 1
+	var b = 1
 
-	var val = VarTests.ATMOSPHERIC_MULTIPLIER;
-	var a_tint: Color = Color()
+	r *= (0.65 * val)
+	g *= (0.55 * val)
+	b *= (0.40 * val)
 
-	a_tint.r = -40 * val
-	a_tint.g = -25 * val
-	a_tint.b = -18 * val
+	r += -40 * val
+	g += -25 * val
+	b += -18 * val
 
-	a_tint.r = 1 - (0.65 * val)
-	a_tint.g = 1 - (0.55 * val)
-	a_tint.b = 1 - (0.40 * val)
+	r = r / 255
+	g = g / 255
+	b = b / 255
+	r = abs(r)
+	g = abs(g)
+	b = abs(b)
 
-	mc.modulate = a_tint
+	print(r, ' ', g, ' ', b, ' ')
+	print(mc)
+	mc.modulate = Color(r, g, b)
+	print(mc.modulate)
+	print()
 
 func super_tint(object, e_color:Color, e_val):
 	e_val = 1.244 - e_val

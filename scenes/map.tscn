@@ -305,10 +305,25 @@ offset_bottom = 279.0
 text = "9999"
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Camera2D/Control" unique_id=694346560]
+[node name="overmap_ui_dial" type="Sprite2D" parent="CanvasLayer/Camera2D/Control" unique_id=694346560]
+unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(37, 218)
 texture = ExtResource("9_1fuh7")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Camera2D/Control" unique_id=1947988025]
+visible = false
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Camera2D/Control" unique_id=76555509]
+visible = false
+layout_mode = 0
+offset_left = 82.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(1, 1, 1, 0.5019608)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer" unique_id=1241037055]
 visible = false

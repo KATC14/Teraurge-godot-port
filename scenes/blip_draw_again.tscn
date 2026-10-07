@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dfyv4ygdq2h4s"]
+
+[ext_resource type="Script" uid="uid://2gux3g34qdss" path="res://scripts/blip_draw.gd" id="1_cm1ej"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y0end"]
+radius = 4.0
+
+[node name="Area2D" type="Area2D" unique_id=1413276031]
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=579565854]
+editor_description = "DONT DELETE
+
+this is how the code knows what blips can be moved to its so jank lol"
+modulate = Color(1, 1, 1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1820409227]
+position = Vector2(0.484, 0.284)
+scale = Vector2(0.031, 0.031)
+script = ExtResource("1_cm1ej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1364641248]
+shape = SubResource("CircleShape2D_y0end")
+
+[node name="Control" type="Control" parent="." unique_id=1848601747]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -3.5
+offset_top = -3.7
+offset_right = 4.5
+offset_bottom = 4.3
+mouse_filter = 1
