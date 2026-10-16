@@ -46,33 +46,26 @@ func starting_cards():
 	VarTests.CARD_INVENTORY = ["kick", "kick", "body_tackle", "panicked_slap", "panicked_slap", "panicked_slap", "panicked_slap", "wrestle", "wrestle", "right_hook", "left_hook", "left_hook", "panicked_slap", "panicked_slap", "panicked_slap", "clumsy_kick", "clumsy_kick"]
 
 # COLOR TRASNFORM BY TIME
+# only figured this shit out by stumbling onto this https://amp.flylib.com/books/en/4.261.1.33/1/
+# I dont think the website is displaying images right but the words are there
 func tint(mc:TextureRect):
 	var val = VarTests.ATMOSPHERIC_MULTIPLIER
-	#var a_tint: Color = Color.WHITE
-	var r = 1
-	var g = 1
-	var b = 1
+	var a_tint = Color.BLACK
+	# 28 — 60 / 100 + 20
+	#newRed = oldRed * ra / 100 + rb
+	a_tint.r = 1 - (mc.modulate.r * a_tint.r / 0.65 + val)
+	a_tint.g = 1 - (mc.modulate.g * a_tint.g / 0.40 + val)
+	a_tint.b = 1 - (mc.modulate.b * a_tint.b / 0.55 + val)
 
-	r *= (0.65 * val)
-	g *= (0.55 * val)
-	b *= (0.40 * val)
+	var square = [a_tint.r, a_tint.g, a_tint.b].map(func(i): return sqrt(i) + .07)
+	a_tint = Color(square[0], square[1], square[2])
 
-	r += -40 * val
-	g += -25 * val
-	b += -18 * val
+	if a_tint.r > 1: a_tint = Color.WHITE
+	if a_tint.r < 0.5: a_tint += Color(.05, .05, .05)
+	if a_tint.r < 0.4: a_tint += Color(.07, .07, .07)
+	if a_tint.r < 0.3: a_tint += Color(.15, .15, .15)
 
-	r = r / 255
-	g = g / 255
-	b = b / 255
-	r = abs(r)
-	g = abs(g)
-	b = abs(b)
-
-	print(r, ' ', g, ' ', b, ' ')
-	print(mc)
-	mc.modulate = Color(r, g, b)
-	print(mc.modulate)
-	print()
+	mc.modulate = a_tint
 
 func super_tint(object, e_color:Color, e_val):
 	e_val = 1.244 - e_val
@@ -233,3 +226,95 @@ func unequip_item(item):
 func remove_item(item):
 	unequip_item(item)
 	VarTests.ITEM_INVENTORY.erase(item)
+
+var menulist = []
+func menu_slide(source_object, camera, time=0.25):
+	var tween
+	if source_object.visible:
+		tween = menu_slide_out(source_object, camera, time)
+		if camera is not Vector2:
+			camera.is_active    = true
+	else:
+		tween = menu_slide_in(source_object, camera, time)
+		source_object.visible = true
+		if camera is not Vector2:
+			camera.is_active    = false
+	menulist.erase(source_object)
+	for i in menulist:
+		menu_slide_out(i, camera)
+	return tween
+
+#MENU SLIDE IN
+func menu_slide_in(source_object, camera, time=0.25):
+	# DISABLE MAP CLICKING
+	var cam_position = Vector2(640.0, 360.0)
+	if camera is Vector2:
+		cam_position += camera
+	if camera is not Vector2:
+		camera.is_active    = false
+		cam_position = camera.position
+		
+
+	var vec_x = cam_position.x - (float(VarTests.stage_width) / 2)
+	var vec_y = VarTests.stage_height + cam_position.y
+	source_object.position = Vector2(vec_x, vec_y)
+	vec_y = cam_position.y - (float(VarTests.stage_height) / 2)
+
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(source_object, "position:y", vec_y, time)
+	return tween
+
+#MENU SLIDE OUT
+func menu_slide_out(source_object, camera, time=0.25):
+	var vec_y = 1080
+	if camera is Vector2:
+		vec_y += camera.y
+	if camera is not Vector2:
+		vec_y = VarTests.stage_height + camera.position.y
+
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.tween_property(source_object, "position:y", vec_y, time)
+	tween.finished.connect(func(): source_object.visible = false)
+	return tween
+
+# ADVANCE TIME
+func advance_time(forward: int):
+	while forward > 100:
+		VarTests.DAYS += 1
+		forward -= 100
+
+	VarTests.TIME += forward
+	if VarTests.TIME > 100:
+		VarTests.TIME -= 100
+		VarTests.DAYS += 1
+	check_timers()
+
+	# ATMOSPHERIC PERCENTAGE
+	if VarTests.TIME - 50 < 0:
+		VarTests.ATMOSPHERIC_MULTIPLIER = ((VarTests.TIME - 50) * -1) * 2.0 / 100
+	else:
+		VarTests.ATMOSPHERIC_MULTIPLIER = (VarTests.TIME - 50) * 2.0 / 100
+	#advance_time_to = 0;
+	turn_overmap_dial()
+
+func turn_overmap_dial():
+	var current_scene = get_tree().current_scene
+	if current_scene.name == 'map':
+		var overmap_dial = current_scene.get_node_or_null('%overmap_ui_dial')
+		var sun_dial_lbl = current_scene.get_node_or_null('%sun_dial_lbl')
+
+		overmap_dial.rotation_degrees = (-360 / 100.0) * VarTests.TIME
+		sun_dial_lbl.text = str(VarTests.DAYS)
+
+func check_timers():
+	for timer in VarTests.TIMERS:
+		var stimer = timer.split('.')
+
+		if VarTests.DAYS == int(stimer[1]):
+			VarTests.TIMERS.erase(timer)
+			for trigger in stimer[2].split('&'):
+				DiagFunc.script_library(trigger)

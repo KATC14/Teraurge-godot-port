@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://m31rdyypcffy"]
+[gd_scene format=3 uid="uid://m31rdyypcffy"]
 
 [ext_resource type="Script" uid="uid://b6hakt5jaeqyo" path="res://scripts/new_game.gd" id="1_fko0m"]
 [ext_resource type="Texture2D" uid="uid://dor4ioqn0t4r1" path="res://assets/images/new_game/new_game.png" id="1_leeag"]
@@ -132,24 +132,24 @@ texture = ExtResource("10_6drrb")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2etx"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=769897648]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_fko0m")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1487690704]
 texture_filter = 1
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("1_leeag")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1779075432]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect2" type="TextureRect" parent="Control"]
+[node name="TextureRect2" type="TextureRect" parent="Control" unique_id=1383846274]
 texture_filter = 1
 layout_mode = 0
 offset_left = 282.0
@@ -158,7 +158,7 @@ offset_right = 982.0
 offset_bottom = 685.0
 texture = ExtResource("2_pw8id")
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Button" type="Button" parent="Control" unique_id=1523631264]
 layout_mode = 0
 offset_left = 499.0
 offset_top = 562.0
@@ -171,7 +171,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5umiu")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_lq834")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_iie7v")
 
-[node name="Button2" type="Button" parent="Control"]
+[node name="Button2" type="Button" parent="Control" unique_id=441085445]
 layout_mode = 0
 offset_left = 733.0
 offset_top = 562.0
@@ -184,12 +184,12 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_lopjk")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_gkvrx")
 theme_override_styles/focus = SubResource("StyleBoxTexture_lopjk")
 
-[node name="Control2" type="Control" parent="."]
+[node name="Control2" type="Control" parent="." unique_id=456132284]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="filter_rape_off" type="Button" parent="Control2"]
+[node name="filter_rape_off" type="Button" parent="Control2" unique_id=641927837]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1123.0
@@ -204,7 +204,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_rp3eg")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uxv21")
 script = ExtResource("5_x0jcq")
 
-[node name="filter_feral_off" type="Button" parent="Control2"]
+[node name="filter_feral_off" type="Button" parent="Control2" unique_id=198241525]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1122.0
@@ -219,7 +219,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_kr5jv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lwuw4")
 script = ExtResource("5_x0jcq")
 
-[node name="filter_gore_off" type="Button" parent="Control2"]
+[node name="filter_gore_off" type="Button" parent="Control2" unique_id=1596013676]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1122.0
@@ -234,7 +234,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_kud3n")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dc6ol")
 script = ExtResource("5_x0jcq")
 
-[node name="filter_rape_on" type="Button" parent="Control2"]
+[node name="filter_rape_on" type="Button" parent="Control2" unique_id=369949972]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1160.0
@@ -249,7 +249,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_y5oaa")
 theme_override_styles/focus = SubResource("StyleBoxTexture_8mtf6")
 script = ExtResource("5_x0jcq")
 
-[node name="filter_feral_on" type="Button" parent="Control2"]
+[node name="filter_feral_on" type="Button" parent="Control2" unique_id=1606380494]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1160.0
@@ -264,7 +264,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_ai5fs")
 theme_override_styles/focus = SubResource("StyleBoxTexture_vnxnp")
 script = ExtResource("5_x0jcq")
 
-[node name="filter_gore_on" type="Button" parent="Control2"]
+[node name="filter_gore_on" type="Button" parent="Control2" unique_id=518757333]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1160.0
@@ -279,7 +279,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_jcla7")
 theme_override_styles/focus = SubResource("StyleBoxTexture_bqeh4")
 script = ExtResource("5_x0jcq")
 
-[node name="Button7" type="Button" parent="Control2"]
+[node name="Button7" type="Button" parent="Control2" unique_id=939892030]
 layout_mode = 0
 offset_left = 858.0
 offset_top = 569.0
@@ -292,12 +292,12 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_esbb2")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_n2crf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2100h")
 
-[node name="Control3" type="Control" parent="."]
+[node name="Control3" type="Control" parent="." unique_id=164270698]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextEdit" type="TextEdit" parent="Control3"]
+[node name="TextEdit" type="TextEdit" parent="Control3" unique_id=463769494]
 texture_filter = 1
 layout_mode = 0
 offset_left = 239.0
@@ -309,7 +309,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_lfp4p")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_odnj0")
 text = "John"
 
-[node name="avalible_points" type="Label" parent="Control3"]
+[node name="avalible_points" type="Label" parent="Control3" unique_id=1858598458]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 0
@@ -322,7 +322,7 @@ theme_override_font_sizes/font_size = 32
 text = "18"
 horizontal_alignment = 1
 
-[node name="health" type="Label" parent="Control3"]
+[node name="health" type="Label" parent="Control3" unique_id=1354911838]
 texture_filter = 1
 layout_mode = 0
 offset_left = 255.0
@@ -333,12 +333,12 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "40"
 
-[node name="Control" type="Control" parent="Control3"]
+[node name="Control" type="Control" parent="Control3" unique_id=772842370]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="down_button" type="Button" parent="Control3/Control"]
+[node name="down_button" type="Button" parent="Control3/Control" unique_id=666233223]
 texture_filter = 1
 layout_mode = 0
 offset_left = 218.0
@@ -353,7 +353,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 script = ExtResource("11_t0ixb")
 
-[node name="label_charisma" type="Label" parent="Control3/Control"]
+[node name="label_charisma" type="Label" parent="Control3/Control" unique_id=852530148]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 0
@@ -366,7 +366,7 @@ theme_override_font_sizes/font_size = 32
 text = "4"
 horizontal_alignment = 1
 
-[node name="up_button" type="Button" parent="Control3/Control"]
+[node name="up_button" type="Button" parent="Control3/Control" unique_id=629272020]
 texture_filter = 1
 layout_mode = 0
 offset_left = 304.0
@@ -382,13 +382,13 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 text = " "
 script = ExtResource("11_t0ixb")
 
-[node name="Control2" type="Control" parent="Control3"]
+[node name="Control2" type="Control" parent="Control3" unique_id=1266215275]
 anchors_preset = 0
 offset_top = 46.0
 offset_right = 40.0
 offset_bottom = 86.0
 
-[node name="down_button" type="Button" parent="Control3/Control2"]
+[node name="down_button" type="Button" parent="Control3/Control2" unique_id=655855252]
 texture_filter = 1
 layout_mode = 0
 offset_left = 218.0
@@ -403,7 +403,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 script = ExtResource("11_t0ixb")
 
-[node name="label_will" type="Label" parent="Control3/Control2"]
+[node name="label_will" type="Label" parent="Control3/Control2" unique_id=145008536]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 0
@@ -416,7 +416,7 @@ theme_override_font_sizes/font_size = 32
 text = "4"
 horizontal_alignment = 1
 
-[node name="up_button" type="Button" parent="Control3/Control2"]
+[node name="up_button" type="Button" parent="Control3/Control2" unique_id=1078470560]
 texture_filter = 1
 layout_mode = 0
 offset_left = 304.0
@@ -432,13 +432,13 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 text = " "
 script = ExtResource("11_t0ixb")
 
-[node name="Control3" type="Control" parent="Control3"]
+[node name="Control3" type="Control" parent="Control3" unique_id=1915755407]
 anchors_preset = 0
 offset_top = 92.0
 offset_right = 40.0
 offset_bottom = 132.0
 
-[node name="down_button" type="Button" parent="Control3/Control3"]
+[node name="down_button" type="Button" parent="Control3/Control3" unique_id=1991312392]
 texture_filter = 1
 layout_mode = 0
 offset_left = 218.0
@@ -453,7 +453,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 script = ExtResource("11_t0ixb")
 
-[node name="label_intelligence" type="Label" parent="Control3/Control3"]
+[node name="label_intelligence" type="Label" parent="Control3/Control3" unique_id=2024041703]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 0
@@ -466,7 +466,7 @@ theme_override_font_sizes/font_size = 32
 text = "4"
 horizontal_alignment = 1
 
-[node name="up_button" type="Button" parent="Control3/Control3"]
+[node name="up_button" type="Button" parent="Control3/Control3" unique_id=175026296]
 texture_filter = 1
 layout_mode = 0
 offset_left = 304.0
@@ -482,13 +482,13 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 text = " "
 script = ExtResource("11_t0ixb")
 
-[node name="Control4" type="Control" parent="Control3"]
+[node name="Control4" type="Control" parent="Control3" unique_id=1720246489]
 anchors_preset = 0
 offset_top = 186.0
 offset_right = 40.0
 offset_bottom = 226.0
 
-[node name="down_button" type="Button" parent="Control3/Control4"]
+[node name="down_button" type="Button" parent="Control3/Control4" unique_id=1793037022]
 texture_filter = 1
 layout_mode = 0
 offset_left = 218.0
@@ -503,7 +503,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 script = ExtResource("11_t0ixb")
 
-[node name="label_agility" type="Label" parent="Control3/Control4"]
+[node name="label_agility" type="Label" parent="Control3/Control4" unique_id=358200411]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 0
@@ -516,7 +516,7 @@ theme_override_font_sizes/font_size = 32
 text = "4"
 horizontal_alignment = 1
 
-[node name="up_button" type="Button" parent="Control3/Control4"]
+[node name="up_button" type="Button" parent="Control3/Control4" unique_id=35215765]
 texture_filter = 1
 layout_mode = 0
 offset_left = 304.0
@@ -532,13 +532,13 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 text = " "
 script = ExtResource("11_t0ixb")
 
-[node name="Control5" type="Control" parent="Control3"]
+[node name="Control5" type="Control" parent="Control3" unique_id=1228855445]
 anchors_preset = 0
 offset_top = 232.0
 offset_right = 40.0
 offset_bottom = 272.0
 
-[node name="down_button" type="Button" parent="Control3/Control5"]
+[node name="down_button" type="Button" parent="Control3/Control5" unique_id=898512236]
 texture_filter = 1
 layout_mode = 0
 offset_left = 218.0
@@ -553,7 +553,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 script = ExtResource("11_t0ixb")
 
-[node name="label_strength" type="Label" parent="Control3/Control5"]
+[node name="label_strength" type="Label" parent="Control3/Control5" unique_id=1189126024]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 0
@@ -566,7 +566,7 @@ theme_override_font_sizes/font_size = 32
 text = "4"
 horizontal_alignment = 1
 
-[node name="up_button" type="Button" parent="Control3/Control5"]
+[node name="up_button" type="Button" parent="Control3/Control5" unique_id=1521516125]
 texture_filter = 1
 layout_mode = 0
 offset_left = 304.0
@@ -582,13 +582,13 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_c2etx")
 text = " "
 script = ExtResource("11_t0ixb")
 
-[node name="Control6" type="Control" parent="Control3"]
+[node name="Control6" type="Control" parent="Control3" unique_id=372150763]
 anchors_preset = 0
 offset_top = 279.0
 offset_right = 40.0
 offset_bottom = 319.0
 
-[node name="down_button" type="Button" parent="Control3/Control6"]
+[node name="down_button" type="Button" parent="Control3/Control6" unique_id=1059550865]
 texture_filter = 1
 layout_mode = 0
 offset_left = 218.0
@@ -603,7 +603,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_v6bnh")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m5ac8")
 script = ExtResource("11_t0ixb")
 
-[node name="label_endurance" type="Label" parent="Control3/Control6"]
+[node name="label_endurance" type="Label" parent="Control3/Control6" unique_id=475354982]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 0
@@ -616,7 +616,7 @@ theme_override_font_sizes/font_size = 32
 text = "4"
 horizontal_alignment = 1
 
-[node name="up_button" type="Button" parent="Control3/Control6"]
+[node name="up_button" type="Button" parent="Control3/Control6" unique_id=1214052695]
 texture_filter = 1
 layout_mode = 0
 offset_left = 304.0

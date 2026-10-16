@@ -1,0 +1,1935 @@
+{
+    "saved_games": {
+        "ggggggg": {
+            "player_pierce_res": 0,
+            "player_cold_res": 0,
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 10,
+            "CHANGED_CHARACTERS": {
+                "caenemung": "on_beach",
+                "witch": "normal"
+            },
+            "player_B_money": 80,
+            "player_will": 10,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 10,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 10,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "acbaa274a46b44c618f3388317f0f124",
+            "player_strength": 10,
+            "player_doll": "default",
+            "FLAGS": [
+                "breirb_rival_encountered",
+                "caenemung_at_sejan_beach"
+            ],
+            "player_endurance": 10,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 68,
+            "CLICKED_OPTIONS": {
+                "caenemung": [
+                    "6ffd23074e8f536c8adc3e91544a2557",
+                    "f7b97cb11d8370c2228a1659252306d5"
+                ]
+            },
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "DINDEX": {
+                "caenemung": "grudge"
+            },
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 264,
+            "previous_target_index": 264,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 0,
+            "player_slash_res": 0
+        },
+        "dfgxxvd": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes",
+                "felling_axe"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 4,
+            "CHANGED_CHARACTERS": {
+                "witch": "normal",
+                "bykaas": "at_counter"
+            },
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "player_will": 4,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "player_B_money": 80,
+            "CHANGED_ENVIRONMENTS": {
+                "sejan_abandoned_well": "trimmed"
+            },
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 4,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 4,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "49df4e1ca6a29290548b37f50aae2580",
+            "player_strength": 4,
+            "player_doll": "default",
+            "FLAGS": [
+                "nkaanmykiunsuns_hitjob",
+                "nkaanmykiunsuns_player_outta_town",
+                "pc_met_bykaas",
+                "witch_house_burnt",
+                "witch_killed_by_nkaan"
+            ],
+            "player_endurance": 4,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 12,
+            "CLICKED_OPTIONS": {
+                "sejan_abandoned_well": [
+                    "a3990ff2b39795951ce6b109585ff0dc"
+                ],
+                "nkaanmykiunsuns": [
+                    "ecdf1b0b7ef73348d4307e56727cd08a"
+                ]
+            },
+            "player_cold_res": 0,
+            "DINDEX": {
+                "bykaas": "met",
+                "sejan_abandoned_well": "back_after_cut",
+                "nkaanmykiunsuns": "after_job",
+                "taodal": "visited",
+                "sejan_witch_house": "burnt",
+                "taodal_tavern": "visited"
+            },
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 155,
+            "previous_target_index": 155,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 2,
+            "player_slash_res": 0
+        },
+        "t": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 4,
+            "CHANGED_CHARACTERS": {
+                "witch": "normal"
+            },
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "player_will": 4,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "player_B_money": 80,
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 4,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 4,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "6e450680de6d000a438dac5a37be45e6",
+            "player_strength": 4,
+            "player_doll": "default",
+            "FLAGS": [
+                "witch_portal_quest_active"
+            ],
+            "player_endurance": 4,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 74,
+            "CLICKED_OPTIONS": {},
+            "player_cold_res": 0,
+            "DINDEX": {},
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 145,
+            "previous_target_index": 144,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 0,
+            "player_slash_res": 0
+        },
+        "dead": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known",
+                "nkaanmykiunsuns": "diag_hitjob"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 4,
+            "CHANGED_CHARACTERS": {
+                "witch": "normal"
+            },
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "player_will": 4,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "player_B_money": 80,
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 4,
+            "CHANGED_ENCOUNTERS": {
+                "sejan_nkaanmykiunsuns_grave.added": [
+                    "nkaanmykiunsuns"
+                ]
+            },
+            "COUNTERS": [],
+            "player_agility": 4,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "450ce675c28bd2ceb46e5df5f06a9b34",
+            "player_strength": 4,
+            "player_doll": "default",
+            "FLAGS": [
+                "nkaanmykiunsuns_hitjob",
+                "nkaanmykiunsuns_pc_knows_witch",
+                "nkaanmykiunsuns_killed_by_pc"
+            ],
+            "player_endurance": 4,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 28,
+            "CLICKED_OPTIONS": {},
+            "player_cold_res": 0,
+            "DINDEX": {
+                "nkaanmykiunsuns": "dead_and_buried"
+            },
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 156,
+            "previous_target_index": 156,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 1,
+            "player_slash_res": 0
+        },
+        "hash1": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 8,
+            "CHANGED_CHARACTERS": {
+                "caenemung": "on_beach",
+                "witch": "normal"
+            },
+            "player_B_money": 80,
+            "player_will": 8,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 4,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 4,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "187d050824805b2615b70196e99ff508",
+            "player_strength": 4,
+            "player_doll": "default",
+            "FLAGS": [
+                "breirb_rival_encountered",
+                "caenemung_at_sejan_beach"
+            ],
+            "player_endurance": 4,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 50,
+            "player_base_hitpoints": 40,
+            "player_cold_res": 0,
+            "DINDEX": {
+                "caenemung": "grudge"
+            },
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 12,
+            "previous_target_index": 12,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "CLICKED_OPTIONS": {
+                "caenemung": [
+                    "6ffd23074e8f536c8adc3e91544a2557"
+                ]
+            },
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 0,
+            "player_slash_res": 0
+        },
+        "tset": {
+            "player_pierce_res": 2,
+            "CHANGED_DIAGS": {
+                "taulsol": "diag_2",
+                "witch": "diag_known",
+                "diag_after_taodal": null
+            },
+            "TIMERS": [],
+            "player_magic_res": 2,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "rope",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 2,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes",
+                "roll_of_rope"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 10,
+            "CHANGED_CHARACTERS": {
+                "witch": "normal",
+                "taulsol": "no_armor",
+                "caenemung": "on_beach",
+                "bykaas": "at_counter"
+            },
+            "CARD_INVENTORY": [
+                "body_tackle",
+                "clumsy_kick",
+                "clumsy_kick",
+                "kick",
+                "kick",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "right_hook",
+                "strike_of_the_debug",
+                "wrestle",
+                "wrestle",
+                "leg_sweep",
+                "leg_sweep",
+                "leg_sweep",
+                "leg_sweep",
+                "leg_sweep",
+                "leg_sweep",
+                "leg_sweep",
+                "leg_sweep",
+                "leg_sweep",
+                "leg_sweep"
+            ],
+            "player_will": 10,
+            "FERAL_FILTER": false,
+            "player_A_money": 597,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "player_B_money": 800,
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 10,
+            "CHANGED_ENCOUNTERS": {
+                "sejan_beach.removed": [
+                    "caenemung",
+                    "caenemung"
+                ]
+            },
+            "COUNTERS": {
+                "0": "subni_earned_questions",
+                "1": "subni_randtick_games",
+                "subni_randtick_games": 5,
+                "subni_earned_questions": 5
+            },
+            "player_agility": 10,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house",
+                "sejan_lake",
+                "taodal"
+            ],
+            "savegame_validation": "d51e6d18357c82b4aebe16baa154f35f",
+            "player_strength": 10,
+            "player_doll": "default",
+            "FLAGS": [
+                "braq_encountered",
+                "breirb_rival_encountered",
+                "breirb_sexed",
+                "caenemung_affectionate",
+                "caenemung_at_sejan_beach",
+                "caenemung_egg",
+                "cuoxur_encountered",
+                "kwumui_encountered",
+                "miggpli_cuoxur_research",
+                "naigad_at_sejan_lake",
+                "naigad_encountered",
+                "niird_encountered",
+                "pc_knowledge_braq",
+                "pc_knowledge_cuoxur",
+                "pc_knowledge_kwumui",
+                "pc_knowledge_lisserian",
+                "pc_knowledge_niird",
+                "pc_knowledge_pohack",
+                "pc_met_bykaas",
+                "pc_sexed_braq",
+                "pc_sexed_kwumui",
+                "pc_sexed_niird",
+                "pc_sexed_pohack",
+                "pohack_encountered",
+                "subni_impregnated",
+                "subni_shower_fun",
+                "taulsol_met_at_pier",
+                "taulsol_taught_move_legswipe",
+                "taulsol_was_adventurer",
+                "tornoth_shipwreck_lie",
+                "pc_sexed_taulsol"
+            ],
+            "player_endurance": 10,
+            "player_heat_res": 2,
+            "player_fitness": 1,
+            "TIME": 76,
+            "CLICKED_OPTIONS": {
+                "sejan_lake": [
+                    "bd2d0a072bbc9c164657f83ba0d26d82"
+                ],
+                "punflen": [
+                    "f0809bbd146d1413a3d7a7868a05c1fb"
+                ],
+                "bykaas": [
+                    "aadf646963865a9e65908294a201c80b"
+                ],
+                "caenemung": [
+                    "d8d70a31ab5d462c89b8b86e7390a09f",
+                    "86bf9241c590281cfc76530f3508be4c"
+                ],
+                "subni": [
+                    "de3ebae7abad40e685d8290cf0cb75c2",
+                    "74b17587425c4f0948e7edeb745f3eb2",
+                    "de6a6c823a756bb4ec5015a72302b834"
+                ],
+                "miggpli": [
+                    "aa3b478d02ebc0b21b66327b899602ff",
+                    "bc93ab38e61aa331b0975d1cb297d632",
+                    "4b501586ac4fe2e1d952d8087862180f",
+                    "ea606f2c8b8526725007dbe10e22e3b0",
+                    "286267cae3824dfc7ec8cfaef2be8766",
+                    "2f41cbb94a132a8dd58a782ffb3d3785"
+                ],
+                "taulsol": [
+                    "7da2606e23df22907427baa296094678",
+                    "896d62173351d035d0cde37291c517e1",
+                    "ca2213fbceb42877af814aed9a7ca243",
+                    "7a91ebf778499e30d2f46ecbaaaddac0",
+                    "7b7c54e1943d66d440b1d28f143b9219"
+                ],
+                "taodal_pier": [
+                    "98c7dc49826c1369c32c8f2583e7eaca"
+                ],
+                "naigad": [
+                    "df4803197aa7f13274562b94646495ab",
+                    "f609847ee9806656d25554fb423d3512"
+                ],
+                "taodal_tavern": [
+                    "0d4635b287f7ad9a5e1723a9ea597fd5"
+                ]
+            },
+            "player_cold_res": 2,
+            "DINDEX": {
+                "niird_m": "encountered",
+                "taodal_market": "visited",
+                "kwumui_queen": "encountered",
+                "taodal_tavern": "visited",
+                "miggpli": "met",
+                "punflen": "met",
+                "poh-ack_f": "encountered",
+                "naigad": "start2",
+                "taulsol": "after_sex",
+                "tornoth": "smithy",
+                "braq_f": "encountered",
+                "vuisul": "meeting_again",
+                "braq_m": "encountered",
+                "kwumui_m": "encountered",
+                "kwumui_f": "encountered",
+                "cuoxur_f": "encountered",
+                "taodal": "visited",
+                "bykaas": "met",
+                "caenemung": "affectionate",
+                "subni": "arranged_sex",
+                "niird_f": "encountered"
+            },
+            "player_DECK": [
+                "panicked_slap",
+                "strike_of_the_debug"
+            ],
+            "target_index": 11,
+            "previous_target_index": 11,
+            "player_hitpoints": 40,
+            "player_impact_res": 2,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 13,
+            "player_slash_res": 2
+        },
+        "ffffffffffff": {
+            "player_pierce_res": 0,
+            "player_cold_res": 0,
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 10,
+            "CHANGED_CHARACTERS": {
+                "caenemung": "on_beach",
+                "witch": "normal"
+            },
+            "player_B_money": 80,
+            "player_will": 10,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 10,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 10,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "acbaa274a46b44c618f3388317f0f124",
+            "player_strength": 10,
+            "player_doll": "default",
+            "FLAGS": [
+                "breirb_rival_encountered",
+                "caenemung_at_sejan_beach"
+            ],
+            "player_endurance": 10,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 68,
+            "CLICKED_OPTIONS": {
+                "caenemung": [
+                    "b8749d432488dd8ea2f7540d4e9a9c5b"
+                ]
+            },
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "DINDEX": {
+                "caenemung": "grudge"
+            },
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 264,
+            "previous_target_index": 264,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 0,
+            "player_slash_res": 0
+        },
+        "f": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "felling_axe",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes",
+                "driftwood_club",
+                "torch",
+                "torch",
+                "torch",
+                "roll_of_rope",
+                "roll_of_rope",
+                "pickaxe",
+                "felling_axe",
+                "crowbar",
+                "box_of_nails",
+                "box_of_nails",
+                "box_of_nails",
+                "sarcophagus_necklace",
+                "rusted_spearhead",
+                "rusted_spearhead"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {
+                "tornoth": 8
+            },
+            "player_charisma": 50,
+            "CHANGED_CHARACTERS": {
+                "taulsol": "no_armor",
+                "bykaas": "at_counter",
+                "caenemung": "on_beach",
+                "breirb": "open",
+                "sulie": "curled",
+                "witch": "normal"
+            },
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick",
+                "axe_chop",
+                "axe_chop"
+            ],
+            "player_will": 50,
+            "FERAL_FILTER": false,
+            "player_A_money": 583,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {
+                "tornoth": []
+            },
+            "player_B_money": 740,
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "KAT",
+            "player_intelligence": 50,
+            "CHANGED_ENCOUNTERS": {
+                "sejan_sock_tree.removed": [
+                    "0"
+                ],
+                "sejan_hidden_boat.removed": [
+                    "0"
+                ]
+            },
+            "COUNTERS": [],
+            "player_agility": 50,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house",
+                "sejan_beach_cave",
+                "taodal",
+                "sejan_sock_tree",
+                "sejan_cave",
+                "sejan_pond",
+                "sejan_pit",
+                "sejan_hidden_boat",
+                "sejan_redforest_landing"
+            ],
+            "savegame_validation": "87a4da79bf210953658f565871fc9130",
+            "player_strength": 50,
+            "player_doll": "default",
+            "FLAGS": [
+                "braq_encountered",
+                "breirb_basics_known",
+                "breirb_rival_encountered",
+                "breirb_sexed",
+                "caenemung_affectionate",
+                "caenemung_at_sejan_beach",
+                "cuoxur_encountered",
+                "niird_encountered",
+                "pc_knowledge_braq",
+                "pc_knowledge_five_fingers_weird",
+                "pc_knowledge_niird",
+                "pc_knowledge_pohack",
+                "pc_met_bykaas",
+                "pc_sejan_driftwood",
+                "pc_sexed_braq",
+                "pc_sexed_niird",
+                "pc_sexed_pohack",
+                "pohack_encountered",
+                "sejan_rusty_spearhead_nomore",
+                "sejan_sarcophagus_found",
+                "sejan_sarcophagus_necklace_taken",
+                "sejan_sarcophagus_opened",
+                "sejan_stepped_on_spearhead",
+                "shyni_encountered",
+                "shyni_met",
+                "tornoth_flirted",
+                "tornoth_inventory_opened",
+                "tornoth_shipwreck_lie",
+                "witch_portal_quest_active",
+                "pc_knowledge_cuoxur",
+                "miggpli_cuoxur_research",
+                "pc_sexed_cuoxur",
+                "kwumui_encountered",
+                "pc_sexed_kwumui"
+            ],
+            "player_endurance": 50,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 16,
+            "CLICKED_OPTIONS": {
+                "sejan_pit": [
+                    "f53c574491dae6ee2202f7654c849663",
+                    "28a6f3c3febd5ca37d1bc8d79dda765c",
+                    "49914cd543dde63e061933681596b96e",
+                    "2587235593b695941a7a2f67e0d0278b"
+                ],
+                "taodal_market": [
+                    "6d4bfcabb27acc9f7fd50a1053b5b427"
+                ],
+                "caenemung": [
+                    "6ffd23074e8f536c8adc3e91544a2557",
+                    "f7b97cb11d8370c2228a1659252306d5",
+                    "d8d70a31ab5d462c89b8b86e7390a09f",
+                    "86bf9241c590281cfc76530f3508be4c"
+                ],
+                "kwumui_f": [
+                    "44c152045fae054759dd38e65381056e"
+                ],
+                "breirb": [
+                    "f6906c8dae9c558475fd565b7ad5398d",
+                    "d69a71533bfded6df221e3c7670785aa",
+                    "67bbe78e68f8823a8c35a773022ca763"
+                ],
+                "miggpli": [
+                    "4b501586ac4fe2e1d952d8087862180f",
+                    "ea606f2c8b8526725007dbe10e22e3b0",
+                    "286267cae3824dfc7ec8cfaef2be8766",
+                    "b5d13bb522412b59fe318b37983b2634",
+                    "ec2f15c191891ad8a1ad2a52a3594d04",
+                    "2d2363b8bafb198b502f9ec1f70d6ac2",
+                    "fa46a497038a9f914ec2ee641fbfaaac",
+                    "2f41cbb94a132a8dd58a782ffb3d3785",
+                    "bc93ab38e61aa331b0975d1cb297d632"
+                ],
+                "tornoth": [
+                    "7553597893559b3abd52b7aa0e20e02a"
+                ]
+            },
+            "player_cold_res": 0,
+            "DINDEX": {
+                "sejan_hidden_boat": "visited",
+                "taodal_market": "visited",
+                "sejan_pit": "visited_2",
+                "taulsol": "pier_meet",
+                "tornoth": "smithy",
+                "poh-ack_m": "encountered",
+                "kwumui_queen": "encountered",
+                "taodal_tavern": "visited",
+                "shyni": "meeting_again",
+                "niird_f": "encountered",
+                "braq_m": "encountered",
+                "cuoxur_m": "encountered",
+                "kwumui_f": "encountered",
+                "sejan_rusty_spearheads": "no_more_please",
+                "miggpli": "met",
+                "sulie": "sneak_return",
+                "poh-ack_f": "encountered",
+                "sock_tree": "visited",
+                "braq_f": "encountered",
+                "bykaas": "met",
+                "caenemung": "affectionate",
+                "breirb": "met",
+                "taodal": "visited",
+                "niird_m": "encountered",
+                "kwumui_m": "encountered",
+                "cuoxur_f": "encountered"
+            },
+            "player_DECK": [
+                "panicked_slap",
+                "axe_chop",
+                "axe_chop"
+            ],
+            "target_index": 346,
+            "previous_target_index": 346,
+            "player_hitpoints": 19,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 49,
+            "player_slash_res": 0
+        },
+        "thiset": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 10,
+            "CHANGED_CHARACTERS": {
+                "witch": "normal",
+                "caenemung": "on_beach",
+                "breirb": "open"
+            },
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "player_will": 10,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "player_B_money": 80,
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 10,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 10,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "ce2cefd554d44ced1b4ed4048682684b",
+            "player_strength": 10,
+            "player_doll": "default",
+            "FLAGS": [
+                "breirb_basics_known",
+                "breirb_rival_encountered",
+                "caenemung_at_sejan_beach",
+                "breirb_sexed"
+            ],
+            "player_endurance": 10,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 50,
+            "CLICKED_OPTIONS": {
+                "caenemung": [
+                    "6ffd23074e8f536c8adc3e91544a2557"
+                ],
+                "breirb": [
+                    "d69a71533bfded6df221e3c7670785aa",
+                    "f6906c8dae9c558475fd565b7ad5398d",
+                    "67bbe78e68f8823a8c35a773022ca763"
+                ]
+            },
+            "player_cold_res": 0,
+            "DINDEX": {
+                "caenemung": "grudge",
+                "breirb": "met"
+            },
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 12,
+            "previous_target_index": 12,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 0,
+            "player_slash_res": 0
+        },
+        "hash": {
+            "player_pierce_res": 0,
+            "player_hitpoints_damage": 0,
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "player_charisma": 8,
+            "CHANGED_CHARACTERS": {
+                "caenemung": "on_beach",
+                "witch": "normal"
+            },
+            "player_B_money": 80,
+            "player_will": 8,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "CHANGED_SHOPS": {},
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 4,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 4,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "187d050824805b2615b70196e99ff508",
+            "player_strength": 4,
+            "player_doll": "default",
+            "FLAGS": [
+                "breirb_rival_encountered",
+                "caenemung_at_sejan_beach"
+            ],
+            "player_endurance": 4,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 50,
+            "CLICKED_OPTIONS": {
+                "caenemung": [
+                    "b8749d432488dd8ea2f7540d4e9a9c5b"
+                ]
+            },
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "DINDEX": {
+                "caenemung": "grudge"
+            },
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 12,
+            "previous_target_index": 12,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_cold_res": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 0,
+            "player_slash_res": 0
+        },
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 4,
+            "CHANGED_CHARACTERS": {
+                "witch": "normal"
+            },
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "player_will": 4,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "player_B_money": 80,
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 4,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 4,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "c5742607604cbc0b242bf21b3a143335",
+            "player_strength": 4,
+            "player_doll": "default",
+            "FLAGS": [],
+            "player_endurance": 4,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 50,
+            "CLICKED_OPTIONS": {},
+            "player_cold_res": 0,
+            "DINDEX": {},
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 12,
+            "previous_target_index": 12,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 0,
+            "player_slash_res": 0
+        },
+        "tessss": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 10,
+            "CHANGED_CHARACTERS": {
+                "witch": "normal",
+                "caenemung": "on_beach",
+                "breirb": "open"
+            },
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "player_will": 10,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "player_B_money": 80,
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 10,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 10,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "ce2cefd554d44ced1b4ed4048682684b",
+            "player_strength": 10,
+            "player_doll": "default",
+            "FLAGS": [
+                "breirb_basics_known",
+                "breirb_rival_encountered",
+                "caenemung_at_sejan_beach",
+                "breirb_sexed"
+            ],
+            "player_endurance": 10,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 50,
+            "CLICKED_OPTIONS": {
+                "caenemung": [
+                    "6ffd23074e8f536c8adc3e91544a2557",
+                    "f7b97cb11d8370c2228a1659252306d5"
+                ],
+                "breirb": [
+                    "f6906c8dae9c558475fd565b7ad5398d",
+                    "67bbe78e68f8823a8c35a773022ca763"
+                ]
+            },
+            "player_cold_res": 0,
+            "DINDEX": {
+                "caenemung": "grudge",
+                "breirb": "met"
+            },
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 12,
+            "previous_target_index": 12,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 0,
+            "player_slash_res": 0
+        },
+        "r": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "felling_axe",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes",
+                "driftwood_club",
+                "torch",
+                "torch",
+                "torch",
+                "roll_of_rope",
+                "roll_of_rope",
+                "pickaxe",
+                "felling_axe",
+                "crowbar",
+                "box_of_nails",
+                "box_of_nails",
+                "box_of_nails"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {
+                "tornoth": 8
+            },
+            "player_charisma": 50,
+            "CHANGED_CHARACTERS": {
+                "witch": "normal",
+                "taulsol": "no_armor",
+                "caenemung": "on_beach",
+                "breirb": "open"
+            },
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick",
+                "axe_chop",
+                "axe_chop"
+            ],
+            "player_will": 50,
+            "FERAL_FILTER": false,
+            "player_A_money": 583,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {
+                "tornoth": []
+            },
+            "player_B_money": 740,
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "KAT",
+            "player_intelligence": 50,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 50,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house",
+                "sejan_beach_cave",
+                "taodal"
+            ],
+            "savegame_validation": "2e381dad33b9d97446182ef742d0a86b",
+            "player_strength": 50,
+            "player_doll": "default",
+            "FLAGS": [
+                "braq_encountered",
+                "breirb_basics_known",
+                "niird_encountered",
+                "pc_knowledge_pohack",
+                "pc_sejan_driftwood",
+                "witch_portal_quest_active",
+                "breirb_rival_encountered",
+                "caenemung_at_sejan_beach",
+                "breirb_sexed",
+                "tornoth_shipwreck_lie",
+                "tornoth_inventory_opened",
+                "tornoth_flirted"
+            ],
+            "player_endurance": 50,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 79,
+            "CLICKED_OPTIONS": {
+                "tornoth": [
+                    "7553597893559b3abd52b7aa0e20e02a"
+                ],
+                "caenemung": [
+                    "6ffd23074e8f536c8adc3e91544a2557",
+                    "f7b97cb11d8370c2228a1659252306d5"
+                ],
+                "breirb": [
+                    "f6906c8dae9c558475fd565b7ad5398d",
+                    "d69a71533bfded6df221e3c7670785aa",
+                    "67bbe78e68f8823a8c35a773022ca763"
+                ]
+            },
+            "player_cold_res": 0,
+            "DINDEX": {
+                "braq_f": "encountered",
+                "breirb": "met",
+                "caenemung": "grudge",
+                "niird_f": "encountered",
+                "taodal": "visited",
+                "taulsol": "pier_meet",
+                "niird_m": "encountered",
+                "tornoth": "smithy"
+            },
+            "player_DECK": [
+                "panicked_slap",
+                "axe_chop",
+                "axe_chop"
+            ],
+            "target_index": 110,
+            "previous_target_index": 108,
+            "player_hitpoints": 24,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 7,
+            "player_slash_res": 0
+        },
+        "fuck": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 4,
+            "CHANGED_CHARACTERS": {
+                "witch": "normal"
+            },
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "player_will": 4,
+            "FERAL_FILTER": false,
+            "player_A_money": 6,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "player_B_money": 80,
+            "game_version": "2.3",
+            "player_name": "John",
+            "player_intelligence": 4,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 4,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house"
+            ],
+            "savegame_validation": "f75cb4f296cc841ccb0466fe44586556",
+            "player_strength": 4,
+            "player_doll": "default",
+            "FLAGS": [],
+            "player_endurance": 4,
+            "player_heat_res": 0,
+            "TIME": 50,
+            "CLICKED_OPTIONS": {},
+            "player_cold_res": 0,
+            "DINDEX": {},
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 12,
+            "previous_target_index": 12,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 0,
+            "player_slash_res": 0
+        },
+        "test": {
+            "player_pierce_res": 0,
+            "CHANGED_DIAGS": {
+                "witch": "diag_known"
+            },
+            "TIMERS": [],
+            "player_magic_res": 0,
+            "ITEM_SLOTS": [
+                "default",
+                "underwear",
+                "white_socks",
+                "shoes",
+                "empty",
+                "jeans",
+                "tshirt",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty",
+                "empty"
+            ],
+            "player_bio_res": 0,
+            "ITEM_INVENTORY": [
+                "underwear",
+                "white_socks",
+                "tshirt",
+                "jeans",
+                "shoes"
+            ],
+            "RAPE_FILTER": false,
+            "RESTOCK_TIMESTAMPS": {},
+            "player_charisma": 10,
+            "CHANGED_CHARACTERS": {
+                "witch": "normal"
+            },
+            "CARD_INVENTORY": [
+                "kick",
+                "kick",
+                "body_tackle",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "wrestle",
+                "wrestle",
+                "right_hook",
+                "left_hook",
+                "left_hook",
+                "panicked_slap",
+                "panicked_slap",
+                "panicked_slap",
+                "clumsy_kick",
+                "clumsy_kick"
+            ],
+            "player_will": 10,
+            "FERAL_FILTER": false,
+            "player_A_money": 600,
+            "GORE_FILTER": false,
+            "CHANGED_SHOPS": {},
+            "player_B_money": 800,
+            "CHANGED_ENVIRONMENTS": {},
+            "game_version": "2.13",
+            "player_name": "John",
+            "player_intelligence": 10,
+            "CHANGED_ENCOUNTERS": {},
+            "COUNTERS": [],
+            "player_agility": 10,
+            "player_gender": "male",
+            "DISCOVERED_LOCATIONS": [
+                "sejan_witch_house",
+                "sejan_lake"
+            ],
+            "savegame_validation": "346b4ab885892deab2a79b4cfd06f33f",
+            "player_strength": 10,
+            "player_doll": "default",
+            "FLAGS": [],
+            "player_endurance": 10,
+            "player_heat_res": 0,
+            "player_fitness": 1,
+            "TIME": 37,
+            "CLICKED_OPTIONS": {},
+            "player_cold_res": 0,
+            "DINDEX": {},
+            "player_DECK": [
+                "panicked_slap"
+            ],
+            "target_index": 10,
+            "previous_target_index": 10,
+            "player_hitpoints": 40,
+            "player_impact_res": 0,
+            "player_base_hitpoints": 40,
+            "player_hitpoints_damage": 0,
+            "PLAYER_EXTRA_DECK": [],
+            "DAYS": 1,
+            "player_slash_res": 0
+        }
+    }
+}

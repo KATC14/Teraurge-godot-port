@@ -2,13 +2,13 @@ extends Node
 
 signal loc_move
 
-@onready var CanLay      = $CanvasLayer
-#@onready var map        = $CanvasLayer/TextureRect
+@onready var CanLay     = $CanvasLayer
+@onready var map        = $CanvasLayer/TextureRect
 @onready var disco_cont = $CanvasLayer/Control
 @onready var disco_msg  = $CanvasLayer/Control/Label
 @onready var camera     = $CanvasLayer/Camera2D
 
-@onready var sun_dial_lbl = $CanvasLayer/Camera2D/Control/Label
+@onready var sun_dial_lbl = %sun_dial_lbl
 @onready var overmap_dial = %overmap_ui_dial
 @onready var cam_con      = $CanvasLayer/Camera2D/Control
 @onready var new_game     = load("res://scenes/new_game.tscn")
@@ -58,25 +58,26 @@ var deck_minimum_size  = 16
 @onready var sidearm   = $CanvasLayer/Control2/Control/TextureRect/TextureRect11# sidearm
 @onready var twohand   = $CanvasLayer/Control2/Control/TextureRect/TextureRect12# twohanded
 
-@onready var stn_menu    = $CanvasLayer/Control5
-@onready var save_load   = $CanvasLayer/Control6
+@onready var stn_menu    =  load("res://scenes/save_menu.tscn")
+var settings
 
 # thank you Mige, I would have not figured this out myself
 @onready var blip = load("res://scenes/blip_draw.tscn")
 var tooltip:Control
 
 var map_data = "res://database/maps/default_data.txt"
-var advance_time_to = 0
 var location_name
 var env_stats
-var discovery_popup_active = false
+var menu_active = false
 var can_move = false
 var adjacent_blips = []
 var all_loc:Dictionary
 
 func _ready() -> void:
-	sun_dial_lbl.text = str(VarTests.DAYS)
-	advance_time(0)
+	MiscFunc.advance_time(0)
+	settings = stn_menu.instantiate()
+	CanLay.add_child(settings)
+	map.texture = load("database/maps/default.jpg")
 	#VarTests.CARD_INVENTORY = [
 	#	"kick", "kick", "body_tackle", "panicked_slap", "panicked_slap", 
 	#	"panicked_slap", "panicked_slap", "wrestle", "wrestle", "right_hook", 
@@ -109,7 +110,7 @@ func _input(_event: InputEvent) -> void:
 			shape_test.call_deferred()
 	# wasd/keyboard movment
 	# check for if discover pop up is open
-	if not discovery_popup_active:
+	if not menu_active:
 		# strange numpad keys
 		var center = Input.is_action_pressed("numpad_center")
 
@@ -183,80 +184,6 @@ func _on_tooltip_hover(_array, _index, item=false):
 func _on_tooltip_exit(_array, _index):
 	if tooltip: tooltip.queue_free()
 
-var menulist = []
-func movement(source_object, time=0.25):
-	if source_object.visible:
-		menu_slide_out(source_object, time)
-		discovery_popup_active = false
-		camera.is_active    = true
-	else:
-		menu_slide_in(source_object, time)
-		source_object.visible = true
-		discovery_popup_active = true
-		camera.is_active    = false
-	menulist.erase(source_object)
-	for i in menulist:
-		menu_slide_out(i)
-
-#MENU SLIDE IN
-func menu_slide_in(source_object, time=0.25):
-	#DISABLE MAP CLICKING
-	discovery_popup_active = true
-	camera.is_active    = false
-
-	var vec_x = camera.position.x - (float(VarTests.stage_width) / 2)
-	var vec_y = VarTests.stage_height + camera.position.y
-	source_object.position = Vector2(vec_x, vec_y)
-	vec_y = camera.position.y - (float(VarTests.stage_height) / 2)
-
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.tween_property(source_object, "position:y", vec_y, time)
-	return tween
-
-#MENU SLIDE OUT
-func menu_slide_out(source_object, time=0.25):
-	var vec_y = VarTests.stage_height + camera.position.y
-
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.tween_property(source_object, "position:y", vec_y, time)
-	tween.finished.connect(func(): source_object.visible = false)
-	return tween
-
-func advance_time(forward):
-	#print('advance time forward ', forward)
-	while forward > 100:
-		VarTests.DAYS += 1
-		forward -= 100
-
-	VarTests.TIME = VarTests.TIME + forward
-	if VarTests.TIME > 100:
-		VarTests.TIME = VarTests.TIME - 100
-		VarTests.DAYS += 1
-	check_timers()
-
-	# ATMOSPHERIC PERCENTAGE
-	if (VarTests.TIME - 50) < 0:
-		VarTests.ATMOSPHERIC_MULTIPLIER = ((VarTests.TIME - 50) * -1) * 2 / 100
-	else:
-		VarTests.ATMOSPHERIC_MULTIPLIER = (VarTests.TIME - 50) * 2 / 100
-	advance_time_to = 0
-	turn_overmap_dial()
-
-func turn_overmap_dial():
-	overmap_dial.rotation_degrees = (-360 / 100.0) * VarTests.TIME
-
-func check_timers():
-	for timer in Utils.items(VarTests.TIMERS):
-		VarTests.TIMERS.erase(timer[0])
-
-		if VarTests.DAYS == timer['timer_days']:
-			for trigger in timer['trigger']:
-				DiagFunc.script_library(trigger)
-
 func make_collision(x, y, r) -> Node2D:#, loc_name
 	var instance: Node2D = blip.instantiate()
 	instance.position = Vector2(x, y)
@@ -270,9 +197,8 @@ func create_locations() -> void:
 	#[2147.25|3157.6|15|blip_place|sejan_witch_house]
 	#    0     1      2     3             4
 	#    x     y      r     ?          loc_name
-	var map_size = len(map_file.split('\n'))
-	for i in map_size:
-		var data_out = map_file.split('\n')[i].replace('[', '').replace(']', '').split('|')
+	for map_blip in map_file.split('\n'):
+		var data_out = map_blip.replace('[', '').replace(']', '').split('|')
 		var x = float(data_out[0])
 		var y = float(data_out[1])
 		var r = float(data_out[2])
@@ -290,18 +216,19 @@ func create_locations() -> void:
 
 		var area:Area2D = make_collision(x, y, r)#, loc_name
 		area.input_event.connect(loc_move.emit.bind(area))
+		var real_xy = Vector2(x, y)
 		# blip           normal blip
 		# blip_named     named blip (no idea why this is any more special then blip_encounter)
 		# blip_encounter random encounter
 		# blip_place     named location
 		# blip_special   special blip (why is this one any more special?)
-		all_loc[area] = [loc_name, area.position]
+		all_loc[area] = {'name': loc_name, 'position': area.position, 'real_xy': real_xy}
 		# for loop ended (why is there no else on a for loop like python or a finally)
 		#if i == map_size-1:
 		#	break
 
 	# catch for leaving a location gotten to by debug or somehow missing a location name
-	if not VarTests.loc_name:#  or not all_loc.values()[0].has(VarTests.loc_name) I dont remember what this was for so I'll leave it here for now
+	if not VarTests.loc_name:
 		VarTests.loc_name = 'sejan_witch_house'
 	# why godot you are so much like python but are missing some amazing stuff
 	# like            for i, x in Dictionary.items()
@@ -310,7 +237,7 @@ func create_locations() -> void:
 
 	# move player to loaction
 	#print('E ', VarTests.loc_name, ' ', VarTests.map_target)
-	VarTests.map_target = reverse_loc_lookup(VarTests.loc_name)
+	VarTests.map_target = reverse_loc_lookup(VarTests.loc_name, 'name')
 	#print('target ', VarTests.map_target)
 	#if VarTests.loc_coords != null:
 	#	VarTests.map_target = reverse_loc_lookup(VarTests.loc_coords)
@@ -324,7 +251,7 @@ func create_locations() -> void:
 	env_stats = LoadStats.parse_env_vars(stats_file)
 	var blocking   = Utils.array_find(env_stats, 'blocking')
 	if blocking != -1 and env_stats[blocking].split(':')[1] == "yes":
-		VarTests.map_target = reverse_loc_lookup(VarTests.last_coords)
+		VarTests.map_target = reverse_loc_lookup(VarTests.last_coords, 'position')
 	blips_ready(VarTests.map_target)
 
 	can_move = true
@@ -332,26 +259,45 @@ func create_locations() -> void:
 ## reverse search location
 ## [br]takes a [Vector2] or [String]
 ## [br]returns an [Area2D]
-func reverse_loc_lookup(location:Variant) -> Area2D:
-	# if location is a String then location is the name of blip
-	# if location is a Vector2 then Location is postion of blip
-	var index = 0 if location is String else 1
+func reverse_loc_lookup(location:Variant, search:String) -> Area2D:
+	# search can be name, position, real_xy
+	# name is the location name
+	# position is the Area2D position
+	# real_xy is the position from the map file
 	var new_loc:Area2D
-	for items in Utils.items(all_loc):
+	for items in all_loc:
 		# items[0] key
 		# items[1] value
 		#print('items[1] ', items[1])
-		if items[1][index] == location:
-			new_loc = items[0]
+		if all_loc[items][search] == location:
+			new_loc = items
 	return new_loc
+
+func _on_game_loaded():
+	var blips = $CanvasLayer/blips
+	if blips.visible == false:
+		menu_active      = false
+		camera.is_active = true
+		print(VarTests.map_target)
+		VarTests.map_target  = reverse_loc_lookup(VarTests.map_target, 'real_xy')
+		VarTests.last_coords = reverse_loc_lookup(VarTests.last_coords, 'position').position
+		print(VarTests.map_target)
+		camera.position = VarTests.map_target.position
+		print('create_discovered_locations')
+		create_discovered_locations()
+		blips_ready(VarTests.map_target)
+		MiscFunc.advance_time(0)
+		MiscFunc.tint(map)
 
 func create_discovered_locations():
 	for loc_name in VarTests.DISCOVERED_LOCATIONS:
-		var loc_area:Node2D = reverse_loc_lookup(loc_name)
+		var loc_area:Node2D = reverse_loc_lookup(loc_name, 'name')
 		var con:Control = loc_area.get_child(-1)
+
 		if not con.mouse_entered.is_connected(_on_tooltip_hover):
-			con.mouse_entered.connect(_on_tooltip_hover.bind(null, null, VarTests.loc_name))
+			con.mouse_entered.connect(_on_tooltip_hover.bind(null, null, loc_name))
 			con.mouse_exited.connect(_on_tooltip_exit.bind(null, null))
+
 		color_blips(loc_area)
 
 func discover_location(loc_name):
@@ -412,10 +358,9 @@ func get_distance(point1, point2):
 	var y = point1.y - point2.y
 	return sqrt(x * x + y * y)
 
-#@onready var tint_text = $CanvasLayer/TextureRect
 func map_collision_check(relative_x, relative_y):
-	advance_time(3)
-	#MiscFunc.tint(tint_text)
+	MiscFunc.advance_time(3)
+	MiscFunc.tint(map)
 	# CHECK COLLISION AROUND THE "target" moviclip (current location)
 	# Return collision if a blip
 
@@ -439,11 +384,14 @@ func map_collision_check(relative_x, relative_y):
 		index += 1
 
 	var new_loc = adjacent_blips[closest_index]
-	VarTests.last_loc    = VarTests.map_target
-	VarTests.last_coords = VarTests.last_loc.position
-	VarTests.map_target  = new_loc
-	VarTests.loc_coords  = new_loc.position
-	evaluate_blip(all_loc[new_loc][0])
+
+	VarTests.last_coords    = VarTests.map_target.position
+	VarTests.last_loc_index = all_loc[VarTests.map_target]['real_xy']
+
+	VarTests.map_target     = new_loc
+	VarTests.loc_index      = all_loc[new_loc]['real_xy']
+	VarTests.loc_coords     = new_loc.position
+	evaluate_blip(all_loc[new_loc]['name'])
 	blips_ready(new_loc)
 
 func color_blips(blip_loc:Area2D):
@@ -459,14 +407,14 @@ func color_blips(blip_loc:Area2D):
 		temp.redraw = 'adjacent_blips'
 		child.modulate.a = 1
 	# discovered locations
-	if all_loc[blip_loc][0] in VarTests.DISCOVERED_LOCATIONS:
+	if all_loc[blip_loc]['name'] in VarTests.DISCOVERED_LOCATIONS:
 		temp.redraw = 'discovered'
 		child.modulate.a = 1
 	# at blip
 	if blip_loc == VarTests.map_target:
 		temp.redraw = 'on_top'
 		# at discovered location
-		if all_loc[blip_loc][0] in VarTests.DISCOVERED_LOCATIONS:
+		if all_loc[blip_loc]['name'] in VarTests.DISCOVERED_LOCATIONS:
 			temp.redraw = 'on_discovered'
 		child.modulate.a = 1
 
@@ -492,31 +440,34 @@ func blips_ready(target:Area2D):
 	collision_dummy.position = Vector2((target.position + target.scale * 2) - collision_dummy.scale * 2) - Vector2(5, 5)
 
 	# this took so long to figure out >_<
-	await get_tree().create_timer(0.05).timeout
-	for i:Area2D in all_loc.keys():
-		var c = i.position
+	if is_inside_tree():
+		await get_tree().create_timer(0.05).timeout
+	for location:Area2D in all_loc:
+		var c = location.position
 		var s = target.position
-		#var c1 = i
-		#var s1 = area
-		deltaX = (c.x + i.scale.x / 2.0) - (s.x + target.scale.x / 2.0)
-		deltaY = (c.y + i.scale.y / 2.0) - (s.y + target.scale.y / 2.0) # rounded distance
+
+		deltaX = (c.x + location.scale.x / 2.0) - (s.x + target.scale.x / 2.0)
+		deltaY = (c.y + location.scale.y / 2.0) - (s.y + target.scale.y / 2.0) # rounded distance
 		dist = sqrt((deltaX * deltaX) + (deltaY * deltaY)) # DISTANCE CHECKING
 
-		if dist <= rangee and collision_dummy.overlaps_area(i):
-			adjacent_blips.append(i)
-		color_blips(i)
-	#print(adjacent_blips)
+		if dist <= rangee and collision_dummy.overlaps_area(location):
+			adjacent_blips.append(location)
+		color_blips(location)
+
+	collision_dummy.queue_free()
+	var blips = $CanvasLayer/blips
+	blips.visible = true
 	can_move = true
 
 # mouse movement
 func _on_blip_move(_viewport: Node, _event: InputEvent, _shape_idx: int, node:Area2D) -> void:
 	# check for if discover pop up is not open
-	if not discovery_popup_active and Input.is_action_just_released("mouse_left"):
+	if not menu_active and Input.is_action_just_released("mouse_left"):
 		var moved_loc = node.get_node("Sprite2D")
 		# only allow adjacent blips
 		if moved_loc.get_parent().get_child(0).modulate.a == 1 and node in adjacent_blips:
 			var click_position = node.position
-			print(click_position)
+			print('click_position ', click_position)
 			click_position -= VarTests.map_target.position# + Vector2(10, 8)
 
 			if can_move:
@@ -525,7 +476,7 @@ func _on_blip_move(_viewport: Node, _event: InputEvent, _shape_idx: int, node:Ar
 func discovery_popup(text, loc_name):
 	disco_cont.move_to_front()
 	disco_cont.visible     = true
-	discovery_popup_active = true
+	menu_active = true
 	camera.is_active       = false
 
 	var vec_x = camera.position.x - (float(VarTests.stage_width) / 2)
@@ -539,12 +490,18 @@ func _on_discovery_popup_pass():
 	# kick player backwards if the blip is blocking
 	var blocking  = Utils.array_find(env_stats, 'blocking')
 	if blocking != -1 and env_stats[blocking].split(':')[1] == "yes":
-		VarTests.map_target = VarTests.last_loc
-		blips_ready(VarTests.last_loc)
+		VarTests.map_target = reverse_loc_lookup(VarTests.last_coords, 'position')
+		blips_ready(VarTests.map_target)
 	disco_cont.visible     = false
-	discovery_popup_active = false
+	menu_active = false
 	camera.is_active       = true
 	discover_location(location_name)
+
+func menu_open():
+	if menu_active:
+		menu_active = false
+	else:
+		menu_active = true
 
 func _on_discovery_popup_enter():
 	disco_cont.visible = false
@@ -552,18 +509,19 @@ func _on_discovery_popup_enter():
 	start_encounter(location_name)
 
 func _on_button_mouse_entered() -> void:
-	if not (chr_menu.visible or dck_menu.visible or inv_menu.visible or stn_menu.visible):
-		discovery_popup_active = true
+	if not (chr_menu.visible or dck_menu.visible or inv_menu.visible or settings.visible):
+		menu_active = true
 		camera.is_active    = false
 
 func _on_button_mouse_exited() -> void:
-	if not (chr_menu.visible or dck_menu.visible or inv_menu.visible or stn_menu.visible):
-		discovery_popup_active = false
+	if not (chr_menu.visible or dck_menu.visible or inv_menu.visible or settings.visible):
+		menu_active = false
 		camera.is_active    = true
 
 func _on_button_chr_pressed() -> void:
-	movement(chr_menu)
-	menulist.append(chr_menu)
+	menu_open()
+	MiscFunc.menu_slide(chr_menu, camera)
+	MiscFunc.menulist.append(chr_menu)
 	chr_menu.move_to_front()
 
 	chr_name.text   = VarTests.player_name
@@ -600,14 +558,16 @@ func _on_button_dck_pressed() -> void:
 	else:
 		dck_menu_equiped_cards.visible = true
 
-	movement(dck_menu)
-	menulist.append(dck_menu)
+	menu_open()
+	MiscFunc.menu_slide(dck_menu, camera)
+	MiscFunc.menulist.append(dck_menu)
 
 	dck_menu.move_to_front()
 
 func _on_button_inv_pressed() -> void:
-	movement(inv_menu)
-	menulist.append(inv_menu)
+	menu_open()
+	MiscFunc.menu_slide(inv_menu, camera)
+	MiscFunc.menulist.append(inv_menu)
 	var items = Utils.count_items(VarTests.ITEM_INVENTORY)
 
 	inventory.choices = items[1].map(func(item): return item.replace('_', ' '))
@@ -657,11 +617,13 @@ func refresh_equipped_items():
 		else:
 			slots[i].visible = false
 
-func _on_button_stn_pressed() -> void:
-	movement(stn_menu)
-	menulist.append(stn_menu)
+func _on_button_settings_pressed() -> void:
+	menu_open()
+	var sett = settings.get_node("pause_menu")
+	MiscFunc.menu_slide(sett, camera)
+	MiscFunc.menulist.append(sett)
 
-	stn_menu.move_to_front()
+	sett.move_to_front()
 
 func _on_dck_cards_available(index):
 	var card = Utils.unformat(dck_menu_available_cards.choices[index])[1]
@@ -772,37 +734,3 @@ func _on_underwear_input_event(_viewport: Node, event: InputEvent, _shape_idx: i
 	if is_clicked(event):
 		print('underwear clicked')
 		shapes.append('underwear')
-
-func _on_button_pause_new_game_pressed() -> void:
-	var new_tex = TextureRect.new()
-	new_tex.texture = load("res://assets/images/menu_background.png")
-	#cover camera
-	var vec_x = camera.position.x - (float(VarTests.stage_width) / 2)
-	var vec_y = camera.position.y - (float(VarTests.stage_height) / 2)
-	new_tex.position = Vector2(vec_x, vec_y)
-	CanLay.add_child(new_tex)
-	#new_tex.move_to_front()
-
-	var ng_menu = new_game.instantiate()
-	ng_menu.visible = false
-	CanLay.add_child(ng_menu)
-	movement(ng_menu, 0.7)
-
-func _on_button_pause_save_load_pressed() -> void:
-	movement(save_load)
-	menulist.append(save_load)
-
-	save_load.move_to_front()
-
-@warning_ignore("unused_parameter")
-func _on_save_selected(index: Variant) -> void:
-	pass # Replace with function body.
-
-func _on_button_save_pressed() -> void:
-	pass # Replace with function body.
-
-func _on_button_load_pressed() -> void:
-	pass # Replace with function body.
-
-func _on_button_delete_pressed() -> void:
-	pass # Replace with function body.

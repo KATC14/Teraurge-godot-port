@@ -9,11 +9,5 @@ vec4 screen(vec4 base, vec4 blend){
 }
 
 void fragment(){
-  vec4 bg_color = texture(SCREEN_TEXTURE, SCREEN_UV);
-
-  // mix() if you want to be able to set 'intensity' to different values.
-  COLOR.rgb = mix(COLOR, screen(bg_color, COLOR), intensity).rgb;
-
-  // No need to mix() if you always want 'intensity' to be 1.0 (uncomment):
   // COLOR.rgb = screen( bg_color, COLOR ).rgb;
 }

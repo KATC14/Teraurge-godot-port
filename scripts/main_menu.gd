@@ -2,70 +2,56 @@ extends Node2D
 
 
 @onready var fade_in    = $CanvasLayer/TextureRect
+@onready var CanLay     = $CanvasLayer
 @onready var death_back = $CanvasLayer/TextureRect2
 @onready var warn       = $CanvasLayer/Control
 @onready var menu       = $CanvasLayer/Control2
-@onready var load_menu  = $CanvasLayer/Control3
 @onready var vrsn_label = $CanvasLayer/Control2/Label
-@onready var save_label = $CanvasLayer/Control3/Label
 
-@onready var choicesDialog = $CanvasLayer/Control3/PanelContainer
-
-var saves
+@onready var stn_menu    =  load("res://scenes/save_menu.tscn")
+var settings
 
 func _ready() -> void:
 	VarTests.main_menu_active = true
 	vrsn_label.text = str(VarTests.version)
-	if VarTests.menu_state == 'warning':
-		warn.visible = true
-		menu.visible = false
-	elif VarTests.menu_state == 'death':
-		menu.visible        = false
-		warn.visible        = false
-		death_back.modulate = Color.TRANSPARENT
-		death_back.visible  = true
 
-		var death_fade_out = func():
-			var tween_DI = create_tween()
-			tween_DI.set_ease(Tween.EASE_IN)
-			tween_DI.set_trans(Tween.TRANS_QUART)
-			tween_DI.tween_property(death_back, "modulate:a", 0, 5)
-			tween_DI.finished.connect(warning_end)
+	settings = stn_menu.instantiate()
+	CanLay.add_child(settings)
 
-			var tween1 = create_tween()
-			tween1.set_ease(Tween.EASE_IN)
-			tween1.set_trans(Tween.TRANS_QUART)
-			tween1.tween_property(fade_in, "modulate:a", 1, 4)
+	match VarTests.menu_state:
+		'warning':
+			warn.visible = true
+			menu.visible = false
+		'death':
+			menu.visible        = false
+			warn.visible        = false
+			death_back.modulate = Color.TRANSPARENT
+			death_back.visible  = true
 
-		var tween_DO = create_tween()
-		tween_DO.set_ease(Tween.EASE_IN_OUT)
-		tween_DO.set_trans(Tween.TRANS_BOUNCE)
-		tween_DO.tween_property(death_back, "modulate:a", 1, 0.6)
-		tween_DO.finished.connect(death_fade_out)
-	else:
-		warn.visible = false
-		menu.visible = true
+			var death_fade_out = func():
+				var tween_DI = create_tween()
+				tween_DI.set_ease(Tween.EASE_IN)
+				tween_DI.set_trans(Tween.TRANS_QUART)
+				tween_DI.tween_property(death_back, "modulate:a", 0, 5)
+				tween_DI.finished.connect(warning_end)
 
-# TWEENS
-func menu_tween_up(node):
-	node.position.y = VarTests.stage_height
-	node.modulate = Color.TRANSPARENT
-	node.visible = true
-	var tween = create_tween()
-	tween.tween_property(node, "position", Vector2(0, 0), 0.7)
-	tween.parallel().tween_property(node, "modulate:a", 255, 0.5)
-	return tween
+				var tween1 = create_tween()
+				tween1.set_ease(Tween.EASE_IN)
+				tween1.set_trans(Tween.TRANS_QUART)
+				tween1.tween_property(fade_in, "modulate:a", 1, 4)
 
-func menu_tween_down(node):
-	node.position.y = 0
-	var tween = create_tween()
-	tween.tween_property(node, "position", Vector2(0, VarTests.stage_height), 0.5)
-	tween.parallel().tween_property(node, "modulate:a", 0, 0.7)
-	return tween
+			var tween_DO = create_tween()
+			tween_DO.set_ease(Tween.EASE_IN_OUT)
+			tween_DO.set_trans(Tween.TRANS_BOUNCE)
+			tween_DO.tween_property(death_back, "modulate:a", 1, 0.6)
+			tween_DO.finished.connect(death_fade_out)
+		_:
+			warn.visible = false
+			menu.visible = true
 
 # MAIN MENU
 func warning_end():
-	menu_tween_up(menu)
+	MiscFunc.menu_slide(menu, Vector2.ZERO, 0.7)
 	warn.visible = false
 
 # warning fade
@@ -76,29 +62,20 @@ func _on_button_warning_pressed() -> void:
 	tween.finished.connect(warning_end)
 
 func _on_button_new_game_pressed() -> void:
-	var tween = menu_tween_down(menu) 
+	var tween = MiscFunc.menu_slide(menu, Vector2.ZERO, 0.7)
 	var ng_menu = $CanvasLayer/Control4
 
 	ng_menu.visible = false
 	var temp = func():
+		MiscFunc.menu_slide(ng_menu, Vector2.ZERO, 0.8)
 		menu.visible = false
-		ng_menu.position.y = 720
-		ng_menu.visible = true
-		#menu_tween_up(control)
-		var tween1 = create_tween()
-		tween1.tween_property(ng_menu, "position", Vector2(0, 0), 0.7)
 	tween.finished.connect(temp.call)
 
 func _on_button_load_pressed() -> void:
-	# TEMP
-	saves = ['save 1', 'save 2']
-	# TEMP
-	choicesDialog.visible = true
-	choicesDialog.choices = saves
-	var tween = menu_tween_down(menu)
+	var tween = MiscFunc.menu_slide(menu, Vector2.ZERO, 0.7)
 	var temp = func():
 		menu.visible = false
-		menu_tween_up(load_menu)
+		MiscFunc.menu_slide(settings.get_node_or_null('load_menu'), Vector2.ZERO, 0.7)
 	tween.finished.connect(temp.call)
 
 func _on_button_devblog_pressed() -> void:
@@ -106,24 +83,3 @@ func _on_button_devblog_pressed() -> void:
 
 func _on_button_patreon_pressed() -> void:
 	OS.shell_open("http://www.patreon.com/meandraco")
-
-# MM LOAD MENU
-func _on_panel_container_selected(index: Variant) -> void:
-	pass # Replace with function body.
-	var save = saves[index]
-	print('save index ', index)
-	print('save ', save)
-	save_label.text = save
-
-func _on_button_mm_load_pressed() -> void:
-	print('_on_button_mm_load_pressed')
-	pass # Replace with function body.
-
-func _on_button_mm_delete_pressed() -> void:
-	print('_on_button_mm_delete_pressed')
-	pass # Replace with function body.
-
-func _on_button_mm_back_pressed() -> void:
-	menu_tween_up(menu)
-	var tween = menu_tween_down(load_menu)
-	tween.finished.connect(func(): load_menu.visible = false)

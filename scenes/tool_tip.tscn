@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnownsp50c218"]
+[gd_scene format=3 uid="uid://bnownsp50c218"]
 
 [ext_resource type="Script" uid="uid://cgisx5fqvol1y" path="res://scripts/tool_tip.gd" id="1_rtoo2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1rja"]
 bg_color = Color(1, 0.819608, 0.639216, 1)
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1755725268]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_rtoo2")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=658728103]
 custom_minimum_size = Vector2(1, 0)
 layout_mode = 0
 offset_right = 40.0

@@ -181,6 +181,8 @@ var buy_inventory  = []
 @onready var sell_list           = $CanvasLayer/Control2/TextureRect/PanelContainer3
 @onready var buy_list            = $CanvasLayer/Control2/TextureRect/PanelContainer4
 
+# end_encounter function in diag_func.gd
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fade_in.texture = load("res://assets/images/menu_background.png")
@@ -201,7 +203,7 @@ func _ready() -> void:
 	VarTests.map_active = false
 	# TEMP
 	#VarTests.ITEM_INVENTORY.append('underwear')
-	#VarTests.character_name = 'tornoth'
+	VarTests.character_name = 'witch'
 	#start_shop()
 	# TEMP
 	start_encounter(VarTests.character_name)
@@ -329,27 +331,6 @@ func make_options(packed_options):
 		var a:Button = btn[i]
 		var b:Button = btn[where]
 		a.set_focus_neighbor(SIDE_BOTTOM, b.get_path())
-
-
-# ADVANCE TIME
-func advance_time(forward: int):
-	while forward > 100:
-		VarTests.DAYS += 1
-		forward -= 100
-
-	VarTests.TIME += forward
-	if VarTests.TIME > 100:
-		VarTests.TIME -= 100
-		VarTests.DAYS += 1
-	#check_timers()
-
-	# ATMOSPHERIC PERCENTAGE
-	if VarTests.TIME - 50 < 0:
-		VarTests.ATMOSPHERIC_MULTIPLIER = ((VarTests.TIME - 50) * -1) * 2.0 / 100
-	else:
-		VarTests.ATMOSPHERIC_MULTIPLIER = (VarTests.TIME - 50) * 2.0 / 100
-	#advance_time_to = 0;
-	#turn_overmap_dial()
 
 func start_encounter(character_name):
 	print('started ', character_name)
@@ -573,13 +554,10 @@ func logic_logic(logic_func, edge_case):# ?
 			"character_leave":       character_leave_anim(sprite)
 			"character_return":      character_return_anim(sprite)
 			"change_environment":    change_environment(logic_func[1])
-# TODO advance_time function
-			"advance_time":          advance_time(logic_func[1])
+			"advance_time":          MiscFunc.advance_time(logic_func[1])
 			"change_diag":           change_diag(logic_func[1][0], logic_func[1][1])
 			"change_index":          change_index(logic_func[1])
-			"curated_list":
-				print('dialogue curated_list!')
-				change_index(Utils.curated_list(edge_case, logic_func[1]))
+			"curated_list":          change_index(Utils.curated_list(edge_case, logic_func[1]))
 			"start_combat":          start_combat()
 			"player_death":          player_death()
 			"start_shop":            start_shop()

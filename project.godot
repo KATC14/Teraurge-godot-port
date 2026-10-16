@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Teraurge"
-run/main_scene="res://scenes/dialogue.tscn"
+run/main_scene="uid://bc1h5hiwimgip"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://dw5gg2etbjo8p"
 

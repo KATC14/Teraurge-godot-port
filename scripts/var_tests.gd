@@ -3,12 +3,12 @@ extends Node
 
 var stage_height = 720
 var stage_width  = 1280
-#var player_location = Vector2(2147.25, 3147.6)
 var map_target
 var loc_name:String
 var loc_coords
 var last_dialogue_func = ''
-var last_loc = ''
+var loc_index = ''
+var last_loc_index = ''
 var last_coords
 
 var version = 2.13
@@ -87,8 +87,7 @@ var SLOT_KEYS = { # Equipped items saved as strings
 	#Lowest layer
 }
 
-#SAVE VARIABLE NAMES
-#ITEM_SLOTS# item slots too but its large
+# SAVE VARIABLE NAMES
 var RAPE_FILTER  = false
 var FERAL_FILTER = false
 var GORE_FILTER  = false
@@ -133,7 +132,7 @@ var FLAGS           = []
 var CLICKED_OPTIONS = {}
 var saved_indexs    = {}
 var COUNTERS        = {}
-var TIMERS          = {}
+var TIMERS          = []
 var DISCOVERED_LOCATIONS = ["sejan_witch_house"]
 
 var DAYS = 0
